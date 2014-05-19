@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface RUAAppDelegate : UIResponder <UIApplicationDelegate>
 

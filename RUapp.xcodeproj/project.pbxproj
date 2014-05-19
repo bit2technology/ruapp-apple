@@ -15,13 +15,13 @@
 		4BDED2F1192A152F009716DF /* RUAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED2F0192A152F009716DF /* RUAAppDelegate.m */; };
 		4BDED2F4192A152F009716DF /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BDED2F2192A152F009716DF /* Main_iPhone.storyboard */; };
 		4BDED2F7192A152F009716DF /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BDED2F5192A152F009716DF /* Main_iPad.storyboard */; };
-		4BDED2FA192A152F009716DF /* RUAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED2F9192A152F009716DF /* RUAViewController.m */; };
 		4BDED2FC192A152F009716DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BDED2FB192A152F009716DF /* Images.xcassets */; };
 		4BDED303192A152F009716DF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED302192A152F009716DF /* XCTest.framework */; };
 		4BDED304192A152F009716DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E0192A152F009716DF /* Foundation.framework */; };
 		4BDED305192A152F009716DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E4192A152F009716DF /* UIKit.framework */; };
 		4BDED30D192A152F009716DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BDED30B192A152F009716DF /* InfoPlist.strings */; };
 		4BDED30F192A152F009716DF /* RUappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED30E192A152F009716DF /* RUappTests.m */; };
+		4BDED31A192A406A009716DF /* RUAResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED319192A406A009716DF /* RUAResultsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,14 +47,14 @@
 		4BDED2F0192A152F009716DF /* RUAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUAAppDelegate.m; sourceTree = "<group>"; };
 		4BDED2F3192A152F009716DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		4BDED2F6192A152F009716DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		4BDED2F8192A152F009716DF /* RUAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUAViewController.h; sourceTree = "<group>"; };
-		4BDED2F9192A152F009716DF /* RUAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUAViewController.m; sourceTree = "<group>"; };
 		4BDED2FB192A152F009716DF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4BDED301192A152F009716DF /* RUappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDED302192A152F009716DF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4BDED30A192A152F009716DF /* RUappTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RUappTests-Info.plist"; sourceTree = "<group>"; };
 		4BDED30C192A152F009716DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4BDED30E192A152F009716DF /* RUappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUappTests.m; sourceTree = "<group>"; };
+		4BDED318192A406A009716DF /* RUAResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAResultsViewController.h; sourceTree = "<group>"; };
+		4BDED319192A406A009716DF /* RUAResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAResultsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,13 +114,12 @@
 		4BDED2E6192A152F009716DF /* RUapp */ = {
 			isa = PBXGroup;
 			children = (
-				4BDED2EF192A152F009716DF /* RUAAppDelegate.h */,
-				4BDED2F0192A152F009716DF /* RUAAppDelegate.m */,
 				4BDED2F2192A152F009716DF /* Main_iPhone.storyboard */,
 				4BDED2F5192A152F009716DF /* Main_iPad.storyboard */,
-				4BDED2F8192A152F009716DF /* RUAViewController.h */,
-				4BDED2F9192A152F009716DF /* RUAViewController.m */,
+				4BDED2EF192A152F009716DF /* RUAAppDelegate.h */,
+				4BDED2F0192A152F009716DF /* RUAAppDelegate.m */,
 				4BDED2FB192A152F009716DF /* Images.xcassets */,
+				4BDED31B192A406F009716DF /* Results */,
 				4BDED2E7192A152F009716DF /* Supporting Files */,
 			);
 			path = RUapp;
@@ -153,6 +152,15 @@
 				4BDED30B192A152F009716DF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4BDED31B192A406F009716DF /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				4BDED318192A406A009716DF /* RUAResultsViewController.h */,
+				4BDED319192A406A009716DF /* RUAResultsViewController.m */,
+			);
+			name = Results;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,8 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BDED31A192A406A009716DF /* RUAResultsViewController.m in Sources */,
 				4BDED2ED192A152F009716DF /* main.m in Sources */,
-				4BDED2FA192A152F009716DF /* RUAViewController.m in Sources */,
 				4BDED2F1192A152F009716DF /* RUAAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,7 +354,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -379,7 +387,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -395,6 +403,7 @@
 				GCC_PREFIX_HEADER = "RUapp/RUapp-Prefix.pch";
 				INFOPLIST_FILE = "RUapp/RUapp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -408,6 +417,7 @@
 				GCC_PREFIX_HEADER = "RUapp/RUapp-Prefix.pch";
 				INFOPLIST_FILE = "RUapp/RUapp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
