@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import "RUAResultsViewController.h"
+#import "RUAResultsViewControllerOld.h"
 
-@interface RUAResultsViewController ()
+@interface RUAResultsViewControllerOld ()
 
 // Chart.
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *chartLabels;
@@ -16,14 +16,14 @@
 
 @end
 
-@implementation RUAResultsViewController
+@implementation RUAResultsViewControllerOld
 
 - (IBAction)segmentedControlValueChanged:(UISegmentedControl *)sender
 {
     NSInteger value = 100;
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:4];
     for (int idx = 0; idx < 3; idx++) {
-        NSInteger random = arc4random_uniform(value * 3 / 5);
+        NSInteger random = (NSInteger)arc4random_uniform((u_int32_t)(value * 3 / 5));
         [values addObject:[NSNumber numberWithInteger:random]];
         value -= random;
     }
@@ -36,7 +36,7 @@
 {
     CGFloat maxHeight = [[self.chartBars firstObject] superview].bounds.size.height;
     NSInteger maxValue = NSIntegerMin;
-    for (int idx = 0; idx < 4; idx++) {
+    for (NSUInteger idx = 0; idx < 4; idx++) {
         NSInteger value = [chartValues[idx] integerValue];
         if (value > maxValue) {
             maxValue = value;

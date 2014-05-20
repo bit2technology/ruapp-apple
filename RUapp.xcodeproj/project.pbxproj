@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BD37508192B6AD00016BD35 /* RUAColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD37507192B6AD00016BD35 /* RUAColor.m */; };
 		4BDED2E1192A152F009716DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E0192A152F009716DF /* Foundation.framework */; };
 		4BDED2E3192A152F009716DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E2192A152F009716DF /* CoreGraphics.framework */; };
 		4BDED2E5192A152F009716DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E4192A152F009716DF /* UIKit.framework */; };
@@ -21,7 +22,7 @@
 		4BDED305192A152F009716DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E4192A152F009716DF /* UIKit.framework */; };
 		4BDED30D192A152F009716DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BDED30B192A152F009716DF /* InfoPlist.strings */; };
 		4BDED30F192A152F009716DF /* RUappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED30E192A152F009716DF /* RUappTests.m */; };
-		4BDED31A192A406A009716DF /* RUAResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED319192A406A009716DF /* RUAResultsViewController.m */; };
+		4BDED31A192A406A009716DF /* RUAResultsViewControllerOld.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED319192A406A009716DF /* RUAResultsViewControllerOld.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4BD37506192B6AD00016BD35 /* RUAColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAColor.h; sourceTree = "<group>"; };
+		4BD37507192B6AD00016BD35 /* RUAColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAColor.m; sourceTree = "<group>"; };
 		4BDED2DD192A152F009716DF /* RUapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDED2E0192A152F009716DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4BDED2E2192A152F009716DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,8 +56,8 @@
 		4BDED30A192A152F009716DF /* RUappTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RUappTests-Info.plist"; sourceTree = "<group>"; };
 		4BDED30C192A152F009716DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4BDED30E192A152F009716DF /* RUappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUappTests.m; sourceTree = "<group>"; };
-		4BDED318192A406A009716DF /* RUAResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAResultsViewController.h; sourceTree = "<group>"; };
-		4BDED319192A406A009716DF /* RUAResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAResultsViewController.m; sourceTree = "<group>"; };
+		4BDED318192A406A009716DF /* RUAResultsViewControllerOld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAResultsViewControllerOld.h; sourceTree = "<group>"; };
+		4BDED319192A406A009716DF /* RUAResultsViewControllerOld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAResultsViewControllerOld.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				4BDED2F5192A152F009716DF /* Main_iPad.storyboard */,
 				4BDED2EF192A152F009716DF /* RUAAppDelegate.h */,
 				4BDED2F0192A152F009716DF /* RUAAppDelegate.m */,
+				4BD37506192B6AD00016BD35 /* RUAColor.h */,
+				4BD37507192B6AD00016BD35 /* RUAColor.m */,
 				4BDED2FB192A152F009716DF /* Images.xcassets */,
 				4BDED31B192A406F009716DF /* Results */,
 				4BDED2E7192A152F009716DF /* Supporting Files */,
@@ -157,8 +162,8 @@
 		4BDED31B192A406F009716DF /* Results */ = {
 			isa = PBXGroup;
 			children = (
-				4BDED318192A406A009716DF /* RUAResultsViewController.h */,
-				4BDED319192A406A009716DF /* RUAResultsViewController.m */,
+				4BDED318192A406A009716DF /* RUAResultsViewControllerOld.h */,
+				4BDED319192A406A009716DF /* RUAResultsViewControllerOld.m */,
 			);
 			name = Results;
 			sourceTree = "<group>";
@@ -262,7 +267,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BDED31A192A406A009716DF /* RUAResultsViewController.m in Sources */,
+				4BD37508192B6AD00016BD35 /* RUAColor.m in Sources */,
+				4BDED31A192A406A009716DF /* RUAResultsViewControllerOld.m in Sources */,
 				4BDED2ED192A152F009716DF /* main.m in Sources */,
 				4BDED2F1192A152F009716DF /* RUAAppDelegate.m in Sources */,
 			);
@@ -399,8 +405,39 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RUapp/RUapp-Prefix.pch";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = "RUapp/RUapp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -413,8 +450,39 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RUapp/RUapp-Prefix.pch";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = "RUapp/RUapp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -481,6 +549,7 @@
 				4BDED314192A152F009716DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BDED315192A152F009716DF /* Build configuration list for PBXNativeTarget "RUappTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +558,7 @@
 				4BDED317192A152F009716DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

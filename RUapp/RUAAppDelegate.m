@@ -8,15 +8,14 @@
 
 #import "RUAAppDelegate.h"
 
+#import "RUAColor.h"
+
 @implementation RUAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
-    if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1) {
-        [(UITabBarController *)self.window.rootViewController tabBar].tintColor = nil;
-    }
+    // Set tab bar's tint color properly on iOS 7 and 6.
+    [(UITabBarController *)self.window.rootViewController tabBar].tintColor = (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1 ? [RUAColor lightBlueColor] : nil);
     
     return YES;
 }

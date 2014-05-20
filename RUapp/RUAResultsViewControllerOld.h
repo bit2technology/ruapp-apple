@@ -8,6 +8,6 @@
 
 @import UIKit;
 
-@interface RUAResultsViewController : UIViewController
+@interface RUAResultsViewControllerOld : UIViewController
 
 @end
