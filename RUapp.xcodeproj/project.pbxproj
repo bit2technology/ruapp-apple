@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B51524E192C103F0046A3D8 /* RUAStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B51524D192C103F0046A3D8 /* RUAStarRating.m */; };
 		4BD37508192B6AD00016BD35 /* RUAColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD37507192B6AD00016BD35 /* RUAColor.m */; };
 		4BDED2E1192A152F009716DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E0192A152F009716DF /* Foundation.framework */; };
 		4BDED2E3192A152F009716DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E2192A152F009716DF /* CoreGraphics.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B51524C192C103F0046A3D8 /* RUAStarRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAStarRating.h; sourceTree = "<group>"; };
+		4B51524D192C103F0046A3D8 /* RUAStarRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAStarRating.m; sourceTree = "<group>"; };
 		4BD37506192B6AD00016BD35 /* RUAColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAColor.h; sourceTree = "<group>"; };
 		4BD37507192B6AD00016BD35 /* RUAColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAColor.m; sourceTree = "<group>"; };
 		4BDED2DD192A152F009716DF /* RUapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +126,8 @@
 				4BDED2F0192A152F009716DF /* RUAAppDelegate.m */,
 				4BD37506192B6AD00016BD35 /* RUAColor.h */,
 				4BD37507192B6AD00016BD35 /* RUAColor.m */,
+				4B51524C192C103F0046A3D8 /* RUAStarRating.h */,
+				4B51524D192C103F0046A3D8 /* RUAStarRating.m */,
 				4BDED2FB192A152F009716DF /* Images.xcassets */,
 				4BDED31B192A406F009716DF /* Results */,
 				4BDED2E7192A152F009716DF /* Supporting Files */,
@@ -271,6 +276,7 @@
 				4BDED31A192A406A009716DF /* RUAResultsViewControllerOld.m in Sources */,
 				4BDED2ED192A152F009716DF /* main.m in Sources */,
 				4BDED2F1192A152F009716DF /* RUAAppDelegate.m in Sources */,
+				4B51524E192C103F0046A3D8 /* RUAStarRating.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

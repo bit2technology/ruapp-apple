@@ -11,5 +11,6 @@
 @interface RUAColor : UIColor
 
 + (UIColor *)lightBlueColor;
++ (UIColor *)darkBlueColor;
 
 @end
