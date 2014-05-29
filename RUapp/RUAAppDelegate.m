@@ -14,8 +14,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Set tab bar's tint color properly on iOS 7 and 6.
-    [(UITabBarController *)self.window.rootViewController tabBar].tintColor = (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1 ? [RUAColor lightBlueColor] : nil);
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    
+    // Set properties by iOS version.
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
+        // iOS 7 and later.
+        self.window.tintColor = [RUAColor lightBlueColor];
+        tabBarController.tabBar.barStyle = UIBarStyleBlack;
+    } else {
+        // iOS 6 and earlier.
+        tabBarController.tabBar.selectedImageTintColor = [RUAColor lightBlueColor];
+    }
     
     return YES;
 }
