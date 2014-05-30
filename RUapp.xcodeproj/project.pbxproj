@@ -20,6 +20,7 @@
 		4BDED304192A152F009716DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E0192A152F009716DF /* Foundation.framework */; };
 		4BDED305192A152F009716DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E4192A152F009716DF /* UIKit.framework */; };
 		4BDED30F192A152F009716DF /* RUappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED30E192A152F009716DF /* RUappTests.m */; };
+		4BE910031938BBA300198D43 /* RUAVoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		4BDED302192A152F009716DF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4BDED30A192A152F009716DF /* RUappTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RUappTests-Info.plist"; sourceTree = "<group>"; };
 		4BDED30E192A152F009716DF /* RUappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUappTests.m; sourceTree = "<group>"; };
+		4BE910011938BBA300198D43 /* RUAVoteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAVoteTableViewController.h; sourceTree = "<group>"; };
+		4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAVoteTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,7 @@
 				4BD37506192B6AD00016BD35 /* RUAColor.h */,
 				4BD37507192B6AD00016BD35 /* RUAColor.m */,
 				4BDED2FB192A152F009716DF /* Images.xcassets */,
+				4BE910001938BB8900198D43 /* Vote */,
 				4BDED31B192A406F009716DF /* Results */,
 				4BDED2E7192A152F009716DF /* Supporting Files */,
 			);
@@ -155,6 +159,15 @@
 			children = (
 			);
 			name = Results;
+			sourceTree = "<group>";
+		};
+		4BE910001938BB8900198D43 /* Vote */ = {
+			isa = PBXGroup;
+			children = (
+				4BE910011938BBA300198D43 /* RUAVoteTableViewController.h */,
+				4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */,
+			);
+			name = Vote;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BE910031938BBA300198D43 /* RUAVoteTableViewController.m in Sources */,
 				4BD37508192B6AD00016BD35 /* RUAColor.m in Sources */,
 				4BDED2ED192A152F009716DF /* main.m in Sources */,
 				4BDED2F1192A152F009716DF /* RUAAppDelegate.m in Sources */,

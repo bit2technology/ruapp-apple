@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "RUAAppDelegate.h"
+
+@import UIKit;
 
 int main(int argc, char * argv[])
 {

@@ -20,4 +20,10 @@
     return [UIColor colorWithRed:(CGFloat).1294117647058823650230152679796447046101093292236328125 green:(CGFloat).137254901960784325698483598898747004568576812744140625 blue:(CGFloat).3098039215686274605587868791189976036548614501953125 alpha:1]; // rgb(33, 35, 79).
 }
 
++ (UIColor *)darkerBlueColor
+{
+    // TODO: Use constants.
+    return [UIColor colorWithRed:(CGFloat)(27./255.) green:(CGFloat)(27./255.) blue:(CGFloat)(49./255.) alpha:1];
+}
+
 @end
