@@ -22,8 +22,7 @@
 
 + (UIColor *)darkerBlueColor
 {
-    // TODO: Use constants.
-    return [UIColor colorWithRed:(CGFloat)(27./255.) green:(CGFloat)(27./255.) blue:(CGFloat)(49./255.) alpha:1];
+    return [UIColor colorWithRed:(CGFloat).10588235294117646911882246740788104943931102752685546875 green:(CGFloat).10588235294117646911882246740788104943931102752685546875 blue:(CGFloat).1921568627450980504267619153324631042778491973876953125 alpha:1]; // rgb(27, 27, 49).
 }
 
 @end

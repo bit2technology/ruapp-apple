@@ -10,15 +10,37 @@
 
 #import "RUAColor.h"
 
+@interface RUAVoteTableViewController ()
+
+@property (strong, nonatomic) NSMutableArray *checkedIndexPaths;
+
+@end
+
 @implementation RUAVoteTableViewController
+
+- (IBAction)submitVote:(id)sender
+{
+    // TODO: Alert view delegate.
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to submit this vote?", @"Vote alert view title")
+                               message:nil
+                              delegate:nil
+                     cancelButtonTitle:NSLocalizedString(@"Cancel", @"Vote alert view cancel button")
+                     otherButtonTitles:NSLocalizedString(@"Submit", @"Vote alert view submit button"), nil] show];
+}
+
+#pragma mark - UITableViewController methods
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
+{
+    // Set appearance to header text label.
+    view.textLabel.textColor = [RUAColor lightGrayColor];
+    view.textLabel.shadowColor = nil;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // FIXME: Test.
+    // Set appearance to cells.
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    if (indexPath.row == 0) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
     cell.backgroundColor = [RUAColor darkerBlueColor];
     cell.textLabel.textColor = [RUAColor whiteColor];
     return cell;
@@ -26,16 +48,35 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // FIXME: Test.
+    // Rows don't stay selected, only checked.
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+    
+    // Get already checked row in this section, if any.
+    __block NSIndexPath *oldCheckedIndexPath = nil;
+    [self.checkedIndexPaths enumerateObjectsUsingBlock:^(NSIndexPath *idxPth, NSUInteger idx, BOOL *stop) {
+        if (idxPth.section == indexPath.section) {
+            oldCheckedIndexPath = idxPth;
+            *stop = YES;
+        }
+    }];
+    
+    // Uncheck old row, remove it from contro array, check new one and add it to the array.
+    [tableView cellForRowAtIndexPath:oldCheckedIndexPath].accessoryType = UITableViewCellAccessoryNone;
+    [self.checkedIndexPaths removeObject:oldCheckedIndexPath];
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+    [self.checkedIndexPaths addObject:indexPath];
+    
+    // If the vote is complete, enable submit button.
+    self.navigationItem.rightBarButtonItem.enabled = (self.checkedIndexPaths.count >= 3);
 }
 
 #pragma mark - UIViewController methods
 
 - (void)viewDidLoad
 {
+    // Basic preparation.
     [super viewDidLoad];
+    self.checkedIndexPaths = [NSMutableArray arrayWithCapacity:3];
     
     // Set global appearance.
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -53,79 +94,5 @@
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
 }
-
-/*
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return 0;
-}
-*/
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

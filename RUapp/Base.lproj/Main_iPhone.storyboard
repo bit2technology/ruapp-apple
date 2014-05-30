@@ -115,7 +115,7 @@
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ZBu-xO-Yue" imageView="26L-Fs-gGe" style="IBUITableViewCellStyleDefault" id="B8e-SW-FRu">
                                         <rect key="frame" x="0.0" y="119" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B8e-SW-FRu">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B8e-SW-FRu" id="fDj-tt-WO3">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -349,7 +349,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Vote" id="eIq-9U-0e0">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="OK" style="done" id="DfX-Cm-1qT"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Submit" style="done" id="DfX-Cm-1qT">
+                            <connections>
+                                <action selector="submitVote:" destination="Ybg-CL-6xz" id="8tj-Wb-3x6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ru5-Ie-QWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
