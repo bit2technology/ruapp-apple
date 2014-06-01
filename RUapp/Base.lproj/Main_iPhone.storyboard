@@ -44,25 +44,6 @@
             </objects>
             <point key="canvasLocation" x="567" y="1321"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="6Rh-aX-q3y">
-            <objects>
-                <viewController id="DDP-2U-CYf" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KMZ-St-9ry"/>
-                        <viewControllerLayoutGuide type="bottom" id="fKJ-Ba-JuA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="401-uX-uQW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="maP-Qh-A7d"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M62-e7-xk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1093" y="668"/>
-        </scene>
         <!--Navigation Controller - Results-->
         <scene sceneID="0fJ-pr-eiP">
             <objects>
@@ -75,20 +56,84 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="DDP-2U-CYf" kind="relationship" relationship="rootViewController" id="TH5-94-c9k"/>
+                        <segue destination="Awh-rr-0gG" kind="relationship" relationship="rootViewController" id="YC2-h5-K6t"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PqW-H6-gSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="567" y="668"/>
         </scene>
+        <!--Results Table View Controller - Results-->
+        <scene sceneID="81z-dd-8sO">
+            <objects>
+                <tableViewController id="Awh-rr-0gG" customClass="RUAResultsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="B3j-ia-JML">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="j97-KJ-npx">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3k6-1E-9SX">
+                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3k6-1E-9SX" id="OKa-69-NfN">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VoteIconVeryGood" translatesAutoresizingMaskIntoConstraints="NO" id="cLD-V0-gvG">
+                                                    <rect key="frame" x="15" y="9" width="25" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="epW-ci-7Ew">
+                                                    <rect key="frame" x="55" y="21" width="185" height="3"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="progressTintColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="trackTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </progressView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uze-gU-M5b">
+                                                    <rect key="frame" x="255" y="11" width="50" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="dHG-on-C4W"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="epW-ci-7Ew" firstAttribute="leading" secondItem="cLD-V0-gvG" secondAttribute="trailing" constant="15" id="BJM-Sf-ba0"/>
+                                                <constraint firstAttribute="centerY" secondItem="epW-ci-7Ew" secondAttribute="centerY" id="IdI-oe-BzU"/>
+                                                <constraint firstAttribute="centerY" secondItem="uze-gU-M5b" secondAttribute="centerY" id="JI1-8Y-fHr"/>
+                                                <constraint firstAttribute="trailing" secondItem="uze-gU-M5b" secondAttribute="trailing" constant="15" id="L2O-a0-u02"/>
+                                                <constraint firstItem="uze-gU-M5b" firstAttribute="leading" secondItem="epW-ci-7Ew" secondAttribute="trailing" constant="15" id="ZfR-fT-ZXg"/>
+                                                <constraint firstItem="cLD-V0-gvG" firstAttribute="leading" secondItem="OKa-69-NfN" secondAttribute="leading" constant="15" id="twF-Mz-kbz"/>
+                                                <constraint firstAttribute="centerY" secondItem="cLD-V0-gvG" secondAttribute="centerY" id="udE-HO-69L"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Awh-rr-0gG" id="2Fh-PE-Gqk"/>
+                            <outlet property="delegate" destination="Awh-rr-0gG" id="EGE-BT-YAw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Results" id="psC-p3-u5c"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4aX-7w-e36" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1093" y="668"/>
+        </scene>
         <!--Navigation Controller - Vote-->
         <scene sceneID="A7u-HW-Hre">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M7R-SM-LSi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Vote" image="TabBarIconVoteUnselected" id="hmU-CA-Wwf"/>
+                    <tabBarItem key="tabBarItem" title="Vote" image="TabBarIconVoteUnselected" badgeValue="!" id="hmU-CA-Wwf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TQX-p8-4iW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="TQX-p8-4iW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -108,7 +153,8 @@
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Hkr-vP-VLd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.12941176469999999" green="0.13725490200000001" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection headerTitle="Meal avaliation" id="kQR-y4-k7D">
                                 <cells>
@@ -123,7 +169,7 @@
                                                     <rect key="frame" x="55" y="0.0" width="250" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="VoteIconVeryGood" id="26L-Fs-gGe">
@@ -132,6 +178,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="wXX-CX-p0p" imageView="vKg-XX-p2I" style="IBUITableViewCellStyleDefault" id="GCE-kc-I2T">
                                         <rect key="frame" x="0.0" y="163" width="320" height="44"/>
@@ -144,7 +191,7 @@
                                                     <rect key="frame" x="55" y="0.0" width="250" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="VoteIconGood" id="vKg-XX-p2I">
@@ -153,6 +200,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="tVe-DF-pKV" imageView="726-fd-lQ5" style="IBUITableViewCellStyleDefault" id="f4l-aV-Lrf">
                                         <rect key="frame" x="0.0" y="207" width="320" height="44"/>
@@ -165,7 +213,7 @@
                                                     <rect key="frame" x="55" y="0.0" width="250" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="VoteIconBad" id="726-fd-lQ5">
@@ -174,6 +222,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="hlZ-BI-6iU" imageView="iId-RG-SkY" style="IBUITableViewCellStyleDefault" id="if0-uu-eUr">
                                         <rect key="frame" x="0.0" y="251" width="320" height="44"/>
@@ -186,7 +235,7 @@
                                                     <rect key="frame" x="55" y="0.0" width="250" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="VoteIconVeryBad" id="iId-RG-SkY">
@@ -195,6 +244,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -211,11 +261,12 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="DO4-tc-Fjb" style="IBUITableViewCellStyleDefault" id="HPL-Of-yJg">
                                         <rect key="frame" x="0.0" y="387" width="320" height="44"/>
@@ -228,11 +279,12 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -249,11 +301,12 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="RAl-Jp-wwc" style="IBUITableViewCellStyleDefault" id="Kbk-1F-8ep">
                                         <rect key="frame" x="0.0" y="523" width="320" height="44"/>
@@ -266,11 +319,12 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Lhz-sw-wgq" style="IBUITableViewCellStyleDefault" id="I40-uk-zJr">
                                         <rect key="frame" x="0.0" y="567" width="320" height="44"/>
@@ -283,11 +337,12 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Ihc-c6-PrV" style="IBUITableViewCellStyleDefault" id="oOP-6g-FVv">
                                         <rect key="frame" x="0.0" y="611" width="320" height="44"/>
@@ -300,11 +355,12 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="xHQ-Fa-jFK" style="IBUITableViewCellStyleDefault" id="rcj-EJ-Wga">
                                         <rect key="frame" x="0.0" y="655" width="320" height="44"/>
@@ -317,11 +373,12 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="nX7-ED-Ivb" style="IBUITableViewCellStyleDefault" id="vFG-WM-UBz">
                                         <rect key="frame" x="0.0" y="699" width="320" height="44"/>
@@ -334,11 +391,12 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>

@@ -37,15 +37,6 @@
     view.textLabel.shadowColor = nil;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Set appearance to cells.
-    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = [RUAColor darkerBlueColor];
-    cell.textLabel.textColor = [RUAColor whiteColor];
-    return cell;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Rows don't stay selected, only checked.
@@ -66,8 +57,16 @@
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     [self.checkedIndexPaths addObject:indexPath];
     
-    // If the vote is complete, enable submit button.
-    self.navigationItem.rightBarButtonItem.enabled = (self.checkedIndexPaths.count >= 3);
+    // Verify obligatory fields.
+    __block NSInteger obligatoryFields = 0;
+    [self.checkedIndexPaths enumerateObjectsUsingBlock:^(NSIndexPath *idxPth, NSUInteger idx, BOOL *stop) {
+        if ((idxPth.section >= 0) && (idxPth.section <= 1)) {
+            obligatoryFields++;
+        }
+    }];
+    
+    // If the vote is filled, enable submit button.
+    self.navigationItem.rightBarButtonItem.enabled = (obligatoryFields >= 2);
 }
 
 #pragma mark - UIViewController methods
@@ -79,10 +78,7 @@
     self.checkedIndexPaths = [NSMutableArray arrayWithCapacity:3];
     
     // Set global appearance.
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.tableView.backgroundColor = [RUAColor darkBlueColor];
     self.tableView.backgroundView = nil;
-    self.tableView.separatorColor = [RUAColor darkGrayColor];
     
     // Set appearance by iOS version.
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
@@ -90,7 +86,8 @@
         self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconVoteSelected"];
     } else {
         // iOS 6 and earlier.
-        self.navigationController.tabBarItem.image = [UIImage imageNamed:@"TabBarIconVoteOld"];
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        self.navigationController.navigationBar.translucent = NO;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
 }

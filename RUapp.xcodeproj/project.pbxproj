@@ -21,6 +21,7 @@
 		4BDED305192A152F009716DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E4192A152F009716DF /* UIKit.framework */; };
 		4BDED30F192A152F009716DF /* RUappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED30E192A152F009716DF /* RUappTests.m */; };
 		4BE910031938BBA300198D43 /* RUAVoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */; };
+		4BF936C3193B732B00DB9B40 /* RUAResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF936C2193B732B00DB9B40 /* RUAResultsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		4BDED30E192A152F009716DF /* RUappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUappTests.m; sourceTree = "<group>"; };
 		4BE910011938BBA300198D43 /* RUAVoteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAVoteTableViewController.h; sourceTree = "<group>"; };
 		4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAVoteTableViewController.m; sourceTree = "<group>"; };
+		4BF936C1193B732B00DB9B40 /* RUAResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAResultsTableViewController.h; sourceTree = "<group>"; };
+		4BF936C2193B732B00DB9B40 /* RUAResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAResultsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 		4BDED31B192A406F009716DF /* Results */ = {
 			isa = PBXGroup;
 			children = (
+				4BF936C1193B732B00DB9B40 /* RUAResultsTableViewController.h */,
+				4BF936C2193B732B00DB9B40 /* RUAResultsTableViewController.m */,
 			);
 			name = Results;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BF936C3193B732B00DB9B40 /* RUAResultsTableViewController.m in Sources */,
 				4BE910031938BBA300198D43 /* RUAVoteTableViewController.m in Sources */,
 				4BD37508192B6AD00016BD35 /* RUAColor.m in Sources */,
 				4BDED2ED192A152F009716DF /* main.m in Sources */,
