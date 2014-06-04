@@ -12,26 +12,38 @@
 
 @interface RUAResultsTableViewController ()
 
+@property (strong, nonatomic) IBOutletCollection(UIProgressView) NSArray *progressViews;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *progressLabels;
+
 @end
 
 @implementation RUAResultsTableViewController
+
+- (IBAction)segmentedControlDidChangeValue:(UISegmentedControl *)sender
+{
+    u_int32_t values[4], biggest = 0, total = 100;
+    for (NSUInteger i = 0; i < 4; i++) {
+        values[i] = (i < 3 ? arc4random_uniform(total) : total);
+        if (values[i] > biggest) {
+            biggest = values[i];
+        }
+        total -= values[i];
+    }
+    for (NSUInteger i = 0; i < 4; i++) {
+        [(UILabel *)self.progressLabels[i] setText:[NSString stringWithFormat:@"%d%%", values[i]]];
+        [(UIProgressView *)self.progressViews[i] setProgress:(float)values[i]/biggest animated:YES];
+    }
+}
 
 #pragma mark - UITableViewController methods
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
 {
     // Set appearance to header text label.
+    view.textLabel.backgroundColor = [RUAColor darkBlueColor];
+    view.textLabel.opaque = YES;
     view.textLabel.textColor = [RUAColor lightGrayColor];
     view.textLabel.shadowColor = nil;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Set appearance to cells.
-    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = [RUAColor darkerBlueColor];
-    cell.textLabel.textColor = [RUAColor whiteColor];
-    return cell;
 }
 
 #pragma mark - UIViewController methods
@@ -41,20 +53,10 @@
     // Basic preparation.
     [super viewDidLoad];
     
-    // Set global appearance.
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.tableView.backgroundColor = [RUAColor darkBlueColor];
-    self.tableView.backgroundView = nil;
-    self.tableView.separatorColor = [RUAColor darkGrayColor];
-    
-    // Set appearance by iOS version.
+    // Set tab bar item's selected image.
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
         // iOS 7 and later.
         self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconVoteSelected"];
-    } else {
-        // iOS 6 and earlier.
-        self.navigationController.tabBarItem.image = [UIImage imageNamed:@"TabBarIconVoteOld"];
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
 }
 

@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
+#import "RUATableViewController.h"
+
 @import UIKit;
 
-@interface RUAResultsTableViewController : UITableViewController
+@interface RUAResultsTableViewController : RUATableViewController
 
 @end

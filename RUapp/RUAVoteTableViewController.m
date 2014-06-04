@@ -77,18 +77,10 @@
     [super viewDidLoad];
     self.checkedIndexPaths = [NSMutableArray arrayWithCapacity:3];
     
-    // Set global appearance.
-    self.tableView.backgroundView = nil;
-    
-    // Set appearance by iOS version.
+    // Set tab bar item's selected image.
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
         // iOS 7 and later.
         self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconVoteSelected"];
-    } else {
-        // iOS 6 and earlier.
-        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-        self.navigationController.navigationBar.translucent = NO;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
 }
 
