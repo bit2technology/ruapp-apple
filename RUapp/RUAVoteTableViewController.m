@@ -30,13 +30,6 @@
 
 #pragma mark - UITableViewController methods
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
-{
-    // Set appearance to header text label.
-    view.textLabel.textColor = [RUAColor lightGrayColor];
-    view.textLabel.shadowColor = nil;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Rows don't stay selected, only checked.

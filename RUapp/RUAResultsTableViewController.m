@@ -37,14 +37,7 @@
 
 #pragma mark - UITableViewController methods
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
-{
-    // Set appearance to header text label.
-    view.textLabel.backgroundColor = [RUAColor darkBlueColor];
-    view.textLabel.opaque = YES;
-    view.textLabel.textColor = [RUAColor lightGrayColor];
-    view.textLabel.shadowColor = nil;
-}
+
 
 #pragma mark - UIViewController methods
 
