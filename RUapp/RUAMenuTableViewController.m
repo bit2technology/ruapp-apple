@@ -7,14 +7,45 @@
 //
 
 #import "RUAMenuTableViewController.h"
-
 #import "RUAColor.h"
+#import "RUAServerConnection.h"
 
 @interface RUAMenuTableViewController ()
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *previousPage;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextPage;
+
+@property (strong, nonatomic) NSArray *menuDishesList;
+@property (strong, nonatomic) NSArray *weekMenu;
+@property (assign, nonatomic) NSInteger currentPage;
 
 @end
 
 @implementation RUAMenuTableViewController
+
+- (NSArray *)arrayForSection:(NSInteger)section
+{
+    return self.weekMenu[(NSUInteger)(self.currentPage * 2 + section)];
+}
+
+- (IBAction)changePage:(UIBarButtonItem *)sender
+{
+    if (sender == self.previousPage) {
+        self.currentPage--;
+    } else if (sender == self.nextPage) {
+        self.currentPage++;
+    } else {
+        return;
+    }
+    [self.tableView reloadData];
+}
+
+- (void)setCurrentPage:(NSInteger)currentPage
+{
+    self.previousPage.enabled = (currentPage > 0);
+    self.nextPage.enabled = (currentPage < 6);
+    _currentPage = currentPage;
+}
 
 #pragma mark - UITableViewController methods
 
@@ -25,7 +56,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return (NSInteger)[self arrayForSection:section].count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -48,7 +79,10 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Menu Cell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.textLabel.text = self.menuDishesList[(NSUInteger)indexPath.row];
+    cell.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    cell.detailTextLabel.text = [self arrayForSection:indexPath.section][(NSUInteger)indexPath.row];
     
     return cell;
 }
@@ -57,72 +91,24 @@
 
 - (void)viewDidLoad
 {
-    // Basic preparation.
     [super viewDidLoad];
     
-    // Set tab bar item's selected image.
-    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
-        // iOS 7 and later.
-        // TODO: Tab Bar Icon.
-    }
+    // Configure date components with gregorian calendar and São Paulo time zone.
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
+    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday fromDate:[NSDate date]];
+    self.currentPage = dateComponents.weekday - 1;
 }
 
-
-#pragma mark - Table view data source
-
-
-
-/*
-
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)viewDidAppear:(BOOL)animated
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    [super viewDidAppear:animated];
+    
+    self.menuDishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuDishesList" ofType:@"plist"]];
+    [RUAServerConnection requestMenuForWeekWithCompletionHandler:^(NSArray *weekMenu) {
+        self.weekMenu = weekMenu;
+        [self.tableView reloadData];
+    }];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

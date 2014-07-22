@@ -7,14 +7,15 @@
 //
 
 #import "RUATableViewController.h"
-
 #import "RUAColor.h"
 
-@interface RUATableViewController ()
-
-@end
-
 @implementation RUATableViewController
+
+- (void)preferredContentSizeChanged:(NSNotification *)notification
+{
+    // Reload table view with new font.
+    [self.tableView reloadData];
+}
 
 #pragma mark - UITableViewController methods
 
@@ -24,26 +25,21 @@
     view.textLabel.backgroundColor = [RUAColor darkBlueColor];
     view.textLabel.opaque = YES;
     view.textLabel.textColor = [RUAColor lightGrayColor];
-    view.textLabel.shadowColor = nil;
 }
 
 #pragma mark - UIViewController methods
 
 - (void)viewDidLoad
 {
-    // Basic preparation.
-    [super viewDidLoad];
-    
-    // Set global appearance.
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.tableView.backgroundView = nil;
-    
-    // Set appearance by iOS version.
-    if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1) {
-        // iOS 6 and earlier.
-        self.navigationController.navigationBar.translucent = NO;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    }
+    // Observe font size changes.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+}
+
+#pragma mark - NSObject methods
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

@@ -9,8 +9,8 @@
 @import UIKit;
 
 typedef NS_ENUM(NSUInteger, RUARestaurant) {
-    RUARestaurantJuizDeForaCampus,
-    RUARestaurantJuizDeForaDowntown
+    RUARestaurantJuizDeForaDowntown,
+    RUARestaurantJuizDeForaCampus
 };
 
 typedef NS_ENUM(NSUInteger, RUARating) {
@@ -27,11 +27,21 @@ typedef NS_ENUM(NSUInteger, RUADish) {
     RUADishPasta,
     RUADishSide,
     RUADishSalad,
-    RUADishDessert
+    RUADishDessert,
+    RUADishTotal,
+    RUADishNone
 };
 
 @interface RUAServerConnection : NSObject
 
-+ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant date:(NSDate *)date vote:(RUARating)vote reason:(RUADish[])reason completionHandler:(void (^)(void))handler;
+/**
+ * Send vote for current meal.
+ */
++ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(RUADish *)reason completionHandler:(void (^)(void))handler;
+
+/**
+ * Get week menu for current week.
+ */
++ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu))handler;
 
 @end
