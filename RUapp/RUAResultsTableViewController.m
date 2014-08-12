@@ -7,8 +7,8 @@
 //
 
 #import "RUAResultsTableViewController.h"
-
 #import "RUAColor.h"
+#import "RUAServerConnection.h"
 
 @interface RUAResultsTableViewController ()
 
@@ -51,6 +51,11 @@
         // iOS 7 and later.
         self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconVoteSelected"];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    
 }
 
 @end

@@ -41,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		4B04272919743DB200E208C7 /* PROTOCOLO.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PROTOCOLO.pdf; sourceTree = "<group>"; };
+		4B1A7E3B198407DE00C206CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4B1D4DA5193F5EA600A50406 /* RUATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUATableViewController.h; sourceTree = "<group>"; };
 		4B1D4DA6193F5EA600A50406 /* RUATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUATableViewController.m; sourceTree = "<group>"; };
 		4B24E22E197EA88600D2D25C /* Horários de funcionamento do RU e votações do RUapp.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Horários de funcionamento do RU e votações do RUapp.pdf"; sourceTree = "<group>"; };
@@ -131,6 +132,7 @@
 		4BDED2DF192A152F009716DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B1A7E3B198407DE00C206CF /* SystemConfiguration.framework */,
 				4BDED2E0192A152F009716DF /* Foundation.framework */,
 				4BDED2E2192A152F009716DF /* CoreGraphics.framework */,
 				4BDED2E4192A152F009716DF /* UIKit.framework */,

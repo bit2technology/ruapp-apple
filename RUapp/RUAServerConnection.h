@@ -10,14 +10,16 @@
 
 typedef NS_ENUM(NSUInteger, RUARestaurant) {
     RUARestaurantJuizDeForaDowntown,
-    RUARestaurantJuizDeForaCampus
+    RUARestaurantJuizDeForaCampus,
+    RUARestaurantNone
 };
 
 typedef NS_ENUM(NSUInteger, RUARating) {
     RUAVoteVeryGood,
     RUAVoteGood,
     RUAVoteBad,
-    RUAVoteVeryBad
+    RUAVoteVeryBad,
+    RUAVoteNone
 };
 
 typedef NS_ENUM(NSUInteger, RUADish) {
@@ -37,7 +39,9 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 /**
  * Send vote for current meal.
  */
-+ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(RUADish *)reason completionHandler:(void (^)(void))handler;
++ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSError *error))handler;
+
++ (void)requestResultsWithDate:(NSDate *)date completionHandler:(void (^)(NSDictionary *results, NSError *error))handler;
 
 /**
  * Get week menu for current week.

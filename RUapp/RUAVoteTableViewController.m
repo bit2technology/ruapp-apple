@@ -8,15 +8,61 @@
 
 #import "RUAVoteTableViewController.h"
 #import "RUAServerConnection.h"
+#import "RUAAppDelegate.h"
+#import "RUAColor.h"
 
 @interface RUAVoteTableViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSArray *dataSource;
 @property (strong, nonatomic) NSMutableArray *checkedIndexPaths;
 
+@property (strong, nonatomic) NSDate *lastVoteDate;
+
 @end
 
 @implementation RUAVoteTableViewController
+
+- (void)adjustInterfaceForVoteStatus
+{
+//    // If it is not time to vote, show appropriate interface.
+//    if ([RUAAppDelegate mealForNow] == RUAMealNone) {
+//        UILabel *notTimeToVoteBackgroundView = [[UILabel alloc] init];
+//        notTimeToVoteBackgroundView.text = NSLocalizedString(@"Sorry...\nThere is no vote open now.", @"Vote computed message");
+//        notTimeToVoteBackgroundView.textAlignment = NSTextAlignmentCenter;
+//        notTimeToVoteBackgroundView.textColor = [RUAColor grayColor];
+//        notTimeToVoteBackgroundView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+//        notTimeToVoteBackgroundView.numberOfLines = NSIntegerMax;
+//        self.tableView.backgroundView = notTimeToVoteBackgroundView;
+//        self.navigationItem.rightBarButtonItem.enabled = NO;
+//        self.dataSource = nil;
+//        [self.checkedIndexPaths removeAllObjects];
+//        [self.tableView reloadData];
+//        return;
+//    }
+//    
+//    // If there is a vote, and it has less than 5 hours and the meal is the same, then show "already voted" interface.
+//    if (self.lastVoteDate && [self.lastVoteDate timeIntervalSinceNow] > -18000 && [RUAAppDelegate mealForDate:self.lastVoteDate] == [RUAAppDelegate mealForNow]) {
+//        // TODO: already voted interface.
+//        UILabel *alreadyVotedBackgroundView = [[UILabel alloc] init];
+//        alreadyVotedBackgroundView.text = NSLocalizedString(@"Thank you!\nVote computed.", @"Vote computed message");
+//        alreadyVotedBackgroundView.textAlignment = NSTextAlignmentCenter;
+//        alreadyVotedBackgroundView.textColor = [RUAColor grayColor];
+//        alreadyVotedBackgroundView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+//        alreadyVotedBackgroundView.numberOfLines = NSIntegerMax;
+//        self.tableView.backgroundView = alreadyVotedBackgroundView;
+//        self.navigationItem.rightBarButtonItem.enabled = NO;
+//        self.dataSource = nil;
+//        [self.checkedIndexPaths removeAllObjects];
+//        [self.tableView reloadData];
+//        return;
+//    }
+    
+    // Set only if vote is allowed and dataSource is not set.
+    if (!self.dataSource) {
+        self.dataSource = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VoteDataSource" ofType:@"plist"]];
+    }
+    [self.tableView reloadData];
+}
 
 - (IBAction)submitVote:(id)sender
 {
@@ -28,20 +74,37 @@
                       otherButtonTitles:NSLocalizedString(@"Submit", @"Vote alert view submit button"), nil] show];
 }
 
+- (UIView *)tableViewBackgroundViewWithMessage:(NSString *)message
+{
+    UILabel *backgroundView = [[UILabel alloc] init];
+    backgroundView.text = message;
+    backgroundView.textAlignment = NSTextAlignmentCenter;
+    backgroundView.textColor = [RUAColor grayColor];
+    backgroundView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    backgroundView.numberOfLines = NSIntegerMax;
+    return backgroundView;
+}
+
 #pragma mark - UIAlertViewDelegate methods
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     // If clicked OK in confirmation alert.
     if (buttonIndex > 0) {
-        RUARating rating = NSNotFound;
-        RUARestaurant restaurant = NSNotFound;
-        RUADish *dishes = malloc(RUADishTotal * sizeof(RUADish));
-        for (NSUInteger i = 0; i < RUADishTotal; i++) {
-            dishes[i] = RUADishNone;
-        }
+        // Update table view to show network activity.
+        [self.tableView beginUpdates];
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [activityView startAnimating];
+        self.tableView.backgroundView = activityView;
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.dataSource.count)] withRowAnimation:UITableViewRowAnimationTop];
+        self.dataSource = nil;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+        [self.tableView endUpdates];
         
-        NSUInteger dishCount = 0;
+        // Colect vote info.
+        RUARating rating = NSNotFound;
+        RUARestaurant restaurant = RUARestaurantNone;
+        NSMutableArray *dishes = [NSMutableArray array];
         for (NSIndexPath *checkedIndexPath in self.checkedIndexPaths) {
             switch (checkedIndexPath.section) {
                 case 0: {
@@ -51,7 +114,7 @@
                     restaurant = (RUARestaurant)checkedIndexPath.row;
                 } break;
                 case 2: {
-                    dishes[dishCount++] = (RUADish)checkedIndexPath.row;
+                    [dishes addObject:[NSNumber numberWithUnsignedInteger:(RUADish)checkedIndexPath.row]];
                 } break;
                     
                 default:
@@ -59,10 +122,21 @@
             }
         }
         
-        [RUAServerConnection sendVoteWithRestaurant:restaurant vote:rating reason:dishes completionHandler:^{
-            // TODO: Completion handler.
+        // Send vote request.
+        [RUAServerConnection sendVoteWithRestaurant:restaurant vote:rating reason:dishes completionHandler:^(NSDate *voteDate, NSError *error) {
+            NSString *finishMessage;
+            if (error) {
+                // TODO: Register to offline vote.
+                finishMessage = @"offline vote";
+            } else {
+                finishMessage = @"vote sent";
+            }
             
-            free(dishes);
+            self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:finishMessage];
+            
+            self.lastVoteDate = voteDate;
+            [[NSUserDefaults standardUserDefaults] setValue:voteDate forKey:@"lastVoteDate"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }];
     }
 }
@@ -95,7 +169,7 @@
     cell.imageView.image = (imageName ? [UIImage imageNamed:imageName] : nil);
     
     cell.accessoryType = ([self.checkedIndexPaths containsObject:indexPath] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
-
+    
     return cell;
 }
 
@@ -157,9 +231,17 @@
 {
     [super viewDidLoad];
     
-    self.dataSource = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VoteDataSource" ofType:@"plist"]];
-    self.checkedIndexPaths = [NSMutableArray array];
+    // Set basic information (no matter vote is allowed or no).
     self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconVoteSelected"];
+    self.checkedIndexPaths = [NSMutableArray array];
+    self.lastVoteDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"lastVoteDate"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self adjustInterfaceForVoteStatus];
 }
 
 @end
