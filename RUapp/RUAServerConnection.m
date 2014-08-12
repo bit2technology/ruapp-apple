@@ -9,6 +9,24 @@
 #import "RUAServerConnection.h"
 #import "RUAAppDelegate.h"
 
+@interface RUAResultInfo ()
+
+@property (assign, nonatomic) RUARestaurant restaurant;
+@property (strong, nonatomic) NSDate *date;
+@property (assign, nonatomic) RUAMeal meal;
+@property (strong, nonatomic) NSArray *votes;
+
+@end
+
+@implementation RUAResultInfo
+
+//- (NSInteger)votes
+//{
+//    return self.votesBad + self.votesGood + self.votesVeryBad + self.votesVeryGood;
+//}
+
+@end
+
 @implementation RUAServerConnection
 
 /*
@@ -84,8 +102,6 @@
         // Request
         NSString *requestString = [stringComponents componentsJoinedByString:@"_"];
         // TODO: Actual request.
-        NSURLSession *voteRequestSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        voteRequestSession dataTaskWithURL:[NSURL URLWithString:@"http://"]
         
         NSLog(@"sendVote: %@", requestString);
         
@@ -127,14 +143,14 @@
  acompanhamento, salada e sobremesa
  */
 
-+ (void)requestResultsWithDate:(NSDate *)date completionHandler:(void (^)(NSDictionary *results, NSError *error))handler
++ (void)requestResultsWithCompletionHandler:(void (^)(RUAResultInfo *results, NSError *error))handler
 {
     // Background thread
-    /*[[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
         // Download result string.
         NSString *resultsString = @"UFJF2_03.05.2014_2$8$7$3$5#3$0$2$2$0$1$0#3$2$0$0$0$0$0#0$0$0$1$1$0$1#0$0$2$2$1$0$1";
         
-        // Dictionary with results.
+        // Object with results.
         RUAResultInfo *results = [[RUAResultInfo alloc] init];
         
         // Separete main components.
@@ -160,34 +176,46 @@
         dateFormatter.dateFormat = @"dd.MM.yyyy";
         dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
         results.date = [dateFormatter dateFromString:dateString];
-        
-        
-        
-        
-        
-        
-        for (NSUInteger i = 0; i < mainComponents.count; i++) {
-            // Separate secondary components.
-            NSArray *secondaryComponents = [mainComponents[i] componentsSeparatedByString:@"$"];
-            if (i == 0) {
-                // First main component.
-                for (NSUInteger j = 0; j < secondaryComponents.count; j++) {
-                    if (j == 0) {
-                        // First secondary component.
-                        // Separate terciary components.
-                        NSArray *terciaryComponents = [secondaryComponents[0] componentsSeparatedByString:@"_"];
-                        
-                        // Restaurant
-                        
-                    } else {
-                        // Other secondary components.
-                    }
-                }
-            } else {
-                // Other main components.
-            }
+        // Meal
+        results.meal = (RUAMeal)([overviewInformation[2] integerValue] - 1);
+        // Votes
+        NSMutableArray *votesHelper = [NSMutableArray arrayWithCapacity:4];
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        for (NSUInteger i = 1; i < 5; i++) {
+            [votesHelper addObject:[numberFormatter numberFromString:overviewComponents[i]]];
         }
-    }];*/
+        results.votes = votesHelper;
+        
+        NSLog(@"results: %@", results);
+        
+        // Main thread
+        //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            handler(results, [[NSError alloc] init]);
+        });
+        
+//        for (NSUInteger i = 0; i < mainComponents.count; i++) {
+//            // Separate secondary components.
+//            NSArray *secondaryComponents = [mainComponents[i] componentsSeparatedByString:@"$"];
+//            if (i == 0) {
+//                // First main component.
+//                for (NSUInteger j = 0; j < secondaryComponents.count; j++) {
+//                    if (j == 0) {
+//                        // First secondary component.
+//                        // Separate terciary components.
+//                        NSArray *terciaryComponents = [secondaryComponents[0] componentsSeparatedByString:@"_"];
+//                        
+//                        // Restaurant
+//                        
+//                    } else {
+//                        // Other secondary components.
+//                    }
+//                }
+//            } else {
+//                // Other main components.
+//            }
+//        }
+    }];
 }
 
 /*

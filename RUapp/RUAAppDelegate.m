@@ -16,10 +16,10 @@
     // Configure date components with gregorian calendar and São Paulo time zone.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:date];
+    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
     
     // Get hours, minutes and seconds and convert them to a numeric format. Return value according to schedule.
-    CGFloat timeNumber = (CGFloat)(dateComponents.hour + dateComponents.minute / 60. + dateComponents.second / 3600.);
+    CGFloat timeNumber = (CGFloat)(dateComponents.hour + dateComponents.minute / 60.);
     if (timeNumber >= 11 && timeNumber < 16) {
         return RUAMealLunch;
     } else if (timeNumber >= 17 && timeNumber < 21) {

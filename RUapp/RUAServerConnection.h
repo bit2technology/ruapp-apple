@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
+#import "RUAAppDelegate.h"
+
 @import UIKit;
 
 typedef NS_ENUM(NSUInteger, RUARestaurant) {
@@ -34,6 +36,15 @@ typedef NS_ENUM(NSUInteger, RUADish) {
     RUADishNone
 };
 
+@interface RUAResultInfo : NSObject
+
+@property (readonly, nonatomic) RUARestaurant restaurant;
+@property (readonly, nonatomic) NSDate *date;
+@property (readonly, nonatomic) RUAMeal meal;
+@property (readonly, nonatomic) NSArray *votes;
+
+@end
+
 @interface RUAServerConnection : NSObject
 
 /**
@@ -41,7 +52,10 @@ typedef NS_ENUM(NSUInteger, RUADish) {
  */
 + (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSError *error))handler;
 
-+ (void)requestResultsWithDate:(NSDate *)date completionHandler:(void (^)(NSDictionary *results, NSError *error))handler;
+/**
+ * Request vote results.
+ */
++ (void)requestResultsWithCompletionHandler:(void (^)(RUAResultInfo *results, NSError *error))handler;
 
 /**
  * Get week menu for current week.
