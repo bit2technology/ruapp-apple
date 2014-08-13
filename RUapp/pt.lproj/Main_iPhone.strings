@@ -1,0 +1,71 @@
+/*
+ Main_iPhone.strings
+ RUapp
+ 
+ Created by Igor Camilo on 13/08/2014.
+ Copyright (c) 2014 Bit2 Software. All rights reserved.
+ */
+
+/* ############################## TAB BAR ############################## */
+
+/* Class = "IBUITabBarItem"; title = "Menu"; ObjectID = "UiE-VC-YYT"; */
+"UiE-VC-YYT.title" = "Cardápio";
+
+/* Class = "IBUITabBarItem"; title = "Vote"; ObjectID = "hmU-CA-Wwf"; */
+"hmU-CA-Wwf.title" = "Votar";
+
+/* Class = "IBUITabBarItem"; title = "Results"; ObjectID = "vLN-dp-xe6"; */
+"vLN-dp-xe6.title" = "Resultados";
+
+/* ############################## MENU ############################## */
+
+/* Class = "IBUINavigationItem"; title = "Menu"; ObjectID = "808-WJ-te3"; */
+"808-WJ-te3.title" = "Cardápio";
+
+/* ############################## VOTE ############################## */
+
+/* Class = "IBUIBarButtonItem"; title = "Submit"; ObjectID = "DfX-Cm-1qT"; */
+"DfX-Cm-1qT.title" = "Enviar";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "IV7-aV-YDE"; */
+"IV7-aV-YDE.text" = "Name";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "Ixn-Lc-rHH"; */
+"Ixn-Lc-rHH.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Cell Text"; ObjectID = "ZBu-xO-Yue"; */
+"ZBu-xO-Yue.text" = "Cell Text";
+
+/* Class = "IBUINavigationItem"; title = "Vote"; ObjectID = "eIq-9U-0e0"; */
+"eIq-9U-0e0.title" = "Vote";
+
+/* Class = "IBUISegmentedControl"; iab-Md-aSp.segmentTitles[0] = "Downtown"; ObjectID = "iab-Md-aSp"; */
+"iab-Md-aSp.segmentTitles[0]" = "Downtown";
+
+/* Class = "IBUISegmentedControl"; iab-Md-aSp.segmentTitles[1] = "Campus"; ObjectID = "iab-Md-aSp"; */
+"iab-Md-aSp.segmentTitles[1]" = "Campus";
+
+/* Class = "IBUILabel"; text = "Food"; ObjectID = "oeM-8Z-fLl"; */
+"oeM-8Z-fLl.text" = "Food";
+
+/* Class = "IBUINavigationItem"; title = "Results"; ObjectID = "psC-p3-u5c"; */
+"psC-p3-u5c.title" = "Results";
+
+/* Class = "IBUILabel"; text = "88.8%"; ObjectID = "uze-gU-M5b"; */
+"uze-gU-M5b.text" = "88.8%";

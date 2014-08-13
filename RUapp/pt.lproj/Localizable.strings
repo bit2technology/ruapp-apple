@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  RUapp
+
+  Created by Igor Camilo on 13/08/2014.
+  Copyright (c) 2014 Bit2 Software. All rights reserved.
+*/
+
+/* ############################## MENU ############################## */
+
+/* Menu Table View Controller Section Title */
+"Lunch" = "Almoço";
+
+/* Menu Table View Controller Section Title */
+"Dinner" = "Jantar";
+
+/* Menu Error Description */
+"Couldn't download menu" = "Não foi possível baixar o cardápio";
+
+/* Menu Error Description */
+"Menu not available for this week" = "Cardápio não disponível para esta semana";

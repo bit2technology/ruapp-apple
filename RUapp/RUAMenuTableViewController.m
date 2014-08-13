@@ -15,17 +15,29 @@
 // Main model.
 @property (strong, nonatomic) NSArray *menuDishesList;
 @property (strong, nonatomic) NSArray *dataSource;
+@property (assign, nonatomic) BOOL isDownloadingDataSource;
 
 // Navigation information.
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *previousPage;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextPage;
 @property (assign, nonatomic) NSInteger currentPage;
-@property (strong, nonatomic) NSDate *referenceDate;
-@property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) NSArray *weekdays;
 
 @end
 
 @implementation RUAMenuTableViewController
+
+/**
+ * Adjusts current page for week day;
+ */
+- (void)adjustCurrentPage
+{
+    // Set current page by getting weekday from date components.
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
+    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday fromDate:[NSDate date]];
+    self.currentPage = dateComponents.weekday - 2; // Adjusting to 0 based count and monday based weekend.
+}
 
 /**
  * Returns the appropriate array for section and current page.
@@ -41,36 +53,88 @@
 - (IBAction)changePage:(UIBarButtonItem *)sender
 {
     // Preparing to go to previous or next page.
-    UITableViewRowAnimation rowAnimation;
+    UITableViewRowAnimation rowAnimation = UITableViewRowAnimationNone;
     if (sender == self.previousPage) {
         self.currentPage--;
         rowAnimation = UITableViewRowAnimationRight;
-        self.referenceDate = [self.referenceDate dateByAddingTimeInterval:-86400];
     } else if (sender == self.nextPage) {
         self.currentPage++;
         rowAnimation = UITableViewRowAnimationLeft;
-        self.referenceDate = [self.referenceDate dateByAddingTimeInterval:86400];
-    } else {
-        // Exit if unknown button pressed.
-        return;
     }
     // Performing page change.
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:rowAnimation];
-    self.navigationItem.title = [[self.dateFormatter stringFromDate:self.referenceDate] capitalizedStringWithLocale:self.dateFormatter.locale];
+}
+
+/**
+ * Download or update data source and update table view.
+ */
+- (void)downloadDataSourceAndUpdateTable
+{
+    self.isDownloadingDataSource = YES;
+    [RUAServerConnection requestMenuForWeekWithCompletionHandler:^(NSArray *weekMenu, NSError *error) {
+        // If successful (weekMenu != nil), show menu. Otherwise, show error message.
+        if (weekMenu) {
+            // Perform changes only if new week menu is different from previous.
+            if (![weekMenu isEqualToArray:self.dataSource]) {
+                // If there is no data source (is first download, not an update), adjust current page.
+                if (!self.dataSource) {
+                    [self adjustCurrentPage];
+                }
+                
+                // Cache week menu.
+                [[NSUserDefaults standardUserDefaults] setValue:weekMenu forKey:@"MenuDataSourceCache"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                // Perform updates.
+                [self.tableView beginUpdates];
+                self.dataSource = weekMenu;
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView endUpdates];
+            }
+        } else {
+            // If there is no data source (is first download, not an update), get loading cell, hide activity indicator and show an appropriate message. Otherwise, do nothing.
+            if (!self.dataSource) {
+                RUATableViewLoadingCell *loadingCell = (RUATableViewLoadingCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                loadingCell.infoLabel.text = (error ?
+                                              NSLocalizedString(@"Couldn't download menu", @"Menu Error Description") :
+                                              NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
+                loadingCell.infoLabel.hidden = NO;
+                [loadingCell.activityIndicator stopAnimating];
+            }
+        }
+        self.isDownloadingDataSource = NO;
+        [self.refreshControl endRefreshing];
+    }];
+}
+
+/**
+ * Called when the user request an update (drag to refresh).
+ */
+- (IBAction)refreshControlDidChangeValue:(UIRefreshControl *)sender
+{
+    // If not refreshing or already downloading, end refresh and cancel.
+    if (!sender.isRefreshing || self.isDownloadingDataSource) {
+        [sender endRefreshing];
+        return;
+    }
+    
+    [self downloadDataSourceAndUpdateTable];
 }
 
 - (void)setCurrentPage:(NSInteger)currentPage
 {
-    // Disable or enable buttons by current page.
+    // Disable or enable buttons by current page and change title.
     self.previousPage.enabled = (currentPage > 0);
     self.nextPage.enabled = (currentPage < 6);
+    self.navigationItem.title = [self.weekdays[(NSUInteger)currentPage] capitalizedString];
     _currentPage = currentPage;
 }
 
-#pragma mark - UITableViewController methods
+// MARK: UITableViewController methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    // Lunch and dinner.
     return 2;
 }
 
@@ -119,50 +183,42 @@
     return cell;
 }
 
-#pragma mark - UIViewController methods
+// MARK: UIViewController methods
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Set date and date formatter to create appropriate title strings.
-    self.referenceDate = [NSDate date];
-    self.dateFormatter = [[NSDateFormatter alloc] init];
-    self.dateFormatter.dateStyle = NSDateFormatterShortStyle;
-    self.dateFormatter.timeStyle = NSDateFormatterNoStyle;
-    self.dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    self.dateFormatter.doesRelativeDateFormatting = YES;
-    self.dateFormatter.locale =  [NSLocale localeWithLocaleIdentifier:[[[NSBundle mainBundle] preferredLocalizations] firstObject]];
+    // Adjusting interface.
+    self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconMenuSelected"];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    
+    self.menuDishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuDishesList" ofType:@"plist"]];
+    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:@"MenuDataSourceCache"];
+    
+    // Set array from date formatter to create appropriate title strings.
+    NSLocale *bundleLocale = [NSLocale localeWithLocaleIdentifier:[[[NSBundle mainBundle] preferredLocalizations] firstObject]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = bundleLocale;
+    NSMutableArray *weekdays = dateFormatter.weekdaySymbols.mutableCopy;
+    // Move sunday to the end of array.
+    NSString *sunday = weekdays.firstObject;
+    [weekdays removeObjectAtIndex:0];
+    [weekdays addObject:sunday];
+    self.weekdays = weekdays;
+    
+    // If there is a cached data source, adjust current page.
+    if (self.dataSource) {
+        [self adjustCurrentPage];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    // Get localized dishes list and get menu from server.
-    self.menuDishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuDishesList" ofType:@"plist"]];
-    [RUAServerConnection requestMenuForWeekWithCompletionHandler:^(NSArray *weekMenu, NSError *error) {
-        // If successful (weekMenu != nil), show menu for the week. Otherwise, show error message.
-        if (weekMenu) {
-            // Set current page by getting weekday from date components.
-            NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            gregorianCalendar.timeZone = self.dateFormatter.timeZone;
-            NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday fromDate:[NSDate date]];
-            self.currentPage = dateComponents.weekday - 2; // Adjusting to 0 based count and monday based weekend.
-            
-            // Perform updates.
-            [self.tableView beginUpdates];
-            self.dataSource = weekMenu;
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView endUpdates];
-        } else {
-            // Get loading cell, hide activity indicator and show an appropriate message.
-            RUATableViewLoadingCell *loadingCell = (RUATableViewLoadingCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-            loadingCell.infoLabel.text = @"Info Label"; // FIXME: Show appropriate message.
-            loadingCell.infoLabel.hidden = NO;
-            [loadingCell.activityIndicator stopAnimating];
-        }
-    }];
+    // Download or update menu.
+    [self downloadDataSourceAndUpdateTable];
 }
 
 @end
