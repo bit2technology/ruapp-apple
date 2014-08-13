@@ -60,6 +60,6 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 /**
  * Get week menu for current week.
  */
-+ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu))handler;
++ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu, NSError *error))handler;
 
 @end

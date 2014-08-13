@@ -10,6 +10,14 @@
 
 @import UIKit;
 
+@interface RUAResultsTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *voteIconView;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+
+@end
+
 @interface RUAResultsTableViewController : RUATableViewController
 
 @end

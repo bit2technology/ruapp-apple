@@ -232,7 +232,7 @@
  - Cada um deles está explicado no próprio modelo acima.
  */
 
-+ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu))handler
++ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu, NSError *error))handler
 {
     // Background thread
     [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
@@ -247,10 +247,11 @@
         }
         
         // Main thread
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             // Run completion handler.
-            handler(weekMenu);
-        }];
+            handler(weekMenu, nil);
+        });
     }];
 }
 
