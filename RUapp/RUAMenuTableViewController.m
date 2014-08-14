@@ -144,7 +144,7 @@
     if (!self.dataSource) {
         return (section ? 0 : 1);
     }
-    return 7;
+    return (NSInteger)[self mealMenuForCurrentPageForSection:section].count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -166,6 +166,15 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *mealText = [self mealMenuForCurrentPageForSection:indexPath.section][(NSUInteger)indexPath.row];
+    CGSize referenceSize = CGRectInfinite.size;
+    referenceSize.width = 194;
+    CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
+    return (actualHeight > 44 ? actualHeight : 44);
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // If there is no data source, return loading cell. Otherwise, return normal cell.
@@ -178,7 +187,8 @@
     cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     cell.textLabel.text = self.menuDishesList[(NSUInteger)indexPath.row];
     cell.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    cell.detailTextLabel.text = [self mealMenuForCurrentPageForSection:indexPath.section][(NSUInteger)indexPath.row];
+    cell.detailTextLabel.numberOfLines = NSIntegerMax;
+    cell.detailTextLabel.text = [self mealMenuForCurrentPageForSection:indexPath.section][(NSUInteger)indexPath.row]; NSLog(@"width: %f", cell.contentView.bounds.size.width - cell.detailTextLabel.frame.origin.x);
     
     return cell;
 }

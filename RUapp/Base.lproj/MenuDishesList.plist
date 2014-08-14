@@ -3,11 +3,12 @@
 <plist version="1.0">
 <array>
 	<string>Main</string>
-    <string>Vegetarian</string>
-    <string>Garnish</string>
-    <string>Pasta</string>
-    <string>Side</string>
-    <string>Salad</string>
-    <string>Dessert</string>
+	<string>Vegetarian</string>
+	<string>Garnish</string>
+	<string>Pasta</string>
+	<string>Side</string>
+	<string>Salad</string>
+	<string>Dessert</string>
+	<string>Juice</string>
 </array>
 </plist>

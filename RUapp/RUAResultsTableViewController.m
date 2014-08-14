@@ -67,8 +67,8 @@
             total += votes[i];
         }
         for (NSUInteger i = 0; i < 4; i++) {
-            float percent = (float)votes[i] / total;
-            float progress = (float)votes[i] / biggest;
+//            float percent = (float)votes[i] / total;
+//            float progress = (float)votes[i] / biggest;
 //            [(UILabel *)self.progressLabels[i] setText:[NSString stringWithFormat:@"%.1f%%", percent * 100]];
 //            [(UIProgressView *)self.progressViews[i] setProgress:progress animated:YES];
         }

@@ -9,6 +9,8 @@
 #import "RUAServerConnection.h"
 #import "RUAAppDelegate.h"
 
+NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
+
 @interface RUAResultInfo ()
 
 @property (assign, nonatomic) RUARestaurant restaurant;
@@ -19,11 +21,6 @@
 @end
 
 @implementation RUAResultInfo
-
-//- (NSInteger)votes
-//{
-//    return self.votesBad + self.votesGood + self.votesVeryBad + self.votesVeryGood;
-//}
 
 @end
 
@@ -234,25 +231,50 @@
 
 + (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu, NSError *error))handler
 {
-    // Background thread
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        // Download result string.
-        NSString *requestString = @"pratoPrincipal1_opção1_guarnição1_massa1_acompanhamento1_saladas1_sobremesa1$pratoPrincipal2_opção2_guarnição2_massa2_acompanhamento2_saladas2_sobremesa2$pratoPrincipal3_opção3_guarnição3_massa3_acompanhamento3_saladas3_sobremesa3$pratoPrincipal4_opção4_guarnição4_massa4_acompanhamento4_saladas4_sobremesa4$pratoPrincipal5_opção5_guarnição5_massa5_acompanhamento5_saladas5_sobremesa5$pratoPrincipal6_opção6_guarnição6_massa6_acompanhamento6_saladas6_sobremesa6$pratoPrincipal7_opção7_guarnição7_massa7_acompanhamento7_saladas7_sobremesa7$pratoPrincipal8_opção8_guarnição8_massa8_acompanhamento8_saladas8_sobremesa8$pratoPrincipal9_opção9_guarnição9_massa9_acompanhamento9_saladas9_sobremesa9$pratoPrincipal10_opção10_guarnição10_massa10_acompanhamento10_saladas10_sobremesa10$pratoPrincipal11_opção11_guarnição11_massa11_acompanhamento11_saladas11_sobremesa11$pratoPrincipal12_opção12_guarnição12_massa12_acompanhamento12_saladas12_sobremesa12$pratoPrincipal13_opção13_guarnição13_massa13_acompanhamento13_saladas13_sobremesa13$pratoPrincipal14_opção14_guarnição14_massa14_acompanhamento14_saladas14_sobremesa14";
+    // Get week number.
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
+    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekOfYear fromDate:[NSDate date]];
+    
+    // Generate request string.
+    NSString *requestString = [NSString stringWithFormat:@"tag=7$UFJF_%ld", (long)dateComponents.weekOfYear];
+    
+    // Request with shared session configuration.
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverURLString]];
+    urlRequest.HTTPMethod = @"POST";
+    urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+    [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
+        // Verify network error.
+        if (networkError) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(nil, networkError);
+            }];
+        }
+        
+        // Serialize JSON and get return string.
+        NSError *serializationError;
+        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&serializationError];
+        // Verify serialization error.
+        if (serializationError) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(nil, serializationError);
+            }];
+        }
         
         // Separete main components.
-        NSArray *mainComponents = [requestString componentsSeparatedByString:@"$"];
+        NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"$"];
         NSMutableArray *weekMenu = [NSMutableArray arrayWithCapacity:mainComponents.count];
         for (NSString *mainComponent in mainComponents) {
             [weekMenu addObject:[mainComponent componentsSeparatedByString:@"_"]];
         }
         
         // Main thread
-        //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             // Run completion handler.
             handler(weekMenu, nil);
-        });
-    }];
+        }];
+    }] resume];
 }
 
 @end
