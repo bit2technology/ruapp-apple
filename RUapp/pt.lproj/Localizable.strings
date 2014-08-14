@@ -19,3 +19,6 @@
 
 /* Menu Error Description */
 "Menu not available for this week" = "Cardápio não disponível para esta semana";
+
+/* Menu Table View Controller Restaurant Info */
+"Restaurant is closed" = "Restaurante fechado";

@@ -61,53 +61,64 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
 
 + (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSError *error))handler
 {
-    // Background thread
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        // Components of vote server request.
-        NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:6];
-        
-        // Restaurant
-        [stringComponents addObject:[NSString stringWithFormat:@"UFJF%lu", (unsigned long)restaurant + 1]];
-        
-        // Date
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"dd.MM.yyyy";
-        dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-        NSDate *now = [NSDate date];
-        [stringComponents addObject:[dateFormatter stringFromDate:now]];
-        
-        // Meal
-        [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)[RUAAppDelegate mealForDate:now] + 1]];
-        
-        // Vote
-        [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)vote + 1]];
-        
-        // Reason
-        if (reason.count > 0) {
-            NSMutableArray *reasonComponents = [NSMutableArray arrayWithCapacity:reason.count];
-            for (NSNumber *reasonNumber in reason) {
-                [reasonComponents addObject:[NSString stringWithFormat:@"%02lu", (unsigned long)[reasonNumber unsignedIntegerValue] + 1]];
-            }
-            [stringComponents addObject:[reasonComponents componentsJoinedByString:@"."]];
-        } else {
-            [stringComponents addObject:@"00"];
+    // Components of vote server request.
+    NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:6];
+    
+    // Restaurant and tag to server
+    [stringComponents addObject:[NSString stringWithFormat:@"tag=6$UFJF%lu", (unsigned long)restaurant + 1]];
+    
+    // Date
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"dd.MM.yyyy";
+    dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
+    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
+    NSDate *now = [NSDate date];
+    [stringComponents addObject:[dateFormatter stringFromDate:now]];
+    
+    // Meal
+    [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)2]];//[RUAAppDelegate mealForDate:now] + 1]];
+    
+    // Vote
+    [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)vote + 1]];
+    
+    // Reason
+    if (reason.count > 0) {
+        NSMutableArray *reasonComponents = [NSMutableArray arrayWithCapacity:reason.count];
+        for (NSNumber *reasonNumber in reason) {
+            [reasonComponents addObject:[NSString stringWithFormat:@"%02lu", (unsigned long)[reasonNumber unsignedIntegerValue] + 1]];
+        }
+        [stringComponents addObject:[reasonComponents componentsJoinedByString:@"."]];
+    } else {
+        [stringComponents addObject:@"00"];
+    }
+    
+    // Device ID
+    [stringComponents addObject:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+    
+    // Request
+    NSString *requestString = [stringComponents componentsJoinedByString:@"_"];
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverURLString]];
+    urlRequest.HTTPMethod = @"POST";
+    urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+    [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
+        // Verify network error.
+        if (networkError) {
+            handler(nil, networkError);
+            return;
         }
         
-        // Device ID
-        [stringComponents addObject:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+        // Serialize JSON and get return string.
+        NSError *serializationError;
+        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&serializationError];
+        // Verify serialization error.
+        if (serializationError) {
+            handler(nil, serializationError);
+            return;
+        }
         
-        // Request
-        NSString *requestString = [stringComponents componentsJoinedByString:@"_"];
-        // TODO: Actual request.
-        
-        NSLog(@"sendVote: %@", requestString);
-        
-        // Main thread
-        //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            handler(now, [[NSError alloc] init]);
-        });
-    }];
+        handler(now, nil);
+    }] resume];
 }
 
 /*
@@ -247,9 +258,8 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
         // Verify network error.
         if (networkError) {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, networkError);
-            }];
+            handler(nil, networkError);
+            return;
         }
         
         // Serialize JSON and get return string.
@@ -257,23 +267,23 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
         NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&serializationError];
         // Verify serialization error.
         if (serializationError) {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, serializationError);
-            }];
+            handler(nil, serializationError);
+            return;
         }
         
-        // Separete main components.
+        // Separete main components and verify if it is a valid menu.
         NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"$"];
+        if (mainComponents.count <= 1) {
+            handler(nil, nil);
+            return;
+        }
         NSMutableArray *weekMenu = [NSMutableArray arrayWithCapacity:mainComponents.count];
         for (NSString *mainComponent in mainComponents) {
             [weekMenu addObject:[mainComponent componentsSeparatedByString:@"_"]];
         }
         
-        // Main thread
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            // Run completion handler.
-            handler(weekMenu, nil);
-        }];
+        // Run completion handler.
+        handler(weekMenu, nil);
     }] resume];
 }
 

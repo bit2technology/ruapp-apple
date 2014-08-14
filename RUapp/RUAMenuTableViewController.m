@@ -168,9 +168,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Calculate height for each row.
     NSString *mealText = [self mealMenuForCurrentPageForSection:indexPath.section][(NSUInteger)indexPath.row];
     CGSize referenceSize = CGRectInfinite.size;
-    referenceSize.width = 194;
+    referenceSize.width = 193;
     CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
     return (actualHeight > 44 ? actualHeight : 44);
 }
@@ -182,13 +183,23 @@
         return [tableView dequeueReusableCellWithIdentifier:@"Menu Loading Cell" forIndexPath:indexPath];
     }
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Menu Cell" forIndexPath:indexPath];
+    // List of dishes.
+    NSArray *mealMenu = [self mealMenuForCurrentPageForSection:indexPath.section];
     
-    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    cell.textLabel.text = self.menuDishesList[(NSUInteger)indexPath.row];
-    cell.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    cell.detailTextLabel.numberOfLines = NSIntegerMax;
-    cell.detailTextLabel.text = [self mealMenuForCurrentPageForSection:indexPath.section][(NSUInteger)indexPath.row]; NSLog(@"width: %f", cell.contentView.bounds.size.width - cell.detailTextLabel.frame.origin.x);
+    // If menu has only one item, it means the restaurant is closed.
+    UITableViewCell *cell;
+    if (mealMenu.count > 1) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Menu Cell" forIndexPath:indexPath];
+        
+        cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+        cell.textLabel.text = self.menuDishesList[(NSUInteger)indexPath.row];
+        cell.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+        cell.detailTextLabel.numberOfLines = NSIntegerMax;
+        cell.detailTextLabel.text = mealMenu[(NSUInteger)indexPath.row];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Menu Info Cell" forIndexPath:indexPath];
+        cell.textLabel.text = NSLocalizedString(@"Restaurant is closed", @"Menu Table View Controller Restaurant Info");
+    }
     
     return cell;
 }
