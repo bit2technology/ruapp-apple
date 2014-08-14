@@ -29,4 +29,6 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  */
 + (RUAMeal)mealForNow;
 
++ (UILabel *)tableViewBackgroundViewWithMessage:(NSString *)message;
+
 @end

@@ -26,39 +26,6 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
 
 @implementation RUAServerConnection
 
-/*
- Envio de voto:
- UFJF2_02.05.2014_2_1_01.03_a
- 
- Estrutura:
- Unidade_data_refeição_voto_justificativa_idDoAparelho
- 
- Códigos:
- - Unidade:
- UFJF1 = centro;
- UFJF2 = Campus
- - Data:
- Dia.mes.ano
- - Voto:
- 1 = muito bom
- 2 = bom
- 3 = ruim
- 4 = muito ruim
- - Justificativa:
- Conjunto de números de 01 a 07
- - Montar: “justificativa1.justificativa2.justificativaN”
- Sendo o número de cada justificativa:
- 01. Prato principal
- 02. Opção vegetariana
- 03. Guarnição
- 04. Massa
- 05. Acompanhamento
- 06. Salada
- 07. Sobremesa
- - idDoAparelho
- Identificação única.
- */
-
 + (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSError *error))handler
 {
     // Components of vote server request.
@@ -76,7 +43,7 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
     [stringComponents addObject:[dateFormatter stringFromDate:now]];
     
     // Meal
-    [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)2]];//[RUAAppDelegate mealForDate:now] + 1]];
+    [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)[RUAAppDelegate mealForDate:now] + 1]];
     
     // Vote
     [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)vote + 1]];
@@ -104,7 +71,10 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
         // Verify network error.
         if (networkError) {
-            handler(nil, networkError);
+            // Main thread
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(nil, networkError);
+            }];
             return;
         }
         
@@ -113,11 +83,27 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
         NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&serializationError];
         // Verify serialization error.
         if (serializationError) {
-            handler(nil, serializationError);
+            // Main thread
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(nil, serializationError);
+            }];
             return;
         }
         
-        handler(now, nil);
+        // Separete main components and verify if it is a valid response.
+        NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"#"];
+        if (mainComponents.count <= 1) { // Already voted.
+            // Main thread
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(nil, nil);
+            }];
+            return;
+        }
+        
+        // Main thread
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            handler(now, nil);
+        }];
     }] resume];
 }
 
@@ -226,20 +212,6 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
     }];
 }
 
-/*
- Cardápio: pratoPrincipal1_opção1_guarnição1_massa1_acompanhamento1_saladas1_sobremesa1$pratoprincipal2_opção2_guarnição2_massa2_acompanhamento2_saladas2_sobremesa2$...$Pratoprincipal14_opção14_guarnição14_massa14_acompanhamento14_saladas14_sobremesa14
- Algoritmo:
- - Separar a string nas “$”, formando uma lista.
- - Cada item da lista é um cardápio da semana. Os índices são:
-   - Item 0: almoço de segunda feira
-   - Item 1: jantar de segunda-feira
-   - Item 2: almoço de terça feira
-   ...
-   - Até Item 14: jantar de domingo
- - Separar cada um dos itens da lista nos “_”
- - Cada um deles está explicado no próprio modelo acima.
- */
-
 + (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu, NSError *error))handler
 {
     // Get week number.
@@ -258,7 +230,10 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
         // Verify network error.
         if (networkError) {
-            handler(nil, networkError);
+            // Main thread
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(nil, networkError);
+            }];
             return;
         }
         
@@ -267,14 +242,20 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
         NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&serializationError];
         // Verify serialization error.
         if (serializationError) {
-            handler(nil, serializationError);
+            // Main thread
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(nil, serializationError);
+            }];
             return;
         }
         
         // Separete main components and verify if it is a valid menu.
         NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"$"];
         if (mainComponents.count <= 1) {
-            handler(nil, nil);
+            // Main thread
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(nil, nil);
+            }];
             return;
         }
         NSMutableArray *weekMenu = [NSMutableArray arrayWithCapacity:mainComponents.count];
@@ -282,8 +263,10 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
             [weekMenu addObject:[mainComponent componentsSeparatedByString:@"_"]];
         }
         
-        // Run completion handler.
-        handler(weekMenu, nil);
+        // Main thread
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            handler(weekMenu, nil);
+        }];
     }] resume];
 }
 

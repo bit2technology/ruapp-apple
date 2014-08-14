@@ -8,6 +8,7 @@
 
 #import "RUAAppDelegate.h"
 #import "RUAColor.h"
+#import "iRate.h"
 
 @implementation RUAAppDelegate
 
@@ -35,12 +36,28 @@
     return [self mealForDate:[NSDate date]];
 }
 
++ (UILabel *)tableViewBackgroundViewWithMessage:(NSString *)message
+{
+    UILabel *backgroundView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    backgroundView.text = message;
+    backgroundView.textAlignment = NSTextAlignmentCenter;
+    backgroundView.textColor = [UIColor whiteColor];
+    backgroundView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    backgroundView.numberOfLines = NSIntegerMax;
+    return backgroundView;
+}
+
 #pragma mark - UIApplicationDelegate
 
+#warning Disable iRate preview mode.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Fix for iOS 7.1.
     self.window.tintColor = [RUAColor lightBlueColor];
+    
+    // iRate
+    [iRate sharedInstance].useAllAvailableLanguages = NO;
+    [iRate sharedInstance].previewMode = YES;
     
     return YES;
 }

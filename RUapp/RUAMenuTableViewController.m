@@ -79,6 +79,7 @@
                 // If there is no data source (is first download, not an update), adjust current page.
                 if (!self.dataSource) {
                     [self adjustCurrentPage];
+                    self.tableView.backgroundView = nil;
                 }
                 
                 // Cache week menu.
@@ -92,14 +93,13 @@
                 [self.tableView endUpdates];
             }
         } else {
-            // If there is no data source (is first download, not an update), get loading cell, hide activity indicator and show an appropriate message. Otherwise, do nothing.
+            // If there is no data source (is first download, not an update), show an appropriate message. Otherwise, do nothing.
             if (!self.dataSource) {
-                RUATableViewLoadingCell *loadingCell = (RUATableViewLoadingCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-                loadingCell.infoLabel.text = (error ?
-                                              NSLocalizedString(@"Couldn't download menu", @"Menu Error Description") :
-                                              NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
-                loadingCell.infoLabel.hidden = NO;
-                [loadingCell.activityIndicator stopAnimating];
+                NSString *info = (error ?
+                                  NSLocalizedString(@"Couldn't download menu", @"Menu Error Description") :
+                                  NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
+                self.tableView.backgroundView = [RUAAppDelegate tableViewBackgroundViewWithMessage:info];
+                self.tableView.userInteractionEnabled = YES;
             }
         }
         self.isDownloadingDataSource = NO;
@@ -140,11 +140,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // If there is no data source, return 1 to first section (loading row) and 0 to others. Otherwise, return 7 (dishes count).
-    if (!self.dataSource) {
-        return (section ? 0 : 1);
-    }
-    return (NSInteger)[self mealMenuForCurrentPageForSection:section].count;
+    // If there is no data source, return 0. Otherwise, return 7 (dishes count).
+    return (self.dataSource ? (NSInteger)[self mealMenuForCurrentPageForSection:section].count : 0);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -178,11 +175,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // If there is no data source, return loading cell. Otherwise, return normal cell.
-    if (!self.dataSource) {
-        return [tableView dequeueReusableCellWithIdentifier:@"Menu Loading Cell" forIndexPath:indexPath];
-    }
-    
     // List of dishes.
     NSArray *mealMenu = [self mealMenuForCurrentPageForSection:indexPath.section];
     
@@ -190,7 +182,6 @@
     UITableViewCell *cell;
     if (mealMenu.count > 1) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Menu Cell" forIndexPath:indexPath];
-        
         cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         cell.textLabel.text = self.menuDishesList[(NSUInteger)indexPath.row];
         cell.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
@@ -227,10 +218,20 @@
     [weekdays removeObjectAtIndex:0];
     [weekdays addObject:sunday];
     self.weekdays = weekdays;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    // If there is a cached data source, adjust current page.
+    // If there is a cached data source, adjust current page. Otherwise, show downloading (for the first time) interface.
     if (self.dataSource) {
         [self adjustCurrentPage];
+    } else {
+        self.tableView.userInteractionEnabled = NO;
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [activityView startAnimating];
+        self.tableView.backgroundView = activityView;
     }
 }
 

@@ -8,13 +8,6 @@
 
 @import UIKit;
 
-@interface RUATableViewLoadingCell : UITableViewCell
-
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
-
-@end
-
 @interface RUATableViewController : UITableViewController
 
 @end

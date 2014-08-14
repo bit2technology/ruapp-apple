@@ -312,40 +312,6 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.1058823529" green="0.1058823529" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Menu Loading Cell" id="C9f-Nx-xa2" customClass="RUATableViewLoadingCell">
-                                <rect key="frame" x="0.0" y="207" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C9f-Nx-xa2" id="DG4-ss-VZS">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="1bd-dP-jyY">
-                                            <rect key="frame" x="150" y="12" width="20" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.10588235410000001" green="0.10588235410000001" blue="0.1921568662" alpha="1" colorSpace="calibratedRGB"/>
-                                        </activityIndicatorView>
-                                        <label hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SL-D0-IuW">
-                                            <rect key="frame" x="146" y="12" width="28" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.10588235410000001" green="0.10588235410000001" blue="0.1921568662" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="centerX" secondItem="9SL-D0-IuW" secondAttribute="centerX" id="FoV-aN-5ot"/>
-                                        <constraint firstAttribute="centerX" secondItem="1bd-dP-jyY" secondAttribute="centerX" id="U76-aH-ETM"/>
-                                        <constraint firstAttribute="centerY" secondItem="1bd-dP-jyY" secondAttribute="centerY" id="oMG-KP-IoY"/>
-                                        <constraint firstAttribute="centerY" secondItem="9SL-D0-IuW" secondAttribute="centerY" id="yLB-gG-o9Z"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.1058823529" green="0.1058823529" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="activityIndicator" destination="1bd-dP-jyY" id="csx-0n-vcx"/>
-                                    <outlet property="infoLabel" destination="9SL-D0-IuW" id="egZ-LJ-IZ0"/>
-                                </connections>
-                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>

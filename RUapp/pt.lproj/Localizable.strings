@@ -22,3 +22,17 @@
 
 /* Menu Table View Controller Restaurant Info */
 "Restaurant is closed" = "Restaurante fechado";
+
+/* ############################## VOTE ############################## */
+
+/* Vote alert view title */
+"Are you sure you want to submit this vote?" = "Você tem certeza que deseja enviar este voto?";
+
+/* Vote alert view message */
+"The vote can't be changed after you send it." = "O voto não pode ser mudado depois de enviado.";
+
+/* Vote alert view cancel button */
+"Cancel" = "Cancelar";
+
+/* Vote alert view submit button */
+"Submit" = "Enviar";

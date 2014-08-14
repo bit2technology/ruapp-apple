@@ -9,10 +9,6 @@
 #import "RUATableViewController.h"
 #import "RUAColor.h"
 
-@implementation RUATableViewLoadingCell
-
-@end
-
 @implementation RUATableViewController
 
 - (void)preferredContentSizeChanged:(NSNotification *)notification
