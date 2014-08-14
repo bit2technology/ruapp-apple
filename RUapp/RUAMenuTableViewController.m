@@ -99,10 +99,10 @@
                                   NSLocalizedString(@"Couldn't download menu", @"Menu Error Description") :
                                   NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
                 self.tableView.backgroundView = [RUAAppDelegate tableViewBackgroundViewWithMessage:info];
-                self.tableView.userInteractionEnabled = YES;
             }
         }
         self.isDownloadingDataSource = NO;
+        self.tableView.userInteractionEnabled = YES;
         [self.refreshControl endRefreshing];
     }];
 }
