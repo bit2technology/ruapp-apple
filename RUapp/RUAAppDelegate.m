@@ -10,7 +10,6 @@
 #import "RUAColor.h"
 #import "iRate.h"
 #import "RUAServerConnection.h"
-#import "RUAMenuTableViewController.h"
 
 @implementation RUAAppDelegate
 
@@ -49,15 +48,16 @@
     [iRate sharedInstance].useAllAvailableLanguages = NO;
 //    [iRate sharedInstance].previewMode = YES;
     
+    // Background fetch
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    [self application:application performFetchWithCompletionHandler:nil];
+    
     return YES;
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    RUAMenuTableViewController *menuTableViewController = [[(UITabBarController *)self.window.rootViewController viewControllers] firstObject];
-    if (menuTableViewController) {
-        [menuTableViewController downloadDataSourceAndUpdateTable];
-    }
+    [RUAServerConnection performFetchWithCompletionHandler:completionHandler];
 }
 
 @end

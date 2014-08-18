@@ -106,8 +106,9 @@
             self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:finishMessage];
             
             self.lastVoteDate = voteDate;
-            [[NSUserDefaults standardUserDefaults] setValue:voteDate forKey:@"lastVoteDate"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+            [standardUserDefaults setValue:voteDate forKey:@"lastVoteDate"];
+            [standardUserDefaults synchronize];
         }];
     }
 }

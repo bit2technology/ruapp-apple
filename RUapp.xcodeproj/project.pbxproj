@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1BACA519A2475400382585 /* VoteDataSource.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B1BACA719A2475400382585 /* VoteDataSource.plist */; };
 		4B1D4DA7193F5EA600A50406 /* RUATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D4DA6193F5EA600A50406 /* RUATableViewController.m */; };
 		4B2DD9181951D7A80074A6B8 /* RUAServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2DD9171951D7A80074A6B8 /* RUAServerConnection.m */; };
 		4B3EAA70193F93C600C0CC95 /* RUAMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3EAA6F193F93C600C0CC95 /* RUAMenuTableViewController.m */; };
@@ -27,7 +28,6 @@
 		4BDED304192A152F009716DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E0192A152F009716DF /* Foundation.framework */; };
 		4BDED305192A152F009716DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E4192A152F009716DF /* UIKit.framework */; };
 		4BDED30F192A152F009716DF /* RUappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED30E192A152F009716DF /* RUappTests.m */; };
-		4BE659031974AFB500942E04 /* VoteDataSource.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BE659021974AFB500942E04 /* VoteDataSource.plist */; };
 		4BE910031938BBA300198D43 /* RUAVoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */; };
 		4BF936C3193B732B00DB9B40 /* RUAResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF936C2193B732B00DB9B40 /* RUAResultsTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -44,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		4B1A7E3B198407DE00C206CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4B1BACA619A2475400382585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/VoteDataSource.plist; sourceTree = "<group>"; };
+		4B1BACA819A2475E00382585 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/VoteDataSource.plist; sourceTree = "<group>"; };
 		4B1D4DA5193F5EA600A50406 /* RUATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUATableViewController.h; sourceTree = "<group>"; };
 		4B1D4DA6193F5EA600A50406 /* RUATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUATableViewController.m; sourceTree = "<group>"; };
 		4B2DD9161951D7A80074A6B8 /* RUAServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAServerConnection.h; sourceTree = "<group>"; };
@@ -76,7 +78,6 @@
 		4BDED302192A152F009716DF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4BDED30A192A152F009716DF /* RUappTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RUappTests-Info.plist"; sourceTree = "<group>"; };
 		4BDED30E192A152F009716DF /* RUappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUappTests.m; sourceTree = "<group>"; };
-		4BE659021974AFB500942E04 /* VoteDataSource.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VoteDataSource.plist; sourceTree = "<group>"; };
 		4BE910011938BBA300198D43 /* RUAVoteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAVoteTableViewController.h; sourceTree = "<group>"; };
 		4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAVoteTableViewController.m; sourceTree = "<group>"; };
 		4BF936C1193B732B00DB9B40 /* RUAResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAResultsTableViewController.h; sourceTree = "<group>"; };
@@ -221,7 +222,7 @@
 		4BE910001938BB8900198D43 /* Vote */ = {
 			isa = PBXGroup;
 			children = (
-				4BE659021974AFB500942E04 /* VoteDataSource.plist */,
+				4B1BACA719A2475400382585 /* VoteDataSource.plist */,
 				4BE910011938BBA300198D43 /* RUAVoteTableViewController.h */,
 				4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */,
 			);
@@ -318,7 +319,7 @@
 				4BDE8218199BA54700441EAA /* Localizable.strings in Resources */,
 				4BDE8212199B946000441EAA /* MenuDishesList.plist in Resources */,
 				4BDED2FC192A152F009716DF /* Images.xcassets in Resources */,
-				4BE659031974AFB500942E04 /* VoteDataSource.plist in Resources */,
+				4B1BACA519A2475400382585 /* VoteDataSource.plist in Resources */,
 				4BDED2F4192A152F009716DF /* Main_iPhone.storyboard in Resources */,
 				4BA6A823199D106200E7344D /* iRate.bundle in Resources */,
 			);
@@ -385,6 +386,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4B1BACA719A2475400382585 /* VoteDataSource.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B1BACA619A2475400382585 /* Base */,
+				4B1BACA819A2475E00382585 /* pt */,
+			);
+			name = VoteDataSource.plist;
+			sourceTree = "<group>";
+		};
 		4BDE8214199B946000441EAA /* MenuDishesList.plist */ = {
 			isa = PBXVariantGroup;
 			children = (

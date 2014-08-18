@@ -62,4 +62,9 @@ typedef NS_ENUM(NSUInteger, RUADish) {
  */
 + (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu, NSError *error))handler;
 
+/**
+ * Send saved votes to server.
+ */
++ (void)performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
+
 @end

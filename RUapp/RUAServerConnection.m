@@ -9,7 +9,8 @@
 #import "RUAServerConnection.h"
 #import "RUAAppDelegate.h"
 
-NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
+NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
+NSString *const RUASavedVotesKey = @"SavedVotes";
 
 @interface RUAResultInfo ()
 
@@ -67,12 +68,22 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
     // Request
     NSString *requestString = [stringComponents componentsJoinedByString:@"_"];
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverURLString]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
     urlRequest.HTTPMethod = @"POST";
     urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
         // Verify network error.
         if (networkError) {
+            // Save vote for send later
+            NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+            NSMutableArray *savedVotes = [[standardUserDefaults arrayForKey:RUASavedVotesKey] mutableCopy];
+            if (!savedVotes) {
+                savedVotes = [NSMutableArray array];
+            }
+            [savedVotes addObject:urlRequest.HTTPBody];
+            [standardUserDefaults setObject:savedVotes forKey:RUASavedVotesKey];
+            [standardUserDefaults synchronize];
+            
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 handler(nil, networkError);
@@ -81,17 +92,7 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
         }
         
         // Serialize JSON and get return string.
-        NSError *serializationError;
-        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&serializationError];
-        // Verify serialization error.
-        if (serializationError) {
-            // Main thread
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, serializationError);
-            }];
-            return;
-        }
-        
+        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         // Separete main components and verify if it is a valid response.
         NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"#"];
         if (mainComponents.count < 5) { // Already voted.
@@ -141,16 +142,33 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
 
 + (void)requestResultsWithCompletionHandler:(void (^)(RUAResultInfo *results, NSError *error))handler
 {
-    // Background thread
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        // Download result string.
-        NSString *resultsString = @"UFJF2_03.05.2014_2$8$7$3$5#3$0$2$2$0$1$0#3$2$0$0$0$0$0#0$0$0$1$1$0$1#0$0$2$2$1$0$1";
+    // Date
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"dd.MM.yyyy";
+    dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
+    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
+    NSDate *now = [NSDate date];
+    
+    // Request
+    NSString *requestString = [NSString stringWithFormat:@"tag=8$UFJF1_%@_%lu_1_00_id", [dateFormatter stringFromDate:now], (unsigned long)([RUAAppDelegate mealForDate:now] + 1)];
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
+    urlRequest.HTTPMethod = @"POST";
+    urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+    [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
+//        // Download result string.
+//        NSString *resultsString = @"UFJF2_03.05.2014_2$8$7$3$5#3$0$2$2$0$1$0#3$2$0$0$0$0$0#0$0$0$1$1$0$1#0$0$2$2$1$0$1";
+        
+        // Serialize JSON and get return string.
+        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        // Separete main components and verify if it is a valid response.
+        NSMutableArray *mainComponents = [[serializationResult.lastObject componentsSeparatedByString:@"#"] mutableCopy];
+//        if (mainComponents.count < 5) {
+//            
+//        }
         
         // Object with results.
         RUAResultInfo *results = [[RUAResultInfo alloc] init];
-        
-        // Separete main components.
-        NSMutableArray *mainComponents = [[resultsString componentsSeparatedByString:@"#"] mutableCopy];
         
         // Get overview information.
         NSString *overview = [mainComponents firstObject];
@@ -168,9 +186,6 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
         }
         // Date
         NSString *dateString = overviewInformation[1];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"dd.MM.yyyy";
-        dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
         results.date = [dateFormatter dateFromString:dateString];
         // Meal
         results.meal = (RUAMeal)([overviewInformation[2] integerValue] - 1);
@@ -182,13 +197,10 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
         }
         results.votes = votesHelper;
         
-        NSLog(@"results: %@", results);
-        
         // Main thread
-        //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             handler(results, [[NSError alloc] init]);
-        });
+        }];
         
 //        for (NSUInteger i = 0; i < mainComponents.count; i++) {
 //            // Separate secondary components.
@@ -211,7 +223,12 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
 //                // Other main components.
 //            }
 //        }
-    }];
+    }] resume];
+}
+
++ (RUAResultInfo *)resultInfoFromData:(NSData *)data
+{
+    return nil;
 }
 
 + (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu, NSError *error))handler
@@ -221,15 +238,16 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
     NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitWeekOfYear fromDate:[NSDate date]];
     
-    // Generate request string (adjust week to start on monday.
+    // Generate request string (adjust week to start on monday).
     if (dateComponents.weekday <= 1) {
         dateComponents.weekOfYear--;
     }
-    NSString *requestString = [NSString stringWithFormat:@"tag=7$UFJF_%ld", (long)dateComponents.weekOfYear];
+#warning Fix week of year.
+    NSString *requestString = [NSString stringWithFormat:@"tag=7$UFJF_%ld", (long)33];//dateComponents.weekOfYear];
     
     // Request with shared session configuration.
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverURLString]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
     urlRequest.HTTPMethod = @"POST";
     urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
@@ -243,17 +261,7 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
         }
         
         // Serialize JSON and get return string.
-        NSError *serializationError;
-        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&serializationError];
-        // Verify serialization error.
-        if (serializationError) {
-            // Main thread
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, serializationError);
-            }];
-            return;
-        }
-        
+        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         // Separete main components if it is a valid menu.
         NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"$"];
         if (mainComponents.count <= 1) { // It means there was a server error or that there is no menu.
@@ -273,6 +281,51 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
             handler(weekMenu, nil);
         }];
     }] resume];
+}
+
++ (void)performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    // Get saved votes
+    NSMutableArray *savedVotes = [[[NSUserDefaults standardUserDefaults] arrayForKey:RUASavedVotesKey] mutableCopy];
+    
+    // If there is no vote, return No Data.
+    if (!savedVotes.count) {
+        if (completionHandler) {
+            completionHandler(UIBackgroundFetchResultNoData);
+        }
+        return;
+    }
+    
+    // Otherwise, create session and URL request and send votes.
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
+    urlRequest.HTTPMethod = @"POST";
+    [self recursiveFetchWithArray:savedVotes session:urlSession request:urlRequest completionHandler:completionHandler];
+}
+
++ (void)recursiveFetchWithArray:(NSMutableArray *)savedVotes session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    // If there is votes yet to be sent, modify request's HTTP body and call this method again.
+    if (savedVotes.count) {
+        request.HTTPBody = savedVotes.lastObject;
+        [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (error) {
+                if (completionHandler) {
+                    completionHandler(UIBackgroundFetchResultFailed);;
+                }
+            } else {
+                [savedVotes removeLastObject];
+                NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                [standardUserDefaults setObject:savedVotes forKey:RUASavedVotesKey];
+                [standardUserDefaults synchronize];
+                [self recursiveFetchWithArray:savedVotes session:session request:request completionHandler:completionHandler];
+            }
+        }] resume];
+    } else {
+        if (completionHandler) {
+            completionHandler(UIBackgroundFetchResultNewData);;
+        }
+    }
 }
 
 @end

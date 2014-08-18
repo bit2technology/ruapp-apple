@@ -42,15 +42,32 @@
 
 
 
-#pragma mark - UIViewController methods
+// MARK: UIViewController methods
 
 - (void)viewDidLoad
 {
-    // Basic preparation.
     [super viewDidLoad];
     
-    // Set tab bar item's selected image.
-    self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconVoteSelected"];
+    // Adjusting interface.
+//    self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconMenuSelected"];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    
+//    self.menuDishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuDishesList" ofType:@"plist"]];
+#warning Activate cached menu.
+//    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:RUAMenuDataSourceCacheKey];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // If there is a cached data source, adjust current page. Otherwise, show downloading (for the first time) interface.
+    if (!self.dataSource) {
+        self.tableView.userInteractionEnabled = NO;
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [activityView startAnimating];
+        self.tableView.backgroundView = activityView;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -58,20 +75,20 @@
     [super viewDidAppear:animated];
     
     [RUAServerConnection requestResultsWithCompletionHandler:^(RUAResultInfo *results, NSError *error) {
-        NSUInteger votes[4], biggest = 0, total = 0;
-        for (NSUInteger i = 0; i < 4; i++) {
-            votes[i] = [results.votes[i] unsignedIntegerValue];
-            if (votes[i] > biggest) {
-                biggest = votes[i];
-            }
-            total += votes[i];
-        }
-        for (NSUInteger i = 0; i < 4; i++) {
+//        NSUInteger votes[4], biggest = 0, total = 0;
+//        for (NSUInteger i = 0; i < 4; i++) {
+//            votes[i] = [results.votes[i] unsignedIntegerValue];
+//            if (votes[i] > biggest) {
+//                biggest = votes[i];
+//            }
+//            total += votes[i];
+//        }
+//        for (NSUInteger i = 0; i < 4; i++) {
 //            float percent = (float)votes[i] / total;
 //            float progress = (float)votes[i] / biggest;
 //            [(UILabel *)self.progressLabels[i] setText:[NSString stringWithFormat:@"%.1f%%", percent * 100]];
 //            [(UIProgressView *)self.progressViews[i] setProgress:progress animated:YES];
-        }
+//        }
     }];
 }
 
