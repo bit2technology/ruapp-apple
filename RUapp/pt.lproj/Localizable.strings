@@ -21,9 +21,18 @@
 "Menu not available for this week" = "Cardápio não disponível para esta semana";
 
 /* Menu Table View Controller Restaurant Info */
-"Restaurant is closed" = "Restaurante fechado";
+"Restaurant closed" = "Restaurante fechado";
 
 /* ############################## VOTE ############################## */
+
+/* Vote not Disponible Message */
+"Sorry, there is no vote open now." = "Desculpe, não há nenhuma\nvotação aberta agora.";
+
+/* Vote Computed Message */
+"Thank you! Vote computed." = "Obrigado!\nVoto computado.";
+
+/* Vote Offline Message */
+"Ooops, we couldn't connect. Your vote will be sent as soon as possible." = "Ops, não pudemos conectar.\nSeu voto será enviado\no mais cedo possível.";
 
 /* Vote alert view title */
 "Are you sure you want to submit this vote?" = "Você tem certeza que deseja enviar este voto?";

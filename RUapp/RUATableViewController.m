@@ -11,6 +11,17 @@
 
 @implementation RUATableViewController
 
+- (UIView *)tableViewBackgroundViewWithMessage:(NSString *)message
+{
+    UILabel *backgroundView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    backgroundView.text = message;
+    backgroundView.textAlignment = NSTextAlignmentCenter;
+    backgroundView.textColor = [UIColor lightGrayColor];
+    backgroundView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    backgroundView.numberOfLines = NSIntegerMax;
+    return backgroundView;
+}
+
 - (void)preferredContentSizeChanged:(NSNotification *)notification
 {
     // Reload table view with new font.

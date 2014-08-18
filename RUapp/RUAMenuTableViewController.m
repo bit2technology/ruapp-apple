@@ -10,6 +10,8 @@
 #import "RUAColor.h"
 #import "RUAServerConnection.h"
 
+NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
+
 @interface RUAMenuTableViewController ()
 
 // Main model.
@@ -20,6 +22,8 @@
 // Navigation information.
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *previousPage;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextPage;
+@property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRight;
+@property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeLeft;
 @property (assign, nonatomic) NSInteger currentPage;
 @property (strong, nonatomic) NSArray *weekdays;
 
@@ -50,14 +54,14 @@
 /**
  * Called when the user taps one of the buttons of navigation bar.
  */
-- (IBAction)changePage:(UIBarButtonItem *)sender
+- (IBAction)changePage:(id)sender
 {
     // Preparing to go to previous or next page.
     UITableViewRowAnimation rowAnimation = UITableViewRowAnimationNone;
-    if (sender == self.previousPage) {
+    if (sender == self.previousPage || sender == self.swipeRight) {
         self.currentPage--;
         rowAnimation = UITableViewRowAnimationRight;
-    } else if (sender == self.nextPage) {
+    } else if (sender == self.nextPage || sender == self.swipeLeft) {
         self.currentPage++;
         rowAnimation = UITableViewRowAnimationLeft;
     }
@@ -65,13 +69,13 @@
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:rowAnimation];
 }
 
-/**
- * Download or update data source and update table view.
- */
 - (void)downloadDataSourceAndUpdateTable
 {
     self.isDownloadingDataSource = YES;
     [RUAServerConnection requestMenuForWeekWithCompletionHandler:^(NSArray *weekMenu, NSError *error) {
+        if (error) {
+            NSLog(@"Menu error: %@", error.localizedDescription);
+        }
         // If successful (weekMenu != nil), show menu. Otherwise, show error message.
         if (weekMenu) {
             // Perform changes only if new week menu is different from previous.
@@ -80,10 +84,11 @@
                 if (!self.dataSource) {
                     [self adjustCurrentPage];
                     self.tableView.backgroundView = nil;
+                    self.tableView.userInteractionEnabled = YES;
                 }
                 
                 // Cache week menu.
-                [[NSUserDefaults standardUserDefaults] setValue:weekMenu forKey:@"MenuDataSourceCache"];
+                [[NSUserDefaults standardUserDefaults] setValue:weekMenu forKey:RUAMenuDataSourceCacheKey];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 // Perform updates.
@@ -98,11 +103,10 @@
                 NSString *info = (error ?
                                   NSLocalizedString(@"Couldn't download menu", @"Menu Error Description") :
                                   NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
-                self.tableView.backgroundView = [RUAAppDelegate tableViewBackgroundViewWithMessage:info];
+                self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:info];
             }
         }
         self.isDownloadingDataSource = NO;
-        self.tableView.userInteractionEnabled = YES;
         [self.refreshControl endRefreshing];
     }];
 }
@@ -125,7 +129,9 @@
 {
     // Disable or enable buttons by current page and change title.
     self.previousPage.enabled = (currentPage > 0);
+    self.swipeRight.enabled = (currentPage > 0);
     self.nextPage.enabled = (currentPage < 6);
+    self.swipeLeft.enabled = (currentPage < 6);
     self.navigationItem.title = [self.weekdays[(NSUInteger)currentPage] capitalizedString];
     _currentPage = currentPage;
 }
@@ -175,7 +181,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // List of dishes.
+    // Dayly menu.
     NSArray *mealMenu = [self mealMenuForCurrentPageForSection:indexPath.section];
     
     // If menu has only one item, it means the restaurant is closed.
@@ -189,7 +195,8 @@
         cell.detailTextLabel.text = mealMenu[(NSUInteger)indexPath.row];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Menu Info Cell" forIndexPath:indexPath];
-        cell.textLabel.text = NSLocalizedString(@"Restaurant is closed", @"Menu Table View Controller Restaurant Info");
+        cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+        cell.textLabel.text = NSLocalizedString(@"Restaurant closed", @"Menu Table View Controller Restaurant Info");
     }
     
     return cell;
@@ -206,7 +213,8 @@
     self.refreshControl.tintColor = [UIColor whiteColor];
     
     self.menuDishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuDishesList" ofType:@"plist"]];
-    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:@"MenuDataSourceCache"];
+#warning Activate cached menu.
+//    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:RUAMenuDataSourceCacheKey];
     
     // Set array from date formatter to create appropriate title strings.
     NSLocale *bundleLocale = [NSLocale localeWithLocaleIdentifier:[[[NSBundle mainBundle] preferredLocalizations] firstObject]];

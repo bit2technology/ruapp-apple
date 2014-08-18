@@ -10,4 +10,9 @@
 
 @interface RUATableViewController : UITableViewController
 
+/**
+ * Creates a view to be used as background.
+ */
+- (UIView *)tableViewBackgroundViewWithMessage:(NSString *)message;
+
 @end

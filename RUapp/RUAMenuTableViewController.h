@@ -8,8 +8,15 @@
 
 #import "RUATableViewController.h"
 
+extern NSString *const RUAMenuDataSourceCacheKey;
+
 @import UIKit;
 
 @interface RUAMenuTableViewController : RUATableViewController
+
+/**
+ * Download or update data source and update table view.
+ */
+- (void)downloadDataSourceAndUpdateTable;
 
 @end

@@ -277,6 +277,13 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Bit2 Software";
 				TargetAttributes = {
+					4BDED2DC192A152F009716DF = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					4BDED300192A152F009716DF = {
 						TestTargetID = 4BDED2DC192A152F009716DF;
 					};

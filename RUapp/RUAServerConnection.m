@@ -60,7 +60,9 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
     }
     
     // Device ID
-    [stringComponents addObject:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+#warning Fix Device ID.
+    dateFormatter.dateFormat = @"dd.MM.yyyy.HH.mm.ss";
+    [stringComponents addObject:[dateFormatter stringFromDate:now]];//[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
     
     // Request
     NSString *requestString = [stringComponents componentsJoinedByString:@"_"];
@@ -92,7 +94,7 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
         
         // Separete main components and verify if it is a valid response.
         NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"#"];
-        if (mainComponents.count <= 1) { // Already voted.
+        if (mainComponents.count < 5) { // Already voted.
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 handler(nil, nil);
@@ -217,9 +219,12 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
     // Get week number.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekOfYear fromDate:[NSDate date]];
+    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitWeekOfYear fromDate:[NSDate date]];
     
-    // Generate request string.
+    // Generate request string (adjust week to start on monday.
+    if (dateComponents.weekday <= 1) {
+        dateComponents.weekOfYear--;
+    }
     NSString *requestString = [NSString stringWithFormat:@"tag=7$UFJF_%ld", (long)dateComponents.weekOfYear];
     
     // Request with shared session configuration.
@@ -249,9 +254,9 @@ NSString *const serverURLString = @"http://titugoru2.appspot.com/getvalue";
             return;
         }
         
-        // Separete main components and verify if it is a valid menu.
+        // Separete main components if it is a valid menu.
         NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"$"];
-        if (mainComponents.count <= 1) {
+        if (mainComponents.count <= 1) { // It means there was a server error or that there is no menu.
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 handler(nil, nil);

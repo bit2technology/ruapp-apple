@@ -9,6 +9,8 @@
 #import "RUAAppDelegate.h"
 #import "RUAColor.h"
 #import "iRate.h"
+#import "RUAServerConnection.h"
+#import "RUAMenuTableViewController.h"
 
 @implementation RUAAppDelegate
 
@@ -36,20 +38,8 @@
     return [self mealForDate:[NSDate date]];
 }
 
-+ (UILabel *)tableViewBackgroundViewWithMessage:(NSString *)message
-{
-    UILabel *backgroundView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    backgroundView.text = message;
-    backgroundView.textAlignment = NSTextAlignmentCenter;
-    backgroundView.textColor = [UIColor whiteColor];
-    backgroundView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    backgroundView.numberOfLines = NSIntegerMax;
-    return backgroundView;
-}
-
 #pragma mark - UIApplicationDelegate
 
-#warning Disable iRate preview mode.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Fix for iOS 7.1.
@@ -57,9 +47,17 @@
     
     // iRate
     [iRate sharedInstance].useAllAvailableLanguages = NO;
-    [iRate sharedInstance].previewMode = YES;
+//    [iRate sharedInstance].previewMode = YES;
     
     return YES;
+}
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    RUAMenuTableViewController *menuTableViewController = [[(UITabBarController *)self.window.rootViewController viewControllers] firstObject];
+    if (menuTableViewController) {
+        [menuTableViewController downloadDataSourceAndUpdateTable];
+    }
 }
 
 @end
