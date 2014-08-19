@@ -13,19 +13,25 @@
 
 @implementation RUAAppDelegate
 
-+ (RUAMeal)mealForDate:(NSDate *)date
++ (CGFloat)numberFromTime:(NSDate *)date
 {
     // Configure date components with gregorian calendar and São Paulo time zone.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
     NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
     
-    // Get hours, minutes and seconds and convert them to a numeric format. Return value according to schedule.
-    CGFloat timeNumber = (CGFloat)(dateComponents.hour + dateComponents.minute / 60.);
-    if (timeNumber >= 11 && timeNumber < 16) {
-        return RUAMealLunch;
-    } else if (timeNumber >= 17 && timeNumber < 21) {
+    // Get hours, minutes and seconds and convert them to a numeric format.
+    return (CGFloat)(dateComponents.hour + dateComponents.minute / 60.);
+}
+
++ (RUAMeal)mealForDate:(NSDate *)date
+{
+    // Return value according to schedule.
+    CGFloat timeNumber = [self numberFromTime:date];
+    if (timeNumber >= 17 && timeNumber < 21) {
         return RUAMealDinner;
+    } else if (timeNumber >= 11 && timeNumber < 16) {
+        return RUAMealLunch;
     } else if (timeNumber >= 6.5 && timeNumber < 10) {
         return RUAMealBreakfast;
     }
@@ -35,6 +41,21 @@
 + (RUAMeal)mealForNow
 {
     return [self mealForDate:[NSDate date]];
+}
+
++ (RUAMeal)lastMealForDate:(NSDate *__autoreleasing *)date
+{
+    // Get hours, minutes and seconds and convert them to a numeric format. Return value according to schedule.
+    CGFloat timeNumber = [self numberFromTime:*date];
+    if (timeNumber >= 17) {
+        return RUAMealDinner;
+    } else if (timeNumber >= 11) {
+        return RUAMealLunch;
+    } else if (timeNumber >= 6.5) {
+        return RUAMealBreakfast;
+    }
+    *date = [*date dateByAddingTimeInterval:-86400];
+    return RUAMealDinner;
 }
 
 #pragma mark - UIApplicationDelegate

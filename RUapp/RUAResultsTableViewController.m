@@ -26,18 +26,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 - (IBAction)segmentedControlDidChangeValue:(UISegmentedControl *)sender
 {
-//    u_int32_t values[4], biggest = 0, total = 100;
-//    for (NSUInteger i = 0; i < 4; i++) {
-//        values[i] = (i < 3 ? arc4random_uniform(total) : total);
-//        if (values[i] > biggest) {
-//            biggest = values[i];
-//        }
-//        total -= values[i];
-//    }
-//    for (NSUInteger i = 0; i < 4; i++) {
-//        [(UILabel *)self.progressLabels[i] setText:[NSString stringWithFormat:@"%d%%", values[i]]];
-//        [(UIProgressView *)self.progressViews[i] setProgress:(float)values[i]/biggest animated:YES];
-//    }
+    
 }
 
 #pragma mark - UITableViewController methods
@@ -77,7 +66,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     [super viewDidAppear:animated];
     
     [RUAServerConnection requestResultsWithCompletionHandler:^(NSArray *results, NSError *error) {
-        
+        NSLog(@"Results: %@", results);
     }];
 }
 

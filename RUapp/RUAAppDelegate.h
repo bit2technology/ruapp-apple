@@ -29,4 +29,6 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  */
 + (RUAMeal)mealForNow;
 
++ (RUAMeal)lastMealForDate:(NSDate *__autoreleasing *)date;
+
 @end

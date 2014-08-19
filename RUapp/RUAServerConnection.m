@@ -23,6 +23,11 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 
 @implementation RUAResultInfo
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Restaurant: %lu Date: %@ Meal: %lu Votes: %@", (unsigned long)self.restaurant, self.date, (unsigned long)self.meal, self.votes];
+}
+
 @end
 
 @implementation RUAServerConnection
@@ -142,12 +147,14 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 
 + (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSError *error))handler
 {
-    // Date
+    // Options
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"dd.MM.yyyy";
     dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
     dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
     NSDate *now = [NSDate date];
+    RUAMeal lastMeal = [RUAAppDelegate mealForDate:now];
+    NSString *options = [NSString stringWithFormat:@"%@_%lu", [dateFormatter stringFromDate:now], (unsigned long)(lastMeal + 1)];
     
     // Request
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -155,15 +162,15 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     urlRequest.HTTPMethod = @"POST";
     
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:2];
-    NSMutableArray *restaurants = [NSMutableArray arrayWithObjects:@"UFJF1", @"UfJF2", nil];
+    NSMutableArray *restaurants = [NSMutableArray arrayWithObjects:@"UFJF1", @"UFJF2", nil];
     
-    [self recursiveResultsWithArray:results locals:restaurants date:now dateFormatter:dateFormatter session:urlSession request:urlRequest completionHandler:handler];
+    [self recursiveResultsWithArray:results locals:restaurants options:options dateFormatter:dateFormatter session:urlSession request:urlRequest completionHandler:handler];
 }
 
-+ (void)recursiveResultsWithArray:(NSMutableArray *)results locals:(NSMutableArray *)locals date:(NSDate *)date dateFormatter:(NSDateFormatter *)dateFormatter session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(NSArray *results, NSError *error))handler
++ (void)recursiveResultsWithArray:(NSMutableArray *)results locals:(NSMutableArray *)locals options:(NSString *)options dateFormatter:(NSDateFormatter *)dateFormatter session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(NSArray *results, NSError *error))handler
 {
     if (locals.count) {
-        NSString *requestString = [NSString stringWithFormat:@"tag=8$%@_%@_%lu_1_00_id", locals.firstObject, [dateFormatter stringFromDate:date], (unsigned long)([RUAAppDelegate mealForDate:date] + 1)];
+        NSString *requestString = [NSString stringWithFormat:@"tag=8$%@_%@_1_00_id", locals.firstObject, options];
         request.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
         [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
             // Verify network error.
@@ -220,7 +227,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             [results addObject:result];
             [locals removeObjectAtIndex:0];
             
-            [self recursiveResultsWithArray:results locals:locals date:date dateFormatter:dateFormatter session:session request:request completionHandler:handler];
+            [self recursiveResultsWithArray:results locals:locals options:options dateFormatter:dateFormatter session:session request:request completionHandler:handler];
         }] resume];
     } else {
         // Main thread
