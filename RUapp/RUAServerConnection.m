@@ -140,7 +140,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
  acompanhamento, salada e sobremesa
  */
 
-+ (void)requestResultsWithCompletionHandler:(void (^)(RUAResultInfo *results, NSError *error))handler
++ (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSError *error))handler
 {
     // Date
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -150,85 +150,84 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     NSDate *now = [NSDate date];
     
     // Request
-    NSString *requestString = [NSString stringWithFormat:@"tag=8$UFJF1_%@_%lu_1_00_id", [dateFormatter stringFromDate:now], (unsigned long)([RUAAppDelegate mealForDate:now] + 1)];
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
     urlRequest.HTTPMethod = @"POST";
-    urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
-    [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
-//        // Download result string.
-//        NSString *resultsString = @"UFJF2_03.05.2014_2$8$7$3$5#3$0$2$2$0$1$0#3$2$0$0$0$0$0#0$0$0$1$1$0$1#0$0$2$2$1$0$1";
-        
-        // Serialize JSON and get return string.
-        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-        // Separete main components and verify if it is a valid response.
-        NSMutableArray *mainComponents = [[serializationResult.lastObject componentsSeparatedByString:@"#"] mutableCopy];
-//        if (mainComponents.count < 5) {
-//            
-//        }
-        
-        // Object with results.
-        RUAResultInfo *results = [[RUAResultInfo alloc] init];
-        
-        // Get overview information.
-        NSString *overview = [mainComponents firstObject];
-        [mainComponents removeObjectAtIndex:0];
-        NSArray *overviewComponents = [overview componentsSeparatedByString:@"$"];
-        NSArray *overviewInformation = [[overviewComponents firstObject] componentsSeparatedByString:@"_"];
-        // Restaurant
-        NSString *restaurantString = [overviewInformation firstObject];
-        if ([restaurantString isEqualToString:@"UFJF1"]) {
-            results.restaurant = RUARestaurantJuizDeForaDowntown;
-        } else if ([restaurantString isEqualToString:@"UFJF2"]) {
-            results.restaurant = RUARestaurantJuizDeForaCampus;
-        } else {
-            results.restaurant = RUARestaurantNone;
-        }
-        // Date
-        NSString *dateString = overviewInformation[1];
-        results.date = [dateFormatter dateFromString:dateString];
-        // Meal
-        results.meal = (RUAMeal)([overviewInformation[2] integerValue] - 1);
-        // Votes
-        NSMutableArray *votesHelper = [NSMutableArray arrayWithCapacity:4];
-        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-        for (NSUInteger i = 1; i < 5; i++) {
-            [votesHelper addObject:[numberFormatter numberFromString:overviewComponents[i]]];
-        }
-        results.votes = votesHelper;
-        
-        // Main thread
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            handler(results, [[NSError alloc] init]);
-        }];
-        
-//        for (NSUInteger i = 0; i < mainComponents.count; i++) {
-//            // Separate secondary components.
-//            NSArray *secondaryComponents = [mainComponents[i] componentsSeparatedByString:@"$"];
-//            if (i == 0) {
-//                // First main component.
-//                for (NSUInteger j = 0; j < secondaryComponents.count; j++) {
-//                    if (j == 0) {
-//                        // First secondary component.
-//                        // Separate terciary components.
-//                        NSArray *terciaryComponents = [secondaryComponents[0] componentsSeparatedByString:@"_"];
-//                        
-//                        // Restaurant
-//                        
-//                    } else {
-//                        // Other secondary components.
-//                    }
-//                }
-//            } else {
-//                // Other main components.
-//            }
-//        }
-    }] resume];
+    
+    NSMutableArray *results = [NSMutableArray arrayWithCapacity:2];
+    NSMutableArray *restaurants = [NSMutableArray arrayWithObjects:@"UFJF1", @"UfJF2", nil];
+    
+    [self recursiveResultsWithArray:results locals:restaurants date:now dateFormatter:dateFormatter session:urlSession request:urlRequest completionHandler:handler];
 }
 
-+ (RUAResultInfo *)resultInfoFromData:(NSData *)data
++ (void)recursiveResultsWithArray:(NSMutableArray *)results locals:(NSMutableArray *)locals date:(NSDate *)date dateFormatter:(NSDateFormatter *)dateFormatter session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(NSArray *results, NSError *error))handler
 {
-    return nil;
+    if (locals.count) {
+        NSString *requestString = [NSString stringWithFormat:@"tag=8$%@_%@_%lu_1_00_id", locals.firstObject, [dateFormatter stringFromDate:date], (unsigned long)([RUAAppDelegate mealForDate:date] + 1)];
+        request.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+        [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
+            // Verify network error.
+            if (networkError) {
+                // Main thread
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    handler(nil, networkError);
+                }];
+                return;
+            }
+            
+            // Serialize JSON and get return string.
+            NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            // Separete main components and verify if it is a valid response.
+            NSMutableArray *mainComponents = [[serializationResult.lastObject componentsSeparatedByString:@"#"] mutableCopy];
+            if (mainComponents.count < 5) {
+                // Main thread
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    handler(nil, nil);
+                }];
+                return;
+            }
+            
+            // Object with result of one local.
+            RUAResultInfo *result = [[RUAResultInfo alloc] init];
+            
+            // Get overview information.
+            NSString *overview = mainComponents.firstObject;
+            [mainComponents removeObjectAtIndex:0];
+            NSArray *overviewComponents = [overview componentsSeparatedByString:@"$"];
+            NSArray *overviewInformation = [[overviewComponents firstObject] componentsSeparatedByString:@"_"];
+            // Restaurant
+            NSString *restaurantString = [overviewInformation firstObject];
+            if ([restaurantString isEqualToString:@"UFJF1"]) {
+                result.restaurant = RUARestaurantJuizDeForaDowntown;
+            } else if ([restaurantString isEqualToString:@"UFJF2"]) {
+                result.restaurant = RUARestaurantJuizDeForaCampus;
+            } else {
+                result.restaurant = RUARestaurantNone;
+            }
+            // Date
+            NSString *dateString = overviewInformation[1];
+            result.date = [dateFormatter dateFromString:dateString];
+            // Meal
+            result.meal = (RUAMeal)([overviewInformation[2] integerValue] - 1);
+            // Votes
+            NSMutableArray *votesHelper = [NSMutableArray arrayWithCapacity:4];
+            NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+            for (NSUInteger i = 1; i < 5; i++) {
+                [votesHelper addObject:[numberFormatter numberFromString:overviewComponents[i]]];
+            }
+            result.votes = votesHelper;
+            
+            [results addObject:result];
+            [locals removeObjectAtIndex:0];
+            
+            [self recursiveResultsWithArray:results locals:locals date:date dateFormatter:dateFormatter session:session request:request completionHandler:handler];
+        }] resume];
+    } else {
+        // Main thread
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            handler(results, nil);
+        }];
+    }
 }
 
 + (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu, NSError *error))handler

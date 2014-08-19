@@ -10,6 +10,8 @@
 #import "RUAColor.h"
 #import "RUAServerConnection.h"
 
+NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
+
 @implementation RUAResultsTableViewCell
 
 @end
@@ -54,7 +56,7 @@
     
 //    self.menuDishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuDishesList" ofType:@"plist"]];
 #warning Activate cached menu.
-//    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:RUAMenuDataSourceCacheKey];
+    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:RUAResultsDataSourceCacheKey];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -74,21 +76,8 @@
 {
     [super viewDidAppear:animated];
     
-    [RUAServerConnection requestResultsWithCompletionHandler:^(RUAResultInfo *results, NSError *error) {
-//        NSUInteger votes[4], biggest = 0, total = 0;
-//        for (NSUInteger i = 0; i < 4; i++) {
-//            votes[i] = [results.votes[i] unsignedIntegerValue];
-//            if (votes[i] > biggest) {
-//                biggest = votes[i];
-//            }
-//            total += votes[i];
-//        }
-//        for (NSUInteger i = 0; i < 4; i++) {
-//            float percent = (float)votes[i] / total;
-//            float progress = (float)votes[i] / biggest;
-//            [(UILabel *)self.progressLabels[i] setText:[NSString stringWithFormat:@"%.1f%%", percent * 100]];
-//            [(UIProgressView *)self.progressViews[i] setProgress:progress animated:YES];
-//        }
+    [RUAServerConnection requestResultsWithCompletionHandler:^(NSArray *results, NSError *error) {
+        
     }];
 }
 
