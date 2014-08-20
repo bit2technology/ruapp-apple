@@ -153,7 +153,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
     dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
     NSDate *now = [NSDate date];
-    RUAMeal lastMeal = [RUAAppDelegate mealForDate:now];
+    RUAMeal lastMeal = [RUAAppDelegate lastMealForDate:&now];
     NSString *options = [NSString stringWithFormat:@"%@_%lu", [dateFormatter stringFromDate:now], (unsigned long)(lastMeal + 1)];
     
     // Request

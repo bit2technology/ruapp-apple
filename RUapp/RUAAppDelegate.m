@@ -20,7 +20,7 @@
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
     NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
     
-    // Get hours, minutes and seconds and convert them to a numeric format.
+    // Get hours and minutes and convert them to a numeric format.
     return (CGFloat)(dateComponents.hour + dateComponents.minute / 60.);
 }
 

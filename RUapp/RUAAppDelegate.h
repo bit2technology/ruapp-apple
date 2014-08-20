@@ -29,6 +29,9 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  */
 + (RUAMeal)mealForNow;
 
+/**
+ * Last meal for date. Date will return one day earlier if it's before breakfast.
+ */
 + (RUAMeal)lastMealForDate:(NSDate *__autoreleasing *)date;
 
 @end
