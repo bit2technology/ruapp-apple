@@ -28,7 +28,7 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - UITableViewController methods
+// MARK: UITableViewController methods
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
 {
@@ -38,7 +38,7 @@
     view.textLabel.textColor = [RUAColor lightGrayColor];
 }
 
-#pragma mark - UIViewController methods
+// MARK: UIViewController methods
 
 - (void)viewDidLoad
 {
@@ -48,7 +48,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
-#pragma mark - NSObject methods
+// MARK: NSObject methods
 
 - (void)dealloc
 {

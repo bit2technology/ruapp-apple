@@ -17,17 +17,13 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 @property (assign, nonatomic) RUARestaurant restaurant;
 @property (strong, nonatomic) NSDate *date;
 @property (assign, nonatomic) RUAMeal meal;
-@property (strong, nonatomic) NSArray *votes;
+@property (strong, nonatomic) NSArray *votesText;
+@property (strong, nonatomic) NSArray *votesProgress;
 @property (strong, nonatomic) NSArray *reasons;
 
 @end
 
 @implementation RUAResultInfo
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"Restaurant: %lu Date: %@ Meal: %lu Votes: %@", (unsigned long)self.restaurant, self.date, (unsigned long)self.meal, self.votes];
-}
 
 @end
 
@@ -188,18 +184,30 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             // Meal
             result.meal = (RUAMeal)([overviewInformation[2] integerValue] - 1);
             // Votes
-            NSMutableArray *votesHelper = [NSMutableArray arrayWithCapacity:4];
-            NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+            CGFloat sum = 0, biggestVote = 0;
             for (NSUInteger i = 1; i < 5; i++) {
-                [votesHelper addObject:[numberFormatter numberFromString:overviewComponents[i]]];
+                CGFloat vote = [overviewComponents[i] floatValue];
+                sum += vote;
+                if (vote > biggestVote) {
+                    biggestVote = vote;
+                }
             }
-            result.votes = votesHelper;
+            NSMutableArray *votesText = [NSMutableArray arrayWithCapacity:4];
+            for (NSUInteger i = 1; i < 5; i++) {
+                [votesText addObject:[NSNumber numberWithDouble:([overviewComponents[i] floatValue] / sum)]];
+            }
+            result.votesText = votesText;
+            NSMutableArray *votesProgress = [NSMutableArray arrayWithCapacity:4];
+            for (NSUInteger i = 1; i < 5; i++) {
+                [votesProgress addObject:[NSNumber numberWithDouble:([overviewComponents[i] floatValue] / biggestVote)]];
+            }
+            result.votesProgress = votesProgress;
             // Reason
             NSMutableArray *reasons = [NSMutableArray arrayWithCapacity:4];
             for (NSString *string in mainComponents) {
                 NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
                 for (NSString *reasonString in [string componentsSeparatedByString:@"$"]) {
-                    [reason addObject:[numberFormatter numberFromString:reasonString]];
+                    //[reason addObject:[numberFormatter numberFromString:reasonString]];
                 }
                 [reasons addObject:reason];
             }

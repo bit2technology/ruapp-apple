@@ -13,7 +13,7 @@
 
 @implementation RUAAppDelegate
 
-+ (CGFloat)numberFromTime:(NSDate *)date
++ (CGFloat)valueFromTime:(NSDate *)date
 {
     // Configure date components with gregorian calendar and São Paulo time zone.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -27,7 +27,7 @@
 + (RUAMeal)mealForDate:(NSDate *)date
 {
     // Return value according to schedule.
-    CGFloat timeNumber = [self numberFromTime:date];
+    CGFloat timeNumber = [self valueFromTime:date];
     if (timeNumber >= 17 && timeNumber < 21) {
         return RUAMealDinner;
     } else if (timeNumber >= 11 && timeNumber < 16) {
@@ -45,8 +45,8 @@
 
 + (RUAMeal)lastMealForDate:(NSDate *__autoreleasing *)date
 {
-    // Get hours, minutes and seconds and convert them to a numeric format. Return value according to schedule.
-    CGFloat timeNumber = [self numberFromTime:*date];
+    // Return value according to schedule.
+    CGFloat timeNumber = [self valueFromTime:*date];
     if (timeNumber >= 17) {
         return RUAMealDinner;
     } else if (timeNumber >= 11) {
@@ -58,7 +58,7 @@
     return RUAMealDinner;
 }
 
-#pragma mark - UIApplicationDelegate
+// MARK: UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

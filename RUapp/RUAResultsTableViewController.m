@@ -19,7 +19,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 @interface RUAResultsTableViewController ()
 
 @property (strong, nonatomic) NSArray *dataSource;
-@property (strong, nonatomic) NSArray *dishesList;
+@property (strong, nonatomic) NSArray *labelsList;
 @property (assign, nonatomic) RUARestaurant restaurant;
 
 @end
@@ -36,12 +36,12 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return (self.dataSource ? 4 : 0);
+    return (self.dataSource ? (section ? 7 : 4) : 0);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -50,33 +50,33 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     if (!self.dataSource) {
         return nil;
     }
-    switch (section) {
-        case 0:
-            return NSLocalizedString(@"Overview", @"Menu Table View Controller Section Title");
-            break;
-        case 1:
-            return NSLocalizedString(@"Details", @"Menu Table View Controller Section Title");
-            break;
-        default:
-            return nil;
-            break;
-    }
+    return self.labelsList[(NSUInteger)section][@"title"];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
     
+    UIFont *bodyFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     switch (indexPath.section) {
         case 0: { // Overview
             RUAResultsTableViewCell *overviewCell = [tableView dequeueReusableCellWithIdentifier:@"Results Overview Cell" forIndexPath:indexPath];
             RUAResultInfo *result = self.dataSource[self.restaurant];
-            overviewCell.infoLabel.text = [result.votes[(NSUInteger)indexPath.row] description];
-            
+            NSDictionary *info = self.labelsList[(NSUInteger)indexPath.section][@"rows"][(NSUInteger)indexPath.row];
+            overviewCell.voteIconView.accessibilityLabel = info[@"text"];
+            overviewCell.voteIconView.image = [UIImage imageNamed:info[@"image"]];
+            overviewCell.helperLabel.font = bodyFont;
+            overviewCell.infoLabel.font = bodyFont;
+            overviewCell.infoLabel.text = [NSString stringWithFormat:@"%.1f%%", [result.votesText[(NSUInteger)indexPath.row] doubleValue] * 100];
+            overviewCell.progressView.progress = [result.votesProgress[(NSUInteger)indexPath.row] floatValue];
             cell = overviewCell;
         } break;
         case 1: { // Details
-            
+            cell = [tableView dequeueReusableCellWithIdentifier:@"Results Detail Cell" forIndexPath:indexPath];
+            cell.textLabel.font = bodyFont;
+            cell.textLabel.text = self.labelsList[(NSUInteger)indexPath.section][@"rows"][(NSUInteger)indexPath.row];
+            cell.detailTextLabel.font = bodyFont;
+            cell.detailTextLabel.text = @"Count";
         } break;
         default:
             break;
@@ -95,7 +95,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 //    self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconMenuSelected"];
     self.refreshControl.tintColor = [RUAColor whiteColor];
     
-    self.dishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VoteDataSource" ofType:@"plist"]];
+    self.labelsList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ResultsLabelsList" ofType:@"plist"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -119,7 +119,17 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
         [self.tableView beginUpdates];
         if (![results isEqualToArray:self.dataSource]) {
             self.dataSource = results;
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 1)] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
+            self.tableView.userInteractionEnabled = YES;
+            if (!self.navigationItem.titleView) {
+                UISegmentedControl *titleView = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Downtown", @"Menu Table View Controller Section Title"), NSLocalizedString(@"Campus", @"Menu Table View Controller Section Title")]];
+                CGRect titleViewFrame = titleView.frame;
+                titleViewFrame.size.width = CGFLOAT_MAX;
+                titleView.frame = titleViewFrame;
+                titleView.selectedSegmentIndex = self.restaurant;
+                [titleView addTarget:self action:@selector(segmentedControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+                self.navigationItem.titleView = titleView;
+            }
         }
         self.tableView.backgroundView = nil;
         [self.tableView endUpdates];
