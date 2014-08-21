@@ -42,6 +42,8 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 @property (readonly, nonatomic) NSDate *date;
 @property (readonly, nonatomic) RUAMeal meal;
 @property (readonly, nonatomic) NSArray *votes;
+@property (readonly, nonatomic) NSArray *reasons;
+
 
 @end
 

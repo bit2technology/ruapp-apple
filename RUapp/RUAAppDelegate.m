@@ -67,7 +67,6 @@
     
     // iRate
     [iRate sharedInstance].useAllAvailableLanguages = NO;
-//    [iRate sharedInstance].previewMode = YES;
     
     // Background fetch
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];

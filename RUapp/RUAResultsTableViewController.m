@@ -18,7 +18,9 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 @interface RUAResultsTableViewController ()
 
-@property (strong, nonatomic) NSObject *dataSource;
+@property (strong, nonatomic) NSArray *dataSource;
+@property (strong, nonatomic) NSArray *dishesList;
+@property (assign, nonatomic) RUARestaurant restaurant;
 
 @end
 
@@ -26,12 +28,62 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 - (IBAction)segmentedControlDidChangeValue:(UISegmentedControl *)sender
 {
-    
+    self.restaurant = (RUARestaurant)sender.selectedSegmentIndex;
+    [self.tableView reloadData];
 }
 
-#pragma mark - UITableViewController methods
+// MARK: UITableViewController methods
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return (self.dataSource ? 4 : 0);
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    // If there is no data source, return nil. Otherwise, return localized string by section (meal name).
+    if (!self.dataSource) {
+        return nil;
+    }
+    switch (section) {
+        case 0:
+            return NSLocalizedString(@"Overview", @"Menu Table View Controller Section Title");
+            break;
+        case 1:
+            return NSLocalizedString(@"Details", @"Menu Table View Controller Section Title");
+            break;
+        default:
+            return nil;
+            break;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell;
+    
+    switch (indexPath.section) {
+        case 0: { // Overview
+            RUAResultsTableViewCell *overviewCell = [tableView dequeueReusableCellWithIdentifier:@"Results Overview Cell" forIndexPath:indexPath];
+            RUAResultInfo *result = self.dataSource[self.restaurant];
+            overviewCell.infoLabel.text = [result.votes[(NSUInteger)indexPath.row] description];
+            
+            cell = overviewCell;
+        } break;
+        case 1: { // Details
+            
+        } break;
+        default:
+            break;
+    }
+    
+    return cell;
+}
 
 // MARK: UIViewController methods
 
@@ -41,11 +93,9 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     
     // Adjusting interface.
 //    self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconMenuSelected"];
-    self.refreshControl.tintColor = [UIColor whiteColor];
+    self.refreshControl.tintColor = [RUAColor whiteColor];
     
-//    self.menuDishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuDishesList" ofType:@"plist"]];
-#warning Activate cached menu.
-    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:RUAResultsDataSourceCacheKey];
+    self.dishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VoteDataSource" ofType:@"plist"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -66,7 +116,13 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     [super viewDidAppear:animated];
     
     [RUAServerConnection requestResultsWithCompletionHandler:^(NSArray *results, NSError *error) {
-        NSLog(@"Results: %@", results);
+        [self.tableView beginUpdates];
+        if (![results isEqualToArray:self.dataSource]) {
+            self.dataSource = results;
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 1)] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        self.tableView.backgroundView = nil;
+        [self.tableView endUpdates];
     }];
 }
 

@@ -18,6 +18,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 @property (strong, nonatomic) NSDate *date;
 @property (assign, nonatomic) RUAMeal meal;
 @property (strong, nonatomic) NSArray *votes;
+@property (strong, nonatomic) NSArray *reasons;
 
 @end
 
@@ -115,36 +116,6 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     }] resume];
 }
 
-/*
- Resultado de votação:
- UFJF2_03.05.2014_2 8 7 3 5
- 3 0 2 2 0 1 0
- 3 2 0 0 0 0 0
- 0 0 0 1 1 0 1
- 0 0 2 2 1 0 1
- 
- Algoritmo:
-  Separar a string nas “#”, formando uma lista.
- 
- Item 0 da lista: (UFJF2_03.05.2014_2$8$7$3$5)
- o o o o o
- 
- Separar string nos “$”, formando outra lista
- Item 0 da lista = votos muito bom
- Item 1 da lista = votos bom
- Item 2 da lista = votos ruim
- Item 3 a lista = votos muito ruim
- 
-  Item 1 ao 4 da lista: (3$0$2$2$0$1$0)
- 
- o Separar string nos “$”, formando outra lista
- o Item 0 da lista: justificativa do prato principal
- o Item 1 da lista: justificativa da opção vegetariana
- o E assim por diante...
- o Obs: a ordem é: Prato principal, opção vegetariana, guarnição, massa,
- acompanhamento, salada e sobremesa
- */
-
 + (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSError *error))handler
 {
     // Options
@@ -223,6 +194,16 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
                 [votesHelper addObject:[numberFormatter numberFromString:overviewComponents[i]]];
             }
             result.votes = votesHelper;
+            // Reason
+            NSMutableArray *reasons = [NSMutableArray arrayWithCapacity:4];
+            for (NSString *string in mainComponents) {
+                NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
+                for (NSString *reasonString in [string componentsSeparatedByString:@"$"]) {
+                    [reason addObject:[numberFormatter numberFromString:reasonString]];
+                }
+                [reasons addObject:reason];
+            }
+            result.reasons = reasons;
             
             [results addObject:result];
             [locals removeObjectAtIndex:0];
