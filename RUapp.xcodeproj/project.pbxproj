@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B1BACA519A2475400382585 /* VoteDataSource.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B1BACA719A2475400382585 /* VoteDataSource.plist */; };
+		4B1BACA519A2475400382585 /* VoteHeadersList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B1BACA719A2475400382585 /* VoteHeadersList.plist */; };
 		4B1D4DA7193F5EA600A50406 /* RUATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D4DA6193F5EA600A50406 /* RUATableViewController.m */; };
 		4B2D603D19A4E01300B67B2C /* ResultsLabelsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B2D603C19A4E01300B67B2C /* ResultsLabelsList.plist */; };
 		4B2DD9181951D7A80074A6B8 /* RUAServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2DD9171951D7A80074A6B8 /* RUAServerConnection.m */; };
 		4B3EAA70193F93C600C0CC95 /* RUAMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3EAA6F193F93C600C0CC95 /* RUAMenuTableViewController.m */; };
+		4B929FF619A7A06E00A3FE1A /* AvaliationList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B929FF519A7A06E00A3FE1A /* AvaliationList.plist */; };
+		4B929FF819A7A2F200A3FE1A /* RestaurantsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B929FF719A7A2F200A3FE1A /* RestaurantsList.plist */; };
 		4BA6A823199D106200E7344D /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BA6A820199D106200E7344D /* iRate.bundle */; };
 		4BA6A824199D106200E7344D /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA6A822199D106200E7344D /* iRate.m */; };
 		4BD37508192B6AD00016BD35 /* RUAColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD37507192B6AD00016BD35 /* RUAColor.m */; };
-		4BDE8212199B946000441EAA /* MenuDishesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BDE8214199B946000441EAA /* MenuDishesList.plist */; };
+		4BDE8212199B946000441EAA /* DishesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BDE8214199B946000441EAA /* DishesList.plist */; };
 		4BDE8218199BA54700441EAA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BDE821A199BA54700441EAA /* Localizable.strings */; };
 		4BDED2E1192A152F009716DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E0192A152F009716DF /* Foundation.framework */; };
 		4BDED2E3192A152F009716DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E2192A152F009716DF /* CoreGraphics.framework */; };
@@ -45,8 +47,8 @@
 
 /* Begin PBXFileReference section */
 		4B1A7E3B198407DE00C206CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		4B1BACA619A2475400382585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/VoteDataSource.plist; sourceTree = "<group>"; };
-		4B1BACA819A2475E00382585 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/VoteDataSource.plist; sourceTree = "<group>"; };
+		4B1BACA619A2475400382585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/VoteHeadersList.plist; sourceTree = "<group>"; };
+		4B1BACA819A2475E00382585 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/VoteHeadersList.plist; sourceTree = "<group>"; };
 		4B1D4DA5193F5EA600A50406 /* RUATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUATableViewController.h; sourceTree = "<group>"; };
 		4B1D4DA6193F5EA600A50406 /* RUATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUATableViewController.m; sourceTree = "<group>"; };
 		4B2D603C19A4E01300B67B2C /* ResultsLabelsList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ResultsLabelsList.plist; sourceTree = "<group>"; };
@@ -54,13 +56,15 @@
 		4B2DD9171951D7A80074A6B8 /* RUAServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAServerConnection.m; sourceTree = "<group>"; };
 		4B3EAA6E193F93C600C0CC95 /* RUAMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAMenuTableViewController.h; sourceTree = "<group>"; };
 		4B3EAA6F193F93C600C0CC95 /* RUAMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAMenuTableViewController.m; sourceTree = "<group>"; };
+		4B929FF519A7A06E00A3FE1A /* AvaliationList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AvaliationList.plist; sourceTree = "<group>"; };
+		4B929FF719A7A2F200A3FE1A /* RestaurantsList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RestaurantsList.plist; sourceTree = "<group>"; };
 		4BA6A820199D106200E7344D /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		4BA6A821199D106200E7344D /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
 		4BA6A822199D106200E7344D /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		4BD37506192B6AD00016BD35 /* RUAColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAColor.h; sourceTree = "<group>"; };
 		4BD37507192B6AD00016BD35 /* RUAColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAColor.m; sourceTree = "<group>"; };
-		4BDE8213199B946000441EAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/MenuDishesList.plist; sourceTree = "<group>"; };
-		4BDE8215199B948200441EAA /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/MenuDishesList.plist; sourceTree = "<group>"; };
+		4BDE8213199B946000441EAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/DishesList.plist; sourceTree = "<group>"; };
+		4BDE8215199B948200441EAA /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/DishesList.plist; sourceTree = "<group>"; };
 		4BDE8219199BA54700441EAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4BDE821B199BA54D00441EAA /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4BDE821F199BBEA100441EAA /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
@@ -113,7 +117,6 @@
 		4B3EAA6D193F93AE00C0CC95 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				4BDE8214199B946000441EAA /* MenuDishesList.plist */,
 				4B3EAA6E193F93C600C0CC95 /* RUAMenuTableViewController.h */,
 				4B3EAA6F193F93C600C0CC95 /* RUAMenuTableViewController.m */,
 			);
@@ -176,6 +179,9 @@
 				4B2DD9161951D7A80074A6B8 /* RUAServerConnection.h */,
 				4B2DD9171951D7A80074A6B8 /* RUAServerConnection.m */,
 				4BDE821A199BA54700441EAA /* Localizable.strings */,
+				4B929FF519A7A06E00A3FE1A /* AvaliationList.plist */,
+				4B929FF719A7A2F200A3FE1A /* RestaurantsList.plist */,
+				4BDE8214199B946000441EAA /* DishesList.plist */,
 				4BDED2FB192A152F009716DF /* Images.xcassets */,
 				4B3EAA6D193F93AE00C0CC95 /* Menu */,
 				4BE910001938BB8900198D43 /* Vote */,
@@ -225,7 +231,7 @@
 		4BE910001938BB8900198D43 /* Vote */ = {
 			isa = PBXGroup;
 			children = (
-				4B1BACA719A2475400382585 /* VoteDataSource.plist */,
+				4B1BACA719A2475400382585 /* VoteHeadersList.plist */,
 				4BE910011938BBA300198D43 /* RUAVoteTableViewController.h */,
 				4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */,
 			);
@@ -320,13 +326,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BDED2F7192A152F009716DF /* Main_iPad.storyboard in Resources */,
+				4B929FF819A7A2F200A3FE1A /* RestaurantsList.plist in Resources */,
 				4BDE8218199BA54700441EAA /* Localizable.strings in Resources */,
 				4B2D603D19A4E01300B67B2C /* ResultsLabelsList.plist in Resources */,
-				4BDE8212199B946000441EAA /* MenuDishesList.plist in Resources */,
+				4BDE8212199B946000441EAA /* DishesList.plist in Resources */,
 				4BDED2FC192A152F009716DF /* Images.xcassets in Resources */,
-				4B1BACA519A2475400382585 /* VoteDataSource.plist in Resources */,
+				4B1BACA519A2475400382585 /* VoteHeadersList.plist in Resources */,
 				4BDED2F4192A152F009716DF /* Main_iPhone.storyboard in Resources */,
 				4BA6A823199D106200E7344D /* iRate.bundle in Resources */,
+				4B929FF619A7A06E00A3FE1A /* AvaliationList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,22 +399,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4B1BACA719A2475400382585 /* VoteDataSource.plist */ = {
+		4B1BACA719A2475400382585 /* VoteHeadersList.plist */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4B1BACA619A2475400382585 /* Base */,
 				4B1BACA819A2475E00382585 /* pt */,
 			);
-			name = VoteDataSource.plist;
+			name = VoteHeadersList.plist;
 			sourceTree = "<group>";
 		};
-		4BDE8214199B946000441EAA /* MenuDishesList.plist */ = {
+		4BDE8214199B946000441EAA /* DishesList.plist */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4BDE8213199B946000441EAA /* Base */,
 				4BDE8215199B948200441EAA /* pt */,
 			);
-			name = MenuDishesList.plist;
+			name = DishesList.plist;
 			sourceTree = "<group>";
 		};
 		4BDE821A199BA54700441EAA /* Localizable.strings */ = {

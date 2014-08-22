@@ -212,7 +212,7 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconMenuSelected"];
     self.refreshControl.tintColor = [UIColor whiteColor];
     
-    self.menuDishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuDishesList" ofType:@"plist"]];
+    self.menuDishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
 #warning Activate cached menu.
 //    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:RUAMenuDataSourceCacheKey];
     

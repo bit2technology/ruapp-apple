@@ -11,12 +11,29 @@
 #import "RUAAppDelegate.h"
 #import "RUAColor.h"
 
+NSString *const RUALastVoteDateKey = @"LastVoteDate";
+
 @interface RUAVoteTableViewController () <UIAlertViewDelegate>
 
-@property (strong, nonatomic) NSArray *dataSource;
+//@property (strong, nonatomic) NSArray *dataSource;
 @property (strong, nonatomic) NSMutableArray *checkedIndexPaths;
 
 @property (strong, nonatomic) NSDate *lastVoteDate;
+
+
+
+
+
+
+
+
+@property (assign, nonatomic) BOOL presentVoteInterface;
+
+// Strings lists
+@property (strong, nonatomic) NSArray *avaliationList;
+@property (strong, nonatomic) NSArray *restaurantsList;
+@property (strong, nonatomic) NSArray *dishesList;
+@property (strong, nonatomic) NSArray *headersList;
 
 @end
 
@@ -35,13 +52,23 @@
     if (self.lastVoteDate && [self.lastVoteDate timeIntervalSinceNow] > -18000 && [RUAAppDelegate mealForDate:self.lastVoteDate] == [RUAAppDelegate mealForNow]) {
         self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Thank you! Vote computed.", @"Vote Computed Message")];
         self.navigationItem.rightBarButtonItem.enabled = NO;
-        self.dataSource = nil;
+        //self.dataSource = nil;
         [self.checkedIndexPaths removeAllObjects];
-    } else
-    // Set only if vote is allowed and dataSource is not set.
-    if (!self.dataSource) {
-        self.dataSource = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VoteDataSource" ofType:@"plist"]];
+        
+        
+        
+        
+        
+        self.presentVoteInterface = NO;
+    } else {
+        //self.dataSource = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VoteDataSource" ofType:@"plist"]];
         self.tableView.backgroundView = nil;
+        
+        
+        
+        
+        
+        self.presentVoteInterface = YES;
     }
     [self.tableView reloadData];
 }
@@ -67,8 +94,9 @@
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [activityView startAnimating];
         self.tableView.backgroundView = activityView;
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.dataSource.count)] withRowAnimation:UITableViewRowAnimationTop];
-        self.dataSource = nil;
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] withRowAnimation:UITableViewRowAnimationTop];
+        //self.dataSource = nil;
+        self.presentVoteInterface = NO;
         self.navigationItem.rightBarButtonItem.enabled = NO;
         [self.tableView endUpdates];
         
@@ -99,7 +127,7 @@
             if (voteDate) {
                 self.lastVoteDate = voteDate;
                 NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-                [standardUserDefaults setValue:voteDate forKey:@"LastVoteDate"];
+                [standardUserDefaults setValue:voteDate forKey:RUALastVoteDateKey];
                 [standardUserDefaults synchronize];
                 
                 self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:localizedMessage];
@@ -114,30 +142,56 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return (NSInteger)self.dataSource.count;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return self.dataSource[(NSUInteger)section][@"title"];
+    return (self.presentVoteInterface ? 3 : 0);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return (NSInteger)[(NSArray *)self.dataSource[(NSUInteger)section][@"rows"] count];
+    if (self.presentVoteInterface) {
+        switch (section) {
+            case 0:
+                return 4;
+            case 1:
+                return 2;
+                
+            default:
+                return 7;
+        };
+    }
+    return 0;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (self.presentVoteInterface) {
+        return self.headersList[(NSUInteger)section];
+    }
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Vote Cell" forIndexPath:indexPath];
     
-    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    NSDictionary *rowInfo = self.dataSource[(NSUInteger)indexPath.section][@"rows"][(NSUInteger)indexPath.row];
-    cell.textLabel.text = rowInfo[@"text"];
-    NSString *imageName = rowInfo[@"image"];
-    cell.imageView.image = (imageName ? [UIImage imageNamed:imageName] : nil);
-    
     cell.accessoryType = ([self.checkedIndexPaths containsObject:indexPath] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    
+    NSString *text; UIImage *image;
+    switch (indexPath.section) {
+        case 0: {
+            NSDictionary *rowInfo = self.avaliationList[(NSUInteger)indexPath.row];
+            text = rowInfo[@"text"];
+            image = [UIImage imageNamed:rowInfo[@"image"]];
+        } break;
+        case 1: {
+            text = self.restaurantsList[(NSUInteger)indexPath.row];
+        } break;
+        default: {
+            text = self.dishesList[(NSUInteger)indexPath.row];
+        } break;
+    }
+    cell.textLabel.text = text;
+    cell.imageView.image = image;
     
     return cell;
 }
@@ -194,7 +248,7 @@
     self.navigationItem.rightBarButtonItem.enabled = (obligatoryFields >= 2);
 }
 
-#pragma mark - UIViewController methods
+// MARK: UIViewController methods
 
 - (void)viewDidLoad
 {
@@ -204,7 +258,19 @@
     self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconVoteSelected"];
     self.checkedIndexPaths = [NSMutableArray array];
 #warning Fix cached last vote.
-//    self.lastVoteDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"LastVoteDate"];
+//    self.lastVoteDate = [[NSUserDefaults standardUserDefaults] valueForKey:RUALastVoteDateKey];
+    
+    
+    
+    
+    
+    
+    
+    
+    self.avaliationList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AvaliationList" ofType:@"plist"]];
+    self.restaurantsList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"RestaurantsList" ofType:@"plist"]];
+    self.dishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
+    self.headersList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VoteHeadersList" ofType:@"plist"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
