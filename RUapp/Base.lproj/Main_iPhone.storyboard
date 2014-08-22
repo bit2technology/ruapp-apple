@@ -29,7 +29,7 @@
         <scene sceneID="0fJ-pr-eiP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oR3-5c-x6r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Results" id="vLN-dp-xe6"/>
+                    <tabBarItem key="tabBarItem" title="Results" image="TabBarIconResultsUnselected" id="vLN-dp-xe6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="cfw-ip-9q9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -145,6 +145,9 @@
                     <navigationItem key="navigationItem" title="Results" id="psC-p3-u5c"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="k7J-xb-GY0">
                         <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshControlDidChangeValue:" destination="Awh-rr-0gG" eventType="valueChanged" id="osX-xR-q40"/>
+                        </connections>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4aX-7w-e36" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -346,6 +349,7 @@
         <image name="BurButtonIconArrowLeft" width="25" height="25"/>
         <image name="BurButtonIconArrowRight" width="25" height="25"/>
         <image name="TabBarIconMenuUnselected" width="25" height="25"/>
+        <image name="TabBarIconResultsUnselected" width="25" height="25"/>
         <image name="TabBarIconVoteUnselected" width="25" height="25"/>
         <image name="VoteIconVeryGood" width="25" height="25"/>
     </resources>

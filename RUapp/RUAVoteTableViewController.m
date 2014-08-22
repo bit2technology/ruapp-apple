@@ -94,21 +94,18 @@
         }
         
         // Send vote request.
-        [RUAServerConnection sendVoteWithRestaurant:restaurant vote:rating reason:dishes completionHandler:^(NSDate *voteDate, NSError *error) {
-            NSString *finishMessage;
-            if (error) {
-                NSLog(@"Vote error: %@", error.localizedDescription);
-                finishMessage = NSLocalizedString(@"Ooops, we couldn't connect. Your vote will be sent as soon as possible.", @"Vote Computed Message");
+        [RUAServerConnection sendVoteWithRestaurant:restaurant vote:rating reason:dishes completionHandler:^(NSDate *voteDate, NSString *localizedMessage) {
+            // If vote was successful
+            if (voteDate) {
+                self.lastVoteDate = voteDate;
+                NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                [standardUserDefaults setValue:voteDate forKey:@"LastVoteDate"];
+                [standardUserDefaults synchronize];
+                
+                self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:localizedMessage];
             } else {
-                finishMessage = NSLocalizedString(@"Thank you! Vote computed.", @"Vote Computed Message");
+                //TODO:reload vote screen.
             }
-            
-            self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:finishMessage];
-            
-            self.lastVoteDate = voteDate;
-            NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-            [standardUserDefaults setValue:voteDate forKey:@"lastVoteDate"];
-            [standardUserDefaults synchronize];
         }];
     }
 }

@@ -28,14 +28,24 @@
     [self.tableView reloadData];
 }
 
-// MARK: UITableViewController methods
-
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
+- (void)configureHeaderFooterView:(UITableViewHeaderFooterView *)view
 {
     // Set appearance to header text label.
     view.textLabel.backgroundColor = [RUAColor darkBlueColor];
     view.textLabel.opaque = YES;
     view.textLabel.textColor = [RUAColor lightGrayColor];
+}
+
+// MARK: UITableViewController methods
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
+{
+    [self configureHeaderFooterView:view];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayFooterView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
+{
+    [self configureHeaderFooterView:view];
 }
 
 // MARK: UIViewController methods

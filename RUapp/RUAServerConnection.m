@@ -12,24 +12,13 @@
 NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
 NSString *const RUASavedVotesKey = @"SavedVotes";
 
-@interface RUAResultInfo ()
-
-@property (assign, nonatomic) RUARestaurant restaurant;
-@property (strong, nonatomic) NSDate *date;
-@property (assign, nonatomic) RUAMeal meal;
-@property (strong, nonatomic) NSArray *votesText;
-@property (strong, nonatomic) NSArray *votesProgress;
-@property (strong, nonatomic) NSArray *reasons;
-
-@end
-
 @implementation RUAResultInfo
 
 @end
 
 @implementation RUAServerConnection
 
-+ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSError *error))handler
++ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler
 {
     // Components of vote server request.
     NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:6];
@@ -88,7 +77,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, networkError);
+                handler(now, NSLocalizedString(@"Ooops, we couldn't connect. Your vote will be sent as soon as possible.", @"Vote Computed Message"));
             }];
             return;
         }
@@ -97,17 +86,17 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
         NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         // Separete main components and verify if it is a valid response.
         NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"#"];
-        if (mainComponents.count < 5) { // Already voted.
+        if (mainComponents.count < 5) { // Already voted or something went wrong.
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, nil);
+                handler(nil, NSLocalizedString(@"Ooops, something went wrong. Try again.", @"Vote Error Message"));
             }];
             return;
         }
         
         // Main thread
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            handler(now, nil);
+            handler(now, NSLocalizedString(@"Thank you! Vote computed.", @"Vote Computed Message"));
         }];
     }] resume];
 }
@@ -184,17 +173,18 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             // Meal
             result.meal = (RUAMeal)([overviewInformation[2] integerValue] - 1);
             // Votes
-            CGFloat sum = 0, biggestVote = 0;
+            CGFloat total = 0, biggestVote = 0;
             for (NSUInteger i = 1; i < 5; i++) {
                 CGFloat vote = [overviewComponents[i] floatValue];
-                sum += vote;
+                total += vote;
                 if (vote > biggestVote) {
                     biggestVote = vote;
                 }
             }
+            result.votesTotal = (NSUInteger)total;
             NSMutableArray *votesText = [NSMutableArray arrayWithCapacity:4];
             for (NSUInteger i = 1; i < 5; i++) {
-                [votesText addObject:[NSNumber numberWithDouble:([overviewComponents[i] floatValue] / sum)]];
+                [votesText addObject:[NSNumber numberWithDouble:([overviewComponents[i] floatValue] / total)]];
             }
             result.votesText = votesText;
             NSMutableArray *votesProgress = [NSMutableArray arrayWithCapacity:4];

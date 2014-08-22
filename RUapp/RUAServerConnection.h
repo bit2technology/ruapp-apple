@@ -38,13 +38,13 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 
 @interface RUAResultInfo : NSObject
 
-@property (readonly, nonatomic) RUARestaurant restaurant;
-@property (readonly, nonatomic) NSDate *date;
-@property (readonly, nonatomic) RUAMeal meal;
-@property (readonly, nonatomic) NSArray *votesText;
-@property (readonly, nonatomic) NSArray *votesProgress;
-@property (readonly, nonatomic) NSArray *reasons;
-
+@property (assign, nonatomic) RUARestaurant restaurant;
+@property (strong, nonatomic) NSDate *date;
+@property (assign, nonatomic) RUAMeal meal;
+@property (assign, nonatomic) NSUInteger votesTotal;
+@property (strong, nonatomic) NSArray *votesText;
+@property (strong, nonatomic) NSArray *votesProgress;
+@property (strong, nonatomic) NSArray *reasons;
 
 @end
 
@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 /**
  * Send vote for current meal.
  */
-+ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSError *error))handler;
++ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler;
 
 /**
  * Request vote results.
