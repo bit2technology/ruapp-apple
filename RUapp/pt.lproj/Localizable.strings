@@ -35,7 +35,7 @@
 "Ooops, we couldn't connect. Your vote will be sent as soon as possible." = "Ops, não pudemos conectar.\nSeu voto será enviado\no mais cedo possível.";
 
 /* Vote Error Message */
-"Ooops, something went wrong. Try again." = "Ops, alguma coisa deu errado.\nTente de novo.";
+"Ooops, something went wrong. Try again." = "Ops, alguma coisa deu errado. Tente de novo.";
 
 /* Vote alert view title */
 "Are you sure you want to submit this vote?" = "Você tem certeza que deseja enviar este voto?";

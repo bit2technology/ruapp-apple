@@ -18,7 +18,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 
 @implementation RUAServerConnection
 
-+ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler
++ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant rating:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler
 {
     // Components of vote server request.
     NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:6];

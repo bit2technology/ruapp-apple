@@ -17,11 +17,11 @@ typedef NS_ENUM(NSUInteger, RUARestaurant) {
 };
 
 typedef NS_ENUM(NSUInteger, RUARating) {
-    RUAVoteVeryGood,
-    RUAVoteGood,
-    RUAVoteBad,
-    RUAVoteVeryBad,
-    RUAVoteNone
+    RUARatingVeryGood,
+    RUARatingGood,
+    RUARatingBad,
+    RUARatingVeryBad,
+    RUARatingNone
 };
 
 typedef NS_ENUM(NSUInteger, RUADish) {
@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 /**
  * Send vote for current meal.
  */
-+ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant vote:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler;
++ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant rating:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler;
 
 /**
  * Request vote results.

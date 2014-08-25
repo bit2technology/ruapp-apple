@@ -2,8 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<string>%@ Avaliation</string>
-	<string>Restaurant</string>
-	<string>Main Reason For This Avaliation</string>
+	<string>Lunch</string>
+	<string>Dinner</string>
+	<string>Breakfast</string>
+	<string>Meal</string>
 </array>
 </plist>

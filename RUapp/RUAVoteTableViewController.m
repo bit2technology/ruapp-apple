@@ -15,22 +15,16 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
 @interface RUAVoteTableViewController () <UIAlertViewDelegate>
 
-//@property (strong, nonatomic) NSArray *dataSource;
-@property (strong, nonatomic) NSMutableArray *checkedIndexPaths;
-
-@property (strong, nonatomic) NSDate *lastVoteDate;
-
-
-
-
-
-
-
-
 @property (assign, nonatomic) BOOL presentVoteInterface;
+
+// Data control
+@property (strong, nonatomic) NSMutableArray *checkedIndexPaths;
+@property (strong, nonatomic) NSDate *lastVoteDate;
+@property (assign, nonatomic) RUAMeal mealForNow;
 
 // Strings lists
 @property (strong, nonatomic) NSArray *avaliationList;
+@property (strong, nonatomic) NSArray *mealList;
 @property (strong, nonatomic) NSArray *restaurantsList;
 @property (strong, nonatomic) NSArray *dishesList;
 @property (strong, nonatomic) NSArray *headersList;
@@ -41,34 +35,22 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
 - (void)adjustInterfaceForVoteStatus
 {
-//    // If it is not time to vote, show appropriate interface.
-//    if ([RUAAppDelegate mealForNow] == RUAMealNone) {
-//        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Sorry, there is no vote open now.", @"Vote not Disponible Message")];
-//        self.navigationItem.rightBarButtonItem.enabled = NO;
-//        self.dataSource = nil;
-//        [self.checkedIndexPaths removeAllObjects];
-//    } else
+    // If it is not time to vote, show appropriate interface.
+    if (self.mealForNow == RUAMealNone) {
+        self.presentVoteInterface = NO;
+        [self.checkedIndexPaths removeAllObjects];
+        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Sorry, there is no vote open now.", @"Vote not Disponible Message")];
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    } else
     // If there is a vote, and it has less than 5 hours and the meal is the same, then show "already voted" interface.
     if (self.lastVoteDate && [self.lastVoteDate timeIntervalSinceNow] > -18000 && [RUAAppDelegate mealForDate:self.lastVoteDate] == [RUAAppDelegate mealForNow]) {
+        self.presentVoteInterface = NO;
+        [self.checkedIndexPaths removeAllObjects];
         self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Thank you! Vote computed.", @"Vote Computed Message")];
         self.navigationItem.rightBarButtonItem.enabled = NO;
-        //self.dataSource = nil;
-        [self.checkedIndexPaths removeAllObjects];
-        
-        
-        
-        
-        
-        self.presentVoteInterface = NO;
     } else {
-        //self.dataSource = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VoteDataSource" ofType:@"plist"]];
-        self.tableView.backgroundView = nil;
-        
-        
-        
-        
-        
         self.presentVoteInterface = YES;
+        self.tableView.backgroundView = nil;
     }
     [self.tableView reloadData];
 }
@@ -91,17 +73,16 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     if (buttonIndex > 0) {
         // Update table view to show network activity.
         [self.tableView beginUpdates];
+        self.presentVoteInterface = NO;
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] withRowAnimation:UITableViewRowAnimationTop];
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [activityView startAnimating];
         self.tableView.backgroundView = activityView;
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] withRowAnimation:UITableViewRowAnimationTop];
-        //self.dataSource = nil;
-        self.presentVoteInterface = NO;
         self.navigationItem.rightBarButtonItem.enabled = NO;
         [self.tableView endUpdates];
         
         // Colect vote info.
-        RUARating rating = NSNotFound;
+        RUARating rating = RUARatingNone;
         RUARestaurant restaurant = RUARestaurantNone;
         NSMutableArray *dishes = [NSMutableArray array];
         for (NSIndexPath *checkedIndexPath in self.checkedIndexPaths) {
@@ -115,30 +96,39 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
                 case 2: {
                     [dishes addObject:[NSNumber numberWithUnsignedInteger:(RUADish)checkedIndexPath.row]];
                 } break;
-                    
                 default:
                     break;
             }
         }
         
         // Send vote request.
-        [RUAServerConnection sendVoteWithRestaurant:restaurant vote:rating reason:dishes completionHandler:^(NSDate *voteDate, NSString *localizedMessage) {
+        [RUAServerConnection sendVoteWithRestaurant:restaurant rating:rating reason:dishes completionHandler:^(NSDate *voteDate, NSString *localizedMessage) {
             // If vote was successful
             if (voteDate) {
                 self.lastVoteDate = voteDate;
                 NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
                 [standardUserDefaults setValue:voteDate forKey:RUALastVoteDateKey];
                 [standardUserDefaults synchronize];
-                
                 self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:localizedMessage];
             } else {
-                //TODO:reload vote screen.
+                // Present error alert and vote interface.
+                self.presentVoteInterface = YES;
+                [self.tableView beginUpdates];
+                [self.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] withRowAnimation:UITableViewRowAnimationTop];
+                self.tableView.backgroundView = nil;
+                self.navigationItem.rightBarButtonItem.enabled = YES;
+                [self.tableView endUpdates];
+                [[[UIAlertView alloc] initWithTitle:localizedMessage
+                                            message:nil
+                                           delegate:self
+                                  cancelButtonTitle:NSLocalizedString(@"OK", @"Vote Alert Cancel Button")
+                                  otherButtonTitles:nil] show];
             }
         }];
     }
 }
 
-#pragma mark - UITableViewController methods
+// MARK: UITableViewController methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -147,24 +137,30 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.presentVoteInterface) {
-        switch (section) {
-            case 0:
-                return 4;
-            case 1:
-                return 2;
-                
-            default:
-                return 7;
-        };
-    }
+    switch (section) {
+        case 0:
+            return 4;
+        case 1:
+            return 2;
+            
+        default:
+            return 7;
+    };
     return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (self.presentVoteInterface) {
-        return self.headersList[(NSUInteger)section];
+        NSString *headersString = self.headersList[(NSUInteger)section];
+        switch (section) {
+            case 0:
+                return [NSString stringWithFormat:headersString, self.mealList[self.mealForNow]];
+                break;
+            default: {
+                return headersString;
+            } break;
+        }
     }
     return nil;
 }
@@ -220,7 +216,6 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
             [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
             [self.checkedIndexPaths addObject:indexPath];
         } break;
-            
         case 2: {
             // If row already checked, uncheck it and vice-versa.
             if ([self.checkedIndexPaths containsObject:indexPath]) {
@@ -231,7 +226,6 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
                 [self.checkedIndexPaths addObject:indexPath];
             }
         } break;
-            
         default:
             break;
     }
@@ -254,20 +248,17 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 {
     [super viewDidLoad];
     
-    // Set basic information (no matter vote is allowed or no).
+    // Set basic information
     self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconVoteSelected"];
+    
+    // Data control
     self.checkedIndexPaths = [NSMutableArray array];
 #warning Fix cached last vote.
-//    self.lastVoteDate = [[NSUserDefaults standardUserDefaults] valueForKey:RUALastVoteDateKey];
+    //self.lastVoteDate = [[NSUserDefaults standardUserDefaults] valueForKey:RUALastVoteDateKey];
     
-    
-    
-    
-    
-    
-    
-    
+    // Strings lists
     self.avaliationList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AvaliationList" ofType:@"plist"]];
+    self.mealList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MealList" ofType:@"plist"]];
     self.restaurantsList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"RestaurantsList" ofType:@"plist"]];
     self.dishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
     self.headersList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VoteHeadersList" ofType:@"plist"]];
@@ -277,6 +268,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 {
     [super viewWillAppear:animated];
     
+    self.mealForNow = [RUAAppDelegate mealForNow];
     [self adjustInterfaceForVoteStatus];
 }
 

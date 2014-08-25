@@ -35,7 +35,7 @@
 "Ooops, we couldn't connect. Your vote will be sent as soon as possible." = "Ooops, we couldn't connect.\nYour vote will be sent\nas soon as possible.";
 
 /* Vote Error Message */
-"Ooops, something went wrong. Try again." = "Ooops, something went wrong.\nTry again.";
+"Ooops, something went wrong. Try again." = "Ooops, something went wrong. Try again.";
 
 /* Vote alert view title */
 "Are you sure you want to submit this vote?" = "Are you sure you want to submit this vote?";

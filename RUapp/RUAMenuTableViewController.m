@@ -14,18 +14,21 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
 
 @interface RUAMenuTableViewController ()
 
-// Main model.
-@property (strong, nonatomic) NSArray *menuDishesList;
-@property (strong, nonatomic) NSArray *dataSource;
 @property (assign, nonatomic) BOOL isDownloadingDataSource;
+@property (assign, nonatomic) NSInteger weekOfYear;
 
-// Navigation information.
+// Main model
+@property (strong, nonatomic) NSArray *mealList;
+@property (strong, nonatomic) NSArray *dishesList;
+@property (strong, nonatomic) NSArray *menuList;
+@property (strong, nonatomic) NSArray *weekdaysList;
+
+// Navigation information
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *previousPage;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextPage;
 @property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRight;
 @property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeLeft;
 @property (assign, nonatomic) NSInteger currentPage;
-@property (strong, nonatomic) NSArray *weekdays;
 
 @end
 
@@ -39,8 +42,14 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     // Set current page by getting weekday from date components.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday fromDate:[NSDate date]];
-    self.currentPage = dateComponents.weekday - 2; // Adjusting to 0 based count and monday based weekend.
+    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitWeekOfYear fromDate:[NSDate date]];
+    // Adjusting to 0 based count and monday based weekend.
+    if (dateComponents.weekday == 1) {
+        dateComponents.weekday += 7;
+        dateComponents.weekOfYear--;
+    }
+    self.currentPage = dateComponents.weekday - 2;
+    self.weekOfYear = dateComponents.weekOfYear;
 }
 
 /**
@@ -48,7 +57,7 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
  */
 - (NSArray *)mealMenuForCurrentPageForSection:(NSInteger)section
 {
-    return self.dataSource[(NSUInteger)(self.currentPage * 2 + section)];
+    return self.menuList[(NSUInteger)(self.currentPage * 2 + section)];
 }
 
 /**
@@ -79,9 +88,9 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
         // If successful (weekMenu != nil), show menu. Otherwise, show error message.
         if (weekMenu) {
             // Perform changes only if new week menu is different from previous.
-            if (![weekMenu isEqualToArray:self.dataSource]) {
+            if (![weekMenu isEqualToArray:self.menuList]) {
                 // If there is no data source (is first download, not an update), adjust current page.
-                if (!self.dataSource) {
+                if (!self.menuList) {
                     [self adjustCurrentPage];
                     self.tableView.backgroundView = nil;
                     self.tableView.userInteractionEnabled = YES;
@@ -93,13 +102,13 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
                 
                 // Perform updates.
                 [self.tableView beginUpdates];
-                self.dataSource = weekMenu;
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
+                self.menuList = weekMenu;
+                [self.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationTop];
                 [self.tableView endUpdates];
             }
         } else {
             // If there is no data source (is first download, not an update), show an appropriate message. Otherwise, do nothing.
-            if (!self.dataSource) {
+            if (!self.menuList) {
                 NSString *info = (error ?
                                   NSLocalizedString(@"Couldn't download menu", @"Menu Error Description") :
                                   NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
@@ -132,7 +141,7 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     self.swipeRight.enabled = (currentPage > 0);
     self.nextPage.enabled = (currentPage < 6);
     self.swipeLeft.enabled = (currentPage < 6);
-    self.navigationItem.title = [self.weekdays[(NSUInteger)currentPage] capitalizedString];
+    self.navigationItem.title = [self.weekdaysList[(NSUInteger)currentPage] capitalizedString];
     _currentPage = currentPage;
 }
 
@@ -140,33 +149,19 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Lunch and dinner.
-    return 2;
+    // If there is no data source, return 0. Otherwise, return 2 (lunch and dinner).
+    return (self.menuList ? 2 : 0);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // If there is no data source, return 0. Otherwise, return 7 (dishes count).
-    return (self.dataSource ? (NSInteger)[self mealMenuForCurrentPageForSection:section].count : 0);
+    // Number of dishes (8) or 1 if restaurant closed.
+    return (NSInteger)[self mealMenuForCurrentPageForSection:section].count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    // If there is no data source, return nil. Otherwise, return localized string by section (meal name).
-    if (!self.dataSource) {
-        return nil;
-    }
-    switch (section) {
-        case 0:
-            return NSLocalizedString(@"Lunch", @"Menu Table View Controller Section Title");
-            break;
-        case 1:
-            return NSLocalizedString(@"Dinner", @"Menu Table View Controller Section Title");
-            break;
-        default:
-            return nil;
-            break;
-    }
+    return self.mealList[(NSUInteger)section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -189,7 +184,7 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     if (mealMenu.count > 1) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Menu Cell" forIndexPath:indexPath];
         cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-        cell.textLabel.text = self.menuDishesList[(NSUInteger)indexPath.row];
+        cell.textLabel.text = self.dishesList[(NSUInteger)indexPath.row];
         cell.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         cell.detailTextLabel.numberOfLines = NSIntegerMax;
         cell.detailTextLabel.text = mealMenu[(NSUInteger)indexPath.row];
@@ -212,10 +207,8 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconMenuSelected"];
     self.refreshControl.tintColor = [UIColor whiteColor];
     
-    self.menuDishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
-#warning Activate cached menu.
-//    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:RUAMenuDataSourceCacheKey];
-    
+    self.mealList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MealList" ofType:@"plist"]];
+    self.dishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
     // Set array from date formatter to create appropriate title strings.
     NSLocale *bundleLocale = [NSLocale localeWithLocaleIdentifier:[[[NSBundle mainBundle] preferredLocalizations] firstObject]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -225,7 +218,10 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     NSString *sunday = weekdays.firstObject;
     [weekdays removeObjectAtIndex:0];
     [weekdays addObject:sunday];
-    self.weekdays = weekdays;
+    self.weekdaysList = weekdays;
+    
+#warning Activate cached menu.
+//    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:RUAMenuDataSourceCacheKey];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -233,13 +229,13 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     [super viewWillAppear:animated];
     
     // If there is a cached data source, adjust current page. Otherwise, show downloading (for the first time) interface.
-    if (self.dataSource) {
+    if (self.menuList) {
         [self adjustCurrentPage];
     } else {
-        self.tableView.userInteractionEnabled = NO;
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [activityView startAnimating];
         self.tableView.backgroundView = activityView;
+        self.tableView.userInteractionEnabled = NO;
     }
 }
 
