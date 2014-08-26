@@ -15,7 +15,6 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
 @interface RUAMenuTableViewController ()
 
 @property (assign, nonatomic) BOOL isDownloadingDataSource;
-@property (assign, nonatomic) NSInteger weekOfYear;
 
 // Main model
 @property (strong, nonatomic) NSArray *mealList;
@@ -39,6 +38,15 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
  */
 - (void)adjustCurrentPage
 {
+    NSDateComponents *dateComponents = [self adjustedDateComponents];
+    self.currentPage = dateComponents.weekday - 2;
+}
+
+/**
+ * Returns adjusted date components for weekday and weekOfYear.
+ */
+- (NSDateComponents *)adjustedDateComponents
+{
     // Set current page by getting weekday from date components.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
@@ -48,8 +56,7 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
         dateComponents.weekday += 7;
         dateComponents.weekOfYear--;
     }
-    self.currentPage = dateComponents.weekday - 2;
-    self.weekOfYear = dateComponents.weekOfYear;
+    return dateComponents;
 }
 
 /**
@@ -81,19 +88,22 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
 - (void)downloadDataSourceAndUpdateTable
 {
     self.isDownloadingDataSource = YES;
-    [RUAServerConnection requestMenuForWeekWithCompletionHandler:^(NSArray *weekMenu, NSError *error) {
+    [RUAServerConnection requestMenuForWeekWithCompletionHandler:^(NSDictionary *weekMenu, NSError *error) {
         if (error) {
             NSLog(@"Menu error: %@", error.localizedDescription);
         }
         // If successful (weekMenu != nil), show menu. Otherwise, show error message.
         if (weekMenu) {
             // Perform changes only if new week menu is different from previous.
-            if (![weekMenu isEqualToArray:self.menuList]) {
+            NSArray *menuList = weekMenu[@"Menu"];
+            if (![menuList isEqualToArray:self.menuList]) {
                 // If there is no data source (is first download, not an update), adjust current page.
+                BOOL isUpdate = YES;
                 if (!self.menuList) {
                     [self adjustCurrentPage];
                     self.tableView.backgroundView = nil;
                     self.tableView.userInteractionEnabled = YES;
+                    isUpdate = NO;
                 }
                 
                 // Cache week menu.
@@ -102,8 +112,12 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
                 
                 // Perform updates.
                 [self.tableView beginUpdates];
-                self.menuList = weekMenu;
-                [self.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationTop];
+                self.menuList = menuList;
+                if (isUpdate) {
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
+                } else {
+                    [self.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationTop];
+                }
                 [self.tableView endUpdates];
             }
         } else {
@@ -221,15 +235,12 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     self.weekdaysList = weekdays;
     
 #warning Activate cached menu.
-//    self.dataSource = [[NSUserDefaults standardUserDefaults] valueForKey:RUAMenuDataSourceCacheKey];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *cachedMenu = [standardUserDefaults valueForKey:RUAMenuDataSourceCacheKey];
     // If there is a cached data source, adjust current page. Otherwise, show downloading (for the first time) interface.
-    if (self.menuList) {
+    if (NO) {//[cachedMenu[@"WeekOfYear"] integerValue] == [self adjustedDateComponents].weekOfYear) {
+        NSLog(@"right cache!");
+        self.menuList = cachedMenu[@"Menu"];
         [self adjustCurrentPage];
     } else {
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];

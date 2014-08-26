@@ -13,29 +13,35 @@
 
 @implementation RUAAppDelegate
 
-+ (CGFloat)valueFromTime:(NSDate *)date
+/**
+ * Returns date componens for weekday, hour and minute for Gregorian calendar and Sao Paulo timezone.
+ */
++ (NSDateComponents *)dateComponentsForDate:(NSDate *)date
 {
     // Configure date components with gregorian calendar and São Paulo time zone.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
-    
-    // Get hours and minutes and convert them to a numeric format.
-    return (CGFloat)(dateComponents.hour + dateComponents.minute / 60.);
+    return [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
 }
 
 + (RUAMeal)mealForDate:(NSDate *)date
 {
     // Return value according to schedule.
-    CGFloat timeNumber = [self valueFromTime:date];
+    RUAMeal meal = RUAMealNone;
+    NSDateComponents *dateComponents = [self dateComponentsForDate:date];
+    CGFloat timeNumber = [self valueFromDateComponents:dateComponents];
     if (timeNumber >= 17 && timeNumber < 21) {
-        return RUAMealDinner;
+        if (dateComponents.weekday >=2 && dateComponents.weekday <= 6) { // From monday to friday
+            meal = RUAMealDinner;
+        }
     } else if (timeNumber >= 11 && timeNumber < 16) {
-        return RUAMealLunch;
+        meal = RUAMealLunch;
     } else if (timeNumber >= 6.5 && timeNumber < 10) {
-        return RUAMealBreakfast;
+        if (dateComponents.weekday >=2) { // From monday to saturday
+            meal = RUAMealBreakfast;
+        }
     }
-    return RUAMealNone;
+    return meal;
 }
 
 + (RUAMeal)mealForNow
@@ -46,16 +52,36 @@
 + (RUAMeal)lastMealForDate:(NSDate *__autoreleasing *)date
 {
     // Return value according to schedule.
-    CGFloat timeNumber = [self valueFromTime:*date];
+    NSDateComponents *dateComponents = [self dateComponentsForDate:*date];
+    CGFloat timeNumber = [self valueFromDateComponents:dateComponents];
     if (timeNumber >= 17) {
-        return RUAMealDinner;
+        if (dateComponents.weekday >=2 && dateComponents.weekday <= 6) { // From monday to friday
+            return RUAMealDinner;
+        } else {
+            return RUAMealLunch;
+        }
     } else if (timeNumber >= 11) {
         return RUAMealLunch;
-    } else if (timeNumber >= 6.5) {
+    } else if (timeNumber >= 6.5 && dateComponents.weekday >=2) { // From monday to saturday
         return RUAMealBreakfast;
     }
     *date = [*date dateByAddingTimeInterval:-86400];
-    return RUAMealDinner;
+    if (dateComponents.weekday >=3) {
+        // From tuesday to saturday
+        return RUAMealDinner;
+    } else {
+        // Sunday and monday
+        return RUAMealLunch;
+    }
+}
+
+/**
+ * Returns hour and minute as a float.
+ */
++ (CGFloat)valueFromDateComponents:(NSDateComponents *)dateComponents
+{
+    // Get hours and minutes and convert them to a numeric format.
+    return (CGFloat)(dateComponents.hour + dateComponents.minute / 60.);
 }
 
 // MARK: UIApplicationDelegate

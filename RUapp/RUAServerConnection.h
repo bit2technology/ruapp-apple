@@ -63,7 +63,7 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 /**
  * Get week menu for current week.
  */
-+ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu, NSError *error))handler;
++ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSError *error))handler;
 
 /**
  * Send saved votes to server.

@@ -216,7 +216,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     }
 }
 
-+ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSArray *weekMenu, NSError *error))handler
++ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSError *error))handler
 {
     // Get week number.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -263,7 +263,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
         
         // Main thread
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            handler(weekMenu, nil);
+            handler(@{@"WeekOfYear": @(dateComponents.weekOfYear), @"Menu": weekMenu}, nil);
         }];
     }] resume];
 }

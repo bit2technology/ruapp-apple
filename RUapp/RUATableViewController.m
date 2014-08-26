@@ -14,11 +14,12 @@
 - (UIView *)tableViewBackgroundViewWithMessage:(NSString *)message
 {
     UILabel *backgroundView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    backgroundView.backgroundColor = [RUAColor darkBlueColor];
+    backgroundView.numberOfLines = NSIntegerMax;
+    backgroundView.opaque = YES;
     backgroundView.text = message;
     backgroundView.textAlignment = NSTextAlignmentCenter;
     backgroundView.textColor = [UIColor lightGrayColor];
-    backgroundView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    backgroundView.numberOfLines = NSIntegerMax;
     return backgroundView;
 }
 
@@ -30,7 +31,7 @@
 
 - (void)configureHeaderFooterView:(UITableViewHeaderFooterView *)view
 {
-    // Set appearance to header text label.
+    // Set appearance to text label.
     view.textLabel.backgroundColor = [RUAColor darkBlueColor];
     view.textLabel.opaque = YES;
     view.textLabel.textColor = [RUAColor lightGrayColor];
