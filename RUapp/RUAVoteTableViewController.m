@@ -16,10 +16,12 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 @interface RUAVoteTableViewController () <UIAlertViewDelegate>
 
 @property (assign, nonatomic) BOOL presentVoteInterface;
+@property (assign, nonatomic) BOOL changeRestaurantAllowed;
 
 // Data control
 @property (strong, nonatomic) NSMutableArray *checkedIndexPaths;
 @property (strong, nonatomic) NSDate *lastVoteDate;
+@property (strong, nonatomic) NSDate *lastAppearance;
 @property (assign, nonatomic) RUAMeal mealForNow;
 
 // Strings lists
@@ -35,6 +37,10 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
 - (void)adjustInterfaceForVoteStatus
 {
+    NSDate *now = [NSDate date];
+    self.lastAppearance = now;
+    self.mealForNow = [RUAAppDelegate mealForDate:now];
+    
     // If it is not time to vote, show appropriate interface.
     if (self.mealForNow == RUAMealNone) {
         self.presentVoteInterface = NO;
@@ -43,16 +49,76 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
         self.navigationItem.rightBarButtonItem.enabled = NO;
     } else
     // If there is a vote, and it has less than 5 hours and the meal is the same, then show "already voted" interface.
-    if (self.lastVoteDate && [self.lastVoteDate timeIntervalSinceNow] > -18000 && [RUAAppDelegate mealForDate:self.lastVoteDate] == [RUAAppDelegate mealForNow]) {
+    if (self.lastVoteDate && [self.lastVoteDate timeIntervalSinceNow] > -18000 && [RUAAppDelegate mealForDate:self.lastVoteDate] == self.mealForNow) {
         self.presentVoteInterface = NO;
         [self.checkedIndexPaths removeAllObjects];
         self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Thank you! Vote computed.", @"Vote Computed Message")];
         self.navigationItem.rightBarButtonItem.enabled = NO;
     } else {
+        // Vote allowed. Check schedule.
+        NSIndexPath *defaultRestaurantIndexPath;
+        switch (self.mealForNow) {
+            case RUAMealBreakfast:
+            case RUAMealDinner: {
+                defaultRestaurantIndexPath = [NSIndexPath indexPathForRow:1 inSection:1]; // Campus
+            } break;
+            case RUAMealLunch: {
+                NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
+                NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday fromDate:now];
+                if (dateComponents.weekday == 1) {
+                    defaultRestaurantIndexPath = [NSIndexPath indexPathForRow:0 inSection:1]; // Downtown
+                }
+            } break;
+            default:
+                break;
+        }
+        // Remove old restaurant checked index path, insert new one and verify and update interface and behaviour accordingly.
+        if (defaultRestaurantIndexPath) {
+            NSIndexPath *oldCheckedIndexPath;
+            for (NSIndexPath *checkedIndexPath in self.checkedIndexPaths) {
+                if (checkedIndexPath.section == 1) {
+                    oldCheckedIndexPath = checkedIndexPath;
+                    break;
+                }
+            }
+            [self.checkedIndexPaths removeObject:oldCheckedIndexPath];
+            [self.checkedIndexPaths addObject:defaultRestaurantIndexPath];
+            // Verify obligatory fields (Meal avaliation and local).
+            NSUInteger obligatoryFields = 0;
+            for (NSIndexPath *checkedIndexPath in self.checkedIndexPaths) {
+                if (checkedIndexPath.section <= 1) {
+                    obligatoryFields++;
+                }
+            }
+            self.navigationItem.rightBarButtonItem.enabled = (obligatoryFields >= 2);
+            self.changeRestaurantAllowed = NO;
+            
+        } else {
+            self.changeRestaurantAllowed = YES;
+        }
         self.presentVoteInterface = YES;
         self.tableView.backgroundView = nil;
     }
     [self.tableView reloadData];
+}
+
+- (void)setLastAppearance:(NSDate *)lastAppearance
+{
+    // If more than one hour.
+    if ([lastAppearance timeIntervalSinceDate:_lastAppearance] > 3600) {
+        [self.checkedIndexPaths removeAllObjects];
+    }
+    _lastAppearance = lastAppearance;
+}
+
+- (void)setMealForNow:(RUAMeal)mealForNow
+{
+    // If different from last appearance (viewWillAppear: call).
+    if (mealForNow != _mealForNow) {
+        [self.checkedIndexPaths removeAllObjects];
+    }
+    _mealForNow = mealForNow;
 }
 
 - (IBAction)submitVote:(id)sender
@@ -181,6 +247,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
         } break;
         case 1: {
             text = self.restaurantsList[(NSUInteger)indexPath.row];
+            cell.selectionStyle = (self.changeRestaurantAllowed ? UITableViewCellSelectionStyleBlue : UITableViewCellSelectionStyleNone);
         } break;
         default: {
             text = self.dishesList[(NSUInteger)indexPath.row];
@@ -194,6 +261,11 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Verify if restaurant can be changed.
+    if (indexPath.section == 1 && !self.changeRestaurantAllowed) {
+        return;
+    }
+    
     // Rows don't stay selected, only checked.
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -268,7 +340,6 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 {
     [super viewWillAppear:animated];
     
-    self.mealForNow = [RUAAppDelegate mealForNow];
     [self adjustInterfaceForVoteStatus];
 }
 

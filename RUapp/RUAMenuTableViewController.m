@@ -234,12 +234,10 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     [weekdays addObject:sunday];
     self.weekdaysList = weekdays;
     
-#warning Activate cached menu.
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *cachedMenu = [standardUserDefaults valueForKey:RUAMenuDataSourceCacheKey];
     // If there is a cached data source, adjust current page. Otherwise, show downloading (for the first time) interface.
-    if (NO) {//[cachedMenu[@"WeekOfYear"] integerValue] == [self adjustedDateComponents].weekOfYear) {
-        NSLog(@"right cache!");
+    if ([cachedMenu[@"WeekOfYear"] integerValue] == [self adjustedDateComponents].weekOfYear) {
         self.menuList = cachedMenu[@"Menu"];
         [self adjustCurrentPage];
     } else {

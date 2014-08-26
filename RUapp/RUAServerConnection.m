@@ -20,6 +20,12 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 
 + (void)sendVoteWithRestaurant:(RUARestaurant)restaurant rating:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler
 {
+    NSDate *now = [NSDate date];
+    RUAMeal mealForNow = [RUAAppDelegate mealForDate:now];
+    if (mealForNow == RUAMealNone) {
+        handler(nil, NSLocalizedString(@"Sorry, there is no vote open now.", @"Vote not Disponible Message"));
+    }
+    
     // Components of vote server request.
     NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:6];
     
@@ -31,11 +37,10 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     dateFormatter.dateFormat = @"dd.MM.yyyy";
     dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
     dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    NSDate *now = [NSDate date];
     [stringComponents addObject:[dateFormatter stringFromDate:now]];
     
     // Meal
-    [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)[RUAAppDelegate mealForDate:now] + 1]];
+    [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)mealForNow + 1]];
     
     // Vote
     [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)vote + 1]];
@@ -228,7 +233,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
         dateComponents.weekOfYear--;
     }
 #warning Fix week of year.
-    NSString *requestString = [NSString stringWithFormat:@"tag=7$UFJF_%ld", (long)33];//dateComponents.weekOfYear];
+    NSString *requestString = [NSString stringWithFormat:@"tag=9$UFJF_%ld", (long)35];//dateComponents.weekOfYear];
     
     // Request with shared session configuration.
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];

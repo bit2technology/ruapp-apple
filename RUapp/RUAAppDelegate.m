@@ -27,21 +27,20 @@
 + (RUAMeal)mealForDate:(NSDate *)date
 {
     // Return value according to schedule.
-    RUAMeal meal = RUAMealNone;
     NSDateComponents *dateComponents = [self dateComponentsForDate:date];
     CGFloat timeNumber = [self valueFromDateComponents:dateComponents];
     if (timeNumber >= 17 && timeNumber < 21) {
         if (dateComponents.weekday >=2 && dateComponents.weekday <= 6) { // From monday to friday
-            meal = RUAMealDinner;
+            return  RUAMealDinner;
         }
     } else if (timeNumber >= 11 && timeNumber < 16) {
-        meal = RUAMealLunch;
+        return RUAMealLunch;
     } else if (timeNumber >= 6.5 && timeNumber < 10) {
         if (dateComponents.weekday >=2) { // From monday to saturday
-            meal = RUAMealBreakfast;
+            return RUAMealBreakfast;
         }
     }
-    return meal;
+    return RUAMealNone;
 }
 
 + (RUAMeal)mealForNow
