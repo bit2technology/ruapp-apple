@@ -13,6 +13,14 @@
 
 @implementation RUAAppDelegate
 
+- (NSDate *)date
+{
+    if (!_date) {
+        _date = [NSDate date];
+    }
+    return _date;
+}
+
 /**
  * Returns date componens for weekday, hour and minute for Gregorian calendar and Sao Paulo timezone.
  */
@@ -45,7 +53,7 @@
 
 + (RUAMeal)mealForNow
 {
-    return [self mealForDate:[NSDate date]];
+    return [self mealForDate:[self sharedAppDelegate].date];
 }
 
 + (RUAMeal)lastMealForDate:(NSDate *__autoreleasing *)date
@@ -72,6 +80,11 @@
         // Sunday and monday
         return RUAMealLunch;
     }
+}
+
++ (RUAAppDelegate *)sharedAppDelegate
+{
+    return [UIApplication sharedApplication].delegate;
 }
 
 /**

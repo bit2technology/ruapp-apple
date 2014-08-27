@@ -20,7 +20,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 
 + (void)sendVoteWithRestaurant:(RUARestaurant)restaurant rating:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler
 {
-    NSDate *now = [NSDate date];
+    NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
     RUAMeal mealForNow = [RUAAppDelegate mealForDate:now];
     if (mealForNow == RUAMealNone) {
         handler(nil, NSLocalizedString(@"Sorry, there is no vote open now.", @"Vote not Disponible Message"));
@@ -113,7 +113,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     dateFormatter.dateFormat = @"dd.MM.yyyy";
     dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
     dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    NSDate *now = [NSDate date];
+    NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
     RUAMeal lastMeal = [RUAAppDelegate lastMealForDate:&now];
     NSString *options = [NSString stringWithFormat:@"%@_%lu", [dateFormatter stringFromDate:now], (unsigned long)(lastMeal + 1)];
     
@@ -226,7 +226,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     // Get week number.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitWeekOfYear fromDate:[NSDate date]];
+    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitWeekOfYear fromDate:[RUAAppDelegate sharedAppDelegate].date];
     
     // Generate request string (adjust week to start on monday).
     if (dateComponents.weekday <= 1) {

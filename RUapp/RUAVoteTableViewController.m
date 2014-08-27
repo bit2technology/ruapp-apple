@@ -37,7 +37,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
 - (void)adjustInterfaceForVoteStatus
 {
-    NSDate *now = [NSDate date];
+    NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
     self.lastAppearance = now;
     self.mealForNow = [RUAAppDelegate mealForDate:now];
     
