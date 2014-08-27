@@ -58,12 +58,12 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 /**
  * Request vote results.
  */
-+ (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSError *error))handler;
++ (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler;
 
 /**
  * Get week menu for current week.
  */
-+ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSError *error))handler;
++ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSString *localizedMessage))handler;
 
 /**
  * Send saved votes to server.

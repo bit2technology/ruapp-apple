@@ -23,9 +23,11 @@
     [super viewDidLoad];
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSLocale *bundleLocale = [NSLocale localeWithLocaleIdentifier:[[NSBundle mainBundle] preferredLocalizations].firstObject];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
     
     self.datePicker.calendar = gregorianCalendar;
+    self.datePicker.locale = bundleLocale;
     self.datePicker.timeZone = gregorianCalendar.timeZone;
 }
 

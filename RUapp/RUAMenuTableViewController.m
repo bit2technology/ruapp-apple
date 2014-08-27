@@ -14,12 +14,14 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
 
 @interface RUAMenuTableViewController ()
 
-@property (assign, nonatomic) BOOL isDownloadingDataSource;
+@property (assign, nonatomic) BOOL isDownloading;
 
 // Main model
 @property (strong, nonatomic) NSArray *mealList;
 @property (strong, nonatomic) NSArray *dishesList;
-@property (strong, nonatomic) NSArray *menuList;
+@property (strong, nonatomic) NSDictionary *menuListRaw;
+@property (readonly, nonatomic) NSArray *menuList;
+@property (readonly, nonatomic) NSInteger menuListWeekOfYear;
 @property (strong, nonatomic) NSArray *weekdaysList;
 
 // Navigation information
@@ -32,6 +34,16 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
 @end
 
 @implementation RUAMenuTableViewController
+
+- (NSArray *)menuList
+{
+    return self.menuListRaw[@"Menu"];
+}
+
+- (NSInteger)menuListWeekOfYear
+{
+    return [self.menuListRaw[@"WeekOfYear"] integerValue];
+}
 
 /**
  * Adjusts current page for week day;
@@ -87,23 +99,17 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
 
 - (void)downloadDataSourceAndUpdateTable
 {
-    self.isDownloadingDataSource = YES;
-    [RUAServerConnection requestMenuForWeekWithCompletionHandler:^(NSDictionary *weekMenu, NSError *error) {
-        if (error) {
-            NSLog(@"Menu error: %@", error.localizedDescription);
-        }
+    self.isDownloading = YES;
+    [RUAServerConnection requestMenuForWeekWithCompletionHandler:^(NSDictionary *weekMenu, NSString *localizedMessage) {
         // If successful (weekMenu != nil), show menu. Otherwise, show error message.
         if (weekMenu) {
             // Perform changes only if new week menu is different from previous.
-            NSArray *menuList = weekMenu[@"Menu"];
-            if (![menuList isEqualToArray:self.menuList]) {
+            if (![weekMenu isEqualToDictionary:self.menuListRaw]) {
                 // If there is no data source (is first download, not an update), adjust current page.
-                BOOL isUpdate = YES;
                 if (!self.menuList) {
                     [self adjustCurrentPage];
                     self.tableView.backgroundView = nil;
                     self.tableView.userInteractionEnabled = YES;
-                    isUpdate = NO;
                 }
                 
                 // Cache week menu.
@@ -112,24 +118,17 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
                 
                 // Perform updates.
                 [self.tableView beginUpdates];
-                self.menuList = menuList;
-                if (isUpdate) {
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
-                } else {
-                    [self.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationTop];
-                }
+                self.menuListRaw = weekMenu;
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
                 [self.tableView endUpdates];
             }
         } else {
             // If there is no data source (is first download, not an update), show an appropriate message. Otherwise, do nothing.
             if (!self.menuList) {
-                NSString *info = (error ?
-                                  NSLocalizedString(@"Couldn't download menu", @"Menu Error Description") :
-                                  NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
-                self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:info];
+                self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:localizedMessage];
             }
         }
-        self.isDownloadingDataSource = NO;
+        self.isDownloading = NO;
         [self.refreshControl endRefreshing];
     }];
 }
@@ -140,7 +139,7 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
 - (IBAction)refreshControlDidChangeValue:(UIRefreshControl *)sender
 {
     // If not refreshing or already downloading, end refresh and cancel.
-    if (!sender.isRefreshing || self.isDownloadingDataSource) {
+    if (!sender.isRefreshing || self.isDownloading) {
         [sender endRefreshing];
         return;
     }
@@ -163,19 +162,19 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // If there is no data source, return 0. Otherwise, return 2 (lunch and dinner).
-    return (self.menuList ? 2 : 0);
+    // Lunch and dinner
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Number of dishes (8) or 1 if restaurant closed.
-    return (NSInteger)[self mealMenuForCurrentPageForSection:section].count;
+    // If there is no data source, return 0. Otherwise, return number of dishes (8) or 1 if restaurant closed.
+    return (self.menuList ? (NSInteger)[self mealMenuForCurrentPageForSection:section].count : 0);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return self.mealList[(NSUInteger)section];
+    return (self.menuList ? self.mealList[(NSUInteger)section] : nil);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -185,7 +184,8 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     CGSize referenceSize = CGRectInfinite.size;
     referenceSize.width = 193;
     CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
-    return (actualHeight > 44 ? actualHeight : 44);
+    CGFloat height = (actualHeight > 44 ? actualHeight : 44);
+    return (CGFloat)floorl(height);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -224,7 +224,7 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     self.mealList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MealList" ofType:@"plist"]];
     self.dishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
     // Set array from date formatter to create appropriate title strings.
-    NSLocale *bundleLocale = [NSLocale localeWithLocaleIdentifier:[[[NSBundle mainBundle] preferredLocalizations] firstObject]];
+    NSLocale *bundleLocale = [NSLocale localeWithLocaleIdentifier:[[NSBundle mainBundle] preferredLocalizations].firstObject];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.locale = bundleLocale;
     NSMutableArray *weekdays = dateFormatter.weekdaySymbols.mutableCopy;
@@ -235,16 +235,28 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     self.weekdaysList = weekdays;
     
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *cachedMenu = [standardUserDefaults valueForKey:RUAMenuDataSourceCacheKey];
-    // If there is a cached data source, adjust current page. Otherwise, show downloading (for the first time) interface.
-    if ([cachedMenu[@"WeekOfYear"] integerValue] == [self adjustedDateComponents].weekOfYear) {
-        self.menuList = cachedMenu[@"Menu"];
+    self.menuListRaw = [standardUserDefaults valueForKey:RUAMenuDataSourceCacheKey];
+    // If there is a cached data source and is current week, adjust current page.
+    if (self.menuListWeekOfYear == [self adjustedDateComponents].weekOfYear) {
         [self adjustCurrentPage];
-    } else {
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // If there isn't a cached data source, show downloading (for the first time) interface.
+    if (self.menuListWeekOfYear != [self adjustedDateComponents].weekOfYear) {
+        self.menuListRaw = nil;
+        [self.tableView reloadData];
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [activityView startAnimating];
         self.tableView.backgroundView = activityView;
         self.tableView.userInteractionEnabled = NO;
+        self.navigationItem.leftBarButtonItem.enabled = NO;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+        self.navigationItem.title = NSLocalizedString(@"Menu", @"Menu Title");
     }
 }
 

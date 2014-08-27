@@ -7,24 +7,32 @@
 		<string>VoteIconVeryGood</string>
 		<key>text</key>
 		<string>Muito Bom</string>
+		<key>color</key>
+		<string>0.40000000000000002220446049250313080847263336181640625 1.0 0.40000000000000002220446049250313080847263336181640625</string>
 	</dict>
 	<dict>
 		<key>image</key>
 		<string>VoteIconGood</string>
 		<key>text</key>
 		<string>Bom</string>
+		<key>color</key>
+		<string>0.40000000000000002220446049250313080847263336181640625 0.8000000000000000444089209850062616169452667236328125 1.0</string>
 	</dict>
 	<dict>
 		<key>image</key>
 		<string>VoteIconBad</string>
 		<key>text</key>
 		<string>Ruim</string>
+		<key>color</key>
+		<string>1.0 1.0 0.40000000000000002220446049250313080847263336181640625</string>
 	</dict>
 	<dict>
 		<key>image</key>
 		<string>VoteIconVeryBad</string>
 		<key>text</key>
 		<string>Muito Ruim</string>
+		<key>color</key>
+		<string>1.0 0.40000000000000002220446049250313080847263336181640625 0.40000000000000002220446049250313080847263336181640625</string>
 	</dict>
 </array>
 </plist>

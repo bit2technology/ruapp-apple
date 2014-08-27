@@ -105,8 +105,8 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
 - (void)setLastAppearance:(NSDate *)lastAppearance
 {
-    // If more than one hour.
-    if ([lastAppearance timeIntervalSinceDate:_lastAppearance] > 3600) {
+    // If more than ten minutes.
+    if ([lastAppearance timeIntervalSinceDate:_lastAppearance] >= 600) {
         [self.checkedIndexPaths removeAllObjects];
     }
     _lastAppearance = lastAppearance;
@@ -180,7 +180,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
                 // Present error alert and vote interface.
                 self.presentVoteInterface = YES;
                 [self.tableView beginUpdates];
-                [self.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] withRowAnimation:UITableViewRowAnimationTop];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] withRowAnimation:UITableViewRowAnimationTop];
                 self.tableView.backgroundView = nil;
                 self.navigationItem.rightBarButtonItem.enabled = YES;
                 [self.tableView endUpdates];

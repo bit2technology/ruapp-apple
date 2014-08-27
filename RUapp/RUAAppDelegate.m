@@ -18,7 +18,7 @@
     if (!_date) {
         _date = [NSDate date];
     }
-    return _date;
+    return _date.copy;
 }
 
 /**

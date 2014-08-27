@@ -58,8 +58,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     
     // Device ID
 #warning Fix Device ID.
-    dateFormatter.dateFormat = @"dd.MM.yyyy.HH.mm.ss";
-    [stringComponents addObject:[dateFormatter stringFromDate:now]];//[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+    [stringComponents addObject:@(arc4random()).description];//[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
     
     // Request
     NSString *requestString = [stringComponents componentsJoinedByString:@"_"];
@@ -70,6 +69,8 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
         // Verify network error.
         if (networkError) {
+            NSLog(@"Vote error: %@", networkError.description);
+            
             // Save vote for send later
             NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
             NSMutableArray *savedVotes = [[standardUserDefaults arrayForKey:RUASavedVotesKey] mutableCopy];
@@ -82,7 +83,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(now, NSLocalizedString(@"Ooops, we couldn't connect. Your vote will be sent as soon as possible.", @"Vote Computed Message"));
+                handler(now, NSLocalizedString(@"Ooops, we couldn't connect. Your vote will be sent as soon as possible.", @"Vote Offline Computed Message"));
             }];
             return;
         }
@@ -106,14 +107,14 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     }] resume];
 }
 
-+ (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSError *error))handler
++ (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler
 {
     // Options
+    NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"dd.MM.yyyy";
     dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
     dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
     RUAMeal lastMeal = [RUAAppDelegate lastMealForDate:&now];
     NSString *options = [NSString stringWithFormat:@"%@_%lu", [dateFormatter stringFromDate:now], (unsigned long)(lastMeal + 1)];
     
@@ -128,7 +129,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     [self recursiveResultsWithArray:results locals:restaurants options:options dateFormatter:dateFormatter session:urlSession request:urlRequest completionHandler:handler];
 }
 
-+ (void)recursiveResultsWithArray:(NSMutableArray *)results locals:(NSMutableArray *)locals options:(NSString *)options dateFormatter:(NSDateFormatter *)dateFormatter session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(NSArray *results, NSError *error))handler
++ (void)recursiveResultsWithArray:(NSMutableArray *)results locals:(NSMutableArray *)locals options:(NSString *)options dateFormatter:(NSDateFormatter *)dateFormatter session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler
 {
     if (locals.count) {
         NSString *requestString = [NSString stringWithFormat:@"tag=8$%@_%@_1_00_id", locals.firstObject, options];
@@ -136,9 +137,11 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
         [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
             // Verify network error.
             if (networkError) {
+                NSLog(@"Results error: %@", networkError.description);
+                
                 // Main thread
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    handler(nil, networkError);
+                    handler(nil, NSLocalizedString(@"Ooops, we couldn't connect. Try again.", @"Results Error Message"));
                 }];
                 return;
             }
@@ -150,7 +153,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             if (mainComponents.count < 5) {
                 // Main thread
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    handler(nil, nil);
+                    handler(nil, NSLocalizedString(@"Ooops, something went wrong. Try again.", @"Results Error Message"));
                 }];
                 return;
             }
@@ -199,12 +202,19 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             result.votesProgress = votesProgress;
             // Reason
             NSMutableArray *reasons = [NSMutableArray arrayWithCapacity:4];
-            for (NSString *string in mainComponents) {
-                NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
-                for (NSString *reasonString in [string componentsSeparatedByString:@"$"]) {
-                    //[reason addObject:[numberFormatter numberFromString:reasonString]];
+//            for (NSString *string in mainComponents) {
+//                NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
+//                for (NSString *reasonString in [string componentsSeparatedByString:@"$"]) {
+//                    [reason addObject:[numberFormatter numberFromString:reasonString]];
+//                }
+//                [reasons addObject:reason];
+//            }
+            for (int i = 2; i < 6; i++) {
+                NSMutableString *testString = [NSMutableString string];
+                for (int j = 0; j < i; j++) {
+                    [testString appendString:@"blablabla "];
                 }
-                [reasons addObject:reason];
+                [reasons addObject:testString];
             }
             result.reasons = reasons;
             
@@ -221,7 +231,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     }
 }
 
-+ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSError *error))handler
++ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSString *localizedMessage))handler
 {
     // Get week number.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -232,8 +242,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     if (dateComponents.weekday <= 1) {
         dateComponents.weekOfYear--;
     }
-#warning Fix week of year.
-    NSString *requestString = [NSString stringWithFormat:@"tag=9$UFJF_%ld", (long)35];//dateComponents.weekOfYear];
+    NSString *requestString = [NSString stringWithFormat:@"tag=9$UFJF_%ld", (long)dateComponents.weekOfYear];
     
     // Request with shared session configuration.
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -243,9 +252,11 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
         // Verify network error.
         if (networkError) {
+            NSLog(@"Menu error: %@", networkError.description);
+            
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, networkError);
+                handler(nil, NSLocalizedString(@"Couldn't download menu", @"Menu Error Description"));
             }];
             return;
         }
@@ -257,7 +268,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
         if (mainComponents.count <= 1) { // It means there was a server error or that there is no menu.
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, nil);
+                handler(nil, NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
             }];
             return;
         }
