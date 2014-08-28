@@ -84,7 +84,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     } else if (newRestaurant < self.restaurant) {
         rowAnimation = UITableViewRowAnimationRight;
     } else {
-        rowAnimation = UITableViewRowAnimationAutomatic;
+        rowAnimation = UITableViewRowAnimationTop;
     }
     if (self.resultsList.votesTotal) {
         self.tableView.backgroundView = nil;

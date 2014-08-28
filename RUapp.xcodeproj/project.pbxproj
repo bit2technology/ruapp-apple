@@ -27,7 +27,6 @@
 		4BDED2ED192A152F009716DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED2EC192A152F009716DF /* main.m */; };
 		4BDED2F1192A152F009716DF /* RUAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED2F0192A152F009716DF /* RUAAppDelegate.m */; };
 		4BDED2F4192A152F009716DF /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BDED2F2192A152F009716DF /* Main_iPhone.storyboard */; };
-		4BDED2F7192A152F009716DF /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BDED2F5192A152F009716DF /* Main_iPad.storyboard */; };
 		4BDED2FC192A152F009716DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BDED2FB192A152F009716DF /* Images.xcassets */; };
 		4BDED303192A152F009716DF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED302192A152F009716DF /* XCTest.framework */; };
 		4BDED304192A152F009716DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E0192A152F009716DF /* Foundation.framework */; };
@@ -87,7 +86,6 @@
 		4BDED2EF192A152F009716DF /* RUAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUAAppDelegate.h; sourceTree = "<group>"; };
 		4BDED2F0192A152F009716DF /* RUAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUAAppDelegate.m; sourceTree = "<group>"; };
 		4BDED2F3192A152F009716DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		4BDED2F6192A152F009716DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		4BDED2FB192A152F009716DF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4BDED301192A152F009716DF /* RUappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDED302192A152F009716DF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -178,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				4BDED2F2192A152F009716DF /* Main_iPhone.storyboard */,
-				4BDED2F5192A152F009716DF /* Main_iPad.storyboard */,
 				4BDED2EF192A152F009716DF /* RUAAppDelegate.h */,
 				4BDED2F0192A152F009716DF /* RUAAppDelegate.m */,
 				4BD37506192B6AD00016BD35 /* RUAColor.h */,
@@ -337,7 +334,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BDED2F7192A152F009716DF /* Main_iPad.storyboard in Resources */,
 				4B586E6019ACD24800589F75 /* RestaurantsList.plist in Resources */,
 				4BDE8218199BA54700441EAA /* Localizable.strings in Resources */,
 				4B586E5C19ACD21900589F75 /* MealList.plist in Resources */,
@@ -372,7 +368,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/bin/sh \"${PROJECTDIR}\"/RUapp/xcode-build-bump.sh\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -485,14 +481,6 @@
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		4BDED2F5192A152F009716DF /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4BDED2F6192A152F009716DF /* Base */,
-			);
-			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -576,6 +564,7 @@
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
+				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -587,10 +576,8 @@
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RUapp/RUapp-Prefix.pch";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
@@ -610,9 +597,7 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = "RUapp/RUapp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
@@ -624,6 +609,7 @@
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
+				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -635,10 +621,8 @@
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RUapp/RUapp-Prefix.pch";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
@@ -658,9 +642,7 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = "RUapp/RUapp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
