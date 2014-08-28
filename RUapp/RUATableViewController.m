@@ -13,14 +13,14 @@
 
 - (UIView *)tableViewBackgroundViewWithMessage:(NSString *)message
 {
-    UILabel *backgroundView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    backgroundView.backgroundColor = [RUAColor darkBlueColor];
-    backgroundView.numberOfLines = NSIntegerMax;
-    backgroundView.opaque = YES;
-    backgroundView.text = message;
-    backgroundView.textAlignment = NSTextAlignmentCenter;
-    backgroundView.textColor = [UIColor lightGrayColor];
-    return backgroundView;
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGFLOAT_MAX, 44)];
+    messageLabel.backgroundColor = [RUAColor darkBlueColor];
+    messageLabel.numberOfLines = NSIntegerMax;
+    messageLabel.opaque = YES;
+    messageLabel.text = message;
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    messageLabel.textColor = [UIColor lightGrayColor];
+    return messageLabel;
 }
 
 - (void)preferredContentSizeChanged:(NSNotification *)notification

@@ -14,6 +14,26 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 
 @implementation RUAResultInfo
 
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[RUAResultInfo class]]) {
+        RUAResultInfo *resultInfo = object;
+        if (self.restaurant != resultInfo.restaurant ||
+            ![self.date isEqualToDate:resultInfo.date] ||
+            self.meal != resultInfo.meal ||
+            self.votesTotal != resultInfo.votesTotal ||
+            ![self.votesText isEqualToArray:resultInfo.votesText] ||
+            ![self.votesProgress isEqualToArray:resultInfo.votesProgress] ||
+            ![self.reasons isEqualToArray:resultInfo.reasons]) {
+            return NO;
+        } else {
+            return YES;
+        }
+    }
+    
+    return [super isEqual:object];
+}
+
 @end
 
 @implementation RUAServerConnection
@@ -181,40 +201,49 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             // Meal
             result.meal = (RUAMeal)([overviewInformation[2] integerValue] - 1);
             // Votes
-            CGFloat total = 0, biggestVote = 0;
+            CGFloat votesTotal = 0, votesBiggest = 0;
             for (NSUInteger i = 1; i < 5; i++) {
                 CGFloat vote = [overviewComponents[i] floatValue];
-                total += vote;
-                if (vote > biggestVote) {
-                    biggestVote = vote;
+                votesTotal += vote;
+                if (vote > votesBiggest) {
+                    votesBiggest = vote;
                 }
             }
-            result.votesTotal = (NSUInteger)total;
+            result.votesTotal = (NSUInteger)votesTotal;
             NSMutableArray *votesText = [NSMutableArray arrayWithCapacity:4];
             for (NSUInteger i = 1; i < 5; i++) {
-                [votesText addObject:[NSNumber numberWithDouble:([overviewComponents[i] floatValue] / total)]];
+                [votesText addObject:[NSNumber numberWithDouble:([overviewComponents[i] floatValue] / votesTotal)]];
             }
             result.votesText = votesText;
             NSMutableArray *votesProgress = [NSMutableArray arrayWithCapacity:4];
             for (NSUInteger i = 1; i < 5; i++) {
-                [votesProgress addObject:[NSNumber numberWithDouble:([overviewComponents[i] floatValue] / biggestVote)]];
+                [votesProgress addObject:[NSNumber numberWithDouble:([overviewComponents[i] floatValue] / votesBiggest)]];
             }
             result.votesProgress = votesProgress;
             // Reason
             NSMutableArray *reasons = [NSMutableArray arrayWithCapacity:4];
-//            for (NSString *string in mainComponents) {
-//                NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
-//                for (NSString *reasonString in [string componentsSeparatedByString:@"$"]) {
-//                    [reason addObject:[numberFormatter numberFromString:reasonString]];
-//                }
-//                [reasons addObject:reason];
-//            }
-            for (int i = 2; i < 6; i++) {
-                NSMutableString *testString = [NSMutableString string];
-                for (int j = 0; j < i; j++) {
-                    [testString appendString:@"blablabla "];
+            for (NSString *string in mainComponents) {
+                NSArray *reasonComponents = [string componentsSeparatedByString:@"$"];
+                CGFloat reasonTotal = 0, reasonBiggest = 0;
+                for (NSString *reasonString in reasonComponents) {
+                    CGFloat reasonCount = [reasonString floatValue];
+                    reasonTotal += reasonCount;
+                    if (reasonCount > reasonBiggest) {
+                        reasonBiggest = reasonCount;
+                    }
                 }
-                [reasons addObject:testString];
+                if (reasonTotal) {
+                    NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
+                    NSArray *dishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
+                    [reasonComponents enumerateObjectsUsingBlock:^(NSString *countString, NSUInteger idx, BOOL *stop) {
+                        if ([countString floatValue] == reasonBiggest) {
+                            [reason addObject:dishesList[idx]];
+                        }
+                    }];
+                    [reasons addObject:@{@"dishes": [reason componentsJoinedByString:@"\n"], @"percent": [NSNumber numberWithDouble:reasonBiggest / reasonTotal]}];
+                } else {
+                    [reasons addObject:@{}];
+                }
             }
             result.reasons = reasons;
             

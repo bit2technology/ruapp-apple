@@ -82,6 +82,12 @@
     }
 }
 
++ (RUAMeal)lastMealForNow
+{
+    NSDate *now = [self sharedAppDelegate].date;
+    return [self lastMealForDate:&now];
+}
+
 + (RUAAppDelegate *)sharedAppDelegate
 {
     return [UIApplication sharedApplication].delegate;

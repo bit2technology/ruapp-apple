@@ -49,7 +49,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
         self.navigationItem.rightBarButtonItem.enabled = NO;
     } else
     // If there is a vote, and it has less than 5 hours and the meal is the same, then show "already voted" interface.
-    if (self.lastVoteDate && [self.lastVoteDate timeIntervalSinceNow] > -18000 && [RUAAppDelegate mealForDate:self.lastVoteDate] == self.mealForNow) {
+    if (self.lastVoteDate && [now timeIntervalSinceDate:self.lastVoteDate] <= 18000 && [RUAAppDelegate mealForDate:self.lastVoteDate] == self.mealForNow) {
         self.presentVoteInterface = NO;
         [self.checkedIndexPaths removeAllObjects];
         self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Thank you! Vote computed.", @"Vote Computed Message")];

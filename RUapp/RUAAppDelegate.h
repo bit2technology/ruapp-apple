@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
 /**
  * Date to use across app. For testing purposes, it is settable. For release, it returns current date.
  */
-@property (strong, nonatomic) NSDate *date;
+@property (copy, nonatomic) NSDate *date;
 
 /**
  * Meal for a given time.
@@ -38,6 +38,11 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  * Last meal for date. Date will return one day earlier if it's before breakfast.
  */
 + (RUAMeal)lastMealForDate:(NSDate *__autoreleasing *)date;
+
+/**
+ * Last meal for now.
+ */
++ (RUAMeal)lastMealForNow;
 
 /**
  * Returns app delegate instance.
