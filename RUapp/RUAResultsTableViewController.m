@@ -19,14 +19,17 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 @interface RUAResultsTableViewController ()
 
 @property (strong, nonatomic) NSArray *resultsListRaw;
+@property (readonly, nonatomic) RUAResultInfo *resultsList;
+
+// Strings lists
 @property (strong, nonatomic) NSArray *avaliationList;
 @property (strong, nonatomic) NSArray *headersList;
 @property (strong, nonatomic) NSArray *mealList;
 
-@property (assign, nonatomic) RUARestaurant restaurant;
-@property (readonly, nonatomic) RUAResultInfo *resultsList;
-@property (strong, nonatomic) NSDate *lastAppearance;
+// Other controls
 @property (assign, nonatomic) BOOL isDownloading;
+@property (strong, nonatomic) NSDate *lastAppearance;
+@property (assign, nonatomic) RUARestaurant restaurant;
 
 @end
 
@@ -163,15 +166,11 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     NSDictionary *rowInfo = self.avaliationList[(NSUInteger)indexPath.row];
     NSString *avaliationText = rowInfo[@"text"];
     
-    
-    
     RUAResultsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Results Cell" forIndexPath:indexPath];
     cell.helperLabel.font = bodyFont;
     cell.voteIconView.accessibilityLabel = avaliationText;
     cell.voteIconView.image = [UIImage imageNamed:rowInfo[@"image"]];
     cell.infoLabel.font = bodyFont;
-    
-    
     
     NSNumber *percent;
     switch (indexPath.section) {
@@ -181,13 +180,16 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
             cell.progressView.progress = [self.resultsList.votesProgress[(NSUInteger)indexPath.row] floatValue];
             cell.progressView.progressTintColor = [UIColor colorWithCIColor:[CIColor colorWithString:rowInfo[@"color"]]];
             cell.dishLabel.hidden = YES;
+            cell.infoLabel.hidden = NO;
         } break;
         default: { // Details
             percent = self.resultsList.reasons[(NSUInteger)indexPath.row][@"percent"];
             cell.dishLabel.font = bodyFont;
             cell.dishLabel.hidden = NO;
             cell.dishLabel.numberOfLines = NSIntegerMax;
-            cell.dishLabel.text = self.resultsList.reasons[(NSUInteger)indexPath.row][@"dishes"];
+            NSString *reasons = self.resultsList.reasons[(NSUInteger)indexPath.row][@"dishes"];
+            cell.dishLabel.text = (reasons ?: @"No votes");
+            cell.infoLabel.hidden = (reasons ? NO : YES);
             cell.progressView.hidden = YES;
         } break;
     }
