@@ -11,6 +11,7 @@
 #import "RUAServerConnection.h"
 
 NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
+NSString *const RUAMenuUpdated = @"MenuUpdated";
 
 @interface RUAMenuTableViewController ()
 
@@ -79,6 +80,17 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     return self.menuList[(NSUInteger)(self.currentPage * 2 + section)];
 }
 
+- (NSArray *)menuForCurrentMeal
+{
+    RUAMeal meal = [RUAAppDelegate mealForNow];
+    if (meal == RUAMealNone) {
+        return nil;
+    }
+    
+    NSDateComponents *dateComponents = [self adjustedDateComponents];
+    return self.menuList[(NSUInteger)(dateComponents.weekday - 2) * 2 + meal];
+}
+
 /**
  * Called when the user taps one of the buttons of navigation bar.
  */
@@ -113,14 +125,17 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
                 }
                 
                 // Cache week menu.
-                [[NSUserDefaults standardUserDefaults] setValue:weekMenu forKey:RUAMenuDataSourceCacheKey];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+//                [[NSUserDefaults standardUserDefaults] setValue:weekMenu forKey:RUAMenuDataSourceCacheKey];
+//                [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 // Perform updates.
                 [self.tableView beginUpdates];
                 self.menuListRaw = weekMenu;
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
                 [self.tableView endUpdates];
+                
+                // Send notification
+                [[NSNotificationCenter defaultCenter] postNotificationName:RUAMenuUpdated object:[self menuForCurrentMeal]];
             }
         } else {
             // If there is no data source (is first download, not an update), show an appropriate message. Otherwise, do nothing.
@@ -221,6 +236,7 @@ NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
     self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconMenuSelected"];
     self.refreshControl.tintColor = [UIColor whiteColor];
     
+    [RUAAppDelegate sharedAppDelegate].menuTableViewController = self;
     self.mealList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MealList" ofType:@"plist"]];
     self.dishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
     // Set array from date formatter to create appropriate title strings.

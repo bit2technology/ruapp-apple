@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
+#import "RUAMenuTableViewController.h"
+
 typedef NS_ENUM(NSUInteger, RUAMeal) {
     RUAMealLunch,
     RUAMealDinner,
@@ -23,6 +25,17 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  * Date to use across app. For testing purposes, it is settable. For release, it returns current date.
  */
 @property (copy, nonatomic) NSDate *date;
+
+
+
+
+
+
+@property (weak, nonatomic) RUAMenuTableViewController *menuTableViewController;
+
+
+
+
 
 /**
  * Meal for a given time.

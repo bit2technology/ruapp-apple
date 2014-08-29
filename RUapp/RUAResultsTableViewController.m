@@ -13,15 +13,15 @@
 NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 @implementation RUAResultsTableViewCell
-
 @end
 
 @interface RUAResultsTableViewController ()
 
+// Main data
 @property (strong, nonatomic) NSArray *resultsListRaw;
 @property (readonly, nonatomic) RUAResultInfo *resultsList;
 
-// Strings lists
+// Labels
 @property (strong, nonatomic) NSArray *avaliationList;
 @property (strong, nonatomic) NSArray *headersList;
 @property (strong, nonatomic) NSArray *mealList;
@@ -30,6 +30,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 @property (assign, nonatomic) BOOL isDownloading;
 @property (strong, nonatomic) NSDate *lastAppearance;
 @property (assign, nonatomic) RUARestaurant restaurant;
+@property (strong, nonatomic) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -54,14 +55,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
                 self.resultsListRaw = results;
                 // If there is no title view (segmented control) create one
                 if (!self.navigationItem.titleView) {
-                    NSArray *restaurantsList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"RestaurantsList" ofType:@"plist"]];
-                    UISegmentedControl *titleView = [[UISegmentedControl alloc] initWithItems:restaurantsList];
-                    CGRect titleViewFrame = titleView.frame;
-                    titleViewFrame.size.width = CGFLOAT_MAX;
-                    titleView.frame = titleViewFrame;
-                    titleView.selectedSegmentIndex = self.restaurant;
-                    [titleView addTarget:self action:@selector(segmentedControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
-                    self.navigationItem.titleView = titleView;
+                    self.navigationItem.titleView = self.segmentedControl;
                 }
                 [self segmentedControlDidChangeValue:(UISegmentedControl *)self.navigationItem.titleView]; // Also reloads the table view
                 [self.tableView endUpdates];
@@ -107,8 +101,8 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
         self.tableView.backgroundView = nil;
         self.tableView.tableHeaderView = nil;
     } else {
-        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:@"No votes yet"];
-        self.tableView.tableHeaderView = [self tableViewBackgroundViewWithMessage:@"Pull down to refresh"];
+        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"No votes yet", @"Background message for when there was no vote for last meal")];
+        self.tableView.tableHeaderView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Pull down to refresh", @"Message to show on top of empity views, suggesting how to refresh")];
     }
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:rowAnimation];
 }
@@ -140,7 +134,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
         return nil;
     }
     if (section == 0) {
-        return [NSString stringWithFormat:NSLocalizedString(@"Total of votes: %lu", @"Results Table Section Footer"), (unsigned long)self.resultsList.votesTotal];
+        return [NSString localizedStringWithFormat:NSLocalizedString(@"Total of votes: %lu", @"Overview section footer"), (unsigned long)self.resultsList.votesTotal];
     }
     return nil;
 }
@@ -151,11 +145,9 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
         return 44;
     }
     
-    // Calculate height for each row.
+    // Calculate height for each row on second section.
     NSString *mealText = self.resultsList.reasons[(NSUInteger)indexPath.row][@"dishes"];
-    CGSize referenceSize = CGRectInfinite.size;
-    referenceSize.width = 193;
-    CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
+    CGFloat actualHeight = [mealText boundingRectWithSize:CGRectInfinite.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
     CGFloat height = (actualHeight > 44 ? actualHeight : 44);
     return (CGFloat)floorl(height);
 }
@@ -213,6 +205,16 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     self.avaliationList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AvaliationList" ofType:@"plist"]];
     self.headersList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ResultsHeadersList" ofType:@"plist"]];
     self.mealList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MealList" ofType:@"plist"]];
+    
+    // Create segmented control to use later
+    NSArray *restaurantsList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"RestaurantsList" ofType:@"plist"]];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:restaurantsList];
+    CGRect titleViewFrame = segmentedControl.frame;
+    titleViewFrame.size.width = CGFLOAT_MAX;
+    segmentedControl.frame = titleViewFrame;
+    segmentedControl.selectedSegmentIndex = self.restaurant;
+    [segmentedControl addTarget:self action:@selector(segmentedControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+    self.segmentedControl = segmentedControl;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -232,6 +234,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [activityView startAnimating];
         self.tableView.backgroundView = activityView;
+        self.tableView.tableHeaderView = nil;
         self.tableView.userInteractionEnabled = NO;
     }
 }

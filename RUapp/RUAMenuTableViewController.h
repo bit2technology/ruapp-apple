@@ -9,6 +9,7 @@
 #import "RUATableViewController.h"
 
 extern NSString *const RUAMenuDataSourceCacheKey;
+extern NSString *const RUAMenuUpdated;
 
 @import UIKit;
 
@@ -18,5 +19,7 @@ extern NSString *const RUAMenuDataSourceCacheKey;
  * Download or update data source and update table view.
  */
 - (void)downloadDataSourceAndUpdateTable;
+
+- (NSArray *)menuForCurrentMeal; //TODO:documentation
 
 @end

@@ -18,7 +18,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 @property (assign, nonatomic) BOOL presentVoteInterface;
 @property (assign, nonatomic) BOOL changeRestaurantAllowed;
 
-// Data control
+// Other controls
 @property (strong, nonatomic) NSMutableArray *checkedIndexPaths;
 @property (strong, nonatomic) NSDate *lastVoteDate;
 @property (strong, nonatomic) NSDate *lastAppearance;
@@ -31,9 +31,30 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 @property (strong, nonatomic) NSArray *dishesList;
 @property (strong, nonatomic) NSArray *headersList;
 
+
+
+
+
+
+@property (strong, nonatomic) NSArray *menuList;
+
 @end
 
 @implementation RUAVoteTableViewController
+
+
+
+
+- (void)updateMenuWithNotification:(NSNotification *)notification
+{
+    self.menuList = notification.object;
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+
+
+
+
 
 - (void)adjustInterfaceForVoteStatus
 {
@@ -45,14 +66,14 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     if (self.mealForNow == RUAMealNone) {
         self.presentVoteInterface = NO;
         [self.checkedIndexPaths removeAllObjects];
-        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Sorry, there is no vote open now.", @"Vote not Disponible Message")];
+        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Sorry, there is\nno vote open now", @"Message displayed when vote is not disponible")];
         self.navigationItem.rightBarButtonItem.enabled = NO;
     } else
     // If there is a vote, and it has less than 5 hours and the meal is the same, then show "already voted" interface.
     if (self.lastVoteDate && [now timeIntervalSinceDate:self.lastVoteDate] <= 18000 && [RUAAppDelegate mealForDate:self.lastVoteDate] == self.mealForNow) {
         self.presentVoteInterface = NO;
         [self.checkedIndexPaths removeAllObjects];
-        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Thank you! Vote computed.", @"Vote Computed Message")];
+        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Thank you!\nVote computed", @"Message displayed when the user already voted (on or offline)")];
         self.navigationItem.rightBarButtonItem.enabled = NO;
     } else {
         // Vote allowed. Check schedule.
@@ -99,6 +120,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
         }
         self.presentVoteInterface = YES;
         self.tableView.backgroundView = nil;
+        [[RUAAppDelegate sharedAppDelegate].menuTableViewController downloadDataSourceAndUpdateTable];
     }
     [self.tableView reloadData];
 }
@@ -125,7 +147,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 {
     // Present confirmation alert.
     [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to submit this vote?", @"Vote alert view title")
-                                message:NSLocalizedString(@"The vote can't be changed after you send it.", @"Vote alert view message")
+                                message:NSLocalizedString(@"The vote can't be changed after you send it", @"Vote alert view message")
                                delegate:self
                       cancelButtonTitle:NSLocalizedString(@"Cancel", @"Vote alert view cancel button")
                       otherButtonTitles:NSLocalizedString(@"Submit", @"Vote alert view submit button"), nil] show];
@@ -187,7 +209,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
                 [[[UIAlertView alloc] initWithTitle:localizedMessage
                                             message:nil
                                            delegate:self
-                                  cancelButtonTitle:NSLocalizedString(@"OK", @"Vote Alert Cancel Button")
+                                  cancelButtonTitle:NSLocalizedString(@"OK", @"Vote alert cancel button")
                                   otherButtonTitles:nil] show];
             }
         }];
@@ -231,6 +253,21 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section < 2) {
+        return 44;
+    }
+    
+    // Calculate height for each row.
+    NSString *mealText = (self.menuList ?: self.dishesList)[(NSUInteger)indexPath.row];
+    CGSize referenceSize = CGRectInfinite.size;
+    referenceSize.width = 290;
+    CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
+    CGFloat height = (actualHeight > 44 ? actualHeight : 44);
+    return (CGFloat)floorl(height);
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Vote Cell" forIndexPath:indexPath];
@@ -250,9 +287,11 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
             cell.selectionStyle = (self.changeRestaurantAllowed ? UITableViewCellSelectionStyleBlue : UITableViewCellSelectionStyleNone);
         } break;
         default: {
-            text = self.dishesList[(NSUInteger)indexPath.row];
+            NSArray *dishesList = (self.menuList ?: self.dishesList);
+            text = dishesList[(NSUInteger)indexPath.row];
         } break;
     }
+    cell.textLabel.numberOfLines = NSIntegerMax;
     cell.textLabel.text = text;
     cell.imageView.image = image;
     
@@ -320,6 +359,8 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMenuWithNotification:) name:RUAMenuUpdated object:nil];
+    
     // Set basic information
     self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconVoteSelected"];
     
@@ -340,6 +381,10 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 {
     [super viewWillAppear:animated];
     
+    NSArray *menuList = [[RUAAppDelegate sharedAppDelegate].menuTableViewController menuForCurrentMeal];
+    if (menuList && ![menuList isEqualToArray:self.menuList]) {
+        self.menuList = menuList;
+    }
     [self adjustInterfaceForVoteStatus];
 }
 

@@ -14,8 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *voteIconView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
-@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dishLabel;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *helperLabel;
 
 @end
