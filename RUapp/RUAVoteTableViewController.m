@@ -381,11 +381,27 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 {
     [super viewWillAppear:animated];
     
-    NSArray *menuList = [[RUAAppDelegate sharedAppDelegate].menuTableViewController menuForCurrentMeal];
-    if (menuList && ![menuList isEqualToArray:self.menuList]) {
-        self.menuList = menuList;
+    RUAAppDelegate *sharedAppDelegate = [RUAAppDelegate sharedAppDelegate];
+    
+    // If this is the first time, there is more than 5 hours from last appearance or different meal from last appearance, get new menu list.
+    if (!self.lastAppearance || [sharedAppDelegate.date timeIntervalSinceDate:self.lastAppearance] > 18000 || [RUAAppDelegate mealForDate:sharedAppDelegate.date] != [RUAAppDelegate mealForDate:self.lastAppearance]) {
+        NSArray *menuList = [sharedAppDelegate.menuTableViewController menuForCurrentMeal];
+        // Apply if it is different
+        if (![menuList isEqualToArray:self.menuList]) {
+            self.menuList = (menuList.count >= 7 ? menuList : nil); // If less than 7 dishes, set nil.
+            [self.tableView reloadData];
+        }
     }
     [self adjustInterfaceForVoteStatus];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    RUAAppDelegate *sharedAppDelegate = [RUAAppDelegate sharedAppDelegate];
+    [sharedAppDelegate.menuTableViewController downloadDataSourceAndUpdateTable];
+    self.lastAppearance = sharedAppDelegate.date;
 }
 
 @end

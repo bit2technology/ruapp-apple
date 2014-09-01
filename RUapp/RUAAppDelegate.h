@@ -19,6 +19,8 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
 
 @interface RUAAppDelegate : UIResponder <UIApplicationDelegate>
 
+// MARK: Properties
+
 @property (strong, nonatomic) UIWindow *window;
 
 /**
@@ -26,26 +28,12 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  */
 @property (copy, nonatomic) NSDate *date;
 
-
-
-
-
-
+/**
+ * Reference to menu view controller, to get menu information.
+ */
 @property (weak, nonatomic) RUAMenuTableViewController *menuTableViewController;
 
-
-
-
-
-/**
- * Meal for a given time.
- */
-+ (RUAMeal)mealForDate:(NSDate *)date;
-
-/**
- * Meal for now.
- */
-+ (RUAMeal)mealForNow;
+// MARK: Methods
 
 /**
  * Last meal for date. Date will return one day earlier if it's before breakfast.
@@ -56,6 +44,16 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  * Last meal for now.
  */
 + (RUAMeal)lastMealForNow;
+
+/**
+ * Meal for a given time.
+ */
++ (RUAMeal)mealForDate:(NSDate *)date;
+
+/**
+ * Meal for now.
+ */
++ (RUAMeal)mealForNow;
 
 /**
  * Returns app delegate instance.

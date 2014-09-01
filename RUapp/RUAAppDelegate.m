@@ -13,6 +13,8 @@
 
 @implementation RUAAppDelegate
 
+// MARK: Properties
+
 - (NSDate *)date
 {
     if (!_date) {
@@ -20,6 +22,8 @@
     }
     return _date.copy;
 }
+
+// MARK: Methods
 
 /**
  * Returns date componens for weekday, hour and minute for Gregorian calendar and Sao Paulo timezone.
@@ -30,30 +34,6 @@
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
     return [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
-}
-
-+ (RUAMeal)mealForDate:(NSDate *)date
-{
-    // Return value according to schedule.
-    NSDateComponents *dateComponents = [self dateComponentsForDate:date];
-    CGFloat timeNumber = [self valueFromDateComponents:dateComponents];
-    if (timeNumber >= 17 && timeNumber < 21) {
-        if (dateComponents.weekday >=2 && dateComponents.weekday <= 6) { // From monday to friday
-            return  RUAMealDinner;
-        }
-    } else if (timeNumber >= 11 && timeNumber < 16) {
-        return RUAMealLunch;
-    } else if (timeNumber >= 6.5 && timeNumber < 10) {
-        if (dateComponents.weekday >=2) { // From monday to saturday
-            return RUAMealBreakfast;
-        }
-    }
-    return RUAMealNone;
-}
-
-+ (RUAMeal)mealForNow
-{
-    return [self mealForDate:[self sharedAppDelegate].date];
 }
 
 + (RUAMeal)lastMealForDate:(NSDate *__autoreleasing *)date
@@ -86,6 +66,30 @@
 {
     NSDate *now = [self sharedAppDelegate].date;
     return [self lastMealForDate:&now];
+}
+
++ (RUAMeal)mealForDate:(NSDate *)date
+{
+    // Return value according to schedule.
+    NSDateComponents *dateComponents = [self dateComponentsForDate:date];
+    CGFloat timeNumber = [self valueFromDateComponents:dateComponents];
+    if (timeNumber >= 17 && timeNumber < 21) {
+        if (dateComponents.weekday >=2 && dateComponents.weekday <= 6) { // From monday to friday
+            return  RUAMealDinner;
+        }
+    } else if (timeNumber >= 11 && timeNumber < 16) {
+        return RUAMealLunch;
+    } else if (timeNumber >= 6.5 && timeNumber < 10) {
+        if (dateComponents.weekday >=2) { // From monday to saturday
+            return RUAMealBreakfast;
+        }
+    }
+    return RUAMealNone;
+}
+
++ (RUAMeal)mealForNow
+{
+    return [self mealForDate:[self sharedAppDelegate].date];
 }
 
 + (RUAAppDelegate *)sharedAppDelegate

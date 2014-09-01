@@ -189,8 +189,9 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // If there is no data source, return 0. Otherwise, return number of dishes (8) or 1 if restaurant closed.
-    return (self.menuList ? (NSInteger)[self mealMenuForCurrentPageForSection:section].count : 0);
+    // If there is no data source, return 0. Otherwise, return the smaller count between dishes and menu (to prevent any change in the server) or 1 if restaurant closed.
+    NSUInteger menuCount = [self mealMenuForCurrentPageForSection:section].count;
+    return (NSInteger)(self.menuList ? (menuCount > self.dishesList.count ? self.dishesList.count : menuCount) : 0);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -203,7 +204,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     // Calculate height for each row.
     NSString *mealText = [self mealMenuForCurrentPageForSection:indexPath.section][(NSUInteger)indexPath.row];
     CGSize referenceSize = CGRectInfinite.size;
-    referenceSize.width = 193;
+    referenceSize.width = 192;
     CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
     CGFloat height = (actualHeight > 44 ? actualHeight : 44);
     return (CGFloat)floorl(height);
