@@ -21,5 +21,4 @@
 @end
 
 @interface RUAResultsTableViewController : RUATableViewController
-
 @end

@@ -11,5 +11,4 @@
 @import UIKit;
 
 @interface RUAVoteTableViewController : RUATableViewController
-
 @end

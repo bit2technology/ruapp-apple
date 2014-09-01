@@ -26,21 +26,27 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 @property (strong, nonatomic) NSArray *weekdaysList;
 
 // Navigation information
+@property (assign, nonatomic) NSInteger currentPage;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *previousPage;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextPage;
 @property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRight;
 @property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeLeft;
-@property (assign, nonatomic) NSInteger currentPage;
 
 @end
 
 @implementation RUAMenuTableViewController
 
+/**
+ * Helper for menu list.
+ */
 - (NSArray *)menuList
 {
     return self.menuListRaw[@"Menu"];
 }
 
+/**
+ * Helper for menu list's week of year.
+ */
 - (NSInteger)menuListWeekOfYear
 {
     return [self.menuListRaw[@"WeekOfYear"] integerValue];

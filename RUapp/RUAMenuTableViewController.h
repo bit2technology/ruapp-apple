@@ -20,6 +20,9 @@ extern NSString *const RUAMenuUpdated;
  */
 - (void)downloadDataSourceAndUpdateTable;
 
-- (NSArray *)menuForCurrentMeal; //TODO:documentation
+/**
+ * Returns the menu list for current meal.
+ */
+- (NSArray *)menuForCurrentMeal;
 
 @end

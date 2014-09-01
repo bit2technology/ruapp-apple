@@ -15,47 +15,30 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
 @interface RUAVoteTableViewController () <UIAlertViewDelegate>
 
-@property (assign, nonatomic) BOOL presentVoteInterface;
-@property (assign, nonatomic) BOOL changeRestaurantAllowed;
-
-// Other controls
 @property (strong, nonatomic) NSMutableArray *checkedIndexPaths;
-@property (strong, nonatomic) NSDate *lastVoteDate;
-@property (strong, nonatomic) NSDate *lastAppearance;
 @property (assign, nonatomic) RUAMeal mealForNow;
+@property (strong, nonatomic) NSArray *menuList;
 
 // Strings lists
 @property (strong, nonatomic) NSArray *avaliationList;
-@property (strong, nonatomic) NSArray *mealList;
-@property (strong, nonatomic) NSArray *restaurantsList;
 @property (strong, nonatomic) NSArray *dishesList;
 @property (strong, nonatomic) NSArray *headersList;
+@property (strong, nonatomic) NSArray *mealList;
+@property (strong, nonatomic) NSArray *restaurantsList;
 
-
-
-
-
-
-@property (strong, nonatomic) NSArray *menuList;
+// Other controls
+@property (assign, nonatomic) BOOL changeRestaurantAllowed;
+@property (strong, nonatomic) NSDate *lastVoteDate;
+@property (strong, nonatomic) NSDate *lastAppearance;
+@property (assign, nonatomic) BOOL presentVoteInterface;
 
 @end
 
 @implementation RUAVoteTableViewController
 
-
-
-
-- (void)updateMenuWithNotification:(NSNotification *)notification
-{
-    self.menuList = notification.object;
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-
-
-
-
-
+/**
+ * Method called to adjust interface, if there is no vote open or already voted, hide vote interface.
+ */
 - (void)adjustInterfaceForVoteStatus
 {
     NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
@@ -125,6 +108,9 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     [self.tableView reloadData];
 }
 
+/**
+ * If last appearance is tem minutes ago, clear checked rows.
+ */
 - (void)setLastAppearance:(NSDate *)lastAppearance
 {
     // If more than ten minutes.
@@ -134,23 +120,38 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     _lastAppearance = lastAppearance;
 }
 
+/**
+ * If different from last appearance, clear checked rows.
+ */
 - (void)setMealForNow:(RUAMeal)mealForNow
 {
-    // If different from last appearance (viewWillAppear: call).
+    // If different from last appearance.
     if (mealForNow != _mealForNow) {
         [self.checkedIndexPaths removeAllObjects];
     }
     _mealForNow = mealForNow;
 }
 
+/**
+ * Method called when the user taps the Submit button.
+ */
 - (IBAction)submitVote:(id)sender
 {
     // Present confirmation alert.
-    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to submit this vote?", @"Vote alert view title")
-                                message:NSLocalizedString(@"The vote can't be changed after you send it", @"Vote alert view message")
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to submit this vote?", @"Submit vote alert view title")
+                                message:NSLocalizedString(@"The vote can't be changed after you send it", @"Submit vote alert view message")
                                delegate:self
-                      cancelButtonTitle:NSLocalizedString(@"Cancel", @"Vote alert view cancel button")
-                      otherButtonTitles:NSLocalizedString(@"Submit", @"Vote alert view submit button"), nil] show];
+                      cancelButtonTitle:NSLocalizedString(@"Cancel", @"Submit vote alert view cancel button")
+                      otherButtonTitles:NSLocalizedString(@"Submit", @"Submit vote alert view submit button"), nil] show];
+}
+
+/**
+ * Method called when the menu list is updated.
+ */
+- (void)updateMenuWithNotification:(NSNotification *)notification
+{
+    self.menuList = notification.object;
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 // MARK: UIAlertViewDelegate methods
@@ -209,7 +210,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
                 [[[UIAlertView alloc] initWithTitle:localizedMessage
                                             message:nil
                                            delegate:self
-                                  cancelButtonTitle:NSLocalizedString(@"OK", @"Vote alert cancel button")
+                                  cancelButtonTitle:NSLocalizedString(@"OK", @"Vote error alert cancel button")
                                   otherButtonTitles:nil] show];
             }
         }];
@@ -230,10 +231,9 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
             return 4;
         case 1:
             return 2;
-            
         default:
             return 7;
-    };
+    }
     return 0;
 }
 
@@ -371,10 +371,10 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     
     // Strings lists
     self.avaliationList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AvaliationList" ofType:@"plist"]];
-    self.mealList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MealList" ofType:@"plist"]];
-    self.restaurantsList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"RestaurantsList" ofType:@"plist"]];
     self.dishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
     self.headersList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"VoteHeadersList" ofType:@"plist"]];
+    self.mealList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MealList" ofType:@"plist"]];
+    self.restaurantsList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"RestaurantsList" ofType:@"plist"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
