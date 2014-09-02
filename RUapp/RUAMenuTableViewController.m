@@ -89,7 +89,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 - (NSArray *)menuForCurrentMeal
 {
     RUAMeal meal = [RUAAppDelegate mealForNow];
-    if (meal == RUAMealNone) {
+    if (meal != RUAMealLunch && meal != RUAMealDinner) {
         return nil;
     }
     
