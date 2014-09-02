@@ -6,31 +6,32 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import "RUAVoteTableViewController.h"
-#import "RUAServerConnection.h"
 #import "RUAAppDelegate.h"
 #import "RUAColor.h"
+#import "RUAServerConnection.h"
+#import "RUAVoteTableViewController.h"
 
 NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
 @interface RUAVoteTableViewController () <UIAlertViewDelegate>
 
+// MARK: Main controls
 @property (strong, nonatomic) NSMutableArray *checkedIndexPaths;
 @property (assign, nonatomic) RUAMeal mealForNow;
 @property (strong, nonatomic) NSArray *menuList;
 
-// Strings lists
+// MARK: Other controls
+@property (assign, nonatomic) BOOL changeRestaurantAllowed;
+@property (strong, nonatomic) NSDate *lastVoteDate;
+@property (strong, nonatomic) NSDate *lastAppearance;
+@property (assign, nonatomic) BOOL presentVoteInterface;
+
+// MARK: Strings lists
 @property (strong, nonatomic) NSArray *avaliationList;
 @property (strong, nonatomic) NSArray *dishesList;
 @property (strong, nonatomic) NSArray *headersList;
 @property (strong, nonatomic) NSArray *mealList;
 @property (strong, nonatomic) NSArray *restaurantsList;
-
-// Other controls
-@property (assign, nonatomic) BOOL changeRestaurantAllowed;
-@property (strong, nonatomic) NSDate *lastVoteDate;
-@property (strong, nonatomic) NSDate *lastAppearance;
-@property (assign, nonatomic) BOOL presentVoteInterface;
 
 @end
 
@@ -154,7 +155,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-// MARK: UIAlertViewDelegate methods
+// MARK: UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -163,7 +164,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
         // Update table view to show network activity.
         [self.tableView beginUpdates];
         self.presentVoteInterface = NO;
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] withRowAnimation:UITableViewRowAnimationAutomatic];
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [activityView startAnimating];
         self.tableView.backgroundView = activityView;
@@ -203,7 +204,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
                 // Present error alert and vote interface.
                 self.presentVoteInterface = YES;
                 [self.tableView beginUpdates];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] withRowAnimation:UITableViewRowAnimationTop];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 3)] withRowAnimation:UITableViewRowAnimationAutomatic];
                 self.tableView.backgroundView = nil;
                 self.navigationItem.rightBarButtonItem.enabled = YES;
                 [self.tableView endUpdates];
@@ -217,22 +218,24 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     }
 }
 
-// MARK: UITableViewController methods
+// MARK: UITableViewController
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return (self.presentVoteInterface ? 3 : 0);
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return 4;
-        case 1:
-            return 2;
-        default:
-            return 7;
+    if (self.presentVoteInterface) {
+        switch (section) {
+            case 0:
+                return 4;
+            case 1:
+                return 2;
+            default:
+                return 7;
+        }
     }
     return 0;
 }
@@ -353,7 +356,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     self.navigationItem.rightBarButtonItem.enabled = (obligatoryFields >= 2);
 }
 
-// MARK: UIViewController methods
+// MARK: UIViewController
 
 - (void)viewDidLoad
 {

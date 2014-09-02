@@ -10,8 +10,10 @@
 
 @interface RUAColor : UIColor
 
-+ (UIColor *)lightBlueColor;
+// MARK: Blue
+
 + (UIColor *)darkBlueColor;
 + (UIColor *)darkerBlueColor;
++ (UIColor *)lightBlueColor;
 
 @end

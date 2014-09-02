@@ -62,6 +62,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
             }
         } else if (!self.resultsListRaw) {
             self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:localizedMessage];
+            self.tableView.tableHeaderView = self.tableViewHeaderViewPullToRefresh;
         }
         self.isDownloading = NO;
         self.tableView.userInteractionEnabled = YES;
@@ -102,7 +103,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
         self.tableView.tableHeaderView = nil;
     } else {
         self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"No votes yet", @"Background message for when there was no vote for last meal")];
-        self.tableView.tableHeaderView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Pull down to refresh", @"Message to show on top of empity views, suggesting how to refresh")];
+        self.tableView.tableHeaderView = self.tableViewHeaderViewPullToRefresh;
     }
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:rowAnimation];
 }

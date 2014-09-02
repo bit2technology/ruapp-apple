@@ -6,13 +6,15 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import "RUAServerConnection.h"
 #import "RUAAppDelegate.h"
+#import "RUAServerConnection.h"
 
-NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
 NSString *const RUASavedVotesKey = @"SavedVotes";
+NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
 
 @implementation RUAResultInfo
+
+// MARK: NSObject
 
 - (BOOL)isEqual:(id)object
 {
@@ -30,13 +32,109 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             return YES;
         }
     }
-    
     return [super isEqual:object];
 }
 
 @end
 
 @implementation RUAServerConnection
+
+// MARK: Methods
+
++ (void)performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    // Get saved votes
+    NSMutableArray *savedVotes = [[[NSUserDefaults standardUserDefaults] arrayForKey:RUASavedVotesKey] mutableCopy];
+    
+    // If there is no vote, return No Data.
+    if (!savedVotes.count) {
+        if (completionHandler) {
+            completionHandler(UIBackgroundFetchResultNoData);
+        }
+        return;
+    }
+    
+    // Otherwise, create session and URL request and send votes.
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
+    urlRequest.HTTPMethod = @"POST";
+    [self recursiveFetchWithArray:savedVotes session:urlSession request:urlRequest completionHandler:completionHandler];
+}
+
++ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSString *localizedMessage))handler
+{
+    // Get week number.
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
+    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitWeekOfYear fromDate:[RUAAppDelegate sharedAppDelegate].date];
+    
+    // Generate request string (adjust week to start on monday).
+    if (dateComponents.weekday <= 1) {
+        dateComponents.weekOfYear--;
+    }
+    NSString *requestString = [NSString stringWithFormat:@"tag=9$UFJF_%ld", (long)dateComponents.weekOfYear];
+    
+    // Request with shared session configuration.
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
+    urlRequest.HTTPMethod = @"POST";
+    urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+    [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
+        // Verify network error.
+        if (networkError) {
+            NSLog(@"Menu error: %@", networkError.description);
+            
+            // Main thread
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(nil, NSLocalizedString(@"Couldn't download menu", @"Menu Error Description"));
+            }];
+            return;
+        }
+        
+        // Serialize JSON and get return string.
+        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        // Separete main components if it is a valid menu.
+        NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"$"];
+        if (mainComponents.count <= 1) { // It means there was a server error or that there is no menu.
+            // Main thread
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(nil, NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
+            }];
+            return;
+        }
+        NSMutableArray *weekMenu = [NSMutableArray arrayWithCapacity:mainComponents.count];
+        for (NSString *mainComponent in mainComponents) {
+            [weekMenu addObject:[mainComponent componentsSeparatedByString:@"_"]];
+        }
+        
+        // Main thread
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            handler(@{@"WeekOfYear": @(dateComponents.weekOfYear), @"Menu": weekMenu}, nil);
+        }];
+    }] resume];
+}
+
++ (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler
+{
+    // Options
+    NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"dd.MM.yyyy";
+    dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
+    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
+    RUAMeal lastMeal = [RUAAppDelegate lastMealForDate:&now];
+    NSString *options = [NSString stringWithFormat:@"%@_%lu", [dateFormatter stringFromDate:now], (unsigned long)(lastMeal + 1)];
+    
+    // Request
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
+    urlRequest.HTTPMethod = @"POST";
+    
+    NSMutableArray *results = [NSMutableArray arrayWithCapacity:2];
+    NSMutableArray *restaurants = [NSMutableArray arrayWithObjects:@"UFJF1", @"UFJF2", nil];
+    
+    [self recursiveResultsWithArray:results locals:restaurants options:options dateFormatter:dateFormatter session:urlSession request:urlRequest completionHandler:handler];
+}
 
 + (void)sendVoteWithRestaurant:(RUARestaurant)restaurant rating:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler
 {
@@ -127,28 +225,39 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     }] resume];
 }
 
-+ (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler
+// MARK: Helper methods
+
+/**
+ * Helper recursive method to send saved (offline) votes.
+ */
++ (void)recursiveFetchWithArray:(NSMutableArray *)savedVotes session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    // Options
-    NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"dd.MM.yyyy";
-    dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
-    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    RUAMeal lastMeal = [RUAAppDelegate lastMealForDate:&now];
-    NSString *options = [NSString stringWithFormat:@"%@_%lu", [dateFormatter stringFromDate:now], (unsigned long)(lastMeal + 1)];
-    
-    // Request
-    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
-    urlRequest.HTTPMethod = @"POST";
-    
-    NSMutableArray *results = [NSMutableArray arrayWithCapacity:2];
-    NSMutableArray *restaurants = [NSMutableArray arrayWithObjects:@"UFJF1", @"UFJF2", nil];
-    
-    [self recursiveResultsWithArray:results locals:restaurants options:options dateFormatter:dateFormatter session:urlSession request:urlRequest completionHandler:handler];
+    // If there is votes yet to be sent, modify request's HTTP body and call this method again.
+    if (savedVotes.count) {
+        request.HTTPBody = savedVotes.lastObject;
+        [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (error) {
+                if (completionHandler) {
+                    completionHandler(UIBackgroundFetchResultFailed);;
+                }
+            } else {
+                [savedVotes removeLastObject];
+                NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                [standardUserDefaults setObject:savedVotes forKey:RUASavedVotesKey];
+                [standardUserDefaults synchronize];
+                [self recursiveFetchWithArray:savedVotes session:session request:request completionHandler:completionHandler];
+            }
+        }] resume];
+    } else {
+        if (completionHandler) {
+            completionHandler(UIBackgroundFetchResultNewData);;
+        }
+    }
 }
 
+/**
+ * Helper recursive method to download results for all restaurants.
+ */
 + (void)recursiveResultsWithArray:(NSMutableArray *)results locals:(NSMutableArray *)locals options:(NSString *)options dateFormatter:(NSDateFormatter *)dateFormatter session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler
 {
     if (locals.count) {
@@ -257,104 +366,6 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             handler(results, nil);
         }];
-    }
-}
-
-+ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSString *localizedMessage))handler
-{
-    // Get week number.
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitWeekOfYear fromDate:[RUAAppDelegate sharedAppDelegate].date];
-    
-    // Generate request string (adjust week to start on monday).
-    if (dateComponents.weekday <= 1) {
-        dateComponents.weekOfYear--;
-    }
-    NSString *requestString = [NSString stringWithFormat:@"tag=9$UFJF_%ld", (long)dateComponents.weekOfYear];
-    
-    // Request with shared session configuration.
-    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
-    urlRequest.HTTPMethod = @"POST";
-    urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
-    [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
-        // Verify network error.
-        if (networkError) {
-            NSLog(@"Menu error: %@", networkError.description);
-            
-            // Main thread
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, NSLocalizedString(@"Couldn't download menu", @"Menu Error Description"));
-            }];
-            return;
-        }
-        
-        // Serialize JSON and get return string.
-        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-        // Separete main components if it is a valid menu.
-        NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"$"];
-        if (mainComponents.count <= 1) { // It means there was a server error or that there is no menu.
-            // Main thread
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
-            }];
-            return;
-        }
-        NSMutableArray *weekMenu = [NSMutableArray arrayWithCapacity:mainComponents.count];
-        for (NSString *mainComponent in mainComponents) {
-            [weekMenu addObject:[mainComponent componentsSeparatedByString:@"_"]];
-        }
-        
-        // Main thread
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            handler(@{@"WeekOfYear": @(dateComponents.weekOfYear), @"Menu": weekMenu}, nil);
-        }];
-    }] resume];
-}
-
-+ (void)performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-{
-    // Get saved votes
-    NSMutableArray *savedVotes = [[[NSUserDefaults standardUserDefaults] arrayForKey:RUASavedVotesKey] mutableCopy];
-    
-    // If there is no vote, return No Data.
-    if (!savedVotes.count) {
-        if (completionHandler) {
-            completionHandler(UIBackgroundFetchResultNoData);
-        }
-        return;
-    }
-    
-    // Otherwise, create session and URL request and send votes.
-    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
-    urlRequest.HTTPMethod = @"POST";
-    [self recursiveFetchWithArray:savedVotes session:urlSession request:urlRequest completionHandler:completionHandler];
-}
-
-+ (void)recursiveFetchWithArray:(NSMutableArray *)savedVotes session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-{
-    // If there is votes yet to be sent, modify request's HTTP body and call this method again.
-    if (savedVotes.count) {
-        request.HTTPBody = savedVotes.lastObject;
-        [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (error) {
-                if (completionHandler) {
-                    completionHandler(UIBackgroundFetchResultFailed);;
-                }
-            } else {
-                [savedVotes removeLastObject];
-                NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-                [standardUserDefaults setObject:savedVotes forKey:RUASavedVotesKey];
-                [standardUserDefaults synchronize];
-                [self recursiveFetchWithArray:savedVotes session:session request:request completionHandler:completionHandler];
-            }
-        }] resume];
-    } else {
-        if (completionHandler) {
-            completionHandler(UIBackgroundFetchResultNewData);;
-        }
     }
 }
 

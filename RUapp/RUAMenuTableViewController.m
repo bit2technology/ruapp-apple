@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import "RUAMenuTableViewController.h"
 #import "RUAColor.h"
+#import "RUAMenuTableViewController.h"
 #import "RUAServerConnection.h"
 
 NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
@@ -17,7 +17,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 
 @property (assign, nonatomic) BOOL isDownloading;
 
-// Main model
+// MARK: Main model
 @property (strong, nonatomic) NSArray *mealList;
 @property (strong, nonatomic) NSArray *dishesList;
 @property (strong, nonatomic) NSDictionary *menuListRaw;
@@ -25,7 +25,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 @property (readonly, nonatomic) NSInteger menuListWeekOfYear;
 @property (strong, nonatomic) NSArray *weekdaysList;
 
-// Navigation information
+// MARK: Navigation information
 @property (assign, nonatomic) NSInteger currentPage;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *previousPage;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextPage;

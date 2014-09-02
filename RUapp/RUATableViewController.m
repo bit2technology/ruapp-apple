@@ -6,10 +6,12 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import "RUATableViewController.h"
 #import "RUAColor.h"
+#import "RUATableViewController.h"
 
 @implementation RUATableViewController
+
+// MARK: Methods
 
 - (UIView *)tableViewBackgroundViewWithMessage:(NSString *)message
 {
@@ -23,12 +25,16 @@
     return messageLabel;
 }
 
-- (void)preferredContentSizeChanged:(NSNotification *)notification
+- (UIView *)tableViewHeaderViewPullToRefresh
 {
-    // Reload table view with new font.
-    [self.tableView reloadData];
+    return [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Pull down to refresh", @"Message to show on top of empity views, suggesting how to refresh")];
 }
 
+// MARK: Helper methods
+
+/**
+ * Method called to configure header and footer views of table view.
+ */
 - (void)configureHeaderFooterView:(UITableViewHeaderFooterView *)view
 {
     // Set appearance to text label.
@@ -37,7 +43,16 @@
     view.textLabel.textColor = [RUAColor lightGrayColor];
 }
 
-// MARK: UITableViewController methods
+/**
+ * Method called when dynamic type font size changes.
+ */
+- (void)preferredContentSizeChanged:(NSNotification *)notification
+{
+    // Reload table view with new font.
+    [self.tableView reloadData];
+}
+
+// MARK: UITableViewController
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
 {
@@ -49,7 +64,7 @@
     [self configureHeaderFooterView:view];
 }
 
-// MARK: UIViewController methods
+// MARK: UIViewController
 
 - (void)viewDidLoad
 {
@@ -59,7 +74,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
-// MARK: NSObject methods
+// MARK: NSObject
 
 - (void)dealloc
 {

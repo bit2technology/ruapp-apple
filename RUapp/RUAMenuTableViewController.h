@@ -15,6 +15,8 @@ extern NSString *const RUAMenuUpdated;
 
 @interface RUAMenuTableViewController : RUATableViewController
 
+// MARK: Methods
+
 /**
  * Download or update data source and update table view.
  */

@@ -38,6 +38,8 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 
 @interface RUAResultInfo : NSObject
 
+// MARK: Properties
+
 @property (assign, nonatomic) RUARestaurant restaurant;
 @property (strong, nonatomic) NSDate *date;
 @property (assign, nonatomic) RUAMeal meal;
@@ -50,15 +52,12 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 
 @interface RUAServerConnection : NSObject
 
-/**
- * Send vote for current meal.
- */
-+ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant rating:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler;
+// MARK: Methods
 
 /**
- * Request vote results.
+ * Send saved votes to server.
  */
-+ (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler;
++ (void)performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 
 /**
  * Get week menu for current week.
@@ -66,8 +65,13 @@ typedef NS_ENUM(NSUInteger, RUADish) {
 + (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSString *localizedMessage))handler;
 
 /**
- * Send saved votes to server.
+ * Request vote results.
  */
-+ (void)performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
++ (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler;
+
+/**
+ * Send vote for current meal.
+ */
++ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant rating:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler;
 
 @end

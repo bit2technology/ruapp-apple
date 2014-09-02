@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import "RUATestDateViewController.h"
 #import "RUAAppDelegate.h"
+#import "RUATestDateViewController.h"
 
 @implementation RUATestDateViewController
 
@@ -29,6 +29,13 @@
     self.datePicker.calendar = gregorianCalendar;
     self.datePicker.locale = bundleLocale;
     self.datePicker.timeZone = gregorianCalendar.timeZone;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self datePickerValueChanged:self.datePicker];
 }
 
 @end

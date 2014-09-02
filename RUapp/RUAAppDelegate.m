@@ -25,17 +25,6 @@
 
 // MARK: Methods
 
-/**
- * Returns date componens for weekday, hour and minute for Gregorian calendar and Sao Paulo timezone.
- */
-+ (NSDateComponents *)dateComponentsForDate:(NSDate *)date
-{
-    // Configure date components with gregorian calendar and São Paulo time zone.
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    return [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
-}
-
 + (RUAMeal)lastMealForDate:(NSDate *__autoreleasing *)date
 {
     // Return value according to schedule.
@@ -95,6 +84,19 @@
 + (RUAAppDelegate *)sharedAppDelegate
 {
     return [UIApplication sharedApplication].delegate;
+}
+
+// MARK: Helper methods
+
+/**
+ * Returns date componens for weekday, hour and minute for Gregorian calendar and Sao Paulo timezone.
+ */
++ (NSDateComponents *)dateComponentsForDate:(NSDate *)date
+{
+    // Configure date components with gregorian calendar and São Paulo time zone.
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
+    return [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
 }
 
 /**
