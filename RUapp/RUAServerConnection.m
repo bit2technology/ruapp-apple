@@ -271,6 +271,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     handler(nil, NSLocalizedString(@"Ooops, we couldn't connect", @"Results download error message"));
                 }];
+                [locals removeAllObjects];
                 return;
             }
             
@@ -283,6 +284,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     handler(nil, NSLocalizedString(@"Ooops, something went wrong", @"General error message"));
                 }];
+                [locals removeAllObjects];
                 return;
             }
             
@@ -361,10 +363,12 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
             [self recursiveResultsWithArray:results locals:locals options:options dateFormatter:dateFormatter session:session request:request completionHandler:handler];
         }] resume];
     } else {
-        // Main thread
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            handler(results, nil);
-        }];
+        if (results.count >= 2) {
+            // Main thread
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                handler(results, nil);
+            }];
+        }
     }
 }
 

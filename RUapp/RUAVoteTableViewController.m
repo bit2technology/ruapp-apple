@@ -228,6 +228,11 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (self.presentVoteInterface) {
+        // If it's breakfast, hide last section (reason)
+        if (self.mealForNow == RUAMealBreakfast && section == 2) {
+            return 0;
+        }
+        // Normal behaviour
         switch (section) {
             case 0:
                 return 4;
@@ -243,6 +248,11 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (self.presentVoteInterface) {
+        // If it's breakfast, hide last section (reason)
+        if (self.mealForNow == RUAMealBreakfast && section == 2) {
+            return nil;
+        }
+        // Normal behaviour
         NSString *headersString = self.headersList[(NSUInteger)section];
         switch (section) {
             case 0:
@@ -311,7 +321,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     // Rows don't stay selected, only checked.
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    // Behavior by section.
+    // Behaviour by section.
     switch (indexPath.section) {
         case 0: // Meal avaliation and local.
         case 1: {

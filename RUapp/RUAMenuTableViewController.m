@@ -248,7 +248,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     // Calculate height for each row.
     NSString *mealText = [self mealMenuForCurrentPageForSection:indexPath.section][(NSUInteger)indexPath.row];
     CGSize referenceSize = CGRectInfinite.size;
-    referenceSize.width = 192;
+    referenceSize.width = (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 ? 192 : 193); // Different sizes for iOS version
     CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
     CGFloat height = (actualHeight > 44 ? actualHeight : 44);
     return (CGFloat)floorl(height);

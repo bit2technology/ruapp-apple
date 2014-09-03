@@ -29,6 +29,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 // Other controls
 @property (assign, nonatomic) BOOL isDownloading;
 @property (strong, nonatomic) NSDate *lastAppearance;
+@property (assign, nonatomic) RUAMeal lastMealForNow;
 @property (assign, nonatomic) RUARestaurant restaurant;
 @property (strong, nonatomic) UISegmentedControl *segmentedControl;
 
@@ -117,7 +118,13 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return (self.resultsList.votesTotal ? 4 : 0);
+    // Hide details for breakfast
+    if (self.resultsList.votesTotal) {
+        if (self.lastMealForNow != RUAMealBreakfast || section != 1) {
+            return 4;
+        }
+    }
+    return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -126,7 +133,11 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     if (!self.resultsList.votesTotal) {
         return nil;
     }
-    return [NSString stringWithFormat:self.headersList[(NSUInteger)section], self.mealList[[RUAAppDelegate lastMealForNow]]];
+    // Hide for breakfast
+    if (self.lastMealForNow != RUAMealBreakfast || section != 1) {
+        return [NSString stringWithFormat:self.headersList[(NSUInteger)section], self.mealList[[RUAAppDelegate lastMealForNow]]];
+    }
+    return nil;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
@@ -181,7 +192,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
             cell.dishLabel.hidden = NO;
             cell.dishLabel.numberOfLines = NSIntegerMax;
             NSString *reasons = self.resultsList.reasons[(NSUInteger)indexPath.row][@"dishes"];
-            cell.dishLabel.text = (reasons ?: @"No votes");
+            cell.dishLabel.text = (reasons ?: NSLocalizedString(@"No information", @"Message to show when there is no information about vote reason"));
             cell.infoLabel.hidden = (reasons ? NO : YES);
             cell.progressView.hidden = YES;
         } break;
@@ -223,8 +234,9 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     [super viewWillAppear:animated];
     
     NSDate *now = [RUAAppDelegate sharedAppDelegate].date, *lastAppearance = self.lastAppearance.copy;
+    self.lastMealForNow = [RUAAppDelegate lastMealForDate:&now];
     // If there is no last appearance or more than 19 hours or last meal for now is different from last meal for last appearance, remove results list.
-    if (!lastAppearance || [now timeIntervalSinceDate:lastAppearance] >= 68400 || [RUAAppDelegate lastMealForDate:&now] != [RUAAppDelegate lastMealForDate:&lastAppearance]) {
+    if (!lastAppearance || [now timeIntervalSinceDate:lastAppearance] >= 68400 || self.lastMealForNow != [RUAAppDelegate lastMealForDate:&lastAppearance]) {
         self.resultsListRaw = nil;
         [self.tableView reloadData];
     }

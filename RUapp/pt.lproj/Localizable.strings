@@ -13,6 +13,9 @@
 /* Menu availability error message */
 "Menu not available for this week" = "Cardápio não disponível para esta semana";
 
+/* Message to show when there is no information about vote reason */
+"No information" = "Sem informação";
+
 /* Background message for when there was no vote for last meal */
 "No votes yet" = "Nenhum voto ainda";
 
@@ -38,10 +41,11 @@
 "Submit" = "Enviar";
 
 /* Vote computed message */
-"Thank you! Vote computed" = "Obrigado! Voto computado";
+"Thank you! Vote computed" = "Obrigado!\nVoto computado";
 
 /* Submit vote alert view message */
 "The vote can't be changed after you send it" = "O voto não pode ser alterado depois de enviado";
 
 /* Overview section footer */
 "Total of votes: %lu" = "Total de votos: %lu";
+
