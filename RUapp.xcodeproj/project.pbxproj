@@ -18,6 +18,9 @@
 		4B7BFCC019AD6A0000388F0C /* RUATestDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BFCBF19AD6A0000388F0C /* RUATestDateViewController.m */; };
 		4BA6A823199D106200E7344D /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BA6A820199D106200E7344D /* iRate.bundle */; };
 		4BA6A824199D106200E7344D /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA6A822199D106200E7344D /* iRate.m */; };
+		4BC2178B19B75ADE00E1385A /* RUapp-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2178D19B75ADE00E1385A /* RUapp-InfoPlist.strings */; };
+		4BC2179019B75ADE00E1385A /* RUappTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2179219B75ADE00E1385A /* RUappTests-InfoPlist.strings */; };
+		4BC2179519B75ADF00E1385A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2179719B75ADF00E1385A /* Localizable.strings */; };
 		4BD37508192B6AD00016BD35 /* RUAColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD37507192B6AD00016BD35 /* RUAColor.m */; };
 		4BDE8212199B946000441EAA /* DishesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BDE8214199B946000441EAA /* DishesList.plist */; };
 		4BDED2E1192A152F009716DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E0192A152F009716DF /* Foundation.framework */; };
@@ -68,6 +71,9 @@
 		4BA6A820199D106200E7344D /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		4BA6A821199D106200E7344D /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
 		4BA6A822199D106200E7344D /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
+		4BC2178C19B75ADE00E1385A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = "pt.lproj/RUapp-InfoPlist.strings"; sourceTree = "<group>"; };
+		4BC2179119B75ADE00E1385A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = "pt.lproj/RUappTests-InfoPlist.strings"; sourceTree = "<group>"; };
+		4BC2179619B75ADF00E1385A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4BC4FD0519B0AEC100A48A04 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		4BD37506192B6AD00016BD35 /* RUAColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAColor.h; sourceTree = "<group>"; };
 		4BD37507192B6AD00016BD35 /* RUAColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAColor.m; sourceTree = "<group>"; };
@@ -197,6 +203,8 @@
 		4BDED2E7192A152F009716DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BC2179719B75ADF00E1385A /* Localizable.strings */,
+				4BC2178D19B75ADE00E1385A /* RUapp-InfoPlist.strings */,
 				4BDED2E8192A152F009716DF /* RUapp-Info.plist */,
 				4BDED2EC192A152F009716DF /* main.m */,
 				4BDED2EE192A152F009716DF /* RUapp-Prefix.pch */,
@@ -218,6 +226,7 @@
 		4BDED309192A152F009716DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BC2179219B75ADE00E1385A /* RUappTests-InfoPlist.strings */,
 				4BDED30A192A152F009716DF /* RUappTests-Info.plist */,
 			);
 			name = "Supporting Files";
@@ -330,7 +339,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BC2178B19B75ADE00E1385A /* RUapp-InfoPlist.strings in Resources */,
 				4B586E6019ACD24800589F75 /* RestaurantsList.plist in Resources */,
+				4BC2179519B75ADF00E1385A /* Localizable.strings in Resources */,
 				4B586E5C19ACD21900589F75 /* MealList.plist in Resources */,
 				4BDE8212199B946000441EAA /* DishesList.plist in Resources */,
 				4BDED2FC192A152F009716DF /* Images.xcassets in Resources */,
@@ -346,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BC2179019B75ADE00E1385A /* RUappTests-InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +459,30 @@
 				4B586E6319ACD24D00589F75 /* pt */,
 			);
 			name = RestaurantsList.plist;
+			sourceTree = "<group>";
+		};
+		4BC2178D19B75ADE00E1385A /* RUapp-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BC2178C19B75ADE00E1385A /* pt */,
+			);
+			name = "RUapp-InfoPlist.strings";
+			sourceTree = "<group>";
+		};
+		4BC2179219B75ADE00E1385A /* RUappTests-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BC2179119B75ADE00E1385A /* pt */,
+			);
+			name = "RUappTests-InfoPlist.strings";
+			sourceTree = "<group>";
+		};
+		4BC2179719B75ADF00E1385A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BC2179619B75ADF00E1385A /* pt */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		4BDE8214199B946000441EAA /* DishesList.plist */ = {

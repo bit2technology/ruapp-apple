@@ -15,7 +15,7 @@
 
 - (UIView *)tableViewBackgroundViewWithMessage:(NSString *)message
 {
-    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGFLOAT_MAX, 44)];
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     messageLabel.backgroundColor = [RUAColor darkBlueColor];
     messageLabel.numberOfLines = NSIntegerMax;
     messageLabel.opaque = YES;

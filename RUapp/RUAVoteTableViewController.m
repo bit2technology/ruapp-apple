@@ -50,14 +50,14 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     if (self.mealForNow == RUAMealNone) {
         self.presentVoteInterface = NO;
         [self.checkedIndexPaths removeAllObjects];
-        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Sorry, there is\nno vote open now", @"Message displayed when vote is not disponible")];
+        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Sorry, there is no vote open now", @"Vote availability error message")];
         self.navigationItem.rightBarButtonItem.enabled = NO;
     } else
     // If there is a vote, and it has less than 5 hours and the meal is the same, then show "already voted" interface.
     if (self.lastVoteDate && [now timeIntervalSinceDate:self.lastVoteDate] <= 18000 && [RUAAppDelegate mealForDate:self.lastVoteDate] == self.mealForNow) {
         self.presentVoteInterface = NO;
         [self.checkedIndexPaths removeAllObjects];
-        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Thank you!\nVote computed", @"Message displayed when the user already voted (on or offline)")];
+        self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:NSLocalizedString(@"Thank you! Vote computed", @"Vote computed message")]; // Online or offline
         self.navigationItem.rightBarButtonItem.enabled = NO;
     } else {
         // Vote allowed. Check schedule.
@@ -369,8 +369,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     
     // Data control
     self.checkedIndexPaths = [NSMutableArray array];
-#warning Fix cached last vote.
-    //self.lastVoteDate = [[NSUserDefaults standardUserDefaults] valueForKey:RUALastVoteDateKey];
+    self.lastVoteDate = [[NSUserDefaults standardUserDefaults] valueForKey:RUALastVoteDateKey];
     
     // Strings lists
     self.avaliationList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AvaliationList" ofType:@"plist"]];

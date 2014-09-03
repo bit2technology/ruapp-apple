@@ -82,11 +82,11 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
         // Verify network error.
         if (networkError) {
-            NSLog(@"Menu error: %@", networkError.description);
+            NSLog(@"Menu error: %@", networkError);
             
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, NSLocalizedString(@"Couldn't download menu", @"Menu Error Description"));
+                handler(nil, NSLocalizedString(@"Couldn't download menu", @"Menu download error message"));
             }];
             return;
         }
@@ -98,7 +98,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
         if (mainComponents.count <= 1) { // It means there was a server error or that there is no menu.
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, NSLocalizedString(@"Menu not available for this week", @"Menu Error Description"));
+                handler(nil, NSLocalizedString(@"Menu not available for this week", @"Menu availability error message"));
             }];
             return;
         }
@@ -141,7 +141,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
     NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
     RUAMeal mealForNow = [RUAAppDelegate mealForDate:now];
     if (mealForNow == RUAMealNone) {
-        handler(nil, NSLocalizedString(@"Sorry, there is no vote open now.", @"Vote not Disponible Message"));
+        handler(nil, NSLocalizedString(@"Sorry, there is no vote open now", @"Vote availability error message"));
     }
     
     // Components of vote server request.
@@ -175,8 +175,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
     }
     
     // Device ID
-#warning Fix Device ID.
-    [stringComponents addObject:@(arc4random()).description];//[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+    [stringComponents addObject:[[[UIDevice currentDevice] identifierForVendor] UUIDString]]; //@(arc4random()).description;
     
     // Request
     NSString *requestString = [stringComponents componentsJoinedByString:@"_"];
@@ -187,7 +186,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
         // Verify network error.
         if (networkError) {
-            NSLog(@"Vote error: %@", networkError.description);
+            NSLog(@"Vote error: %@", networkError);
             
             // Save vote for send later
             NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
@@ -201,7 +200,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
             
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(now, NSLocalizedString(@"Ooops, we couldn't connect. Your vote will be sent as soon as possible.", @"Vote Offline Computed Message"));
+                handler(now, NSLocalizedString(@"Ooops, we couldn't connect. Your vote will be sent as soon as possible.", @"Vote offline computed message"));
             }];
             return;
         }
@@ -213,14 +212,14 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
         if (mainComponents.count < 5) { // Already voted or something went wrong.
             // Main thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, NSLocalizedString(@"Ooops, something went wrong. Try again.", @"Vote Error Message"));
+                handler(nil, NSLocalizedString(@"Ooops, something went wrong", @"General error message"));
             }];
             return;
         }
         
         // Main thread
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            handler(now, NSLocalizedString(@"Thank you! Vote computed.", @"Vote Computed Message"));
+            handler(now, NSLocalizedString(@"Thank you! Vote computed", @"Vote computed message"));
         }];
     }] resume];
 }
@@ -266,11 +265,11 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
         [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
             // Verify network error.
             if (networkError) {
-                NSLog(@"Results error: %@", networkError.description);
+                NSLog(@"Results error: %@", networkError);
                 
                 // Main thread
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    handler(nil, NSLocalizedString(@"Ooops, we couldn't connect. Try again.", @"Results Error Message"));
+                    handler(nil, NSLocalizedString(@"Ooops, we couldn't connect", @"Results download error message"));
                 }];
                 return;
             }
@@ -282,7 +281,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
             if (mainComponents.count < 5) {
                 // Main thread
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    handler(nil, NSLocalizedString(@"Ooops, something went wrong. Try again.", @"Results Error Message"));
+                    handler(nil, NSLocalizedString(@"Ooops, something went wrong", @"General error message"));
                 }];
                 return;
             }

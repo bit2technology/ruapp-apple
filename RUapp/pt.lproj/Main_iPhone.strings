@@ -1,12 +1,11 @@
-
 /* Class = "IBUITabBarItem"; title = "Test Date"; ObjectID = "1ey-tK-DfJ"; */
 "1ey-tK-DfJ.title" = "Test Date";
 
 /* Class = "IBUINavigationItem"; title = "Menu"; ObjectID = "808-WJ-te3"; */
-"808-WJ-te3.title" = "Menu";
+"808-WJ-te3.title" = "Cardápio";
 
 /* Class = "IBUIBarButtonItem"; title = "Submit"; ObjectID = "DfX-Cm-1qT"; */
-"DfX-Cm-1qT.title" = "Submit";
+"DfX-Cm-1qT.title" = "Enviar";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "GA8-fs-onL"; */
 "GA8-fs-onL.text" = "Title";
@@ -18,7 +17,7 @@
 "Nrw-zv-TIL.text" = "88.8%";
 
 /* Class = "IBUITabBarItem"; title = "Menu"; ObjectID = "UiE-VC-YYT"; */
-"UiE-VC-YYT.title" = "Menu";
+"UiE-VC-YYT.title" = "Cardápio";
 
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "Uxk-lx-vqe"; */
 "Uxk-lx-vqe.text" = "Label";
@@ -30,19 +29,19 @@
 "cVU-vz-kSQ.title" = "Test Date";
 
 /* Class = "IBUINavigationItem"; title = "Vote"; ObjectID = "eIq-9U-0e0"; */
-"eIq-9U-0e0.title" = "Vote";
+"eIq-9U-0e0.title" = "Votar";
 
 /* Class = "IBUITabBarItem"; title = "Vote"; ObjectID = "hmU-CA-Wwf"; */
-"hmU-CA-Wwf.title" = "Vote";
+"hmU-CA-Wwf.title" = "Votar";
 
 /* Class = "IBUILabel"; text = "Food"; ObjectID = "oeM-8Z-fLl"; */
 "oeM-8Z-fLl.text" = "Food";
 
 /* Class = "IBUINavigationItem"; title = "Results"; ObjectID = "psC-p3-u5c"; */
-"psC-p3-u5c.title" = "Results";
+"psC-p3-u5c.title" = "Resultados";
 
 /* Class = "IBUILabel"; text = "88.8%"; ObjectID = "uze-gU-M5b"; */
 "uze-gU-M5b.text" = "88.8%";
 
 /* Class = "IBUITabBarItem"; title = "Results"; ObjectID = "vLN-dp-xe6"; */
-"vLN-dp-xe6.title" = "Results";
+"vLN-dp-xe6.title" = "Resultados";

@@ -27,14 +27,16 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 
 // MARK: Navigation information
 @property (assign, nonatomic) NSInteger currentPage;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *previousPage;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextPage;
-@property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRight;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *previousPage;
 @property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeLeft;
+@property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRight;
 
 @end
 
 @implementation RUAMenuTableViewController
+
+// MARK: Properties
 
 /**
  * Helper for menu list.
@@ -51,6 +53,90 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 {
     return [self.menuListRaw[@"WeekOfYear"] integerValue];
 }
+
+// MARK: Methods
+
+- (void)downloadDataSourceAndUpdateTable
+{
+    self.isDownloading = YES;
+    [RUAServerConnection requestMenuForWeekWithCompletionHandler:^(NSDictionary *weekMenu, NSString *localizedMessage) {
+        // If successful (weekMenu != nil), show menu. Otherwise, show error message.
+        if (weekMenu) {
+            // Perform changes only if new week menu is different from previous.
+            if (![weekMenu isEqualToDictionary:self.menuListRaw]) {
+                // If there is no data source (is first download, not an update), adjust current page.
+                if (!self.menuList) {
+                    [self adjustCurrentPage];
+                    self.tableView.backgroundView = nil;
+                    self.tableView.tableHeaderView = nil;
+                }
+                
+                // Cache week menu.
+                [[NSUserDefaults standardUserDefaults] setValue:weekMenu forKey:RUAMenuDataSourceCacheKey];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                // Perform updates.
+                [self.tableView beginUpdates];
+                self.menuListRaw = weekMenu;
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView endUpdates];
+                
+                // Send notification
+                [[NSNotificationCenter defaultCenter] postNotificationName:RUAMenuUpdated object:[self menuForCurrentMeal]];
+            }
+        } else {
+            // If there is no data source (is first download, not an update), show an appropriate message and button to go to website. Otherwise, do nothing.
+            if (!self.menuList) {
+                UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 88)];
+                [tableHeaderView addSubview:self.tableViewHeaderViewPullToRefresh];
+                
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+                NSString *buttonTitle = @"Open in Safari";
+                CGRect buttonFrame = [buttonTitle boundingRectWithSize:tableHeaderView.bounds.size options:kNilOptions attributes:@{NSFontAttributeName: button.titleLabel.font} context:nil];
+                buttonFrame.size.width += 16;
+                button.frame = CGRectMake((tableHeaderView.bounds.size.width - buttonFrame.size.width) / 2, 44, buttonFrame.size.width, 44);
+                button.layer.borderColor = [RUAColor lightBlueColor].CGColor;
+                button.layer.borderWidth = 1;
+                button.layer.cornerRadius = 4;
+                [button setBackgroundImage:[self imageWithColor:[RUAColor darkBlueColor]] forState:UIControlStateNormal];
+                [button setBackgroundImage:[self imageWithColor:[RUAColor lightBlueColor]] forState:UIControlStateHighlighted];
+                [button setTitle:buttonTitle forState:UIControlStateNormal];
+                [button addTarget:self action:@selector(openInSafari) forControlEvents:UIControlEventTouchUpInside];
+                [tableHeaderView addSubview:button];
+                
+                self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:localizedMessage];
+                self.tableView.tableHeaderView = tableHeaderView;
+            }
+        }
+        self.isDownloading = NO;
+        [self.refreshControl endRefreshing];
+        self.tableView.userInteractionEnabled = YES;
+    }];
+}
+
+- (NSArray *)menuForCurrentMeal
+{
+    // Return only if lunch or dinner
+    RUAMeal meal = [RUAAppDelegate mealForNow];
+    if (meal != RUAMealLunch && meal != RUAMealDinner) {
+        return nil;
+    }
+    NSDateComponents *dateComponents = [self adjustedDateComponents];
+    return self.menuList[(NSUInteger)(dateComponents.weekday - 2) * 2 + meal];
+}
+
+- (void)setCurrentPage:(NSInteger)currentPage
+{
+    // Disable or enable buttons by current page and change title.
+    self.previousPage.enabled = (currentPage > 0);
+    self.swipeRight.enabled = (currentPage > 0);
+    self.nextPage.enabled = (currentPage < 6);
+    self.swipeLeft.enabled = (currentPage < 6);
+    self.navigationItem.title = [self.weekdaysList[(NSUInteger)currentPage] capitalizedString];
+    _currentPage = currentPage;
+}
+
+// MARK: Helper methods
 
 /**
  * Adjusts current page for week day;
@@ -79,25 +165,6 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 }
 
 /**
- * Returns the appropriate array for section and current page.
- */
-- (NSArray *)mealMenuForCurrentPageForSection:(NSInteger)section
-{
-    return self.menuList[(NSUInteger)(self.currentPage * 2 + section)];
-}
-
-- (NSArray *)menuForCurrentMeal
-{
-    RUAMeal meal = [RUAAppDelegate mealForNow];
-    if (meal != RUAMealLunch && meal != RUAMealDinner) {
-        return nil;
-    }
-    
-    NSDateComponents *dateComponents = [self adjustedDateComponents];
-    return self.menuList[(NSUInteger)(dateComponents.weekday - 2) * 2 + meal];
-}
-
-/**
  * Called when the user taps one of the buttons of navigation bar.
  */
 - (IBAction)changePage:(id)sender
@@ -115,43 +182,34 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:rowAnimation];
 }
 
-- (void)downloadDataSourceAndUpdateTable
+/**
+ * Returns an image from a color.
+ */
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+/**
+ * Returns the appropriate array for section and current page.
+ */
+- (NSArray *)mealMenuForCurrentPageForSection:(NSInteger)section
 {
-    self.isDownloading = YES;
-    [RUAServerConnection requestMenuForWeekWithCompletionHandler:^(NSDictionary *weekMenu, NSString *localizedMessage) {
-        // If successful (weekMenu != nil), show menu. Otherwise, show error message.
-        if (weekMenu) {
-            // Perform changes only if new week menu is different from previous.
-            if (![weekMenu isEqualToDictionary:self.menuListRaw]) {
-                // If there is no data source (is first download, not an update), adjust current page.
-                if (!self.menuList) {
-                    [self adjustCurrentPage];
-                    self.tableView.backgroundView = nil;
-                    self.tableView.userInteractionEnabled = YES;
-                }
-                
-                // Cache week menu.
-//                [[NSUserDefaults standardUserDefaults] setValue:weekMenu forKey:RUAMenuDataSourceCacheKey];
-//                [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                // Perform updates.
-                [self.tableView beginUpdates];
-                self.menuListRaw = weekMenu;
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
-                [self.tableView endUpdates];
-                
-                // Send notification
-                [[NSNotificationCenter defaultCenter] postNotificationName:RUAMenuUpdated object:[self menuForCurrentMeal]];
-            }
-        } else {
-            // If there is no data source (is first download, not an update), show an appropriate message. Otherwise, do nothing.
-            if (!self.menuList) {
-                self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:localizedMessage];
-            }
-        }
-        self.isDownloading = NO;
-        [self.refreshControl endRefreshing];
-    }];
+    return self.menuList[(NSUInteger)(self.currentPage * 2 + section)];
+}
+
+- (void)openInSafari
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.ufjf.br/ru/cardapio/"]];
 }
 
 /**
@@ -168,18 +226,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     [self downloadDataSourceAndUpdateTable];
 }
 
-- (void)setCurrentPage:(NSInteger)currentPage
-{
-    // Disable or enable buttons by current page and change title.
-    self.previousPage.enabled = (currentPage > 0);
-    self.swipeRight.enabled = (currentPage > 0);
-    self.nextPage.enabled = (currentPage < 6);
-    self.swipeLeft.enabled = (currentPage < 6);
-    self.navigationItem.title = [self.weekdaysList[(NSUInteger)currentPage] capitalizedString];
-    _currentPage = currentPage;
-}
-
-// MARK: UITableViewController methods
+// MARK: UITableViewController
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -190,13 +237,10 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // If there is no data source, return 0. Otherwise, return the smaller count between dishes and menu (to prevent any change in the server) or 1 if restaurant closed.
-    NSUInteger menuCount = [self mealMenuForCurrentPageForSection:section].count;
-    return (NSInteger)(self.menuList ? (menuCount > self.dishesList.count ? self.dishesList.count : menuCount) : 0);
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return (self.menuList ? self.mealList[(NSUInteger)section] : nil);
+    if (self.menuList) {
+        return (NSInteger)MIN([self mealMenuForCurrentPageForSection:section].count, self.dishesList.count);
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -210,9 +254,18 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     return (CGFloat)floorl(height);
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    // If there is a menu list, return meal name.
+    if (self.menuList) {
+        return self.mealList[(NSUInteger)section];
+    }
+    return nil;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Dayly menu.
+    // Dayly menu
     NSArray *mealMenu = [self mealMenuForCurrentPageForSection:indexPath.section];
     
     // If menu has only one item, it means the restaurant is closed.
@@ -227,13 +280,13 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Menu Info Cell" forIndexPath:indexPath];
         cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-        cell.textLabel.text = NSLocalizedString(@"Restaurant closed", @"Menu Table View Controller Restaurant Info");
+        cell.textLabel.text = [mealMenu[(NSUInteger)indexPath.row] capitalizedString];
     }
     
     return cell;
 }
 
-// MARK: UIViewController methods
+// MARK: UIViewController
 
 - (void)viewDidLoad
 {
@@ -241,7 +294,8 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     
     // Adjusting interface.
     self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"TabBarIconMenuSelected"];
-    self.refreshControl.tintColor = [UIColor whiteColor];
+    self.refreshControl.layer.zPosition = CGFLOAT_MAX;
+    self.refreshControl.tintColor = [RUAColor whiteColor];
     
     [RUAAppDelegate sharedAppDelegate].menuTableViewController = self;
     self.mealList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MealList" ofType:@"plist"]];
@@ -279,7 +333,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
         self.tableView.userInteractionEnabled = NO;
         self.navigationItem.leftBarButtonItem.enabled = NO;
         self.navigationItem.rightBarButtonItem.enabled = NO;
-        self.navigationItem.title = NSLocalizedString(@"Menu", @"Menu Title");
+        self.navigationItem.title = NSLocalizedString(@"Menu", @"Menu table view controller default title");
     }
 }
 

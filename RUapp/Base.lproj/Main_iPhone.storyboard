@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1yA-iI-tnD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1yA-iI-tnD">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -15,7 +16,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="rcu-gZ-18V" kind="relationship" relationship="viewControllers" id="VUW-5r-Ljz"/>
+                        <segue destination="rcu-gZ-18V" kind="relationship" relationship="viewControllers" id="wfd-3J-xS0"/>
                         <segue destination="eet-sk-nS0" kind="relationship" relationship="viewControllers" id="ggj-56-nw9"/>
                         <segue destination="M7R-SM-LSi" kind="relationship" relationship="viewControllers" id="9ba-V3-Gd0"/>
                         <segue destination="oR3-5c-x6r" kind="relationship" relationship="viewControllers" id="vcM-vR-84B"/>
@@ -37,26 +38,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="sSG-Bi-Qta">
-                                <rect key="frame" x="20" y="163" width="280" height="2"/>
-                                <color key="progressTintColor" red="0.40000000596046448" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="trackTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="o8D-VL-WAC">
-                                <rect key="frame" x="20" y="173" width="280" height="2"/>
-                                <color key="progressTintColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="trackTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="4g6-8v-QYc">
-                                <rect key="frame" x="20" y="183" width="280" height="2"/>
-                                <color key="progressTintColor" red="1" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="trackTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="XAV-ku-OHO">
-                                <rect key="frame" x="20" y="193" width="280" height="2"/>
-                                <color key="progressTintColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="trackTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </progressView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3h-DX-9bG">
                                 <rect key="frame" x="0.0" y="203" width="320" height="162"/>
                                 <subviews>
@@ -78,20 +59,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.10588235408067703" green="0.10588235408067703" blue="0.19215686619281769" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="XAV-ku-OHO" firstAttribute="top" secondItem="4g6-8v-QYc" secondAttribute="bottom" constant="8" id="Bj2-4e-eCA"/>
-                            <constraint firstItem="4g6-8v-QYc" firstAttribute="top" secondItem="o8D-VL-WAC" secondAttribute="bottom" constant="8" id="CGc-o5-F12"/>
-                            <constraint firstAttribute="trailing" secondItem="XAV-ku-OHO" secondAttribute="trailing" constant="20" id="D3m-Pv-AL3"/>
-                            <constraint firstAttribute="trailing" secondItem="sSG-Bi-Qta" secondAttribute="trailing" constant="20" id="DBl-ZN-2OQ"/>
-                            <constraint firstAttribute="trailing" secondItem="o8D-VL-WAC" secondAttribute="trailing" constant="20" id="Os8-Bi-ZGp"/>
-                            <constraint firstItem="4g6-8v-QYc" firstAttribute="leading" secondItem="P65-oC-Uhm" secondAttribute="leading" constant="20" id="SOM-0Y-FIB"/>
-                            <constraint firstItem="o8D-VL-WAC" firstAttribute="leading" secondItem="P65-oC-Uhm" secondAttribute="leading" constant="20" id="V3S-l6-APR"/>
                             <constraint firstAttribute="centerY" secondItem="K3h-DX-9bG" secondAttribute="centerY" id="Z4P-ny-2t0"/>
-                            <constraint firstItem="XAV-ku-OHO" firstAttribute="leading" secondItem="P65-oC-Uhm" secondAttribute="leading" constant="20" id="ZHg-yD-24h"/>
-                            <constraint firstItem="K3h-DX-9bG" firstAttribute="top" secondItem="XAV-ku-OHO" secondAttribute="bottom" constant="8" id="Zbi-6D-85Y"/>
-                            <constraint firstAttribute="trailing" secondItem="4g6-8v-QYc" secondAttribute="trailing" constant="20" id="dXV-hM-bF2"/>
-                            <constraint firstItem="o8D-VL-WAC" firstAttribute="top" secondItem="sSG-Bi-Qta" secondAttribute="bottom" constant="8" id="eJp-1q-ITQ"/>
                             <constraint firstAttribute="centerX" secondItem="K3h-DX-9bG" secondAttribute="centerX" id="vJq-YF-TpL"/>
-                            <constraint firstItem="sSG-Bi-Qta" firstAttribute="leading" secondItem="P65-oC-Uhm" secondAttribute="leading" constant="20" id="zl6-8q-OVp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Test Date" id="cVU-vz-kSQ"/>
