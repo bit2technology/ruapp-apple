@@ -116,13 +116,17 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 
 - (NSArray *)menuForCurrentMeal
 {
+    return [self menuForMeal:[RUAAppDelegate mealForNow]];
+}
+
+- (NSArray *)menuForMeal:(RUAMeal)meal
+{
     // Return only if lunch or dinner
-    RUAMeal meal = [RUAAppDelegate mealForNow];
     if (meal != RUAMealLunch && meal != RUAMealDinner) {
         return nil;
     }
     NSDateComponents *dateComponents = [self adjustedDateComponents];
-    return self.menuList[(NSUInteger)(dateComponents.weekday - 2) * 2 + meal];
+    return self.menuList[(NSUInteger)(dateComponents.weekday - 2) * 2 + meal - 1];
 }
 
 - (void)setCurrentPage:(NSInteger)currentPage
@@ -258,7 +262,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 {
     // If there is a menu list, return meal name.
     if (self.menuList) {
-        return self.mealList[(NSUInteger)section];
+        return self.mealList[(NSUInteger)section + 1];
     }
     return nil;
 }

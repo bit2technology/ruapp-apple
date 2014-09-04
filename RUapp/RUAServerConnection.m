@@ -10,7 +10,6 @@
 #import "RUAServerConnection.h"
 
 NSString *const RUASavedVotesKey = @"SavedVotes";
-NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
 
 @implementation RUAResultInfo
 
@@ -56,7 +55,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
     
     // Otherwise, create session and URL request and send votes.
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[RUAAppDelegate serverVoteURL]];
     urlRequest.HTTPMethod = @"POST";
     [self recursiveFetchWithArray:savedVotes session:urlSession request:urlRequest completionHandler:completionHandler];
 }
@@ -76,7 +75,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
     
     // Request with shared session configuration.
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[RUAAppDelegate serverURL]];
     urlRequest.HTTPMethod = @"POST";
     urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
@@ -127,7 +126,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
     
     // Request
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[RUAAppDelegate serverURL]];
     urlRequest.HTTPMethod = @"POST";
     
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:2];
@@ -180,7 +179,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
     // Request
     NSString *requestString = [stringComponents componentsJoinedByString:@"_"];
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:RUAServerURLString]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[RUAAppDelegate serverVoteURL]];
     urlRequest.HTTPMethod = @"POST";
     urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
@@ -278,7 +277,7 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
             // Serialize JSON and get return string.
             NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             // Separete main components and verify if it is a valid response.
-            NSMutableArray *mainComponents = [[serializationResult.lastObject componentsSeparatedByString:@"#"] mutableCopy];
+            NSMutableArray *mainComponents = [[serializationResult.lastObject componentsSeparatedByString:@"#"] mutableCopy]; NSLog(@"mainComponents: %@", mainComponents);
             if (mainComponents.count < 5) {
                 // Main thread
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -331,6 +330,8 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
             }
             result.votesProgress = votesProgress;
             // Reason
+            NSArray *dishesList = [[RUAAppDelegate sharedAppDelegate].menuTableViewController menuForMeal:result.meal];
+            [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
             NSMutableArray *reasons = [NSMutableArray arrayWithCapacity:4];
             for (NSString *string in mainComponents) {
                 NSArray *reasonComponents = [string componentsSeparatedByString:@"$"];
@@ -344,7 +345,6 @@ NSString *const RUAServerURLString = @"http://titugoru2.appspot.com/getvalue";
                 }
                 if (reasonTotal) {
                     NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
-                    NSArray *dishesList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
                     [reasonComponents enumerateObjectsUsingBlock:^(NSString *countString, NSUInteger idx, BOOL *stop) {
                         if ([countString floatValue] == reasonBiggest) {
                             [reason addObject:dishesList[idx]];

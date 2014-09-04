@@ -9,9 +9,9 @@
 #import "RUAMenuTableViewController.h"
 
 typedef NS_ENUM(NSUInteger, RUAMeal) {
+    RUAMealBreakfast,
     RUAMealLunch,
     RUAMealDinner,
-    RUAMealBreakfast,
     RUAMealNone
 };
 
@@ -32,6 +32,23 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  * Reference to menu view controller, to get menu information.
  */
 @property (weak, nonatomic) RUAMenuTableViewController *menuTableViewController;
+
+
+
+
+
+
+
+
+@property (assign, nonatomic) BOOL usesTestServer;
+
+
+
+
+
+
+
+
 
 // MARK: Methods
 
@@ -59,5 +76,27 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  * Returns app delegate instance.
  */
 + (RUAAppDelegate *)sharedAppDelegate;
+
+
+
+
+
+
+
+
+
+
++ (NSURL *)serverURL;
++ (NSURL *)serverVoteURL;
+
+
+
+
+
+
+
+
+
+
 
 @end

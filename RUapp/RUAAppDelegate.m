@@ -11,6 +11,9 @@
 #import "iRate.h"
 #import "RUAServerConnection.h"
 
+NSString *const RUAServerTestURLString = @"http://titugoru2.appspot.com/getvalue";
+NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
+
 @implementation RUAAppDelegate
 
 // MARK: Properties
@@ -85,6 +88,41 @@
 {
     return [UIApplication sharedApplication].delegate;
 }
+
+
+
+
+
+
+
+
++ (NSURL *)serverURL
+{
+    if ([self sharedAppDelegate].usesTestServer) {
+        return [NSURL URLWithString:RUAServerTestURLString];
+    }
+    return [NSURL URLWithString:RUAServerURLString];
+}
++ (NSURL *)serverVoteURL
+{
+    if ([self sharedAppDelegate].usesTestServer) {
+        return [NSURL URLWithString:RUAServerTestURLString];
+    }
+    return [NSURL URLWithString:RUAServerTestURLString];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // MARK: Helper methods
 

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
+#import "RUAAppDelegate.h"
 #import "RUATableViewController.h"
 
 extern NSString *const RUAMenuDataSourceCacheKey;
@@ -26,5 +27,10 @@ extern NSString *const RUAMenuUpdated;
  * Returns the menu list for current meal.
  */
 - (NSArray *)menuForCurrentMeal;
+
+/**
+ * Returns the menu list for any meal.
+ */
+- (NSArray *)menuForMeal:(RUAMeal)meal;
 
 @end
