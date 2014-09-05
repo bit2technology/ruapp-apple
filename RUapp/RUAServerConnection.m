@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import "RUAAppDelegate.h"
 #import "RUAServerConnection.h"
 
 NSString *const RUASavedVotesKey = @"SavedVotes";
@@ -132,7 +131,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:2];
     NSMutableArray *restaurants = [NSMutableArray arrayWithObjects:@"UFJF1", @"UFJF2", nil];
     
-    [self recursiveResultsWithArray:results locals:restaurants options:options dateFormatter:dateFormatter session:urlSession request:urlRequest completionHandler:handler];
+    [self recursiveResultsWithArray:results locals:restaurants options:options date:now meal:lastMeal session:urlSession request:urlRequest completionHandler:handler];
 }
 
 + (void)sendVoteWithRestaurant:(RUARestaurant)restaurant rating:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler
@@ -256,7 +255,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 /**
  * Helper recursive method to download results for all restaurants.
  */
-+ (void)recursiveResultsWithArray:(NSMutableArray *)results locals:(NSMutableArray *)locals options:(NSString *)options dateFormatter:(NSDateFormatter *)dateFormatter session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler
++ (void)recursiveResultsWithArray:(NSMutableArray *)results locals:(NSMutableArray *)locals options:(NSString *)options date:(NSDate *)date meal:(RUAMeal)meal session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler
 {
     if (locals.count) {
         NSString *requestString = [NSString stringWithFormat:@"tag=8$%@_%@_1_00_id", locals.firstObject, options];
@@ -277,7 +276,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             // Serialize JSON and get return string.
             NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             // Separete main components and verify if it is a valid response.
-            NSMutableArray *mainComponents = [[serializationResult.lastObject componentsSeparatedByString:@"#"] mutableCopy]; NSLog(@"mainComponents: %@", mainComponents);
+            NSMutableArray *mainComponents = [[serializationResult.lastObject componentsSeparatedByString:@"#"] mutableCopy];
             if (mainComponents.count < 5) {
                 // Main thread
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -305,10 +304,9 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
                 result.restaurant = RUARestaurantNone;
             }
             // Date
-            NSString *dateString = overviewInformation[1];
-            result.date = [dateFormatter dateFromString:dateString];
+            result.date = date;
             // Meal
-            result.meal = (RUAMeal)([overviewInformation[2] integerValue] - 1);
+            result.meal = meal;
             // Votes
             CGFloat votesTotal = 0, votesBiggest = 0;
             for (NSUInteger i = 1; i < 5; i++) {
@@ -321,17 +319,19 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             result.votesTotal = (NSUInteger)votesTotal;
             NSMutableArray *votesText = [NSMutableArray arrayWithCapacity:4];
             for (NSUInteger i = 1; i < 5; i++) {
-                [votesText addObject:[NSNumber numberWithDouble:([overviewComponents[i] floatValue] / votesTotal)]];
+                [votesText addObject:@([overviewComponents[i] floatValue] / votesTotal)];
             }
             result.votesText = votesText;
             NSMutableArray *votesProgress = [NSMutableArray arrayWithCapacity:4];
             for (NSUInteger i = 1; i < 5; i++) {
-                [votesProgress addObject:[NSNumber numberWithDouble:([overviewComponents[i] floatValue] / votesBiggest)]];
+                [votesProgress addObject:@([overviewComponents[i] floatValue] / votesBiggest)];
             }
             result.votesProgress = votesProgress;
             // Reason
-            NSArray *dishesList = [[RUAAppDelegate sharedAppDelegate].menuTableViewController menuForMeal:result.meal];
-            [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]];
+            NSArray *menuList = [[RUAAppDelegate sharedAppDelegate].menuTableViewController menuForMeal:result.meal];
+            if (!menuList) {
+                menuList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]]; // Dishes list
+            }
             NSMutableArray *reasons = [NSMutableArray arrayWithCapacity:4];
             for (NSString *string in mainComponents) {
                 NSArray *reasonComponents = [string componentsSeparatedByString:@"$"];
@@ -347,10 +347,10 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
                     NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
                     [reasonComponents enumerateObjectsUsingBlock:^(NSString *countString, NSUInteger idx, BOOL *stop) {
                         if ([countString floatValue] == reasonBiggest) {
-                            [reason addObject:dishesList[idx]];
+                            [reason addObject:menuList[idx]];
                         }
                     }];
-                    [reasons addObject:@{@"dishes": [reason componentsJoinedByString:@"\n"], @"percent": [NSNumber numberWithDouble:reasonBiggest / reasonTotal]}];
+                    [reasons addObject:@{@"dishes": [reason componentsJoinedByString:@";\n"], @"percent": @(reasonBiggest / reasonTotal * reason.count)}];
                 } else {
                     [reasons addObject:@{}];
                 }
@@ -360,7 +360,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             [results addObject:result];
             [locals removeObjectAtIndex:0];
             
-            [self recursiveResultsWithArray:results locals:locals options:options dateFormatter:dateFormatter session:session request:request completionHandler:handler];
+            [self recursiveResultsWithArray:results locals:locals options:options date:date meal:meal session:session request:request completionHandler:handler];
         }] resume];
     } else {
         if (results.count >= 2) {

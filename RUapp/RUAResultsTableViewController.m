@@ -28,8 +28,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 // Other controls
 @property (assign, nonatomic) BOOL isDownloading;
-@property (strong, nonatomic) NSDate *lastAppearance;
-@property (assign, nonatomic) RUAMeal lastMealForNow;
+@property (assign, nonatomic) CGFloat labelWidth;
 @property (assign, nonatomic) RUARestaurant restaurant;
 @property (strong, nonatomic) UISegmentedControl *segmentedControl;
 
@@ -120,7 +119,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 {
     // Hide details for breakfast
     if (self.resultsList.votesTotal) {
-        if (self.lastMealForNow != RUAMealBreakfast || section != 1) {
+        if (self.resultsList.meal != RUAMealBreakfast || section != 1) {
             return 4;
         }
     }
@@ -134,8 +133,8 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
         return nil;
     }
     // Hide for breakfast
-    if (self.lastMealForNow != RUAMealBreakfast || section != 1) {
-        return [NSString stringWithFormat:self.headersList[(NSUInteger)section], self.mealList[[RUAAppDelegate lastMealForNow]]];
+    if (self.resultsList.meal != RUAMealBreakfast || section != 1) {
+        return [NSString stringWithFormat:self.headersList[(NSUInteger)section], self.mealList[self.resultsList.meal]];
     }
     return nil;
 }
@@ -159,7 +158,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     
     // Calculate height for each row on second section.
     NSString *mealText = self.resultsList.reasons[(NSUInteger)indexPath.row][@"dishes"];
-    CGFloat actualHeight = [mealText boundingRectWithSize:CGRectInfinite.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
+    CGFloat actualHeight = [mealText boundingRectWithSize:CGSizeMake(self.labelWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
     CGFloat height = (actualHeight > 44 ? actualHeight : 44);
     return (CGFloat)floorl(height);
 }
@@ -185,6 +184,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
             cell.progressView.progressTintColor = [UIColor colorWithCIColor:[CIColor colorWithString:rowInfo[@"color"]]];
             cell.dishLabel.hidden = YES;
             cell.infoLabel.hidden = NO;
+            self.labelWidth = cell.progressView.bounds.size.width;
         } break;
         default: { // Details
             percent = self.resultsList.reasons[(NSUInteger)indexPath.row][@"percent"];
@@ -197,7 +197,8 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
             cell.progressView.hidden = YES;
         } break;
     }
-    cell.infoLabel.text = [NSString stringWithFormat:@"%.1f%%", [percent floatValue] * 100];
+    //NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    cell.infoLabel.text = [NSNumberFormatter localizedStringFromNumber:percent numberStyle:NSNumberFormatterPercentStyle];
     
     return cell;
 }
@@ -233,10 +234,9 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 {
     [super viewWillAppear:animated];
     
-    NSDate *now = [RUAAppDelegate sharedAppDelegate].date, *lastAppearance = self.lastAppearance.copy;
-    self.lastMealForNow = [RUAAppDelegate lastMealForDate:&now];
-    // If there is no last appearance or more than 19 hours or last meal for now is different from last meal for last appearance, remove results list.
-    if (!lastAppearance || [now timeIntervalSinceDate:lastAppearance] >= 68400 || self.lastMealForNow != [RUAAppDelegate lastMealForDate:&lastAppearance]) {
+    NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
+    // If there is no results' date or it has more than 19 hours or last meal for now is different from results' meal, remove results list.
+    if (!self.resultsList.date || [now timeIntervalSinceDate:self.resultsList.date] >= 68400 || [RUAAppDelegate lastMealForNow] != self.resultsList.meal) {
         self.resultsListRaw = nil;
         [self.tableView reloadData];
     }
@@ -256,7 +256,6 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 {
     [super viewDidAppear:animated];
     
-    self.lastAppearance = [RUAAppDelegate sharedAppDelegate].date;
     [self downloadResultsAndUpdateTable];
 }
 

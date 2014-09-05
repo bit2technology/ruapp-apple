@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1yA-iI-tnD">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -25,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="33" y="668"/>
         </scene>
-        <!--Test Date-->
+        <!--Tests-->
         <scene sceneID="h17-cx-bFQ">
             <objects>
                 <viewController id="PcN-0j-mwg" customClass="RUATestDateViewController" sceneMemberID="viewController">
@@ -55,14 +56,37 @@
                                     <constraint firstAttribute="bottom" secondItem="RwI-rG-ZYy" secondAttribute="bottom" id="JUm-7v-C2d"/>
                                 </constraints>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sun-LS-e8W">
+                                <rect key="frame" x="37" y="167" width="247" height="29"/>
+                                <segments>
+                                    <segment title="Production Server"/>
+                                    <segment title="Test Server"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeServer:" destination="PcN-0j-mwg" eventType="valueChanged" id="9mZ-75-H6I"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xlo-AA-W7p">
+                                <rect key="frame" x="116" y="373" width="88" height="30"/>
+                                <state key="normal" title="Clean Cache">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cleanCache:" destination="PcN-0j-mwg" eventType="touchUpInside" id="WBQ-cI-qaP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.10588235408067703" green="0.10588235408067703" blue="0.19215686619281769" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Xlo-AA-W7p" secondAttribute="centerX" id="5e6-tB-Xyf"/>
+                            <constraint firstAttribute="centerX" secondItem="sun-LS-e8W" secondAttribute="centerX" id="AsR-uY-FYO"/>
                             <constraint firstAttribute="centerY" secondItem="K3h-DX-9bG" secondAttribute="centerY" id="Z4P-ny-2t0"/>
+                            <constraint firstItem="Xlo-AA-W7p" firstAttribute="top" secondItem="RwI-rG-ZYy" secondAttribute="bottom" constant="8" id="i7s-RD-bgU"/>
+                            <constraint firstItem="RwI-rG-ZYy" firstAttribute="top" secondItem="sun-LS-e8W" secondAttribute="bottom" constant="8" id="pkn-zn-dGt"/>
                             <constraint firstAttribute="centerX" secondItem="K3h-DX-9bG" secondAttribute="centerX" id="vJq-YF-TpL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Test Date" id="cVU-vz-kSQ"/>
+                    <navigationItem key="navigationItem" title="Tests" id="cVU-vz-kSQ"/>
                     <connections>
                         <outlet property="datePicker" destination="RwI-rG-ZYy" id="Vst-vs-aE4"/>
                     </connections>
@@ -107,8 +131,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="88.8%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nrw-zv-TIL" userLabel="Helper Label">
-                                            <rect key="frame" x="0.0" y="0.0" width="48" height="20"/>
+                                        <label hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nrw-zv-TIL" userLabel="Helper Label">
+                                            <rect key="frame" x="0.0" y="0.0" width="44" height="20"/>
                                             <color key="backgroundColor" red="0.1058823529" green="0.1058823529" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,17 +143,17 @@
                                             <color key="backgroundColor" red="0.1058823529" green="0.1058823529" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </imageView>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="epW-ci-7Ew">
-                                            <rect key="frame" x="48" y="21" width="201" height="2"/>
+                                            <rect key="frame" x="48" y="21" width="205" height="2"/>
                                             <color key="trackTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </progressView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxk-lx-vqe">
-                                            <rect key="frame" x="48" y="11" width="201" height="21"/>
+                                            <rect key="frame" x="48" y="11" width="205" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="88.8%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uze-gU-M5b">
-                                            <rect key="frame" x="257" y="12" width="48" height="20"/>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uze-gU-M5b">
+                                            <rect key="frame" x="261" y="12" width="44" height="20"/>
                                             <color key="backgroundColor" red="0.1058823529" green="0.1058823529" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -371,11 +395,11 @@
             </objects>
             <point key="canvasLocation" x="1093" y="15"/>
         </scene>
-        <!--Test Date-->
+        <!--Tests-->
         <scene sceneID="ukY-h1-1TD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rcu-gZ-18V" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Test Date" id="1ey-tK-DfJ"/>
+                    <tabBarItem key="tabBarItem" title="Tests" id="1ey-tK-DfJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="fEf-sf-VBN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

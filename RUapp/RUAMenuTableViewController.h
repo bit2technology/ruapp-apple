@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import "RUAAppDelegate.h"
+#import "RUAEnums.h"
 #import "RUATableViewController.h"
 
 extern NSString *const RUAMenuDataSourceCacheKey;

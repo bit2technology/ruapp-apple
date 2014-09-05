@@ -56,6 +56,7 @@
 		4B1D4DA6193F5EA600A50406 /* RUATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUATableViewController.m; sourceTree = "<group>"; };
 		4B1EC96219AE4CD100AF9C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/ResultsHeadersList.plist; sourceTree = "<group>"; };
 		4B1EC96519AE4CE800AF9C68 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/ResultsHeadersList.plist; sourceTree = "<group>"; };
+		4B2A348519B9CE43004334DF /* RUAEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAEnums.h; sourceTree = "<group>"; };
 		4B2DD9161951D7A80074A6B8 /* RUAServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAServerConnection.h; sourceTree = "<group>"; };
 		4B2DD9171951D7A80074A6B8 /* RUAServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAServerConnection.m; sourceTree = "<group>"; };
 		4B3EAA6E193F93C600C0CC95 /* RUAMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAMenuTableViewController.h; sourceTree = "<group>"; };
@@ -183,6 +184,7 @@
 				4BDED2F0192A152F009716DF /* RUAAppDelegate.m */,
 				4BD37506192B6AD00016BD35 /* RUAColor.h */,
 				4BD37507192B6AD00016BD35 /* RUAColor.m */,
+				4B2A348519B9CE43004334DF /* RUAEnums.h */,
 				4B1D4DA5193F5EA600A50406 /* RUATableViewController.h */,
 				4B1D4DA6193F5EA600A50406 /* RUATableViewController.m */,
 				4B2DD9161951D7A80074A6B8 /* RUAServerConnection.h */,

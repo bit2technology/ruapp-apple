@@ -126,7 +126,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
         return nil;
     }
     NSDateComponents *dateComponents = [self adjustedDateComponents];
-    return self.menuList[(NSUInteger)(dateComponents.weekday - 2) * 2 + meal - 1];
+    return self.menuList[(NSUInteger)dateComponents.weekday * 2 + (meal - 1)]; // Deconsider breakfast
 }
 
 - (void)setCurrentPage:(NSInteger)currentPage
@@ -148,7 +148,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 - (void)adjustCurrentPage
 {
     NSDateComponents *dateComponents = [self adjustedDateComponents];
-    self.currentPage = dateComponents.weekday - 2;
+    self.currentPage = dateComponents.weekday;
 }
 
 /**
@@ -165,6 +165,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
         dateComponents.weekday += 7;
         dateComponents.weekOfYear--;
     }
+    dateComponents.weekday -= 2;
     return dateComponents;
 }
 
@@ -262,7 +263,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 {
     // If there is a menu list, return meal name.
     if (self.menuList) {
-        return self.mealList[(NSUInteger)section + 1];
+        return self.mealList[(NSUInteger)section + 1]; // Deconsider breakfast
     }
     return nil;
 }

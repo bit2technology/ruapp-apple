@@ -6,22 +6,14 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
+#import "RUAEnums.h"
 #import "RUAMenuTableViewController.h"
-
-typedef NS_ENUM(NSUInteger, RUAMeal) {
-    RUAMealBreakfast,
-    RUAMealLunch,
-    RUAMealDinner,
-    RUAMealNone
-};
 
 @import UIKit;
 
 @interface RUAAppDelegate : UIResponder <UIApplicationDelegate>
 
 // MARK: Properties
-
-@property (strong, nonatomic) UIWindow *window;
 
 /**
  * Date to use across app. For testing purposes, it is settable. For release, it returns current date.
@@ -33,22 +25,12 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  */
 @property (weak, nonatomic) RUAMenuTableViewController *menuTableViewController;
 
-
-
-
-
-
-
-
+/**
+ * Defines if the app uses the test server.
+ */
 @property (assign, nonatomic) BOOL usesTestServer;
 
-
-
-
-
-
-
-
+@property (strong, nonatomic) UIWindow *window;
 
 // MARK: Methods
 
@@ -77,26 +59,14 @@ typedef NS_ENUM(NSUInteger, RUAMeal) {
  */
 + (RUAAppDelegate *)sharedAppDelegate;
 
-
-
-
-
-
-
-
-
-
+/**
+ * Returns the official server URL.
+ */
 + (NSURL *)serverURL;
+
+/**
+ * Returns the test server URL.
+ */
 + (NSURL *)serverVoteURL;
-
-
-
-
-
-
-
-
-
-
 
 @end

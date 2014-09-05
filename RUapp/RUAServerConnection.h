@@ -8,33 +8,9 @@
 
 #import "RUAAppDelegate.h"
 
+extern NSString *const RUASavedVotesKey;
+
 @import UIKit;
-
-typedef NS_ENUM(NSUInteger, RUARestaurant) {
-    RUARestaurantJuizDeForaDowntown,
-    RUARestaurantJuizDeForaCampus,
-    RUARestaurantNone
-};
-
-typedef NS_ENUM(NSUInteger, RUARating) {
-    RUARatingVeryGood,
-    RUARatingGood,
-    RUARatingBad,
-    RUARatingVeryBad,
-    RUARatingNone
-};
-
-typedef NS_ENUM(NSUInteger, RUADish) {
-    RUADishMain,
-    RUADishVegetarian,
-    RUADishGarnish,
-    RUADishPasta,
-    RUADishSide,
-    RUADishSalad,
-    RUADishDessert,
-    RUADishTotal,
-    RUADishNone
-};
 
 @interface RUAResultInfo : NSObject
 

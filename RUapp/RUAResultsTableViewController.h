@@ -8,6 +8,8 @@
 
 #import "RUATableViewController.h"
 
+extern NSString *const RUAResultsDataSourceCacheKey;
+
 @import UIKit;
 
 @interface RUAResultsTableViewCell : UITableViewCell

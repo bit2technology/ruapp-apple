@@ -8,6 +8,8 @@
 
 #import "RUATableViewController.h"
 
+extern NSString *const RUALastVoteDateKey;
+
 @import UIKit;
 
 @interface RUAVoteTableViewController : RUATableViewController

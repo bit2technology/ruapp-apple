@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
+#import "iRate.h"
 #import "RUAAppDelegate.h"
 #import "RUAColor.h"
-#import "iRate.h"
 #import "RUAServerConnection.h"
 
 NSString *const RUAServerTestURLString = @"http://titugoru2.appspot.com/getvalue";
@@ -89,13 +89,6 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
     return [UIApplication sharedApplication].delegate;
 }
 
-
-
-
-
-
-
-
 + (NSURL *)serverURL
 {
     if ([self sharedAppDelegate].usesTestServer) {
@@ -103,6 +96,7 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
     }
     return [NSURL URLWithString:RUAServerURLString];
 }
+
 + (NSURL *)serverVoteURL
 {
     if ([self sharedAppDelegate].usesTestServer) {
@@ -110,19 +104,6 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
     }
     return [NSURL URLWithString:RUAServerTestURLString];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // MARK: Helper methods
 

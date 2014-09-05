@@ -7,9 +7,27 @@
 //
 
 #import "RUAAppDelegate.h"
+#import "RUAMenuTableViewController.h"
+#import "RUAResultsTableViewController.h"
+#import "RUAServerConnection.h"
 #import "RUATestDateViewController.h"
+#import "RUAVoteTableViewController.h"
 
 @implementation RUATestDateViewController
+
+- (IBAction)changeServer:(UISegmentedControl *)sender
+{
+    [RUAAppDelegate sharedAppDelegate].usesTestServer = (BOOL)sender.selectedSegmentIndex;
+}
+
+- (IBAction)cleanCache:(id)sender
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    [standardUserDefaults setValue:nil forKey:RUAMenuDataSourceCacheKey];
+    [standardUserDefaults setValue:nil forKey:RUAResultsDataSourceCacheKey];
+    [standardUserDefaults setValue:nil forKey:RUASavedVotesKey];
+    [standardUserDefaults setValue:nil forKey:RUALastVoteDateKey];
+}
 
 - (IBAction)datePickerValueChanged:(UIDatePicker *)sender
 {
