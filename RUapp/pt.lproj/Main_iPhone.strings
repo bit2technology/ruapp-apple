@@ -13,8 +13,8 @@
 /* Class = "IBUILabel"; text = "Name"; ObjectID = "IV7-aV-YDE"; */
 "IV7-aV-YDE.text" = "Nome";
 
-/* Class = "IBUILabel"; text = "88.8%"; ObjectID = "Nrw-zv-TIL"; */
-"Nrw-zv-TIL.text" = "88,8%";
+/* Class = "IBUILabel"; text = "100%"; ObjectID = "Nrw-zv-TIL"; */
+"Nrw-zv-TIL.text" = "100%";
 
 /* Class = "IBUITabBarItem"; title = "Menu"; ObjectID = "UiE-VC-YYT"; */
 "UiE-VC-YYT.title" = "Cardápio";
@@ -49,8 +49,8 @@
 /* Class = "IBUISegmentedControl"; sun-LS-e8W.segmentTitles[1] = "Test Server"; ObjectID = "sun-LS-e8W"; */
 "sun-LS-e8W.segmentTitles[1]" = "Servidor de Testes";
 
-/* Class = "IBUILabel"; text = "88.8%"; ObjectID = "uze-gU-M5b"; */
-"uze-gU-M5b.text" = "88,8%";
+/* Class = "IBUILabel"; text = "100%"; ObjectID = "uze-gU-M5b"; */
+"uze-gU-M5b.text" = "100%";
 
 /* Class = "IBUITabBarItem"; title = "Results"; ObjectID = "vLN-dp-xe6"; */
 "vLN-dp-xe6.title" = "Resultados";

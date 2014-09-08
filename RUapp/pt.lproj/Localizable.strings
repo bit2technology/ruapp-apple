@@ -31,6 +31,9 @@
 /* Vote offline computed message */
 "Ooops, we couldn't connect. Your vote will be sent as soon as possible." = "Ops, não foi possível conectar. Seu voto será enviado o mais cedo possível";
 
+/* Button title to open menu on Safari */
+"Open in Safari" = "Abrir no Safari";
+
 /* Message to show on top of empity views, suggesting how to refresh */
 "Pull down to refresh" = "Puxe para atualizar";
 
