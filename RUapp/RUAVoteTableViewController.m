@@ -275,7 +275,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     // Calculate height for each row.
     NSString *mealText = (self.menuList ?: self.dishesList)[(NSUInteger)indexPath.row];
     CGSize referenceSize = CGRectInfinite.size;
-    referenceSize.width = 290;
+    referenceSize.width = tableView.bounds.size.width - 30;
     CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
     CGFloat height = (actualHeight > 44 ? actualHeight : 44);
     return (CGFloat)floorl(height);

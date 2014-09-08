@@ -28,7 +28,6 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 // Other controls
 @property (assign, nonatomic) BOOL isDownloading;
-@property (assign, nonatomic) CGFloat labelWidth;
 @property (assign, nonatomic) RUARestaurant restaurant;
 @property (strong, nonatomic) UISegmentedControl *segmentedControl;
 
@@ -54,8 +53,14 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
                 [self.tableView beginUpdates];
                 self.resultsListRaw = results;
                 // If there is no title view (segmented control) create one
-                if (!self.navigationItem.titleView) {
+                if (self.resultsList.meal == RUAMealLunch) {
+                    self.segmentedControl.selectedSegmentIndex = (NSInteger)RUARestaurantJuizDeForaDowntown;
+                    self.restaurant = RUARestaurantJuizDeForaDowntown;
                     self.navigationItem.titleView = self.segmentedControl;
+                } else {
+                    self.navigationItem.titleView = nil;
+                    self.segmentedControl.selectedSegmentIndex = (NSInteger)RUARestaurantJuizDeForaCampus;
+                    self.restaurant = RUARestaurantJuizDeForaCampus;
                 }
                 [self segmentedControlDidChangeValue:(UISegmentedControl *)self.navigationItem.titleView]; // Also reloads the table view
                 [self.tableView endUpdates];
@@ -86,17 +91,20 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 - (IBAction)segmentedControlDidChangeValue:(UISegmentedControl *)sender
 {
-    RUARestaurant newRestaurant = (RUARestaurant)sender.selectedSegmentIndex;
     UITableViewRowAnimation rowAnimation;
-    if (newRestaurant > self.restaurant) {
-        rowAnimation = UITableViewRowAnimationLeft;
-    } else if (newRestaurant < self.restaurant) {
-        rowAnimation = UITableViewRowAnimationRight;
+    if (sender) {
+        RUARestaurant newRestaurant = (RUARestaurant)sender.selectedSegmentIndex;
+        if (newRestaurant > self.restaurant) {
+            rowAnimation = UITableViewRowAnimationLeft;
+        } else if (newRestaurant < self.restaurant) {
+            rowAnimation = UITableViewRowAnimationRight;
+        } else {
+            rowAnimation = UITableViewRowAnimationAutomatic;
+        }
+        self.restaurant = newRestaurant;
     } else {
         rowAnimation = UITableViewRowAnimationAutomatic;
     }
-    
-    self.restaurant = newRestaurant;
     
     if (self.resultsList.votesTotal) {
         self.tableView.backgroundView = nil;
@@ -158,7 +166,11 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     
     // Calculate height for each row on second section.
     NSString *mealText = self.resultsList.reasons[(NSUInteger)indexPath.row][@"dishes"];
-    CGFloat actualHeight = [mealText boundingRectWithSize:CGSizeMake(self.labelWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
+    CGSize referenceSize = CGRectInfinite.size;
+    UIFont *bodyFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    CGFloat helperLabelWidth = [@"100%" boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: bodyFont} context:nil].size.width;
+    referenceSize.width = tableView.bounds.size.width - helperLabelWidth - 71;
+    CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: bodyFont} context:nil].size.height + 16;
     CGFloat height = (actualHeight > 44 ? actualHeight : 44);
     return (CGFloat)floorl(height);
 }
@@ -184,7 +196,6 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
             cell.progressView.progressTintColor = [UIColor colorWithCIColor:[CIColor colorWithString:rowInfo[@"color"]]];
             cell.dishLabel.hidden = YES;
             cell.infoLabel.hidden = NO;
-            self.labelWidth = cell.progressView.bounds.size.width;
         } break;
         default: { // Details
             percent = self.resultsList.reasons[(NSUInteger)indexPath.row][@"percent"];
@@ -225,7 +236,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     CGRect titleViewFrame = segmentedControl.frame;
     titleViewFrame.size.width = CGFLOAT_MAX;
     segmentedControl.frame = titleViewFrame;
-    segmentedControl.selectedSegmentIndex = self.restaurant;
+    segmentedControl.selectedSegmentIndex = (NSInteger)RUARestaurantJuizDeForaDowntown;
     [segmentedControl addTarget:self action:@selector(segmentedControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
     self.segmentedControl = segmentedControl;
 }

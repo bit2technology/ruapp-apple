@@ -88,13 +88,18 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
             // If there is no data source (is first download, not an update), show an appropriate message and button to go to website. Otherwise, do nothing.
             if (!self.menuList) {
                 UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 88)];
-                [tableHeaderView addSubview:self.tableViewHeaderViewPullToRefresh];
+                UIView *pullToRefreshLabel = self.tableViewHeaderViewPullToRefresh;
+                pullToRefreshLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+                pullToRefreshLabel.translatesAutoresizingMaskIntoConstraints = YES;
+                [tableHeaderView addSubview:pullToRefreshLabel];
                 
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-                NSString *buttonTitle = @"Open in Safari";
+                NSString *buttonTitle = NSLocalizedString(@"Open in Safari", @"Button title to open menu on Safari");
                 CGRect buttonFrame = [buttonTitle boundingRectWithSize:tableHeaderView.bounds.size options:kNilOptions attributes:@{NSFontAttributeName: button.titleLabel.font} context:nil];
                 buttonFrame.size.width += 16;
                 button.frame = CGRectMake((tableHeaderView.bounds.size.width - buttonFrame.size.width) / 2, 44, buttonFrame.size.width, 44);
+                button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+                button.translatesAutoresizingMaskIntoConstraints = YES;
                 button.layer.borderColor = [RUAColor lightBlueColor].CGColor;
                 button.layer.borderWidth = 1;
                 button.layer.cornerRadius = 4;
@@ -126,7 +131,8 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
         return nil;
     }
     NSDateComponents *dateComponents = [self adjustedDateComponents];
-    return self.menuList[(NSUInteger)dateComponents.weekday * 2 + (meal - 1)]; // Deconsider breakfast
+    NSArray *menu = self.menuList[(NSUInteger)dateComponents.weekday * 2 + (meal - 1)]; // Deconsider breakfast
+    return (menu.count >= 7 ? menu : nil);
 }
 
 - (void)setCurrentPage:(NSInteger)currentPage
@@ -253,7 +259,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     // Calculate height for each row.
     NSString *mealText = [self mealMenuForCurrentPageForSection:indexPath.section][(NSUInteger)indexPath.row];
     CGSize referenceSize = CGRectInfinite.size;
-    referenceSize.width = (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 ? 192 : 193); // Different sizes for iOS version
+    referenceSize.width = tableView.bounds.size.width - (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 ? 128 : 127); // Different sizes for iOS version
     CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
     CGFloat height = (actualHeight > 44 ? actualHeight : 44);
     return (CGFloat)floorl(height);

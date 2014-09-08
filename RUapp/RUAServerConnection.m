@@ -19,7 +19,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     if ([object isKindOfClass:[RUAResultInfo class]]) {
         RUAResultInfo *resultInfo = object;
         if (self.restaurant != resultInfo.restaurant ||
-            ![self.date isEqualToDate:resultInfo.date] ||
+            //![self.date isEqualToDate:resultInfo.date] || // Date is not compared.
             self.meal != resultInfo.meal ||
             self.votesTotal != resultInfo.votesTotal ||
             ![self.votesText isEqualToArray:resultInfo.votesText] ||
