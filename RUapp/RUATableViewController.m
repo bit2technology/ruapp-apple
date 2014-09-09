@@ -21,7 +21,7 @@
     messageLabel.opaque = YES;
     messageLabel.text = message;
     messageLabel.textAlignment = NSTextAlignmentCenter;
-    messageLabel.textColor = [UIColor lightGrayColor];
+    messageLabel.textColor = [RUAColor lightGrayColor];
     return messageLabel;
 }
 
@@ -39,13 +39,13 @@
 {
     // Set appearance to text label.
     view.textLabel.backgroundColor = [RUAColor darkBlueColor];
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+        view.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+        view.textLabel.textColor = [RUAColor lightGrayColor];
+    }
     view.textLabel.opaque = YES;
-    view.textLabel.textColor = [RUAColor lightGrayColor];
 }
 
-/**
- * Method called when dynamic type font size changes.
- */
 - (void)preferredContentSizeChanged:(NSNotification *)notification
 {
     // Reload table view with new font.
@@ -53,6 +53,20 @@
 }
 
 // MARK: UITableViewController
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    CGSize referenceSize = CGRectInfinite.size;
+    referenceSize.width = tableView.bounds.size.width - 30;
+    UIFont *font;
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+        font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    } else {
+        font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    }
+    CGFloat actualHeight = [[self tableView:tableView titleForHeaderInSection:section] boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil].size.height + 12;
+    return (CGFloat)floorl(actualHeight > 66 ? actualHeight : 66);
+}
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
 {

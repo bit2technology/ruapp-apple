@@ -277,8 +277,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     CGSize referenceSize = CGRectInfinite.size;
     referenceSize.width = tableView.bounds.size.width - 30;
     CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
-    CGFloat height = (actualHeight > 44 ? actualHeight : 44);
-    return (CGFloat)floorl(height);
+    return (CGFloat)floorl(actualHeight > 44 ? actualHeight : 44);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -306,6 +305,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     }
     cell.textLabel.numberOfLines = NSIntegerMax;
     cell.textLabel.text = text;
+    cell.textLabel.textColor = [RUAColor whiteColor];
     cell.imageView.image = image;
     
     return cell;

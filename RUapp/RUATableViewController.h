@@ -13,6 +13,11 @@
 // MARK: Methods
 
 /**
+ * Method called when dynamic type font size changes.
+ */
+- (void)preferredContentSizeChanged:(NSNotification *)notification;
+
+/**
  * Creates a view to be used as background.
  */
 - (UIView *)tableViewBackgroundViewWithMessage:(NSString *)message;

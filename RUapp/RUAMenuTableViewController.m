@@ -261,8 +261,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     CGSize referenceSize = CGRectInfinite.size;
     referenceSize.width = tableView.bounds.size.width - (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 ? 128 : 127); // Different sizes for iOS version
     CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
-    CGFloat height = (actualHeight > 44 ? actualHeight : 44);
-    return (CGFloat)floorl(height);
+    return (CGFloat)floorl(actualHeight > 44 ? actualHeight : 44);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -288,10 +287,12 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
         cell.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         cell.detailTextLabel.numberOfLines = NSIntegerMax;
         cell.detailTextLabel.text = mealMenu[(NSUInteger)indexPath.row];
+        cell.detailTextLabel.textColor = [RUAColor whiteColor];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Menu Info Cell" forIndexPath:indexPath];
         cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         cell.textLabel.text = [mealMenu[(NSUInteger)indexPath.row] capitalizedString];
+        cell.textLabel.textColor = [RUAColor whiteColor];
     }
     
     return cell;

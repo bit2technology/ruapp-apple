@@ -55,11 +55,6 @@
 + (RUAMeal)mealForNow;
 
 /**
- * Returns app delegate instance.
- */
-+ (RUAAppDelegate *)sharedAppDelegate;
-
-/**
  * Returns the official server URL.
  */
 + (NSURL *)serverURL;
@@ -68,5 +63,10 @@
  * Returns the test server URL.
  */
 + (NSURL *)serverVoteURL;
+
+/**
+ * Returns app delegate instance.
+ */
++ (RUAAppDelegate *)sharedAppDelegate;
 
 @end

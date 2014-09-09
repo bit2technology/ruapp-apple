@@ -20,10 +20,12 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 
 - (NSDate *)date
 {
+#warning Return actual date
     if (!_date) {
         _date = [NSDate date];
     }
     return _date.copy;
+//    return [NSDate date];
 }
 
 // MARK: Methods
@@ -44,7 +46,7 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
     } else if (timeNumber >= 6.5 && dateComponents.weekday >=2) { // From monday to saturday
         return RUAMealBreakfast;
     }
-    *date = [*date dateByAddingTimeInterval:-86400];
+    *date = [*date dateByAddingTimeInterval:-86400]; // Less 24 hours
     if (dateComponents.weekday >=3) {
         // From tuesday to saturday
         return RUAMealDinner;
@@ -91,6 +93,7 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 
 + (NSURL *)serverURL
 {
+#warning Return production server URL
     if ([self sharedAppDelegate].usesTestServer) {
         return [NSURL URLWithString:RUAServerTestURLString];
     }
@@ -99,6 +102,7 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 
 + (NSURL *)serverVoteURL
 {
+#warning Return production server URL
     if ([self sharedAppDelegate].usesTestServer) {
         return [NSURL URLWithString:RUAServerTestURLString];
     }
@@ -138,7 +142,7 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
     [iRate sharedInstance].useAllAvailableLanguages = NO;
     
     // Background fetch
-    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     [self application:application performFetchWithCompletionHandler:nil];
     
     return YES;

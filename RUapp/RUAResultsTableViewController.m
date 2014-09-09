@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Bit2 Software. All rights reserved.
 //
 
-#import "RUAResultsTableViewController.h"
 #import "RUAColor.h"
+#import "RUAResultsTableViewController.h"
 #import "RUAServerConnection.h"
 
 NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
@@ -17,18 +17,21 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 @interface RUAResultsTableViewController ()
 
-// Main data
-@property (strong, nonatomic) NSArray *resultsListRaw;
-@property (readonly, nonatomic) RUAResultInfo *resultsList;
+// MARK: Main data
+@property (strong, nonatomic) NSArray *resultsList;
+@property (readonly, nonatomic) RUAResultInfo *resultsForCurrentRestaurant;
 
-// Labels
+// MARK: Labels
 @property (strong, nonatomic) NSArray *avaliationList;
 @property (strong, nonatomic) NSArray *headersList;
 @property (strong, nonatomic) NSArray *mealList;
 
-// Other controls
+// MARK: Other controls
 @property (assign, nonatomic) BOOL isDownloading;
 @property (assign, nonatomic) RUARestaurant restaurant;
+
+// MARK: Presentation helpers
+@property (assign, nonatomic) CGFloat dishLabelMarginWidth;
 @property (strong, nonatomic) UISegmentedControl *segmentedControl;
 
 @end
@@ -37,9 +40,9 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 // MARK: Properties
 
-- (RUAResultInfo *)resultsList
+- (RUAResultInfo *)resultsForCurrentRestaurant
 {
-    return self.resultsListRaw[self.restaurant];
+    return self.resultsList[self.restaurant];
 }
 
 // MARK: Methods
@@ -49,11 +52,11 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     self.isDownloading = YES;
     [RUAServerConnection requestResultsWithCompletionHandler:^(NSArray *results, NSString *localizedMessage) {
         if (results) { // If results downloaded
-            if (![results isEqualToArray:self.resultsListRaw]) { // If downloaded results is different from previous results
+            if (![results isEqualToArray:self.resultsList]) { // If downloaded results is different from previous results
                 [self.tableView beginUpdates];
-                self.resultsListRaw = results;
+                self.resultsList = results;
                 // If there is no title view (segmented control) create one
-                if (self.resultsList.meal == RUAMealLunch) {
+                if (self.resultsForCurrentRestaurant.meal == RUAMealLunch) {
                     self.segmentedControl.selectedSegmentIndex = (NSInteger)RUARestaurantJuizDeForaDowntown;
                     self.restaurant = RUARestaurantJuizDeForaDowntown;
                     self.navigationItem.titleView = self.segmentedControl;
@@ -65,7 +68,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
                 [self segmentedControlDidChangeValue:(UISegmentedControl *)self.navigationItem.titleView]; // Also reloads the table view
                 [self.tableView endUpdates];
             }
-        } else if (!self.resultsListRaw) {
+        } else if (!self.resultsList) {
             self.tableView.backgroundView = [self tableViewBackgroundViewWithMessage:localizedMessage];
             self.tableView.tableHeaderView = self.tableViewHeaderViewPullToRefresh;
         }
@@ -106,7 +109,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
         rowAnimation = UITableViewRowAnimationAutomatic;
     }
     
-    if (self.resultsList.votesTotal) {
+    if (self.resultsForCurrentRestaurant.votesTotal) {
         self.tableView.backgroundView = nil;
         self.tableView.tableHeaderView = nil;
     } else {
@@ -116,7 +119,26 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:rowAnimation];
 }
 
-// MARK: UITableViewController methods
+/**
+ * Updates dishLabelMarginWidth for current text size.
+ */
+- (void)updateDishLabelMarginWidth
+{
+    // Set dish label helper
+    CGFloat percentLabelWidth = [@"100%" boundingRectWithSize:CGRectInfinite.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.width;
+    self.dishLabelMarginWidth = percentLabelWidth + 71;
+}
+
+// MARK: RUATableViewController
+
+- (void)preferredContentSizeChanged:(NSNotification *)notification
+{
+    [self updateDishLabelMarginWidth];
+    
+    [super preferredContentSizeChanged:notification];
+}
+
+// MARK: UITableViewController
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -126,8 +148,8 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Hide details for breakfast
-    if (self.resultsList.votesTotal) {
-        if (self.resultsList.meal != RUAMealBreakfast || section != 1) {
+    if (self.resultsForCurrentRestaurant.votesTotal > 0) {
+        if (self.resultsForCurrentRestaurant.meal != RUAMealBreakfast || section != 1) {
             return 4;
         }
     }
@@ -136,43 +158,47 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    // If there is no data source, return nil. Otherwise, return localized string by section (meal name).
-    if (!self.resultsList.votesTotal) {
+    // If there is no data, return nil. Otherwise, return localized string by section (meal name).
+    if (self.resultsForCurrentRestaurant.votesTotal <= 0) {
         return nil;
     }
     // Hide for breakfast
-    if (self.resultsList.meal != RUAMealBreakfast || section != 1) {
-        return [NSString stringWithFormat:self.headersList[(NSUInteger)section], self.mealList[self.resultsList.meal]];
+    if (self.resultsForCurrentRestaurant.meal != RUAMealBreakfast || section != 1) {
+        return [NSString localizedStringWithFormat:self.headersList[(NSUInteger)section], self.mealList[self.resultsForCurrentRestaurant.meal]];
     }
     return nil;
 }
 
+#warning Fix for iOS 8 - Test again on GM
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == 0 && self.resultsForCurrentRestaurant.votesTotal > 0) {
+        CGFloat actualHeight = [@"a" boundingRectWithSize:CGRectInfinite.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height;
+        return (CGFloat)floorl(actualHeight + 12);
+    }
+    return [super tableView:tableView heightForFooterInSection:section];
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    if (!self.resultsList.votesTotal) {
-        return nil;
-    }
-    if (section == 0) {
-        return [NSString localizedStringWithFormat:NSLocalizedString(@"Total of votes: %lu", @"Overview section footer"), (unsigned long)self.resultsList.votesTotal];
+    if (section == 0 && self.resultsForCurrentRestaurant.votesTotal > 0) {
+        return [NSString localizedStringWithFormat:NSLocalizedString(@"Total of votes: %lu", @"Overview section footer"), (unsigned long)self.resultsForCurrentRestaurant.votesTotal];
     }
     return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section != 1) {
         return 44;
     }
     
     // Calculate height for each row on second section.
-    NSString *mealText = self.resultsList.reasons[(NSUInteger)indexPath.row][@"dishes"];
+    NSString *mealText = self.resultsForCurrentRestaurant.reasons[(NSUInteger)indexPath.row][@"dishes"];
     CGSize referenceSize = CGRectInfinite.size;
-    UIFont *bodyFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    CGFloat helperLabelWidth = [@"100%" boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: bodyFont} context:nil].size.width;
-    referenceSize.width = tableView.bounds.size.width - helperLabelWidth - 71;
-    CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: bodyFont} context:nil].size.height + 16;
-    CGFloat height = (actualHeight > 44 ? actualHeight : 44);
-    return (CGFloat)floorl(height);
+    referenceSize.width = tableView.bounds.size.width - self.dishLabelMarginWidth;
+    CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
+    return (CGFloat)floorl(actualHeight > 44 ? actualHeight : 44);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -185,36 +211,37 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     cell.helperLabel.font = bodyFont;
     cell.voteIconView.accessibilityLabel = avaliationText;
     cell.voteIconView.image = [UIImage imageNamed:rowInfo[@"image"]];
-    cell.infoLabel.font = bodyFont;
+    cell.percentLabel.font = bodyFont;
     
     NSNumber *percent;
     switch (indexPath.section) {
         case 0: { // Overview
-            percent = self.resultsList.votesText[(NSUInteger)indexPath.row];
+            percent = self.resultsForCurrentRestaurant.votesText[(NSUInteger)indexPath.row];
             cell.progressView.hidden = NO;
-            cell.progressView.progress = [self.resultsList.votesProgress[(NSUInteger)indexPath.row] floatValue];
-            cell.progressView.progressTintColor = [UIColor colorWithCIColor:[CIColor colorWithString:rowInfo[@"color"]]];
+            cell.progressView.progress = [self.resultsForCurrentRestaurant.votesProgress[(NSUInteger)indexPath.row] floatValue];
+            cell.progressView.progressTintColor = [RUAColor colorWithCIColor:[CIColor colorWithString:rowInfo[@"color"]]];
             cell.dishLabel.hidden = YES;
-            cell.infoLabel.hidden = NO;
+            cell.percentLabel.hidden = NO;
         } break;
         default: { // Details
-            percent = self.resultsList.reasons[(NSUInteger)indexPath.row][@"percent"];
+            percent = self.resultsForCurrentRestaurant.reasons[(NSUInteger)indexPath.row][@"percent"];
             cell.dishLabel.font = bodyFont;
             cell.dishLabel.hidden = NO;
             cell.dishLabel.numberOfLines = NSIntegerMax;
-            NSString *reasons = self.resultsList.reasons[(NSUInteger)indexPath.row][@"dishes"];
+            NSString *reasons = self.resultsForCurrentRestaurant.reasons[(NSUInteger)indexPath.row][@"dishes"];
             cell.dishLabel.text = (reasons ?: NSLocalizedString(@"No information", @"Message to show when there is no information about vote reason"));
-            cell.infoLabel.hidden = (reasons ? NO : YES);
+            cell.dishLabel.textColor = [RUAColor whiteColor];
+            cell.percentLabel.hidden = (reasons ? NO : YES);
             cell.progressView.hidden = YES;
         } break;
     }
-    //NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    cell.infoLabel.text = [NSNumberFormatter localizedStringFromNumber:percent numberStyle:NSNumberFormatterPercentStyle];
+    cell.percentLabel.text = [NSNumberFormatter localizedStringFromNumber:percent numberStyle:NSNumberFormatterPercentStyle];
+    cell.percentLabel.textColor = [RUAColor whiteColor];
     
     return cell;
 }
 
-// MARK: UIViewController methods
+// MARK: UIViewController
 
 - (void)viewDidLoad
 {
@@ -247,13 +274,13 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     
     NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
     // If there is no results' date or it has more than 19 hours or last meal for now is different from results' meal, remove results list.
-    if (!self.resultsList.date || [now timeIntervalSinceDate:self.resultsList.date] >= 68400 || [RUAAppDelegate lastMealForNow] != self.resultsList.meal) {
-        self.resultsListRaw = nil;
+    if (self.resultsForCurrentRestaurant.date == nil || [now timeIntervalSinceDate:self.resultsForCurrentRestaurant.date] >= 68400 || [RUAAppDelegate lastMealForNow] != self.resultsForCurrentRestaurant.meal) {
+        self.resultsList = nil;
         [self.tableView reloadData];
     }
     
     // If there isn't a results list, show downloading (for the first time) interface.
-    if (!self.resultsListRaw) {
+    if (self.resultsList == nil) {
         self.navigationItem.titleView = nil;
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [activityView startAnimating];
@@ -261,6 +288,9 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
         self.tableView.tableHeaderView = nil;
         self.tableView.userInteractionEnabled = NO;
     }
+    
+    // Set dish label helper
+    [self updateDishLabelMarginWidth];
 }
 
 - (void)viewDidAppear:(BOOL)animated
