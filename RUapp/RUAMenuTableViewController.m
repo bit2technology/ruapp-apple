@@ -32,6 +32,9 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
 @property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeLeft;
 @property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRight;
 
+// MARK: Fix for iOS 8
+@property (assign, nonatomic) BOOL cachedMenu;
+
 @end
 
 @implementation RUAMenuTableViewController
@@ -77,6 +80,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
                 
                 // Perform updates.
                 [self.tableView beginUpdates];
+                self.cachedMenu = NO;
                 self.menuListRaw = weekMenu;
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
                 [self.tableView endUpdates];
@@ -254,14 +258,15 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     return 0;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    // Calculate height for each row.
-    NSString *mealText = [self mealMenuForCurrentPageForSection:indexPath.section][(NSUInteger)indexPath.row];
-    CGSize referenceSize = CGRectInfinite.size;
-    referenceSize.width = tableView.bounds.size.width - (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 ? 128 : 127); // Different sizes for iOS version
-    CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
-    return (CGFloat)floorl(actualHeight > 44 ? actualHeight : 44);
+    if (self.cachedMenu) {
+        if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+            return 67;
+        }
+        return 66;
+    }
+    return [super tableView:tableView heightForHeaderInSection:section];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -271,6 +276,16 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
         return self.mealList[(NSUInteger)section + 1]; // Deconsider breakfast
     }
     return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Calculate height for each row.
+    NSString *mealText = [self mealMenuForCurrentPageForSection:indexPath.section][(NSUInteger)indexPath.row];
+    CGSize referenceSize = CGRectInfinite.size;
+    referenceSize.width = tableView.bounds.size.width - (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1 ? 128 : 127); // Different sizes for iOS version
+    CGFloat actualHeight = [mealText boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]} context:nil].size.height + 16;
+    return (CGFloat)floorl(actualHeight > 44 ? actualHeight : 44);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -327,6 +342,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     self.menuListRaw = [standardUserDefaults valueForKey:RUAMenuDataSourceCacheKey];
     // If there is a cached data source and is current week, adjust current page.
     if (self.menuListWeekOfYear == [self adjustedDateComponents].weekOfYear) {
+        self.cachedMenu = YES;
         [self adjustCurrentPage];
     }
 }

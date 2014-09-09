@@ -59,13 +59,17 @@
     CGSize referenceSize = CGRectInfinite.size;
     referenceSize.width = tableView.bounds.size.width - 30;
     UIFont *font;
+    CGFloat normalHeaderMinHeight;
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
         font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+        normalHeaderMinHeight = 67;
     } else {
         font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+        normalHeaderMinHeight = 66;
     }
     CGFloat actualHeight = [[self tableView:tableView titleForHeaderInSection:section] boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil].size.height + 12;
-    return (CGFloat)floorl(actualHeight > 66 ? actualHeight : 66);
+    CGFloat minHeight = (section <= 0 && self.refreshControl != nil ? 31 : normalHeaderMinHeight);
+    return (CGFloat)floorl(actualHeight > minHeight ? actualHeight : minHeight);
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UITableViewHeaderFooterView *)view forSection:(NSInteger)section
