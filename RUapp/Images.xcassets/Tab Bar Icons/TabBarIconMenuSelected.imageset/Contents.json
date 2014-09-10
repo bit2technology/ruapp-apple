@@ -9,6 +9,11 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "TabBarIconMenuSelected@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "filename" : "TabBarIconMenuSelected@3x.png"
     }
   ],
   "info" : {

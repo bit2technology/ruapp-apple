@@ -9,6 +9,11 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "VoteIconVeryBad@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "filename" : "VoteIconVeryBad@3x.png"
     }
   ],
   "info" : {
