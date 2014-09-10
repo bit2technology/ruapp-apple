@@ -169,7 +169,6 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     return nil;
 }
 
-#warning Fix for iOS 8 - Test again on GM
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section == 0 && self.resultsForCurrentRestaurant.votesTotal > 0) {

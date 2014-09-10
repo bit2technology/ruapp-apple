@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1yA-iI-tnD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1yA-iI-tnD">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -16,7 +15,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="rcu-gZ-18V" kind="relationship" relationship="viewControllers" id="wfd-3J-xS0"/>
                         <segue destination="eet-sk-nS0" kind="relationship" relationship="viewControllers" id="ggj-56-nw9"/>
                         <segue destination="M7R-SM-LSi" kind="relationship" relationship="viewControllers" id="9ba-V3-Gd0"/>
                         <segue destination="oR3-5c-x6r" kind="relationship" relationship="viewControllers" id="vcM-vR-84B"/>
@@ -138,11 +136,11 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="VoteIconVeryGood" translatesAutoresizingMaskIntoConstraints="NO" id="cLD-V0-gvG">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="VoteIconVeryGood" translatesAutoresizingMaskIntoConstraints="NO" id="cLD-V0-gvG">
                                             <rect key="frame" x="15" y="9" width="25" height="25"/>
                                             <color key="backgroundColor" red="0.1058823529" green="0.1058823529" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </imageView>
-                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxk-lx-vqe">
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxk-lx-vqe">
                                             <rect key="frame" x="48" y="11" width="205" height="21"/>
                                             <color key="backgroundColor" red="0.10588235410000001" green="0.10588235410000001" blue="0.1921568662" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -400,7 +398,7 @@
         <!--Tests-->
         <scene sceneID="ukY-h1-1TD">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rcu-gZ-18V" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Tests" automaticallyAdjustsScrollViewInsets="NO" id="rcu-gZ-18V" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Tests" id="1ey-tK-DfJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="fEf-sf-VBN">
@@ -431,9 +429,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>

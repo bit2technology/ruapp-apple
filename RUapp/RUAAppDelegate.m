@@ -20,12 +20,11 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 
 - (NSDate *)date
 {
-#warning Return actual date
-    if (!_date) {
-        _date = [NSDate date];
-    }
-    return _date.copy;
-//    return [NSDate date];
+//    if (!_date) {
+//        _date = [NSDate date];
+//    }
+//    return _date.copy;
+    return [NSDate date];
 }
 
 // MARK: Methods
@@ -93,20 +92,18 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 
 + (NSURL *)serverURL
 {
-#warning Return production server URL
-    if ([self sharedAppDelegate].usesTestServer) {
-        return [NSURL URLWithString:RUAServerTestURLString];
-    }
+//    if ([self sharedAppDelegate].usesTestServer) {
+//        return [NSURL URLWithString:RUAServerTestURLString];
+//    }
     return [NSURL URLWithString:RUAServerURLString];
 }
 
 + (NSURL *)serverVoteURL
 {
-#warning Return production server URL
-    if ([self sharedAppDelegate].usesTestServer) {
-        return [NSURL URLWithString:RUAServerTestURLString];
-    }
-    return [NSURL URLWithString:RUAServerTestURLString];
+//    if ([self sharedAppDelegate].usesTestServer) {
+//        return [NSURL URLWithString:RUAServerTestURLString];
+//    }
+    return [NSURL URLWithString:RUAServerURLString];
 }
 
 // MARK: Helper methods
