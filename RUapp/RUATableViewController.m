@@ -16,9 +16,7 @@
 - (UIView *)tableViewBackgroundViewWithMessage:(NSString *)message
 {
     UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    messageLabel.backgroundColor = [RUAColor darkBlueColor];
     messageLabel.numberOfLines = NSIntegerMax;
-    messageLabel.opaque = YES;
     messageLabel.text = message;
     messageLabel.textAlignment = NSTextAlignmentCenter;
     messageLabel.textColor = [RUAColor lightGrayColor];
@@ -38,12 +36,10 @@
 - (void)configureHeaderFooterView:(UITableViewHeaderFooterView *)view
 {
     // Set appearance to text label.
-    view.textLabel.backgroundColor = [RUAColor darkBlueColor];
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
         view.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         view.textLabel.textColor = [RUAColor lightGrayColor];
     }
-    view.textLabel.opaque = YES;
 }
 
 - (void)preferredContentSizeChanged:(NSNotification *)notification
@@ -56,6 +52,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    NSString *title = [self tableView:tableView titleForHeaderInSection:section];
+    if (title.length <= 0) {
+        return CGFLOAT_MIN;
+    }
+    
     CGSize referenceSize = CGRectInfinite.size;
     referenceSize.width = tableView.bounds.size.width - 30;
     UIFont *font;
@@ -67,7 +68,7 @@
         font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
         normalHeaderMinHeight = 66;
     }
-    CGFloat actualHeight = [[self tableView:tableView titleForHeaderInSection:section] boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil].size.height + 12;
+    CGFloat actualHeight = [title boundingRectWithSize:referenceSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil].size.height + 12;
     CGFloat minHeight = (section <= 0 && self.refreshControl != nil ? 31 : normalHeaderMinHeight);
     return (CGFloat)floorl(actualHeight > minHeight ? actualHeight : minHeight);
 }
@@ -87,6 +88,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.backgroundColor = [RUAColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
     
     // Observe font size changes.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
