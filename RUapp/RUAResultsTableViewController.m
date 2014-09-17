@@ -207,6 +207,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     NSString *avaliationText = rowInfo[@"text"];
     
     RUAResultsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Results Cell" forIndexPath:indexPath];
+    cell.backgroundColor = [RUAColor darkerBlueColor];
     cell.helperLabel.font = bodyFont;
     cell.voteIconView.accessibilityLabel = avaliationText;
     cell.voteIconView.image = [UIImage imageNamed:rowInfo[@"image"]];

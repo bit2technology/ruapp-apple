@@ -302,12 +302,14 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
         cell.detailTextLabel.numberOfLines = NSIntegerMax;
         cell.detailTextLabel.text = mealMenu[(NSUInteger)indexPath.row];
         cell.detailTextLabel.textColor = [RUAColor whiteColor];
+        NSLog(@"detailTextLabelOriginX: %f", cell.detailTextLabel.frame.origin.x);
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Menu Info Cell" forIndexPath:indexPath];
         cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         cell.textLabel.text = [mealMenu[(NSUInteger)indexPath.row] capitalizedString];
         cell.textLabel.textColor = [RUAColor whiteColor];
     }
+    cell.backgroundColor = [RUAColor darkerBlueColor];
     
     return cell;
 }

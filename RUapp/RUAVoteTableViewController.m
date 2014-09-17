@@ -285,6 +285,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Vote Cell" forIndexPath:indexPath];
     
     cell.accessoryType = ([self.checkedIndexPaths containsObject:indexPath] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+    cell.backgroundColor = [RUAColor darkerBlueColor];
     cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     
     NSString *text; UIImage *image;
