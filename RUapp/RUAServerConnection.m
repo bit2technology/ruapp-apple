@@ -142,45 +142,42 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
         handler(nil, NSLocalizedString(@"Sorry, there is no vote open now", @"Vote availability error message"));
     }
     
-    // Components of vote server request.
-    NSMutableArray *stringComponents = [NSMutableArray arrayWithCapacity:6];
+    // String of vote server request.
+    NSMutableString *HTTPBodyString = [NSMutableString stringWithString:@"voto={"];
     
-    // Restaurant and tag to server
-    [stringComponents addObject:[NSString stringWithFormat:@"tag=6$UFJF%lu", (unsigned long)restaurant + 1]];
+    // Restaurant
+    [HTTPBodyString appendFormat:@"\"ID Instituição\":1,\"ID Restaurante\":%zd,", restaurant + 1];
+    // TODO: Institution number
     
     // Date
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"dd.MM.yyyy";
-    dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
+    dateFormatter.dateFormat = @"yyyy.MM.dd";
     dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    [stringComponents addObject:[dateFormatter stringFromDate:now]];
+    [HTTPBodyString appendFormat:@"\"Data\":\"%@\",", [dateFormatter stringFromDate:now]];
     
     // Meal
-    [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)mealForNow + 1]];
+    [HTTPBodyString appendFormat:@"\"Refeição\":%zd,", mealForNow + 1];
     
     // Vote
-    [stringComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)vote + 1]];
+    [HTTPBodyString appendFormat:@"\"Voto\":%zd,", vote + 1];
     
     // Reason
-    if (reason.count > 0) {
-        NSMutableArray *reasonComponents = [NSMutableArray arrayWithCapacity:reason.count];
-        for (NSNumber *reasonNumber in reason) {
-            [reasonComponents addObject:[NSString stringWithFormat:@"%02lu", (unsigned long)[reasonNumber unsignedIntegerValue] + 1]];
-        }
-        [stringComponents addObject:[reasonComponents componentsJoinedByString:@"."]];
-    } else {
-        [stringComponents addObject:@"00"];
+    for (NSUInteger i = 0; i < 7; i++) {
+        [HTTPBodyString appendFormat:@"\"Explica %zd\": %zd,", i + 1, [reason containsObject:@((RUADish)i)] ? 1 : 0];
     }
-    
+
     // Device ID
-    [stringComponents addObject:[[[UIDevice currentDevice] identifierForVendor] UUIDString]]; //@(arc4random()).description;
+    [HTTPBodyString appendFormat:@"\"ID Dispositivo\":\"%@\",", [[[UIDevice currentDevice] identifierForVendor] UUIDString]]; //@(arc4random()).description;
+
+    // System info
+    [HTTPBodyString appendFormat:@"\"Sistema Operacional\":\"%@\",\"Versão SO\":\"%@\"", [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion]];
     
     // Request
-    NSString *requestString = [stringComponents componentsJoinedByString:@"_"];
+    [HTTPBodyString appendString:@"}"];
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[RUAAppDelegate serverVoteURL]];
     urlRequest.HTTPMethod = @"POST";
-    urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+    urlRequest.HTTPBody = [HTTPBodyString dataUsingEncoding:NSUTF8StringEncoding];
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
         // Verify network error.
         if (networkError) {
@@ -204,21 +201,28 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
         }
         
         // Serialize JSON and get return string.
-        NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        NSDictionary *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         // Separete main components and verify if it is a valid response.
-        NSArray *mainComponents = [serializationResult.lastObject componentsSeparatedByString:@"#"];
-        if (mainComponents.count < 5) { // Already voted or something went wrong.
-            // Main thread
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                handler(nil, NSLocalizedString(@"Ooops, something went wrong", @"General error message"));
-            }];
-            return;
+        switch ([serializationResult[@"Resultado"] integerValue]) {
+
+            case 0: { // Succeeded
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    handler(now, NSLocalizedString(@"Thank you! Vote computed", @"Vote computed message"));
+                }];
+            } break;
+
+            case 1: { // Already voted
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    handler(now, NSLocalizedString(@"Sorry, you can vote only once", @"Already voted message"));
+                }];
+            } break;
+
+            default: { // General error
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    handler(nil, NSLocalizedString(@"Ooops, something went wrong", @"General error message"));
+                }];
+            } break;
         }
-        
-        // Main thread
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            handler(now, NSLocalizedString(@"Thank you! Vote computed", @"Vote computed message"));
-        }];
     }] resume];
 }
 
