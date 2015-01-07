@@ -57,10 +57,15 @@
 /**
  * Returns the official server URL.
  */
-+ (NSURL *)serverURL;
++ (NSURL *)serverMenuURL;
 
 /**
- * Returns the test server URL.
+ * Returns the results URL.
+ */
++ (NSURL *)serverResultsURL;
+
+/**
+ * Returns the vote URL.
  */
 + (NSURL *)serverVoteURL;
 

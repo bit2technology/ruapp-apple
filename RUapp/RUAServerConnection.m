@@ -33,6 +33,11 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     return [super isEqual:object];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Restaurant: %zd, date: %@, meal: %zd, total of votes: %zd, votes text: %@, votes progress: %@, reasons: %@", self.restaurant, self.date, self.meal, self.votesTotal, self.votesText, self.votesProgress, self.reasons];
+}
+
 @end
 
 @implementation RUAServerConnection
@@ -74,7 +79,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     
     // Request with shared session configuration.
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[RUAAppDelegate serverURL]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[RUAAppDelegate serverMenuURL]];
     urlRequest.HTTPMethod = @"POST";
     urlRequest.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
     [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
@@ -117,21 +122,19 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     // Options
     NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"dd.MM.yyyy";
-    dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
+    dateFormatter.dateFormat = @"yyyy.MM.dd";
     dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
     RUAMeal lastMeal = [RUAAppDelegate lastMealForDate:&now];
-    NSString *options = [NSString stringWithFormat:@"%@_%lu", [dateFormatter stringFromDate:now], (unsigned long)(lastMeal + 1)];
-    
+
     // Request
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[RUAAppDelegate serverURL]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[RUAAppDelegate serverResultsURL]];
     urlRequest.HTTPMethod = @"POST";
     
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:2];
-    NSMutableArray *restaurants = [NSMutableArray arrayWithObjects:@"UFJF1", @"UFJF2", nil];
+    NSMutableArray *restaurants = [NSMutableArray arrayWithObjects:@(RUARestaurantJuizDeForaDowntown), @(RUARestaurantJuizDeForaCampus), nil];
     
-    [self recursiveResultsWithArray:results locals:restaurants options:options date:now meal:lastMeal session:urlSession request:urlRequest completionHandler:handler];
+    [self recursiveResultsWithArray:results locals:restaurants dateFormatter:dateFormatter date:now meal:lastMeal session:urlSession request:urlRequest completionHandler:handler];
 }
 
 + (void)sendVoteWithRestaurant:(RUARestaurant)restaurant rating:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler
@@ -203,7 +206,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
         // Serialize JSON and get return string.
         NSDictionary *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         // Separete main components and verify if it is a valid response.
-        switch ([serializationResult[@"Resultado"] integerValue]) {
+        switch ([serializationResult[@"Resultado"] unsignedIntegerValue]) {
 
             case 0: { // Succeeded
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -259,11 +262,23 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 /**
  * Helper recursive method to download results for all restaurants.
  */
-+ (void)recursiveResultsWithArray:(NSMutableArray *)results locals:(NSMutableArray *)locals options:(NSString *)options date:(NSDate *)date meal:(RUAMeal)meal session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler
++ (void)recursiveResultsWithArray:(NSMutableArray *)results locals:(NSMutableArray *)locals dateFormatter:(NSDateFormatter *)dateFormatter date:(NSDate *)date meal:(RUAMeal)meal session:(NSURLSession *)session request:(NSMutableURLRequest *)request completionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler
 {
     if (locals.count) {
-        NSString *requestString = [NSString stringWithFormat:@"tag=8$%@_%@_1_00_id", locals.firstObject, options];
-        request.HTTPBody = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+        NSMutableString *HTTPBodyString = [NSMutableString stringWithString:@"voto={\"ID Instituição\":1,"];
+
+        [HTTPBodyString appendFormat:@"\"ID Restaurante\":\"%zd\",", [locals.firstObject unsignedIntegerValue] + 1];
+
+        [HTTPBodyString appendFormat:@"\"Refeição\":\"%zd\",", meal + 1];
+
+        [HTTPBodyString appendFormat:@"\"Data\":\"%@\"", [dateFormatter stringFromDate:date]];
+
+        [HTTPBodyString appendString:@"}"];
+
+
+
+
+        request.HTTPBody = [HTTPBodyString dataUsingEncoding:NSUTF8StringEncoding];
         [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *networkError) {
             // Verify network error.
             if (networkError) {
@@ -278,35 +293,12 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             }
             
             // Serialize JSON and get return string.
-            NSArray *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            // Separete main components and verify if it is a valid response.
-            NSMutableArray *mainComponents = [[serializationResult.lastObject componentsSeparatedByString:@"#"] mutableCopy];
-            if (mainComponents.count < 5) {
-                // Main thread
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    handler(nil, NSLocalizedString(@"Ooops, something went wrong", @"General error message"));
-                }];
-                [locals removeAllObjects];
-                return;
-            }
-            
+            NSDictionary *serializationResult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+
             // Object with result of one local.
             RUAResultInfo *result = [[RUAResultInfo alloc] init];
             
-            // Get overview information.
-            NSString *overview = mainComponents.firstObject;
-            [mainComponents removeObjectAtIndex:0];
-            NSArray *overviewComponents = [overview componentsSeparatedByString:@"$"];
-            NSArray *overviewInformation = [[overviewComponents firstObject] componentsSeparatedByString:@"_"];
-            // Restaurant
-            NSString *restaurantString = [overviewInformation firstObject];
-            if ([restaurantString isEqualToString:@"UFJF1"]) {
-                result.restaurant = RUARestaurantJuizDeForaDowntown;
-            } else if ([restaurantString isEqualToString:@"UFJF2"]) {
-                result.restaurant = RUARestaurantJuizDeForaCampus;
-            } else {
-                result.restaurant = RUARestaurantNone;
-            }
+            result.restaurant = (NSUInteger)[serializationResult[@"ID Restaurante"] integerValue] - 1;
             // Date
             result.date = date;
             // Meal
@@ -314,7 +306,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             // Votes
             CGFloat votesTotal = 0, votesBiggest = 0;
             for (NSUInteger i = 1; i < 5; i++) {
-                CGFloat vote = [overviewComponents[i] floatValue];
+                CGFloat vote = [serializationResult[[NSString stringWithFormat:@"Voto %zd", i]] floatValue];
                 votesTotal += vote;
                 if (vote > votesBiggest) {
                     votesBiggest = vote;
@@ -323,12 +315,12 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
             result.votesTotal = (NSUInteger)votesTotal;
             NSMutableArray *votesText = [NSMutableArray arrayWithCapacity:4];
             for (NSUInteger i = 1; i < 5; i++) {
-                [votesText addObject:@([overviewComponents[i] floatValue] / votesTotal)];
+                [votesText addObject:@([serializationResult[[NSString stringWithFormat:@"Voto %zd", i]] floatValue] / votesTotal)];
             }
             result.votesText = votesText;
             NSMutableArray *votesProgress = [NSMutableArray arrayWithCapacity:4];
             for (NSUInteger i = 1; i < 5; i++) {
-                [votesProgress addObject:@([overviewComponents[i] floatValue] / votesBiggest)];
+                [votesProgress addObject:@([serializationResult[[NSString stringWithFormat:@"Voto %zd", i]] floatValue] / votesBiggest)];
             }
             result.votesProgress = votesProgress;
             // Reason
@@ -337,11 +329,10 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
                 menuList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DishesList" ofType:@"plist"]]; // Dishes list
             }
             NSMutableArray *reasons = [NSMutableArray arrayWithCapacity:4];
-            for (NSString *string in mainComponents) {
-                NSArray *reasonComponents = [string componentsSeparatedByString:@"$"];
+            for (NSUInteger i = 1; i < 5; i++) {
                 CGFloat reasonTotal = 0, reasonBiggest = 0;
-                for (NSString *reasonString in reasonComponents) {
-                    CGFloat reasonCount = [reasonString floatValue];
+                for (NSUInteger j = 1; j < 8; j++) {
+                    CGFloat reasonCount = [serializationResult[[NSString stringWithFormat:@"Voto %zd Explica %zd", i, j]] floatValue];
                     reasonTotal += reasonCount;
                     if (reasonCount > reasonBiggest) {
                         reasonBiggest = reasonCount;
@@ -349,22 +340,22 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
                 }
                 if (reasonTotal) {
                     NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
-                    [reasonComponents enumerateObjectsUsingBlock:^(NSString *countString, NSUInteger idx, BOOL *stop) {
-                        if ([countString floatValue] == reasonBiggest) {
-                            [reason addObject:menuList[idx]];
+                    for (NSUInteger j = 1; j < 8; j++) {
+                        if ([serializationResult[[NSString stringWithFormat:@"Voto %zd Explica %zd", i, j]] floatValue] == reasonBiggest) {
+                            [reason addObject:menuList[j]];
                         }
-                    }];
+                    };
                     [reasons addObject:@{@"dishes": [reason componentsJoinedByString:@";\n"], @"percent": @(reasonBiggest / reasonTotal * reason.count)}];
                 } else {
                     [reasons addObject:@{}];
                 }
             }
             result.reasons = reasons;
-            
+
             [results addObject:result];
             [locals removeObjectAtIndex:0];
             
-            [self recursiveResultsWithArray:results locals:locals options:options date:date meal:meal session:session request:request completionHandler:handler];
+            [self recursiveResultsWithArray:results locals:locals dateFormatter:dateFormatter date:date meal:meal session:session request:request completionHandler:handler];
         }] resume];
     } else {
         if (results.count >= 2) {

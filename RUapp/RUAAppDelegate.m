@@ -90,19 +90,18 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
     return [UIApplication sharedApplication].delegate;
 }
 
-+ (NSURL *)serverURL
++ (NSURL *)serverMenuURL
 {
-//    if ([self sharedAppDelegate].usesTestServer) {
-//        return [NSURL URLWithString:RUAServerTestURLString];
-//    }
     return [NSURL URLWithString:RUAServerURLString];
+}
+
++ (NSURL *)serverResultsURL
+{
+    return [NSURL URLWithString:@"http://www.ruapp.com.br/votoresumo.php"];
 }
 
 + (NSURL *)serverVoteURL
 {
-//    if ([self sharedAppDelegate].usesTestServer) {
-//        return [NSURL URLWithString:RUAServerTestURLString];
-//    }
     return [NSURL URLWithString:@"http://www.ruapp.com.br/votar.php"];
 }
 
@@ -134,34 +133,14 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 {
     // Fix for iOS 7.1.
     self.window.tintColor = [RUAColor lightBlueColor];
-    
+
     // iRate
     [iRate sharedInstance].useAllAvailableLanguages = NO;
-    
+
     // Background fetch
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     [self application:application performFetchWithCompletionHandler:nil];
 
-
-
-
-
-
-//    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-//    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.ruapp.com.br/votar.php"]];
-//    urlRequest.HTTPMethod = @"POST";
-//    NSString *HTTPBodyString = [NSString stringWithFormat:@"voto={\"ID Dispositivo\":\"%@\",\"Sistema Operacional\":\"%@\",\"Versão SO\":\"%@\", \"ID Instituição\": 1, \"ID Restaurante\": 1, \"Refeição\": 1, \"Data\": \"2015.01.06\", \"Voto\": 1, \"Explica 1\": 1, \"Explica 2\": 1, \"Explica 3\": 1, \"Explica 4\": 1, \"Explica 5\": 1, \"Explica 6\": 1, \"Explica 7\": 1 }", [[[UIDevice currentDevice] identifierForVendor] UUIDString], [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion]];
-//    urlRequest.HTTPBody = [HTTPBodyString dataUsingEncoding:NSUTF8StringEncoding];
-//    [[urlSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//        //completion
-//        NSLog(@"resposta:%@\n\n\nresponse:%@\n\n\nerror:%@", [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil], response, error);
-//    }] resume];
-
-
-
-
-
-    
     return YES;
 }
 
