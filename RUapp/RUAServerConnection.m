@@ -143,6 +143,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
     RUAMeal mealForNow = [RUAAppDelegate mealForDate:now];
     if (mealForNow == RUAMealNone) {
         handler(nil, NSLocalizedString(@"Sorry, there is no vote open now", @"Vote availability error message"));
+        return;
     }
     
     // String of vote server request.
@@ -342,7 +343,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
                     NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
                     for (NSUInteger j = 1; j < 8; j++) {
                         if ([serializationResult[[NSString stringWithFormat:@"Voto %zd Explica %zd", i, j]] floatValue] == reasonBiggest) {
-                            [reason addObject:menuList[j]];
+                            [reason addObject:menuList[j - 1]];
                         }
                     };
                     [reasons addObject:@{@"dishes": [reason componentsJoinedByString:@";\n"], @"percent": @(reasonBiggest / reasonTotal * reason.count)}];
