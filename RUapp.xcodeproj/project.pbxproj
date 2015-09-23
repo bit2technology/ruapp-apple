@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4BB03BA81BB2D4DE006F84CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */; };
+		4BB03BAA1BB2D4DE006F84CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BA91BB2D4DE006F84CB /* ViewController.swift */; };
+		4BB03BAD1BB2D4DE006F84CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */; };
+		4BB03BAF1BB2D4DE006F84CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */; };
+		4BB03BB21BB2D4DE006F84CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BB03BB01BB2D4DE006F84CB /* LaunchScreen.storyboard */; };
+		4BB03BBD1BB2D4DF006F84CB /* RUappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BBC1BB2D4DF006F84CB /* RUappTests.swift */; };
+		4BB03BC81BB2D4DF006F84CB /* RUappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BC71BB2D4DF006F84CB /* RUappUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4BB03BB91BB2D4DF006F84CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BB03B9C1BB2D4DE006F84CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4BB03BA31BB2D4DE006F84CB;
+			remoteInfo = RUapp;
+		};
+		4BB03BC41BB2D4DF006F84CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BB03B9C1BB2D4DE006F84CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4BB03BA31BB2D4DE006F84CB;
+			remoteInfo = RUapp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4BB03BA41BB2D4DE006F84CB /* RUapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4BB03BA91BB2D4DE006F84CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4BB03BAC1BB2D4DE006F84CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4BB03BB11BB2D4DE006F84CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4BB03BB31BB2D4DE006F84CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BB03BB81BB2D4DF006F84CB /* RUappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BB03BBC1BB2D4DF006F84CB /* RUappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappTests.swift; sourceTree = "<group>"; };
+		4BB03BBE1BB2D4DF006F84CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BB03BC31BB2D4DF006F84CB /* RUappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BB03BC71BB2D4DF006F84CB /* RUappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappUITests.swift; sourceTree = "<group>"; };
+		4BB03BC91BB2D4DF006F84CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4BB03BA11BB2D4DE006F84CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BB03BB51BB2D4DF006F84CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BB03BC01BB2D4DF006F84CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4BB03B9B1BB2D4DE006F84CB = {
+			isa = PBXGroup;
+			children = (
+				4BB03BA61BB2D4DE006F84CB /* RUapp */,
+				4BB03BBB1BB2D4DF006F84CB /* RUappTests */,
+				4BB03BC61BB2D4DF006F84CB /* RUappUITests */,
+				4BB03BA51BB2D4DE006F84CB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4BB03BA51BB2D4DE006F84CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4BB03BA41BB2D4DE006F84CB /* RUapp.app */,
+				4BB03BB81BB2D4DF006F84CB /* RUappTests.xctest */,
+				4BB03BC31BB2D4DF006F84CB /* RUappUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4BB03BA61BB2D4DE006F84CB /* RUapp */ = {
+			isa = PBXGroup;
+			children = (
+				4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */,
+				4BB03BA91BB2D4DE006F84CB /* ViewController.swift */,
+				4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */,
+				4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */,
+				4BB03BB01BB2D4DE006F84CB /* LaunchScreen.storyboard */,
+				4BB03BB31BB2D4DE006F84CB /* Info.plist */,
+			);
+			path = RUapp;
+			sourceTree = "<group>";
+		};
+		4BB03BBB1BB2D4DF006F84CB /* RUappTests */ = {
+			isa = PBXGroup;
+			children = (
+				4BB03BBC1BB2D4DF006F84CB /* RUappTests.swift */,
+				4BB03BBE1BB2D4DF006F84CB /* Info.plist */,
+			);
+			path = RUappTests;
+			sourceTree = "<group>";
+		};
+		4BB03BC61BB2D4DF006F84CB /* RUappUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4BB03BC71BB2D4DF006F84CB /* RUappUITests.swift */,
+				4BB03BC91BB2D4DF006F84CB /* Info.plist */,
+			);
+			path = RUappUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4BB03BA31BB2D4DE006F84CB /* RUapp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BB03BCC1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUapp" */;
+			buildPhases = (
+				4BB03BA01BB2D4DE006F84CB /* Sources */,
+				4BB03BA11BB2D4DE006F84CB /* Frameworks */,
+				4BB03BA21BB2D4DE006F84CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RUapp;
+			productName = RUapp;
+			productReference = 4BB03BA41BB2D4DE006F84CB /* RUapp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4BB03BB71BB2D4DF006F84CB /* RUappTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BB03BCF1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUappTests" */;
+			buildPhases = (
+				4BB03BB41BB2D4DF006F84CB /* Sources */,
+				4BB03BB51BB2D4DF006F84CB /* Frameworks */,
+				4BB03BB61BB2D4DF006F84CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BB03BBA1BB2D4DF006F84CB /* PBXTargetDependency */,
+			);
+			name = RUappTests;
+			productName = RUappTests;
+			productReference = 4BB03BB81BB2D4DF006F84CB /* RUappTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4BB03BC21BB2D4DF006F84CB /* RUappUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BB03BD21BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUappUITests" */;
+			buildPhases = (
+				4BB03BBF1BB2D4DF006F84CB /* Sources */,
+				4BB03BC01BB2D4DF006F84CB /* Frameworks */,
+				4BB03BC11BB2D4DF006F84CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BB03BC51BB2D4DF006F84CB /* PBXTargetDependency */,
+			);
+			name = RUappUITests;
+			productName = RUappUITests;
+			productReference = 4BB03BC31BB2D4DF006F84CB /* RUappUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4BB03B9C1BB2D4DE006F84CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Igor Camilo";
+				TargetAttributes = {
+					4BB03BA31BB2D4DE006F84CB = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					4BB03BB71BB2D4DF006F84CB = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 4BB03BA31BB2D4DE006F84CB;
+					};
+					4BB03BC21BB2D4DF006F84CB = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 4BB03BA31BB2D4DE006F84CB;
+					};
+				};
+			};
+			buildConfigurationList = 4BB03B9F1BB2D4DE006F84CB /* Build configuration list for PBXProject "RUapp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4BB03B9B1BB2D4DE006F84CB;
+			productRefGroup = 4BB03BA51BB2D4DE006F84CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4BB03BA31BB2D4DE006F84CB /* RUapp */,
+				4BB03BB71BB2D4DF006F84CB /* RUappTests */,
+				4BB03BC21BB2D4DF006F84CB /* RUappUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4BB03BA21BB2D4DE006F84CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BB03BB21BB2D4DE006F84CB /* LaunchScreen.storyboard in Resources */,
+				4BB03BAF1BB2D4DE006F84CB /* Assets.xcassets in Resources */,
+				4BB03BAD1BB2D4DE006F84CB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BB03BB61BB2D4DF006F84CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BB03BC11BB2D4DF006F84CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4BB03BA01BB2D4DE006F84CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BB03BAA1BB2D4DE006F84CB /* ViewController.swift in Sources */,
+				4BB03BA81BB2D4DE006F84CB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BB03BB41BB2D4DF006F84CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BB03BBD1BB2D4DF006F84CB /* RUappTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BB03BBF1BB2D4DF006F84CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BB03BC81BB2D4DF006F84CB /* RUappUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4BB03BBA1BB2D4DF006F84CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4BB03BA31BB2D4DE006F84CB /* RUapp */;
+			targetProxy = 4BB03BB91BB2D4DF006F84CB /* PBXContainerItemProxy */;
+		};
+		4BB03BC51BB2D4DF006F84CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4BB03BA31BB2D4DE006F84CB /* RUapp */;
+			targetProxy = 4BB03BC41BB2D4DF006F84CB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BB03BAC1BB2D4DE006F84CB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4BB03BB01BB2D4DE006F84CB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BB03BB11BB2D4DE006F84CB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4BB03BCA1BB2D4DF006F84CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4BB03BCB1BB2D4DF006F84CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4BB03BCD1BB2D4DF006F84CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RUapp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4BB03BCE1BB2D4DF006F84CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RUapp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		4BB03BD01BB2D4DF006F84CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RUappTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RUapp.app/RUapp";
+			};
+			name = Debug;
+		};
+		4BB03BD11BB2D4DF006F84CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RUappTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RUapp.app/RUapp";
+			};
+			name = Release;
+		};
+		4BB03BD31BB2D4DF006F84CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = RUappUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUappUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = RUapp;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		4BB03BD41BB2D4DF006F84CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = RUappUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUappUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = RUapp;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4BB03B9F1BB2D4DE006F84CB /* Build configuration list for PBXProject "RUapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BB03BCA1BB2D4DF006F84CB /* Debug */,
+				4BB03BCB1BB2D4DF006F84CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BB03BCC1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BB03BCD1BB2D4DF006F84CB /* Debug */,
+				4BB03BCE1BB2D4DF006F84CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4BB03BCF1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUappTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BB03BD01BB2D4DF006F84CB /* Debug */,
+				4BB03BD11BB2D4DF006F84CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4BB03BD21BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUappUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BB03BD31BB2D4DF006F84CB /* Debug */,
+				4BB03BD41BB2D4DF006F84CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4BB03B9C1BB2D4DE006F84CB /* Project object */;
+}
