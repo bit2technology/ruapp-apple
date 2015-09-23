@@ -48,6 +48,16 @@
                ReferencedContainer = "container:RUapp.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4BB03BE21BB2D5B8006F84CB"
+               BuildableName = "RUappServiceTests.xctest"
+               BlueprintName = "RUappServiceTests"
+               ReferencedContainer = "container:RUapp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

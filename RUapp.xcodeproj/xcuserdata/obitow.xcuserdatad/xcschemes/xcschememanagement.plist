@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>RUappService.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,16 @@
 			<true/>
 		</dict>
 		<key>4BB03BC21BB2D4DF006F84CB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4BB03BD91BB2D5B8006F84CB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4BB03BE21BB2D5B8006F84CB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
