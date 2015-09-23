@@ -22,6 +22,16 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Dosis-Font/Dosis-Bold.otf</string>
+		<string>Dosis-Font/Dosis-Book.otf</string>
+		<string>Dosis-Font/Dosis-ExtraBold.otf</string>
+		<string>Dosis-Font/Dosis-ExtraLight.otf</string>
+		<string>Dosis-Font/Dosis-Light.otf</string>
+		<string>Dosis-Font/Dosis-Medium.otf</string>
+		<string>Dosis-Font/Dosis-SemiBold.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -33,8 +43,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

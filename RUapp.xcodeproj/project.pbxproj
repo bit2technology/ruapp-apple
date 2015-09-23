@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998C1BB31C8700A2E0CF /* Helper.swift */; settings = {ASSET_TAGS = (); }; };
+		4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998E1BB31DE400A2E0CF /* Student.swift */; settings = {ASSET_TAGS = (); }; };
+		4BA599921BB32E6900A2E0CF /* Dosis-Font in Resources */ = {isa = PBXBuildFile; fileRef = 4BA599911BB32E6900A2E0CF /* Dosis-Font */; settings = {ASSET_TAGS = (); }; };
+		4BA599941BB347B700A2E0CF /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA599931BB347B700A2E0CF /* MainController.swift */; settings = {ASSET_TAGS = (); }; };
+		4BA599961BB34ED000A2E0CF /* MenuTypeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA599951BB34ED000A2E0CF /* MenuTypeSelector.swift */; settings = {ASSET_TAGS = (); }; };
 		4BB03BA81BB2D4DE006F84CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */; };
 		4BB03BAD1BB2D4DE006F84CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */; };
 		4BB03BAF1BB2D4DE006F84CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */; };
@@ -19,7 +24,7 @@
 		4BB03BEF1BB2D5B8006F84CB /* RUappService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB03BDA1BB2D5B8006F84CB /* RUappService.framework */; };
 		4BB03BF01BB2D5B8006F84CB /* RUappService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB03BDA1BB2D5B8006F84CB /* RUappService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4BB03BF91BB2DC09006F84CB /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BF81BB2DC09006F84CB /* Institution.swift */; settings = {ASSET_TAGS = (); }; };
-		4BB03BFB1BB2DE37006F84CB /* RUappServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFA1BB2DE37006F84CB /* RUappServiceError.swift */; settings = {ASSET_TAGS = (); }; };
+		4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFA1BB2DE37006F84CB /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
 		4BB03BFD1BB2E079006F84CB /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFC1BB2E079006F84CB /* Campus.swift */; settings = {ASSET_TAGS = (); }; };
 		4BB03BFF1BB2E204006F84CB /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */; settings = {ASSET_TAGS = (); }; };
 		4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03C001BB2E6B3006F84CB /* Meal.swift */; settings = {ASSET_TAGS = (); }; };
@@ -78,6 +83,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RUapp.entitlements; sourceTree = "<group>"; };
+		4BA5998C1BB31C8700A2E0CF /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		4BA5998E1BB31DE400A2E0CF /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		4BA599911BB32E6900A2E0CF /* Dosis-Font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Dosis-Font"; sourceTree = "<group>"; };
+		4BA599931BB347B700A2E0CF /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		4BA599951BB34ED000A2E0CF /* MenuTypeSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTypeSelector.swift; sourceTree = "<group>"; };
 		4BB03BA41BB2D4DE006F84CB /* RUapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BB03BAC1BB2D4DE006F84CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,7 +108,7 @@
 		4BB03BEA1BB2D5B8006F84CB /* RUappServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappServiceTests.swift; sourceTree = "<group>"; };
 		4BB03BEC1BB2D5B8006F84CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BB03BF81BB2DC09006F84CB /* Institution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
-		4BB03BFA1BB2DE37006F84CB /* RUappServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RUappServiceError.swift; sourceTree = "<group>"; };
+		4BB03BFA1BB2DE37006F84CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4BB03BFC1BB2E079006F84CB /* Campus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafeteria.swift; sourceTree = "<group>"; };
 		4BB03C001BB2E6B3006F84CB /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
@@ -144,6 +155,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BA599901BB32E2100A2E0CF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4BB03BB01BB2D4DE006F84CB /* LaunchScreen.storyboard */,
+				4BB03BB31BB2D4DE006F84CB /* Info.plist */,
+				4BA599911BB32E6900A2E0CF /* Dosis-Font */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4BA599971BB34ED500A2E0CF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4BA599951BB34ED000A2E0CF /* MenuTypeSelector.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		4BB03B9B1BB2D4DE006F84CB = {
 			isa = PBXGroup;
 			children = (
@@ -171,11 +200,13 @@
 		4BB03BA61BB2D4DE006F84CB /* RUapp */ = {
 			isa = PBXGroup;
 			children = (
+				4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */,
 				4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */,
+				4BA599931BB347B700A2E0CF /* MainController.swift */,
 				4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */,
 				4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */,
-				4BB03BB01BB2D4DE006F84CB /* LaunchScreen.storyboard */,
-				4BB03BB31BB2D4DE006F84CB /* Info.plist */,
+				4BA599971BB34ED500A2E0CF /* View */,
+				4BA599901BB32E2100A2E0CF /* Supporting Files */,
 			);
 			path = RUapp;
 			sourceTree = "<group>";
@@ -202,11 +233,13 @@
 			isa = PBXGroup;
 			children = (
 				4BB03BDC1BB2D5B8006F84CB /* RUappService.h */,
-				4BB03BFA1BB2DE37006F84CB /* RUappServiceError.swift */,
+				4BB03BFA1BB2DE37006F84CB /* Constants.swift */,
+				4BA5998C1BB31C8700A2E0CF /* Helper.swift */,
 				4BB03BF81BB2DC09006F84CB /* Institution.swift */,
 				4BB03BFC1BB2E079006F84CB /* Campus.swift */,
 				4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */,
 				4BB03C001BB2E6B3006F84CB /* Meal.swift */,
+				4BA5998E1BB31DE400A2E0CF /* Student.swift */,
 				4BB03BDE1BB2D5B8006F84CB /* Info.plist */,
 			);
 			path = RUappService;
@@ -340,6 +373,11 @@
 					4BB03BA31BB2D4DE006F84CB = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 2CPJD7ENY9;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					4BB03BB71BB2D4DF006F84CB = {
 						CreatedOnToolsVersion = 7.0;
@@ -386,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BA599921BB32E6900A2E0CF /* Dosis-Font in Resources */,
 				4BB03BB21BB2D4DE006F84CB /* LaunchScreen.storyboard in Resources */,
 				4BB03BAF1BB2D4DE006F84CB /* Assets.xcassets in Resources */,
 				4BB03BAD1BB2D4DE006F84CB /* Main.storyboard in Resources */,
@@ -427,6 +466,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BA599941BB347B700A2E0CF /* MainController.swift in Sources */,
+				4BA599961BB34ED000A2E0CF /* MenuTypeSelector.swift in Sources */,
 				4BB03BA81BB2D4DE006F84CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,9 +494,11 @@
 			files = (
 				4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */,
 				4BB03BF91BB2DC09006F84CB /* Institution.swift in Sources */,
-				4BB03BFB1BB2DE37006F84CB /* RUappServiceError.swift in Sources */,
+				4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */,
 				4BB03BFF1BB2E204006F84CB /* Cafeteria.swift in Sources */,
 				4BB03BFD1BB2E079006F84CB /* Campus.swift in Sources */,
+				4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */,
+				4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,12 +647,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RUapp/RUapp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = RUapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -617,12 +663,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RUapp/RUapp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = RUapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -760,6 +809,7 @@
 				4BB03BCE1BB2D4DF006F84CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BB03BCF1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUappTests" */ = {
 			isa = XCConfigurationList;
@@ -768,6 +818,7 @@
 				4BB03BD11BB2D4DF006F84CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BB03BD21BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUappUITests" */ = {
 			isa = XCConfigurationList;
@@ -776,6 +827,7 @@
 				4BB03BD41BB2D4DF006F84CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BB03BF11BB2D5B8006F84CB /* Build configuration list for PBXNativeTarget "RUappService" */ = {
 			isa = XCConfigurationList;
@@ -784,6 +836,7 @@
 				4BB03BF31BB2D5B8006F84CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BB03BF51BB2D5B8006F84CB /* Build configuration list for PBXNativeTarget "RUappServiceTests" */ = {
 			isa = XCConfigurationList;
@@ -792,6 +845,7 @@
 				4BB03BF71BB2D5B8006F84CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

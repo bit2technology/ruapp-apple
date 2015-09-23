@@ -9,6 +9,8 @@
 import UIKit
 import RUappService
 
+let DeviceIsPad = UIDevice.currentDevice().userInterfaceIdiom == .Pad
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,7 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        RUappServiceError.InvalidObject
+        // Appearance
+        window?.tintColor = UIColor.appLightBlue()
+        let navBar = UINavigationBar.appearance()
+        navBar.barStyle = .Black
+        navBar.barTintColor = UIColor.appDarkBlue()
+        navBar.translucent = false
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Dosis-SemiBold", size: 20)!]
+        let tabBar = UITabBar.appearance()
+        tabBar.barStyle = .Black
+        tabBar.barTintColor = UIColor.appDarkBlue()
+        tabBar.translucent = false
         
         return true
     }
