@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <animations/>
                                 <connections>
-                                    <segue destination="wxk-jo-7KO" kind="embed" identifier="Tab Bar Controller" id="oBR-7Y-DeL"/>
+                                    <segue destination="wxk-jo-7KO" kind="embed" identifier="Tab Bar Controller" id="4pn-sL-3BK"/>
                                 </connections>
                             </containerView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGz-6H-dks" userLabel="NavBarArea">
@@ -147,7 +147,9 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="cafeteriaBtn" destination="YAa-Ut-LoZ" id="CzG-xq-Jpn"/>
                         <outlet property="titleLabel" destination="dRG-bc-9PA" id="wOd-Ae-2SG"/>
+                        <segue destination="vq9-6H-gDa" kind="presentation" identifier="Register Student" id="DFS-Xj-uGa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OP3-B3-5ef" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -174,10 +176,10 @@
             </objects>
             <point key="canvasLocation" x="1642" y="1022"/>
         </scene>
-        <!--Menu-->
+        <!--Sidebar-->
         <scene sceneID="8YL-YC-L1j">
             <objects>
-                <tableViewController id="9LW-TI-Ahc" sceneMemberID="viewController">
+                <tableViewController id="9LW-TI-Ahc" customClass="SidebarController" customModule="RUapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CdW-u1-Zkl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -188,7 +190,7 @@
                             <outlet property="delegate" destination="9LW-TI-Ahc" id="BqQ-zq-S0P"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Menu" id="FWp-2O-OIu">
+                    <navigationItem key="navigationItem" title="Sidebar" id="FWp-2O-OIu">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="OeF-dm-6Qs">
                             <connections>
                                 <segue destination="qcQ-OT-K6k" kind="unwind" unwindAction="unwindToMain:" id="qZh-wM-EoP"/>
@@ -199,7 +201,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9F-Yq-B7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qcQ-OT-K6k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="433" y="1381"/>
+            <point key="canvasLocation" x="-222" y="1497"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EFQ-xa-1mu">
@@ -216,7 +218,53 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8K3-ri-z9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="44" y="1381"/>
+            <point key="canvasLocation" x="-611" y="1497"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="BaO-tz-XiT">
+            <objects>
+                <viewController id="vq9-6H-gDa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dem-Tw-Jk5"/>
+                        <viewControllerLayoutGuide type="bottom" id="pmL-oC-Mob"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bfm-Af-xZj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y13-PJ-nmv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o02-dF-4Sl">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                        <animations/>
+                                    </view>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="o02-dF-4Sl" firstAttribute="width" secondItem="Y13-PJ-nmv" secondAttribute="width" id="FEY-k4-gEM"/>
+                                    <constraint firstAttribute="bottom" secondItem="o02-dF-4Sl" secondAttribute="bottom" id="K4v-ya-LcD"/>
+                                    <constraint firstItem="o02-dF-4Sl" firstAttribute="top" secondItem="Y13-PJ-nmv" secondAttribute="top" id="LpM-gK-5vK"/>
+                                    <constraint firstItem="o02-dF-4Sl" firstAttribute="leading" secondItem="Y13-PJ-nmv" secondAttribute="leading" id="TBy-YI-skF"/>
+                                    <constraint firstAttribute="trailing" secondItem="o02-dF-4Sl" secondAttribute="trailing" id="WWF-cK-0Y2"/>
+                                    <constraint firstItem="o02-dF-4Sl" firstAttribute="height" secondItem="Y13-PJ-nmv" secondAttribute="height" id="n22-rK-QDR"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y13-PJ-nmv" firstAttribute="top" secondItem="Bfm-Af-xZj" secondAttribute="top" id="EaF-08-EGP"/>
+                            <constraint firstItem="Y13-PJ-nmv" firstAttribute="leading" secondItem="Bfm-Af-xZj" secondAttribute="leading" id="U4u-8p-DNt"/>
+                            <constraint firstAttribute="bottom" secondItem="Y13-PJ-nmv" secondAttribute="bottom" id="Uof-fG-vUc"/>
+                            <constraint firstAttribute="trailing" secondItem="Y13-PJ-nmv" secondAttribute="trailing" id="tzS-yd-cyq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0tm-li-hya"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hdT-bp-WJW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="218" y="1497"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="1zN-Ni-gz2">

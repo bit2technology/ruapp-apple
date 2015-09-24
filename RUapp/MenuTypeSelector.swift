@@ -39,7 +39,7 @@ class MenuTypeSelector: UISegmentedControl {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         tintColor = UIColor.clearColor()
-        setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Dosis-SemiBold", size: 18)!, NSForegroundColorAttributeName: UIColor.appLightBlue()], forState: .Normal)
+        setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem(), NSForegroundColorAttributeName: UIColor.appLightBlue()], forState: .Normal)
         setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: .Selected)
         addTarget(self, action: "valueChanged", forControlEvents: .ValueChanged)
     }

@@ -28,6 +28,7 @@
 		4BB03BFD1BB2E079006F84CB /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFC1BB2E079006F84CB /* Campus.swift */; settings = {ASSET_TAGS = (); }; };
 		4BB03BFF1BB2E204006F84CB /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */; settings = {ASSET_TAGS = (); }; };
 		4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03C001BB2E6B3006F84CB /* Meal.swift */; settings = {ASSET_TAGS = (); }; };
+		4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC6D731BB37B4600AF99EF /* SidebarController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		4BB03BFC1BB2E079006F84CB /* Campus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafeteria.swift; sourceTree = "<group>"; };
 		4BB03C001BB2E6B3006F84CB /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		4BCC6D731BB37B4600AF99EF /* SidebarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 				4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */,
 				4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */,
 				4BA599931BB347B700A2E0CF /* MainController.swift */,
+				4BCC6D731BB37B4600AF99EF /* SidebarController.swift */,
 				4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */,
 				4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */,
 				4BA599971BB34ED500A2E0CF /* View */,
@@ -466,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */,
 				4BA599941BB347B700A2E0CF /* MainController.swift in Sources */,
 				4BA599961BB34ED000A2E0CF /* MenuTypeSelector.swift in Sources */,
 				4BB03BA81BB2D4DE006F84CB /* AppDelegate.swift in Sources */,

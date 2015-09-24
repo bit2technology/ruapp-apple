@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RUappService
 
 class MainController: UIViewController, UITabBarControllerDelegate {
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var cafeteriaBtn: UIButton!
     
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {
         
@@ -43,9 +45,15 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let textAttrs = UINavigationBar.appearance().titleTextAttributes
-        titleLabel.font = textAttrs?[NSFontAttributeName] as? UIFont
-        titleLabel.textColor = textAttrs?[NSForegroundColorAttributeName] as? UIColor
+        titleLabel.font = UIFont.appNavTitle()
+        titleLabel.textColor = UIColor.whiteColor()
+        cafeteriaBtn.titleLabel?.font = UIFont.appBarItem()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if Institution.shared() == nil {
+            performSegueWithIdentifier("Register Student", sender: nil)
+        }
     }
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {

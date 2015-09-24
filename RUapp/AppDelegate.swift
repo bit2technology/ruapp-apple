@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RUappService
 
 let DeviceIsPad = UIDevice.currentDevice().userInterfaceIdiom == .Pad
 
@@ -24,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navBar.barStyle = .Black
         navBar.barTintColor = UIColor.appDarkBlue()
         navBar.translucent = false
-        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Dosis-SemiBold", size: 20)!]
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.appNavTitle()]
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem()], forState: .Normal)
         let tabBar = UITabBar.appearance()
         tabBar.barStyle = .Black
         tabBar.barTintColor = UIColor.appDarkBlue()
@@ -34,3 +34,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension UIFont {
+    
+    class func appBarItem() -> UIFont {
+        return UIFont(name: "Dosis-SemiBold", size: 18)!
+    }
+    
+    class func appBarItemDone() -> UIFont {
+        return UIFont(name: "Dosis-Bold", size: 18)!
+    }
+    
+    class func appNavTitle() -> UIFont {
+        return UIFont(name: "Dosis-SemiBold", size: 20)!
+    }
+}
