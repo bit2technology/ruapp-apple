@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B19D4E31BB6603300DD22A9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B19D4E21BB6603300DD22A9 /* Settings.bundle */; settings = {ASSET_TAGS = (); }; };
+		4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */; settings = {ASSET_TAGS = (); }; };
 		4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998C1BB31C8700A2E0CF /* Helper.swift */; settings = {ASSET_TAGS = (); }; };
 		4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998E1BB31DE400A2E0CF /* Student.swift */; settings = {ASSET_TAGS = (); }; };
 		4BA599921BB32E6900A2E0CF /* Dosis-Font in Resources */ = {isa = PBXBuildFile; fileRef = 4BA599911BB32E6900A2E0CF /* Dosis-Font */; settings = {ASSET_TAGS = (); }; };
@@ -84,6 +86,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4B19D4E21BB6603300DD22A9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RUapp.entitlements; sourceTree = "<group>"; };
 		4BA5998C1BB31C8700A2E0CF /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4BA5998E1BB31DE400A2E0CF /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		4BA599901BB32E2100A2E0CF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B19D4E21BB6603300DD22A9 /* Settings.bundle */,
 				4BB03BB01BB2D4DE006F84CB /* LaunchScreen.storyboard */,
 				4BB03BB31BB2D4DE006F84CB /* Info.plist */,
 				4BA599911BB32E6900A2E0CF /* Dosis-Font */,
@@ -206,6 +211,7 @@
 				4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */,
 				4BA599931BB347B700A2E0CF /* MainController.swift */,
 				4BCC6D731BB37B4600AF99EF /* SidebarController.swift */,
+				4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */,
 				4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */,
 				4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */,
 				4BA599971BB34ED500A2E0CF /* View */,
@@ -275,6 +281,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BB03BCC1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUapp" */;
 			buildPhases = (
+				4B19D4E11BB65F9900DD22A9 /* Bump Build Number */,
 				4BB03BA01BB2D4DE006F84CB /* Sources */,
 				4BB03BA11BB2D4DE006F84CB /* Frameworks */,
 				4BB03BA21BB2D4DE006F84CB /* Resources */,
@@ -429,6 +436,7 @@
 			files = (
 				4BA599921BB32E6900A2E0CF /* Dosis-Font in Resources */,
 				4BB03BB21BB2D4DE006F84CB /* LaunchScreen.storyboard in Resources */,
+				4B19D4E31BB6603300DD22A9 /* Settings.bundle in Resources */,
 				4BB03BAF1BB2D4DE006F84CB /* Assets.xcassets in Resources */,
 				4BB03BAD1BB2D4DE006F84CB /* Main.storyboard in Resources */,
 			);
@@ -464,11 +472,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4B19D4E11BB65F9900DD22A9 /* Bump Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bump Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "infoPlistPath=${INFOPLIST_FILE}\n\n# Increment the build number\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$infoPlistPath\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$infoPlistPath\"\n\n# Compose the version number string\nversionString=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$infoPlistPath\")\nversionString+=\" (\"\nversionString+=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$infoPlistPath\")\nversionString+=\")\"\n\n# Write the version number string to the settings bundle\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $versionString\" \"${PROJECT_DIR}/${PRODUCT_NAME}/Settings.bundle/Root.plist\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4BB03BA01BB2D4DE006F84CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */,
 				4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */,
 				4BA599941BB347B700A2E0CF /* MainController.swift in Sources */,
 				4BA599961BB34ED000A2E0CF /* MenuTypeSelector.swift in Sources */,
