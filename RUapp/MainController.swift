@@ -11,12 +11,27 @@ import RUappService
 
 class MainController: UIViewController, UITabBarControllerDelegate {
     
+    @IBOutlet weak var menuTypeSelector: MenuTypeSelector!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cafeteriaBtn: UIButton!
+    
+    private weak var sidebarCont: SidebarController?
     
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {
         
     }
+    
+//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+//        print(identifier)
+//        return true
+//        guard Institution.shared() == nil && Student.shared() == nil else {
+//            let alert = UIAlertController(title: "This software is still in beta", message: "Sorry, you still can't edit this information yet", preferredStyle: .Alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//            presentViewController(alert, animated: true, completion: nil)
+//            break
+//        }
+//
+//    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
@@ -26,11 +41,13 @@ class MainController: UIViewController, UITabBarControllerDelegate {
             }
             tabCont.delegate = self
             titleLabel.text = tabCont.viewControllers?.first?.tabBarItem.title?.uppercaseString
-        case "Sidebar"?:
-            guard let popover = segue.destinationViewController.popoverPresentationController,
+        case "Main To Sidebar"?:
+            guard let sidebar = (segue.destinationViewController as? UINavigationController)?.viewControllers.first as? SidebarController,
+                popover = segue.destinationViewController.popoverPresentationController,
                 forkBtn = sender as? UIButton else {
                 break
             }
+            sidebarCont = sidebar
             popover.sourceRect = forkBtn.bounds
             popover.backgroundColor = UIColor.appDarkBlue()
         default:
@@ -51,9 +68,13 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        if Institution.shared() == nil {
-            performSegueWithIdentifier("Register Student", sender: nil)
+        if Institution.shared() == nil || Student.shared() == nil {
+            performSegueWithIdentifier("Main To Registration", sender: nil)
         }
+    }
+    
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        sidebarCont?.traitCollectionDidChange(previousTraitCollection)
     }
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {

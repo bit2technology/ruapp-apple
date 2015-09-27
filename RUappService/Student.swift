@@ -42,7 +42,7 @@ public class Student {
     
     class func register(dict: AnyObject?) throws -> Student? {
         globalStudent = try Student(dict: dict)
-        globalUserDefaults?.setObject(globalStudent, forKey: StudentSavedDictionaryKey)
+        globalUserDefaults?.setObject(dict, forKey: StudentSavedDictionaryKey)
         return globalStudent
     }
 }

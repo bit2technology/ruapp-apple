@@ -20,6 +20,8 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var keyboardHeight: NSLayoutConstraint!
     
+    private weak var institutionsCont: RegisterInstitutionListController?
+    
     private var institution: Institution? {
         didSet {
             institutionField.text = institution?.name
@@ -28,7 +30,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     
     @IBAction func unwindToRegistration(segue: UIStoryboardSegue) {
         switch segue.identifier {
-        case "Institution Chosen"?:
+        case "Institutions To Registration"?:
             let institutionsCont = segue.sourceViewController as? RegisterInstitutionListController
             institution = institutionsCont?.selected
             textEdited()
@@ -43,12 +45,12 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
-        case "Select Institution"?:
+        case "Registration To Institutions"?:
             let navCont = segue.destinationViewController as? UINavigationController
             let popover = navCont?.popoverPresentationController
             popover?.sourceRect = institutionField.frame
             popover?.backgroundColor = UIColor.whiteColor()
-            let institutionsCont = navCont?.viewControllers.first as? RegisterInstitutionListController
+            institutionsCont = navCont?.viewControllers.first as? RegisterInstitutionListController
             institutionsCont?.selected = institution
         default:
             break
@@ -102,13 +104,17 @@ class RegisterController: UIViewController, UITextFieldDelegate {
                     item.enabled = true
                 }
                 self.indicator.hidden = true
-                let warn = "Show error msg"
-                print(error)
+                let alert = UIAlertController(title: NSLocalizedString("RegisterController.registerStudent.errorTitle", value: "There was an error. Please, try again.", comment: "Error title for when it was not possible to register a new student"), message: nil, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("RegisterController.registerStudent.errorBtnTitle", value: "OK", comment: "Error button title for when it was not possible to register a new student"), style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
                 return
             }
             
-            self.performSegueWithIdentifier("Registered", sender: self.doneBtn)
+            self.performSegueWithIdentifier("Registration To Main", sender: nil)
         }
+    }
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        institutionsCont?.traitCollectionDidChange(previousTraitCollection)
     }
 
     override func viewDidLoad() {
@@ -119,9 +125,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         studentIdField.text = student?.studentId
         institution = Institution.shared()
         textEdited()
-        
-        scrollView.scrollIndicatorInsets.top += 20
-        
+                
         let frameBtn = doneBtn.bounds
         UIGraphicsBeginImageContextWithOptions(frameBtn.size, false, 0)
         let ctx = UIGraphicsGetCurrentContext()
@@ -145,7 +149,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         
         if textField == institutionField {
             view.endEditing(true)
-            performSegueWithIdentifier("Select Institution", sender: textField)
+            performSegueWithIdentifier("Registration To Institutions", sender: textField)
             return false
         }
         
@@ -172,18 +176,27 @@ class RegisterInstitutionListController: UITableViewController {
     private var list: [Institution]?
     weak var selected: Institution?
     
+    @IBAction func cancelTap() {
+        performSegueWithIdentifier("Institutions To Registration", sender: nil)
+    }
+    
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        if presentingViewController?.traitCollection.horizontalSizeClass == .Regular {
+            navigationItem.leftBarButtonItem = nil
+        } else {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelTap")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = navigationItem.title?.uppercaseString
-        
-        navigationController?.navigationBarHidden = DeviceIsPad
         navigationItem.title = navigationItem.title?.uppercaseString
         
         Institution.getList { (list, error) -> Void in
             
             if list == nil {
                 let errorMsg = UILabel()
-                errorMsg.text = NSLocalizedString("RegisterInstitutionListController.downloadList.erro", value: "There was an error. Please, try again.", comment: "Error message for when it was not possible to download the institutions list")
+                errorMsg.text = NSLocalizedString("RegisterInstitutionListController.downloadList.error", value: "There was an error. Please, try again.", comment: "Error message for when it was not possible to download the institutions list")
                 errorMsg.numberOfLines = 0
                 errorMsg.font = UIFont(name: "Dosis-Regular", size: 20)
                 errorMsg.textColor = UIColor.appError()
@@ -217,8 +230,7 @@ class RegisterInstitutionListController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         selected = list![indexPath.row]
-        performSegueWithIdentifier("Institution Chosen", sender: nil)
+        performSegueWithIdentifier("Institutions To Registration", sender: nil)
     }
 }

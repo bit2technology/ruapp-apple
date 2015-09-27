@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B19D4E31BB6603300DD22A9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B19D4E21BB6603300DD22A9 /* Settings.bundle */; settings = {ASSET_TAGS = (); }; };
-		4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */; settings = {ASSET_TAGS = (); }; };
-		4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998C1BB31C8700A2E0CF /* Helper.swift */; settings = {ASSET_TAGS = (); }; };
-		4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998E1BB31DE400A2E0CF /* Student.swift */; settings = {ASSET_TAGS = (); }; };
-		4BA599921BB32E6900A2E0CF /* Dosis-Font in Resources */ = {isa = PBXBuildFile; fileRef = 4BA599911BB32E6900A2E0CF /* Dosis-Font */; settings = {ASSET_TAGS = (); }; };
-		4BA599941BB347B700A2E0CF /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA599931BB347B700A2E0CF /* MainController.swift */; settings = {ASSET_TAGS = (); }; };
-		4BA599961BB34ED000A2E0CF /* MenuTypeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA599951BB34ED000A2E0CF /* MenuTypeSelector.swift */; settings = {ASSET_TAGS = (); }; };
+		4B19D4E31BB6603300DD22A9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B19D4E21BB6603300DD22A9 /* Settings.bundle */; };
+		4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */; };
+		4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998C1BB31C8700A2E0CF /* Helper.swift */; };
+		4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998E1BB31DE400A2E0CF /* Student.swift */; };
+		4BA599921BB32E6900A2E0CF /* Dosis-Font in Resources */ = {isa = PBXBuildFile; fileRef = 4BA599911BB32E6900A2E0CF /* Dosis-Font */; };
+		4BA599941BB347B700A2E0CF /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA599931BB347B700A2E0CF /* MainController.swift */; };
+		4BA599961BB34ED000A2E0CF /* MenuTypeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA599951BB34ED000A2E0CF /* MenuTypeSelector.swift */; };
 		4BB03BA81BB2D4DE006F84CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */; };
 		4BB03BAD1BB2D4DE006F84CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */; };
 		4BB03BAF1BB2D4DE006F84CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */; };
@@ -21,16 +21,16 @@
 		4BB03BBD1BB2D4DF006F84CB /* RUappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BBC1BB2D4DF006F84CB /* RUappTests.swift */; };
 		4BB03BC81BB2D4DF006F84CB /* RUappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BC71BB2D4DF006F84CB /* RUappUITests.swift */; };
 		4BB03BDD1BB2D5B8006F84CB /* RUappService.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BB03BDC1BB2D5B8006F84CB /* RUappService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4BB03BE41BB2D5B8006F84CB /* RUappService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB03BDA1BB2D5B8006F84CB /* RUappService.framework */; settings = {ASSET_TAGS = (); }; };
+		4BB03BE41BB2D5B8006F84CB /* RUappService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB03BDA1BB2D5B8006F84CB /* RUappService.framework */; };
 		4BB03BEB1BB2D5B8006F84CB /* RUappServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BEA1BB2D5B8006F84CB /* RUappServiceTests.swift */; };
 		4BB03BEF1BB2D5B8006F84CB /* RUappService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB03BDA1BB2D5B8006F84CB /* RUappService.framework */; };
 		4BB03BF01BB2D5B8006F84CB /* RUappService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB03BDA1BB2D5B8006F84CB /* RUappService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4BB03BF91BB2DC09006F84CB /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BF81BB2DC09006F84CB /* Institution.swift */; settings = {ASSET_TAGS = (); }; };
-		4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFA1BB2DE37006F84CB /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
-		4BB03BFD1BB2E079006F84CB /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFC1BB2E079006F84CB /* Campus.swift */; settings = {ASSET_TAGS = (); }; };
-		4BB03BFF1BB2E204006F84CB /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */; settings = {ASSET_TAGS = (); }; };
-		4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03C001BB2E6B3006F84CB /* Meal.swift */; settings = {ASSET_TAGS = (); }; };
-		4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC6D731BB37B4600AF99EF /* SidebarController.swift */; settings = {ASSET_TAGS = (); }; };
+		4BB03BF91BB2DC09006F84CB /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BF81BB2DC09006F84CB /* Institution.swift */; };
+		4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFA1BB2DE37006F84CB /* Constants.swift */; };
+		4BB03BFD1BB2E079006F84CB /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFC1BB2E079006F84CB /* Campus.swift */; };
+		4BB03BFF1BB2E204006F84CB /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */; };
+		4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03C001BB2E6B3006F84CB /* Meal.swift */; };
+		4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC6D731BB37B4600AF99EF /* SidebarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
