@@ -9,30 +9,19 @@
 import UIKit
 import RUappService
 
-class SidebarController: UITableViewController {
+class SidebarController: UIViewController, UITableViewDelegate {
     
-    @IBAction func doneTap() {
-        performSegueWithIdentifier("Sidebar To Main", sender: nil)
-    }
-    
+    @IBOutlet weak var closeBtn: UIButton!
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-        navigationController?.navigationBarHidden = presentingViewController?.traitCollection.horizontalSizeClass == .Regular
+        closeBtn.hidden = presentingViewController?.traitCollection.horizontalSizeClass == .Regular
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.title = nil
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItemDone()], forState: .Normal)
-        
-        let blueTop = UIView(frame: CGRect(x: 0, y: -9999, width: 9999, height: 9999))
-        blueTop.backgroundColor = UIColor.appDarkBlue()
-        view.addSubview(blueTop)
-    }
+class SidebarTableController: UITableViewController {
     
     private let scale = UIScreen.mainScreen().scale
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -52,6 +41,12 @@ class SidebarController: UITableViewController {
         
         switch (indexPath.section, indexPath.row) {
         case (0, _):
+            guard Institution.shared() == nil && Student.shared() == nil else {
+                let alert = UIAlertController(title: "This software is still in beta", message: "Sorry, you still can't edit this information yet", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                presentViewController(alert, animated: true, completion: nil)
+                break
+            }
             performSegueWithIdentifier("Sidebar To Registration", sender: nil)
         case (1, 2): // Configuration
             UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)

@@ -20,19 +20,7 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {
         
     }
-    
-//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-//        print(identifier)
-//        return true
-//        guard Institution.shared() == nil && Student.shared() == nil else {
-//            let alert = UIAlertController(title: "This software is still in beta", message: "Sorry, you still can't edit this information yet", preferredStyle: .Alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-//            presentViewController(alert, animated: true, completion: nil)
-//            break
-//        }
-//
-//    }
-    
+        
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
         case "Tab Bar Controller"?:
@@ -40,7 +28,7 @@ class MainController: UIViewController, UITabBarControllerDelegate {
                 viewConts = tabCont.viewControllers else {
                 break
             }
-            let imgVerInset: CGFloat = 5.5
+            let imgVerInset: CGFloat = traitCollection.userInterfaceIdiom == .Pad ? 8 : 5.5
             for viewCont in viewConts {
                 let tabItem = viewCont.tabBarItem
                 tabItem.titlePositionAdjustment.vertical = 9999
@@ -49,7 +37,7 @@ class MainController: UIViewController, UITabBarControllerDelegate {
             tabCont.delegate = self
             titleLabel.text = tabCont.viewControllers?.first?.tabBarItem.title?.uppercaseString
         case "Main To Sidebar"?:
-            guard let sidebar = (segue.destinationViewController as? UINavigationController)?.viewControllers.first as? SidebarController,
+            guard let sidebar = segue.destinationViewController as? SidebarController,
                 popover = segue.destinationViewController.popoverPresentationController,
                 forkBtn = sender as? UIButton else {
                 break

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9052" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Dosis-Bold.otf">
@@ -59,7 +59,7 @@
                                                 </constraints>
                                                 <state key="normal" image="NavBarFork"/>
                                                 <connections>
-                                                    <segue destination="yR2-tV-XV1" kind="popoverPresentation" identifier="Main To Sidebar" popoverAnchorView="oZe-cO-h5W" id="oCS-ha-NdD">
+                                                    <segue destination="e7n-ir-VAF" kind="popoverPresentation" identifier="Main To Sidebar" popoverAnchorView="oZe-cO-h5W" id="Hif-IX-n3u">
                                                         <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                                                     </segue>
                                                 </connections>
@@ -181,6 +181,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="U5H-K2-dvr">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -193,7 +194,7 @@
                             <outlet property="delegate" destination="flA-0o-Vyw" id="w7e-EA-ZIA"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Menu" image="TabBarMenu" id="gP6-2e-AnH"/>
+                    <tabBarItem key="tabBarItem" title="Menu" image="TabBarMenu" selectedImage="TabBarMenuSel" id="gP6-2e-AnH"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26t-gc-Mor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -213,7 +214,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Statistics" image="TabBarStatistics" id="3gm-4T-aNJ"/>
+                    <tabBarItem key="tabBarItem" title="Statistics" image="TabBarStatistics" selectedImage="TabBarStatisticsSel" id="3gm-4T-aNJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PrJ-sN-xIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -233,7 +234,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Vote" image="TabBarVote" id="ocH-XY-KfD"/>
+                    <tabBarItem key="tabBarItem" title="Vote" image="TabBarVote" selectedImage="TabBarVoteSel" id="ocH-XY-KfD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VeH-5H-qZw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -253,7 +254,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Line" image="TabBarLine" id="QiA-rg-mu8"/>
+                    <tabBarItem key="tabBarItem" title="Line" image="TabBarLine" selectedImage="TabBarLineSel" id="QiA-rg-mu8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxG-5X-YA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -296,7 +297,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uvV-TV-nRp">
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uvV-TV-nRp">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <animations/>
                                             <constraints>
@@ -347,51 +348,20 @@
             </objects>
             <point key="canvasLocation" x="255" y="1863"/>
         </scene>
-        <!--Sidebar-->
+        <!--Sidebar Table Controller-->
         <scene sceneID="8YL-YC-L1j">
             <objects>
-                <tableViewController id="9LW-TI-Ahc" customClass="SidebarController" customModule="RUapp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="9LW-TI-Ahc" customClass="SidebarTableController" customModule="RUapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CdW-u1-Zkl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="472"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="rBs-iS-Env">
-                            <rect key="frame" x="0.0" y="64" width="600" height="123"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarHeader" translatesAutoresizingMaskIntoConstraints="NO" id="AfI-s3-pDz" userLabel="Center">
-                                    <rect key="frame" x="148" y="0.0" width="304" height="123"/>
-                                    <animations/>
-                                </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarHeader" translatesAutoresizingMaskIntoConstraints="NO" id="8gN-8R-To9" userLabel="Left">
-                                    <rect key="frame" x="-152" y="0.0" width="304" height="123"/>
-                                    <animations/>
-                                </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarHeader" translatesAutoresizingMaskIntoConstraints="NO" id="0fq-es-Gjs" userLabel="Right">
-                                    <rect key="frame" x="448" y="0.0" width="304" height="123"/>
-                                    <animations/>
-                                </imageView>
-                            </subviews>
-                            <animations/>
-                            <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstItem="AfI-s3-pDz" firstAttribute="leading" secondItem="8gN-8R-To9" secondAttribute="trailing" constant="-4" id="Ayt-eY-zli"/>
-                                <constraint firstAttribute="bottom" secondItem="8gN-8R-To9" secondAttribute="bottom" id="Dv4-BE-GaT"/>
-                                <constraint firstItem="0fq-es-Gjs" firstAttribute="leading" secondItem="AfI-s3-pDz" secondAttribute="trailing" constant="-4" id="Itc-ft-Ew6"/>
-                                <constraint firstAttribute="bottom" secondItem="0fq-es-Gjs" secondAttribute="bottom" id="Lf8-Ab-8Ep"/>
-                                <constraint firstItem="0fq-es-Gjs" firstAttribute="top" secondItem="rBs-iS-Env" secondAttribute="top" id="WOL-y2-ba8"/>
-                                <constraint firstItem="AfI-s3-pDz" firstAttribute="centerX" secondItem="rBs-iS-Env" secondAttribute="centerX" id="hks-nn-Dy9"/>
-                                <constraint firstAttribute="bottom" secondItem="AfI-s3-pDz" secondAttribute="bottom" id="q64-Cj-uEJ"/>
-                                <constraint firstItem="8gN-8R-To9" firstAttribute="top" secondItem="rBs-iS-Env" secondAttribute="top" id="qLm-4g-uDY"/>
-                                <constraint firstItem="AfI-s3-pDz" firstAttribute="top" secondItem="rBs-iS-Env" secondAttribute="top" id="xr8-7a-n1w"/>
-                            </constraints>
-                        </view>
                         <sections>
                             <tableViewSection id="VjW-la-oAx">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="h0y-ab-5SN" imageView="UOt-OT-l8X" style="IBUITableViewCellStyleDefault" id="A80-bd-bUL">
-                                        <rect key="frame" x="0.0" y="187" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A80-bd-bUL" id="hFQ-ag-zQT">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -416,7 +386,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="GRw-2R-sG9" imageView="vya-O8-vt3" style="IBUITableViewCellStyleDefault" id="c21-4U-aqL">
-                                        <rect key="frame" x="0.0" y="231" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c21-4U-aqL" id="dpD-Et-hyd">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -445,7 +415,7 @@
                             <tableViewSection id="GEZ-Zr-9aq">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="t7d-2M-Dlc" imageView="noy-rG-Buf" style="IBUITableViewCellStyleDefault" id="ULe-hu-0aj">
-                                        <rect key="frame" x="0.0" y="275" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ULe-hu-0aj" id="wx5-0K-xVH">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -470,7 +440,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="NNv-5U-bN1" imageView="kpU-hA-CgO" style="IBUITableViewCellStyleDefault" id="qB0-65-xMO">
-                                        <rect key="frame" x="0.0" y="319" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="132" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qB0-65-xMO" id="Eqo-ih-ciQ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -495,7 +465,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="6yK-XX-5e6" imageView="x0N-Ts-Hbt" style="IBUITableViewCellStyleDefault" id="3sU-Yr-u7X">
-                                        <rect key="frame" x="0.0" y="363" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="176" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3sU-Yr-u7X" id="IOG-ky-BKk">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -520,7 +490,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="QnF-Sd-YRv" imageView="JXK-cQ-ohL" style="IBUITableViewCellStyleDefault" id="KJs-aI-fol">
-                                        <rect key="frame" x="0.0" y="407" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KJs-aI-fol" id="hm1-55-TmX">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -552,39 +522,99 @@
                             <outlet property="delegate" destination="9LW-TI-Ahc" id="BqQ-zq-S0P"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sidebar" id="FWp-2O-OIu">
-                        <barButtonItem key="leftBarButtonItem" image="BtnClose" id="QAE-Rf-dnb">
-                            <connections>
-                                <segue destination="qcQ-OT-K6k" kind="unwind" identifier="Sidebar To Main" unwindAction="unwindToMain:" id="TFb-Gf-UIN"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <segue destination="vq9-6H-gDa" kind="presentation" identifier="Sidebar To Registration" id="lTO-zL-muo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9F-Yq-B7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="qcQ-OT-K6k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1320" y="1863"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="EFQ-xa-1mu">
+        <!--Sidebar Controller-->
+        <scene sceneID="f9f-gP-TEj">
             <objects>
-                <navigationController id="yR2-tV-XV1" sceneMemberID="viewController">
-                    <value key="contentSizeForViewInPopover" type="size" width="320" height="420"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HMM-QH-PLQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                <viewController id="e7n-ir-VAF" customClass="SidebarController" customModule="RUapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6kv-JU-zeZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="jdN-WF-pV9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="syS-PL-Y3k">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pqI-ka-wYc" userLabel="Header">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarHeader" translatesAutoresizingMaskIntoConstraints="NO" id="p7c-Ab-0Id" userLabel="Center">
+                                        <rect key="frame" x="148" y="0.0" width="304" height="128"/>
+                                        <animations/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarHeader" translatesAutoresizingMaskIntoConstraints="NO" id="xrP-uS-qPb" userLabel="Left">
+                                        <rect key="frame" x="-152" y="0.0" width="304" height="128"/>
+                                        <animations/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SidebarHeader" translatesAutoresizingMaskIntoConstraints="NO" id="Lv7-6S-eRc" userLabel="Right">
+                                        <rect key="frame" x="448" y="0.0" width="304" height="128"/>
+                                        <animations/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYu-Sq-pQj">
+                                        <rect key="frame" x="0.0" y="20" width="44" height="44"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="I4i-cn-duN"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="WGP-XO-RLF"/>
+                                        </constraints>
+                                        <state key="normal" image="BtnClose"/>
+                                        <connections>
+                                            <segue destination="Ar9-K4-aNe" kind="unwind" identifier="Sidebar To Main" unwindAction="unwindToMain:" id="XTJ-g9-uu0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Lv7-6S-eRc" firstAttribute="top" secondItem="pqI-ka-wYc" secondAttribute="top" id="81k-wZ-6ne"/>
+                                    <constraint firstItem="xrP-uS-qPb" firstAttribute="top" secondItem="pqI-ka-wYc" secondAttribute="top" id="Cvg-Vq-seg"/>
+                                    <constraint firstItem="p7c-Ab-0Id" firstAttribute="centerX" secondItem="pqI-ka-wYc" secondAttribute="centerX" id="RKa-Hc-cjo"/>
+                                    <constraint firstAttribute="bottom" secondItem="xrP-uS-qPb" secondAttribute="bottom" id="Udl-y4-7zN"/>
+                                    <constraint firstAttribute="bottom" secondItem="Lv7-6S-eRc" secondAttribute="bottom" id="as2-UJ-zo7"/>
+                                    <constraint firstItem="p7c-Ab-0Id" firstAttribute="top" secondItem="pqI-ka-wYc" secondAttribute="top" id="bJ1-C4-Z6Q"/>
+                                    <constraint firstItem="Lv7-6S-eRc" firstAttribute="leading" secondItem="p7c-Ab-0Id" secondAttribute="trailing" constant="-4" id="hCn-m2-OgV"/>
+                                    <constraint firstItem="yYu-Sq-pQj" firstAttribute="leading" secondItem="pqI-ka-wYc" secondAttribute="leading" id="lLv-LP-UlQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="p7c-Ab-0Id" secondAttribute="bottom" id="oav-HN-0sP"/>
+                                    <constraint firstItem="p7c-Ab-0Id" firstAttribute="leading" secondItem="xrP-uS-qPb" secondAttribute="trailing" constant="-4" id="vmu-Y0-RIP"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ron-Hq-tpn">
+                                <rect key="frame" x="0.0" y="128" width="600" height="472"/>
+                                <animations/>
+                                <connections>
+                                    <segue destination="9LW-TI-Ahc" kind="embed" id="4JZ-gw-rG9"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <animations/>
-                    </navigationBar>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pqI-ka-wYc" secondAttribute="trailing" id="1Zj-1J-mnq"/>
+                            <constraint firstItem="yYu-Sq-pQj" firstAttribute="top" secondItem="6kv-JU-zeZ" secondAttribute="bottom" id="3vd-PT-z2j"/>
+                            <constraint firstItem="Ron-Hq-tpn" firstAttribute="leading" secondItem="syS-PL-Y3k" secondAttribute="leading" id="7mK-m5-S96"/>
+                            <constraint firstItem="pqI-ka-wYc" firstAttribute="leading" secondItem="syS-PL-Y3k" secondAttribute="leading" id="JJc-N7-NMi"/>
+                            <constraint firstItem="pqI-ka-wYc" firstAttribute="top" secondItem="syS-PL-Y3k" secondAttribute="top" id="YsH-ht-CpY"/>
+                            <constraint firstItem="jdN-WF-pV9" firstAttribute="top" secondItem="Ron-Hq-tpn" secondAttribute="bottom" id="mz9-yi-gaA"/>
+                            <constraint firstItem="Ron-Hq-tpn" firstAttribute="top" secondItem="pqI-ka-wYc" secondAttribute="bottom" id="qjW-97-rb4"/>
+                            <constraint firstAttribute="trailing" secondItem="Ron-Hq-tpn" secondAttribute="trailing" id="v6r-GY-hcE"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="420"/>
                     <connections>
-                        <segue destination="9LW-TI-Ahc" kind="relationship" relationship="rootViewController" id="Mbm-8l-kOW"/>
+                        <outlet property="closeBtn" destination="yYu-Sq-pQj" id="BTZ-Er-npX"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8K3-ri-z9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GuW-yT-6Cs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Ar9-K4-aNe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1986" y="1863"/>
+            <point key="canvasLocation" x="-1987" y="1863"/>
         </scene>
         <!--Register Controller-->
         <scene sceneID="BaO-tz-XiT">
@@ -851,12 +881,16 @@
         <image name="SidebarName" width="30" height="30"/>
         <image name="SidebarSettings" width="30" height="30"/>
         <image name="SidebarSuggestion" width="30" height="30"/>
-        <image name="TabBarLine" width="50" height="50"/>
-        <image name="TabBarMenu" width="50" height="50"/>
-        <image name="TabBarStatistics" width="50" height="50"/>
-        <image name="TabBarVote" width="50" height="50"/>
+        <image name="TabBarLine" width="36" height="36"/>
+        <image name="TabBarLineSel" width="36" height="36"/>
+        <image name="TabBarMenu" width="36" height="36"/>
+        <image name="TabBarMenuSel" width="36" height="36"/>
+        <image name="TabBarStatistics" width="36" height="36"/>
+        <image name="TabBarStatisticsSel" width="36" height="36"/>
+        <image name="TabBarVote" width="36" height="36"/>
+        <image name="TabBarVoteSel" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lTO-zL-muo"/>
+        <segue reference="Qai-3u-9ax"/>
     </inferredMetricsTieBreakers>
 </document>
