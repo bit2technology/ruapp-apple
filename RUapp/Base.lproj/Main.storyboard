@@ -221,14 +221,10 @@
             <point key="canvasLocation" x="2530" y="-522"/>
         </scene>
         <!--Vote-->
-        <scene sceneID="toS-iu-szE">
+        <scene sceneID="8WT-lf-dqH">
             <objects>
-                <viewController id="IgC-Rv-k5N" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kxN-PL-5Uq"/>
-                        <viewControllerLayoutGuide type="bottom" id="raf-EQ-rvj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mSp-b4-5b5">
+                <collectionViewController id="zek-OX-qut" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="3iZ-79-Gnv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -238,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VeH-5H-qZw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2530" y="339"/>
+            <point key="canvasLocation" x="2530" y="342"/>
         </scene>
         <!--Line-->
         <scene sceneID="Vnw-Rk-1bV">
@@ -859,7 +855,7 @@
                     <connections>
                         <segue destination="flA-0o-Vyw" kind="relationship" relationship="viewControllers" id="sOY-vw-8ZB"/>
                         <segue destination="QJ8-Sb-UVw" kind="relationship" relationship="viewControllers" id="S0X-yj-5wp"/>
-                        <segue destination="IgC-Rv-k5N" kind="relationship" relationship="viewControllers" id="EwF-cQ-vZ1"/>
+                        <segue destination="zek-OX-qut" kind="relationship" relationship="viewControllers" id="bJJ-PE-YqP"/>
                         <segue destination="bTO-3b-1al" kind="relationship" relationship="viewControllers" id="iBG-me-zDL"/>
                     </connections>
                 </tabBarController>
