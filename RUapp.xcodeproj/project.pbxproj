@@ -14,6 +14,8 @@
 		4B3375611BB98FFE002696C9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B33755F1BB98FFE002696C9 /* MainInterface.storyboard */; };
 		4B3375651BB98FFE002696C9 /* MenuExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4B3375581BB98FFE002696C9 /* MenuExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4B33756C1BB9D7A9002696C9 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33756B1BB9D7A9002696C9 /* MenuController.swift */; };
+		4B4C7FD11BBB43C7001D55E5 /* VoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */; settings = {ASSET_TAGS = (); }; };
+		4B4C7FD31BBB4709001D55E5 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD21BBB4709001D55E5 /* Vote.swift */; settings = {ASSET_TAGS = (); }; };
 		4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998C1BB31C8700A2E0CF /* Helper.swift */; };
 		4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998E1BB31DE400A2E0CF /* Student.swift */; };
 		4BA599921BB32E6900A2E0CF /* Dosis-Font in Resources */ = {isa = PBXBuildFile; fileRef = 4BA599911BB32E6900A2E0CF /* Dosis-Font */; };
@@ -118,6 +120,8 @@
 		4B3375621BB98FFE002696C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B33756A1BB9A947002696C9 /* MenuExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MenuExtension.entitlements; sourceTree = "<group>"; };
 		4B33756B1BB9D7A9002696C9 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteController.swift; sourceTree = "<group>"; };
+		4B4C7FD21BBB4709001D55E5 /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RUapp.entitlements; sourceTree = "<group>"; };
 		4BA5998C1BB31C8700A2E0CF /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4BA5998E1BB31DE400A2E0CF /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 		4BA599901BB32E2100A2E0CF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */,
 				4B19D4E21BB6603300DD22A9 /* Settings.bundle */,
 				4BB03BB01BB2D4DE006F84CB /* LaunchScreen.storyboard */,
 				4BB03BB31BB2D4DE006F84CB /* Info.plist */,
@@ -267,8 +272,8 @@
 		4BB03BA61BB2D4DE006F84CB /* RUapp */ = {
 			isa = PBXGroup;
 			children = (
-				4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */,
 				4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */,
+				4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */,
 				4BA599931BB347B700A2E0CF /* MainController.swift */,
 				4BCC6D731BB37B4600AF99EF /* SidebarController.swift */,
 				4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */,
@@ -304,6 +309,7 @@
 			children = (
 				4BB03BDC1BB2D5B8006F84CB /* RUappService.h */,
 				4BB03BFA1BB2DE37006F84CB /* Constants.swift */,
+				4B4C7FD21BBB4709001D55E5 /* Vote.swift */,
 				4BA5998C1BB31C8700A2E0CF /* Helper.swift */,
 				4BB03BF81BB2DC09006F84CB /* Institution.swift */,
 				4BB03BFC1BB2E079006F84CB /* Campus.swift */,
@@ -604,6 +610,7 @@
 				4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */,
 				4BA599941BB347B700A2E0CF /* MainController.swift in Sources */,
 				4BA599961BB34ED000A2E0CF /* MenuTypeSelector.swift in Sources */,
+				4B4C7FD11BBB43C7001D55E5 /* VoteController.swift in Sources */,
 				4B33756C1BB9D7A9002696C9 /* MenuController.swift in Sources */,
 				4BB03BA81BB2D4DE006F84CB /* AppDelegate.swift in Sources */,
 			);
@@ -632,6 +639,7 @@
 				4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */,
 				4BB03BF91BB2DC09006F84CB /* Institution.swift in Sources */,
 				4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */,
+				4B4C7FD31BBB4709001D55E5 /* Vote.swift in Sources */,
 				4BB03BFF1BB2E204006F84CB /* Cafeteria.swift in Sources */,
 				4BB03BFD1BB2E079006F84CB /* Campus.swift in Sources */,
 				4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */,
@@ -980,6 +988,7 @@
 				4B3375671BB98FFE002696C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BB03B9F1BB2D4DE006F84CB /* Build configuration list for PBXProject "RUapp" */ = {
 			isa = XCConfigurationList;
