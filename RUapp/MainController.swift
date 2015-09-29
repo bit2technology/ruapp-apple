@@ -36,8 +36,15 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier {
         case "Tab Bar Controller"?:
-            guard let tabCont = segue.destinationViewController as? UITabBarController else {
+            guard let tabCont = segue.destinationViewController as? UITabBarController,
+                viewConts = tabCont.viewControllers else {
                 break
+            }
+            let imgVerInset: CGFloat = 5.5
+            for viewCont in viewConts {
+                let tabItem = viewCont.tabBarItem
+                tabItem.titlePositionAdjustment.vertical = 9999
+                tabItem.imageInsets = UIEdgeInsets(top: imgVerInset, left: 0, bottom: -imgVerInset, right: 0)
             }
             tabCont.delegate = self
             titleLabel.text = tabCont.viewControllers?.first?.tabBarItem.title?.uppercaseString

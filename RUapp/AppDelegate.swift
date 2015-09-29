@@ -27,6 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBar.barStyle = .Black
         tabBar.barTintColor = UIColor.appDarkBlue()
         tabBar.translucent = false
+        let frameTab = CGRect(x: 0, y: 0, width: 44, height: 44)
+        UIGraphicsBeginImageContextWithOptions(frameTab.size, false, 0)
+        let ctx = UIGraphicsGetCurrentContext()
+        CGContextSetFillColorWithColor(ctx, UIColor.appLightBlue().CGColor)
+        CGContextFillEllipseInRect(ctx, frameTab)
+        tabBar.selectionIndicatorImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()        
         
         return true
     }

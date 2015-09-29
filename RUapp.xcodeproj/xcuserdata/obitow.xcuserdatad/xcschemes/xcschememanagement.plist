@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MenuExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>RUapp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,6 +22,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>4B3375571BB98FFD002696C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4BB03BA31BB2D4DE006F84CB</key>
 		<dict>
 			<key>primary</key>

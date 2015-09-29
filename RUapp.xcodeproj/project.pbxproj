@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		4B19D4E31BB6603300DD22A9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B19D4E21BB6603300DD22A9 /* Settings.bundle */; };
 		4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */; };
+		4B33755B1BB98FFE002696C9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B33755A1BB98FFE002696C9 /* NotificationCenter.framework */; };
+		4B33755E1BB98FFE002696C9 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33755D1BB98FFE002696C9 /* TodayViewController.swift */; };
+		4B3375611BB98FFE002696C9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B33755F1BB98FFE002696C9 /* MainInterface.storyboard */; };
+		4B3375651BB98FFE002696C9 /* MenuExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4B3375581BB98FFE002696C9 /* MenuExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4B33756C1BB9D7A9002696C9 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33756B1BB9D7A9002696C9 /* MenuController.swift */; };
 		4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998C1BB31C8700A2E0CF /* Helper.swift */; };
 		4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998E1BB31DE400A2E0CF /* Student.swift */; };
 		4BA599921BB32E6900A2E0CF /* Dosis-Font in Resources */ = {isa = PBXBuildFile; fileRef = 4BA599911BB32E6900A2E0CF /* Dosis-Font */; };
@@ -34,6 +39,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4B3375631BB98FFE002696C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BB03B9C1BB2D4DE006F84CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B3375571BB98FFD002696C9;
+			remoteInfo = MenuExtension;
+		};
 		4BB03BB91BB2D4DF006F84CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4BB03B9C1BB2D4DE006F84CB /* Project object */;
@@ -72,6 +84,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4B3375691BB98FFE002696C9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4B3375651BB98FFE002696C9 /* MenuExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4BB03BF41BB2D5B8006F84CB /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -88,6 +111,13 @@
 /* Begin PBXFileReference section */
 		4B19D4E21BB6603300DD22A9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		4B3375581BB98FFE002696C9 /* MenuExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MenuExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B33755A1BB98FFE002696C9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		4B33755D1BB98FFE002696C9 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		4B3375601BB98FFE002696C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		4B3375621BB98FFE002696C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B33756A1BB9A947002696C9 /* MenuExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MenuExtension.entitlements; sourceTree = "<group>"; };
+		4B33756B1BB9D7A9002696C9 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RUapp.entitlements; sourceTree = "<group>"; };
 		4BA5998C1BB31C8700A2E0CF /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4BA5998E1BB31DE400A2E0CF /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -121,6 +151,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4B3375551BB98FFD002696C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B33755B1BB98FFE002696C9 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4BB03BA11BB2D4DE006F84CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -161,6 +199,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B3375591BB98FFE002696C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B33755A1BB98FFE002696C9 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B33755C1BB98FFE002696C9 /* MenuExtension */ = {
+			isa = PBXGroup;
+			children = (
+				4B33756A1BB9A947002696C9 /* MenuExtension.entitlements */,
+				4B33755D1BB98FFE002696C9 /* TodayViewController.swift */,
+				4B33755F1BB98FFE002696C9 /* MainInterface.storyboard */,
+				4B3375621BB98FFE002696C9 /* Info.plist */,
+			);
+			path = MenuExtension;
+			sourceTree = "<group>";
+		};
 		4BA599901BB32E2100A2E0CF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +245,8 @@
 				4BB03BC61BB2D4DF006F84CB /* RUappUITests */,
 				4BB03BDB1BB2D5B8006F84CB /* RUappService */,
 				4BB03BE91BB2D5B8006F84CB /* RUappServiceTests */,
+				4B33755C1BB98FFE002696C9 /* MenuExtension */,
+				4B3375591BB98FFE002696C9 /* Frameworks */,
 				4BB03BA51BB2D4DE006F84CB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -200,6 +259,7 @@
 				4BB03BC31BB2D4DF006F84CB /* RUappUITests.xctest */,
 				4BB03BDA1BB2D5B8006F84CB /* RUappService.framework */,
 				4BB03BE31BB2D5B8006F84CB /* RUappServiceTests.xctest */,
+				4B3375581BB98FFE002696C9 /* MenuExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +272,7 @@
 				4BA599931BB347B700A2E0CF /* MainController.swift */,
 				4BCC6D731BB37B4600AF99EF /* SidebarController.swift */,
 				4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */,
+				4B33756B1BB9D7A9002696C9 /* MenuController.swift */,
 				4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */,
 				4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */,
 				4BA599971BB34ED500A2E0CF /* View */,
@@ -277,6 +338,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4B3375571BB98FFD002696C9 /* MenuExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B3375681BB98FFE002696C9 /* Build configuration list for PBXNativeTarget "MenuExtension" */;
+			buildPhases = (
+				4B3375541BB98FFD002696C9 /* Sources */,
+				4B3375551BB98FFD002696C9 /* Frameworks */,
+				4B3375561BB98FFD002696C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MenuExtension;
+			productName = MenuExtension;
+			productReference = 4B3375581BB98FFE002696C9 /* MenuExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		4BB03BA31BB2D4DE006F84CB /* RUapp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BB03BCC1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUapp" */;
@@ -286,11 +364,13 @@
 				4BB03BA11BB2D4DE006F84CB /* Frameworks */,
 				4BB03BA21BB2D4DE006F84CB /* Resources */,
 				4BB03BF41BB2D5B8006F84CB /* Embed Frameworks */,
+				4B3375691BB98FFE002696C9 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				4BB03BEE1BB2D5B8006F84CB /* PBXTargetDependency */,
+				4B3375641BB98FFE002696C9 /* PBXTargetDependency */,
 			);
 			name = RUapp;
 			productName = RUapp;
@@ -380,6 +460,15 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Igor Camilo";
 				TargetAttributes = {
+					4B3375571BB98FFD002696C9 = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 2CPJD7ENY9;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					4BB03BA31BB2D4DE006F84CB = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 2CPJD7ENY9;
@@ -425,11 +514,20 @@
 				4BB03BC21BB2D4DF006F84CB /* RUappUITests */,
 				4BB03BD91BB2D5B8006F84CB /* RUappService */,
 				4BB03BE21BB2D5B8006F84CB /* RUappServiceTests */,
+				4B3375571BB98FFD002696C9 /* MenuExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4B3375561BB98FFD002696C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B3375611BB98FFE002696C9 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4BB03BA21BB2D4DE006F84CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -490,6 +588,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4B3375541BB98FFD002696C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B33755E1BB98FFE002696C9 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4BB03BA01BB2D4DE006F84CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -498,6 +604,7 @@
 				4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */,
 				4BA599941BB347B700A2E0CF /* MainController.swift in Sources */,
 				4BA599961BB34ED000A2E0CF /* MenuTypeSelector.swift in Sources */,
+				4B33756C1BB9D7A9002696C9 /* MenuController.swift in Sources */,
 				4BB03BA81BB2D4DE006F84CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -543,6 +650,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4B3375641BB98FFE002696C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B3375571BB98FFD002696C9 /* MenuExtension */;
+			targetProxy = 4B3375631BB98FFE002696C9 /* PBXContainerItemProxy */;
+		};
 		4BB03BBA1BB2D4DF006F84CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4BB03BA31BB2D4DE006F84CB /* RUapp */;
@@ -571,6 +683,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4B33755F1BB98FFE002696C9 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B3375601BB98FFE002696C9 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -590,6 +710,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4B3375661BB98FFE002696C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MenuExtension/MenuExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MenuExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUapp.MenuExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4B3375671BB98FFE002696C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MenuExtension/MenuExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MenuExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUapp.MenuExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		4BB03BCA1BB2D4DF006F84CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -823,6 +973,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4B3375681BB98FFE002696C9 /* Build configuration list for PBXNativeTarget "MenuExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B3375661BB98FFE002696C9 /* Debug */,
+				4B3375671BB98FFE002696C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		4BB03B9F1BB2D4DE006F84CB /* Build configuration list for PBXProject "RUapp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
