@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9052" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Dosis-Bold.otf">
@@ -19,6 +21,9 @@
             <string>Dosis-Book</string>
             <string>Dosis-Book</string>
             <string>Dosis-Book</string>
+        </mutableArray>
+        <mutableArray key="Dosis-Medium.otf">
+            <string>Dosis-Medium</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -166,6 +171,7 @@
                         <outlet property="cafeteriaBtn" destination="YAa-Ut-LoZ" id="CzG-xq-Jpn"/>
                         <outlet property="menuTypeSelector" destination="iTF-gh-4iY" id="EYQ-P7-p7E"/>
                         <outlet property="titleLabel" destination="dRG-bc-9PA" id="wOd-Ae-2SG"/>
+                        <outlet property="topBarHeight" destination="k7s-aS-m93" id="C7R-0f-SjG"/>
                         <segue destination="vq9-6H-gDa" kind="presentation" identifier="Main To Registration" id="Qai-3u-9ax"/>
                     </connections>
                 </viewController>
@@ -223,16 +229,140 @@
         <!--Vote-->
         <scene sceneID="8WT-lf-dqH">
             <objects>
-                <collectionViewController id="zek-OX-qut" sceneMemberID="viewController">
+                <collectionViewController id="zek-OX-qut" customClass="VoteController" customModule="RUapp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="3iZ-79-Gnv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Vote" image="TabBarVote" selectedImage="TabBarVoteSel" id="ocH-XY-KfD"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VeH-5H-qZw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HJ5-SX-5ey">
+                            <size key="itemSize" width="300" height="115"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Vote" id="dJ2-49-aqM" customClass="VoteCell" customModule="RUapp" customModuleProvider="target">
+                                <rect key="frame" x="150" y="10" width="300" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="115"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3q-Ri-oSR" userLabel="Background">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="115"/>
+                                            <animations/>
+                                            <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vW3-Jb-w2a">
+                                            <rect key="frame" x="8" y="8" width="26" height="19"/>
+                                            <animations/>
+                                            <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Xe-RS-lgb">
+                                            <rect key="frame" x="8" y="41" width="60" height="60"/>
+                                            <animations/>
+                                            <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" placeholder="YES" id="1mn-Lz-wmO"/>
+                                                <constraint firstAttribute="width" constant="60" placeholder="YES" id="Zjq-Wr-9Gy"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vp1-bk-llh" userLabel="Very Good">
+                                            <rect key="frame" x="0.0" y="27" width="75" height="88"/>
+                                            <animations/>
+                                            <state key="normal" image="VoteVeryGood"/>
+                                            <connections>
+                                                <action selector="voteTap:" destination="dJ2-49-aqM" eventType="touchUpInside" id="9BQ-9b-Lh4"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tv-2C-92c" userLabel="Good">
+                                            <rect key="frame" x="75" y="27" width="75" height="88"/>
+                                            <animations/>
+                                            <state key="normal" image="VoteGood"/>
+                                            <connections>
+                                                <action selector="voteTap:" destination="dJ2-49-aqM" eventType="touchUpInside" id="Dcg-ko-b06"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbD-jN-39h" userLabel="Bad">
+                                            <rect key="frame" x="150" y="27" width="75" height="88"/>
+                                            <animations/>
+                                            <state key="normal" image="VoteBad"/>
+                                            <connections>
+                                                <action selector="voteTap:" destination="dJ2-49-aqM" eventType="touchUpInside" id="VQU-ru-WAC"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2t-7c-Yyk" userLabel="Didn't Eat">
+                                            <rect key="frame" x="225" y="27" width="75" height="88"/>
+                                            <animations/>
+                                            <state key="normal" image="VoteDidntEat"/>
+                                            <connections>
+                                                <action selector="voteTap:" destination="dJ2-49-aqM" eventType="touchUpInside" id="lX3-rR-0p3"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="N2t-7c-Yyk" firstAttribute="leading" secondItem="mbD-jN-39h" secondAttribute="trailing" priority="750" id="2Wb-c7-860"/>
+                                    <constraint firstItem="vW3-Jb-w2a" firstAttribute="top" secondItem="dJ2-49-aqM" secondAttribute="topMargin" id="3Q9-3p-4Uv"/>
+                                    <constraint firstItem="mbD-jN-39h" firstAttribute="leading" relation="lessThanOrEqual" secondItem="dJ2-49-aqM" secondAttribute="leading" constant="9999" id="47D-18-QaE"/>
+                                    <constraint firstItem="vW3-Jb-w2a" firstAttribute="leading" secondItem="dJ2-49-aqM" secondAttribute="leadingMargin" id="4Hr-i1-6Au"/>
+                                    <constraint firstItem="mbD-jN-39h" firstAttribute="leading" secondItem="dJ2-49-aqM" secondAttribute="leading" priority="250" id="8g1-gy-K9t"/>
+                                    <constraint firstItem="Vp1-bk-llh" firstAttribute="width" secondItem="dJ2-49-aqM" secondAttribute="width" multiplier="0.25" id="9nx-L6-xcF"/>
+                                    <constraint firstAttribute="bottom" secondItem="N2t-7c-Yyk" secondAttribute="bottom" id="ANH-UL-Ghp"/>
+                                    <constraint firstItem="P3q-Ri-oSR" firstAttribute="leading" secondItem="dJ2-49-aqM" secondAttribute="leading" id="Dd5-yi-35t"/>
+                                    <constraint firstItem="1Xe-RS-lgb" firstAttribute="centerX" secondItem="Vp1-bk-llh" secondAttribute="centerX" id="Eev-Ou-QtJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="P3q-Ri-oSR" secondAttribute="bottom" id="H1u-Pl-WNV"/>
+                                    <constraint firstItem="N2t-7c-Yyk" firstAttribute="leading" relation="lessThanOrEqual" secondItem="dJ2-49-aqM" secondAttribute="leading" constant="9999" id="K8A-TM-dLR"/>
+                                    <constraint firstItem="mbD-jN-39h" firstAttribute="top" secondItem="vW3-Jb-w2a" secondAttribute="bottom" id="KnF-in-lDx"/>
+                                    <constraint firstItem="Vp1-bk-llh" firstAttribute="width" secondItem="1tv-2C-92c" secondAttribute="width" id="KpN-Mp-pZK"/>
+                                    <constraint firstItem="1tv-2C-92c" firstAttribute="top" secondItem="vW3-Jb-w2a" secondAttribute="bottom" id="Phv-x9-fmd"/>
+                                    <constraint firstItem="1tv-2C-92c" firstAttribute="leading" secondItem="dJ2-49-aqM" secondAttribute="leading" priority="250" id="TcO-1D-rHi"/>
+                                    <constraint firstItem="1Xe-RS-lgb" firstAttribute="centerY" secondItem="Vp1-bk-llh" secondAttribute="centerY" id="Vol-6d-TI4"/>
+                                    <constraint firstAttribute="trailing" secondItem="P3q-Ri-oSR" secondAttribute="trailing" id="W2F-yb-mLa"/>
+                                    <constraint firstItem="1tv-2C-92c" firstAttribute="leading" secondItem="Vp1-bk-llh" secondAttribute="trailing" priority="750" id="crz-SO-mIf"/>
+                                    <constraint firstItem="P3q-Ri-oSR" firstAttribute="top" secondItem="dJ2-49-aqM" secondAttribute="top" id="dsH-h0-w93"/>
+                                    <constraint firstAttribute="bottom" secondItem="1tv-2C-92c" secondAttribute="bottom" id="fc3-W6-mFG"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vp1-bk-llh" secondAttribute="bottom" id="hWb-q6-VaI"/>
+                                    <constraint firstAttribute="bottom" secondItem="mbD-jN-39h" secondAttribute="bottom" id="ieD-2y-0aD"/>
+                                    <constraint firstItem="Vp1-bk-llh" firstAttribute="width" secondItem="N2t-7c-Yyk" secondAttribute="width" id="j6V-GD-AXg"/>
+                                    <constraint firstItem="N2t-7c-Yyk" firstAttribute="top" secondItem="vW3-Jb-w2a" secondAttribute="bottom" id="lON-9v-pck"/>
+                                    <constraint firstItem="Vp1-bk-llh" firstAttribute="top" secondItem="vW3-Jb-w2a" secondAttribute="bottom" id="pmz-Ti-5O1"/>
+                                    <constraint firstItem="mbD-jN-39h" firstAttribute="leading" secondItem="1tv-2C-92c" secondAttribute="trailing" priority="750" id="uab-dj-gi4"/>
+                                    <constraint firstItem="Vp1-bk-llh" firstAttribute="leading" secondItem="dJ2-49-aqM" secondAttribute="leading" id="x0O-7W-pkN"/>
+                                    <constraint firstItem="1tv-2C-92c" firstAttribute="leading" relation="lessThanOrEqual" secondItem="dJ2-49-aqM" secondAttribute="leading" constant="9999" id="yDn-3X-tzh"/>
+                                    <constraint firstItem="Vp1-bk-llh" firstAttribute="width" secondItem="mbD-jN-39h" secondAttribute="width" id="yQ6-0u-2IM"/>
+                                    <constraint firstItem="N2t-7c-Yyk" firstAttribute="leading" secondItem="dJ2-49-aqM" secondAttribute="leading" priority="250" id="zR1-Ld-iPF"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="badBtn" destination="mbD-jN-39h" id="GDp-9m-qXe"/>
+                                    <outlet property="bgView" destination="P3q-Ri-oSR" id="JXm-3I-V8Y"/>
+                                    <outlet property="didntEatBtn" destination="N2t-7c-Yyk" id="m3n-cm-aUM"/>
+                                    <outlet property="goodBtn" destination="1tv-2C-92c" id="2x7-L8-aaP"/>
+                                    <outlet property="selBtnBg" destination="1Xe-RS-lgb" id="829-ul-4c6"/>
+                                    <outlet property="title" destination="vW3-Jb-w2a" id="ms9-Hb-LGU"/>
+                                    <outlet property="veryGoodBtn" destination="Vp1-bk-llh" id="wiZ-DG-5KJ"/>
+                                    <outletCollection property="interactiveMargins" destination="K8A-TM-dLR" collectionClass="NSMutableArray" id="CA5-Tv-2Jf"/>
+                                    <outletCollection property="interactiveMargins" destination="47D-18-QaE" collectionClass="NSMutableArray" id="lc0-Pl-Sjh"/>
+                                    <outletCollection property="interactiveMargins" destination="yDn-3X-tzh" collectionClass="NSMutableArray" id="1Yx-mL-GcP"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="zek-OX-qut" id="Fh3-7k-Y0Q"/>
+                            <outlet property="delegate" destination="zek-OX-qut" id="CeG-BY-dgq"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Vote" image="TabBarVote" selectedImage="TabBarVoteSel" id="sPM-yg-mps"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eRV-ky-vN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2530" y="342"/>
         </scene>
@@ -633,7 +763,7 @@
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8p-Gz-haR" userLabel="Center">
                                                 <rect key="frame" x="175" y="40" width="250" height="520"/>
                                                 <subviews>
-                                                    <imageView opaque="NO" userInteractionEnabled="NO" contentMode="top" image="RegisterLogo" translatesAutoresizingMaskIntoConstraints="NO" id="8Tf-cS-96y">
+                                                    <imageView opaque="NO" userInteractionEnabled="NO" contentMode="top" verticalCompressionResistancePriority="250" image="RegisterLogo" translatesAutoresizingMaskIntoConstraints="NO" id="8Tf-cS-96y">
                                                         <rect key="frame" x="0.0" y="0.0" width="250" height="87"/>
                                                         <animations/>
                                                     </imageView>
@@ -782,6 +912,7 @@
                                         <constraints>
                                             <constraint firstItem="B8p-Gz-haR" firstAttribute="centerX" secondItem="o02-dF-4Sl" secondAttribute="centerX" id="aLx-ys-dVT"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="B8p-Gz-haR" secondAttribute="bottom" constant="20" id="bC4-af-f3p"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="460" id="gSt-GV-cmd"/>
                                             <constraint firstItem="B8p-Gz-haR" firstAttribute="centerY" secondItem="o02-dF-4Sl" secondAttribute="centerY" priority="250" id="nOL-uO-qXt"/>
                                             <constraint firstItem="B8p-Gz-haR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o02-dF-4Sl" secondAttribute="top" constant="40" id="uiR-9k-rsy"/>
                                         </constraints>
@@ -885,6 +1016,10 @@
         <image name="TabBarStatisticsSel" width="36" height="36"/>
         <image name="TabBarVote" width="36" height="36"/>
         <image name="TabBarVoteSel" width="36" height="36"/>
+        <image name="VoteBad" width="60" height="60"/>
+        <image name="VoteDidntEat" width="60" height="60"/>
+        <image name="VoteGood" width="60" height="60"/>
+        <image name="VoteVeryGood" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Qai-3u-9ax"/>

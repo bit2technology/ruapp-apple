@@ -9,92 +9,37 @@
 import UIKit
 import RUappService
 
-private let reuseIdentifier = "Cell"
-
 class VoteController: UICollectionViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+    
+    let votes = Vote.dishes(100)
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let topBarHeight = mainController.topBarHeight.constant
+        collectionView?.contentInset.top = topBarHeight
+        collectionView?.scrollIndicatorInsets.top = topBarHeight
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func needsMenuTypeSelector() -> Bool {
+        return true
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return votes.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-    
-        // Configure the cell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Vote", forIndexPath: indexPath) as! VoteCell
+        
+        cell.bgColor = indexPath.item % 2 == 0 ? UIColor.appBlue() : UIColor.appDarkBlue()
+        cell.vote = votes[indexPath.item]
     
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-
 }
 
-class Cedula: UICollectionViewCell {
+class VoteCell: UICollectionViewCell {
     
     @IBOutlet var title: UILabel!
     @IBOutlet var veryGoodBtn: UIButton!
@@ -104,6 +49,9 @@ class Cedula: UICollectionViewCell {
     @IBOutlet var interactiveMargins: [NSLayoutConstraint]!
     @IBOutlet var bgView: UIView!
     @IBOutlet var selBtnBg: UIImageView!
+    @IBOutlet var thankyou: UILabel!
+    
+    static let selBtnBgImg = UIImage.circle(60, color: UIColor.appLightBlue())
     
     var vote: Vote! {
         didSet {
@@ -122,66 +70,69 @@ class Cedula: UICollectionViewCell {
         }
     }
     
-    private func configure() {
+    private func configure(animating: Bool = false) {
         
-        func jaVotouTipo() {
-            
-            for margem in self.interactiveMargins {
-                margem.constant = 0
-            }
-            
-            var botoes = [veryGoodBtn, goodBtn, badBtn, didntEatBtn] as [UIButton]
-            for botao in botoes {
-                botao.userInteractionEnabled = false
-            }
-            
-            let botao: UIButton
-            switch vote.type! {
-            case .VeryGood:
-                botao = veryGoodBtn
-            case .Good:
-                botao = goodBtn
-            case .Bad:
-                botao = badBtn
-            default:
-                botao = didntEatBtn
-            }
-            botoes.removeAtIndex(botoes.indexOf(botao)!)
-            for botao in botoes {
-                botao.alpha = 0
-            }
+        defer {
+            layoutIfNeeded()
         }
         
-        if let votoComentario = vote.comment {
-            
-            jaVotouTipo()
-            
-        } else if let votoMotivos = vote.reason {
-            
-            jaVotouTipo()
-            
-        } else if let votoTipo = vote.type {
-            
-            jaVotouTipo()
-            
-        } else {
-            
-            for margem in self.interactiveMargins {
-                margem.constant = 9999
-            }
-            
-            for botao in [veryGoodBtn, goodBtn, badBtn, didntEatBtn] {
-                botao.alpha = 1
-                botao.userInteractionEnabled = true
-            }
+        // CELL DEFAULT START POINT
+        
+        selBtnBg.alpha = 0
+        
+        for margin in self.interactiveMargins {
+            margin.constant = 9999
         }
         
-        layoutIfNeeded()
+        for btn in [veryGoodBtn, goodBtn, badBtn, didntEatBtn] {
+            btn.alpha = 1
+            btn.userInteractionEnabled = true
+        }
+        
+        // IF NOT VOTED, STOP HERE
+        guard let voteType = vote.type else {
+            return
+        }
+        
+        selBtnBg.alpha = animating ? 0 : 1
+        
+        for margin in self.interactiveMargins {
+            margin.constant = 0
+        }
+        
+        var btns = [veryGoodBtn, goodBtn, badBtn, didntEatBtn] as [UIButton]
+        for btn in btns {
+            btn.userInteractionEnabled = false
+        }
+        
+        let button: UIButton
+        switch voteType {
+        case .VeryGood:
+            button = veryGoodBtn
+        case .Good:
+            button = goodBtn
+        case .Bad:
+            button = badBtn
+        default:
+            button = didntEatBtn
+        }
+        btns.removeAtIndex(btns.indexOf(button)!)
+        for btn in btns {
+            btn.alpha = 0
+        }
+        
+        guard let voteReason = vote.reason else {
+            return
+        }
+        
+        guard let voteComment = vote.comment else {
+            return
+        }
     }
     
-    @IBAction func votou(agente: UIButton) {
+    @IBAction func voteTap(sender: UIButton) {
         
-        switch agente {
+        switch sender {
         case veryGoodBtn:
             vote.type = .VeryGood
         case goodBtn:
@@ -193,9 +144,12 @@ class Cedula: UICollectionViewCell {
         }
         
         UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseInOut], animations: { () -> Void in
-            self.configure()
-            }) { (finished) -> Void in
-                
+            // Perform changes for current state (Do not animate alpha yet)
+            self.configure(true)
+        }) { (finished) -> Void in
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.selBtnBg.alpha = 1
+            })
         }
     }
     
@@ -205,5 +159,11 @@ class Cedula: UICollectionViewCell {
         bgView.clipsToBounds = true
         bgView.layer.rasterizationScale = UIScreen.mainScreen().scale
         bgView.layer.shouldRasterize = true
+        selBtnBg.image = VoteCell.selBtnBgImg
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        layer.removeAllAnimations()
     }
 }

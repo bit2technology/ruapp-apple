@@ -14,8 +14,8 @@
 		4B3375611BB98FFE002696C9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B33755F1BB98FFE002696C9 /* MainInterface.storyboard */; };
 		4B3375651BB98FFE002696C9 /* MenuExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4B3375581BB98FFE002696C9 /* MenuExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4B33756C1BB9D7A9002696C9 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33756B1BB9D7A9002696C9 /* MenuController.swift */; };
-		4B4C7FD11BBB43C7001D55E5 /* VoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */; settings = {ASSET_TAGS = (); }; };
-		4B4C7FD31BBB4709001D55E5 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD21BBB4709001D55E5 /* Vote.swift */; settings = {ASSET_TAGS = (); }; };
+		4B4C7FD11BBB43C7001D55E5 /* VoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */; };
+		4B4C7FD31BBB4709001D55E5 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD21BBB4709001D55E5 /* Vote.swift */; };
 		4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998C1BB31C8700A2E0CF /* Helper.swift */; };
 		4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998E1BB31DE400A2E0CF /* Student.swift */; };
 		4BA599921BB32E6900A2E0CF /* Dosis-Font in Resources */ = {isa = PBXBuildFile; fileRef = 4BA599911BB32E6900A2E0CF /* Dosis-Font */; };
@@ -273,11 +273,11 @@
 			isa = PBXGroup;
 			children = (
 				4BB03BA71BB2D4DE006F84CB /* AppDelegate.swift */,
-				4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */,
 				4BA599931BB347B700A2E0CF /* MainController.swift */,
 				4BCC6D731BB37B4600AF99EF /* SidebarController.swift */,
 				4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */,
 				4B33756B1BB9D7A9002696C9 /* MenuController.swift */,
+				4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */,
 				4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */,
 				4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */,
 				4BA599971BB34ED500A2E0CF /* View */,

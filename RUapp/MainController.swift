@@ -9,11 +9,14 @@
 import UIKit
 import RUappService
 
+private var globalMainController: MainController?
+
 class MainController: UIViewController, UITabBarControllerDelegate {
     
     @IBOutlet weak var menuTypeSelector: MenuTypeSelector!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cafeteriaBtn: UIButton!
+    @IBOutlet weak var topBarHeight: NSLayoutConstraint!
     
     private weak var sidebarCont: SidebarController?
     
@@ -57,6 +60,8 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        globalMainController = self
+        
         titleLabel.font = UIFont.appNavTitle()
         titleLabel.textColor = UIColor.whiteColor()
         cafeteriaBtn.titleLabel?.font = UIFont.appBarItem()
@@ -72,7 +77,31 @@ class MainController: UIViewController, UITabBarControllerDelegate {
         sidebarCont?.traitCollectionDidChange(previousTraitCollection)
     }
     
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        
+        if viewController.needsMenuTypeSelector() {
+            menuTypeSelector.hidden = false
+            topBarHeight.constant = traitCollection.horizontalSizeClass == .Regular ? 64 : 108
+        } else {
+            menuTypeSelector.hidden = true
+            topBarHeight.constant = 64
+        }
+        
+        return true
+    }
+    
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         titleLabel.text = viewController.tabBarItem.title?.uppercaseString
+    }
+}
+
+extension UIViewController {
+    
+    var mainController: MainController {
+        return globalMainController!
+    }
+    
+    func needsMenuTypeSelector() -> Bool {
+        return false
     }
 }
