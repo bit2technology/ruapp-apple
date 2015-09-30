@@ -9,37 +9,46 @@
 import UIKit
 import RUappService
 
-class VoteController: UICollectionViewController {
+class VoteController: UITableViewController {
     
     let votes = Vote.dishes(100)
+    
+    private func adjustInstets() {
+        let topBarHeight = mainController.topBarHeight.constant
+        tableView?.contentInset.top = topBarHeight + 10
+        tableView?.scrollIndicatorInsets.top = topBarHeight
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let topBarHeight = mainController.topBarHeight.constant
-        collectionView?.contentInset.top = topBarHeight
-        collectionView?.scrollIndicatorInsets.top = topBarHeight
+        adjustInstets()
+    }
+    
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        adjustInstets()
     }
     
     override func needsMenuTypeSelector() -> Bool {
         return true
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return votes.count
     }
-
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Vote", forIndexPath: indexPath) as! VoteCell
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Vote", forIndexPath: indexPath) as! VoteCell
         
-        cell.bgColor = indexPath.item % 2 == 0 ? UIColor.appBlue() : UIColor.appDarkBlue()
+        cell.bgColor = indexPath.row % 2 == 0 ? UIColor.appBlue() : UIColor.appDarkBlue()
+        cell.title.text = "Dish name \(indexPath.row)"
         cell.vote = votes[indexPath.item]
     
         return cell
     }
 }
 
-class VoteCell: UICollectionViewCell {
+class VoteCell: UITableViewCell {
     
     @IBOutlet var title: UILabel!
     @IBOutlet var veryGoodBtn: UIButton!
@@ -48,6 +57,7 @@ class VoteCell: UICollectionViewCell {
     @IBOutlet var didntEatBtn: UIButton!
     @IBOutlet var interactiveMargins: [NSLayoutConstraint]!
     @IBOutlet var bgView: UIView!
+    @IBOutlet var bgOptm: UIView!
     @IBOutlet var selBtnBg: UIImageView!
     @IBOutlet var thankyou: UILabel!
     
@@ -65,8 +75,10 @@ class VoteCell: UICollectionViewCell {
         }
         set {
             bgView.backgroundColor = newValue
+            bgOptm.backgroundColor = newValue
             title.backgroundColor = newValue
             selBtnBg.backgroundColor = newValue
+            thankyou.backgroundColor = newValue
         }
     }
     
@@ -79,6 +91,7 @@ class VoteCell: UICollectionViewCell {
         // CELL DEFAULT START POINT
         
         selBtnBg.alpha = 0
+        thankyou.alpha = 0
         
         for margin in self.interactiveMargins {
             margin.constant = 9999
@@ -146,11 +159,10 @@ class VoteCell: UICollectionViewCell {
         UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseInOut], animations: { () -> Void in
             // Perform changes for current state (Do not animate alpha yet)
             self.configure(true)
-        }) { (finished) -> Void in
-            UIView.animateWithDuration(0.2, animations: { () -> Void in
-                self.selBtnBg.alpha = 1
-            })
-        }
+        }, completion: nil)
+        UIView.animateWithDuration(0.2, delay: 0.3, options: [], animations: { () -> Void in
+            self.selBtnBg.alpha = 1
+        }, completion: nil)
     }
     
     override func awakeFromNib() {
