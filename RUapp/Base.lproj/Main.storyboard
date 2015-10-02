@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9052" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9052" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
@@ -256,14 +256,6 @@
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
-                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THANK YOU!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHt-VG-LMP">
-                                                    <rect key="frame" x="155" y="0.0" width="415" height="115"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jby-QU-Wbn">
                                                     <rect key="frame" x="18" y="9" width="544" height="19"/>
                                                     <animations/>
@@ -353,13 +345,56 @@
                                                         <constraint firstItem="IMS-6q-vlh" firstAttribute="centerY" secondItem="rOD-Z4-wDa" secondAttribute="centerY" id="bzR-vD-l5E"/>
                                                     </constraints>
                                                 </view>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jje-IU-E84" userLabel="Say More Undo">
+                                                    <rect key="frame" x="145" y="28" width="435" height="87"/>
+                                                    <subviews>
+                                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TmF-zJ-cRt" userLabel="SubCenter">
+                                                            <rect key="frame" x="152" y="22" width="132" height="44"/>
+                                                            <subviews>
+                                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="THANK YOU!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHt-VG-LMP">
+                                                                    <rect key="frame" x="-307" y="-50" width="101" height="26"/>
+                                                                    <animations/>
+                                                                    <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qps-q8-Kok">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                                    <animations/>
+                                                                    <state key="normal" image="VoteSayMore"/>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8E-G6-HBj">
+                                                                    <rect key="frame" x="88" y="0.0" width="44" height="44"/>
+                                                                    <animations/>
+                                                                    <state key="normal" image="VoteUndo"/>
+                                                                </button>
+                                                            </subviews>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstItem="E8E-G6-HBj" firstAttribute="top" secondItem="TmF-zJ-cRt" secondAttribute="top" id="1Oy-ek-Z5k"/>
+                                                                <constraint firstItem="qps-q8-Kok" firstAttribute="leading" secondItem="TmF-zJ-cRt" secondAttribute="leading" id="9cz-jM-mgL"/>
+                                                                <constraint firstAttribute="bottom" secondItem="E8E-G6-HBj" secondAttribute="bottom" id="FNR-YL-6NE"/>
+                                                                <constraint firstItem="E8E-G6-HBj" firstAttribute="leading" secondItem="qps-q8-Kok" secondAttribute="trailing" constant="44" id="GCt-z8-XBA"/>
+                                                                <constraint firstAttribute="bottom" secondItem="qps-q8-Kok" secondAttribute="bottom" id="bCh-bw-pOp"/>
+                                                                <constraint firstItem="qps-q8-Kok" firstAttribute="top" secondItem="TmF-zJ-cRt" secondAttribute="top" id="kBy-3Q-mLT"/>
+                                                                <constraint firstAttribute="trailing" secondItem="E8E-G6-HBj" secondAttribute="trailing" id="xit-ha-a8l"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstItem="TmF-zJ-cRt" firstAttribute="centerX" secondItem="Jje-IU-E84" secondAttribute="centerX" id="XGT-sj-one"/>
+                                                        <constraint firstItem="TmF-zJ-cRt" firstAttribute="centerY" secondItem="Jje-IU-E84" secondAttribute="centerY" id="hVR-8C-rTa"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="jby-QU-Wbn" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="18" id="2or-dL-ydc"/>
-                                                <constraint firstAttribute="trailing" secondItem="mHt-VG-LMP" secondAttribute="trailing" constant="10" id="3oJ-aA-CWM"/>
+                                                <constraint firstItem="jby-QU-Wbn" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" priority="750" constant="18" id="2or-dL-ydc"/>
                                                 <constraint firstItem="6i5-OV-Ekp" firstAttribute="centerY" secondItem="QVT-UN-MqH" secondAttribute="centerY" id="5uR-Ty-nPs"/>
+                                                <constraint firstAttribute="trailing" secondItem="Jje-IU-E84" secondAttribute="trailing" id="7mq-D3-3yY"/>
                                                 <constraint firstItem="wkp-gW-XJS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="9999" id="7yU-Fa-ZWJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="wkp-gW-XJS" secondAttribute="bottom" id="7zF-aD-zSN"/>
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="8jh-1s-gkE"/>
@@ -370,28 +405,29 @@
                                                 <constraint firstItem="wXY-c4-tjT" firstAttribute="leading" secondItem="wkp-gW-XJS" secondAttribute="trailing" priority="750" id="H3L-KG-3re"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="top" secondItem="rOD-Z4-wDa" secondAttribute="top" id="HyT-3B-YOr"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" id="JQx-7c-DaX"/>
-                                                <constraint firstAttribute="bottom" secondItem="mHt-VG-LMP" secondAttribute="bottom" id="Jlc-22-mNE"/>
                                                 <constraint firstAttribute="bottom" secondItem="2ku-3S-U0k" secondAttribute="bottom" id="KJa-2U-c2H"/>
                                                 <constraint firstItem="wkp-gW-XJS" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" priority="750" id="Kl2-kJ-mv1"/>
                                                 <constraint firstItem="wkp-gW-XJS" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" priority="250" id="MYA-3m-R7x"/>
                                                 <constraint firstItem="6i5-OV-Ekp" firstAttribute="centerX" secondItem="QVT-UN-MqH" secondAttribute="centerX" id="Mij-3l-Ev9"/>
                                                 <constraint firstAttribute="trailing" secondItem="jby-QU-Wbn" secondAttribute="trailing" constant="18" id="NKx-um-j5j"/>
+                                                <constraint firstAttribute="bottom" secondItem="Jje-IU-E84" secondAttribute="bottom" id="PZO-aD-kPG"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="rOD-Z4-wDa" secondAttribute="width" id="PrV-4T-DaI"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="wkp-gW-XJS" secondAttribute="width" id="Qgu-L9-Iqe"/>
+                                                <constraint firstItem="jby-QU-Wbn" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6i5-OV-Ekp" secondAttribute="leading" id="Rdr-nr-bJY"/>
                                                 <constraint firstItem="2ku-3S-U0k" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" id="SLv-hK-VS9"/>
-                                                <constraint firstItem="mHt-VG-LMP" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" id="WSl-vf-2pg"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="wXY-c4-tjT" secondAttribute="width" id="WVc-cp-psP"/>
                                                 <constraint firstItem="pRf-VT-vr2" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="10" id="cF1-x8-wxx"/>
                                                 <constraint firstAttribute="bottom" secondItem="wXY-c4-tjT" secondAttribute="bottom" id="dcE-Ux-5fp"/>
                                                 <constraint firstItem="6i5-OV-Ekp" firstAttribute="top" secondItem="jby-QU-Wbn" secondAttribute="bottom" constant="3" id="fjl-Vf-4xm"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="HmN-cJ-0ZO" secondAttribute="width" multiplier="0.25" id="hHg-Uo-b07"/>
                                                 <constraint firstItem="wXY-c4-tjT" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="9999" id="ibR-a7-Qta"/>
+                                                <constraint firstItem="Jje-IU-E84" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" id="idW-yv-fPI"/>
                                                 <constraint firstAttribute="trailing" secondItem="2ku-3S-U0k" secondAttribute="trailing" id="j0s-VF-Fry"/>
                                                 <constraint firstItem="rOD-Z4-wDa" firstAttribute="leading" secondItem="wXY-c4-tjT" secondAttribute="trailing" priority="750" id="jPq-sH-KYB"/>
                                                 <constraint firstItem="jby-QU-Wbn" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" constant="9" id="jlf-r9-McA"/>
                                                 <constraint firstItem="pRf-VT-vr2" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" id="kub-Kq-D63"/>
-                                                <constraint firstItem="mHt-VG-LMP" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" constant="10" id="lLX-Qs-N6q"/>
                                                 <constraint firstAttribute="bottom" secondItem="rOD-Z4-wDa" secondAttribute="bottom" id="leq-o4-3J0"/>
+                                                <constraint firstItem="Jje-IU-E84" firstAttribute="top" secondItem="jby-QU-Wbn" secondAttribute="bottom" id="sqY-E7-Cna"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="top" secondItem="wkp-gW-XJS" secondAttribute="top" id="u89-De-vLx"/>
                                                 <constraint firstItem="rOD-Z4-wDa" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="9999" id="ulQ-2m-XQr"/>
                                                 <constraint firstAttribute="bottom" secondItem="pRf-VT-vr2" secondAttribute="bottom" id="vtw-UE-w6y"/>
@@ -1091,6 +1127,8 @@
         <image name="VoteBad" width="60" height="60"/>
         <image name="VoteDidntEat" width="60" height="60"/>
         <image name="VoteGood" width="60" height="60"/>
+        <image name="VoteSayMore" width="44" height="44"/>
+        <image name="VoteUndo" width="44" height="44"/>
         <image name="VoteVeryGood" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -11,14 +11,9 @@ public class Vote {
     public var type: Type?
     public var reason: [Int]?
     public var comment: String?
+    public var sent = false
     
-    public class func dishes(num: Int) -> [Vote] {
-        var votes = [Vote]()
-        for _ in 1..<num {
-            votes.append(Vote())
-        }
-        return votes
-    }
+    public init() {}
     
     public enum Type: Int {
         case DidntEat = 0, Bad, Good, VeryGood

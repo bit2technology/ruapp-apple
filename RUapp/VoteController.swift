@@ -9,9 +9,22 @@
 import UIKit
 import RUappService
 
+class AppVote: Vote {
+    
+    var editingComment = false
+    
+    class func dishes(num: Int) -> [AppVote] {
+        var votes = [AppVote]()
+        for _ in 1..<num {
+            votes.append(AppVote())
+        }
+        return votes
+    }
+}
+
 class VoteController: UITableViewController {
     
-    let votes = Vote.dishes(100)
+    let votes = AppVote.dishes(100)
     
     private func adjustInstets() {
         let topBarHeight = mainController.topBarHeight.constant
@@ -62,6 +75,7 @@ class VoteCell: UITableViewCell {
     @IBOutlet var thankyou: UILabel!
     
     static let selBtnBgImg = UIImage.circle(60, color: UIColor.appLightBlue())
+    static let circleBtnBg = UIImage.circle(44, color: UIColor.appLightBlue())
     
     var vote: Vote! {
         didSet {
@@ -88,7 +102,7 @@ class VoteCell: UITableViewCell {
             layoutIfNeeded()
         }
         
-        // CELL DEFAULT START POINT
+        // Cell default start point
         
         selBtnBg.alpha = 0
         thankyou.alpha = 0
@@ -102,7 +116,7 @@ class VoteCell: UITableViewCell {
             btn.userInteractionEnabled = true
         }
         
-        // IF NOT VOTED, STOP HERE
+        // If not voted, stop here
         guard let voteType = vote.type else {
             return
         }
@@ -118,6 +132,7 @@ class VoteCell: UITableViewCell {
             btn.userInteractionEnabled = false
         }
         
+        // Set appearance by vote
         let button: UIButton
         switch voteType {
         case .VeryGood:
