@@ -76,14 +76,24 @@ extension UIFont {
 
 extension UIImage {
     
-    class func circle(diameter: CGFloat, color: UIColor) -> UIImage {
-        let frameTab = CGRect(x: 0, y: 0, width: diameter, height: diameter)
-        UIGraphicsBeginImageContextWithOptions(frameTab.size, false, 0)
+    class func circle(diameter: CGFloat, color: UIColor, insets: UIEdgeInsets = UIEdgeInsetsZero) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: insets.left + diameter + insets.right, height: insets.top + diameter + insets.bottom), false, 0)
         let ctx = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(ctx, UIColor.appLightBlue().CGColor)
-        CGContextFillEllipseInRect(ctx, frameTab)
+        CGContextSetFillColorWithColor(ctx, color.CGColor)
+        CGContextFillEllipseInRect(ctx, CGRect(x: insets.left, y: insets.top, width: diameter, height: diameter))
         let circleImg = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return circleImg
+    }
+    
+    class func roundedRect(radius: CGFloat, color: UIColor, insets: UIEdgeInsets = UIEdgeInsetsZero) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: radius * 2 + insets.left + 1 + insets.right, height: radius * 2 + insets.top + 1 + insets.bottom), false, 0)
+        let ctx = UIGraphicsGetCurrentContext()
+        CGContextSetFillColorWithColor(ctx, color.CGColor)
+        CGContextAddPath(ctx, UIBezierPath(roundedRect: CGRect(x: insets.left, y: insets.top, width: radius * 2 + 1, height: radius * 2 + 1), cornerRadius: radius).CGPath)
+        CGContextFillPath(ctx)
+        let rectImg = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return rectImg.resizableImageWithCapInsets(UIEdgeInsets(top: insets.top + radius, left: insets.left + radius, bottom: insets.bottom + radius, right: insets.right + radius))
     }
 }

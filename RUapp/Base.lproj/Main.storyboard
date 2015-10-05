@@ -21,9 +21,21 @@
             <string>Dosis-Book</string>
             <string>Dosis-Book</string>
             <string>Dosis-Book</string>
+            <string>Dosis-Book</string>
         </mutableArray>
         <mutableArray key="Dosis-Medium.otf">
             <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
+        </mutableArray>
+        <mutableArray key="Dosis-SemiBold.otf">
+            <string>Dosis-SemiBold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -230,32 +242,45 @@
         <scene sceneID="rEr-Uy-YjN">
             <objects>
                 <tableViewController id="0mC-MK-bLx" customClass="VoteController" customModule="RUapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" id="EOp-Oa-DfJ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="115" sectionHeaderHeight="28" sectionFooterHeight="28" id="EOp-Oa-DfJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Vote" id="PeB-4h-Npv" customClass="VoteCell" customModule="RUapp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="125"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PeB-4h-Npv" id="y64-Uh-Xto">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="115"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HmN-cJ-0ZO" userLabel="Center">
-                                            <rect key="frame" x="10" y="0.0" width="580" height="115"/>
+                                            <rect key="frame" x="10" y="0.0" width="580" height="105"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ku-3S-U0k" userLabel="Background">
-                                                    <rect key="frame" x="0.0" y="0.0" width="580" height="115"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="580" height="105"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRf-VT-vr2" userLabel="Background Optmizator">
-                                                    <rect key="frame" x="10" y="0.0" width="560" height="115"/>
+                                                    <rect key="frame" x="10" y="0.0" width="560" height="105"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
+                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THANK YOU!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHt-VG-LMP">
+                                                    <rect key="frame" x="155" y="0.0" width="415" height="105"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jby-QU-Wbn">
                                                     <rect key="frame" x="18" y="9" width="544" height="19"/>
                                                     <animations/>
@@ -264,20 +289,19 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6i5-OV-Ekp">
+                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6i5-OV-Ekp">
                                                     <rect key="frame" x="43" y="31" width="60" height="60"/>
                                                     <animations/>
-                                                    <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" placeholder="YES" id="9mu-gM-rau"/>
                                                         <constraint firstAttribute="width" constant="60" placeholder="YES" id="ueY-1a-h3x"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="QVT-UN-MqH" userLabel="Very Good Wrap">
-                                                    <rect key="frame" x="0.0" y="7" width="145" height="108"/>
+                                                    <rect key="frame" x="0.0" y="17" width="145" height="88"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YL4-T3-8GK" userLabel="Very Good">
-                                                            <rect key="frame" x="43" y="24" width="60" height="60"/>
+                                                            <rect key="frame" x="43" y="14" width="60" height="60"/>
                                                             <animations/>
                                                             <state key="normal" image="VoteVeryGood"/>
                                                             <connections>
@@ -292,10 +316,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wkp-gW-XJS" userLabel="Good Wrap">
-                                                    <rect key="frame" x="145" y="7" width="145" height="108"/>
+                                                    <rect key="frame" x="145" y="17" width="145" height="88"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A27-1p-bKl" userLabel="Good">
-                                                            <rect key="frame" x="42" y="24" width="60" height="60"/>
+                                                            <rect key="frame" x="42" y="14" width="60" height="60"/>
                                                             <animations/>
                                                             <state key="normal" image="VoteGood"/>
                                                             <connections>
@@ -310,10 +334,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wXY-c4-tjT" userLabel="Bad Wrap">
-                                                    <rect key="frame" x="290" y="7" width="145" height="108"/>
+                                                    <rect key="frame" x="290" y="17" width="145" height="88"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4V-7r-b7O" userLabel="Bad">
-                                                            <rect key="frame" x="43" y="24" width="60" height="60"/>
+                                                            <rect key="frame" x="43" y="14" width="60" height="60"/>
                                                             <animations/>
                                                             <state key="normal" image="VoteBad"/>
                                                             <connections>
@@ -328,10 +352,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rOD-Z4-wDa" userLabel="Didn't Eat Wrap">
-                                                    <rect key="frame" x="435" y="7" width="145" height="108"/>
+                                                    <rect key="frame" x="435" y="17" width="145" height="88"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMS-6q-vlh" userLabel="Didn't Eat">
-                                                            <rect key="frame" x="42" y="24" width="60" height="60"/>
+                                                            <rect key="frame" x="42" y="14" width="60" height="60"/>
                                                             <animations/>
                                                             <state key="normal" image="VoteDidntEat"/>
                                                             <connections>
@@ -346,38 +370,58 @@
                                                     </constraints>
                                                 </view>
                                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jje-IU-E84" userLabel="Say More Undo">
-                                                    <rect key="frame" x="145" y="28" width="435" height="87"/>
+                                                    <rect key="frame" x="145" y="31" width="435" height="74"/>
                                                     <subviews>
                                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TmF-zJ-cRt" userLabel="SubCenter">
-                                                            <rect key="frame" x="152" y="22" width="132" height="44"/>
+                                                            <rect key="frame" x="152" y="0.0" width="132" height="64"/>
                                                             <subviews>
-                                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="THANK YOU!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHt-VG-LMP">
-                                                                    <rect key="frame" x="-307" y="-50" width="101" height="26"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qps-q8-Kok" userLabel="Say More">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
+                                                                    <animations/>
+                                                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
+                                                                    <state key="normal" image="VoteSayMore"/>
+                                                                    <connections>
+                                                                        <action selector="sayMoreBtnTap" destination="PeB-4h-Npv" eventType="touchUpInside" id="sif-v1-x51"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="say more" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaM-et-IpU">
+                                                                    <rect key="frame" x="-3" y="46" width="50" height="18"/>
                                                                     <animations/>
                                                                     <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="20"/>
+                                                                    <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qps-q8-Kok">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8E-G6-HBj" userLabel="Undo">
+                                                                    <rect key="frame" x="88" y="0.0" width="44" height="64"/>
                                                                     <animations/>
-                                                                    <state key="normal" image="VoteSayMore"/>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8E-G6-HBj">
-                                                                    <rect key="frame" x="88" y="0.0" width="44" height="44"/>
-                                                                    <animations/>
+                                                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
                                                                     <state key="normal" image="VoteUndo"/>
+                                                                    <connections>
+                                                                        <action selector="undoTap" destination="PeB-4h-Npv" eventType="touchUpInside" id="6vc-i8-9Gq"/>
+                                                                    </connections>
                                                                 </button>
+                                                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="undo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzu-uo-ScC">
+                                                                    <rect key="frame" x="96" y="46" width="28" height="18"/>
+                                                                    <animations/>
+                                                                    <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstItem="E8E-G6-HBj" firstAttribute="top" secondItem="TmF-zJ-cRt" secondAttribute="top" id="1Oy-ek-Z5k"/>
+                                                                <constraint firstItem="EaM-et-IpU" firstAttribute="centerX" secondItem="qps-q8-Kok" secondAttribute="centerX" id="5al-e4-Uyl"/>
                                                                 <constraint firstItem="qps-q8-Kok" firstAttribute="leading" secondItem="TmF-zJ-cRt" secondAttribute="leading" id="9cz-jM-mgL"/>
                                                                 <constraint firstAttribute="bottom" secondItem="E8E-G6-HBj" secondAttribute="bottom" id="FNR-YL-6NE"/>
                                                                 <constraint firstItem="E8E-G6-HBj" firstAttribute="leading" secondItem="qps-q8-Kok" secondAttribute="trailing" constant="44" id="GCt-z8-XBA"/>
+                                                                <constraint firstItem="Mzu-uo-ScC" firstAttribute="bottom" secondItem="E8E-G6-HBj" secondAttribute="bottom" id="S4a-Kk-7g0"/>
                                                                 <constraint firstAttribute="bottom" secondItem="qps-q8-Kok" secondAttribute="bottom" id="bCh-bw-pOp"/>
+                                                                <constraint firstItem="EaM-et-IpU" firstAttribute="bottom" secondItem="qps-q8-Kok" secondAttribute="bottom" id="bXu-zg-zmD"/>
                                                                 <constraint firstItem="qps-q8-Kok" firstAttribute="top" secondItem="TmF-zJ-cRt" secondAttribute="top" id="kBy-3Q-mLT"/>
+                                                                <constraint firstItem="Mzu-uo-ScC" firstAttribute="centerX" secondItem="E8E-G6-HBj" secondAttribute="centerX" id="ku3-QX-YFu"/>
                                                                 <constraint firstAttribute="trailing" secondItem="E8E-G6-HBj" secondAttribute="trailing" id="xit-ha-a8l"/>
                                                             </constraints>
                                                         </view>
@@ -385,7 +429,168 @@
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstItem="TmF-zJ-cRt" firstAttribute="centerX" secondItem="Jje-IU-E84" secondAttribute="centerX" id="XGT-sj-one"/>
-                                                        <constraint firstItem="TmF-zJ-cRt" firstAttribute="centerY" secondItem="Jje-IU-E84" secondAttribute="centerY" id="hVR-8C-rTa"/>
+                                                        <constraint firstItem="TmF-zJ-cRt" firstAttribute="top" secondItem="Jje-IU-E84" secondAttribute="top" id="jIR-Zp-Spj"/>
+                                                    </constraints>
+                                                </view>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W8r-bO-88t" userLabel="Say More Wrapper">
+                                                    <rect key="frame" x="145" y="31" width="435" height="67"/>
+                                                    <subviews>
+                                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="what can we improve?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Teh-Eb-EFl">
+                                                            <rect key="frame" x="0.0" y="0.0" width="435" height="23"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="Dosis-SemiBold" family="Dosis" pointSize="18"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZX-mu-dcu" userLabel="Bg">
+                                                            <rect key="frame" x="0.0" y="28" width="425" height="34"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4k3-JD-zFy" userLabel="BgOpt">
+                                                            <rect key="frame" x="5" y="28" width="415" height="34"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ep-BG-RAM">
+                                                            <rect key="frame" x="5" y="23" width="400" height="44"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Dosis-Book" family="Dosis" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                            <connections>
+                                                                <action selector="textEdited:" destination="PeB-4h-Npv" eventType="editingChanged" id="dDY-r7-ukT"/>
+                                                                <outlet property="delegate" destination="PeB-4h-Npv" id="Br4-sn-9zt"/>
+                                                            </connections>
+                                                        </textField>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwP-ov-nmg" userLabel="Send">
+                                                            <rect key="frame" x="405" y="33" width="25" height="25"/>
+                                                            <animations/>
+                                                            <state key="normal" image="VoteSend"/>
+                                                            <connections>
+                                                                <action selector="sendCommentTap" destination="PeB-4h-Npv" eventType="touchUpInside" id="Cxx-Kc-hE5"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstItem="4k3-JD-zFy" firstAttribute="bottom" secondItem="NZX-mu-dcu" secondAttribute="bottom" id="0m9-Ll-flf"/>
+                                                        <constraint firstItem="4k3-JD-zFy" firstAttribute="top" secondItem="NZX-mu-dcu" secondAttribute="top" id="5sF-UC-1Ki"/>
+                                                        <constraint firstAttribute="bottom" secondItem="NZX-mu-dcu" secondAttribute="bottom" constant="5" id="5ys-wO-6Qm"/>
+                                                        <constraint firstAttribute="trailing" secondItem="NZX-mu-dcu" secondAttribute="trailing" constant="10" id="9E3-L2-7Zh"/>
+                                                        <constraint firstItem="Teh-Eb-EFl" firstAttribute="top" secondItem="W8r-bO-88t" secondAttribute="top" id="9pt-JE-Vd4"/>
+                                                        <constraint firstItem="NZX-mu-dcu" firstAttribute="leading" secondItem="W8r-bO-88t" secondAttribute="leading" id="Bm1-aN-5Y2"/>
+                                                        <constraint firstAttribute="height" constant="67" id="CNe-Ru-iMX"/>
+                                                        <constraint firstItem="1ep-BG-RAM" firstAttribute="leading" secondItem="W8r-bO-88t" secondAttribute="leading" constant="5" id="EeP-Gx-vkK"/>
+                                                        <constraint firstItem="Teh-Eb-EFl" firstAttribute="leading" secondItem="W8r-bO-88t" secondAttribute="leading" id="N27-Xp-MUv"/>
+                                                        <constraint firstItem="nwP-ov-nmg" firstAttribute="leading" secondItem="1ep-BG-RAM" secondAttribute="trailing" id="Pb2-xK-N2r"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Teh-Eb-EFl" secondAttribute="trailing" id="RVs-Jv-l6i"/>
+                                                        <constraint firstItem="NZX-mu-dcu" firstAttribute="top" secondItem="Teh-Eb-EFl" secondAttribute="bottom" constant="5" id="Ucg-FO-S8H"/>
+                                                        <constraint firstAttribute="bottom" secondItem="1ep-BG-RAM" secondAttribute="bottom" id="ZMs-Yy-MtE"/>
+                                                        <constraint firstItem="4k3-JD-zFy" firstAttribute="leading" secondItem="NZX-mu-dcu" secondAttribute="leading" constant="5" id="jmv-op-uJh"/>
+                                                        <constraint firstAttribute="trailing" secondItem="nwP-ov-nmg" secondAttribute="trailing" constant="5" id="k6R-Nr-nUb"/>
+                                                        <constraint firstItem="1ep-BG-RAM" firstAttribute="top" secondItem="Teh-Eb-EFl" secondAttribute="bottom" id="pXU-Fb-jPJ"/>
+                                                        <constraint firstItem="nwP-ov-nmg" firstAttribute="centerY" secondItem="NZX-mu-dcu" secondAttribute="centerY" id="wIb-BQ-v7G"/>
+                                                        <constraint firstItem="NZX-mu-dcu" firstAttribute="trailing" secondItem="4k3-JD-zFy" secondAttribute="trailing" constant="5" id="yrI-s2-7wY"/>
+                                                    </constraints>
+                                                </view>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9a-d4-R6j" userLabel="Reason Bad">
+                                                    <rect key="frame" x="145" y="20" width="401" height="90"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDF-lZ-jUE">
+                                                            <rect key="frame" x="0.0" y="0.0" width="134" height="45"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
+                                                            <inset key="contentEdgeInsets" minX="0.0" minY="8" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="0Tt-uT-LBY"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aej-g6-fJG">
+                                                            <rect key="frame" x="134" y="0.0" width="133" height="45"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
+                                                            <inset key="contentEdgeInsets" minX="0.0" minY="8" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="JtG-bv-VG7"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftz-yv-TAg">
+                                                            <rect key="frame" x="267" y="0.0" width="134" height="45"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
+                                                            <inset key="contentEdgeInsets" minX="0.0" minY="8" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="KBP-T8-B3j"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XPc-fO-7Zm">
+                                                            <rect key="frame" x="0.0" y="45" width="134" height="45"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
+                                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="CpS-Ss-22v"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jG4-6s-y8E">
+                                                            <rect key="frame" x="134" y="45" width="133" height="45"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
+                                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="Y4g-YO-ufQ"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1N-1c-grt">
+                                                            <rect key="frame" x="267" y="45" width="134" height="45"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
+                                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="I9x-zW-qzW"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstItem="YDF-lZ-jUE" firstAttribute="height" secondItem="XPc-fO-7Zm" secondAttribute="height" id="2O8-rr-dre"/>
+                                                        <constraint firstItem="Aej-g6-fJG" firstAttribute="top" secondItem="e9a-d4-R6j" secondAttribute="top" id="4hy-rc-6Yr"/>
+                                                        <constraint firstItem="x1N-1c-grt" firstAttribute="top" secondItem="ftz-yv-TAg" secondAttribute="bottom" id="9fR-t1-rwf"/>
+                                                        <constraint firstItem="YDF-lZ-jUE" firstAttribute="width" secondItem="XPc-fO-7Zm" secondAttribute="width" id="BgQ-ms-w0u"/>
+                                                        <constraint firstAttribute="trailing" secondItem="x1N-1c-grt" secondAttribute="trailing" id="Ca0-Gr-JOf"/>
+                                                        <constraint firstItem="YDF-lZ-jUE" firstAttribute="width" secondItem="jG4-6s-y8E" secondAttribute="width" id="EoW-Jg-lXS"/>
+                                                        <constraint firstItem="jG4-6s-y8E" firstAttribute="leading" secondItem="XPc-fO-7Zm" secondAttribute="trailing" id="Eov-IX-rQs"/>
+                                                        <constraint firstAttribute="height" constant="90" id="HJo-hH-5GH"/>
+                                                        <constraint firstItem="Aej-g6-fJG" firstAttribute="leading" secondItem="YDF-lZ-jUE" secondAttribute="trailing" id="HoV-1x-jpc"/>
+                                                        <constraint firstItem="YDF-lZ-jUE" firstAttribute="leading" secondItem="e9a-d4-R6j" secondAttribute="leading" id="MAy-Zk-bT8"/>
+                                                        <constraint firstItem="YDF-lZ-jUE" firstAttribute="height" secondItem="Aej-g6-fJG" secondAttribute="height" id="S6P-fR-4g3"/>
+                                                        <constraint firstItem="x1N-1c-grt" firstAttribute="leading" secondItem="jG4-6s-y8E" secondAttribute="trailing" id="SsP-RT-8EN"/>
+                                                        <constraint firstItem="XPc-fO-7Zm" firstAttribute="top" secondItem="YDF-lZ-jUE" secondAttribute="bottom" id="T6Y-ht-JlP"/>
+                                                        <constraint firstItem="XPc-fO-7Zm" firstAttribute="leading" secondItem="e9a-d4-R6j" secondAttribute="leading" id="URa-tb-hXA"/>
+                                                        <constraint firstItem="YDF-lZ-jUE" firstAttribute="width" secondItem="Aej-g6-fJG" secondAttribute="width" id="Vh8-ta-CxS"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ftz-yv-TAg" secondAttribute="trailing" id="VjR-JG-f2D"/>
+                                                        <constraint firstItem="jG4-6s-y8E" firstAttribute="top" secondItem="Aej-g6-fJG" secondAttribute="bottom" id="aCV-4d-q4l"/>
+                                                        <constraint firstItem="ftz-yv-TAg" firstAttribute="top" secondItem="e9a-d4-R6j" secondAttribute="top" id="dlo-Ip-CtG"/>
+                                                        <constraint firstAttribute="bottom" secondItem="x1N-1c-grt" secondAttribute="bottom" id="eyV-rm-51t"/>
+                                                        <constraint firstItem="YDF-lZ-jUE" firstAttribute="top" secondItem="e9a-d4-R6j" secondAttribute="top" id="fug-oJ-O45"/>
+                                                        <constraint firstAttribute="bottom" secondItem="XPc-fO-7Zm" secondAttribute="bottom" id="glq-JD-lsn"/>
+                                                        <constraint firstItem="YDF-lZ-jUE" firstAttribute="height" secondItem="ftz-yv-TAg" secondAttribute="height" id="inY-O2-JAO"/>
+                                                        <constraint firstAttribute="bottom" secondItem="jG4-6s-y8E" secondAttribute="bottom" id="llz-Mg-bPu"/>
+                                                        <constraint firstItem="YDF-lZ-jUE" firstAttribute="height" secondItem="jG4-6s-y8E" secondAttribute="height" id="nLy-Us-IDP"/>
+                                                        <constraint firstItem="ftz-yv-TAg" firstAttribute="leading" secondItem="Aej-g6-fJG" secondAttribute="trailing" id="vCh-jA-xrn"/>
+                                                        <constraint firstItem="YDF-lZ-jUE" firstAttribute="width" secondItem="ftz-yv-TAg" secondAttribute="width" id="vS0-OA-Apw"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -393,31 +598,39 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="jby-QU-Wbn" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" priority="750" constant="18" id="2or-dL-ydc"/>
+                                                <constraint firstAttribute="bottom" secondItem="mHt-VG-LMP" secondAttribute="bottom" id="4Ly-zL-yFn"/>
                                                 <constraint firstItem="6i5-OV-Ekp" firstAttribute="centerY" secondItem="QVT-UN-MqH" secondAttribute="centerY" id="5uR-Ty-nPs"/>
                                                 <constraint firstAttribute="trailing" secondItem="Jje-IU-E84" secondAttribute="trailing" id="7mq-D3-3yY"/>
                                                 <constraint firstItem="wkp-gW-XJS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="9999" id="7yU-Fa-ZWJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="wkp-gW-XJS" secondAttribute="bottom" id="7zF-aD-zSN"/>
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="8jh-1s-gkE"/>
+                                                <constraint firstAttribute="trailing" secondItem="mHt-VG-LMP" secondAttribute="trailing" constant="10" id="9Vr-0q-UW7"/>
                                                 <constraint firstItem="2ku-3S-U0k" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" id="9g8-Vf-k87"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="top" secondItem="wXY-c4-tjT" secondAttribute="top" id="C83-CE-VmY"/>
                                                 <constraint firstAttribute="trailing" secondItem="pRf-VT-vr2" secondAttribute="trailing" constant="10" id="Ccn-mo-qPY"/>
                                                 <constraint firstAttribute="bottom" secondItem="QVT-UN-MqH" secondAttribute="bottom" id="D8e-9r-YhO"/>
+                                                <constraint firstItem="mHt-VG-LMP" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" id="DZz-SR-RY7"/>
                                                 <constraint firstItem="wXY-c4-tjT" firstAttribute="leading" secondItem="wkp-gW-XJS" secondAttribute="trailing" priority="750" id="H3L-KG-3re"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="top" secondItem="rOD-Z4-wDa" secondAttribute="top" id="HyT-3B-YOr"/>
+                                                <constraint firstItem="W8r-bO-88t" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" id="IAh-5o-G4U"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" id="JQx-7c-DaX"/>
                                                 <constraint firstAttribute="bottom" secondItem="2ku-3S-U0k" secondAttribute="bottom" id="KJa-2U-c2H"/>
                                                 <constraint firstItem="wkp-gW-XJS" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" priority="750" id="Kl2-kJ-mv1"/>
                                                 <constraint firstItem="wkp-gW-XJS" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" priority="250" id="MYA-3m-R7x"/>
+                                                <constraint firstAttribute="trailing" secondItem="W8r-bO-88t" secondAttribute="trailing" id="MhJ-6H-AuK"/>
                                                 <constraint firstItem="6i5-OV-Ekp" firstAttribute="centerX" secondItem="QVT-UN-MqH" secondAttribute="centerX" id="Mij-3l-Ev9"/>
                                                 <constraint firstAttribute="trailing" secondItem="jby-QU-Wbn" secondAttribute="trailing" constant="18" id="NKx-um-j5j"/>
                                                 <constraint firstAttribute="bottom" secondItem="Jje-IU-E84" secondAttribute="bottom" id="PZO-aD-kPG"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="rOD-Z4-wDa" secondAttribute="width" id="PrV-4T-DaI"/>
+                                                <constraint firstItem="W8r-bO-88t" firstAttribute="top" secondItem="jby-QU-Wbn" secondAttribute="bottom" constant="3" id="Q4R-hZ-gFa"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="wkp-gW-XJS" secondAttribute="width" id="Qgu-L9-Iqe"/>
                                                 <constraint firstItem="jby-QU-Wbn" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6i5-OV-Ekp" secondAttribute="leading" id="Rdr-nr-bJY"/>
                                                 <constraint firstItem="2ku-3S-U0k" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" id="SLv-hK-VS9"/>
+                                                <constraint firstItem="e9a-d4-R6j" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" id="UM8-nK-aSR"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="wXY-c4-tjT" secondAttribute="width" id="WVc-cp-psP"/>
                                                 <constraint firstItem="pRf-VT-vr2" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="10" id="cF1-x8-wxx"/>
                                                 <constraint firstAttribute="bottom" secondItem="wXY-c4-tjT" secondAttribute="bottom" id="dcE-Ux-5fp"/>
+                                                <constraint firstItem="mHt-VG-LMP" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" constant="10" id="e2o-1e-ZT6"/>
                                                 <constraint firstItem="6i5-OV-Ekp" firstAttribute="top" secondItem="jby-QU-Wbn" secondAttribute="bottom" constant="3" id="fjl-Vf-4xm"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="HmN-cJ-0ZO" secondAttribute="width" multiplier="0.25" id="hHg-Uo-b07"/>
                                                 <constraint firstItem="wXY-c4-tjT" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="9999" id="ibR-a7-Qta"/>
@@ -427,7 +640,8 @@
                                                 <constraint firstItem="jby-QU-Wbn" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" constant="9" id="jlf-r9-McA"/>
                                                 <constraint firstItem="pRf-VT-vr2" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" id="kub-Kq-D63"/>
                                                 <constraint firstAttribute="bottom" secondItem="rOD-Z4-wDa" secondAttribute="bottom" id="leq-o4-3J0"/>
-                                                <constraint firstItem="Jje-IU-E84" firstAttribute="top" secondItem="jby-QU-Wbn" secondAttribute="bottom" id="sqY-E7-Cna"/>
+                                                <constraint firstItem="Jje-IU-E84" firstAttribute="top" secondItem="jby-QU-Wbn" secondAttribute="bottom" constant="3" id="sqY-E7-Cna"/>
+                                                <constraint firstItem="2ku-3S-U0k" firstAttribute="trailing" secondItem="e9a-d4-R6j" secondAttribute="trailing" constant="34" id="tEK-JY-QBl"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="top" secondItem="wkp-gW-XJS" secondAttribute="top" id="u89-De-vLx"/>
                                                 <constraint firstItem="rOD-Z4-wDa" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="9999" id="ulQ-2m-XQr"/>
                                                 <constraint firstAttribute="bottom" secondItem="pRf-VT-vr2" secondAttribute="bottom" id="vtw-UE-w6y"/>
@@ -444,22 +658,38 @@
                                         <constraint firstAttribute="bottom" secondItem="HmN-cJ-0ZO" secondAttribute="bottom" constant="10" id="ctx-YM-qLV"/>
                                         <constraint firstItem="HmN-cJ-0ZO" firstAttribute="centerX" secondItem="y64-Uh-Xto" secondAttribute="centerX" id="imG-O4-aee"/>
                                         <constraint firstItem="HmN-cJ-0ZO" firstAttribute="top" secondItem="y64-Uh-Xto" secondAttribute="top" id="tKa-wM-qmL"/>
+                                        <constraint firstAttribute="bottom" secondItem="e9a-d4-R6j" secondAttribute="bottom" constant="5" id="yxN-FY-L1Z"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
                                     <outlet property="badBtn" destination="d4V-7r-b7O" id="9UW-87-F9t"/>
-                                    <outlet property="bgOptm" destination="pRf-VT-vr2" id="VD7-1x-q3L"/>
-                                    <outlet property="bgView" destination="2ku-3S-U0k" id="SsL-H9-K2U"/>
                                     <outlet property="didntEatBtn" destination="IMS-6q-vlh" id="IzO-MZ-oo1"/>
                                     <outlet property="goodBtn" destination="A27-1p-bKl" id="Ra4-1N-f5p"/>
+                                    <outlet property="reasonBad0" destination="YDF-lZ-jUE" id="rf3-eI-yHM"/>
+                                    <outlet property="reasonBad1" destination="Aej-g6-fJG" id="QGe-uN-DeT"/>
+                                    <outlet property="reasonBad2" destination="ftz-yv-TAg" id="eNC-uM-Ue6"/>
+                                    <outlet property="reasonBad3" destination="XPc-fO-7Zm" id="3wA-RU-d7T"/>
+                                    <outlet property="reasonBad4" destination="jG4-6s-y8E" id="mvy-Wc-iby"/>
+                                    <outlet property="reasonBad5" destination="x1N-1c-grt" id="Imh-Dq-bEQ"/>
+                                    <outlet property="sayMoreBtn" destination="qps-q8-Kok" id="NTT-Qi-sOB"/>
+                                    <outlet property="sayMoreField" destination="1ep-BG-RAM" id="mqJ-0k-ogY"/>
+                                    <outlet property="sayMoreSend" destination="nwP-ov-nmg" id="Jiy-2y-sjz"/>
                                     <outlet property="selBtnBg" destination="6i5-OV-Ekp" id="tXF-oT-5Td"/>
                                     <outlet property="thankyou" destination="mHt-VG-LMP" id="c9i-El-0uD"/>
                                     <outlet property="title" destination="jby-QU-Wbn" id="xwI-SX-BB2"/>
+                                    <outlet property="undoBtn" destination="E8E-G6-HBj" id="NlJ-zE-Pin"/>
                                     <outlet property="veryGoodBtn" destination="YL4-T3-8GK" id="h3X-EV-KfI"/>
                                     <outletCollection property="interactiveMargins" destination="7yU-Fa-ZWJ" collectionClass="NSMutableArray" id="8vB-H5-Bpe"/>
                                     <outletCollection property="interactiveMargins" destination="ibR-a7-Qta" collectionClass="NSMutableArray" id="l3q-6E-461"/>
                                     <outletCollection property="interactiveMargins" destination="ulQ-2m-XQr" collectionClass="NSMutableArray" id="lhx-Ke-SQT"/>
+                                    <outletCollection property="opaqueBgs" destination="2ku-3S-U0k" collectionClass="NSMutableArray" id="iy2-fh-amW"/>
+                                    <outletCollection property="opaqueBgs" destination="pRf-VT-vr2" collectionClass="NSMutableArray" id="ksK-cI-LvV"/>
+                                    <outletCollection property="opaqueBgs" destination="mHt-VG-LMP" collectionClass="NSMutableArray" id="el6-KK-wp8"/>
+                                    <outletCollection property="opaqueBgs" destination="jby-QU-Wbn" collectionClass="NSMutableArray" id="JH4-pg-5r7"/>
+                                    <outletCollection property="opaqueBgs" destination="Teh-Eb-EFl" collectionClass="NSMutableArray" id="i8c-pV-ZJp"/>
+                                    <outletCollection property="opaqueBgs" destination="EaM-et-IpU" collectionClass="NSMutableArray" id="yUw-GB-tZe"/>
+                                    <outletCollection property="opaqueBgs" destination="Mzu-uo-ScC" collectionClass="NSMutableArray" id="UKm-lR-pNd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1128,6 +1358,7 @@
         <image name="VoteDidntEat" width="60" height="60"/>
         <image name="VoteGood" width="60" height="60"/>
         <image name="VoteSayMore" width="44" height="44"/>
+        <image name="VoteSend" width="25" height="25"/>
         <image name="VoteUndo" width="44" height="44"/>
         <image name="VoteVeryGood" width="60" height="60"/>
     </resources>

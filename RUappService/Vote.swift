@@ -8,14 +8,14 @@
 
 public class Vote {
     
-    public var type: Type?
-    public var reason: [Int]?
+    public var type: VoteType?
+    public var reason: Set<Int>?
     public var comment: String?
     public var sent = false
     
     public init() {}
     
-    public enum Type: Int {
+    public enum VoteType: Int {
         case DidntEat = 0, Bad, Good, VeryGood
     }
 }
