@@ -31,7 +31,12 @@ class MainController: UIViewController, UITabBarControllerDelegate {
                 viewConts = tabCont.viewControllers else {
                 break
             }
-            let imgVerInset: CGFloat = traitCollection.userInterfaceIdiom == .Pad ? 8 : 5.5
+            let imgVerInset: CGFloat
+            if #available(iOS 9.0, *) {
+                imgVerInset = traitCollection.userInterfaceIdiom == .Pad ? 8 : 5.5
+            } else {
+                imgVerInset = traitCollection.userInterfaceIdiom == .Pad ? 5 : 5.5
+            }
             for viewCont in viewConts {
                 let tabItem = viewCont.tabBarItem
                 tabItem.titlePositionAdjustment.vertical = 9999

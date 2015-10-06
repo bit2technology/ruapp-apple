@@ -177,7 +177,7 @@ class RegisterInstitutionListController: UITableViewController {
     weak var selected: Institution?
     
     @IBAction func cancelTap() {
-        performSegueWithIdentifier("Institutions To Registration", sender: nil)
+        performSegueWithIdentifier("Cancel", sender: nil)
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {

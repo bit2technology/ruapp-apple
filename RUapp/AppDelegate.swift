@@ -46,6 +46,10 @@ public extension UIColor {
         return UIColor(red:0.31, green:0.76, blue:0.97, alpha:1.0)
     }
     
+    class func appOrange() -> UIColor {
+        return UIColor(red:1.00, green:0.55, blue:0.00, alpha:1.0)
+    }
+    
     class func appMeatRed() -> UIColor {
         return UIColor(red:0.79, green:0.31, blue:0.37, alpha:1.0)
     }

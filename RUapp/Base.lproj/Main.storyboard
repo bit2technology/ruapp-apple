@@ -33,6 +33,9 @@
             <string>Dosis-Medium</string>
             <string>Dosis-Medium</string>
             <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
+            <string>Dosis-Medium</string>
         </mutableArray>
         <mutableArray key="Dosis-SemiBold.otf">
             <string>Dosis-SemiBold</string>
@@ -500,64 +503,64 @@
                                                     </constraints>
                                                 </view>
                                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9a-d4-R6j" userLabel="Reason Bad">
-                                                    <rect key="frame" x="145" y="20" width="401" height="90"/>
+                                                    <rect key="frame" x="137" y="20" width="413" height="90"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDF-lZ-jUE">
-                                                            <rect key="frame" x="0.0" y="0.0" width="134" height="45"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YDF-lZ-jUE">
+                                                            <rect key="frame" x="0.0" y="0.0" width="138" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
-                                                            <inset key="contentEdgeInsets" minX="0.0" minY="8" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" title="Button"/>
+                                                            <inset key="contentEdgeInsets" minX="4" minY="9" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" title="reason"/>
                                                             <connections>
                                                                 <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="0Tt-uT-LBY"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aej-g6-fJG">
-                                                            <rect key="frame" x="134" y="0.0" width="133" height="45"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Aej-g6-fJG">
+                                                            <rect key="frame" x="138" y="0.0" width="137" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
-                                                            <inset key="contentEdgeInsets" minX="0.0" minY="8" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" title="Button"/>
+                                                            <inset key="contentEdgeInsets" minX="4" minY="9" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" title="reason"/>
                                                             <connections>
                                                                 <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="JtG-bv-VG7"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftz-yv-TAg">
-                                                            <rect key="frame" x="267" y="0.0" width="134" height="45"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="ftz-yv-TAg">
+                                                            <rect key="frame" x="275" y="0.0" width="138" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
-                                                            <inset key="contentEdgeInsets" minX="0.0" minY="8" maxX="0.0" maxY="0.0"/>
-                                                            <state key="normal" title="Button"/>
+                                                            <inset key="contentEdgeInsets" minX="4" minY="9" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" title="reason"/>
                                                             <connections>
                                                                 <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="KBP-T8-B3j"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XPc-fO-7Zm">
-                                                            <rect key="frame" x="0.0" y="45" width="134" height="45"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="XPc-fO-7Zm">
+                                                            <rect key="frame" x="0.0" y="45" width="138" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
-                                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
-                                                            <state key="normal" title="Button"/>
+                                                            <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="9"/>
+                                                            <state key="normal" title="reason"/>
                                                             <connections>
                                                                 <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="CpS-Ss-22v"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jG4-6s-y8E">
-                                                            <rect key="frame" x="134" y="45" width="133" height="45"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="jG4-6s-y8E">
+                                                            <rect key="frame" x="138" y="45" width="137" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
-                                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
-                                                            <state key="normal" title="Button"/>
+                                                            <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="9"/>
+                                                            <state key="normal" title="reason"/>
                                                             <connections>
                                                                 <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="Y4g-YO-ufQ"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1N-1c-grt">
-                                                            <rect key="frame" x="267" y="45" width="134" height="45"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="x1N-1c-grt">
+                                                            <rect key="frame" x="275" y="45" width="138" height="45"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
-                                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
-                                                            <state key="normal" title="Button"/>
+                                                            <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="9"/>
+                                                            <state key="normal" title="reason"/>
                                                             <connections>
                                                                 <action selector="reasonBadTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="I9x-zW-qzW"/>
                                                             </connections>
@@ -593,6 +596,66 @@
                                                         <constraint firstItem="YDF-lZ-jUE" firstAttribute="width" secondItem="ftz-yv-TAg" secondAttribute="width" id="vS0-OA-Apw"/>
                                                     </constraints>
                                                 </view>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NnV-9v-13V" userLabel="Reason Didnt Eat">
+                                                    <rect key="frame" x="137" y="43" width="413" height="44"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTc-wJ-q5k">
+                                                            <rect key="frame" x="0.0" y="0.0" width="138" height="44"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
+                                                            <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" title="reason"/>
+                                                            <connections>
+                                                                <action selector="reasonDidntEatTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="Fn1-3y-Y7h"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMt-DJ-OaB">
+                                                            <rect key="frame" x="138" y="0.0" width="137" height="44"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
+                                                            <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" title="reason"/>
+                                                            <connections>
+                                                                <action selector="reasonDidntEatTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="dZE-DR-nxK"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmu-Yh-Wrq">
+                                                            <rect key="frame" x="275" y="0.0" width="138" height="44"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Dosis-Medium" family="Dosis" pointSize="14"/>
+                                                            <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <state key="normal" title="reason"/>
+                                                            <connections>
+                                                                <action selector="reasonDidntEatTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="909-b6-1e4"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="kmu-Yh-Wrq" secondAttribute="trailing" id="0mS-nx-w5R"/>
+                                                        <constraint firstItem="rTc-wJ-q5k" firstAttribute="width" secondItem="kmu-Yh-Wrq" secondAttribute="width" id="2Pw-Pr-DDK"/>
+                                                        <constraint firstItem="rTc-wJ-q5k" firstAttribute="width" secondItem="nMt-DJ-OaB" secondAttribute="width" id="4E4-Wm-7R1"/>
+                                                        <constraint firstAttribute="bottom" secondItem="rTc-wJ-q5k" secondAttribute="bottom" id="Bbx-y0-kwn"/>
+                                                        <constraint firstAttribute="bottom" secondItem="kmu-Yh-Wrq" secondAttribute="bottom" id="Dqy-zr-Cm2"/>
+                                                        <constraint firstItem="kmu-Yh-Wrq" firstAttribute="top" secondItem="NnV-9v-13V" secondAttribute="top" id="FEb-Fp-OoU"/>
+                                                        <constraint firstItem="rTc-wJ-q5k" firstAttribute="leading" secondItem="NnV-9v-13V" secondAttribute="leading" id="H9P-qk-riL"/>
+                                                        <constraint firstItem="rTc-wJ-q5k" firstAttribute="top" secondItem="NnV-9v-13V" secondAttribute="top" id="NOB-06-bjR"/>
+                                                        <constraint firstItem="nMt-DJ-OaB" firstAttribute="top" secondItem="NnV-9v-13V" secondAttribute="top" id="PeR-4m-u9Z"/>
+                                                        <constraint firstItem="nMt-DJ-OaB" firstAttribute="leading" secondItem="rTc-wJ-q5k" secondAttribute="trailing" id="ZRw-XX-dbd"/>
+                                                        <constraint firstAttribute="height" constant="44" id="jgB-wp-oKl"/>
+                                                        <constraint firstAttribute="bottom" secondItem="nMt-DJ-OaB" secondAttribute="bottom" id="uZ3-oH-hCh"/>
+                                                        <constraint firstItem="kmu-Yh-Wrq" firstAttribute="leading" secondItem="nMt-DJ-OaB" secondAttribute="trailing" id="w3k-nb-qQH"/>
+                                                    </constraints>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dry-fb-Plm">
+                                                    <rect key="frame" x="550" y="53" width="40" height="25"/>
+                                                    <animations/>
+                                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                                                    <state key="normal" image="VoteSend"/>
+                                                    <connections>
+                                                        <action selector="sendReasonTap" destination="PeB-4h-Npv" eventType="touchUpInside" id="6s7-Hi-I55"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -610,6 +673,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="pRf-VT-vr2" secondAttribute="trailing" constant="10" id="Ccn-mo-qPY"/>
                                                 <constraint firstAttribute="bottom" secondItem="QVT-UN-MqH" secondAttribute="bottom" id="D8e-9r-YhO"/>
                                                 <constraint firstItem="mHt-VG-LMP" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" id="DZz-SR-RY7"/>
+                                                <constraint firstItem="2ku-3S-U0k" firstAttribute="trailing" secondItem="Dry-fb-Plm" secondAttribute="trailing" constant="-10" id="E8p-yh-Nkc"/>
                                                 <constraint firstItem="wXY-c4-tjT" firstAttribute="leading" secondItem="wkp-gW-XJS" secondAttribute="trailing" priority="750" id="H3L-KG-3re"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="top" secondItem="rOD-Z4-wDa" secondAttribute="top" id="HyT-3B-YOr"/>
                                                 <constraint firstItem="W8r-bO-88t" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" id="IAh-5o-G4U"/>
@@ -617,6 +681,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="2ku-3S-U0k" secondAttribute="bottom" id="KJa-2U-c2H"/>
                                                 <constraint firstItem="wkp-gW-XJS" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" priority="750" id="Kl2-kJ-mv1"/>
                                                 <constraint firstItem="wkp-gW-XJS" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" priority="250" id="MYA-3m-R7x"/>
+                                                <constraint firstItem="Dry-fb-Plm" firstAttribute="leading" secondItem="e9a-d4-R6j" secondAttribute="trailing" id="Mbg-OT-4Y0"/>
                                                 <constraint firstAttribute="trailing" secondItem="W8r-bO-88t" secondAttribute="trailing" id="MhJ-6H-AuK"/>
                                                 <constraint firstItem="6i5-OV-Ekp" firstAttribute="centerX" secondItem="QVT-UN-MqH" secondAttribute="centerX" id="Mij-3l-Ev9"/>
                                                 <constraint firstAttribute="trailing" secondItem="jby-QU-Wbn" secondAttribute="trailing" constant="18" id="NKx-um-j5j"/>
@@ -626,14 +691,17 @@
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="wkp-gW-XJS" secondAttribute="width" id="Qgu-L9-Iqe"/>
                                                 <constraint firstItem="jby-QU-Wbn" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6i5-OV-Ekp" secondAttribute="leading" id="Rdr-nr-bJY"/>
                                                 <constraint firstItem="2ku-3S-U0k" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" id="SLv-hK-VS9"/>
-                                                <constraint firstItem="e9a-d4-R6j" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" id="UM8-nK-aSR"/>
+                                                <constraint firstItem="e9a-d4-R6j" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" constant="-8" id="UM8-nK-aSR"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="wXY-c4-tjT" secondAttribute="width" id="WVc-cp-psP"/>
+                                                <constraint firstItem="Dry-fb-Plm" firstAttribute="centerY" secondItem="e9a-d4-R6j" secondAttribute="centerY" id="XtJ-sY-mVu"/>
                                                 <constraint firstItem="pRf-VT-vr2" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="10" id="cF1-x8-wxx"/>
+                                                <constraint firstItem="NnV-9v-13V" firstAttribute="trailing" secondItem="e9a-d4-R6j" secondAttribute="trailing" id="cWv-Yr-sre"/>
                                                 <constraint firstAttribute="bottom" secondItem="wXY-c4-tjT" secondAttribute="bottom" id="dcE-Ux-5fp"/>
                                                 <constraint firstItem="mHt-VG-LMP" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" constant="10" id="e2o-1e-ZT6"/>
                                                 <constraint firstItem="6i5-OV-Ekp" firstAttribute="top" secondItem="jby-QU-Wbn" secondAttribute="bottom" constant="3" id="fjl-Vf-4xm"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="HmN-cJ-0ZO" secondAttribute="width" multiplier="0.25" id="hHg-Uo-b07"/>
                                                 <constraint firstItem="wXY-c4-tjT" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="9999" id="ibR-a7-Qta"/>
+                                                <constraint firstItem="NnV-9v-13V" firstAttribute="leading" secondItem="e9a-d4-R6j" secondAttribute="leading" id="idM-e8-Yp1"/>
                                                 <constraint firstItem="Jje-IU-E84" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" id="idW-yv-fPI"/>
                                                 <constraint firstAttribute="trailing" secondItem="2ku-3S-U0k" secondAttribute="trailing" id="j0s-VF-Fry"/>
                                                 <constraint firstItem="rOD-Z4-wDa" firstAttribute="leading" secondItem="wXY-c4-tjT" secondAttribute="trailing" priority="750" id="jPq-sH-KYB"/>
@@ -641,12 +709,12 @@
                                                 <constraint firstItem="pRf-VT-vr2" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" id="kub-Kq-D63"/>
                                                 <constraint firstAttribute="bottom" secondItem="rOD-Z4-wDa" secondAttribute="bottom" id="leq-o4-3J0"/>
                                                 <constraint firstItem="Jje-IU-E84" firstAttribute="top" secondItem="jby-QU-Wbn" secondAttribute="bottom" constant="3" id="sqY-E7-Cna"/>
-                                                <constraint firstItem="2ku-3S-U0k" firstAttribute="trailing" secondItem="e9a-d4-R6j" secondAttribute="trailing" constant="34" id="tEK-JY-QBl"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="top" secondItem="wkp-gW-XJS" secondAttribute="top" id="u89-De-vLx"/>
                                                 <constraint firstItem="rOD-Z4-wDa" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="9999" id="ulQ-2m-XQr"/>
                                                 <constraint firstAttribute="bottom" secondItem="pRf-VT-vr2" secondAttribute="bottom" id="vtw-UE-w6y"/>
                                                 <constraint firstItem="rOD-Z4-wDa" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" priority="250" id="yrz-uK-Sfc"/>
                                                 <constraint firstItem="wXY-c4-tjT" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" priority="250" id="ywR-TP-aTg"/>
+                                                <constraint firstItem="NnV-9v-13V" firstAttribute="centerY" secondItem="e9a-d4-R6j" secondAttribute="centerY" id="zC5-V2-pRM"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -672,6 +740,10 @@
                                     <outlet property="reasonBad3" destination="XPc-fO-7Zm" id="3wA-RU-d7T"/>
                                     <outlet property="reasonBad4" destination="jG4-6s-y8E" id="mvy-Wc-iby"/>
                                     <outlet property="reasonBad5" destination="x1N-1c-grt" id="Imh-Dq-bEQ"/>
+                                    <outlet property="reasonDidntEat0" destination="rTc-wJ-q5k" id="aIr-aL-jba"/>
+                                    <outlet property="reasonDidntEat1" destination="nMt-DJ-OaB" id="tIi-a2-zAK"/>
+                                    <outlet property="reasonDidntEat2" destination="kmu-Yh-Wrq" id="aff-8Q-UJA"/>
+                                    <outlet property="reasonSend" destination="Dry-fb-Plm" id="YBS-ed-pZ5"/>
                                     <outlet property="sayMoreBtn" destination="qps-q8-Kok" id="NTT-Qi-sOB"/>
                                     <outlet property="sayMoreField" destination="1ep-BG-RAM" id="mqJ-0k-ogY"/>
                                     <outlet property="sayMoreSend" destination="nwP-ov-nmg" id="Jiy-2y-sjz"/>
@@ -765,7 +837,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="height" priority="750" constant="43" id="A6H-nJ-CTx"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="A6H-nJ-CTx"/>
                                             </constraints>
                                         </activityIndicatorView>
                                     </subviews>
@@ -788,6 +860,7 @@
                     <navigationItem key="navigationItem" title="Institutions" id="GPh-u1-71q"/>
                     <connections>
                         <segue destination="BQ2-dm-CUx" kind="unwind" identifier="Institutions To Registration" unwindAction="unwindToRegistration:" id="Y26-dM-xrQ"/>
+                        <segue destination="BQ2-dm-CUx" kind="unwind" identifier="Cancel" unwindAction="unwindToRegistration:" id="uyq-7i-Wtc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJZ-oE-pVv" userLabel="First Responder" sceneMemberID="firstResponder"/>
