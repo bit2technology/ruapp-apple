@@ -287,6 +287,9 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
                     self.sayMoreUndo.alpha = 1
                 }, completion: nil)
             }
+            else if self.vote.editingComment {
+                self.sayMoreField.becomeFirstResponder()
+            }
         }
         
         // Animate selected button background
@@ -381,7 +384,9 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseInOut], animations: { () -> Void in
             self.sayMoreUndo.alpha = 0
             self.sayMoreWrapper.alpha = 1
-        }, completion: nil)
+        }) { (finished) -> Void in
+            self.sayMoreField.becomeFirstResponder()
+        }
     }
     
     @IBAction func undoTap() {
@@ -422,7 +427,7 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        sendCommentTap()
         return true
     }
     
