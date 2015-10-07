@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9058" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9048"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -192,7 +192,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OP3-B3-5ef" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="433" y="692"/>
+            <point key="canvasLocation" x="1437" y="1104"/>
         </scene>
         <!--Menu-->
         <scene sceneID="vsv-8G-kWj">
@@ -219,7 +219,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26t-gc-Mor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2530" y="-1345"/>
+            <point key="canvasLocation" x="3186" y="-321"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="5U4-gA-8Yr">
@@ -239,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PrJ-sN-xIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2530" y="-522"/>
+            <point key="canvasLocation" x="3186" y="345"/>
         </scene>
         <!--Vote-->
         <scene sceneID="rEr-Uy-YjN">
@@ -774,7 +774,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ead-af-q6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2530" y="295"/>
+            <point key="canvasLocation" x="3186" y="1015"/>
         </scene>
         <!--Line-->
         <scene sceneID="Vnw-Rk-1bV">
@@ -794,7 +794,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxG-5X-YA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2530" y="1203"/>
+            <point key="canvasLocation" x="3186" y="1683"/>
         </scene>
         <!--Institutions-->
         <scene sceneID="JEZ-Bh-NIp">
@@ -833,11 +833,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uvV-TV-nRp">
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uvV-TV-nRp">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="A6H-nJ-CTx"/>
+                                                <constraint firstAttribute="height" priority="999" constant="43" id="MA4-Mj-Znb"/>
                                             </constraints>
                                         </activityIndicatorView>
                                     </subviews>
@@ -866,7 +866,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJZ-oE-pVv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="BQ2-dm-CUx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="943" y="1863"/>
+            <point key="canvasLocation" x="2358" y="2043"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rfo-nR-TBJ">
@@ -883,7 +883,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zeo-ul-RXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="255" y="1863"/>
+            <point key="canvasLocation" x="1670" y="2043"/>
         </scene>
         <!--Sidebar Table Controller-->
         <scene sceneID="8YL-YC-L1j">
@@ -1065,7 +1065,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9F-Yq-B7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1320" y="1863"/>
+            <point key="canvasLocation" x="95" y="2043"/>
         </scene>
         <!--Sidebar Controller-->
         <scene sceneID="f9f-gP-TEj">
@@ -1151,7 +1151,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GuW-yT-6Cs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Ar9-K4-aNe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1987" y="1863"/>
+            <point key="canvasLocation" x="-572" y="2043"/>
         </scene>
         <!--Register Controller-->
         <scene sceneID="BaO-tz-XiT">
@@ -1382,7 +1382,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-430" y="1863"/>
+            <point key="canvasLocation" x="985" y="2043"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ead-Bc-4cy">
@@ -1403,7 +1403,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNg-u1-Off" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1131" y="691.5"/>
+            <point key="canvasLocation" x="2135" y="1103"/>
         </scene>
     </scenes>
     <resources>
@@ -1436,6 +1436,6 @@
         <image name="VoteVeryGood" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Qai-3u-9ax"/>
+        <segue reference="lTO-zL-muo"/>
     </inferredMetricsTieBreakers>
 </document>
