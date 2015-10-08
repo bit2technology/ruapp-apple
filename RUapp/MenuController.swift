@@ -17,14 +17,44 @@ let cardapio = ["Arroz": "Branco e Integral",
     "Prato Principal": "Carne de Panela com Mandioca",
     "Salada": "Almeirão/Acelga, Beterraba Ralada, Abobrinha Ralada"]
 
-private let reuseIdentifier = "Cell"
-
 class MenuController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView?.decelerationRate = UIScrollViewDecelerationRateFast
+    }
+    
+    private func adjustInstets() {
+        let topBarHeight = mainController.topBarHeight.constant
+        collectionView?.contentInset.top = topBarHeight
+        collectionView?.scrollIndicatorInsets.top = topBarHeight
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
+        adjustInstets()
+    }
+    
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        adjustInstets()
+    }
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 7
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Menu", forIndexPath: indexPath)
+        
+        cell.backgroundColor = UIColor.appBlue()
+        
+        return cell
     }
 }
 
@@ -35,11 +65,10 @@ class LayoutMenu: UICollectionViewLayout {
             invalidateLayout()
         }
     }
-    var space: CGPoint = CGPoint(x: 10, y: 10)
-    var grid = (h: 7, v: 3)
+    var space = CGPoint(x: 10, y: 10)
     
     override func collectionViewContentSize() -> CGSize {
-        return CGSize(width: CGFloat(grid.h) * (itemSize.width + space.x) + space.x, height: CGFloat(grid.v) * (itemSize.height + space.y) + space.y)
+        return CGSize(width: CGFloat(collectionView?.numberOfSections() ?? 0) * (itemSize.width + space.x) + space.x, height: CGFloat(collectionView?.numberOfItemsInSection(0) ?? 0) * (itemSize.height + space.y) + space.y)
     }
     
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
@@ -58,9 +87,9 @@ class LayoutMenu: UICollectionViewLayout {
         adjRect.size.height -= space.y
         
         let minH = max(Int(adjRect.minX / itemTotalWidth), 0)
-        let maxH = min(Int(ceil(adjRect.maxX / itemTotalWidth)), grid.h)
+        let maxH = min(Int(ceil(adjRect.maxX / itemTotalWidth)), collectionView?.numberOfSections() ?? 0)
         let minV = max(Int(adjRect.minY / itemTotalHeight), 0)
-        let maxV = min(Int(ceil(adjRect.maxY / itemTotalHeight)), grid.v)
+        let maxV = min(Int(ceil(adjRect.maxY / itemTotalHeight)), collectionView?.numberOfItemsInSection(0) ?? 0)
         
         var attr = [UICollectionViewLayoutAttributes]()
         for h in minH..<maxH {
@@ -73,8 +102,11 @@ class LayoutMenu: UICollectionViewLayout {
     
     override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
-        let margin = collectionView!.contentInset
-        var usableArea = collectionView!.bounds.size
+        guard let margin = collectionView?.contentInset,
+            var usableArea = collectionView?.bounds.size else {
+                return proposedContentOffset
+        }
+        
         usableArea.width -= margin.left + margin.right
         usableArea.height -= margin.top + margin.bottom
         let itemTotalWidht = itemSize.width + space.x
@@ -121,6 +153,8 @@ class LayoutMenu: UICollectionViewLayout {
         adjOffset.x = min(adjOffset.x, contentSize.width - usableArea.width - margin.left)
         adjOffset.y = max(adjOffset.y, -margin.top)
         adjOffset.y = min(adjOffset.y, contentSize.height - usableArea.height - margin.top)
+        
+        print(proposedContentOffset, adjOffset)
         
         return adjOffset
     }
