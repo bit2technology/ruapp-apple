@@ -60,7 +60,7 @@ class MenuController: UICollectionViewController {
 
 class LayoutMenu: UICollectionViewLayout {
     
-    var itemSize: CGSize = CGSize(width: 300, height: 330) {
+    var itemSize: CGSize = CGSize(width: 300, height: 300) {
         didSet {
             invalidateLayout()
         }
@@ -103,44 +103,46 @@ class LayoutMenu: UICollectionViewLayout {
     override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
         guard let margin = collectionView?.contentInset,
-            var usableArea = collectionView?.bounds.size else {
+            var visibleSize = collectionView?.bounds.size else {
                 return proposedContentOffset
         }
         
-        usableArea.width -= margin.left + margin.right
-        usableArea.height -= margin.top + margin.bottom
+        // Get visible size
+        visibleSize.width -= margin.left + margin.right
+        visibleSize.height -= margin.top + margin.bottom
+        // Get item size + space
         let itemTotalWidht = itemSize.width + space.x
         let itemTotalHeight = itemSize.height + space.y
-        let adjLeftMargin = margin.left + ((usableArea.width - itemSize.width) / 2 - space.x) % itemTotalWidht
-        let adjRightMargin = margin.top + ((usableArea.height - itemSize.height) / 2 - space.y) % itemTotalHeight
+        // Centralize item
+        let adjLeftMargin = margin.left + ((visibleSize.width - itemTotalWidht - space.x) / 2)
+        let adjRightMargin = margin.top + ((visibleSize.height - itemTotalHeight - space.y) / 2)
         
         // Get current offset and adjust to contentInset, itemSpacing and center
         var adjOffset = collectionView!.contentOffset
         adjOffset.x += adjLeftMargin
         adjOffset.y += adjRightMargin
         
+        /// Minimum velocity to change central item
+        let minVelocity: CGFloat = 0.2
+        
         // Pick item from left or right
         let diffX = adjOffset.x % itemTotalWidht
-        var directionX = velocity.x
-        if directionX == 0 {
-            directionX = diffX > itemTotalWidht / 2 ? 1 : -1
-        }
-        if directionX > 0 {
+        if velocity.x > minVelocity {
             adjOffset.x += itemTotalWidht - diffX
-        } else {
+        } else if velocity.x < -minVelocity {
             adjOffset.x -= diffX
+        } else {
+            adjOffset.x += (diffX > itemTotalWidht / 2 ? itemTotalWidht : 0) - diffX
         }
         
         // Pick item from top or bottom
         let diffY = adjOffset.y % itemTotalHeight
-        var directionY = velocity.y
-        if directionY == 0 {
-            directionY = diffY > itemTotalHeight / 2 ? 1 : -1
-        }
-        if directionY > 0 {
+        if velocity.y > minVelocity {
             adjOffset.y += itemTotalHeight - diffY
-        } else {
+        } else if velocity.y < -minVelocity {
             adjOffset.y -= diffY
+        } else {
+            adjOffset.y += (diffY > itemTotalHeight / 2 ? itemTotalHeight : 0) - diffY
         }
         
         // Adjust to contentInset, itemSpacing and center
@@ -149,12 +151,10 @@ class LayoutMenu: UICollectionViewLayout {
         
         // Adjust limit bounds
         let contentSize = collectionView!.contentSize
-        adjOffset.x = max(adjOffset.x, -margin.left)
-        adjOffset.x = min(adjOffset.x, contentSize.width - usableArea.width - margin.left)
+        adjOffset.x = max(adjOffset.x, 0 - margin.left)
+        adjOffset.x = min(adjOffset.x, contentSize.width - visibleSize.width - margin.left)
         adjOffset.y = max(adjOffset.y, -margin.top)
-        adjOffset.y = min(adjOffset.y, contentSize.height - usableArea.height - margin.top)
-        
-        print(proposedContentOffset, adjOffset)
+        adjOffset.y = min(adjOffset.y, contentSize.height - visibleSize.height - margin.top)
         
         return adjOffset
     }

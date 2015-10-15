@@ -198,7 +198,7 @@
         <scene sceneID="vsv-8G-kWj">
             <objects>
                 <collectionViewController id="flA-0o-Vyw" customClass="MenuController" customModule="RUapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="YAz-6v-N0j">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" dataMode="prototypes" id="YAz-6v-N0j">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -274,12 +274,12 @@
                                                     <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="10"/>
+                                                            <real key="value" value="12"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRf-VT-vr2" userLabel="Background Optmizator">
-                                                    <rect key="frame" x="10" y="0.0" width="560" height="105"/>
+                                                    <rect key="frame" x="12" y="0.0" width="556" height="105"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.0078431377190000002" green="0.46666666870000001" blue="0.74117648599999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
@@ -299,86 +299,6 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6i5-OV-Ekp">
-                                                    <rect key="frame" x="43" y="31" width="60" height="60"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" placeholder="YES" id="9mu-gM-rau"/>
-                                                        <constraint firstAttribute="width" constant="60" placeholder="YES" id="ueY-1a-h3x"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="QVT-UN-MqH" userLabel="Very Good Wrap">
-                                                    <rect key="frame" x="0.0" y="17" width="145" height="88"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YL4-T3-8GK" userLabel="Very Good">
-                                                            <rect key="frame" x="43" y="14" width="60" height="60"/>
-                                                            <animations/>
-                                                            <state key="normal" image="VoteVeryGood"/>
-                                                            <connections>
-                                                                <action selector="voteTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="tPx-3Y-IQ1"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstItem="YL4-T3-8GK" firstAttribute="centerX" secondItem="QVT-UN-MqH" secondAttribute="centerX" id="eBU-8c-So6"/>
-                                                        <constraint firstItem="YL4-T3-8GK" firstAttribute="centerY" secondItem="QVT-UN-MqH" secondAttribute="centerY" id="fEe-Fo-5Sh"/>
-                                                    </constraints>
-                                                </view>
-                                                <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wkp-gW-XJS" userLabel="Good Wrap">
-                                                    <rect key="frame" x="145" y="17" width="145" height="88"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A27-1p-bKl" userLabel="Good">
-                                                            <rect key="frame" x="42" y="14" width="60" height="60"/>
-                                                            <animations/>
-                                                            <state key="normal" image="VoteGood"/>
-                                                            <connections>
-                                                                <action selector="voteTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="pcf-y5-r0A"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstItem="A27-1p-bKl" firstAttribute="centerX" secondItem="wkp-gW-XJS" secondAttribute="centerX" id="39v-qr-4vN"/>
-                                                        <constraint firstItem="A27-1p-bKl" firstAttribute="centerY" secondItem="wkp-gW-XJS" secondAttribute="centerY" id="U3m-UH-XRc"/>
-                                                    </constraints>
-                                                </view>
-                                                <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wXY-c4-tjT" userLabel="Bad Wrap">
-                                                    <rect key="frame" x="290" y="17" width="145" height="88"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4V-7r-b7O" userLabel="Bad">
-                                                            <rect key="frame" x="43" y="14" width="60" height="60"/>
-                                                            <animations/>
-                                                            <state key="normal" image="VoteBad"/>
-                                                            <connections>
-                                                                <action selector="voteTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="xbO-Xl-uuQ"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstItem="d4V-7r-b7O" firstAttribute="centerY" secondItem="wXY-c4-tjT" secondAttribute="centerY" id="2dK-bU-g3P"/>
-                                                        <constraint firstItem="d4V-7r-b7O" firstAttribute="centerX" secondItem="wXY-c4-tjT" secondAttribute="centerX" id="wLl-at-ZK2"/>
-                                                    </constraints>
-                                                </view>
-                                                <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rOD-Z4-wDa" userLabel="Didn't Eat Wrap">
-                                                    <rect key="frame" x="435" y="17" width="145" height="88"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMS-6q-vlh" userLabel="Didn't Eat">
-                                                            <rect key="frame" x="42" y="14" width="60" height="60"/>
-                                                            <animations/>
-                                                            <state key="normal" image="VoteDidntEat"/>
-                                                            <connections>
-                                                                <action selector="voteTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="hhU-Sp-Dox"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstItem="IMS-6q-vlh" firstAttribute="centerX" secondItem="rOD-Z4-wDa" secondAttribute="centerX" id="HmM-d6-tyy"/>
-                                                        <constraint firstItem="IMS-6q-vlh" firstAttribute="centerY" secondItem="rOD-Z4-wDa" secondAttribute="centerY" id="bzR-vD-l5E"/>
-                                                    </constraints>
-                                                </view>
                                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jje-IU-E84" userLabel="Say More Undo">
                                                     <rect key="frame" x="145" y="31" width="435" height="74"/>
                                                     <subviews>
@@ -663,6 +583,86 @@
                                                         <action selector="sendReasonTap" destination="PeB-4h-Npv" eventType="touchUpInside" id="6s7-Hi-I55"/>
                                                     </connections>
                                                 </button>
+                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6i5-OV-Ekp">
+                                                    <rect key="frame" x="43" y="31" width="60" height="60"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" placeholder="YES" id="9mu-gM-rau"/>
+                                                        <constraint firstAttribute="width" constant="60" placeholder="YES" id="ueY-1a-h3x"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="QVT-UN-MqH" userLabel="Very Good Wrap">
+                                                    <rect key="frame" x="0.0" y="17" width="145" height="88"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YL4-T3-8GK" userLabel="Very Good">
+                                                            <rect key="frame" x="43" y="14" width="60" height="60"/>
+                                                            <animations/>
+                                                            <state key="normal" image="VoteVeryGood"/>
+                                                            <connections>
+                                                                <action selector="voteTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="tPx-3Y-IQ1"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstItem="YL4-T3-8GK" firstAttribute="centerX" secondItem="QVT-UN-MqH" secondAttribute="centerX" id="eBU-8c-So6"/>
+                                                        <constraint firstItem="YL4-T3-8GK" firstAttribute="centerY" secondItem="QVT-UN-MqH" secondAttribute="centerY" id="fEe-Fo-5Sh"/>
+                                                    </constraints>
+                                                </view>
+                                                <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wkp-gW-XJS" userLabel="Good Wrap">
+                                                    <rect key="frame" x="145" y="17" width="145" height="88"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A27-1p-bKl" userLabel="Good">
+                                                            <rect key="frame" x="42" y="14" width="60" height="60"/>
+                                                            <animations/>
+                                                            <state key="normal" image="VoteGood"/>
+                                                            <connections>
+                                                                <action selector="voteTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="pcf-y5-r0A"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstItem="A27-1p-bKl" firstAttribute="centerX" secondItem="wkp-gW-XJS" secondAttribute="centerX" id="39v-qr-4vN"/>
+                                                        <constraint firstItem="A27-1p-bKl" firstAttribute="centerY" secondItem="wkp-gW-XJS" secondAttribute="centerY" id="U3m-UH-XRc"/>
+                                                    </constraints>
+                                                </view>
+                                                <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="wXY-c4-tjT" userLabel="Bad Wrap">
+                                                    <rect key="frame" x="290" y="17" width="145" height="88"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4V-7r-b7O" userLabel="Bad">
+                                                            <rect key="frame" x="43" y="14" width="60" height="60"/>
+                                                            <animations/>
+                                                            <state key="normal" image="VoteBad"/>
+                                                            <connections>
+                                                                <action selector="voteTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="xbO-Xl-uuQ"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstItem="d4V-7r-b7O" firstAttribute="centerY" secondItem="wXY-c4-tjT" secondAttribute="centerY" id="2dK-bU-g3P"/>
+                                                        <constraint firstItem="d4V-7r-b7O" firstAttribute="centerX" secondItem="wXY-c4-tjT" secondAttribute="centerX" id="wLl-at-ZK2"/>
+                                                    </constraints>
+                                                </view>
+                                                <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rOD-Z4-wDa" userLabel="Didn't Eat Wrap">
+                                                    <rect key="frame" x="435" y="17" width="145" height="88"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMS-6q-vlh" userLabel="Didn't Eat">
+                                                            <rect key="frame" x="42" y="14" width="60" height="60"/>
+                                                            <animations/>
+                                                            <state key="normal" image="VoteDidntEat"/>
+                                                            <connections>
+                                                                <action selector="voteTap:" destination="PeB-4h-Npv" eventType="touchUpInside" id="hhU-Sp-Dox"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstItem="IMS-6q-vlh" firstAttribute="centerX" secondItem="rOD-Z4-wDa" secondAttribute="centerX" id="HmM-d6-tyy"/>
+                                                        <constraint firstItem="IMS-6q-vlh" firstAttribute="centerY" secondItem="rOD-Z4-wDa" secondAttribute="centerY" id="bzR-vD-l5E"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -677,7 +677,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="mHt-VG-LMP" secondAttribute="trailing" constant="10" id="9Vr-0q-UW7"/>
                                                 <constraint firstItem="2ku-3S-U0k" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" id="9g8-Vf-k87"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="top" secondItem="wXY-c4-tjT" secondAttribute="top" id="C83-CE-VmY"/>
-                                                <constraint firstAttribute="trailing" secondItem="pRf-VT-vr2" secondAttribute="trailing" constant="10" id="Ccn-mo-qPY"/>
+                                                <constraint firstAttribute="trailing" secondItem="pRf-VT-vr2" secondAttribute="trailing" constant="12" id="Ccn-mo-qPY"/>
                                                 <constraint firstAttribute="bottom" secondItem="QVT-UN-MqH" secondAttribute="bottom" id="D8e-9r-YhO"/>
                                                 <constraint firstItem="mHt-VG-LMP" firstAttribute="top" secondItem="HmN-cJ-0ZO" secondAttribute="top" id="DZz-SR-RY7"/>
                                                 <constraint firstItem="2ku-3S-U0k" firstAttribute="trailing" secondItem="Dry-fb-Plm" secondAttribute="trailing" constant="-10" id="E8p-yh-Nkc"/>
@@ -701,7 +701,7 @@
                                                 <constraint firstItem="e9a-d4-R6j" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" constant="-8" id="UM8-nK-aSR"/>
                                                 <constraint firstItem="QVT-UN-MqH" firstAttribute="width" secondItem="wXY-c4-tjT" secondAttribute="width" id="WVc-cp-psP"/>
                                                 <constraint firstItem="Dry-fb-Plm" firstAttribute="centerY" secondItem="e9a-d4-R6j" secondAttribute="centerY" id="XtJ-sY-mVu"/>
-                                                <constraint firstItem="pRf-VT-vr2" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="10" id="cF1-x8-wxx"/>
+                                                <constraint firstItem="pRf-VT-vr2" firstAttribute="leading" secondItem="HmN-cJ-0ZO" secondAttribute="leading" constant="12" id="cF1-x8-wxx"/>
                                                 <constraint firstItem="NnV-9v-13V" firstAttribute="trailing" secondItem="e9a-d4-R6j" secondAttribute="trailing" id="cWv-Yr-sre"/>
                                                 <constraint firstAttribute="bottom" secondItem="wXY-c4-tjT" secondAttribute="bottom" id="dcE-Ux-5fp"/>
                                                 <constraint firstItem="mHt-VG-LMP" firstAttribute="leading" secondItem="QVT-UN-MqH" secondAttribute="trailing" constant="10" id="e2o-1e-ZT6"/>

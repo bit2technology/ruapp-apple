@@ -11,7 +11,7 @@ import UIKit
 class MenuTypeSelector: UISegmentedControl {
 
     var colors = [UIColor.appMeatRed(), UIColor.appVegetarianGreen()]
-    private var bgSelected: CALayer!
+    private var bgSelected: UIView!
     override var selectedSegmentIndex: Int {
         didSet {
             valueChanged()
@@ -20,34 +20,29 @@ class MenuTypeSelector: UISegmentedControl {
     
     func valueChanged() {
         
-        if bgSelected == nil {
-            bgSelected = CALayer()
-            bgSelected.cornerRadius = 5
-            bgSelected.zPosition = -1
-            layer.addSublayer(bgSelected)
-            traitCollectionDidChange(nil)
-        } else {
-            let segmentWidth = layer.frame.width / CGFloat(numberOfSegments)
-            bgSelected.position.x = (CGFloat(selectedSegmentIndex) + 0.5) * segmentWidth
+        UIView.animateWithDuration(0.15) { () -> Void in
+            
+            if self.bgSelected == nil {
+                let bgSelected = UIView()
+                bgSelected.cornerRadius = 6
+                bgSelected.layer.zPosition = -1
+                self.addSubview(bgSelected)
+                self.bgSelected = bgSelected
+                self.traitCollectionDidChange(nil)
+            } else {
+                let segmentWidth = self.layer.frame.width / CGFloat(self.numberOfSegments)
+                self.bgSelected.center.x = (CGFloat(self.selectedSegmentIndex) + 0.5) * segmentWidth
+            }
+            
+            self.bgSelected?.backgroundColor = self.colors[self.selectedSegmentIndex]
+            self.setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem(), NSForegroundColorAttributeName: UIColor.appLightBlue()], forState: .Normal)
         }
-        
-        tintColorDidChange()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         let segmentWidth = frame.width / CGFloat(numberOfSegments)
         bgSelected?.frame = CGRect(x: CGFloat(selectedSegmentIndex) * segmentWidth, y: 0, width: segmentWidth, height: frame.height).insetBy(dx: traitCollection.horizontalSizeClass == .Regular ? 0 : 20, dy: 10)
-    }
-    
-    override func tintColorDidChange() {
-        if tintAdjustmentMode == .Normal {
-            bgSelected?.backgroundColor = colors[selectedSegmentIndex].CGColor
-            setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem(), NSForegroundColorAttributeName: UIColor.appLightBlue()], forState: .Normal)
-        } else {
-            bgSelected?.backgroundColor = UIColor.lightGrayColor().CGColor
-            setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem(), NSForegroundColorAttributeName: UIColor.lightGrayColor()], forState: .Normal)
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {

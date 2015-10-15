@@ -120,21 +120,22 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
     private static let circleBtnBg = UIImage.circle(44, color: UIColor.appLightBlue(), insets: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
     private static let commentSendBg = UIImage.circle(25, color: UIColor.appOrange(), insets: UIEdgeInsets(top: 9.5, left: 9.5, bottom: 9.5, right: 9.5))
     
+    private static let reasonCornerRadius: CGFloat = 4
+    private static let reasonSendBg = UIImage.circle(26, color: UIColor.appOrange(), insets: UIEdgeInsets(top: 30, left: 3, bottom: 30, right: 18))
+    
     private static let reasonBadTopInsets = UIEdgeInsets(top: 12, left: 4, bottom: 2, right: 0)
     private static let reasonBadBottomInsets = UIEdgeInsets(top: 2, left: 4, bottom: 12, right: 0)
-    private static let reasonBadTopLightBg = UIImage.roundedRect(5, color: UIColor.appLightBlue(), insets: reasonBadTopInsets)
-    private static let reasonBadBottomLightBg = UIImage.roundedRect(5, color: UIColor.appLightBlue(), insets: reasonBadBottomInsets)
-    private static let reasonBadTopBg = UIImage.roundedRect(5, color: UIColor.appBlue(), insets: reasonBadTopInsets)
-    private static let reasonBadBottomBg = UIImage.roundedRect(5, color: UIColor.appBlue(), insets: reasonBadBottomInsets)
-    private static let reasonBadTopDarkBg = UIImage.roundedRect(5, color: UIColor.appDarkBlue(), insets: reasonBadTopInsets)
-    private static let reasonBadBottomDarkBg = UIImage.roundedRect(5, color: UIColor.appDarkBlue(), insets: reasonBadBottomInsets)
+    private static let reasonBadTopLightBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonBadTopInsets)
+    private static let reasonBadBottomLightBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonBadBottomInsets)
+    private static let reasonBadTopBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appBlue(), insets: reasonBadTopInsets)
+    private static let reasonBadBottomBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appBlue(), insets: reasonBadBottomInsets)
+    private static let reasonBadTopDarkBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonBadTopInsets)
+    private static let reasonBadBottomDarkBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonBadBottomInsets)
     
     private static let reasonDidntEatInsets = UIEdgeInsets(top: 7, left: 4, bottom: 7, right: 0)
-    private static let reasonDidntEatLightBg = UIImage.roundedRect(5, color: UIColor.appLightBlue(), insets: reasonDidntEatInsets)
-    private static let reasonDidntEatBg = UIImage.roundedRect(5, color: UIColor.appBlue(), insets: reasonDidntEatInsets)
-    private static let reasonDidntEatDarkBg = UIImage.roundedRect(5, color: UIColor.appDarkBlue(), insets: reasonDidntEatInsets)
-    
-    private static let reasonSendBg = UIImage.circle(26, color: UIColor.appOrange(), insets: UIEdgeInsets(top: 30, left: 3, bottom: 30, right: 18))
+    private static let reasonDidntEatLightBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonDidntEatInsets)
+    private static let reasonDidntEatBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appBlue(), insets: reasonDidntEatInsets)
+    private static let reasonDidntEatDarkBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonDidntEatInsets)
     
     private var vote: AppVote! {
         didSet {
