@@ -29,12 +29,12 @@ extension Dictionary {
 
 extension NSURL {
     class func appRegisterStudent() -> NSURL {
-        return NSURL(string: "http://45.55.77.200/api/v1/cadastroaluno")!
+        return NSURL(string: "http://www.ruapp.com.br/api/v1/cadastroaluno")!
     }
     class func appGetInstitution(id: Int) -> NSURL {
-        return NSURL(string: "http://45.55.77.200/api/v1/instituicao?id=\(id)")!
+        return NSURL(string: "http://www.ruapp.com.br/api/v1/instituicao?id=\(id)")!
     }
     class func appGetInstitutionOverviewList() -> NSURL {
-        return NSURL(string: "http://45.55.77.200/api/v1/instituicoes")!
+        return NSURL(string: "http://www.ruapp.com.br/api/v1/instituicoes")!
     }
 }

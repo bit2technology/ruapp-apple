@@ -19,10 +19,8 @@ let cardapio = ["Arroz": "Branco e Integral",
 
 class MenuController: UICollectionViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        collectionView?.decelerationRate = UIScrollViewDecelerationRateFast
+    override func needsMenuTypeSelector() -> Bool {
+        return true
     }
     
     private func adjustInstets() {
@@ -31,14 +29,40 @@ class MenuController: UICollectionViewController {
         collectionView?.scrollIndicatorInsets.top = topBarHeight
     }
     
+    private func adjustItemSize() {
+        
+        guard let menuLayout = collectionViewLayout as? LayoutMenu else {
+            return
+        }
+        
+        if collectionView?.traitCollection.horizontalSizeClass == .Compact {
+            let width = view.bounds.width - 20
+            let height = floor(width * 373 / 340)
+            let maxHeight = collectionView!.bounds.height - collectionView!.contentInset.top - collectionView!.contentInset.bottom - 30
+            menuLayout.itemSize = CGSize(width: width, height: height < maxHeight ? height : maxHeight)
+        } else {
+            menuLayout.itemSize = CGSize(width: 340, height: 373)
+        }
+    }
+    
+    private func adjustBehavior() {
+        let oneColumnVisible = collectionView?.traitCollection.horizontalSizeClass == .Compact
+        collectionView?.decelerationRate = oneColumnVisible ? UIScrollViewDecelerationRateFast : UIScrollViewDecelerationRateNormal
+        collectionView?.directionalLockEnabled = oneColumnVisible
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         adjustInstets()
+        adjustItemSize()
+        adjustBehavior()
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         adjustInstets()
+        adjustItemSize()
+        adjustBehavior()
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -50,9 +74,12 @@ class MenuController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Menu", forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Menu", forIndexPath: indexPath) as! MenuCell
         
-        cell.backgroundColor = UIColor.appBlue()
+        cell.backgroundImg.image = UIImage(named: "Menu\(indexPath.item)\(indexPath.section % 2)")
+        cell.menuLabel.text = "\(cardapio)"
+        cell.dayOfWeekLabel.text = "terça-feira"
+        cell.mealLabel.text = "Almoço".uppercaseString
         
         return cell
     }
@@ -63,6 +90,7 @@ class LayoutMenu: UICollectionViewLayout {
     var itemSize: CGSize = CGSize(width: 300, height: 300) {
         didSet {
             invalidateLayout()
+            collectionView?.contentOffset = targetContentOffsetForProposedContentOffset(collectionView!.contentOffset, withScrollingVelocity: CGPoint.zero)
         }
     }
     var space = CGPoint(x: 10, y: 10)
@@ -102,8 +130,10 @@ class LayoutMenu: UICollectionViewLayout {
     
     override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
-        guard let margin = collectionView?.contentInset,
-            var visibleSize = collectionView?.bounds.size else {
+        guard collectionView?.traitCollection.horizontalSizeClass == .Compact,
+            let margin = collectionView?.contentInset,
+            var visibleSize = collectionView?.bounds.size,
+            let originalOffset = collectionView?.contentOffset else {
                 return proposedContentOffset
         }
         
@@ -115,22 +145,25 @@ class LayoutMenu: UICollectionViewLayout {
         let itemTotalHeight = itemSize.height + space.y
         // Centralize item
         let adjLeftMargin = margin.left + ((visibleSize.width - itemTotalWidht - space.x) / 2)
-        let adjRightMargin = margin.top + ((visibleSize.height - itemTotalHeight - space.y) / 2)
+        let adjTopMargin = margin.top + ((visibleSize.height - itemTotalHeight - space.y) / 2)
         
         // Get current offset and adjust to contentInset, itemSpacing and center
-        var adjOffset = collectionView!.contentOffset
+        var adjOffset = originalOffset
         adjOffset.x += adjLeftMargin
-        adjOffset.y += adjRightMargin
+        adjOffset.y += adjTopMargin
         
         /// Minimum velocity to change central item
         let minVelocity: CGFloat = 0.2
         
         // Pick item from left or right
         let diffX = adjOffset.x % itemTotalWidht
+        var changedX = false
         if velocity.x > minVelocity {
             adjOffset.x += itemTotalWidht - diffX
+            changedX = true
         } else if velocity.x < -minVelocity {
             adjOffset.x -= diffX
+            changedX = true
         } else {
             adjOffset.x += (diffX > itemTotalWidht / 2 ? itemTotalWidht : 0) - diffX
         }
@@ -141,13 +174,13 @@ class LayoutMenu: UICollectionViewLayout {
             adjOffset.y += itemTotalHeight - diffY
         } else if velocity.y < -minVelocity {
             adjOffset.y -= diffY
-        } else {
+        } else if !changedX { // Avoid adjusting Y if user scrolled only horizontally
             adjOffset.y += (diffY > itemTotalHeight / 2 ? itemTotalHeight : 0) - diffY
         }
         
         // Adjust to contentInset, itemSpacing and center
         adjOffset.x -= adjLeftMargin
-        adjOffset.y -= adjRightMargin
+        adjOffset.y -= adjTopMargin
         
         // Adjust limit bounds
         let contentSize = collectionView!.contentSize
@@ -158,4 +191,11 @@ class LayoutMenu: UICollectionViewLayout {
         
         return adjOffset
     }
+}
+
+class MenuCell: UICollectionViewCell {
+    @IBOutlet var backgroundImg: UIImageView!
+    @IBOutlet var menuLabel: UILabel!
+    @IBOutlet var mealLabel: UILabel!
+    @IBOutlet var dayOfWeekLabel: UILabel!
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9058" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9048"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -11,6 +12,9 @@
             <string>Dosis-Bold</string>
         </mutableArray>
         <mutableArray key="Dosis-Book.otf">
+            <string>Dosis-Book</string>
+            <string>Dosis-Book</string>
+            <string>Dosis-Book</string>
             <string>Dosis-Book</string>
             <string>Dosis-Book</string>
             <string>Dosis-Book</string>
@@ -198,23 +202,70 @@
         <scene sceneID="vsv-8G-kWj">
             <objects>
                 <collectionViewController id="flA-0o-Vyw" customClass="MenuController" customModule="RUapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" dataMode="prototypes" id="YAz-6v-N0j">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="YAz-6v-N0j">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="T7y-WI-a8k" customClass="LayoutMenu" customModule="RUapp" customModuleProvider="target"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Menu" id="wDB-cS-hH1">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Menu" id="wDB-cS-hH1" customClass="MenuCell" customModule="RUapp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="283" height="293"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="283" height="293"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vzH-z7-0PV">
+                                            <rect key="frame" x="0.0" y="0.0" width="283" height="293"/>
+                                            <animations/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QzZ-op-7if">
+                                            <rect key="frame" x="60" y="60" width="163" height="19"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" name="Dosis-Book" family="Dosis" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Un-QH-13m">
+                                            <rect key="frame" x="129" y="8" width="25" height="18"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" name="Dosis-Book" family="Dosis" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day of Week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ze-ql-Ocs">
+                                            <rect key="frame" x="106" y="26" width="71" height="19"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" name="Dosis-Book" family="Dosis" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstItem="vzH-z7-0PV" firstAttribute="top" secondItem="wDB-cS-hH1" secondAttribute="top" id="2sj-M7-77K"/>
+                                    <constraint firstItem="QzZ-op-7if" firstAttribute="top" secondItem="wDB-cS-hH1" secondAttribute="top" constant="60" id="Dm7-aq-5Mq"/>
+                                    <constraint firstAttribute="bottom" secondItem="vzH-z7-0PV" secondAttribute="bottom" id="EiS-ay-NXU"/>
+                                    <constraint firstItem="0ze-ql-Ocs" firstAttribute="top" secondItem="9Un-QH-13m" secondAttribute="bottom" id="Jbc-LO-Bgv"/>
+                                    <constraint firstItem="9Un-QH-13m" firstAttribute="top" secondItem="wDB-cS-hH1" secondAttribute="topMargin" id="Ph9-k0-7r2"/>
+                                    <constraint firstItem="QzZ-op-7if" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" constant="60" id="XA7-cf-O7O"/>
+                                    <constraint firstAttribute="trailing" secondItem="vzH-z7-0PV" secondAttribute="trailing" id="cLo-WJ-247"/>
+                                    <constraint firstItem="vzH-z7-0PV" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" id="fap-RR-UeB"/>
+                                    <constraint firstAttribute="trailing" secondItem="QzZ-op-7if" secondAttribute="trailing" constant="60" id="fpn-mb-InA"/>
+                                    <constraint firstItem="9Un-QH-13m" firstAttribute="centerX" secondItem="wDB-cS-hH1" secondAttribute="centerX" id="nsB-21-8wX"/>
+                                    <constraint firstItem="0ze-ql-Ocs" firstAttribute="centerX" secondItem="wDB-cS-hH1" secondAttribute="centerX" id="vDW-D6-IM8"/>
+                                </constraints>
+                                <size key="customSize" width="283" height="293"/>
+                                <connections>
+                                    <outlet property="backgroundImg" destination="vzH-z7-0PV" id="ahX-Tz-BuM"/>
+                                    <outlet property="dayOfWeekLabel" destination="0ze-ql-Ocs" id="nST-d0-Qlq"/>
+                                    <outlet property="mealLabel" destination="9Un-QH-13m" id="jzb-QA-FGD"/>
+                                    <outlet property="menuLabel" destination="QzZ-op-7if" id="aTa-J8-rQi"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
