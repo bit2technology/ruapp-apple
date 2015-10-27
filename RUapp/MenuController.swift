@@ -77,9 +77,26 @@ class MenuController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Menu", forIndexPath: indexPath) as! MenuCell
         
         cell.backgroundImg.image = UIImage(named: "Menu\(indexPath.item)\(indexPath.section % 2)")
-        cell.menuLabel.text = "\(cardapio)"
         cell.dayOfWeekLabel.text = "terça-feira"
         cell.mealLabel.text = "Almoço".uppercaseString
+
+        let menuDescription = NSMutableAttributedString()
+        let fontMenuDishTitle = UIFont.appMenuDishTitle(), fontMenuDish = UIFont.appMenuDish()
+        let paragraph = NSMutableParagraphStyle()
+        if cell.frame.height > 360 {
+            paragraph.paragraphSpacing = 15
+        } else if cell.frame.height > 340 {
+            paragraph.paragraphSpacing = 10
+        } else if cell.frame.height > 320 {
+            paragraph.paragraphSpacing = 5
+        }
+        for key in cardapio.keys.sort() {
+            let titleDish = "\(key.uppercaseString) - "
+            paragraph.headIndent = (titleDish as NSString).sizeWithAttributes([NSFontAttributeName: fontMenuDishTitle]).width
+            menuDescription.appendAttributedString(NSAttributedString(string: titleDish, attributes: [NSFontAttributeName: fontMenuDishTitle, NSParagraphStyleAttributeName: paragraph.copy()]))
+            menuDescription.appendAttributedString(NSAttributedString(string: "\(cardapio[key]!.lowercaseString)\n", attributes: [NSFontAttributeName: fontMenuDish, NSParagraphStyleAttributeName: paragraph]))
+        }
+        cell.menuLabel.attributedText = menuDescription
         
         return cell
     }

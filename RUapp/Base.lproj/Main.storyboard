@@ -221,8 +221,11 @@
                                             <animations/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QzZ-op-7if">
-                                            <rect key="frame" x="60" y="60" width="163" height="19"/>
+                                            <rect key="frame" x="32" y="60" width="220" height="19"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="220" id="Cep-9C-6vY"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" name="Dosis-Book" family="Dosis" pointSize="15"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -252,12 +255,11 @@
                                     <constraint firstAttribute="bottom" secondItem="vzH-z7-0PV" secondAttribute="bottom" id="EiS-ay-NXU"/>
                                     <constraint firstItem="0ze-ql-Ocs" firstAttribute="top" secondItem="9Un-QH-13m" secondAttribute="bottom" id="Jbc-LO-Bgv"/>
                                     <constraint firstItem="9Un-QH-13m" firstAttribute="top" secondItem="wDB-cS-hH1" secondAttribute="topMargin" id="Ph9-k0-7r2"/>
-                                    <constraint firstItem="QzZ-op-7if" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" constant="60" id="XA7-cf-O7O"/>
                                     <constraint firstAttribute="trailing" secondItem="vzH-z7-0PV" secondAttribute="trailing" id="cLo-WJ-247"/>
                                     <constraint firstItem="vzH-z7-0PV" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" id="fap-RR-UeB"/>
-                                    <constraint firstAttribute="trailing" secondItem="QzZ-op-7if" secondAttribute="trailing" constant="60" id="fpn-mb-InA"/>
                                     <constraint firstItem="9Un-QH-13m" firstAttribute="centerX" secondItem="wDB-cS-hH1" secondAttribute="centerX" id="nsB-21-8wX"/>
                                     <constraint firstItem="0ze-ql-Ocs" firstAttribute="centerX" secondItem="wDB-cS-hH1" secondAttribute="centerX" id="vDW-D6-IM8"/>
+                                    <constraint firstItem="QzZ-op-7if" firstAttribute="centerX" secondItem="wDB-cS-hH1" secondAttribute="centerX" id="vr0-Pi-oqi"/>
                                 </constraints>
                                 <size key="customSize" width="283" height="293"/>
                                 <connections>
