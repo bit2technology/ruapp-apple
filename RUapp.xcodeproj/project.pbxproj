@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DB8C1594FDC8B99C764277C /* Pods_RUapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB604BB5C3F9B777DD3EFA9 /* Pods_RUapp.framework */; };
 		4B19D4E31BB6603300DD22A9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B19D4E21BB6603300DD22A9 /* Settings.bundle */; };
 		4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */; };
 		4B33755B1BB98FFE002696C9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B33755A1BB98FFE002696C9 /* NotificationCenter.framework */; };
@@ -14,6 +15,8 @@
 		4B3375611BB98FFE002696C9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B33755F1BB98FFE002696C9 /* MainInterface.storyboard */; };
 		4B3375651BB98FFE002696C9 /* MenuExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4B3375581BB98FFE002696C9 /* MenuExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4B33756C1BB9D7A9002696C9 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33756B1BB9D7A9002696C9 /* MenuController.swift */; };
+		4B3FC19A1BE102490077FFBF /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FC1991BE102490077FFBF /* ResultsController.swift */; };
+		4B3FC19C1BE116780077FFBF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FC19B1BE116780077FFBF /* Result.swift */; };
 		4B4C7FD11BBB43C7001D55E5 /* VoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */; };
 		4B4C7FD31BBB4709001D55E5 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD21BBB4709001D55E5 /* Vote.swift */; };
 		4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998C1BB31C8700A2E0CF /* Helper.swift */; };
@@ -111,6 +114,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04E7BF07EB42EE781AD2FDB6 /* Pods-RUapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.debug.xcconfig"; sourceTree = "<group>"; };
 		4B19D4E21BB6603300DD22A9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		4B3375581BB98FFE002696C9 /* MenuExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MenuExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +124,8 @@
 		4B3375621BB98FFE002696C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B33756A1BB9A947002696C9 /* MenuExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MenuExtension.entitlements; sourceTree = "<group>"; };
 		4B33756B1BB9D7A9002696C9 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		4B3FC1991BE102490077FFBF /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
+		4B3FC19B1BE116780077FFBF /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteController.swift; sourceTree = "<group>"; };
 		4B4C7FD21BBB4709001D55E5 /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RUapp.entitlements; sourceTree = "<group>"; };
@@ -152,6 +158,8 @@
 		4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafeteria.swift; sourceTree = "<group>"; };
 		4BB03C001BB2E6B3006F84CB /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		4BCC6D731BB37B4600AF99EF /* SidebarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarController.swift; sourceTree = "<group>"; };
+		7D6A0180CC5FFCB3EE4FEF4D /* Pods-RUapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.release.xcconfig"; sourceTree = "<group>"; };
+		BBB604BB5C3F9B777DD3EFA9 /* Pods_RUapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BB03BEF1BB2D5B8006F84CB /* RUappService.framework in Frameworks */,
+				0DB8C1594FDC8B99C764277C /* Pods_RUapp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				4B33755A1BB98FFE002696C9 /* NotificationCenter.framework */,
+				BBB604BB5C3F9B777DD3EFA9 /* Pods_RUapp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -253,6 +263,7 @@
 				4B33755C1BB98FFE002696C9 /* MenuExtension */,
 				4B3375591BB98FFE002696C9 /* Frameworks */,
 				4BB03BA51BB2D4DE006F84CB /* Products */,
+				80CB4E14AC9E1EC1DB8463A4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -278,6 +289,7 @@
 				4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */,
 				4B33756B1BB9D7A9002696C9 /* MenuController.swift */,
 				4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */,
+				4B3FC1991BE102490077FFBF /* ResultsController.swift */,
 				4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */,
 				4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */,
 				4BA599971BB34ED500A2E0CF /* View */,
@@ -316,6 +328,7 @@
 				4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */,
 				4BB03C001BB2E6B3006F84CB /* Meal.swift */,
 				4BA5998E1BB31DE400A2E0CF /* Student.swift */,
+				4B3FC19B1BE116780077FFBF /* Result.swift */,
 				4BB03BDE1BB2D5B8006F84CB /* Info.plist */,
 			);
 			path = RUappService;
@@ -328,6 +341,15 @@
 				4BB03BEC1BB2D5B8006F84CB /* Info.plist */,
 			);
 			path = RUappServiceTests;
+			sourceTree = "<group>";
+		};
+		80CB4E14AC9E1EC1DB8463A4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				04E7BF07EB42EE781AD2FDB6 /* Pods-RUapp.debug.xcconfig */,
+				7D6A0180CC5FFCB3EE4FEF4D /* Pods-RUapp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,12 +387,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BB03BCC1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUapp" */;
 			buildPhases = (
+				FC9764FF361ED9B71C330F38 /* Check Pods Manifest.lock */,
 				4BB03BA01BB2D4DE006F84CB /* Sources */,
 				4BB03BA11BB2D4DE006F84CB /* Frameworks */,
 				4BB03BA21BB2D4DE006F84CB /* Resources */,
 				4BB03BF41BB2D5B8006F84CB /* Embed Frameworks */,
 				4B3375691BB98FFE002696C9 /* Embed App Extensions */,
 				4B19D4E11BB65F9900DD22A9 /* Bump Build Number */,
+				FA4EDA6255248B0ADA88563B /* Embed Pods Frameworks */,
+				10F56B39EB0D60820D812065 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -577,6 +602,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		10F56B39EB0D60820D812065 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp/Pods-RUapp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4B19D4E11BB65F9900DD22A9 /* Bump Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -590,6 +630,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "infoPlistPath=${INFOPLIST_FILE}\n\n# Build\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$infoPlistPath\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$infoPlistPath\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/MenuExtension/Info.plist\"\n\n# Version\nversionString=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$infoPlistPath\")\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $versionString\" \"${PROJECT_DIR}/MenuExtension/Info.plist\"\nversionString+=\" (\"\nversionString+=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$infoPlistPath\")\nversionString+=\")\"\n\n# Write the version number string to the settings bundle\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $versionString\" \"${PROJECT_DIR}/${PRODUCT_NAME}/Settings.bundle/Root.plist\"";
+		};
+		FA4EDA6255248B0ADA88563B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp/Pods-RUapp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC9764FF361ED9B71C330F38 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -606,6 +676,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B3FC19A1BE102490077FFBF /* ResultsController.swift in Sources */,
 				4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */,
 				4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */,
 				4BA599941BB347B700A2E0CF /* MainController.swift in Sources */,
@@ -636,6 +707,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B3FC19C1BE116780077FFBF /* Result.swift in Sources */,
 				4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */,
 				4BB03BF91BB2DC09006F84CB /* Institution.swift in Sources */,
 				4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */,
@@ -833,6 +905,7 @@
 		};
 		4BB03BCD1BB2D4DF006F84CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04E7BF07EB42EE781AD2FDB6 /* Pods-RUapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RUapp/RUapp.entitlements;
@@ -849,6 +922,7 @@
 		};
 		4BB03BCE1BB2D4DF006F84CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D6A0180CC5FFCB3EE4FEF4D /* Pods-RUapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RUapp/RUapp.entitlements;

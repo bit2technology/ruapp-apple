@@ -18,7 +18,7 @@ public class Campus {
                 dictInt = dict["id"] as? Int,
                 dictName = dict["nome"] as? String,
                 dictCafe = dict["restaurantes"] as? [[String:AnyObject]] else {
-                    throw RUappServiceError.InvalidObject
+                    throw Error.InvalidObject
             }
             
             var cafeArray = [Cafeteria]()

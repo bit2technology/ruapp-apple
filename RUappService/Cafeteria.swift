@@ -24,7 +24,7 @@ public class Cafeteria {
                 latitude = dict["latitude"] as? CLLocationDegrees,
                 longitude = dict["longitude"] as? CLLocationDegrees,
                 dictMeals = dict["tipos_refeicao"] as? [AnyObject] else {
-                    throw RUappServiceError.InvalidObject
+                    throw Error.InvalidObject
             }
             
             var mealsArray = [Meal]()

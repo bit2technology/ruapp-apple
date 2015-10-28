@@ -25,7 +25,7 @@ public class Institution {
             guard let dict = dict as? [String:AnyObject],
                 dictId = dict["id"] as? Int,
                 dictName = dict["nome"] as? String else {
-                    throw RUappServiceError.InvalidObject
+                    throw Error.InvalidObject
             }
             
             if let dictCampi = dict["campi"] as? [[String:AnyObject]] {
@@ -58,7 +58,7 @@ public class Institution {
             do {
                 guard let data = data,
                     jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [[String:AnyObject]] else {
-                        throw error ?? RUappServiceError.Unknown
+                        throw error ?? Error.Unknown
                 }
                 
                 var overviewList = [Institution]()
@@ -82,7 +82,7 @@ public class Institution {
             
             do {
                 guard let data = data else {
-                    throw error ?? RUappServiceError.Unknown
+                    throw error ?? Error.Unknown
                 }
                 
                 let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: [])
@@ -109,7 +109,7 @@ public class Institution {
             
             do {
                 guard let data = data else {
-                    throw error ?? RUappServiceError.Unknown
+                    throw error ?? Error.Unknown
                 }
                 
                 let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: [])

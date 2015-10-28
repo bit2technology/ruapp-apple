@@ -6,7 +6,7 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-public enum RUappServiceError: ErrorType {
+public enum Error: ErrorType {
     case InvalidObject
     case Unknown
 }

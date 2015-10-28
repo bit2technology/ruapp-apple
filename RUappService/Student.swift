@@ -25,7 +25,7 @@ public class Student {
                 dictId = dict["id"] as? Int,
                 dictName = dict["nome"] as? String,
                 dictStudent = dict["matricula"] as? String else {
-                    throw RUappServiceError.InvalidObject
+                    throw Error.InvalidObject
             }
             
             id = dictId

@@ -18,7 +18,7 @@ public class Meal {
                 dictId = dict["id"] as? Int,
                 dictName = dict["nome"] as? String,
                 dictRunning = dict["funcionamentos"] as? [AnyObject] else {
-                    throw RUappServiceError.InvalidObject
+                    throw Error.InvalidObject
             }
             
             var runningArray = [Running]()
@@ -52,7 +52,7 @@ public class Meal {
                     dayOfWeek = -1
                     opening = ""
                     closing = ""
-                    throw RUappServiceError.InvalidObject
+                    throw Error.InvalidObject
             }
             
             dayOfWeek = dictDay
