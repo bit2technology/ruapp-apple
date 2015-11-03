@@ -45,4 +45,8 @@ public class Student {
         globalUserDefaults?.setObject(dict, forKey: StudentSavedDictionaryKey)
         return globalStudent
     }
+    
+    class func register(id: Int, name: String, studentId: String) throws -> Student? {
+        return try register(["id":id,"nome":name,"matricula":studentId])
+    }
 }

@@ -3,16 +3,13 @@ PODS:
   - Fabric (1.5.5):
     - Fabric/Base (= 1.5.5)
   - Fabric/Base (1.5.5)
-  - GoogleAnalytics (3.13.0)
 
 DEPENDENCIES:
   - Crashlytics
   - Fabric
-  - GoogleAnalytics
 
 SPEC CHECKSUMS:
   Crashlytics: 41c082440d2e14da444186fff65e79c0b4b35d4c
   Fabric: 190bf1a6eb65f7500de1347d027d2e59a7e53db1
-  GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
 
 COCOAPODS: 0.39.0

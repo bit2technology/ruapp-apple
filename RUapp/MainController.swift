@@ -73,7 +73,7 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        if false {// Institution.shared() == nil || Student.shared() == nil {
+        if Institution.shared() == nil || Student.shared() == nil {
             performSegueWithIdentifier("Main To Registration", sender: nil)
         }
     }

@@ -5,7 +5,6 @@ target 'RUapp' do
     
 pod 'Crashlytics'
 pod 'Fabric'
-pod 'GoogleAnalytics'
 
 end
 

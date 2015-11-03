@@ -18,7 +18,6 @@ public class Institution {
     public let id: Int
     public let name: String
     public let campi: [Campus]?
-    public let complete: Bool
     
     public init(dict: AnyObject?) throws {
         do {
@@ -34,11 +33,9 @@ public class Institution {
                     campiArray.append(try Campus(dict: campus))
                 }
                 campi = campiArray
-                complete = true
             }
             else {
                 campi = nil
-                complete = false
             }
             
             id = dictId
@@ -48,7 +45,6 @@ public class Institution {
             id = -1
             name = ""
             campi = nil
-            complete = false
             throw error
         }
     }
@@ -57,8 +53,8 @@ public class Institution {
         NSURLSession.sharedSession().dataTaskWithURL(NSURL.appGetInstitutionOverviewList(), completionHandler: { (data, response, error) -> Void in
             do {
                 guard let data = data,
-                    jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [[String:AnyObject]] else {
-                        throw error ?? Error.Unknown
+                    jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [AnyObject] else {
+                        throw error ?? Error.InvalidObject
                 }
                 
                 var overviewList = [Institution]()
@@ -82,7 +78,7 @@ public class Institution {
             
             do {
                 guard let data = data else {
-                    throw error ?? Error.Unknown
+                    throw error ?? Error.NoData
                 }
                 
                 let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: [])
@@ -99,23 +95,29 @@ public class Institution {
         }).resume()
     }
     
-    public func registerWithNewStudent(name: String, studentId: String, completion: (student: Student?, institution: Institution?, error: ErrorType?) -> Void) {
+    public func registerWithNewStudent(name: String, studentInstitutionId: String, completion: (student: Student?, institution: Institution?, error: ErrorType?) -> Void) {
         
         let req = NSMutableURLRequest(URL: NSURL.appRegisterStudent())
         req.HTTPMethod = "POST"
-        let params = ["instituicao_id": id, "nome": name, "matricula": studentId, "token": String(random())] as [String:AnyObject]
+        let params = ["instituicao_id": id, "nome": name, "matricula": studentInstitutionId, "token": String(random())] as [String:AnyObject]
         req.HTTPBody = params.appPrepare()
         NSURLSession.sharedSession().dataTaskWithRequest(req, completionHandler: { (data, response, error) -> Void in
             
             do {
                 guard let data = data else {
-                    throw error ?? Error.Unknown
+                    throw error ?? Error.NoData
                 }
                 
                 let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                try Student.register(["id":random(),"nome":name,"matricula":studentId])
-                globalInstitutuion = try Institution(dict: jsonObj)
-                globalUserDefaults?.setObject(jsonObj, forKey: InstitutionSavedDictionaryKey)
+                
+                guard let studentId = jsonObj["student_id"] as? Int,
+                    institution = jsonObj["institution"] as? [String:AnyObject] else {
+                        throw Error.InvalidObject
+                }
+                
+                try Student.register(studentId, name: name, studentId: studentInstitutionId)
+                globalInstitutuion = try Institution(dict: institution)
+                globalUserDefaults?.setObject(institution, forKey: InstitutionSavedDictionaryKey)
                 globalUserDefaults?.synchronize()
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     completion(student: nil, institution: globalInstitutuion, error: nil)

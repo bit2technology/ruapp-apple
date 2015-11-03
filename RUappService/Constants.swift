@@ -8,7 +8,7 @@
 
 public enum Error: ErrorType {
     case InvalidObject
-    case Unknown
+    case NoData
 }
 
 public let globalUserDefaults = NSUserDefaults(suiteName: "group.com.bit2software.RUapp")
