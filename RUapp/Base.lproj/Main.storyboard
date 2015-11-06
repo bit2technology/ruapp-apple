@@ -1194,6 +1194,8 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="insitutionCell" destination="c21-4U-aqL" id="rXX-PW-ntn"/>
+                        <outlet property="studentNameCell" destination="A80-bd-bUL" id="hJV-72-aKw"/>
                         <segue destination="vq9-6H-gDa" kind="presentation" identifier="Sidebar To Registration" id="lTO-zL-muo"/>
                     </connections>
                 </tableViewController>

@@ -1,10 +1,10 @@
 platform :ios, '8.1'
 use_frameworks!
 
-target 'RUapp' do
-    
 pod 'Crashlytics'
 pod 'Fabric'
+
+target 'RUapp' do
 
 end
 

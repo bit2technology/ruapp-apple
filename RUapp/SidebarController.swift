@@ -23,6 +23,16 @@ class SidebarController: UIViewController, UITableViewDelegate {
 
 class SidebarTableController: UITableViewController {
     
+    @IBOutlet weak var studentNameCell: UITableViewCell!
+    @IBOutlet weak var insitutionCell: UITableViewCell!
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        studentNameCell.textLabel?.text = Student.shared()?.name
+        insitutionCell.textLabel?.text = Institution.shared()?.name
+    }
+    
     private let scale = UIScreen.mainScreen().scale
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1 / scale
@@ -41,12 +51,6 @@ class SidebarTableController: UITableViewController {
         
         switch (indexPath.section, indexPath.row) {
         case (0, _):
-            guard Institution.shared() == nil && Student.shared() == nil else {
-                let alert = UIAlertController(title: "This software is still in beta", message: "Sorry, you still can't edit this information yet", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                presentViewController(alert, animated: true, completion: nil)
-                break
-            }
             performSegueWithIdentifier("Sidebar To Registration", sender: nil)
         case (1, 2): // Configuration
             UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)

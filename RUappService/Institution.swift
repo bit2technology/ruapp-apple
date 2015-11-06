@@ -19,7 +19,7 @@ public class Institution {
     public let name: String
     public let campi: [Campus]?
     
-    public init(dict: AnyObject?) throws {
+    private init(dict: AnyObject?) throws {
         do {
             guard let dict = dict as? [String:AnyObject],
                 dictId = dict["id"] as? Int,
@@ -52,9 +52,11 @@ public class Institution {
     public class func getList(completion: (list: [Institution]?, error: ErrorType?) -> Void) {
         NSURLSession.sharedSession().dataTaskWithURL(NSURL.appGetInstitutionOverviewList(), completionHandler: { (data, response, error) -> Void in
             do {
-                guard let data = data,
-                    jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [AnyObject] else {
-                        throw error ?? Error.InvalidObject
+                guard let data = data else {
+                    throw error ?? Error.NoData
+                }
+                guard let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [AnyObject] else {
+                    throw Error.InvalidObject
                 }
                 
                 var overviewList = [Institution]()
@@ -99,7 +101,7 @@ public class Institution {
         
         let req = NSMutableURLRequest(URL: NSURL.appRegisterStudent())
         req.HTTPMethod = "POST"
-        let params = ["instituicao_id": id, "nome": name, "matricula": studentInstitutionId, "token": String(random())] as [String:AnyObject]
+        let params = ["instituicao_id": id, "nome": name, "matricula": studentInstitutionId, "token": UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""] as [String:AnyObject]
         req.HTTPBody = params.appPrepare()
         NSURLSession.sharedSession().dataTaskWithRequest(req, completionHandler: { (data, response, error) -> Void in
             
@@ -110,8 +112,8 @@ public class Institution {
                 
                 let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: [])
                 
-                guard let studentId = jsonObj["student_id"] as? Int,
-                    institution = jsonObj["institution"] as? [String:AnyObject] else {
+                guard let studentId = jsonObj["aluno_id"] as? Int,
+                    institution = jsonObj["instituicao"] as? [String:AnyObject] else {
                         throw Error.InvalidObject
                 }
                 
@@ -120,7 +122,7 @@ public class Institution {
                 globalUserDefaults?.setObject(institution, forKey: InstitutionSavedDictionaryKey)
                 globalUserDefaults?.synchronize()
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    completion(student: nil, institution: globalInstitutuion, error: nil)
+                    completion(student: Student.shared(), institution: globalInstitutuion, error: nil)
                 })
             } catch {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in

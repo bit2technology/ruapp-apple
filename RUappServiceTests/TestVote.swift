@@ -1,17 +1,17 @@
 //
-//  TestInstitution.swift
+//  TestVote.swift
 //  RUapp
 //
-//  Created by Igor Camilo on 15-11-03.
+//  Created by Igor Camilo on 15-11-06.
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
 import XCTest
 @testable import RUappService
 
-class TestInstitution: XCTestCase {
+class TestVote: XCTestCase {
     
-    func testInstitutionList() {
+    func testVoteSingle() {
         
         let exp = expectationWithDescription("institutionList")
         

@@ -41,6 +41,8 @@
 		4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03C001BB2E6B3006F84CB /* Meal.swift */; };
 		4BBCAC221BE932A30006D87B /* TestInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCAC211BE932A30006D87B /* TestInstitution.swift */; };
 		4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC6D731BB37B4600AF99EF /* SidebarController.swift */; };
+		4BD37FBC1BED1A0A006D77C7 /* TestVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD37FBB1BED1A0A006D77C7 /* TestVote.swift */; };
+		B02D70E47495C404C36C7D50 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE36DB6CC152D05891053B18 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,8 +160,12 @@
 		4BB03C001BB2E6B3006F84CB /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		4BBCAC211BE932A30006D87B /* TestInstitution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestInstitution.swift; sourceTree = "<group>"; };
 		4BCC6D731BB37B4600AF99EF /* SidebarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarController.swift; sourceTree = "<group>"; };
+		4BD37FBB1BED1A0A006D77C7 /* TestVote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVote.swift; sourceTree = "<group>"; };
 		7D6A0180CC5FFCB3EE4FEF4D /* Pods-RUapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.release.xcconfig"; sourceTree = "<group>"; };
+		8596BB0F021A6B00E5B4C49A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BBB604BB5C3F9B777DD3EFA9 /* Pods_RUapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE36DB6CC152D05891053B18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F91A4C313A4B704F63495C48 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +183,7 @@
 			files = (
 				4BB03BEF1BB2D5B8006F84CB /* RUappService.framework in Frameworks */,
 				0DB8C1594FDC8B99C764277C /* Pods_RUapp.framework in Frameworks */,
+				B02D70E47495C404C36C7D50 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +224,7 @@
 			children = (
 				4B33755A1BB98FFE002696C9 /* NotificationCenter.framework */,
 				BBB604BB5C3F9B777DD3EFA9 /* Pods_RUapp.framework */,
+				CE36DB6CC152D05891053B18 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -338,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				4BBCAC211BE932A30006D87B /* TestInstitution.swift */,
+				4BD37FBB1BED1A0A006D77C7 /* TestVote.swift */,
 				4BB03BEC1BB2D5B8006F84CB /* Info.plist */,
 			);
 			path = RUappServiceTests;
@@ -348,6 +357,8 @@
 			children = (
 				04E7BF07EB42EE781AD2FDB6 /* Pods-RUapp.debug.xcconfig */,
 				7D6A0180CC5FFCB3EE4FEF4D /* Pods-RUapp.release.xcconfig */,
+				8596BB0F021A6B00E5B4C49A /* Pods.debug.xcconfig */,
+				F91A4C313A4B704F63495C48 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -614,7 +625,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp/Pods-RUapp-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4B19D4E11BB65F9900DD22A9 /* Bump Build Number */ = {
@@ -643,7 +654,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp/Pods-RUapp-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC9764FF361ED9B71C330F38 /* Check Pods Manifest.lock */ = {
@@ -724,6 +735,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BBCAC221BE932A30006D87B /* TestInstitution.swift in Sources */,
+				4BD37FBC1BED1A0A006D77C7 /* TestVote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,7 +917,7 @@
 		};
 		4BB03BCD1BB2D4DF006F84CB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04E7BF07EB42EE781AD2FDB6 /* Pods-RUapp.debug.xcconfig */;
+			baseConfigurationReference = 8596BB0F021A6B00E5B4C49A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RUapp/RUapp.entitlements;
@@ -922,7 +934,7 @@
 		};
 		4BB03BCE1BB2D4DF006F84CB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D6A0180CC5FFCB3EE4FEF4D /* Pods-RUapp.release.xcconfig */;
+			baseConfigurationReference = F91A4C313A4B704F63495C48 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RUapp/RUapp.entitlements;

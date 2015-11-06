@@ -97,7 +97,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         }
         indicator.hidden = false
         
-        institution.registerWithNewStudent(name, studentId: studentId) { (student, institution, error) -> Void in
+        institution.registerWithNewStudent(name, studentInstitutionId: studentId) { (student, institution, error) -> Void in
             
             guard institution != nil else {
                 for item in controls {
