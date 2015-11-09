@@ -37,4 +37,7 @@ extension NSURL {
     class func appGetInstitutionOverviewList() -> NSURL {
         return NSURL(string: "http://www.ruapp.com.br/api/v1/instituicoes")!
     }
+    class func appGetMenu(cafeteria: Cafeteria) -> NSURL {
+        return NSURL(string: "http://www.ruapp.com.br/api/v1/cardapio?restaurante_id=\(cafeteria.id)")!
+    }
 }

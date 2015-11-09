@@ -57,6 +57,15 @@ class MenuController: UICollectionViewController {
         adjustInstets()
         adjustItemSize()
         adjustBehavior()
+        
+        guard let defaultCafeteria = Institution.shared()?.campi?.first?.cafeterias.first else {
+            return
+            let _ = "Fix This"
+        }
+        
+        Menu.get(defaultCafeteria) { (menu, error) -> Void in
+            print("oi")
+        }
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {

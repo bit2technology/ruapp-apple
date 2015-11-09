@@ -19,6 +19,7 @@
 		4B3FC19C1BE116780077FFBF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FC19B1BE116780077FFBF /* Result.swift */; };
 		4B4C7FD11BBB43C7001D55E5 /* VoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */; };
 		4B4C7FD31BBB4709001D55E5 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD21BBB4709001D55E5 /* Vote.swift */; };
+		4B94BD031BF0D5B9001E3003 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B94BD021BF0D5B9001E3003 /* Menu.swift */; };
 		4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998C1BB31C8700A2E0CF /* Helper.swift */; };
 		4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998E1BB31DE400A2E0CF /* Student.swift */; };
 		4BA599921BB32E6900A2E0CF /* Dosis-Font in Resources */ = {isa = PBXBuildFile; fileRef = 4BA599911BB32E6900A2E0CF /* Dosis-Font */; };
@@ -130,6 +131,7 @@
 		4B3FC19B1BE116780077FFBF /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteController.swift; sourceTree = "<group>"; };
 		4B4C7FD21BBB4709001D55E5 /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
+		4B94BD021BF0D5B9001E3003 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RUapp.entitlements; sourceTree = "<group>"; };
 		4BA5998C1BB31C8700A2E0CF /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4BA5998E1BB31DE400A2E0CF /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */,
 				4BB03C001BB2E6B3006F84CB /* Meal.swift */,
 				4BA5998E1BB31DE400A2E0CF /* Student.swift */,
+				4B94BD021BF0D5B9001E3003 /* Menu.swift */,
 				4B4C7FD21BBB4709001D55E5 /* Vote.swift */,
 				4B3FC19B1BE116780077FFBF /* Result.swift */,
 				4BB03BDE1BB2D5B8006F84CB /* Info.plist */,
@@ -722,6 +725,7 @@
 				4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */,
 				4BB03BF91BB2DC09006F84CB /* Institution.swift in Sources */,
 				4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */,
+				4B94BD031BF0D5B9001E3003 /* Menu.swift in Sources */,
 				4B4C7FD31BBB4709001D55E5 /* Vote.swift in Sources */,
 				4BB03BFF1BB2E204006F84CB /* Cafeteria.swift in Sources */,
 				4BB03BFD1BB2E079006F84CB /* Campus.swift in Sources */,
