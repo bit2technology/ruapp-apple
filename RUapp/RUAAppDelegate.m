@@ -143,6 +143,8 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
     
     // Google Analytics
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-60467425-1"];
+    // Fabric
+    [Fabric with:@[[Crashlytics class]]];
 
     // Background fetch
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
