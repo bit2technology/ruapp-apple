@@ -139,7 +139,7 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 
     // Background fetch
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
-    [self application:application performFetchWithCompletionHandler:nil];
+    [self application:application performFetchWithCompletionHandler:^(UIBackgroundFetchResult result) {}];
 
     return YES;
 }

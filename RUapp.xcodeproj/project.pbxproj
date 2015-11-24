@@ -16,8 +16,6 @@
 		4B586E5C19ACD21900589F75 /* MealList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B586E5E19ACD21900589F75 /* MealList.plist */; };
 		4B586E6019ACD24800589F75 /* RestaurantsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B586E6219ACD24800589F75 /* RestaurantsList.plist */; };
 		4B7BFCC019AD6A0000388F0C /* RUATestDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BFCBF19AD6A0000388F0C /* RUATestDateViewController.m */; };
-		4BA6A823199D106200E7344D /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BA6A820199D106200E7344D /* iRate.bundle */; };
-		4BA6A824199D106200E7344D /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA6A822199D106200E7344D /* iRate.m */; };
 		4BC2178B19B75ADE00E1385A /* RUapp-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2178D19B75ADE00E1385A /* RUapp-InfoPlist.strings */; };
 		4BC2179019B75ADE00E1385A /* RUappTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2179219B75ADE00E1385A /* RUappTests-InfoPlist.strings */; };
 		4BC2179519B75ADF00E1385A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2179719B75ADF00E1385A /* Localizable.strings */; };
@@ -37,6 +35,7 @@
 		4BDED30F192A152F009716DF /* RUappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED30E192A152F009716DF /* RUappTests.m */; };
 		4BE910031938BBA300198D43 /* RUAVoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */; };
 		4BF936C3193B732B00DB9B40 /* RUAResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF936C2193B732B00DB9B40 /* RUAResultsTableViewController.m */; };
+		F61F87A36EA69F04C51FDD96 /* libPods-RUapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D405DFC40CB7447F721E40 /* libPods-RUapp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,9 +69,6 @@
 		4B586E6319ACD24D00589F75 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/RestaurantsList.plist; sourceTree = "<group>"; };
 		4B7BFCBE19AD6A0000388F0C /* RUATestDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUATestDateViewController.h; sourceTree = "<group>"; };
 		4B7BFCBF19AD6A0000388F0C /* RUATestDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUATestDateViewController.m; sourceTree = "<group>"; };
-		4BA6A820199D106200E7344D /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
-		4BA6A821199D106200E7344D /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
-		4BA6A822199D106200E7344D /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		4BC2178C19B75ADE00E1385A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = "pt.lproj/RUapp-InfoPlist.strings"; sourceTree = "<group>"; };
 		4BC2179119B75ADE00E1385A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = "pt.lproj/RUappTests-InfoPlist.strings"; sourceTree = "<group>"; };
 		4BC2179619B75ADF00E1385A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -101,6 +97,9 @@
 		4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAVoteTableViewController.m; sourceTree = "<group>"; };
 		4BF936C1193B732B00DB9B40 /* RUAResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAResultsTableViewController.h; sourceTree = "<group>"; };
 		4BF936C2193B732B00DB9B40 /* RUAResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAResultsTableViewController.m; sourceTree = "<group>"; };
+		55C1D6FE406CEF00F2718B87 /* Pods-RUapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.debug.xcconfig"; sourceTree = "<group>"; };
+		A4D405DFC40CB7447F721E40 /* libPods-RUapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RUapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA9D233061E25FC80C3A35E5 /* Pods-RUapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +110,7 @@
 				4BDED2E3192A152F009716DF /* CoreGraphics.framework in Frameworks */,
 				4BDED2E5192A152F009716DF /* UIKit.framework in Frameworks */,
 				4BDED2E1192A152F009716DF /* Foundation.framework in Frameworks */,
+				F61F87A36EA69F04C51FDD96 /* libPods-RUapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,16 +136,6 @@
 			name = Menu;
 			sourceTree = "<group>";
 		};
-		4BA6A81F199D106200E7344D /* iRate */ = {
-			isa = PBXGroup;
-			children = (
-				4BA6A820199D106200E7344D /* iRate.bundle */,
-				4BA6A821199D106200E7344D /* iRate.h */,
-				4BA6A822199D106200E7344D /* iRate.m */,
-			);
-			path = iRate;
-			sourceTree = "<group>";
-		};
 		4BDED2D4192A152F009716DF = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +143,7 @@
 				4BDED308192A152F009716DF /* RUappTests */,
 				4BDED2DF192A152F009716DF /* Frameworks */,
 				4BDED2DE192A152F009716DF /* Products */,
+				A9F0E35A4EDEEBBA4D4F1124 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,12 +159,12 @@
 		4BDED2DF192A152F009716DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4BA6A81F199D106200E7344D /* iRate */,
 				4B1A7E3B198407DE00C206CF /* SystemConfiguration.framework */,
 				4BDED2E0192A152F009716DF /* Foundation.framework */,
 				4BDED2E2192A152F009716DF /* CoreGraphics.framework */,
 				4BDED2E4192A152F009716DF /* UIKit.framework */,
 				4BDED302192A152F009716DF /* XCTest.framework */,
+				A4D405DFC40CB7447F721E40 /* libPods-RUapp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -257,6 +248,15 @@
 			name = Vote;
 			sourceTree = "<group>";
 		};
+		A9F0E35A4EDEEBBA4D4F1124 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				55C1D6FE406CEF00F2718B87 /* Pods-RUapp.debug.xcconfig */,
+				BA9D233061E25FC80C3A35E5 /* Pods-RUapp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -264,10 +264,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BDED312192A152F009716DF /* Build configuration list for PBXNativeTarget "RUapp" */;
 			buildPhases = (
+				038AB2F80D62213017738CE4 /* Check Pods Manifest.lock */,
 				4BDED2D9192A152F009716DF /* Sources */,
 				4BDED2DA192A152F009716DF /* Frameworks */,
 				4BDED2DB192A152F009716DF /* Resources */,
 				4BF1BD561975786100D8E6A9 /* ShellScript */,
+				76690DE42A126A0418EAED95 /* Embed Pods Frameworks */,
+				6EBC88E9E445281EB9665A7D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -303,7 +306,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = RUA;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Bit2 Software";
 				TargetAttributes = {
 					4BDED2DC192A152F009716DF = {
@@ -353,7 +356,6 @@
 				4B1BACA519A2475400382585 /* VoteHeadersList.plist in Resources */,
 				4BDED2F4192A152F009716DF /* Main_iPhone.storyboard in Resources */,
 				4BD53CEF19C0AB8C00BB10FB /* Launch_Screen.xib in Resources */,
-				4BA6A823199D106200E7344D /* iRate.bundle in Resources */,
 				4B586E5819ACD1EE00589F75 /* AvaliationList.plist in Resources */,
 				4B1EC96119AE4CD100AF9C68 /* ResultsHeadersList.plist in Resources */,
 			);
@@ -370,6 +372,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		038AB2F80D62213017738CE4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		4BF1BD561975786100D8E6A9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -383,6 +400,36 @@
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
+		6EBC88E9E445281EB9665A7D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp/Pods-RUapp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76690DE42A126A0418EAED95 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp/Pods-RUapp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -390,7 +437,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BA6A824199D106200E7344D /* iRate.m in Sources */,
 				4BF936C3193B732B00DB9B40 /* RUAResultsTableViewController.m in Sources */,
 				4BE910031938BBA300198D43 /* RUAVoteTableViewController.m in Sources */,
 				4B1D4DA7193F5EA600A50406 /* RUATableViewController.m in Sources */,
@@ -542,6 +588,7 @@
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -639,6 +686,7 @@
 		};
 		4BDED313192A152F009716DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55C1D6FE406CEF00F2718B87 /* Pods-RUapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -676,6 +724,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = "RUapp/RUapp-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bit2software.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -683,6 +732,7 @@
 		};
 		4BDED314192A152F009716DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA9D233061E25FC80C3A35E5 /* Pods-RUapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -720,6 +770,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = "RUapp/RUapp-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bit2software.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -741,6 +792,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "RUappTests/RUappTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bit2software.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -759,6 +811,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RUapp/RUapp-Prefix.pch";
 				INFOPLIST_FILE = "RUappTests/RUappTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bit2software.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

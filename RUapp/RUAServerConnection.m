@@ -339,7 +339,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
                         reasonBiggest = reasonCount;
                     }
                 }
-                if (reasonTotal) {
+                if (reasonTotal != 0) {
                     NSMutableArray *reason = [NSMutableArray arrayWithCapacity:7];
                     for (NSUInteger j = 1; j < 8; j++) {
                         if ([serializationResult[[NSString stringWithFormat:@"Voto %zd Explica %zd", i, j]] floatValue] == reasonBiggest) {
