@@ -143,6 +143,11 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
     
     // Google Analytics
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-60467425-1"];
+    NSNumber *analyticsValue = [[NSUserDefaults standardUserDefaults] valueForKey:@"AnalyticsEnabled"];
+    if (analyticsValue) {
+        [GAI sharedInstance].optOut = ![analyticsValue boolValue];
+    }
+    
     // Fabric
     [Fabric with:@[[Crashlytics class]]];
 

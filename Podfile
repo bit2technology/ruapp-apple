@@ -21,8 +21,8 @@ pre_install do | installer |
     end
 end
 
-#post_install do | installer |
-#    # Acknowledgements
-#    require 'fileutils'
-#    FileUtils.cp_r('Pods/Target Support Files/Pods/Pods-Acknowledgements.plist', 'Fashion-Now/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
-#end
+post_install do | installer |
+    # Acknowledgements
+    require 'fileutils'
+    FileUtils.cp_r('Pods/Target Support Files/Pods-RUapp/Pods-RUapp-acknowledgements.plist', 'RUapp/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+end

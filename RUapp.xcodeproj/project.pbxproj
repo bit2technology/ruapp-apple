@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B01017C1C04DC90007B8EF4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B01017B1C04DC90007B8EF4 /* Settings.bundle */; };
 		4B1BACA519A2475400382585 /* VoteHeadersList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B1BACA719A2475400382585 /* VoteHeadersList.plist */; };
 		4B1D4DA7193F5EA600A50406 /* RUATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1D4DA6193F5EA600A50406 /* RUATableViewController.m */; };
 		4B1EC96119AE4CD100AF9C68 /* ResultsHeadersList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B1EC96319AE4CD100AF9C68 /* ResultsHeadersList.plist */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B01017B1C04DC90007B8EF4 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4B1A7E3B198407DE00C206CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4B1BACA619A2475400382585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/VoteHeadersList.plist; sourceTree = "<group>"; };
 		4B1BACA819A2475E00382585 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/VoteHeadersList.plist; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				4BDED2E8192A152F009716DF /* RUapp-Info.plist */,
 				4BDED2EC192A152F009716DF /* main.m */,
 				4BDED2EE192A152F009716DF /* RUapp-Prefix.pch */,
+				4B01017B1C04DC90007B8EF4 /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -268,7 +271,7 @@
 				4BDED2D9192A152F009716DF /* Sources */,
 				4BDED2DA192A152F009716DF /* Frameworks */,
 				4BDED2DB192A152F009716DF /* Resources */,
-				4BF1BD561975786100D8E6A9 /* ShellScript */,
+				4BF1BD561975786100D8E6A9 /* Bump build number */,
 				76690DE42A126A0418EAED95 /* Embed Pods Frameworks */,
 				6EBC88E9E445281EB9665A7D /* Copy Pods Resources */,
 				4BFC16B71C04B1430084CE85 /* Fabric */,
@@ -352,6 +355,7 @@
 				4BFC16B91C04B5C30084CE85 /* Launch_Screen.storyboard in Resources */,
 				4B586E6019ACD24800589F75 /* RestaurantsList.plist in Resources */,
 				4BC2179519B75ADF00E1385A /* Localizable.strings in Resources */,
+				4B01017C1C04DC90007B8EF4 /* Settings.bundle in Resources */,
 				4B586E5C19ACD21900589F75 /* MealList.plist in Resources */,
 				4BDE8212199B946000441EAA /* DishesList.plist in Resources */,
 				4BDED2FC192A152F009716DF /* Images.xcassets in Resources */,
@@ -388,18 +392,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4BF1BD561975786100D8E6A9 /* ShellScript */ = {
+		4BF1BD561975786100D8E6A9 /* Bump build number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Bump build number";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+			shellScript = "infoPlistPath=${INFOPLIST_FILE}\n\n#increment the build number\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$infoPlistPath\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$infoPlistPath\"\n\n#compose the version number string\nversionString=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$infoPlistPath\")\nversionString+=\" (\"\nversionString+=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$infoPlistPath\")\nversionString+=\")\"\n\n#write the version number string to the settings bundle\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $versionString\" \"${PROJECT_DIR}/${PRODUCT_NAME}/Settings.bundle/Root.plist\"";
 		};
 		4BFC16B71C04B1430084CE85 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -720,6 +725,7 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "RUapp/RUapp-Prefix.pch";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
@@ -765,6 +771,7 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "RUapp/RUapp-Prefix.pch";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
