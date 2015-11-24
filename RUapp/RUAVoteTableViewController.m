@@ -68,7 +68,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
                 defaultRestaurantIndexPath = [NSIndexPath indexPathForRow:1 inSection:1]; // Campus
             } break;
             case RUAMealLunch: {
-                NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                 gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
                 NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday fromDate:now];
                 if (dateComponents.weekday == 1) {

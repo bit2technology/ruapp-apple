@@ -10,6 +10,10 @@
 #import "RUAAppDelegate.h"
 #import "RUAColor.h"
 #import "RUAServerConnection.h"
+#import "GAI.h"
+
+@import Fabric;
+@import Crashlytics;
 
 NSString *const RUAServerTestURLString = @"http://titugoru2.appspot.com/getvalue";
 NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
@@ -113,7 +117,7 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 + (NSDateComponents *)dateComponentsForDate:(NSDate *)date
 {
     // Configure date components with gregorian calendar and São Paulo time zone.
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
     return [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
 }
@@ -136,6 +140,9 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 
     // iRate
     [iRate sharedInstance].useAllAvailableLanguages = NO;
+    
+    // Google Analytics
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-60467425-1"];
 
     // Background fetch
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];

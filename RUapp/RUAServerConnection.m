@@ -67,7 +67,7 @@ NSString *const RUASavedVotesKey = @"SavedVotes";
 + (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSString *localizedMessage))handler
 {
     // Get week number.
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
     NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitWeekOfYear fromDate:[RUAAppDelegate sharedAppDelegate].date];
     
