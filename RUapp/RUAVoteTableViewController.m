@@ -10,6 +10,9 @@
 #import "RUAColor.h"
 #import "RUAServerConnection.h"
 #import "RUAVoteTableViewController.h"
+#import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
 
 NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
@@ -415,6 +418,11 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     RUAAppDelegate *sharedAppDelegate = [RUAAppDelegate sharedAppDelegate];
     [sharedAppDelegate.menuTableViewController downloadDataSourceAndUpdateTable];
     self.lastAppearance = sharedAppDelegate.date;
+    
+    // Analytics
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Voto: Geral"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 @end

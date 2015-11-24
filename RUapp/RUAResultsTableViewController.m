@@ -9,6 +9,9 @@
 #import "RUAColor.h"
 #import "RUAResultsTableViewController.h"
 #import "RUAServerConnection.h"
+#import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
 
 NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 
@@ -298,6 +301,11 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
     [super viewDidAppear:animated];
     
     [self downloadResultsAndUpdateTable];
+    
+    // Analytics
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Resultado: Geral"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 @end

@@ -9,6 +9,9 @@
 #import "RUAColor.h"
 #import "RUAMenuTableViewController.h"
 #import "RUAServerConnection.h"
+#import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
 
 NSString *const RUAMenuDataSourceCacheKey = @"MenuDataSourceCache";
 NSString *const RUAMenuUpdated = @"MenuUpdated";
@@ -371,6 +374,11 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     
     // Download or update menu.
     [self downloadDataSourceAndUpdateTable];
+    
+    // Analytics
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Cardapio"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 @end

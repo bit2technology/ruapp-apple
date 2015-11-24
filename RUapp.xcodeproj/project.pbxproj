@@ -20,7 +20,6 @@
 		4BC2179019B75ADE00E1385A /* RUappTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2179219B75ADE00E1385A /* RUappTests-InfoPlist.strings */; };
 		4BC2179519B75ADF00E1385A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2179719B75ADF00E1385A /* Localizable.strings */; };
 		4BD37508192B6AD00016BD35 /* RUAColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD37507192B6AD00016BD35 /* RUAColor.m */; };
-		4BD53CEF19C0AB8C00BB10FB /* Launch_Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BD53CEE19C0AB8C00BB10FB /* Launch_Screen.xib */; };
 		4BDE8212199B946000441EAA /* DishesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BDE8214199B946000441EAA /* DishesList.plist */; };
 		4BDED2E1192A152F009716DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E0192A152F009716DF /* Foundation.framework */; };
 		4BDED2E3192A152F009716DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDED2E2192A152F009716DF /* CoreGraphics.framework */; };
@@ -35,6 +34,7 @@
 		4BDED30F192A152F009716DF /* RUappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDED30E192A152F009716DF /* RUappTests.m */; };
 		4BE910031938BBA300198D43 /* RUAVoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */; };
 		4BF936C3193B732B00DB9B40 /* RUAResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF936C2193B732B00DB9B40 /* RUAResultsTableViewController.m */; };
+		4BFC16B91C04B5C30084CE85 /* Launch_Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BFC16B81C04B5C30084CE85 /* Launch_Screen.storyboard */; };
 		F61F87A36EA69F04C51FDD96 /* libPods-RUapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D405DFC40CB7447F721E40 /* libPods-RUapp.a */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +75,6 @@
 		4BC4FD0519B0AEC100A48A04 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		4BD37506192B6AD00016BD35 /* RUAColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAColor.h; sourceTree = "<group>"; };
 		4BD37507192B6AD00016BD35 /* RUAColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAColor.m; sourceTree = "<group>"; };
-		4BD53CEE19C0AB8C00BB10FB /* Launch_Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Launch_Screen.xib; sourceTree = "<group>"; };
 		4BDE8213199B946000441EAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/DishesList.plist; sourceTree = "<group>"; };
 		4BDE8215199B948200441EAA /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/DishesList.plist; sourceTree = "<group>"; };
 		4BDED2DD192A152F009716DF /* RUapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +96,7 @@
 		4BE910021938BBA300198D43 /* RUAVoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAVoteTableViewController.m; sourceTree = "<group>"; };
 		4BF936C1193B732B00DB9B40 /* RUAResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUAResultsTableViewController.h; sourceTree = "<group>"; };
 		4BF936C2193B732B00DB9B40 /* RUAResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUAResultsTableViewController.m; sourceTree = "<group>"; };
+		4BFC16B81C04B5C30084CE85 /* Launch_Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch_Screen.storyboard; sourceTree = "<group>"; };
 		55C1D6FE406CEF00F2718B87 /* Pods-RUapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.debug.xcconfig"; sourceTree = "<group>"; };
 		A4D405DFC40CB7447F721E40 /* libPods-RUapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RUapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9D233061E25FC80C3A35E5 /* Pods-RUapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				4BDED2F2192A152F009716DF /* Main_iPhone.storyboard */,
-				4BD53CEE19C0AB8C00BB10FB /* Launch_Screen.xib */,
+				4BFC16B81C04B5C30084CE85 /* Launch_Screen.storyboard */,
 				4BDED2EF192A152F009716DF /* RUAAppDelegate.h */,
 				4BDED2F0192A152F009716DF /* RUAAppDelegate.m */,
 				4BD37506192B6AD00016BD35 /* RUAColor.h */,
@@ -349,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC2178B19B75ADE00E1385A /* RUapp-InfoPlist.strings in Resources */,
+				4BFC16B91C04B5C30084CE85 /* Launch_Screen.storyboard in Resources */,
 				4B586E6019ACD24800589F75 /* RestaurantsList.plist in Resources */,
 				4BC2179519B75ADF00E1385A /* Localizable.strings in Resources */,
 				4B586E5C19ACD21900589F75 /* MealList.plist in Resources */,
@@ -356,7 +357,6 @@
 				4BDED2FC192A152F009716DF /* Images.xcassets in Resources */,
 				4B1BACA519A2475400382585 /* VoteHeadersList.plist in Resources */,
 				4BDED2F4192A152F009716DF /* Main_iPhone.storyboard in Resources */,
-				4BD53CEF19C0AB8C00BB10FB /* Launch_Screen.xib in Resources */,
 				4B586E5819ACD1EE00589F75 /* AvaliationList.plist in Resources */,
 				4B1EC96119AE4CD100AF9C68 /* ResultsHeadersList.plist in Resources */,
 			);
@@ -704,7 +704,6 @@
 			baseConfigurationReference = 55C1D6FE406CEF00F2718B87 /* Pods-RUapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
@@ -750,7 +749,6 @@
 			baseConfigurationReference = BA9D233061E25FC80C3A35E5 /* Pods-RUapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
