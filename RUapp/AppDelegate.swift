@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RUappService
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        
+        
+        
+        print("started")
+        Menu.update(Institution.shared()!.campi!.first!.cafeterias.first!) { (menu, error) -> Void in
+            print("finished")
+        }
+        
+        
+        
+        
+        
+        
         
         // Appearance
         window?.tintColor = UIColor.appLightBlue()

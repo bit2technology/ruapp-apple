@@ -43,6 +43,9 @@
 		4BBCAC221BE932A30006D87B /* TestInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCAC211BE932A30006D87B /* TestInstitution.swift */; };
 		4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC6D731BB37B4600AF99EF /* SidebarController.swift */; };
 		4BD37FBC1BED1A0A006D77C7 /* TestVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD37FBB1BED1A0A006D77C7 /* TestVote.swift */; };
+		4BF2AE6C1C05CF8800500EA8 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF2AE6B1C05CF8800500EA8 /* MenuCell.swift */; };
+		4BF2AE6E1C05D31400500EA8 /* MenuCellDish.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF2AE6D1C05D31400500EA8 /* MenuCellDish.xib */; };
+		4BF2AE701C05EE2700500EA8 /* MenuExample.json in Resources */ = {isa = PBXBuildFile; fileRef = 4BF2AE6F1C05EE2700500EA8 /* MenuExample.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +165,9 @@
 		4BBCAC211BE932A30006D87B /* TestInstitution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestInstitution.swift; sourceTree = "<group>"; };
 		4BCC6D731BB37B4600AF99EF /* SidebarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarController.swift; sourceTree = "<group>"; };
 		4BD37FBB1BED1A0A006D77C7 /* TestVote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVote.swift; sourceTree = "<group>"; };
+		4BF2AE6B1C05CF8800500EA8 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		4BF2AE6D1C05D31400500EA8 /* MenuCellDish.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCellDish.xib; sourceTree = "<group>"; };
+		4BF2AE6F1C05EE2700500EA8 /* MenuExample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MenuExample.json; sourceTree = "<group>"; };
 		7D6A0180CC5FFCB3EE4FEF4D /* Pods-RUapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.release.xcconfig"; sourceTree = "<group>"; };
 		8596BB0F021A6B00E5B4C49A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BBB604BB5C3F9B777DD3EFA9 /* Pods_RUapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,6 +261,8 @@
 		4BA599971BB34ED500A2E0CF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4BF2AE6D1C05D31400500EA8 /* MenuCellDish.xib */,
+				4BF2AE6B1C05CF8800500EA8 /* MenuCell.swift */,
 				4BA599951BB34ED000A2E0CF /* MenuTypeSelector.swift */,
 			);
 			name = View;
@@ -328,14 +336,15 @@
 			isa = PBXGroup;
 			children = (
 				4BB03BDC1BB2D5B8006F84CB /* RUappService.h */,
+				4B94BD021BF0D5B9001E3003 /* Menu.swift */,
+				4BB03C001BB2E6B3006F84CB /* Meal.swift */,
+				4BF2AE6F1C05EE2700500EA8 /* MenuExample.json */,
 				4BB03BFA1BB2DE37006F84CB /* Constants.swift */,
 				4BA5998C1BB31C8700A2E0CF /* Helper.swift */,
 				4BB03BF81BB2DC09006F84CB /* Institution.swift */,
 				4BB03BFC1BB2E079006F84CB /* Campus.swift */,
 				4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */,
-				4BB03C001BB2E6B3006F84CB /* Meal.swift */,
 				4BA5998E1BB31DE400A2E0CF /* Student.swift */,
-				4B94BD021BF0D5B9001E3003 /* Menu.swift */,
 				4B4C7FD21BBB4709001D55E5 /* Vote.swift */,
 				4B3FC19B1BE116780077FFBF /* Result.swift */,
 				4BB03BDE1BB2D5B8006F84CB /* Info.plist */,
@@ -580,6 +589,7 @@
 				4B19D4E31BB6603300DD22A9 /* Settings.bundle in Resources */,
 				4BB03BAF1BB2D4DE006F84CB /* Assets.xcassets in Resources */,
 				4BB03BAD1BB2D4DE006F84CB /* Main.storyboard in Resources */,
+				4BF2AE6E1C05D31400500EA8 /* MenuCellDish.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +611,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BF2AE701C05EE2700500EA8 /* MenuExample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +701,7 @@
 			files = (
 				4B3FC19A1BE102490077FFBF /* ResultsController.swift in Sources */,
 				4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */,
+				4BF2AE6C1C05CF8800500EA8 /* MenuCell.swift in Sources */,
 				4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */,
 				4BA599941BB347B700A2E0CF /* MainController.swift in Sources */,
 				4BA599961BB34ED000A2E0CF /* MenuTypeSelector.swift in Sources */,

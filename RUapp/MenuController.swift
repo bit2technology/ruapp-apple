@@ -63,9 +63,9 @@ class MenuController: UICollectionViewController {
             let _ = "Fix This"
         }
         
-        Menu.get(defaultCafeteria) { (menu, error) -> Void in
-            print("oi")
-        }
+//        Menu.get(defaultCafeteria) { (menu, error) -> Void in
+//            print("oi")
+//        }
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
@@ -105,7 +105,7 @@ class MenuController: UICollectionViewController {
             menuDescription.appendAttributedString(NSAttributedString(string: titleDish, attributes: [NSFontAttributeName: fontMenuDishTitle, NSParagraphStyleAttributeName: paragraph.copy()]))
             menuDescription.appendAttributedString(NSAttributedString(string: "\(cardapio[key]!.lowercaseString)\n", attributes: [NSFontAttributeName: fontMenuDish, NSParagraphStyleAttributeName: paragraph]))
         }
-        cell.menuLabel.attributedText = menuDescription
+        //cell.menuLabel.attributedText = menuDescription
         
         return cell
     }
@@ -217,11 +217,4 @@ class LayoutMenu: UICollectionViewLayout {
         
         return adjOffset
     }
-}
-
-class MenuCell: UICollectionViewCell {
-    @IBOutlet var backgroundImg: UIImageView!
-    @IBOutlet var menuLabel: UILabel!
-    @IBOutlet var mealLabel: UILabel!
-    @IBOutlet var dayOfWeekLabel: UILabel!
 }

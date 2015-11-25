@@ -6,67 +6,83 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-var cache = Array<Menu.Dish>()
+/// Key used to save and get cached menu data.
+private let SavedMenuArrayKey = "SavedMenuArray"
 
-public class Menu {//{"id":11,"tipo_refeicao_id":2,"data":2015-10-12,"status":"fechado","cardapio":[]}
+/// Helper class to manage menu data
+public class Menu {
     
-//    let id: Int
-//    let meal: Meal
-//    let date: NSDate
-//    let status: Status
-//    let items: [Item]?
+    /// Shared menu data. It is also cached for offline query.
+    public private(set) static var shared = try? Menu.process(globalUserDefaults?.dictionaryForKey(SavedMenuArrayKey))
     
-    public class func get(cafeteria: Cafeteria, completion: (menu: AnyObject?, error: ErrorType?) -> Void) {
+    /// Get menu info from data. If successfull, cache it.
+    public class func update(cafeteria: Cafeteria, completion: (menu: [[Meal]]?, error: ErrorType?) -> Void) {
         NSURLSession.sharedSession().dataTaskWithURL(NSURL.appGetMenu(cafeteria), completionHandler: { (data, response, error) -> Void in
-            
             do {
+                // Verify data
                 guard let data = data else {
                     throw error ?? Error.NoData
                 }
                 
-                let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-//                let newInstitution = try Institution(dict: jsonObj)
-                print(jsonObj)
+                // Process menu data. If successful, save it to user defaults.
+                let rawMenu = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                let menu = try process(rawMenu)
+                globalUserDefaults?.setObject(rawMenu, forKey: SavedMenuArrayKey)
+                globalUserDefaults?.synchronize()
+                
+                // Return menu
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    completion(menu: nil, error: nil)
+                    completion(menu: menu, error: nil)
                 })
             } catch {
-                print(error)
+                // Return error
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     completion(menu: nil, error: error)
                 })
             }
-            
         }).resume()
     }
     
-    public class Item {//{"comida_id":34,"comida_nome":"Fricass","tipo_comida_id":1,"meta":"principal","tipo_comida_nome":"Prato principal"}
+    /// Get current or next meal.
+    public class func currentMeal() -> Meal? {
         
-//        let id: Int
-//        let name: String?
-//        let dish: Dish
-//        let meta: Meta
-        
-        
-        
-        public enum Meta: String {
-            case Traditional = "principal"
-            case Vegetarian = "vegetariano"
-            case Other = "outro"
+        // Verify if there is already menu data
+        guard let menu = shared else {
+            return nil
         }
+        
+        // Search for current or next meal
+        for meals in menu {
+            for meal in meals {
+                
+            }
+        }
+        
+        // Current or next meal not found
+        return nil
     }
     
-    public class Dish {
-        let id: Int
-        let name: String
-        init(id: Int, name: String) {
-            self.id = id
-            self.name = name
+    /// Process raw menu data.
+    private class func process(menuObj: AnyObject?) throws -> [[Meal]] {
+        
+        guard let menuArray = menuObj as? [AnyObject] else {
+            throw Error.InvalidObject
         }
-    }
-    
-    public enum Status: String {
-        case Closed = "fechado"
-        case Open = "aberto"
+        
+        var menu = [[Meal]]()
+        for rawDay in menuArray {
+            
+            guard let dateString = rawDay["data"] as? String,
+                let rawMeals = rawDay["refeicoes"] as? [AnyObject] else {
+                    throw Error.InvalidObject
+            }
+            
+            var meals = [Meal]()
+            for rawMeal in rawMeals {
+                meals.append(try Meal(dict: rawMeal, dateString: dateString))
+            }
+            menu.append(meals)
+        }
+        return menu
     }
 }

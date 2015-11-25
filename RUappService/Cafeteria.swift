@@ -14,7 +14,6 @@ public class Cafeteria {
     public let name: String
     public let capacity: Int?
     public let coordinate: CLLocationCoordinate2D
-    public let meals: [Meal]
     
     public init(dict: AnyObject?) throws {
         do {
@@ -27,22 +26,16 @@ public class Cafeteria {
                     throw Error.InvalidObject
             }
             
-            var mealsArray = [Meal]()
-            for refeicao in dictMeals {
-                mealsArray.append(try Meal(dict: refeicao))
-            }
             id = dictId
             name = dictName
             capacity = dict["capacidade"] as? Int
             coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            meals = mealsArray
         }
         catch {
             id = -1
             name = ""
             capacity = nil
             coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-            meals = []
             throw error
         }
     }

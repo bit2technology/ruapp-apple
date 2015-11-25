@@ -8,56 +8,36 @@
 
 public class Meal {
     
-    public let id: Int
-    public let name: String
-    public let running: [Running]
+    private static let dateFormatter = mealDateFormatter()
     
-    public init(dict: AnyObject?) throws {
+    public let name: String
+    public let openingDate: NSDate
+    public let closingDate: NSDate
+    
+    init(dict: AnyObject?, dateString: String) throws {
         do {
             guard let dict = dict as? [String:AnyObject],
-                dictId = dict["id"] as? Int,
                 dictName = dict["nome"] as? String,
-                dictRunning = dict["funcionamentos"] as? [AnyObject] else {
+                opening = dict["hora_abertura"] as? String,
+                openingDate = Meal.dateFormatter.dateFromString(dateString + " " + opening),
+                closing = dict["minutos_fechamento"] as? Double else {
                     throw Error.InvalidObject
             }
-            
-            var runningArray = [Running]()
-            for piece in dictRunning {
-                runningArray.append(try Running(dict: piece))
-            }
-            id = dictId
             name = dictName
-            running = runningArray
+            self.openingDate = openingDate
+            self.closingDate = openingDate.dateByAddingTimeInterval(closing * 60)
         }
         catch {
-            id = -1
             name = ""
-            running = []
+            openingDate = NSDate()
+            closingDate = openingDate
             throw error
         }
     }
-    
-    public class Running {
-        
-        public let dayOfWeek: Int
-        public let opening: String
-        public let closing: String
-        
-        public init(dict: AnyObject?) throws {
-            
-            guard let dict = dict as? [String:AnyObject],
-                dictDay = dict["dia_da_semana"] as? Int,
-                dictOpen = dict["horario_abertura"] as? String,
-                dictClose = dict["horario_fechamento"] as? String else {
-                    dayOfWeek = -1
-                    opening = ""
-                    closing = ""
-                    throw Error.InvalidObject
-            }
-            
-            dayOfWeek = dictDay
-            opening = dictOpen
-            closing = dictClose
-        }
-    }
+}
+
+private func mealDateFormatter() -> NSDateFormatter {
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+    return dateFormatter
 }
