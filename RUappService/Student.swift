@@ -6,7 +6,6 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-private var globalStudent = try? Student(dict: globalUserDefaults?.objectForKey(StudentSavedDictionaryKey))
 private let StudentSavedDictionaryKey = "SavedStudentDictionary"
 
 public class Student {
@@ -15,9 +14,7 @@ public class Student {
     public let name: String
     public let studentId: String
     
-    public class func shared() -> Student? {
-        return globalStudent
-    }
+    public private(set) static var shared = try? Student(dict: globalUserDefaults?.objectForKey(StudentSavedDictionaryKey))
     
     private init(dict: AnyObject?) throws {
         do {
@@ -41,9 +38,9 @@ public class Student {
     }
     
     class func register(dict: AnyObject?) throws -> Student? {
-        globalStudent = try Student(dict: dict)
+        shared = try Student(dict: dict)
         globalUserDefaults?.setObject(dict, forKey: StudentSavedDictionaryKey)
-        return globalStudent
+        return shared
     }
     
     class func register(id: Int, name: String, studentId: String) throws -> Student? {

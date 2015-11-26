@@ -38,7 +38,7 @@ extension NSURL {
         return NSURL(string: "http://www.ruapp.com.br/api/v1/instituicoes")!
     }
     class func appGetMenu(cafeteria: Cafeteria) -> NSURL {
-        return NSBundle(forClass: object_getClass(Menu)).URLForResource("MenuExample", withExtension: "json")!
-//        return NSURL(string: "http://www.ruapp.com.br/api/v1/cardapio?restaurante_id=\(cafeteria.id)")!
+//        return NSBundle(forClass: object_getClass(Menu)).URLForResource("MenuExample", withExtension: "json")!
+        return NSURL(string: "http://www.ruapp.com.br/api/v1/cardapio?restaurante_id=\(cafeteria.id)")!
     }
 }

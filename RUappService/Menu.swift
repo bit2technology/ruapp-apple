@@ -13,7 +13,7 @@ private let SavedMenuArrayKey = "SavedMenuArray"
 public class Menu {
     
     /// Shared menu data. It is also cached for offline query.
-    public private(set) static var shared = try? Menu.process(globalUserDefaults?.dictionaryForKey(SavedMenuArrayKey))
+    public private(set) static var shared = try? Menu.process(globalUserDefaults?.objectForKey(SavedMenuArrayKey))
     
     /// Get menu info from data. If successfull, cache it.
     public class func update(cafeteria: Cafeteria, completion: (menu: [[Meal]]?, error: ErrorType?) -> Void) {
@@ -41,25 +41,6 @@ public class Menu {
                 })
             }
         }).resume()
-    }
-    
-    /// Get current or next meal.
-    public class func currentMeal() -> Meal? {
-        
-        // Verify if there is already menu data
-        guard let menu = shared else {
-            return nil
-        }
-        
-        // Search for current or next meal
-        for meals in menu {
-            for meal in meals {
-                
-            }
-        }
-        
-        // Current or next meal not found
-        return nil
     }
     
     /// Process raw menu data.

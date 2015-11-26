@@ -29,8 +29,8 @@ class SidebarTableController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        studentNameCell.textLabel?.text = Student.shared()?.name
-        insitutionCell.textLabel?.text = Institution.shared()?.name
+        studentNameCell.textLabel?.text = Student.shared?.name
+        insitutionCell.textLabel?.text = Institution.shared?.name
     }
     
     private let scale = UIScreen.mainScreen().scale

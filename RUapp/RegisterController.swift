@@ -120,10 +120,10 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let student = Student.shared()
+        let student = Student.shared
         nameField.text = student?.name
         studentIdField.text = student?.studentId
-        institution = Institution.shared()
+        institution = Institution.shared
         textEdited()
                 
         let frameBtn = doneBtn.bounds

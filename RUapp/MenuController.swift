@@ -9,15 +9,10 @@
 import UIKit
 import RUappService
 
-let cardapio = ["Arroz": "Branco e Integral",
-    "Feijão": "Preto",
-    "Macarrão": "Tomate e Manjericão",
-    "Guarnição": "Farofa com Cenoura e Ovos",
-    "Vegetariano": "Omelete",
-    "Prato Principal": "Carne de Panela com Mandioca",
-    "Salada": "Almeirão/Acelga, Beterraba Ralada, Abobrinha Ralada"]
-
 class MenuController: UICollectionViewController {
+    
+    private var menu = Menu.shared
+    private var dateFormatter = NSDateFormatter()
     
     override func needsMenuTypeSelector() -> Bool {
         return true
@@ -27,6 +22,24 @@ class MenuController: UICollectionViewController {
         let topBarHeight = mainController.topBarHeight.constant
         collectionView?.contentInset.top = topBarHeight
         collectionView?.scrollIndicatorInsets.top = topBarHeight
+    }
+    
+    private func updateMenu() {
+        
+        guard let defaultCafeteria = Institution.shared?.defaultCafeteria else {
+            return
+        }
+        
+        Menu.update(defaultCafeteria) { (menu, error) -> Void in
+            
+            guard let menu = menu else {
+                return
+                let _ = "Show error"
+            }
+            
+            self.menu = menu
+            self.collectionView?.reloadData()
+        }
     }
     
     private func adjustItemSize() {
@@ -51,21 +64,20 @@ class MenuController: UICollectionViewController {
         collectionView?.directionalLockEnabled = oneColumnVisible
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        dateFormatter.dateFormat = "EEEE"
+        
+        updateMenu()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         adjustInstets()
         adjustItemSize()
         adjustBehavior()
-        
-        guard let defaultCafeteria = Institution.shared()?.campi?.first?.cafeterias.first else {
-            return
-            let _ = "Fix This"
-        }
-        
-//        Menu.get(defaultCafeteria) { (menu, error) -> Void in
-//            print("oi")
-//        }
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
@@ -75,19 +87,20 @@ class MenuController: UICollectionViewController {
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 7
+        return menu?.count ?? 0
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return menu?[section].count ?? 0
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Menu", forIndexPath: indexPath) as! MenuCell
+        let meal = menu![indexPath.section][indexPath.item]
         
         cell.backgroundImg.image = UIImage(named: "Menu\(indexPath.item)\(indexPath.section % 2)")
-        cell.dayOfWeekLabel.text = "terça-feira"
-        cell.mealLabel.text = "Almoço".uppercaseString
+        cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(meal.labelDate)
+        cell.mealLabel.text = meal.name.uppercaseString
 
         let menuDescription = NSMutableAttributedString()
         let fontMenuDishTitle = UIFont.appMenuDishTitle(), fontMenuDish = UIFont.appMenuDish()
@@ -99,13 +112,6 @@ class MenuController: UICollectionViewController {
         } else if cell.frame.height > 320 {
             paragraph.paragraphSpacing = 5
         }
-        for key in cardapio.keys.sort() {
-            let titleDish = "\(key.uppercaseString) - "
-            paragraph.headIndent = (titleDish as NSString).sizeWithAttributes([NSFontAttributeName: fontMenuDishTitle]).width
-            menuDescription.appendAttributedString(NSAttributedString(string: titleDish, attributes: [NSFontAttributeName: fontMenuDishTitle, NSParagraphStyleAttributeName: paragraph.copy()]))
-            menuDescription.appendAttributedString(NSAttributedString(string: "\(cardapio[key]!.lowercaseString)\n", attributes: [NSFontAttributeName: fontMenuDish, NSParagraphStyleAttributeName: paragraph]))
-        }
-        //cell.menuLabel.attributedText = menuDescription
         
         return cell
     }
@@ -122,7 +128,12 @@ class LayoutMenu: UICollectionViewLayout {
     var space = CGPoint(x: 10, y: 10)
     
     override func collectionViewContentSize() -> CGSize {
-        return CGSize(width: CGFloat(collectionView?.numberOfSections() ?? 0) * (itemSize.width + space.x) + space.x, height: CGFloat(collectionView?.numberOfItemsInSection(0) ?? 0) * (itemSize.height + space.y) + space.y)
+        
+        guard let sections = collectionView?.numberOfSections() where sections > 0 else {
+            return CGSize.zero
+        }
+        
+        return CGSize(width: CGFloat(sections) * (itemSize.width + space.x) + space.x, height: CGFloat(collectionView?.numberOfItemsInSection(0) ?? 0) * (itemSize.height + space.y) + space.y)
     }
     
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
@@ -133,6 +144,10 @@ class LayoutMenu: UICollectionViewLayout {
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
+        guard let sections = collectionView?.numberOfSections() where sections > 0 else {
+            return nil
+        }
+        
         let itemTotalWidth = itemSize.width + space.x
         let itemTotalHeight = itemSize.height + space.y
         
@@ -141,7 +156,7 @@ class LayoutMenu: UICollectionViewLayout {
         adjRect.size.height -= space.y
         
         let minH = max(Int(adjRect.minX / itemTotalWidth), 0)
-        let maxH = min(Int(ceil(adjRect.maxX / itemTotalWidth)), collectionView?.numberOfSections() ?? 0)
+        let maxH = min(Int(ceil(adjRect.maxX / itemTotalWidth)), sections)
         let minV = max(Int(adjRect.minY / itemTotalHeight), 0)
         let maxV = min(Int(ceil(adjRect.maxY / itemTotalHeight)), collectionView?.numberOfItemsInSection(0) ?? 0)
         

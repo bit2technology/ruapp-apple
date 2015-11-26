@@ -11,26 +11,35 @@ public class Meal {
     private static let dateFormatter = mealDateFormatter()
     
     public let name: String
-    public let openingDate: NSDate
-    public let closingDate: NSDate
+    public let labelDate: NSDate
+    public let openingDate: NSDate?
+    public let closingDate: NSDate?
     
     init(dict: AnyObject?, dateString: String) throws {
         do {
             guard let dict = dict as? [String:AnyObject],
                 dictName = dict["nome"] as? String,
-                opening = dict["hora_abertura"] as? String,
-                openingDate = Meal.dateFormatter.dateFromString(dateString + " " + opening),
-                closing = dict["minutos_fechamento"] as? Double else {
+                date = Meal.dateFormatter.dateFromString(dateString + " 00:00") else {
                     throw Error.InvalidObject
             }
             name = dictName
-            self.openingDate = openingDate
-            self.closingDate = openingDate.dateByAddingTimeInterval(closing * 60)
+            labelDate = date
+            if let openingStr = dict["hora_abertura"] as? String {
+                openingDate = Meal.dateFormatter.dateFromString(dateString + " " + openingStr)
+            } else {
+                openingDate = nil
+            }
+            if let closingStr = dict["minutos_fechamento"] as? Double {
+                closingDate = openingDate?.dateByAddingTimeInterval(closingStr * 60)
+            } else {
+                closingDate = nil
+            }
         }
         catch {
             name = ""
-            openingDate = NSDate()
-            closingDate = openingDate
+            labelDate = NSDate()
+            openingDate = nil
+            closingDate = nil
             throw error
         }
     }

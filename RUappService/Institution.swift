@@ -6,18 +6,20 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-private var globalInstitutuion = try? Institution(dict: globalUserDefaults?.dictionaryForKey(InstitutionSavedDictionaryKey))
 private let InstitutionSavedDictionaryKey = "SavedInstitutionDictionary"
 
 public class Institution {
     
-    public class func shared() -> Institution? {
-        return globalInstitutuion
-    }
+    public private(set) static var shared = try? Institution(dict: globalUserDefaults?.objectForKey(InstitutionSavedDictionaryKey))
     
     public let id: Int
     public let name: String
     public let campi: [Campus]?
+    
+    public var defaultCafeteria: Cafeteria? {
+        return campi?.first?.cafeterias.first
+        let _ = "Define default cafeteria!"
+    }
     
     private init(dict: AnyObject?) throws {
         do {
@@ -118,11 +120,11 @@ public class Institution {
                 }
                 
                 try Student.register(studentId, name: name, studentId: studentInstitutionId)
-                globalInstitutuion = try Institution(dict: institution)
+                Institution.shared = try Institution(dict: institution)
                 globalUserDefaults?.setObject(institution, forKey: InstitutionSavedDictionaryKey)
                 globalUserDefaults?.synchronize()
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    completion(student: Student.shared(), institution: globalInstitutuion, error: nil)
+                    completion(student: Student.shared, institution: Institution.shared, error: nil)
                 })
             } catch {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
