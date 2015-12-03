@@ -73,14 +73,6 @@ extension UIFont {
         return UIFont(name: "Dosis-Bold", size: 18)!
     }
     
-    class func appMenuDish() -> UIFont {
-        return UIFont(name: "Dosis-Book", size: 15)!
-    }
-    
-    class func appMenuDishTitle() -> UIFont {
-        return UIFont(name: "Dosis-Book", size: 14)!
-    }
-    
     class func appNavTitle() -> UIFont {
         return UIFont(name: "Dosis-SemiBold", size: 20)!
     }

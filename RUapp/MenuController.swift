@@ -99,18 +99,20 @@ class MenuController: UICollectionViewController {
         let meal = menu![indexPath.section][indexPath.item]
         
         cell.backgroundImg.image = UIImage(named: "Menu\(indexPath.item)\(indexPath.section % 2)")
-        cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(meal.labelDate)
+        cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(meal.openingDate)
         cell.mealLabel.text = meal.name.uppercaseString
-
-        let menuDescription = NSMutableAttributedString()
-        let fontMenuDishTitle = UIFont.appMenuDishTitle(), fontMenuDish = UIFont.appMenuDish()
-        let paragraph = NSMutableParagraphStyle()
-        if cell.frame.height > 360 {
-            paragraph.paragraphSpacing = 15
-        } else if cell.frame.height > 340 {
-            paragraph.paragraphSpacing = 10
-        } else if cell.frame.height > 320 {
-            paragraph.paragraphSpacing = 5
+        
+        if let mealDishes = meal.dishes {
+            // Store last type, to avoid writing it multiple times
+            var lastType: String?
+            // Write dishes to cell
+            cell.numberOfDishes = mealDishes.count
+            for (idx, dish) in mealDishes.enumerate() {
+                let dishView = cell.dishes[idx]
+                dishView.titleLabel.text = dish.type != lastType ? dish.type.uppercaseString : nil
+                dishView.nameLabel.text = dish.name
+                lastType = dish.type
+            }
         }
         
         return cell

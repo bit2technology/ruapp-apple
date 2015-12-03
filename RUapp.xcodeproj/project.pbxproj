@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0DB8C1594FDC8B99C764277C /* Pods_RUapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB604BB5C3F9B777DD3EFA9 /* Pods_RUapp.framework */; };
+		4B06D3561C0C61580042C37F /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B06D3551C0C61580042C37F /* Dish.swift */; };
 		4B19D4E31BB6603300DD22A9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B19D4E21BB6603300DD22A9 /* Settings.bundle */; };
 		4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */; };
 		4B33755B1BB98FFE002696C9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B33755A1BB98FFE002696C9 /* NotificationCenter.framework */; };
@@ -45,7 +46,6 @@
 		4BD37FBC1BED1A0A006D77C7 /* TestVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD37FBB1BED1A0A006D77C7 /* TestVote.swift */; };
 		4BF2AE6C1C05CF8800500EA8 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF2AE6B1C05CF8800500EA8 /* MenuCell.swift */; };
 		4BF2AE6E1C05D31400500EA8 /* MenuCellDish.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF2AE6D1C05D31400500EA8 /* MenuCellDish.xib */; };
-		4BF2AE701C05EE2700500EA8 /* MenuExample.json in Resources */ = {isa = PBXBuildFile; fileRef = 4BF2AE6F1C05EE2700500EA8 /* MenuExample.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +120,7 @@
 
 /* Begin PBXFileReference section */
 		04E7BF07EB42EE781AD2FDB6 /* Pods-RUapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.debug.xcconfig"; sourceTree = "<group>"; };
+		4B06D3551C0C61580042C37F /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		4B19D4E21BB6603300DD22A9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		4B3375581BB98FFE002696C9 /* MenuExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MenuExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,7 +168,6 @@
 		4BD37FBB1BED1A0A006D77C7 /* TestVote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVote.swift; sourceTree = "<group>"; };
 		4BF2AE6B1C05CF8800500EA8 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		4BF2AE6D1C05D31400500EA8 /* MenuCellDish.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCellDish.xib; sourceTree = "<group>"; };
-		4BF2AE6F1C05EE2700500EA8 /* MenuExample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MenuExample.json; sourceTree = "<group>"; };
 		7D6A0180CC5FFCB3EE4FEF4D /* Pods-RUapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.release.xcconfig"; sourceTree = "<group>"; };
 		8596BB0F021A6B00E5B4C49A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BBB604BB5C3F9B777DD3EFA9 /* Pods_RUapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -338,7 +338,7 @@
 				4BB03BDC1BB2D5B8006F84CB /* RUappService.h */,
 				4B94BD021BF0D5B9001E3003 /* Menu.swift */,
 				4BB03C001BB2E6B3006F84CB /* Meal.swift */,
-				4BF2AE6F1C05EE2700500EA8 /* MenuExample.json */,
+				4B06D3551C0C61580042C37F /* Dish.swift */,
 				4BB03BFA1BB2DE37006F84CB /* Constants.swift */,
 				4BA5998C1BB31C8700A2E0CF /* Helper.swift */,
 				4BB03BF81BB2DC09006F84CB /* Institution.swift */,
@@ -611,7 +611,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BF2AE701C05EE2700500EA8 /* MenuExample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,6 +732,7 @@
 			files = (
 				4B3FC19C1BE116780077FFBF /* Result.swift in Sources */,
 				4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */,
+				4B06D3561C0C61580042C37F /* Dish.swift in Sources */,
 				4BB03BF91BB2DC09006F84CB /* Institution.swift in Sources */,
 				4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */,
 				4B94BD031BF0D5B9001E3003 /* Menu.swift in Sources */,
