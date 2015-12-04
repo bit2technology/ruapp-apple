@@ -17,6 +17,7 @@
 		4B586E5C19ACD21900589F75 /* MealList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B586E5E19ACD21900589F75 /* MealList.plist */; };
 		4B586E6019ACD24800589F75 /* RestaurantsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B586E6219ACD24800589F75 /* RestaurantsList.plist */; };
 		4B7BFCC019AD6A0000388F0C /* RUATestDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BFCBF19AD6A0000388F0C /* RUATestDateViewController.m */; };
+		4BC103851C05025A0095DB56 /* ruappicon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4BC103841C05025A0095DB56 /* ruappicon.jpg */; };
 		4BC2178B19B75ADE00E1385A /* RUapp-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2178D19B75ADE00E1385A /* RUapp-InfoPlist.strings */; };
 		4BC2179019B75ADE00E1385A /* RUappTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2179219B75ADE00E1385A /* RUappTests-InfoPlist.strings */; };
 		4BC2179519B75ADF00E1385A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC2179719B75ADF00E1385A /* Localizable.strings */; };
@@ -71,6 +72,7 @@
 		4B586E6319ACD24D00589F75 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/RestaurantsList.plist; sourceTree = "<group>"; };
 		4B7BFCBE19AD6A0000388F0C /* RUATestDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUATestDateViewController.h; sourceTree = "<group>"; };
 		4B7BFCBF19AD6A0000388F0C /* RUATestDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUATestDateViewController.m; sourceTree = "<group>"; };
+		4BC103841C05025A0095DB56 /* ruappicon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ruappicon.jpg; sourceTree = "<group>"; };
 		4BC2178C19B75ADE00E1385A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = "pt.lproj/RUapp-InfoPlist.strings"; sourceTree = "<group>"; };
 		4BC2179119B75ADE00E1385A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = "pt.lproj/RUappTests-InfoPlist.strings"; sourceTree = "<group>"; };
 		4BC2179619B75ADF00E1385A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		4BDED2E7192A152F009716DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BC103841C05025A0095DB56 /* ruappicon.jpg */,
 				4BC2179719B75ADF00E1385A /* Localizable.strings */,
 				4BC2178D19B75ADE00E1385A /* RUapp-InfoPlist.strings */,
 				4BDED2E8192A152F009716DF /* RUapp-Info.plist */,
@@ -353,6 +356,7 @@
 			files = (
 				4BC2178B19B75ADE00E1385A /* RUapp-InfoPlist.strings in Resources */,
 				4BFC16B91C04B5C30084CE85 /* Launch_Screen.storyboard in Resources */,
+				4BC103851C05025A0095DB56 /* ruappicon.jpg in Resources */,
 				4B586E6019ACD24800589F75 /* RestaurantsList.plist in Resources */,
 				4BC2179519B75ADF00E1385A /* Localizable.strings in Resources */,
 				4B01017C1C04DC90007B8EF4 /* Settings.bundle in Resources */,

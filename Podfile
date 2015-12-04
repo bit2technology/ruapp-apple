@@ -1,11 +1,10 @@
-platform :ios, '7.0'
+platform :ios, '8.1'
 
 target 'RUapp' do
 
 pod 'Crashlytics'
 pod 'Fabric'
 pod 'GoogleAnalytics'
-pod 'GoogleIDFASupport'
 pod 'iRate'
 
 end

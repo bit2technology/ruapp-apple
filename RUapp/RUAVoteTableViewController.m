@@ -16,7 +16,7 @@
 
 NSString *const RUALastVoteDateKey = @"LastVoteDate";
 
-@interface RUAVoteTableViewController () <UIAlertViewDelegate>
+@interface RUAVoteTableViewController ()
 
 // MARK: Main controls
 @property (strong, nonatomic) NSMutableArray *checkedIndexPaths;
@@ -142,28 +142,9 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
 - (IBAction)submitVote:(id)sender
 {
     // Present confirmation alert.
-    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to submit this vote?", @"Submit vote alert view title")
-                                message:NSLocalizedString(@"The vote can't be changed after you send it", @"Submit vote alert view message")
-                               delegate:self
-                      cancelButtonTitle:NSLocalizedString(@"Cancel", @"Submit vote alert view cancel button")
-                      otherButtonTitles:NSLocalizedString(@"Submit", @"Submit vote alert view submit button"), nil] show];
-}
-
-/**
- * Method called when the menu list is updated.
- */
-- (void)updateMenuWithNotification:(NSNotification *)notification
-{
-    self.menuList = notification.object;
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-// MARK: UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    // If clicked OK in confirmation alert.
-    if (buttonIndex > 0) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Are you sure you want to submit this vote?", @"Submit vote alert view title") message:NSLocalizedString(@"The vote can't be changed after you send it", @"Submit vote alert view message") preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Submit vote alert view cancel button") style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Submit", @"Submit vote alert view submit button") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         // Update table view to show network activity.
         [self.tableView beginUpdates];
         self.presentVoteInterface = NO;
@@ -211,14 +192,22 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
                 self.tableView.backgroundView = nil;
                 self.navigationItem.rightBarButtonItem.enabled = YES;
                 [self.tableView endUpdates];
-                [[[UIAlertView alloc] initWithTitle:localizedMessage
-                                            message:nil
-                                           delegate:self
-                                  cancelButtonTitle:NSLocalizedString(@"OK", @"Vote error alert cancel button")
-                                  otherButtonTitles:nil] show];
+                UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:localizedMessage message:nil preferredStyle:UIAlertControllerStyleAlert];
+                [errorAlert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"Vote error alert cancel button") style:UIAlertActionStyleCancel handler:nil]];
+                [self presentViewController:errorAlert animated:YES completion:nil];
             }
         }];
-    }
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+/**
+ * Method called when the menu list is updated.
+ */
+- (void)updateMenuWithNotification:(NSNotification *)notification
+{
+    self.menuList = notification.object;
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 // MARK: UITableViewController
