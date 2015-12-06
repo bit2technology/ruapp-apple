@@ -144,7 +144,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     // Present confirmation alert.
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Are you sure you want to submit this vote?", @"Submit vote alert view title") message:NSLocalizedString(@"The vote can't be changed after you send it", @"Submit vote alert view message") preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Submit vote alert view cancel button") style:UIAlertActionStyleCancel handler:nil]];
-    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Submit", @"Submit vote alert view submit button") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Submit", @"Submit vote alert view submit button") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         // Update table view to show network activity.
         [self.tableView beginUpdates];
         self.presentVoteInterface = NO;
