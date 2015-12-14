@@ -171,7 +171,7 @@ NSString *const RUAMenuUpdated = @"MenuUpdated";
     // Set current page by getting weekday from date components.
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     gregorianCalendar.timeZone = [NSTimeZone timeZoneWithName:@"America/Sao_Paulo"];
-    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitWeekOfYear fromDate:[RUAAppDelegate sharedAppDelegate].date];
+    NSDateComponents *dateComponents = [gregorianCalendar components:NSCalendarUnitWeekday|NSCalendarUnitWeekOfYear fromDate:[NSDate date]];
     // Adjusting to 0 based count and monday based weekend.
     if (dateComponents.weekday == 1) {
         dateComponents.weekday += 7;

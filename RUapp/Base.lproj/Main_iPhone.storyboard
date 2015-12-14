@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1yA-iI-tnD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1yA-iI-tnD">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -16,7 +16,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="PcN-0j-mwg" kind="relationship" relationship="viewControllers" id="oCa-jX-Eeb"/>
                         <segue destination="eet-sk-nS0" kind="relationship" relationship="viewControllers" id="ggj-56-nw9"/>
                         <segue destination="M7R-SM-LSi" kind="relationship" relationship="viewControllers" id="9ba-V3-Gd0"/>
                         <segue destination="oR3-5c-x6r" kind="relationship" relationship="viewControllers" id="vcM-vR-84B"/>
@@ -25,76 +24,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJu-9D-3SC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="33" y="754"/>
-        </scene>
-        <!--Tests-->
-        <scene sceneID="h17-cx-bFQ">
-            <objects>
-                <viewController id="PcN-0j-mwg" customClass="RUATestDateViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="w3i-iM-QLl"/>
-                        <viewControllerLayoutGuide type="bottom" id="mRA-tz-tW0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="P65-oC-Uhm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3h-DX-9bG">
-                                <rect key="frame" x="0.0" y="176" width="320" height="216"/>
-                                <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" translatesAutoresizingMaskIntoConstraints="NO" id="RwI-rG-ZYy">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
-                                        <connections>
-                                            <action selector="datePickerValueChanged:" destination="PcN-0j-mwg" eventType="valueChanged" id="uSC-DJ-jBt"/>
-                                        </connections>
-                                    </datePicker>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="RwI-rG-ZYy" firstAttribute="leading" secondItem="K3h-DX-9bG" secondAttribute="leading" id="6Ut-eL-kGu"/>
-                                    <constraint firstItem="RwI-rG-ZYy" firstAttribute="top" secondItem="K3h-DX-9bG" secondAttribute="top" id="FBq-6W-u40"/>
-                                    <constraint firstAttribute="trailing" secondItem="RwI-rG-ZYy" secondAttribute="trailing" id="FeQ-zd-ybx"/>
-                                    <constraint firstAttribute="bottom" secondItem="RwI-rG-ZYy" secondAttribute="bottom" id="JUm-7v-C2d"/>
-                                </constraints>
-                            </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sun-LS-e8W">
-                                <rect key="frame" x="36" y="140" width="249" height="29"/>
-                                <segments>
-                                    <segment title="Production Server"/>
-                                    <segment title="Test Server"/>
-                                </segments>
-                                <connections>
-                                    <action selector="changeServer:" destination="PcN-0j-mwg" eventType="valueChanged" id="9mZ-75-H6I"/>
-                                </connections>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xlo-AA-W7p">
-                                <rect key="frame" x="117" y="400" width="87" height="30"/>
-                                <state key="normal" title="Clean Cache">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cleanCache:" destination="PcN-0j-mwg" eventType="touchUpInside" id="WBQ-cI-qaP"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.10588235408067703" green="0.10588235408067703" blue="0.19215686619281769" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Xlo-AA-W7p" secondAttribute="centerX" id="5e6-tB-Xyf"/>
-                            <constraint firstAttribute="centerX" secondItem="sun-LS-e8W" secondAttribute="centerX" id="AsR-uY-FYO"/>
-                            <constraint firstAttribute="centerY" secondItem="K3h-DX-9bG" secondAttribute="centerY" id="Z4P-ny-2t0"/>
-                            <constraint firstItem="Xlo-AA-W7p" firstAttribute="top" secondItem="RwI-rG-ZYy" secondAttribute="bottom" constant="8" id="i7s-RD-bgU"/>
-                            <constraint firstItem="RwI-rG-ZYy" firstAttribute="top" secondItem="sun-LS-e8W" secondAttribute="bottom" constant="8" id="pkn-zn-dGt"/>
-                            <constraint firstAttribute="centerX" secondItem="K3h-DX-9bG" secondAttribute="centerX" id="vJq-YF-TpL"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="WtB-4k-LqG"/>
-                    <navigationItem key="navigationItem" title="Tests" id="cVU-vz-kSQ"/>
-                    <connections>
-                        <outlet property="datePicker" destination="RwI-rG-ZYy" id="Vst-vs-aE4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Cn-W1-eEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="33" y="15"/>
         </scene>
         <!--Results-->
         <scene sceneID="0fJ-pr-eiP">
@@ -398,25 +327,6 @@
             </objects>
             <point key="canvasLocation" x="1093" y="15"/>
         </scene>
-        <!--Tests-->
-        <scene sceneID="ukY-h1-1TD">
-            <objects>
-                <navigationController storyboardIdentifier="Tests" automaticallyAdjustsScrollViewInsets="NO" id="rcu-gZ-18V" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tests" id="1ey-tK-DfJ"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="fEf-sf-VBN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="PcN-0j-mwg" kind="relationship" relationship="rootViewController" id="gsx-gz-bbS"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Km-5T-2cd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-493" y="15"/>
-        </scene>
     </scenes>
     <resources>
         <image name="BurButtonIconArrowLeft" width="25" height="25"/>
@@ -426,8 +336,5 @@
         <image name="TabBarIconVoteUnselected" width="25" height="25"/>
         <image name="VoteIconVeryGood" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="oCa-jX-Eeb"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.23529411852359772" green="0.7137255072593689" blue="0.89019608497619629" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -16,11 +16,6 @@
 // MARK: Properties
 
 /**
- * Date to use across app. For testing purposes, it is settable. For release, it returns current date.
- */
-@property (copy, nonatomic) NSDate *date;
-
-/**
  * Reference to menu view controller, to get menu information.
  */
 @property (weak, nonatomic) RUAMenuTableViewController *menuTableViewController;

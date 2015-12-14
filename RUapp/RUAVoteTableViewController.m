@@ -45,7 +45,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
  */
 - (void)adjustInterfaceForVoteStatus
 {
-    NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
+    NSDate *now = [NSDate date];
     self.lastAppearance = now;
     self.mealForNow = [RUAAppDelegate mealForDate:now];
     
@@ -387,9 +387,10 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     [super viewWillAppear:animated];
     
     RUAAppDelegate *sharedAppDelegate = [RUAAppDelegate sharedAppDelegate];
+    NSDate *now = [NSDate date];
     
     // If this is the first time, there is more than 5 hours from last appearance or different meal from last appearance, get new menu list.
-    if (!self.lastAppearance || [sharedAppDelegate.date timeIntervalSinceDate:self.lastAppearance] > 18000 || [RUAAppDelegate mealForDate:sharedAppDelegate.date] != [RUAAppDelegate mealForDate:self.lastAppearance]) {
+    if (!self.lastAppearance || [now timeIntervalSinceDate:self.lastAppearance] > 18000 || [RUAAppDelegate mealForDate:now] != [RUAAppDelegate mealForDate:self.lastAppearance]) {
         NSArray *menuList = [sharedAppDelegate.menuTableViewController menuForCurrentMeal];
         // Apply if it is different
         if (![menuList isEqualToArray:self.menuList]) {
@@ -406,7 +407,7 @@ NSString *const RUALastVoteDateKey = @"LastVoteDate";
     
     RUAAppDelegate *sharedAppDelegate = [RUAAppDelegate sharedAppDelegate];
     [sharedAppDelegate.menuTableViewController downloadDataSourceAndUpdateTable];
-    self.lastAppearance = sharedAppDelegate.date;
+    self.lastAppearance = [NSDate date];
     
     // Analytics
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];

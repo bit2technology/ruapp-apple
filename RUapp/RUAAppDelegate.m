@@ -15,21 +15,7 @@
 @import Fabric;
 @import Crashlytics;
 
-NSString *const RUAServerTestURLString = @"http://titugoru2.appspot.com/getvalue";
-NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
-
 @implementation RUAAppDelegate
-
-// MARK: Properties
-
-- (NSDate *)date
-{
-//    if (!_date) {
-//        _date = [NSDate date];
-//    }
-//    return _date.copy;
-    return [NSDate date];
-}
 
 // MARK: Methods
 
@@ -61,7 +47,7 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 
 + (RUAMeal)lastMealForNow
 {
-    NSDate *now = [self sharedAppDelegate].date;
+    NSDate *now = [NSDate date];
     return [self lastMealForDate:&now];
 }
 
@@ -86,7 +72,7 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 
 + (RUAMeal)mealForNow
 {
-    return [self mealForDate:[self sharedAppDelegate].date];
+    return [self mealForDate:[NSDate date]];
 }
 
 + (RUAAppDelegate *)sharedAppDelegate
@@ -96,7 +82,7 @@ NSString *const RUAServerURLString = @"http://titugoru3.appspot.com/getvalue";
 
 + (NSURL *)serverMenuURL
 {
-    return [NSURL URLWithString:RUAServerURLString];
+    return [NSURL URLWithString:@"http://titugoru3.appspot.com/getvalue"];
 }
 
 + (NSURL *)serverResultsURL

@@ -275,7 +275,7 @@ NSString *const RUAResultsDataSourceCacheKey = @"ResultsDataSourceCache";
 {
     [super viewWillAppear:animated];
     
-    NSDate *now = [RUAAppDelegate sharedAppDelegate].date;
+    NSDate *now = [NSDate date];
     // If there is no results' date or it has more than 19 hours or last meal for now is different from results' meal, remove results list.
     if (self.resultsForCurrentRestaurant.date == nil || [now timeIntervalSinceDate:self.resultsForCurrentRestaurant.date] >= 68400 || [RUAAppDelegate lastMealForNow] != self.resultsForCurrentRestaurant.meal) {
         self.resultsList = nil;
