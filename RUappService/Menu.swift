@@ -51,19 +51,23 @@ public class Menu {
         }
         
         var menu = [[Meal]]()
-        for rawDay in menuArray {
+        var menuDate = [Meal]()
+        var lastDate: String?
+        for rawMeal in menuArray {
             
-            guard let dateString = rawDay["data"] as? String,
-                let rawMeals = rawDay["refeicoes"] as? [AnyObject] else {
-                    throw Error.InvalidObject
+            let currentDate = rawMeal["date"] as? String
+            if currentDate != lastDate {
+                if lastDate != nil {
+                    menu.append(menuDate)
+                }
+                menuDate = [Meal]()
+                lastDate = currentDate
             }
             
-            var meals = [Meal]()
-            for rawMeal in rawMeals {
-                meals.append(try Meal(dict: rawMeal, dateString: dateString))
-            }
-            menu.append(meals)
+            menuDate.append(try Meal(dict: rawMeal))
         }
+        menu.append(menuDate)
+        
         return menu
     }
 }

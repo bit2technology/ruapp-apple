@@ -15,10 +15,14 @@ public class Dish {
     
     init(dict: [String:AnyObject]) throws {
         
-        guard let id = dict["comida_id"] as? Int,
+        if false {
+            _ = "ID da comida!!!!"
+        }
+        
+        guard let /*id = dict["comida_id"] as? Int,*/
             rawMeta = dict["meta"] as? String,
             meta = Meta(rawValue: rawMeta),
-            type = dict["tipo_comida_nome"] as? String else {
+            type = dict["type"] as? String else {
                 self.id = 0
                 self.meta = .Other
                 self.type = ""
@@ -26,11 +30,11 @@ public class Dish {
                 throw Error.InvalidObject
         }
         
-        self.id = id
+        self.id = 0//id
         self.meta = meta
         self.type = type
         
-        if let name = dict["comida_nome"] as? String {
+        if let name = dict["name"] as? String {
             self.name = name
         } else {
             self.name = nil
