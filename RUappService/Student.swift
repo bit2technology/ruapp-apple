@@ -19,9 +19,9 @@ public class Student {
     private init(dict: AnyObject?) throws {
         do {
             guard let dict = dict as? [String:AnyObject],
-                dictId = dict["id"] as? Int,
-                dictName = dict["nome"] as? String,
-                dictStudent = dict["matricula"] as? String else {
+                dictId = dict["institution_id"] as? Int,
+                dictName = dict["name"] as? String,
+                dictStudent = dict["number_plate"] as? String else {
                     throw Error.InvalidObject
             }
             
@@ -44,6 +44,6 @@ public class Student {
     }
     
     class func register(id: Int, name: String, studentId: String) throws -> Student? {
-        return try register(["id":id,"nome":name,"matricula":studentId])
+        return try register(["name": name, "number_plate": studentId, "institution_id": id])
     }
 }

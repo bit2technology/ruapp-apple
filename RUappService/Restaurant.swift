@@ -1,5 +1,5 @@
 //
-//  Cafeteria.swift
+//  Restaurant.swift
 //  RUapp
 //
 //  Created by Igor Camilo on 15-09-23.
@@ -8,7 +8,18 @@
 
 import CoreLocation
 
-public class Cafeteria {
+private let DefaultRestaurantIdKey = "DefaultRestaurantId"
+
+public class Restaurant {
+    
+    public static var defaultRestaurantId = globalUserDefaults?.objectForKey(DefaultRestaurantIdKey) as? Int {
+        didSet {
+            if let defaultRestaurantId = defaultRestaurantId {
+                globalUserDefaults?.setInteger(defaultRestaurantId, forKey: DefaultRestaurantIdKey)
+                globalUserDefaults?.synchronize()
+            }
+        }
+    }
     
     public let id: Int
     public let name: String
@@ -19,16 +30,15 @@ public class Cafeteria {
         do {
             guard let dict = dict as? [String:AnyObject],
                 dictId = dict["id"] as? Int,
-                dictName = dict["nome"] as? String,
+                dictName = dict["name"] as? String,
                 latitude = dict["latitude"] as? CLLocationDegrees,
-                longitude = dict["longitude"] as? CLLocationDegrees,
-                dictMeals = dict["tipos_refeicao"] as? [AnyObject] else {
+                longitude = dict["longitude"] as? CLLocationDegrees else {
                     throw Error.InvalidObject
             }
             
             id = dictId
             name = dictName
-            capacity = dict["capacidade"] as? Int
+            capacity = dict["capacity"] as? Int
             coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         }
         catch {

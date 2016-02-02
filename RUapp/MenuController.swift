@@ -26,11 +26,12 @@ class MenuController: UICollectionViewController {
     
     private func updateMenu() {
         
-        guard let defaultCafeteria = Institution.shared?.defaultCafeteria else {
+        guard let defaultRestaurantId = Restaurant.defaultRestaurantId else {
             return
+            let _ = "Show error"
         }
         
-        Menu.update(defaultCafeteria) { (menu, error) -> Void in
+        Menu.update(defaultRestaurantId) { (menu, error) -> Void in
             
             guard let menu = menu else {
                 return
@@ -99,7 +100,9 @@ class MenuController: UICollectionViewController {
         let meal = menu![indexPath.section][indexPath.item]
         
         cell.backgroundImg.image = UIImage(named: "Menu\(indexPath.item)\(indexPath.section % 2)")
-        cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(meal.openingDate)
+        if let mealOpeningDate = meal.openingDate {
+            cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(mealOpeningDate)
+        }
         cell.mealLabel.text = meal.name.uppercaseString
         
         if let mealDishes = meal.dishes {

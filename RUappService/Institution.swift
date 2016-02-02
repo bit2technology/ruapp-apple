@@ -16,16 +16,11 @@ public class Institution {
     public let name: String
     public let campi: [Campus]?
     
-    public var defaultCafeteria: Cafeteria? {
-        return campi?.first?.cafeterias.first
-        let _ = "Define default cafeteria!"
-    }
-    
     private init(dict: AnyObject?) throws {
         do {
             guard let dict = dict as? [String:AnyObject],
                 dictId = dict["id"] as? Int,
-                dictName = dict["nome"] as? String else {
+                dictName = dict["name"] as? String else {
                     throw Error.InvalidObject
             }
             
@@ -103,7 +98,7 @@ public class Institution {
         
         let req = NSMutableURLRequest(URL: NSURL.appRegisterStudent())
         req.HTTPMethod = "POST"
-        let params = ["instituicao_id": id, "nome": name, "matricula": studentInstitutionId, "token": UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""] as [String:AnyObject]
+        let params = ["institution_id": id, "name": name, "number_plate": studentInstitutionId, "token": UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""] as [String:AnyObject]
         req.HTTPBody = params.appPrepare()
         NSURLSession.sharedSession().dataTaskWithRequest(req, completionHandler: { (data, response, error) -> Void in
             
@@ -114,15 +109,15 @@ public class Institution {
                 
                 let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: [])
                 
-                guard let studentId = jsonObj["aluno_id"] as? Int,
-                    institution = jsonObj["instituicao"] as? [String:AnyObject] else {
+                guard let studentId = jsonObj["student_id"] as? Int,
+                    institution = jsonObj["institution"] as? [String:AnyObject] else {
                         throw Error.InvalidObject
                 }
                 
                 try Student.register(studentId, name: name, studentId: studentInstitutionId)
                 Institution.shared = try Institution(dict: institution)
-                globalUserDefaults?.setObject(institution, forKey: InstitutionSavedDictionaryKey)
-                globalUserDefaults?.synchronize()
+                globalUserDefaults?.setObject(institution, forKey: InstitutionSavedDictionaryKey) // It will sync in the next command
+                Restaurant.defaultRestaurantId = Institution.shared?.campi?.first?.restaurants.first?.id
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     completion(student: Student.shared, institution: Institution.shared, error: nil)
                 })

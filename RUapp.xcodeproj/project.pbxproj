@@ -39,7 +39,7 @@
 		4BB03BF91BB2DC09006F84CB /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BF81BB2DC09006F84CB /* Institution.swift */; };
 		4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFA1BB2DE37006F84CB /* Constants.swift */; };
 		4BB03BFD1BB2E079006F84CB /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFC1BB2E079006F84CB /* Campus.swift */; };
-		4BB03BFF1BB2E204006F84CB /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */; };
+		4BB03BFF1BB2E204006F84CB /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03BFE1BB2E204006F84CB /* Restaurant.swift */; };
 		4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB03C001BB2E6B3006F84CB /* Meal.swift */; };
 		4BBCAC221BE932A30006D87B /* TestInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCAC211BE932A30006D87B /* TestInstitution.swift */; };
 		4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC6D731BB37B4600AF99EF /* SidebarController.swift */; };
@@ -161,7 +161,7 @@
 		4BB03BF81BB2DC09006F84CB /* Institution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
 		4BB03BFA1BB2DE37006F84CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4BB03BFC1BB2E079006F84CB /* Campus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
-		4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafeteria.swift; sourceTree = "<group>"; };
+		4BB03BFE1BB2E204006F84CB /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		4BB03C001BB2E6B3006F84CB /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		4BBCAC211BE932A30006D87B /* TestInstitution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestInstitution.swift; sourceTree = "<group>"; };
 		4BCC6D731BB37B4600AF99EF /* SidebarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarController.swift; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 				4BA5998C1BB31C8700A2E0CF /* Helper.swift */,
 				4BB03BF81BB2DC09006F84CB /* Institution.swift */,
 				4BB03BFC1BB2E079006F84CB /* Campus.swift */,
-				4BB03BFE1BB2E204006F84CB /* Cafeteria.swift */,
+				4BB03BFE1BB2E204006F84CB /* Restaurant.swift */,
 				4BA5998E1BB31DE400A2E0CF /* Student.swift */,
 				4B4C7FD21BBB4709001D55E5 /* Vote.swift */,
 				4B3FC19B1BE116780077FFBF /* Result.swift */,
@@ -737,7 +737,7 @@
 				4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */,
 				4B94BD031BF0D5B9001E3003 /* Menu.swift in Sources */,
 				4B4C7FD31BBB4709001D55E5 /* Vote.swift in Sources */,
-				4BB03BFF1BB2E204006F84CB /* Cafeteria.swift in Sources */,
+				4BB03BFF1BB2E204006F84CB /* Restaurant.swift in Sources */,
 				4BB03BFD1BB2E079006F84CB /* Campus.swift in Sources */,
 				4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */,
 				4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */,

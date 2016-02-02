@@ -10,29 +10,29 @@ public class Campus {
     
     public let id: Int
     public let name: String
-    public let cafeterias: [Cafeteria]
+    public let restaurants: [Restaurant]
     
     public init(dict: AnyObject?) throws {
         do {
             guard let dict = dict as? [String:AnyObject],
                 dictInt = dict["id"] as? Int,
-                dictName = dict["nome"] as? String,
-                dictCafe = dict["restaurantes"] as? [[String:AnyObject]] else {
+                dictName = dict["name"] as? String,
+                dictRestaurant = dict["restaurants"] as? [[String:AnyObject]] else {
                     throw Error.InvalidObject
             }
             
-            var cafeArray = [Cafeteria]()
-            for cafeteria in dictCafe {
-                cafeArray.append(try Cafeteria(dict: cafeteria))
+            var restaurantArray = [Restaurant]()
+            for restaurant in dictRestaurant {
+                restaurantArray.append(try Restaurant(dict: restaurant))
             }
             id = dictInt
             name = dictName
-            cafeterias = cafeArray
+            restaurants = restaurantArray
         }
         catch {
             id = -1
             name = ""
-            cafeterias = []
+            restaurants = []
             throw error
         }
     }

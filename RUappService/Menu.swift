@@ -16,8 +16,8 @@ public class Menu {
     public private(set) static var shared = try? Menu.process(globalUserDefaults?.objectForKey(SavedMenuArrayKey))
     
     /// Get menu info from data. If successfull, cache it.
-    public class func update(cafeteria: Cafeteria, completion: (menu: [[Meal]]?, error: ErrorType?) -> Void) {
-        NSURLSession.sharedSession().dataTaskWithURL(NSURL.appGetMenu(cafeteria), completionHandler: { (data, response, error) -> Void in
+    public class func update(restaurantId: Int, completion: (menu: [[Meal]]?, error: ErrorType?) -> Void) {
+        NSURLSession.sharedSession().dataTaskWithURL(NSURL.appGetMenu(restaurantId), completionHandler: { (data, response, error) -> Void in
             do {
                 // Verify data
                 guard let data = data else {
@@ -46,28 +46,26 @@ public class Menu {
     /// Process raw menu data.
     private class func process(menuObj: AnyObject?) throws -> [[Meal]] {
         
-        guard let menuArray = menuObj as? [AnyObject] else {
+        guard let rawWeekMenu = menuObj as? [AnyObject] else {
             throw Error.InvalidObject
         }
         
-        var menu = [[Meal]]()
-        var menuDate = [Meal]()
-        var lastDate: String?
-        for rawMeal in menuArray {
+        var weekMenu = [[Meal]]()
+        for rawDayMenu in rawWeekMenu {
             
-            let currentDate = rawMeal["date"] as? String
-            if currentDate != lastDate {
-                if lastDate != nil {
-                    menu.append(menuDate)
-                }
-                menuDate = [Meal]()
-                lastDate = currentDate
+            guard let dateString = rawDayMenu["date"] as? String,
+                rawMeals = rawDayMenu["meals"] as? [AnyObject] else {
+                throw Error.InvalidObject
             }
             
-            menuDate.append(try Meal(dict: rawMeal))
+            var dayMenu = [Meal]()
+            for rawMeal in rawMeals {
+                dayMenu.append(try Meal(dict: rawMeal, dateString: dateString))
+            }
+            
+            weekMenu.append(dayMenu)
         }
-        menu.append(menuDate)
         
-        return menu
+        return weekMenu
     }
 }
