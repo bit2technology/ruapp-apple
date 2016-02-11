@@ -116,6 +116,11 @@ class MenuController: UICollectionViewController {
                 dishView.nameLabel.text = dish.name
                 lastType = dish.type
             }
+        } else {
+            for dishView in cell.dishes {
+                dishView.titleLabel.text = nil
+                dishView.nameLabel.text = nil
+            }
         }
         
         return cell

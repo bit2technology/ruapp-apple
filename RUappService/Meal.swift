@@ -11,6 +11,8 @@ public class Meal {
     private static let dateFormatter = mealDateFormatter()
     
     public let name: String
+    public let meta: Meta
+    public let id: Int?
     public let openingDate: NSDate?
     public let closingDate: NSDate?
     public let dishes: [Dish]?
@@ -18,7 +20,9 @@ public class Meal {
     init(dict: AnyObject?, dateString: String) throws {
         do {
             guard let dict = dict as? [String:AnyObject],
-                dictName = dict["name"] as? String else {
+                dictName = dict["name"] as? String,
+                rawMeta = dict["meta"] as? String,
+                dictMeta = Meta(rawValue: rawMeta) else {
                     throw Error.InvalidObject
             }
             
@@ -42,14 +46,25 @@ public class Meal {
             }
             
             name = dictName
+            meta = dictMeta
+            id = dict["id"] as? Int
         }
         catch {
             name = ""
+            meta = .None
+            id = nil
             openingDate = NSDate()
             closingDate = nil
             dishes = nil
             throw error
         }
+    }
+    
+    public enum Meta: String {
+        case Open = "open"
+        case Closed = "closed"
+        case Strike = "strike"
+        case None = "-"
     }
 }
 

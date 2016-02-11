@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -223,15 +223,40 @@
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX4-ll-gcU">
                                             <rect key="frame" x="0.0" y="45" width="283" height="240"/>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rgg-6E-UFI" userLabel="Meta Wrapper">
+                                            <rect key="frame" x="0.0" y="105" width="283" height="121"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MetaIconWait" translatesAutoresizingMaskIntoConstraints="NO" id="BM7-IZ-dgc">
+                                                    <rect key="frame" x="97" y="0.0" width="90" height="70"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9m-iB-ZA5">
+                                                    <rect key="frame" x="121" y="87" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="BM7-IZ-dgc" firstAttribute="centerX" secondItem="Rgg-6E-UFI" secondAttribute="centerX" id="9rf-4K-jNE"/>
+                                                <constraint firstItem="U9m-iB-ZA5" firstAttribute="centerX" secondItem="Rgg-6E-UFI" secondAttribute="centerX" id="NaK-oE-cCA"/>
+                                                <constraint firstItem="BM7-IZ-dgc" firstAttribute="top" secondItem="Rgg-6E-UFI" secondAttribute="top" id="WCB-ud-IEN"/>
+                                                <constraint firstAttribute="bottom" secondItem="U9m-iB-ZA5" secondAttribute="bottom" constant="13" id="WT4-3k-yzU"/>
+                                                <constraint firstItem="U9m-iB-ZA5" firstAttribute="top" secondItem="BM7-IZ-dgc" secondAttribute="bottom" constant="17" id="mb6-X4-NQv"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Rgg-6E-UFI" secondAttribute="trailing" id="1bs-xa-Z5b"/>
                                     <constraint firstItem="vzH-z7-0PV" firstAttribute="top" secondItem="wDB-cS-hH1" secondAttribute="top" id="2sj-M7-77K"/>
+                                    <constraint firstItem="Rgg-6E-UFI" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" id="5oO-8e-fs2"/>
                                     <constraint firstAttribute="bottom" secondItem="uX4-ll-gcU" secondAttribute="bottom" constant="8" id="BDP-40-AQU"/>
                                     <constraint firstItem="uX4-ll-gcU" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" id="Czp-fa-V1m"/>
                                     <constraint firstAttribute="bottom" secondItem="vzH-z7-0PV" secondAttribute="bottom" id="EiS-ay-NXU"/>
                                     <constraint firstItem="0ze-ql-Ocs" firstAttribute="top" secondItem="9Un-QH-13m" secondAttribute="bottom" id="Jbc-LO-Bgv"/>
+                                    <constraint firstItem="Rgg-6E-UFI" firstAttribute="centerY" secondItem="uX4-ll-gcU" secondAttribute="centerY" id="Q4W-ht-oWB"/>
                                     <constraint firstAttribute="trailing" secondItem="uX4-ll-gcU" secondAttribute="trailing" id="W8K-eI-BxA"/>
                                     <constraint firstAttribute="trailing" secondItem="vzH-z7-0PV" secondAttribute="trailing" id="cLo-WJ-247"/>
                                     <constraint firstItem="uX4-ll-gcU" firstAttribute="top" secondItem="0ze-ql-Ocs" secondAttribute="bottom" constant="4" id="dx4-4B-69k"/>
@@ -1416,6 +1441,7 @@
     </scenes>
     <resources>
         <image name="BtnClose" width="40" height="40"/>
+        <image name="MetaIconWait" width="90" height="70"/>
         <image name="NavBarFork" width="56" height="48"/>
         <image name="RegisterCheck" width="70" height="70"/>
         <image name="RegisterCheckActive" width="70" height="70"/>

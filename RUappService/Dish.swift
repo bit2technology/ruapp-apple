@@ -8,29 +8,21 @@
 
 public class Dish {
     
-    public let id: Int
     public let meta: Meta
     public let type: String
     public let name: String?
     
     init(dict: [String:AnyObject]) throws {
         
-        if false {
-            _ = "ID da comida!!!!"
-        }
-        
-        guard let /*id = dict["comida_id"] as? Int,*/
-            rawMeta = dict["meta"] as? String,
+        guard let rawMeta = dict["meta"] as? String,
             meta = Meta(rawValue: rawMeta),
             type = dict["type"] as? String else {
-                self.id = 0
                 self.meta = .Other
                 self.type = ""
                 self.name = nil
                 throw Error.InvalidObject
         }
         
-        self.id = 0//id
         self.meta = meta
         self.type = type
         
@@ -42,8 +34,8 @@ public class Dish {
     }
     
     public enum Meta: String {
-        case Main = "principal"
-        case Vegetarian = "vegetariano"
-        case Other = "outro"
+        case Main = "main"
+        case Vegetarian = "vegetarian"
+        case Other = "other"
     }
 }
