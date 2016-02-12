@@ -227,7 +227,7 @@
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX4-ll-gcU">
                                             <rect key="frame" x="4" y="49" width="275" height="232"/>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rgg-6E-UFI" userLabel="Meta Wrapper">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rgg-6E-UFI" userLabel="Alert Wrapper">
                                             <rect key="frame" x="4" y="105" width="275" height="121"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MetaIconWait" translatesAutoresizingMaskIntoConstraints="NO" id="BM7-IZ-dgc">
@@ -276,6 +276,7 @@
                                 </constraints>
                                 <size key="customSize" width="283" height="293"/>
                                 <connections>
+                                    <outlet property="alertWrapper" destination="Rgg-6E-UFI" id="njX-XP-16R"/>
                                     <outlet property="backgroundImg" destination="vzH-z7-0PV" id="ahX-Tz-BuM"/>
                                     <outlet property="dayOfWeekLabel" destination="0ze-ql-Ocs" id="nST-d0-Qlq"/>
                                     <outlet property="dishesWrapper" destination="uX4-ll-gcU" id="Da8-Fs-jNo"/>

@@ -105,6 +105,13 @@ class MenuController: UICollectionViewController {
         }
         cell.mealLabel.text = meal.name.uppercaseString
         
+        // Alert / Meta
+        if meal.meta != .Open {
+            // TODO: 
+        } else {
+            cell.alertWrapper.hidden = true
+        }
+        
         if let mealDishes = meal.dishes {
             // Store last type, to avoid writing it multiple times
             var lastType: String?
