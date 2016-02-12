@@ -27,26 +27,18 @@ public class Restaurant {
     public let coordinate: CLLocationCoordinate2D
     
     public init(dict: AnyObject?) throws {
-        do {
-            guard let dict = dict as? [String:AnyObject],
-                dictId = dict["id"] as? Int,
-                dictName = dict["name"] as? String,
-                latitude = dict["latitude"] as? CLLocationDegrees,
-                longitude = dict["longitude"] as? CLLocationDegrees else {
-                    throw Error.InvalidObject
-            }
-            
-            id = dictId
-            name = dictName
-            capacity = dict["capacity"] as? Int
-            coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        guard let dict = dict as? [String:AnyObject],
+            dictId = dict["id"] as? Int,
+            dictName = dict["name"] as? String,
+            latitude = dict["latitude"] as? CLLocationDegrees,
+            longitude = dict["longitude"] as? CLLocationDegrees else {
+                throw Error.InvalidObject
         }
-        catch {
-            id = -1
-            name = ""
-            capacity = nil
-            coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-            throw error
-        }
+        
+        id = dictId
+        name = dictName
+        capacity = dict["capacity"] as? Int
+        coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }

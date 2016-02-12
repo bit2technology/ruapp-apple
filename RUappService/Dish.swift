@@ -17,9 +17,6 @@ public class Dish {
         guard let rawMeta = dict["meta"] as? String,
             meta = Meta(rawValue: rawMeta),
             type = dict["type"] as? String else {
-                self.meta = .Other
-                self.type = ""
-                self.name = nil
                 throw Error.InvalidObject
         }
         

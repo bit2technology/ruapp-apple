@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -198,39 +198,43 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="T7y-WI-a8k" customClass="LayoutMenu" customModule="RUapp" customModuleProvider="target"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Menu" id="wDB-cS-hH1" customClass="MenuCell" customModule="RUapp" customModuleProvider="target">
+                            <collectionViewCell multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Menu" id="wDB-cS-hH1" customClass="MenuCell" customModule="RUapp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="283" height="293"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="283" height="293"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vzH-z7-0PV">
-                                            <rect key="frame" x="0.0" y="0.0" width="283" height="293"/>
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8K-WG-ms8" customClass="MenuCellShadow" customModule="RUapp" customModuleProvider="target">
+                                            <rect key="frame" x="4" y="4" width="275" height="285"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vzH-z7-0PV" customClass="MenuCellBgImg" customModule="RUapp" customModuleProvider="target">
+                                            <rect key="frame" x="4" y="4" width="275" height="285"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Un-QH-13m">
-                                            <rect key="frame" x="129" y="4" width="25" height="18"/>
+                                            <rect key="frame" x="129" y="8" width="25" height="18"/>
                                             <fontDescription key="fontDescription" name="Dosis-Book" family="Dosis" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day of Week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ze-ql-Ocs">
-                                            <rect key="frame" x="106" y="22" width="71" height="19"/>
+                                            <rect key="frame" x="106" y="26" width="71" height="19"/>
                                             <fontDescription key="fontDescription" name="Dosis-Book" family="Dosis" pointSize="15"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX4-ll-gcU">
-                                            <rect key="frame" x="0.0" y="45" width="283" height="240"/>
+                                            <rect key="frame" x="4" y="49" width="275" height="232"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rgg-6E-UFI" userLabel="Meta Wrapper">
-                                            <rect key="frame" x="0.0" y="105" width="283" height="121"/>
+                                            <rect key="frame" x="4" y="105" width="275" height="121"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MetaIconWait" translatesAutoresizingMaskIntoConstraints="NO" id="BM7-IZ-dgc">
-                                                    <rect key="frame" x="97" y="0.0" width="90" height="70"/>
+                                                    <rect key="frame" x="93" y="0.0" width="90" height="70"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9m-iB-ZA5">
-                                                    <rect key="frame" x="121" y="87" width="42" height="21"/>
+                                                    <rect key="frame" x="117" y="87" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -248,22 +252,27 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Rgg-6E-UFI" secondAttribute="trailing" id="1bs-xa-Z5b"/>
-                                    <constraint firstItem="vzH-z7-0PV" firstAttribute="top" secondItem="wDB-cS-hH1" secondAttribute="top" id="2sj-M7-77K"/>
-                                    <constraint firstItem="Rgg-6E-UFI" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" id="5oO-8e-fs2"/>
-                                    <constraint firstAttribute="bottom" secondItem="uX4-ll-gcU" secondAttribute="bottom" constant="8" id="BDP-40-AQU"/>
-                                    <constraint firstItem="uX4-ll-gcU" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" id="Czp-fa-V1m"/>
-                                    <constraint firstAttribute="bottom" secondItem="vzH-z7-0PV" secondAttribute="bottom" id="EiS-ay-NXU"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rgg-6E-UFI" secondAttribute="trailing" constant="4" id="1bs-xa-Z5b"/>
+                                    <constraint firstItem="vzH-z7-0PV" firstAttribute="top" secondItem="wDB-cS-hH1" secondAttribute="top" constant="4" id="2sj-M7-77K"/>
+                                    <constraint firstItem="Rgg-6E-UFI" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" constant="4" id="5oO-8e-fs2"/>
+                                    <constraint firstAttribute="bottom" secondItem="uX4-ll-gcU" secondAttribute="bottom" constant="12" id="BDP-40-AQU"/>
+                                    <constraint firstItem="u8K-WG-ms8" firstAttribute="top" secondItem="wDB-cS-hH1" secondAttribute="top" constant="4" id="BxJ-4B-O2G"/>
+                                    <constraint firstItem="uX4-ll-gcU" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" constant="4" id="Czp-fa-V1m"/>
+                                    <constraint firstAttribute="bottom" secondItem="vzH-z7-0PV" secondAttribute="bottom" constant="4" id="EiS-ay-NXU"/>
                                     <constraint firstItem="0ze-ql-Ocs" firstAttribute="top" secondItem="9Un-QH-13m" secondAttribute="bottom" id="Jbc-LO-Bgv"/>
                                     <constraint firstItem="Rgg-6E-UFI" firstAttribute="centerY" secondItem="uX4-ll-gcU" secondAttribute="centerY" id="Q4W-ht-oWB"/>
-                                    <constraint firstAttribute="trailing" secondItem="uX4-ll-gcU" secondAttribute="trailing" id="W8K-eI-BxA"/>
-                                    <constraint firstAttribute="trailing" secondItem="vzH-z7-0PV" secondAttribute="trailing" id="cLo-WJ-247"/>
+                                    <constraint firstAttribute="trailing" secondItem="uX4-ll-gcU" secondAttribute="trailing" constant="4" id="W8K-eI-BxA"/>
+                                    <constraint firstAttribute="bottom" secondItem="u8K-WG-ms8" secondAttribute="bottom" constant="4" id="ZGj-uU-zCx"/>
+                                    <constraint firstItem="u8K-WG-ms8" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" constant="4" id="bXt-Se-tql"/>
+                                    <constraint firstAttribute="trailing" secondItem="vzH-z7-0PV" secondAttribute="trailing" constant="4" id="cLo-WJ-247"/>
                                     <constraint firstItem="uX4-ll-gcU" firstAttribute="top" secondItem="0ze-ql-Ocs" secondAttribute="bottom" constant="4" id="dx4-4B-69k"/>
-                                    <constraint firstItem="vzH-z7-0PV" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" id="fap-RR-UeB"/>
+                                    <constraint firstItem="vzH-z7-0PV" firstAttribute="leading" secondItem="wDB-cS-hH1" secondAttribute="leading" constant="4" id="fap-RR-UeB"/>
+                                    <constraint firstAttribute="trailing" secondItem="u8K-WG-ms8" secondAttribute="trailing" constant="4" id="k4U-bd-4sc"/>
                                     <constraint firstItem="9Un-QH-13m" firstAttribute="centerX" secondItem="wDB-cS-hH1" secondAttribute="centerX" id="nsB-21-8wX"/>
                                     <constraint firstItem="0ze-ql-Ocs" firstAttribute="centerX" secondItem="wDB-cS-hH1" secondAttribute="centerX" id="vDW-D6-IM8"/>
-                                    <constraint firstItem="9Un-QH-13m" firstAttribute="top" secondItem="wDB-cS-hH1" secondAttribute="top" constant="4" id="wjr-lw-5Re"/>
+                                    <constraint firstItem="9Un-QH-13m" firstAttribute="top" secondItem="wDB-cS-hH1" secondAttribute="top" constant="8" id="wjr-lw-5Re"/>
                                 </constraints>
                                 <size key="customSize" width="283" height="293"/>
                                 <connections>

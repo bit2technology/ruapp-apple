@@ -17,33 +17,26 @@ public class Institution {
     public let campi: [Campus]?
     
     private init(dict: AnyObject?) throws {
-        do {
-            guard let dict = dict as? [String:AnyObject],
-                dictId = dict["id"] as? Int,
-                dictName = dict["name"] as? String else {
-                    throw Error.InvalidObject
-            }
-            
-            if let dictCampi = dict["campi"] as? [[String:AnyObject]] {
-                var campiArray = [Campus]()
-                for campus in dictCampi {
-                    campiArray.append(try Campus(dict: campus))
-                }
-                campi = campiArray
-            }
-            else {
-                campi = nil
-            }
-            
-            id = dictId
-            name = dictName
+        
+        guard let dict = dict as? [String:AnyObject],
+            dictId = dict["id"] as? Int,
+            dictName = dict["name"] as? String else {
+                throw Error.InvalidObject
         }
-        catch {
-            id = -1
-            name = ""
+        
+        if let dictCampi = dict["campi"] as? [[String:AnyObject]] {
+            var campiArray = [Campus]()
+            for campus in dictCampi {
+                campiArray.append(try Campus(dict: campus))
+            }
+            campi = campiArray
+        }
+        else {
             campi = nil
-            throw error
         }
+        
+        id = dictId
+        name = dictName
     }
     
     public class func getList(completion: (list: [Institution]?, error: ErrorType?) -> Void) {

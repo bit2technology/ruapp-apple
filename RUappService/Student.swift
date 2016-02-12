@@ -17,24 +17,17 @@ public class Student {
     public private(set) static var shared = try? Student(dict: globalUserDefaults?.objectForKey(StudentSavedDictionaryKey))
     
     private init(dict: AnyObject?) throws {
-        do {
-            guard let dict = dict as? [String:AnyObject],
-                dictId = dict["institution_id"] as? Int,
-                dictName = dict["name"] as? String,
-                dictStudent = dict["number_plate"] as? String else {
-                    throw Error.InvalidObject
-            }
-            
-            id = dictId
-            name = dictName
-            studentId = dictStudent
+        
+        guard let dict = dict as? [String:AnyObject],
+            dictId = dict["institution_id"] as? Int,
+            dictName = dict["name"] as? String,
+            dictStudent = dict["number_plate"] as? String else {
+                throw Error.InvalidObject
         }
-        catch {
-            id = -1
-            name = ""
-            studentId = ""
-            throw error
-        }
+        
+        id = dictId
+        name = dictName
+        studentId = dictStudent
     }
     
     class func register(dict: AnyObject?) throws -> Student? {

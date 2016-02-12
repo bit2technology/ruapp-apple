@@ -101,3 +101,23 @@ extension UIImage {
         return rectImg.resizableImageWithCapInsets(UIEdgeInsets(top: insets.top + radius, left: insets.left + radius, bottom: insets.bottom + radius, right: insets.right + radius))
     }
 }
+
+extension UIView {
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            if newValue > 0 {
+                layer.cornerRadius = newValue
+                layer.masksToBounds = true
+                layer.rasterizationScale = UIScreen.mainScreen().scale
+                layer.shouldRasterize = true
+            } else {
+                layer.cornerRadius = 0
+                layer.masksToBounds = false
+                layer.shouldRasterize = false
+            }
+        }
+    }
+}

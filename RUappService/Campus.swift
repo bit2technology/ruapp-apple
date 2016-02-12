@@ -13,27 +13,21 @@ public class Campus {
     public let restaurants: [Restaurant]
     
     public init(dict: AnyObject?) throws {
-        do {
-            guard let dict = dict as? [String:AnyObject],
-                dictInt = dict["id"] as? Int,
-                dictName = dict["name"] as? String,
-                dictRestaurant = dict["restaurants"] as? [[String:AnyObject]] else {
-                    throw Error.InvalidObject
-            }
-            
-            var restaurantArray = [Restaurant]()
-            for restaurant in dictRestaurant {
-                restaurantArray.append(try Restaurant(dict: restaurant))
-            }
-            id = dictInt
-            name = dictName
-            restaurants = restaurantArray
+        
+        guard let dict = dict as? [String:AnyObject],
+            dictInt = dict["id"] as? Int,
+            dictName = dict["name"] as? String,
+            dictRestaurant = dict["restaurants"] as? [[String:AnyObject]] else {
+                throw Error.InvalidObject
         }
-        catch {
-            id = -1
-            name = ""
-            restaurants = []
-            throw error
+        
+        var restaurantArray = [Restaurant]()
+        for restaurant in dictRestaurant {
+            restaurantArray.append(try Restaurant(dict: restaurant))
         }
+        
+        id = dictInt
+        name = dictName
+        restaurants = restaurantArray
     }
 }

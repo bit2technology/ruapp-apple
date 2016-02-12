@@ -436,23 +436,3 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         vote.comment = textField.text
     }
 }
-
-extension UIView {
-    @IBInspectable var cornerRadius: CGFloat {
-        get {
-            return layer.cornerRadius
-        }
-        set {
-            if newValue > 0 {
-                layer.cornerRadius = newValue
-                layer.masksToBounds = true
-                layer.rasterizationScale = UIScreen.mainScreen().scale
-                layer.shouldRasterize = true
-            } else {
-                layer.cornerRadius = 0
-                layer.masksToBounds = false
-                layer.shouldRasterize = false
-            }
-        }
-    }
-}

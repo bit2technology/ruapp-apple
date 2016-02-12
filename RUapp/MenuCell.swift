@@ -11,7 +11,7 @@ import RUappService
 
 class MenuCell: UICollectionViewCell {
     
-    @IBOutlet var backgroundImg: UIImageView!
+    @IBOutlet var backgroundImg: MenuCellBgImg!
     @IBOutlet var mealLabel: UILabel!
     @IBOutlet var dayOfWeekLabel: UILabel!
     @IBOutlet var dishesWrapper: UIView!
@@ -45,6 +45,31 @@ class MenuCell: UICollectionViewCell {
                 }
             }
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        layer.rasterizationScale = UIScreen.mainScreen().scale
+        layer.shouldRasterize = true
+    }
+}
+
+class MenuCellBgImg: UIImageView {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        layer.cornerRadius = 4
+        layer.masksToBounds = true
+    }
+}
+
+class MenuCellShadow: UIView {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        layer.cornerRadius = 4
+        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowOpacity = 0.5
+        layer.shadowRadius = 1.5
     }
 }
 

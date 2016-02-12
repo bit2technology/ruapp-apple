@@ -50,7 +50,7 @@ class MenuController: UICollectionViewController {
         }
         
         if collectionView?.traitCollection.horizontalSizeClass == .Compact {
-            let width = view.bounds.width - 20
+            let width = view.bounds.width - 12
             let height = floor(width * 373 / 340)
             let maxHeight = collectionView!.bounds.height - collectionView!.contentInset.top - collectionView!.contentInset.bottom - 30
             menuLayout.itemSize = CGSize(width: width, height: height < maxHeight ? height : maxHeight)
@@ -129,13 +129,13 @@ class MenuController: UICollectionViewController {
 
 class LayoutMenu: UICollectionViewLayout {
     
-    var itemSize: CGSize = CGSize(width: 300, height: 300) {
+    var itemSize: CGSize = CGSize(width: 308, height: 308) {
         didSet {
             invalidateLayout()
             collectionView?.contentOffset = targetContentOffsetForProposedContentOffset(collectionView!.contentOffset, withScrollingVelocity: CGPoint.zero)
         }
     }
-    var space = CGPoint(x: 10, y: 10)
+    var space = CGPoint(x: 6, y: 6)
     
     override func collectionViewContentSize() -> CGSize {
         
