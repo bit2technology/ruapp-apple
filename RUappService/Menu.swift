@@ -6,6 +6,8 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
+import Alamofire
+
 /// Key used to save and get cached menu data.
 private let SavedMenuArrayKey = "SavedMenuArray"
 
@@ -17,30 +19,26 @@ public class Menu {
     
     /// Get menu info from data. If successfull, cache it.
     public class func update(restaurantId: Int, completion: (menu: [[Meal]]?, error: ErrorType?) -> Void) {
-        NSURLSession.sharedSession().dataTaskWithURL(NSURL.appGetMenu(restaurantId), completionHandler: { (data, response, error) -> Void in
+        Alamofire.request(.GET, ServiceURL.getMenu, parameters: ["restaurant_id": restaurantId]).responseJSON { (response) in
             do {
                 // Verify data
-                guard let data = data else {
-                    throw error ?? Error.NoData
+                guard response.result.isSuccess else {
+                    throw response.result.error ?? Error.NoData
                 }
                 
                 // Process menu data. If successful, save it to user defaults.
-                let rawMenu = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                let rawMenu = response.result.value
                 let menu = try process(rawMenu)
                 globalUserDefaults?.setObject(rawMenu, forKey: SavedMenuArrayKey)
                 globalUserDefaults?.synchronize()
                 
                 // Return menu
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    completion(menu: menu, error: nil)
-                })
+                completion(menu: menu, error: nil)
             } catch {
                 // Return error
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    completion(menu: nil, error: error)
-                })
+                completion(menu: nil, error: error)
             }
-        }).resume()
+        }
     }
     
     /// Process raw menu data.

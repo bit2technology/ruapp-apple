@@ -79,6 +79,8 @@ class MenuController: UICollectionViewController {
         adjustInstets()
         adjustItemSize()
         adjustBehavior()
+        
+        updateMenu()
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {

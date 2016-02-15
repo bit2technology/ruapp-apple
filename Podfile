@@ -3,11 +3,18 @@ use_frameworks!
 
 target 'RUapp' do
 
-pod 'Crashlytics'
-pod 'Fabric'
-pod 'GoogleAnalytics'
-pod 'iRate'
+    pod 'Alamofire'
+    pod 'Crashlytics'
+    pod 'Fabric'
+    pod 'GoogleAnalytics'
+    pod 'iRate'
 
+end
+
+target 'RUappService' do
+    
+    pod 'Alamofire'
+    
 end
 
 pre_install do | installer |

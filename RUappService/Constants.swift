@@ -12,3 +12,10 @@ public enum Error: ErrorType {
 }
 
 public let globalUserDefaults = NSUserDefaults(suiteName: "group.com.bit2software.RUapp")
+
+class ServiceURL {
+    static let registerStudent = "http://www.ruapp.com.br/api/v1/student"
+    static let getInstitution = "http://www.ruapp.com.br/api/v1/institution"
+    static let getInstitutionOverviewList = "http://www.ruapp.com.br/api/v1/institutions"
+    static let getMenu = "http://www.ruapp.com.br/api/v1/menu"
+}
