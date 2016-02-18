@@ -10,12 +10,30 @@ import CoreLocation
 
 private let DefaultRestaurantIdKey = "DefaultRestaurantId"
 
+private func getUserDefaultRestaurant() -> Restaurant? {
+    
+    guard let defaultRestaurantId = globalUserDefaults?.objectForKey(DefaultRestaurantIdKey) as? Int,
+        campi = Institution.shared?.campi else {
+            return nil
+    }
+    
+    for campus in campi {
+        for rest in campus.restaurants {
+            if rest.id == defaultRestaurantId {
+                return rest
+            }
+        }
+    }
+    
+    return nil
+}
+
 public class Restaurant {
     
-    public static var defaultRestaurantId = globalUserDefaults?.objectForKey(DefaultRestaurantIdKey) as? Int {
+    public static var userDefault = getUserDefaultRestaurant() {
         didSet {
-            if let defaultRestaurantId = defaultRestaurantId {
-                globalUserDefaults?.setInteger(defaultRestaurantId, forKey: DefaultRestaurantIdKey)
+            if let newDefaultRestaurant = userDefault {
+                globalUserDefaults?.setInteger(newDefaultRestaurant.id, forKey: DefaultRestaurantIdKey)
                 globalUserDefaults?.synchronize()
             }
         }

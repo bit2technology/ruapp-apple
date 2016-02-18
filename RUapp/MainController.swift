@@ -15,13 +15,22 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     
     @IBOutlet weak var menuTypeSelector: MenuTypeSelector!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var cafeteriaBtn: UIButton!
+    @IBOutlet weak var restaurantBtn: UIButton!
     @IBOutlet weak var topBarHeight: NSLayoutConstraint!
     
     private weak var sidebarCont: SidebarController?
     
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {
         
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        switch identifier {
+        case "Main To Restaurants":
+            return Institution.shared?.campi != nil
+        default:
+            return true
+        }
     }
         
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -69,7 +78,20 @@ class MainController: UIViewController, UITabBarControllerDelegate {
         
         titleLabel.font = UIFont.appNavTitle()
         titleLabel.textColor = UIColor.whiteColor()
-        cafeteriaBtn.titleLabel?.font = UIFont.appBarItem()
+        restaurantBtn.titleLabel?.font = UIFont.appBarItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var restaurantBtnTitle = Restaurant.userDefault?.name ?? NSLocalizedString("MainController.restaurantBtn.title", value: "restaurant", comment: "Title of button to choose a default restaurant")
+        if #available(iOS 9.0, *) {
+            restaurantBtnTitle = restaurantBtnTitle.localizedLowercaseString
+        } else {
+            restaurantBtnTitle = restaurantBtnTitle.lowercaseString
+        }
+        
+        restaurantBtn.setTitle(restaurantBtnTitle, forState: .Normal)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -97,6 +119,57 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         titleLabel.text = viewController.tabBarItem.title?.uppercaseString
+    }
+}
+
+class SelectDefaultRestaurantController: UITableViewController {
+    
+    private let campi = Institution.shared?.campi ?? []
+    private var selected: Restaurant? = nil
+    
+    @IBAction func cancelTap() {
+        performSegueWithIdentifier("Restaurants To Main", sender: nil)
+    }
+    
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        if presentingViewController?.traitCollection.horizontalSizeClass == .Regular {
+            navigationItem.leftBarButtonItem = nil
+        } else {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelTap")
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = navigationItem.title?.uppercaseString
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return campi.count
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return campi[section].restaurants.count
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return campi[section].name
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("Restaurant Cell", forIndexPath: indexPath)
+        let rest = campi[indexPath.section].restaurants[indexPath.row]
+        
+        cell.textLabel?.text = rest.name
+        cell.accessoryType = rest.id == selected?.id ? .Checkmark : .None
+        
+        return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selected = campi[indexPath.section].restaurants[indexPath.row]
+        performSegueWithIdentifier("Restaurants To Main", sender: nil)
     }
 }
 

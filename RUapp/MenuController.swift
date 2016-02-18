@@ -26,12 +26,12 @@ class MenuController: UICollectionViewController {
     
     private func updateMenu() {
         
-        guard let defaultRestaurantId = Restaurant.defaultRestaurantId else {
+        guard let defaultRestaurant = Restaurant.userDefault else {
             return
             let _ = "Show error"
         }
         
-        Menu.update(defaultRestaurantId) { (menu, error) -> Void in
+        Menu.update(defaultRestaurant.id) { (menu, error) -> Void in
             
             guard let menu = menu else {
                 return

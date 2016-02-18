@@ -85,7 +85,6 @@ public class Institution {
         let params = ["institution_id": id, "name": name, "number_plate": studentInstitutionId, "token": UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""] as [String:AnyObject]
         req.HTTPBody = params.appPrepare()
         Alamofire.request(req).responseJSON { (response) in
-            debugPrint(response)
             do {
                 guard response.result.isSuccess else {
                     throw response.result.error ?? Error.NoData
@@ -100,7 +99,7 @@ public class Institution {
                 try Student.register(studentId, name: name, studentId: studentInstitutionId)
                 Institution.shared = try Institution(dict: institution)
                 globalUserDefaults?.setObject(institution, forKey: InstitutionSavedDictionaryKey) // It will sync in the next command
-                Restaurant.defaultRestaurantId = Institution.shared?.campi?.first?.restaurants.first?.id
+                Restaurant.userDefault = Institution.shared?.campi?.first?.restaurants.first
                 completion(student: Student.shared, institution: Institution.shared, error: nil)
             } catch {
                 completion(student: nil, institution: nil, error: error)

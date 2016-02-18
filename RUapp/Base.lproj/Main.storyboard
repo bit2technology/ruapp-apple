@@ -45,6 +45,48 @@
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--Restaurants-->
+        <scene sceneID="p9z-2v-yFE">
+            <objects>
+                <tableViewController id="LrN-ar-FoB" customClass="SelectDefaultRestaurantController" customModule="RUapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="psb-yU-Erx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Restaurant Cell" textLabel="YdZ-4i-ZdS" style="IBUITableViewCellStyleDefault" id="HNz-oF-axU">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HNz-oF-axU" id="0ti-Xs-c8A">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YdZ-4i-ZdS">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LrN-ar-FoB" id="h0x-e9-mPC"/>
+                            <outlet property="delegate" destination="LrN-ar-FoB" id="ODZ-i7-xvJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Restaurants" id="rEh-2Z-kkN"/>
+                    <connections>
+                        <segue destination="AKp-bV-xpu" kind="unwind" identifier="Restaurants To Main" unwindAction="unwindToMain:" id="V14-Zb-oaD"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Eu-zo-Rva" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="AKp-bV-xpu" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-436" y="2043"/>
+        </scene>
         <!--Main Controller-->
         <scene sceneID="bes-9h-pGX">
             <objects>
@@ -85,12 +127,17 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAa-Ut-LoZ">
-                                                <rect key="frame" x="532" y="20" width="68" height="44"/>
+                                                <rect key="frame" x="521" y="20" width="79" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Ve2-v5-lMs"/>
                                                 </constraints>
                                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
-                                                <state key="normal" title="cafeteria"/>
+                                                <state key="normal" title="restaurant"/>
+                                                <connections>
+                                                    <segue destination="QKT-BX-Ayb" kind="popoverPresentation" identifier="Main To Restaurants" popoverAnchorView="YAa-Ut-LoZ" id="9bj-Bl-HdS">
+                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                    </segue>
+                                                </connections>
                                             </button>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="iTF-gh-4iY" customClass="MenuTypeSelector" customModule="RUapp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="64" width="600" height="45"/>
@@ -177,8 +224,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cafeteriaBtn" destination="YAa-Ut-LoZ" id="CzG-xq-Jpn"/>
                         <outlet property="menuTypeSelector" destination="iTF-gh-4iY" id="EYQ-P7-p7E"/>
+                        <outlet property="restaurantBtn" destination="YAa-Ut-LoZ" id="qbi-zj-LRy"/>
                         <outlet property="titleLabel" destination="dRG-bc-9PA" id="wOd-Ae-2SG"/>
                         <outlet property="topBarHeight" destination="k7s-aS-m93" id="C7R-0f-SjG"/>
                         <segue destination="vq9-6H-gDa" kind="presentation" identifier="Main To Registration" id="Qai-3u-9ax"/>
@@ -186,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OP3-B3-5ef" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1437" y="1104"/>
+            <point key="canvasLocation" x="387" y="563"/>
         </scene>
         <!--Menu-->
         <scene sceneID="vsv-8G-kWj">
@@ -293,7 +340,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26t-gc-Mor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3186" y="-321"/>
+            <point key="canvasLocation" x="2154" y="-861"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="SZ8-YW-KZj">
@@ -379,7 +426,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Idz-Ie-hr2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3186" y="346"/>
+            <point key="canvasLocation" x="2154" y="-194"/>
         </scene>
         <!--Vote-->
         <scene sceneID="rEr-Uy-YjN">
@@ -873,7 +920,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ead-af-q6k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3186" y="1015"/>
+            <point key="canvasLocation" x="2154" y="475"/>
         </scene>
         <!--Line-->
         <scene sceneID="Vnw-Rk-1bV">
@@ -892,7 +939,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxG-5X-YA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3186" y="1683"/>
+            <point key="canvasLocation" x="2154" y="1153"/>
         </scene>
         <!--Institutions-->
         <scene sceneID="JEZ-Bh-NIp">
@@ -957,7 +1004,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJZ-oE-pVv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="BQ2-dm-CUx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2358" y="2043"/>
+            <point key="canvasLocation" x="3170" y="2043"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rfo-nR-TBJ">
@@ -973,7 +1020,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zeo-ul-RXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1670" y="2043"/>
+            <point key="canvasLocation" x="2482" y="2043"/>
         </scene>
         <!--Sidebar Table Controller-->
         <scene sceneID="8YL-YC-L1j">
@@ -1132,7 +1179,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9F-Yq-B7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="95" y="2043"/>
+            <point key="canvasLocation" x="907" y="2043"/>
         </scene>
         <!--Sidebar Controller-->
         <scene sceneID="f9f-gP-TEj">
@@ -1211,7 +1258,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GuW-yT-6Cs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Ar9-K4-aNe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-572" y="2043"/>
+            <point key="canvasLocation" x="240" y="2043"/>
         </scene>
         <!--Register Controller-->
         <scene sceneID="BaO-tz-XiT">
@@ -1426,7 +1473,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="985" y="2043"/>
+            <point key="canvasLocation" x="1797" y="2043"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ead-Bc-4cy">
@@ -1446,7 +1493,25 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNg-u1-Off" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2135" y="1103"/>
+            <point key="canvasLocation" x="1103" y="563"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tBi-1i-5rl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QKT-BX-Ayb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="URI-gZ-UcA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LrN-ar-FoB" kind="relationship" relationship="rootViewController" id="6rk-Pk-tby"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MdP-B8-HkA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1108" y="2043"/>
         </scene>
     </scenes>
     <resources>
@@ -1480,6 +1545,6 @@
         <image name="VoteVeryGood" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lTO-zL-muo"/>
+        <segue reference="Qai-3u-9ax"/>
     </inferredMetricsTieBreakers>
 </document>

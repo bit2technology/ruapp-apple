@@ -52,7 +52,7 @@ public class Menu {
         for rawDayMenu in rawWeekMenu {
             
             guard let dateString = rawDayMenu["date"] as? String,
-                rawMeals = rawDayMenu["meals"] as? [AnyObject] else {
+                rawMeals = rawDayMenu["meals"] as? [AnyObject] where rawMeals.count > 0 else {
                 throw Error.InvalidObject
             }
             
