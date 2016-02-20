@@ -1,8 +1,8 @@
 PODS:
   - Alamofire (3.2.0)
-  - Crashlytics (3.6.0):
+  - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.5)
+  - Fabric (1.6.6)
   - GoogleAnalytics (3.14.0)
   - iRate (1.11.4)
 
@@ -15,8 +15,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
-  Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
-  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   iRate: 599ed07c854e0695f3c605d1b2a64c67d912acb7
 
