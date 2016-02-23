@@ -134,7 +134,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         doneBtn.setBackgroundImage(UIGraphicsGetImageFromCurrentImageContext(), forState: .Normal)
         UIGraphicsEndImageContext()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardChanged:", name: UIKeyboardWillChangeFrameNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RegisterController.keyboardChanged(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
     }
     
     deinit {
@@ -184,7 +184,7 @@ class RegisterInstitutionListController: UITableViewController {
         if presentingViewController?.traitCollection.horizontalSizeClass == .Regular {
             navigationItem.leftBarButtonItem = nil
         } else {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelTap")
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(RegisterInstitutionListController.cancelTap))
         }
     }
     

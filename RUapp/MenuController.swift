@@ -31,7 +31,15 @@ class MenuController: UICollectionViewController {
             let _ = "Show error"
         }
         
-        Menu.update(defaultRestaurant.id) { (menu, error) -> Void in
+        if defaultRestaurant.id != menu?.restaurantId || menu == nil {
+            menu = nil
+            let activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+            activityView.tintColor = UIColor.lightGrayColor()
+            collectionView?.backgroundView = activityView
+            collectionView?.reloadData()
+        }
+        
+        Menu.update(defaultRestaurant) { (menu, error) -> Void in
             
             guard let menu = menu else {
                 return
@@ -40,6 +48,7 @@ class MenuController: UICollectionViewController {
             
             self.menu = menu
             self.collectionView?.reloadData()
+            self.collectionView?.backgroundView = nil
         }
     }
     
@@ -68,6 +77,8 @@ class MenuController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mainController.menuTypeSelector.addTarget(collectionView, action: #selector(UICollectionView.reloadData), forControlEvents: .ValueChanged)
+        
         dateFormatter.dateFormat = "EEEE"
         
         updateMenu()
@@ -90,36 +101,62 @@ class MenuController: UICollectionViewController {
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return menu?.count ?? 0
+        return menu?.meals.count ?? 0
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return menu?[section].count ?? 0
+        return menu?.meals[section].count ?? 0
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Menu", forIndexPath: indexPath) as! MenuCell
-        let meal = menu![indexPath.section][indexPath.item]
+        let meal = menu!.meals[indexPath.section][indexPath.item]
+        let menuKind = Menu.defaultKind
         
-        cell.backgroundImg.image = UIImage(named: "Menu\(indexPath.item)\(indexPath.section % 2)")
-        if let mealOpeningDate = meal.openingDate {
-            cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(mealOpeningDate)
-        }
+        cell.backgroundImg.image = UIImage(named: "Menu\(indexPath.item)\(menuKind.rawValue)")
+        cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(meal.openingDate)
         cell.mealLabel.text = meal.name.uppercaseString
         
         // Alert / Meta
-        if meal.meta != .Open {
-            // TODO: 
-        } else {
+        switch meal.meta {
+        case .Strike:
+            cell.alertImg.image = UIImage(named: "MetaIconStrike")
+            cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.strike", value: "GREVE!", comment: "Message displayed when the restaurant is not open")
+            cell.alertWrapper.hidden = false
+        case .Closed where meal.openingDate.isWeekend:
+            cell.alertImg.image = UIImage(named: "MetaIconWeekend")
+            cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.weekend", value: "RU fechado. Vamos aproveitar o final de semana!!!", comment: "Message displayed when the restaurant is not open")
+            cell.alertWrapper.hidden = false
+        case .Closed:
+            cell.alertImg.image = UIImage(named: "MetaIconFrown")
+            cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.closed", value: "Restaurante fechado", comment: "Message displayed when the restaurant is not open")
+            cell.alertWrapper.hidden = false
+        default:
             cell.alertWrapper.hidden = true
         }
         
+        // Present dishes
         if let mealDishes = meal.dishes {
+            
+            // Filter dishes
+            let dishesNotToShow: Dish.Meta
+            if menuKind == .Vegetarian {
+                dishesNotToShow = .Main
+            } else {
+                dishesNotToShow = .Vegetarian
+            }
+            var filteredDishes = [Dish]()
+            for dish in mealDishes {
+                if dish.meta != dishesNotToShow {
+                    filteredDishes.append(dish)
+                }
+            }
+            
             // Store last type, to avoid writing it multiple times
             var lastType: String?
             // Write dishes to cell
-            cell.numberOfDishes = mealDishes.count
-            for (idx, dish) in mealDishes.enumerate() {
+            cell.numberOfDishes = filteredDishes.count
+            for (idx, dish) in filteredDishes.enumerate() {
                 let dishView = cell.dishes[idx]
                 dishView.titleLabel.text = dish.type != lastType ? dish.type.uppercaseString : nil
                 dishView.nameLabel.text = dish.name
@@ -250,5 +287,15 @@ class LayoutMenu: UICollectionViewLayout {
         adjOffset.y = min(adjOffset.y, contentSize.height - visibleSize.height - margin.top)
         
         return adjOffset
+    }
+}
+
+private extension NSDate {
+    var isWeekend: Bool {
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let weekdayRange = calendar?.maximumRangeOfUnit(.Weekday)
+        let components = calendar?.components(.Weekday, fromDate: self)
+        let weekdayOfDate = components?.weekday
+        return weekdayOfDate == weekdayRange?.location || weekdayOfDate == weekdayRange?.length
     }
 }

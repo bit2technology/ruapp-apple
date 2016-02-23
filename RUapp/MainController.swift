@@ -24,6 +24,10 @@ class MainController: UIViewController, UITabBarControllerDelegate {
         
     }
     
+    @objc private func menuTypeSelectorValueChanged(sender: MenuTypeSelector) {
+        Menu.defaultKind = Menu.Kind(rawValue: sender.selectedSegmentIndex) ?? .Traditional
+    }
+    
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         switch identifier {
         case "Main To Restaurants":
@@ -79,6 +83,9 @@ class MainController: UIViewController, UITabBarControllerDelegate {
         titleLabel.font = UIFont.appNavTitle()
         titleLabel.textColor = UIColor.whiteColor()
         restaurantBtn.titleLabel?.font = UIFont.appBarItem()
+        
+        menuTypeSelector.selectedSegmentIndex = Menu.defaultKind.rawValue
+        menuTypeSelector.addTarget(self, action: #selector(MainController.menuTypeSelectorValueChanged(_:)), forControlEvents: .ValueChanged)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -118,14 +125,27 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     }
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        titleLabel.text = viewController.tabBarItem.title?.uppercaseString
+        if #available(iOS 9.0, *) {
+            titleLabel.text = viewController.tabBarItem.title?.localizedUppercaseString
+        } else {
+            titleLabel.text = viewController.tabBarItem.title?.uppercaseString
+        }
     }
 }
 
 class SelectDefaultRestaurantController: UITableViewController {
     
     private let campi = Institution.shared?.campi ?? []
-    private var selected: Restaurant? = nil
+    private var selected = Restaurant.userDefault
+    private let btnClose = UIBarButtonItem(image: UIImage(named: "BtnClose"), style: .Plain, target: nil, action: nil)
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        btnClose.target = self
+        btnClose.action = #selector(SelectDefaultRestaurantController.cancelTap)
+        btnClose.imageInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+    }
     
     @IBAction func cancelTap() {
         performSegueWithIdentifier("Restaurants To Main", sender: nil)
@@ -135,7 +155,7 @@ class SelectDefaultRestaurantController: UITableViewController {
         if presentingViewController?.traitCollection.horizontalSizeClass == .Regular {
             navigationItem.leftBarButtonItem = nil
         } else {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelTap")
+            navigationItem.leftBarButtonItem = btnClose
         }
     }
     
@@ -156,6 +176,8 @@ class SelectDefaultRestaurantController: UITableViewController {
         return campi[section].name
     }
     
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Restaurant Cell", forIndexPath: indexPath)
@@ -168,7 +190,7 @@ class SelectDefaultRestaurantController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selected = campi[indexPath.section].restaurants[indexPath.row]
+        Restaurant.userDefault = campi[indexPath.section].restaurants[indexPath.row]
         performSegueWithIdentifier("Restaurants To Main", sender: nil)
     }
 }

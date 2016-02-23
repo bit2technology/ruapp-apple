@@ -15,6 +15,8 @@ class MenuCell: UICollectionViewCell {
     @IBOutlet var mealLabel: UILabel!
     @IBOutlet var dayOfWeekLabel: UILabel!
     @IBOutlet var alertWrapper: UIView!
+    @IBOutlet var alertImg: UIImageView!
+    @IBOutlet var alertLabel: UILabel!
     @IBOutlet var dishesWrapper: UIView!
     var dishes: [MenuCellDish] {
         return dishesWrapper.subviews as! [MenuCellDish]

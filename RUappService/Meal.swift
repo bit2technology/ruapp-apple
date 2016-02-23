@@ -13,13 +13,14 @@ public class Meal {
     public let name: String
     public let meta: Meta
     public let id: Int?
-    public let openingDate: NSDate?
+    public let openingDate: NSDate
     public let closingDate: NSDate?
     public let dishes: [Dish]?
     
     init(dict: AnyObject?, dateString: String) throws {
         
         guard let dict = dict as? [String:AnyObject],
+            openingDate = Meal.dateFormatter.dateFromString(dateString + " " + (dict["open"] as? String ?? "00:00:00")),
             dictName = dict["name"] as? String else {
                 throw Error.InvalidObject
         }
@@ -36,9 +37,9 @@ public class Meal {
         }
         
         // Opening and closing times
-        openingDate = Meal.dateFormatter.dateFromString(dateString + " " + (dict["open"] as? String ?? "00:00:00"))
+        self.openingDate = openingDate
         if let closingStr = dict["duration"] as? Double {
-            closingDate = openingDate?.dateByAddingTimeInterval(closingStr * 60)
+            closingDate = openingDate.dateByAddingTimeInterval(closingStr * 60)
         } else {
             closingDate = nil
         }
