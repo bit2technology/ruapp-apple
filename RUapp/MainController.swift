@@ -176,8 +176,6 @@ class SelectDefaultRestaurantController: UITableViewController {
         return campi[section].name
     }
     
-    
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Restaurant Cell", forIndexPath: indexPath)

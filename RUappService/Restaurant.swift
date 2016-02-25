@@ -30,11 +30,14 @@ private func getUserDefaultRestaurant() -> Restaurant? {
 
 public class Restaurant {
     
+    public static let UserDefaultChangedNotificationName = "UserUserDefaultChangedNotification"
+    
     public static var userDefault = getUserDefaultRestaurant() {
         didSet {
             if let newDefaultRestaurant = userDefault {
                 globalUserDefaults?.setInteger(newDefaultRestaurant.id, forKey: DefaultRestaurantIdKey)
                 globalUserDefaults?.synchronize()
+                NSNotificationCenter.defaultCenter().postNotificationName(UserDefaultChangedNotificationName, object: self, userInfo: ["restaurant": newDefaultRestaurant])
             }
         }
     }

@@ -24,7 +24,7 @@ class MenuController: UICollectionViewController {
         collectionView?.scrollIndicatorInsets.top = topBarHeight
     }
     
-    private func updateMenu() {
+    @objc private func updateMenu() {
         
         guard let defaultRestaurant = Restaurant.userDefault else {
             return
@@ -34,7 +34,8 @@ class MenuController: UICollectionViewController {
         if defaultRestaurant.id != menu?.restaurantId || menu == nil {
             menu = nil
             let activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-            activityView.tintColor = UIColor.lightGrayColor()
+            activityView.color = UIColor.lightGrayColor()
+            activityView.startAnimating()
             collectionView?.backgroundView = activityView
             collectionView?.reloadData()
         }
@@ -46,9 +47,19 @@ class MenuController: UICollectionViewController {
                 let _ = "Show error"
             }
             
+            let animate = self.menu == nil
             self.menu = menu
-            self.collectionView?.reloadData()
-            self.collectionView?.backgroundView = nil
+            if animate {
+                UIView.transitionWithView(self.view, duration: 0.2, options: [.TransitionCrossDissolve], animations: {
+                    self.collectionView?.reloadData()
+                    self.collectionView?.backgroundView = nil
+                    self.adjustItemSize()
+                }, completion: nil)
+            } else {
+                self.collectionView?.reloadData()
+                self.collectionView?.backgroundView = nil
+                self.adjustItemSize()
+            }
         }
     }
     
@@ -62,7 +73,11 @@ class MenuController: UICollectionViewController {
             let width = view.bounds.width - 12
             let height = floor(width * 373 / 340)
             let maxHeight = collectionView!.bounds.height - collectionView!.contentInset.top - collectionView!.contentInset.bottom - 30
-            menuLayout.itemSize = CGSize(width: width, height: height < maxHeight ? height : maxHeight)
+            if collectionView?.numberOfSections() > 0 && collectionView?.numberOfItemsInSection(0) > 1 {
+                menuLayout.itemSize = CGSize(width: width, height: height < maxHeight ? height : maxHeight)
+            } else {
+                menuLayout.itemSize = CGSize(width: width, height: maxHeight + 18)
+            }
         } else {
             menuLayout.itemSize = CGSize(width: 340, height: 373)
         }
@@ -81,6 +96,8 @@ class MenuController: UICollectionViewController {
         
         dateFormatter.dateFormat = "EEEE"
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MenuController.updateMenu), name: Restaurant.UserDefaultChangedNotificationName, object: nil)
+        
         updateMenu()
     }
     
@@ -90,6 +107,10 @@ class MenuController: UICollectionViewController {
         adjustInstets()
         adjustItemSize()
         adjustBehavior()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         updateMenu()
     }
@@ -105,7 +126,7 @@ class MenuController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return menu?.meals[section].count ?? 0
+        return menu!.meals[section].count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

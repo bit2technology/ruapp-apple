@@ -9,6 +9,7 @@
 public enum Error: ErrorType {
     case InvalidObject
     case NoData
+    case RequestTooOften
 }
 
 public let globalUserDefaults = NSUserDefaults(suiteName: "group.com.bit2software.RUapp")
