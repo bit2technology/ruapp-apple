@@ -113,10 +113,6 @@
 		4B19D4E21BB6603300DD22A9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		4B33755A1BB98FFE002696C9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		4B33755D1BB98FFE002696C9 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		4B3375601BB98FFE002696C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		4B3375621BB98FFE002696C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B33756A1BB9A947002696C9 /* MenuExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MenuExtension.entitlements; sourceTree = "<group>"; };
 		4B33756B1BB9D7A9002696C9 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		4B3FC1991BE102490077FFBF /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
 		4B3FC19B1BE116780077FFBF /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -220,17 +216,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4B33755C1BB98FFE002696C9 /* MenuExtension */ = {
-			isa = PBXGroup;
-			children = (
-				4B33756A1BB9A947002696C9 /* MenuExtension.entitlements */,
-				4B33755D1BB98FFE002696C9 /* TodayViewController.swift */,
-				4B33755F1BB98FFE002696C9 /* MainInterface.storyboard */,
-				4B3375621BB98FFE002696C9 /* Info.plist */,
-			);
-			path = MenuExtension;
-			sourceTree = "<group>";
-		};
 		4BA599901BB32E2100A2E0CF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,7 +246,6 @@
 				4BB03BC61BB2D4DF006F84CB /* RUappUITests */,
 				4BB03BDB1BB2D5B8006F84CB /* RUappService */,
 				4BB03BE91BB2D5B8006F84CB /* RUappServiceTests */,
-				4B33755C1BB98FFE002696C9 /* MenuExtension */,
 				4B3375591BB98FFE002696C9 /* Frameworks */,
 				4BB03BA51BB2D4DE006F84CB /* Products */,
 				80CB4E14AC9E1EC1DB8463A4 /* Pods */,
@@ -618,7 +602,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "infoPlistPath=${INFOPLIST_FILE}\n\n# Build\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$infoPlistPath\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$infoPlistPath\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/MenuExtension/Info.plist\"\n\n# Version\nversionString=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$infoPlistPath\")\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $versionString\" \"${PROJECT_DIR}/MenuExtension/Info.plist\"\nversionString+=\" (\"\nversionString+=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$infoPlistPath\")\nversionString+=\")\"\n\n# Write the version number string to the settings bundle\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $versionString\" \"${PROJECT_DIR}/${PRODUCT_NAME}/Settings.bundle/Root.plist\"";
+			shellScript = "infoPlistPath=${INFOPLIST_FILE}\n\n# Build\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$infoPlistPath\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$infoPlistPath\"\n\n# Version\nversionString=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$infoPlistPath\")\nversionString+=\" (\"\nversionString+=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$infoPlistPath\")\nversionString+=\")\"\n\n# Write the version number string to the settings bundle\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $versionString\" \"${PROJECT_DIR}/${PRODUCT_NAME}/Settings.bundle/Root.plist\"";
 		};
 		DCE6217DDF45D4324722996F /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -758,14 +742,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4B33755F1BB98FFE002696C9 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4B3375601BB98FFE002696C9 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -954,6 +930,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = RUappService/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -977,6 +954,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = RUappService/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

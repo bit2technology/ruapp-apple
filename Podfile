@@ -2,13 +2,13 @@ platform :ios, '8.1'
 use_frameworks!
 
 target 'RUapp' do
-
+    
     pod 'Alamofire'
     pod 'Crashlytics'
     pod 'Fabric'
     pod 'GoogleAnalytics'
     pod 'iRate'
-
+    
 end
 
 target 'RUappService' do
