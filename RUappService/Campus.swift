@@ -6,7 +6,7 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-public class Campus {
+public class Campus: NSObject, NSSecureCoding {
     
     public let id: Int
     public let name: String

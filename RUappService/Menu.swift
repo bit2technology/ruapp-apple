@@ -42,7 +42,6 @@ public class Menu {
     
     /// Get menu info from data. If successfull, cache it.
     public class func update(restaurant: Restaurant, completion: (menu: Menu?, error: ErrorType?) -> Void) {
-        print("update started")
         
         // If request for the same restaurant, prevent requesting too often (if there is an active request or the last request was less than 1min ago)
         if restaurant.id == shared?.restaurantId && (request != nil || NSDate().timeIntervalSinceDate(lastSuccessfulRequest) < 60) {
@@ -54,7 +53,6 @@ public class Menu {
         request?.cancel()
         request = Alamofire.request(.GET, ServiceURL.getMenu, parameters: ["restaurant_id": restaurant.id]).responseJSON { (response) in
             request = nil
-            print("update ended success:", response.result.isSuccess)
             
             do {
                 // Verify data

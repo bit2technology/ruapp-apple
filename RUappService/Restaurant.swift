@@ -10,24 +10,6 @@ import CoreLocation
 
 private let DefaultRestaurantIdKey = "DefaultRestaurantId"
 
-private func getUserDefaultRestaurant() -> Restaurant? {
-    
-    guard let defaultRestaurantId = globalUserDefaults?.objectForKey(DefaultRestaurantIdKey) as? Int,
-        campi = Institution.shared?.campi else {
-            return nil
-    }
-    
-    for campus in campi {
-        for rest in campus.restaurants {
-            if rest.id == defaultRestaurantId {
-                return rest
-            }
-        }
-    }
-    
-    return nil
-}
-
 public class Restaurant {
     
     public static let UserDefaultChangedNotificationName = "UserUserDefaultChangedNotification"

@@ -122,7 +122,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         
         let student = Student.shared
         nameField.text = student?.name
-        studentIdField.text = student?.studentId
+        studentIdField.text = student?.numberPlate
         institution = Institution.shared
         textEdited()
                 
