@@ -6,14 +6,14 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-public enum Error: ErrorType {
+enum Error: ErrorType {
     case InvalidObject
     case NoData
     case RequestTooOften
     case NoNewData
 }
 
-public let globalUserDefaults = NSUserDefaults(suiteName: "group.com.bit2software.RUapp")
+public let globalUserDefaults = NSUserDefaults(suiteName: "group.com.bit2software.RUapp")!
 
 class ServiceURL {
     static let registerStudent = "http://www.ruapp.com.br/api/v1/student"

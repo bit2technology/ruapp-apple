@@ -18,15 +18,15 @@ private let SavedMenuKindKey = "SavedMenuKind"
 public class Menu {
     
     /// Default menu kind set by the user.
-    public static var defaultKind = Kind(rawValue: globalUserDefaults?.objectForKey(SavedMenuKindKey) as? Int ?? Kind.Traditional.rawValue)! {
+    public static var defaultKind = Kind(rawValue: globalUserDefaults.objectForKey(SavedMenuKindKey) as? Int ?? Kind.Traditional.rawValue)! {
         didSet {
-            globalUserDefaults?.setInteger(defaultKind.rawValue, forKey: SavedMenuKindKey)
-            globalUserDefaults?.synchronize()
+            globalUserDefaults.setInteger(defaultKind.rawValue, forKey: SavedMenuKindKey)
+            globalUserDefaults.synchronize()
         }
     }
     
     /// Shared menu data. It is also cached for offline query.
-    public private(set) static var shared = try? Menu(menuObj: globalUserDefaults?.objectForKey(SavedMenuArrayKey))
+    public private(set) static var shared = try? Menu(menuObj: globalUserDefaults.objectForKey(SavedMenuArrayKey))
     
     /// Reference to current request.
     private static var request: Request?
@@ -63,8 +63,8 @@ public class Menu {
                 // Process menu data. If successful, save it to user defaults.
                 let extendedMenu = ["meals": rawMenu, "restaurant_id": restaurant.id]
                 Menu.shared = try Menu(menuObj: extendedMenu)
-                globalUserDefaults?.setObject(extendedMenu, forKey: SavedMenuArrayKey)
-                globalUserDefaults?.synchronize()
+                globalUserDefaults.setObject(extendedMenu, forKey: SavedMenuArrayKey)
+                globalUserDefaults.synchronize()
                 
                 // Return menu
                 lastSuccessfulRequest = NSDate()

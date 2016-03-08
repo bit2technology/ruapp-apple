@@ -97,9 +97,9 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         }
         indicator.hidden = false
         
-        institution.registerWithNewStudent(name, studentInstitutionId: studentId) { (student, institution, error) -> Void in
+        Student.register(name: name, numberPlate: studentId, on: institution) { (student, error) -> Void in
             
-            guard institution != nil else {
+            guard student != nil else {
                 for item in controls {
                     item.enabled = true
                 }
@@ -192,7 +192,7 @@ class RegisterInstitutionListController: UITableViewController {
         super.viewDidLoad()
         navigationItem.title = navigationItem.title?.uppercaseString
         
-        Institution.getList { (list, error) -> Void in
+        Institution.list { (list, error) -> Void in
             
             if list == nil {
                 let errorMsg = UILabel()

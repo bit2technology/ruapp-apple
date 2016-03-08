@@ -6,28 +6,42 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-public class Campus: NSObject, NSSecureCoding {
+// This class represents a campus of an institution.
+public class Campus {
+    
+    // Private keys
+    private static let idKey = "id"
+    private static let nameKey = "name"
+    private static let restaurantsKey = "restaurants"
     
     public let id: Int
     public let name: String
     public let restaurants: [Restaurant]
     
-    public init(dict: AnyObject?) throws {
+    private init(id: Int, name: String, restaurants: [Restaurant]) {
+        self.id = id
+        self.name = name
+        self.restaurants = restaurants
+    }
+    
+    convenience init(dict: AnyObject?) throws {
         
-        guard let dict = dict as? [String:AnyObject],
-            dictInt = dict["id"] as? Int,
-            dictName = dict["name"] as? String,
-            dictRestaurant = dict["restaurants"] as? [[String:AnyObject]] else {
+        guard let
+            id = dict?[Campus.idKey] as? Int,
+            name = dict?[Campus.nameKey] as? String,
+            restaurantsDict = dict?[Campus.restaurantsKey] as? [AnyObject] else {
                 throw Error.InvalidObject
         }
         
-        var restaurantArray = [Restaurant]()
-        for restaurant in dictRestaurant {
-            restaurantArray.append(try Restaurant(dict: restaurant))
+        var restaurants = [Restaurant]()
+        for dict in restaurantsDict {
+            restaurants.append(try Restaurant(dict: dict))
         }
-        
-        id = dictInt
-        name = dictName
-        restaurants = restaurantArray
+        self.init(id: id, name: name, restaurants: restaurants)
+    }
+    
+    /// Campus errors
+    enum Error: ErrorType {
+        case InvalidObject
     }
 }

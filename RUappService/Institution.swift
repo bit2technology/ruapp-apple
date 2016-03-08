@@ -9,10 +9,13 @@
 import Alamofire
 
 /// This class represents a institution registered with RUapp.
-public final class Institution: NSObject, NSSecureCoding {
+public final class Institution {
     
-    // Keys
-    public static let ModifiedNotificationName = "InstitutionModifiedNotification"
+    /// Shared instance.
+    public private(set) static var shared = try? Institution(dict: globalUserDefaults.objectForKey(savedDataKey))
+    
+    // Private keys
+    private static let savedDataKey = "institution_saved"
     private static let idKey = "id"
     private static let nameKey = "name"
     private static let campiKey = "campi"
@@ -40,14 +43,22 @@ public final class Institution: NSObject, NSSecureCoding {
         }
     }
     
+    /// Remove saved data from disk.
+    class func clear() {
+        shared = nil
+        globalUserDefaults.removeObjectForKey(savedDataKey)
+        globalUserDefaults.synchronize()
+    }
+    
+    /// Extract values from a dictionary.
     private class func extract(dict: AnyObject?) throws -> (id: Int, name: String, campi: [Campus]?) {
-        
+        // Verify fields
         guard let
             id = dict?[Institution.idKey] as? Int,
             name = dict?[Institution.nameKey] as? String else {
                 throw Error.InvalidObject
         }
-        
+        // Construct campi array if necessary
         let campi: [Campus]?
         if let rawCampi = dict?[Institution.campiKey] as? [AnyObject] {
             var campiArray = [Campus]()
@@ -59,58 +70,44 @@ public final class Institution: NSObject, NSSecureCoding {
         else {
             campi = nil
         }
-        
         return (id, name, campi)
     }
     
     // MARK: Instance
-        
+    
+    /// Id of the institution.
     public let id: Int
+    /// Display name of the institution.
     public private(set) var name: String
+    /// List of the campi of this institution. If nil, it means that this instance is an overview and needs to call update before being stored.
     public private(set) var campi: [Campus]?
     
-    init(id: Int, name: String, campi: [Campus]?) {
+    /// Initialization by values.
+    private init(id: Int, name: String, campi: [Campus]?) {
         self.id = id
         self.name = name
         self.campi = campi
     }
     
-    convenience init(dict: AnyObject?) throws {
+    /// Initialization by plist.
+    private convenience init(dict: AnyObject?) throws {
         let extracted = try Institution.extract(dict)
         self.init(id: extracted.id, name: extracted.name, campi: extracted.campi)
     }
     
-    func update(dict: AnyObject?) throws -> Institution {
+    /// Update and save this institution locally.
+    func update(dict: AnyObject?) throws {
         let extracted = try Institution.extract(dict)
-        name = extracted.name
-        campi = extracted.campi
-        NSNotificationCenter.defaultCenter().postNotificationName(Institution.ModifiedNotificationName, object: self)
-        return self
+        self.name = extracted.name
+        self.campi = extracted.campi
+        Institution.shared = self
+        globalUserDefaults.setObject(dict, forKey: Institution.savedDataKey)
+        globalUserDefaults.synchronize()
     }
     
-    // MARK: NSCoding
-    
-    public convenience init?(coder aDecoder: NSCoder) {
-        
-        guard let
-            id = aDecoder.decodeObjectOfClass(NSNumber.self, forKey: Institution.idKey) as? Int,
-            name = aDecoder.decodeObjectOfClass(NSString.self, forKey: Institution.nameKey) as? String,
-            campi = aDecoder.decodeObjectOfClass(NSArray.self, forKey: Institution.campiKey) as? [Campus] else {
-                return nil
-        }
-        
-        self.init(id: id, name: name, campi: campi)
-    }
-    
-    public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(id as NSNumber, forKey: Institution.idKey)
-        aCoder.encodeObject(name as NSString, forKey: Institution.nameKey)
-        if let campi = campi {
-            aCoder.encodeObject(campi as NSArray, forKey: Institution.campiKey)
-        }
-    }
-    
-    public static func supportsSecureCoding() -> Bool {
-        return true
+    /// Institution errors
+    enum Error: ErrorType {
+        case InvalidObject
+        case NoData
     }
 }

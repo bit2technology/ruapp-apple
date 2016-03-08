@@ -308,12 +308,12 @@
 				4BB03BDC1BB2D5B8006F84CB /* RUappService.h */,
 				4BA5998E1BB31DE400A2E0CF /* Student.swift */,
 				4BB03BF81BB2DC09006F84CB /* Institution.swift */,
+				4BB03BFC1BB2E079006F84CB /* Campus.swift */,
 				4B94BD021BF0D5B9001E3003 /* Menu.swift */,
 				4BB03C001BB2E6B3006F84CB /* Meal.swift */,
 				4B06D3551C0C61580042C37F /* Dish.swift */,
 				4BB03BFA1BB2DE37006F84CB /* Constants.swift */,
 				4BA5998C1BB31C8700A2E0CF /* Helper.swift */,
-				4BB03BFC1BB2E079006F84CB /* Campus.swift */,
 				4BB03BFE1BB2E204006F84CB /* Restaurant.swift */,
 				4B4C7FD21BBB4709001D55E5 /* Vote.swift */,
 				4B3FC19B1BE116780077FFBF /* Result.swift */,
@@ -363,15 +363,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BB03BCC1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUapp" */;
 			buildPhases = (
-				FC9764FF361ED9B71C330F38 /* Check Pods Manifest.lock */,
+				FC9764FF361ED9B71C330F38 /* 📦 Check Pods Manifest.lock */,
 				4BB03BA01BB2D4DE006F84CB /* Sources */,
 				4BB03BA11BB2D4DE006F84CB /* Frameworks */,
 				4BB03BA21BB2D4DE006F84CB /* Resources */,
 				4BB03BF41BB2D5B8006F84CB /* Embed Frameworks */,
 				4B3375691BB98FFE002696C9 /* Embed App Extensions */,
 				4B19D4E11BB65F9900DD22A9 /* Bump Build Number */,
-				FA4EDA6255248B0ADA88563B /* Embed Pods Frameworks */,
-				10F56B39EB0D60820D812065 /* Copy Pods Resources */,
+				FA4EDA6255248B0ADA88563B /* 📦 Embed Pods Frameworks */,
+				10F56B39EB0D60820D812065 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -423,12 +423,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BB03BF11BB2D5B8006F84CB /* Build configuration list for PBXNativeTarget "RUappService" */;
 			buildPhases = (
-				FB6CB5F016B6F5796919A12F /* Check Pods Manifest.lock */,
+				FB6CB5F016B6F5796919A12F /* 📦 Check Pods Manifest.lock */,
 				4BB03BD51BB2D5B8006F84CB /* Sources */,
 				4BB03BD61BB2D5B8006F84CB /* Frameworks */,
 				4BB03BD71BB2D5B8006F84CB /* Headers */,
 				4BB03BD81BB2D5B8006F84CB /* Resources */,
-				7E9B995270EA9A4ECC77A219 /* Copy Pods Resources */,
+				7E9B995270EA9A4ECC77A219 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -562,14 +562,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		10F56B39EB0D60820D812065 /* Copy Pods Resources */ = {
+		10F56B39EB0D60820D812065 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,14 +591,14 @@
 			shellPath = /bin/sh;
 			shellScript = "infoPlistPath=${INFOPLIST_FILE}\n\n# Build\nagvtool next-version -all\n\n# Version\nversionString=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$infoPlistPath\")\nversionString+=\" (\"\nversionString+=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$infoPlistPath\")\nversionString+=\")\"\n\n# Write the version number string to the settings bundle\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $versionString\" \"${PROJECT_DIR}/${PRODUCT_NAME}/Settings.bundle/Root.plist\"";
 		};
-		7E9B995270EA9A4ECC77A219 /* Copy Pods Resources */ = {
+		7E9B995270EA9A4ECC77A219 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,14 +606,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUappService/Pods-RUappService-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FA4EDA6255248B0ADA88563B /* Embed Pods Frameworks */ = {
+		FA4EDA6255248B0ADA88563B /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,14 +621,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp/Pods-RUapp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB6CB5F016B6F5796919A12F /* Check Pods Manifest.lock */ = {
+		FB6CB5F016B6F5796919A12F /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,14 +636,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		FC9764FF361ED9B71C330F38 /* Check Pods Manifest.lock */ = {
+		FC9764FF361ED9B71C330F38 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
