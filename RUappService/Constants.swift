@@ -6,13 +6,6 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-enum Error: ErrorType {
-    case InvalidObject
-    case NoData
-    case RequestTooOften
-    case NoNewData
-}
-
 public let globalUserDefaults = NSUserDefaults(suiteName: "group.com.bit2software.RUapp")!
 
 class ServiceURL {

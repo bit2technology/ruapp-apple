@@ -42,7 +42,7 @@ public final class Student {
                 }
                 // Save student
                 shared = Student(id: id, name: name, numberPlate: numberPlate)
-                let studentDict = [idKey: id, nameKey: name, numberPlate: numberPlate]
+                let studentDict = [idKey: id, nameKey: name, numberPlateKey: numberPlate]
                 globalUserDefaults.setObject(studentDict, forKey: savedDataKey) // It will sync in next command
                 try institution.update(institutionDict)
                 completion(student: shared, error: nil)

@@ -14,18 +14,25 @@ public class Campus {
     private static let nameKey = "name"
     private static let restaurantsKey = "restaurants"
     
+    // MARK: Instance
+    
+    /// Id of the campus.
     public let id: Int
+    /// Name of the campus.
     public let name: String
+    /// List of the restaurants of this campus.
     public let restaurants: [Restaurant]
     
+    /// Initialization by values.
     private init(id: Int, name: String, restaurants: [Restaurant]) {
         self.id = id
         self.name = name
         self.restaurants = restaurants
     }
     
+    /// Initialization by plist.
     convenience init(dict: AnyObject?) throws {
-        
+        // Verify fields
         guard let
             id = dict?[Campus.idKey] as? Int,
             name = dict?[Campus.nameKey] as? String,

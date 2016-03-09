@@ -35,4 +35,8 @@ public class Dish {
         case Vegetarian = "vegetarian"
         case Other = "other"
     }
+    
+    enum Error: ErrorType {
+        case InvalidObject
+    }
 }

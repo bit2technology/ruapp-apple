@@ -42,6 +42,8 @@ class MenuController: UICollectionViewController {
         
         Menu.update(defaultRestaurant) { (menu, error) -> Void in
             
+            print(error)
+            
             guard let menu = menu else {
                 return
                 let _ = "Show error"
@@ -96,7 +98,7 @@ class MenuController: UICollectionViewController {
         
         dateFormatter.dateFormat = "EEEE"
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MenuController.updateMenu), name: Restaurant.UserDefaultChangedNotificationName, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MenuController.updateMenu), name: Restaurant.UserDefaultChangedNotification, object: nil)
         
         updateMenu()
     }
@@ -135,7 +137,7 @@ class MenuController: UICollectionViewController {
         let menuKind = Menu.defaultKind
         
         cell.backgroundImg.image = UIImage(named: "Menu\(indexPath.item)\(menuKind.rawValue)")
-        cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(meal.openingDate)
+        cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(meal.opening)
         cell.mealLabel.text = meal.name.uppercaseString
         
         // Alert / Meta
@@ -144,7 +146,7 @@ class MenuController: UICollectionViewController {
             cell.alertImg.image = UIImage(named: "MetaIconStrike")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.strike", value: "GREVE!", comment: "Message displayed when the restaurant is not open")
             cell.alertWrapper.hidden = false
-        case .Closed where meal.openingDate.isWeekend:
+        case .Closed where meal.opening.isWeekend:
             cell.alertImg.image = UIImage(named: "MetaIconWeekend")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.weekend", value: "RU fechado. Vamos aproveitar o final de semana!!!", comment: "Message displayed when the restaurant is not open")
             cell.alertWrapper.hidden = false
