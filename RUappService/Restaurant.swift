@@ -18,7 +18,7 @@ public class Restaurant {
                 // Save to disk
                 globalUserDefaults.setInteger(newDefaultRestaurant.id, forKey: userDefaultIdKey)
                 globalUserDefaults.synchronize()
-                NSNotificationCenter.defaultCenter().postNotificationName(userDefaultIdKey, object: self)
+                NSNotificationCenter.defaultCenter().postNotificationName(UserDefaultChangedNotification, object: self)
             }
         }
     }
@@ -41,12 +41,7 @@ public class Restaurant {
     public static let UserDefaultChangedNotification = "UserDefaultRestaurantChangedNotification"
     
     // Private keys
-    private static let userDefaultIdKey = "user_default_restaurant"
-    private static let idKey = "id"
-    private static let nameKey = "name"
-    private static let latitudeKey = "latitude"
-    private static let longitudeKey = "longitude"
-    private static let capacityKey = "capacity"
+    private static let userDefaultIdKey = "saved_user_default_restaurant"
     
     /// Get saved user default from disk.
     private class func getUserDefault() -> Restaurant? {
@@ -91,16 +86,16 @@ public class Restaurant {
     }
     
     /// Initialization by plist.
-    convenience init(dict: AnyObject?) throws {
+    convenience init(dict: AnyObject) throws {
         // Verify fields
         guard let
-            id = dict?[Restaurant.idKey] as? Int,
-            name = dict?[Restaurant.nameKey] as? String,
-            latitude = dict?[Restaurant.latitudeKey] as? CLLocationDegrees,
-            longitude = dict?[Restaurant.longitudeKey] as? CLLocationDegrees else {
+            id = dict["id"] as? Int,
+            name = dict["name"] as? String,
+            latitude = dict["latitude"] as? CLLocationDegrees,
+            longitude = dict["longitude"] as? CLLocationDegrees else {
                 throw Error.InvalidObject
         }
-        self.init(id: id, name: name, capacity: dict?[Restaurant.capacityKey] as? Int, latitude: latitude, longitude: longitude)
+        self.init(id: id, name: name, capacity: dict["capacity"] as? Int, latitude: latitude, longitude: longitude)
     }
     
     /// Campus errors

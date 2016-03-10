@@ -40,27 +40,28 @@ class MenuController: UICollectionViewController {
             collectionView?.reloadData()
         }
         
-        Menu.update(defaultRestaurant) { (menu, error) -> Void in
+        Menu.update(defaultRestaurant) { (result) -> Void in
             
-            print(error)
+            print(result)
             
-            guard let menu = menu else {
-                return
-                let _ = "Show error"
-            }
-            
-            let animate = self.menu == nil
-            self.menu = menu
-            if animate {
-                UIView.transitionWithView(self.view, duration: 0.2, options: [.TransitionCrossDissolve], animations: {
+            switch result {
+            case .Success(let menu):
+                let animate = self.menu == nil
+                self.menu = menu
+                if animate {
+                    UIView.transitionWithView(self.view, duration: 0.2, options: [.TransitionCrossDissolve], animations: {
+                        self.collectionView?.reloadData()
+                        self.collectionView?.backgroundView = nil
+                        self.adjustItemSize()
+                        }, completion: nil)
+                } else {
                     self.collectionView?.reloadData()
                     self.collectionView?.backgroundView = nil
                     self.adjustItemSize()
-                }, completion: nil)
-            } else {
-                self.collectionView?.reloadData()
-                self.collectionView?.backgroundView = nil
-                self.adjustItemSize()
+                }
+            case .Failure(_):
+                return
+                let _ = "Show error"
             }
         }
     }

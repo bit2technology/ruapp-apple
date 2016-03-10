@@ -15,6 +15,8 @@ public class Meal {
         return dateFormatter
     }()
     
+    // MARK: Instance
+    
     /// Id of the meal.
     public let id: Int?
     /// Name of the meal.
@@ -27,52 +29,60 @@ public class Meal {
     public let closing: NSDate?
     /// List of dishes for this meal.
     public let dishes: [Dish]?
+    /// List of votables for this meal.
+    public let votables: [Votable]?
     
     /// Initialize by values.
-    private init(id: Int?, name: String, meta: Meta, opening: NSDate, closing: NSDate?, dishes: [Dish]?) {
+    private init(id: Int?, name: String, meta: Meta, opening: NSDate, closing: NSDate?, dishes: [Dish]?, votables: [Votable]?) {
         self.id = id
         self.name = name
         self.meta = meta
         self.opening = opening
         self.closing = closing
         self.dishes = dishes
+        self.votables = votables
     }
     
     /// Initialize by plist.
-    convenience init(dict: AnyObject?, dateString: String) throws {
+    convenience init(dict: AnyObject, dateString: String) throws {
         // Verify fields
         guard let
-            opening = Meal.dateFormatter.dateFromString(dateString + " " + (dict?["open"] as? String ?? "00:00:00")),
-            name = dict?["name"] as? String else {
+            opening = Meal.dateFormatter.dateFromString(dateString + " " + (dict["open"] as? String ?? "00:00:00")),
+            name = dict["name"] as? String else {
                 throw Error.InvalidObject
-        }
-        // Dishes
-        var dishes: [Dish]?
-        if let rawDishes = dict?["menu"] as? [[String:AnyObject]] {
-            var menuConstructor = [Dish]()
-            for rawDish in rawDishes {
-                menuConstructor.append(try Dish(dict: rawDish))
-            }
-            dishes = menuConstructor
-        } else {
-            dishes = nil
         }
         // Closing time
         let closing: NSDate?
-        if let closingStr = dict?["duration"] as? Double {
+        if let closingStr = dict["duration"] as? Double {
             closing = opening.dateByAddingTimeInterval(closingStr * 60)
         } else {
             closing = nil
         }
         // Meta
         let meta: Meta
-        if let rawMeta = dict?["meta"] as? String, dictMeta = Meta(rawValue: rawMeta) {
+        if let rawMeta = dict["meta"] as? String, dictMeta = Meta(rawValue: rawMeta) {
             meta = dictMeta
         } else {
             meta = .Closed
         }
+        // Dishes
+        var dishes: [Dish]?
+        if let rawDishes = dict["menu"] as? [AnyObject] {
+            dishes = [Dish]()
+            for rawDish in rawDishes {
+                dishes!.append(try Dish(dict: rawDish))
+            }
+        }
+        // Votables
+        var votables: [Votable]?
+        if let rawVotables = dict["votables"] as? [AnyObject] {
+            votables = [Votable]()
+            for rawVotable in rawVotables {
+                votables!.append(try Votable(dict: rawVotable))
+            }
+        }
         // Init
-        self.init(id: dict?["id"] as? Int, name: name, meta: meta, opening: opening, closing: closing, dishes: dishes)
+        self.init(id: dict["id"] as? Int, name: name, meta: meta, opening: opening, closing: closing, dishes: dishes, votables: votables)
     }
     
     /// This enum represents the status of the restaurant for this meal.

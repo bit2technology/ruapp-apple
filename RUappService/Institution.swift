@@ -15,13 +15,10 @@ public final class Institution {
     public private(set) static var shared = try? Institution(dict: globalUserDefaults.objectForKey(savedDataKey))
     
     // Private keys
-    private static let savedDataKey = "institution_saved"
-    private static let idKey = "id"
-    private static let nameKey = "name"
-    private static let campiKey = "campi"
+    private static let savedDataKey = "saved_institution"
     
     /// Get a list of all institutions (short version).
-    public class func list(completion: (list: [Institution]?, error: ErrorType?) -> Void) {
+    public class func list(completion: (result: Result<[Institution]>) -> Void) {
         Alamofire.request(.GET, ServiceURL.getInstitutionOverviewList).responseJSON { (response) in
             do {
                 // Verify result
@@ -36,9 +33,9 @@ public final class Institution {
                 for institutionDict in jsonObj {
                     overviewList.append(try Institution(dict: institutionDict))
                 }
-                completion(list: overviewList, error: nil)
+                completion(result: .Success(value: overviewList))
             } catch {
-                completion(list: nil, error: error)
+                completion(result: .Failure(error: error))
             }
         }
     }
@@ -54,13 +51,13 @@ public final class Institution {
     private class func extract(dict: AnyObject?) throws -> (id: Int, name: String, campi: [Campus]?) {
         // Verify fields
         guard let
-            id = dict?[Institution.idKey] as? Int,
-            name = dict?[Institution.nameKey] as? String else {
+            id = dict?["id"] as? Int,
+            name = dict?["name"] as? String else {
                 throw Error.InvalidObject
         }
         // Construct campi array if necessary
         let campi: [Campus]?
-        if let rawCampi = dict?[Institution.campiKey] as? [AnyObject] {
+        if let rawCampi = dict?["campi"] as? [AnyObject] {
             var campiArray = [Campus]()
             for campus in rawCampi {
                 campiArray.append(try Campus(dict: campus))

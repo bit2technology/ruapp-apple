@@ -35,6 +35,8 @@ public class Menu {
     /// Prevent requesting too often.
     private static var lastSuccessfulRequest = NSDate(timeIntervalSince1970: 0) // Initial time set to past, so we can update on load.
     
+    // MARK: Instance
+    
     /// Info about meals of this menu.
     public private(set) var meals: [[Meal]]
     
@@ -42,11 +44,11 @@ public class Menu {
     public private(set) var restaurantId: Int
     
     /// Get menu info from data. If successfull, cache it.
-    public class func update(restaurant: Restaurant, completion: (menu: Menu?, error: ErrorType?) -> Void) {
+    public class func update(restaurant: Restaurant, completion: (result: Result<Menu>) -> Void) {
         
         // If request for the same restaurant, prevent requesting too often (if there is an active request or the last request was less than 1min ago)
         if restaurant.id == shared?.restaurantId && (request != nil || NSDate().timeIntervalSinceDate(lastSuccessfulRequest) < 60) {
-            completion(menu: nil, error: Error.RequestTooOften)
+            completion(result: Result.Failure(error: Error.RequestTooOften))
             return
         }
         
@@ -63,16 +65,17 @@ public class Menu {
                 
                 // Process menu data. If successful, save it to user defaults.
                 let extendedMenu = [Menu.mealsKey: rawMenu, Menu.restaurantIdKey: restaurant.id]
-                Menu.shared = try Menu(dict: extendedMenu)
+                let newMenu = try Menu(dict: extendedMenu)
+                Menu.shared = newMenu
                 globalUserDefaults.setObject(extendedMenu, forKey: savedArrayKey)
                 globalUserDefaults.synchronize()
                 
                 // Return menu
                 lastSuccessfulRequest = NSDate()
-                completion(menu: Menu.shared, error: nil)
+                completion(result: .Success(value: newMenu))
             } catch {
                 // Return error
-                completion(menu: nil, error: error)
+                completion(result: .Failure(error: error))
             }
         }
     }

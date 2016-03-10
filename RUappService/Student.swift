@@ -19,15 +19,13 @@ public final class Student {
     private static let idKey = "student_id"
     private static let nameKey = "name"
     private static let numberPlateKey = "number_plate"
-    private static let institutionKey = "institution"
-    private static let institutionIdKey = "institution_id"
     
     /// Register a new student on the provided institution. This also saves both student and institution data on the device.
-    public class func register(name name: String, numberPlate: String, on institution: Institution, completion: (student: Student?, error: ErrorType?) -> Void) {
+    public class func register(name name: String, numberPlate: String, on institution: Institution, completion: (result: Result<Student>) -> Void) {
         // Make request
         let req = NSMutableURLRequest(URL: NSURL(string: ServiceURL.registerStudent)!)
         req.HTTPMethod = "POST"
-        let params = [institutionIdKey: institution.id, nameKey: name, numberPlateKey: numberPlate] as [String:AnyObject]
+        let params = ["institution_id": institution.id, nameKey: name, numberPlateKey: numberPlate]
         req.HTTPBody = params.appPrepare()
         Alamofire.request(req).responseJSON { (response) in
             do {
@@ -37,21 +35,22 @@ public final class Student {
                 }
                 guard let jsonObj = response.result.value,
                     id = jsonObj[idKey] as? Int,
-                    institutionDict = jsonObj[institutionKey] else {
+                    institutionDict = jsonObj["institution"] else {
                         throw Error.InvalidObject
                 }
                 // Save student
-                shared = Student(id: id, name: name, numberPlate: numberPlate)
+                let newStudent = Student(id: id, name: name, numberPlate: numberPlate)
+                shared = newStudent
                 let studentDict = [idKey: id, nameKey: name, numberPlateKey: numberPlate]
                 globalUserDefaults.setObject(studentDict, forKey: savedDataKey) // It will sync in next command
                 try institution.update(institutionDict)
-                completion(student: shared, error: nil)
+                completion(result: .Success(value: newStudent))
             } catch {
                 // Erase all data from Student and Institution
                 shared = nil
-                globalUserDefaults.removeObjectForKey(savedDataKey)
-                Institution.clear() // It will sync in next command
-                completion(student: nil, error: error)
+                globalUserDefaults.removeObjectForKey(savedDataKey) // It will sync in next command
+                Institution.clear()
+                completion(result: .Failure(error: error))
             }
         }
     }

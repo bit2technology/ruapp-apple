@@ -14,3 +14,8 @@ class ServiceURL {
     static let getInstitutionOverviewList = "http://www.ruapp.com.br/api/v1/institutions"
     static let getMenu = "http://www.ruapp.com.br/api/v1/menu"
 }
+
+public enum Result<T> {
+    case Success(value: T)
+    case Failure(error: ErrorType)
+}

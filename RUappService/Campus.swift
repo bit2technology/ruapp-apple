@@ -9,11 +9,6 @@
 // This class represents a campus of an institution.
 public class Campus {
     
-    // Private keys
-    private static let idKey = "id"
-    private static let nameKey = "name"
-    private static let restaurantsKey = "restaurants"
-    
     // MARK: Instance
     
     /// Id of the campus.
@@ -31,12 +26,12 @@ public class Campus {
     }
     
     /// Initialization by plist.
-    convenience init(dict: AnyObject?) throws {
+    convenience init(dict: AnyObject) throws {
         // Verify fields
         guard let
-            id = dict?[Campus.idKey] as? Int,
-            name = dict?[Campus.nameKey] as? String,
-            restaurantsDict = dict?[Campus.restaurantsKey] as? [AnyObject] else {
+            id = dict["id"] as? Int,
+            name = dict["name"] as? String,
+            restaurantsDict = dict["restaurants"] as? [AnyObject] else {
                 throw Error.InvalidObject
         }
         
