@@ -6,37 +6,87 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-private let StudentSavedDictionaryKey = "SavedStudentDictionary"
+import Alamofire
 
-public class Student {
+/// This class represents the current student registered on this device.
+public final class Student {
     
+    /// Shared instance.
+    public private(set) static var shared = try? Student(dict: globalUserDefaults.objectForKey(savedDataKey))
+    
+    // Private keys
+    private static let savedDataKey = "saved_student"
+    private static let idKey = "student_id"
+    private static let nameKey = "name"
+    private static let numberPlateKey = "number_plate"
+    
+    /// Register a new student on the provided institution. This also saves both student and institution data on the device.
+    public class func register(name name: String, numberPlate: String, on institution: Institution, completion: (result: Result<Student>) -> Void) {
+        // Make request
+        let req = NSMutableURLRequest(URL: NSURL(string: ServiceURL.registerStudent)!)
+        req.HTTPMethod = "POST"
+        let params = ["institution_id": institution.id, nameKey: name, numberPlateKey: numberPlate]
+        req.HTTPBody = params.appPrepare()
+        Alamofire.request(req).responseJSON { (response) in
+            do {
+                // Verify values
+                guard response.result.isSuccess else {
+                    throw response.result.error ?? Error.NoData
+                }
+                guard let jsonObj = response.result.value,
+                    id = jsonObj[idKey] as? Int,
+                    institutionDict = jsonObj["institution"] else {
+                        throw Error.InvalidObject
+                }
+                // Save student
+                let newStudent = Student(id: id, name: name, numberPlate: numberPlate)
+                shared = newStudent
+                let studentDict = [idKey: id, nameKey: name, numberPlateKey: numberPlate]
+                globalUserDefaults.setObject(studentDict, forKey: savedDataKey) // It will sync in next command
+                try institution.update(institutionDict)
+                completion(result: .Success(value: newStudent))
+            } catch {
+                // Erase all data from Student and Institution
+                shared = nil
+                globalUserDefaults.removeObjectForKey(savedDataKey) // It will sync in next command
+                Institution.clear()
+                completion(result: .Failure(error: error))
+            }
+        }
+    }
+    
+    // MARK: Instance
+    
+    /// API identification.
     public let id: Int
-    public let name: String
-    public let studentId: String
+    /// Display name.
+    public private(set) var name: String
+    /// Identification on the current Institution.
+    public private(set) var numberPlate: String
     
-    public private(set) static var shared = try? Student(dict: globalUserDefaults?.objectForKey(StudentSavedDictionaryKey))
+    /// Initialization by values.
+    private init(id: Int, name: String, numberPlate: String) {
+        // Initialize proprieties
+        self.id = id
+        self.name = name
+        self.numberPlate = numberPlate
+    }
     
-    private init(dict: AnyObject?) throws {
-        
-        guard let dict = dict as? [String:AnyObject],
-            dictId = dict["institution_id"] as? Int,
-            dictName = dict["name"] as? String,
-            dictStudent = dict["number_plate"] as? String else {
+    /// Initialization by plist.
+    private convenience init(dict: AnyObject?) throws {
+        // Verify values
+        guard let
+            id = dict?[Student.idKey] as? Int,
+            name = dict?[Student.nameKey] as? String,
+            numberPlate = dict?[Student.numberPlateKey] as? String else {
                 throw Error.InvalidObject
         }
-        
-        id = dictId
-        name = dictName
-        studentId = dictStudent
+        self.init(id: id, name: name, numberPlate: numberPlate)
     }
     
-    class func register(dict: AnyObject?) throws -> Student? {
-        shared = try Student(dict: dict)
-        globalUserDefaults?.setObject(dict, forKey: StudentSavedDictionaryKey)
-        return shared
-    }
-    
-    class func register(id: Int, name: String, studentId: String) throws -> Student? {
-        return try register(["name": name, "number_plate": studentId, "institution_id": id])
+    /// Student errors.
+    enum Error: ErrorType {
+        case InvalidObject
+        case NoData
     }
 }

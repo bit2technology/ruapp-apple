@@ -13,9 +13,8 @@
 		4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */; };
 		4B33756C1BB9D7A9002696C9 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33756B1BB9D7A9002696C9 /* MenuController.swift */; };
 		4B3FC19A1BE102490077FFBF /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FC1991BE102490077FFBF /* ResultsController.swift */; };
-		4B3FC19C1BE116780077FFBF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FC19B1BE116780077FFBF /* Result.swift */; };
 		4B4C7FD11BBB43C7001D55E5 /* VoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */; };
-		4B4C7FD31BBB4709001D55E5 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C7FD21BBB4709001D55E5 /* Vote.swift */; };
+		4B64C4AB1C919CEF0087BBC4 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64C4AA1C919CEF0087BBC4 /* Vote.swift */; };
 		4B94BD031BF0D5B9001E3003 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B94BD021BF0D5B9001E3003 /* Menu.swift */; };
 		4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998C1BB31C8700A2E0CF /* Helper.swift */; };
 		4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5998E1BB31DE400A2E0CF /* Student.swift */; };
@@ -40,6 +39,7 @@
 		4BBCAC221BE932A30006D87B /* TestInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCAC211BE932A30006D87B /* TestInstitution.swift */; };
 		4BCC6D741BB37B4600AF99EF /* SidebarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC6D731BB37B4600AF99EF /* SidebarController.swift */; };
 		4BD37FBC1BED1A0A006D77C7 /* TestVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD37FBB1BED1A0A006D77C7 /* TestVote.swift */; };
+		4BEECA841C905288001608D1 /* Votable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEECA831C905288001608D1 /* Votable.swift */; };
 		4BF2AE6C1C05CF8800500EA8 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF2AE6B1C05CF8800500EA8 /* MenuCell.swift */; };
 		4BF2AE6E1C05D31400500EA8 /* MenuCellDish.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF2AE6D1C05D31400500EA8 /* MenuCellDish.xib */; };
 		81ECB974FEE21B28170F5F02 /* Pods_RUappService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E696EF60AAC37DB550F468 /* Pods_RUappService.framework */; };
@@ -117,9 +117,8 @@
 		4B33755A1BB98FFE002696C9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		4B33756B1BB9D7A9002696C9 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		4B3FC1991BE102490077FFBF /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
-		4B3FC19B1BE116780077FFBF /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteController.swift; sourceTree = "<group>"; };
-		4B4C7FD21BBB4709001D55E5 /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
+		4B64C4AA1C919CEF0087BBC4 /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		4B94BD021BF0D5B9001E3003 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		4B9F80951C89A3FF0075768D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/RUapp-dosshhsghhzoxyfknjcladrikxud/Build/Products/Debug-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		4BA5998B1BB30DA400A2E0CF /* RUapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RUapp.entitlements; sourceTree = "<group>"; };
@@ -153,6 +152,7 @@
 		4BBCAC211BE932A30006D87B /* TestInstitution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestInstitution.swift; sourceTree = "<group>"; };
 		4BCC6D731BB37B4600AF99EF /* SidebarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarController.swift; sourceTree = "<group>"; };
 		4BD37FBB1BED1A0A006D77C7 /* TestVote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVote.swift; sourceTree = "<group>"; };
+		4BEECA831C905288001608D1 /* Votable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Votable.swift; sourceTree = "<group>"; };
 		4BF2AE6B1C05CF8800500EA8 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		4BF2AE6D1C05D31400500EA8 /* MenuCellDish.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCellDish.xib; sourceTree = "<group>"; };
 		7D6A0180CC5FFCB3EE4FEF4D /* Pods-RUapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.release.xcconfig"; sourceTree = "<group>"; };
@@ -306,17 +306,17 @@
 			isa = PBXGroup;
 			children = (
 				4BB03BDC1BB2D5B8006F84CB /* RUappService.h */,
-				4B94BD021BF0D5B9001E3003 /* Menu.swift */,
-				4BB03C001BB2E6B3006F84CB /* Meal.swift */,
-				4B06D3551C0C61580042C37F /* Dish.swift */,
-				4BB03BFA1BB2DE37006F84CB /* Constants.swift */,
-				4BA5998C1BB31C8700A2E0CF /* Helper.swift */,
+				4BA5998E1BB31DE400A2E0CF /* Student.swift */,
 				4BB03BF81BB2DC09006F84CB /* Institution.swift */,
 				4BB03BFC1BB2E079006F84CB /* Campus.swift */,
 				4BB03BFE1BB2E204006F84CB /* Restaurant.swift */,
-				4BA5998E1BB31DE400A2E0CF /* Student.swift */,
-				4B4C7FD21BBB4709001D55E5 /* Vote.swift */,
-				4B3FC19B1BE116780077FFBF /* Result.swift */,
+				4B94BD021BF0D5B9001E3003 /* Menu.swift */,
+				4BB03C001BB2E6B3006F84CB /* Meal.swift */,
+				4B06D3551C0C61580042C37F /* Dish.swift */,
+				4BEECA831C905288001608D1 /* Votable.swift */,
+				4B64C4AA1C919CEF0087BBC4 /* Vote.swift */,
+				4BB03BFA1BB2DE37006F84CB /* Constants.swift */,
+				4BA5998C1BB31C8700A2E0CF /* Helper.swift */,
 				4BB03BDE1BB2D5B8006F84CB /* Info.plist */,
 			);
 			path = RUappService;
@@ -363,15 +363,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BB03BCC1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUapp" */;
 			buildPhases = (
-				FC9764FF361ED9B71C330F38 /* Check Pods Manifest.lock */,
+				FC9764FF361ED9B71C330F38 /* 📦 Check Pods Manifest.lock */,
+				4B19D4E11BB65F9900DD22A9 /* Bump Build Number */,
 				4BB03BA01BB2D4DE006F84CB /* Sources */,
 				4BB03BA11BB2D4DE006F84CB /* Frameworks */,
 				4BB03BA21BB2D4DE006F84CB /* Resources */,
 				4BB03BF41BB2D5B8006F84CB /* Embed Frameworks */,
 				4B3375691BB98FFE002696C9 /* Embed App Extensions */,
-				4B19D4E11BB65F9900DD22A9 /* Bump Build Number */,
-				FA4EDA6255248B0ADA88563B /* Embed Pods Frameworks */,
-				10F56B39EB0D60820D812065 /* Copy Pods Resources */,
+				FA4EDA6255248B0ADA88563B /* 📦 Embed Pods Frameworks */,
+				10F56B39EB0D60820D812065 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -423,12 +423,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BB03BF11BB2D5B8006F84CB /* Build configuration list for PBXNativeTarget "RUappService" */;
 			buildPhases = (
-				FB6CB5F016B6F5796919A12F /* Check Pods Manifest.lock */,
+				FB6CB5F016B6F5796919A12F /* 📦 Check Pods Manifest.lock */,
 				4BB03BD51BB2D5B8006F84CB /* Sources */,
 				4BB03BD61BB2D5B8006F84CB /* Frameworks */,
 				4BB03BD71BB2D5B8006F84CB /* Headers */,
 				4BB03BD81BB2D5B8006F84CB /* Resources */,
-				7E9B995270EA9A4ECC77A219 /* Copy Pods Resources */,
+				7E9B995270EA9A4ECC77A219 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -562,14 +562,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		10F56B39EB0D60820D812065 /* Copy Pods Resources */ = {
+		10F56B39EB0D60820D812065 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,16 +589,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "infoPlistPath=${INFOPLIST_FILE}\n\n# Build\nagvtool next-version -all\n\n# Version\nversionString=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$infoPlistPath\")\nversionString+=\" (\"\nversionString+=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$infoPlistPath\")\nversionString+=\")\"\n\n# Write the version number string to the settings bundle\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $versionString\" \"${PROJECT_DIR}/${PRODUCT_NAME}/Settings.bundle/Root.plist\"";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\n# Project\nagvtool next-version -all\n# Settings.bundle\ninfoPlistPath=${INFOPLIST_FILE}\nversionString=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$infoPlistPath\")\nversionString+=\" (\"\nversionString+=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$infoPlistPath\")\nversionString+=\")\"\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $versionString\" \"${PROJECT_DIR}/${PRODUCT_NAME}/Settings.bundle/Root.plist\"\nfi";
 		};
-		7E9B995270EA9A4ECC77A219 /* Copy Pods Resources */ = {
+		7E9B995270EA9A4ECC77A219 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,14 +606,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUappService/Pods-RUappService-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FA4EDA6255248B0ADA88563B /* Embed Pods Frameworks */ = {
+		FA4EDA6255248B0ADA88563B /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,14 +621,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp/Pods-RUapp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB6CB5F016B6F5796919A12F /* Check Pods Manifest.lock */ = {
+		FB6CB5F016B6F5796919A12F /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,14 +636,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		FC9764FF361ED9B71C330F38 /* Check Pods Manifest.lock */ = {
+		FC9764FF361ED9B71C330F38 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -690,17 +690,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B3FC19C1BE116780077FFBF /* Result.swift in Sources */,
 				4BB03C011BB2E6B3006F84CB /* Meal.swift in Sources */,
+				4BEECA841C905288001608D1 /* Votable.swift in Sources */,
 				4B06D3561C0C61580042C37F /* Dish.swift in Sources */,
 				4BB03BF91BB2DC09006F84CB /* Institution.swift in Sources */,
 				4BB03BFB1BB2DE37006F84CB /* Constants.swift in Sources */,
 				4B94BD031BF0D5B9001E3003 /* Menu.swift in Sources */,
-				4B4C7FD31BBB4709001D55E5 /* Vote.swift in Sources */,
 				4BB03BFF1BB2E204006F84CB /* Restaurant.swift in Sources */,
 				4BB03BFD1BB2E079006F84CB /* Campus.swift in Sources */,
 				4BA5998F1BB31DE400A2E0CF /* Student.swift in Sources */,
 				4BA5998D1BB31C8700A2E0CF /* Helper.swift in Sources */,
+				4B64C4AB1C919CEF0087BBC4 /* Vote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,7 +783,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Igor Camilo (9A8AD54YTS)";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1434;
+				CURRENT_PROJECT_VERSION = 1470;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -831,7 +831,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Igor Camilo (2CPJD7ENY9)";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1434;
+				CURRENT_PROJECT_VERSION = 1470;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -933,7 +933,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1434;
+				DYLIB_CURRENT_VERSION = 1470;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = RUappService/Info.plist;
@@ -955,7 +955,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1434;
+				DYLIB_CURRENT_VERSION = 1470;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = RUappService/Info.plist;

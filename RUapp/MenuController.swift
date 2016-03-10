@@ -40,25 +40,28 @@ class MenuController: UICollectionViewController {
             collectionView?.reloadData()
         }
         
-        Menu.update(defaultRestaurant) { (menu, error) -> Void in
+        Menu.update(defaultRestaurant) { (result) -> Void in
             
-            guard let menu = menu else {
-                return
-                let _ = "Show error"
-            }
+            print(result)
             
-            let animate = self.menu == nil
-            self.menu = menu
-            if animate {
-                UIView.transitionWithView(self.view, duration: 0.2, options: [.TransitionCrossDissolve], animations: {
+            switch result {
+            case .Success(let menu):
+                let animate = self.menu == nil
+                self.menu = menu
+                if animate {
+                    UIView.transitionWithView(self.view, duration: 0.2, options: [.TransitionCrossDissolve], animations: {
+                        self.collectionView?.reloadData()
+                        self.collectionView?.backgroundView = nil
+                        self.adjustItemSize()
+                        }, completion: nil)
+                } else {
                     self.collectionView?.reloadData()
                     self.collectionView?.backgroundView = nil
                     self.adjustItemSize()
-                }, completion: nil)
-            } else {
-                self.collectionView?.reloadData()
-                self.collectionView?.backgroundView = nil
-                self.adjustItemSize()
+                }
+            case .Failure(_):
+                return
+                let _ = "Show error"
             }
         }
     }
@@ -96,7 +99,7 @@ class MenuController: UICollectionViewController {
         
         dateFormatter.dateFormat = "EEEE"
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MenuController.updateMenu), name: Restaurant.UserDefaultChangedNotificationName, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MenuController.updateMenu), name: Restaurant.UserDefaultChangedNotification, object: nil)
         
         updateMenu()
     }
@@ -135,7 +138,7 @@ class MenuController: UICollectionViewController {
         let menuKind = Menu.defaultKind
         
         cell.backgroundImg.image = UIImage(named: "Menu\(indexPath.item)\(menuKind.rawValue)")
-        cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(meal.openingDate)
+        cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(meal.opening)
         cell.mealLabel.text = meal.name.uppercaseString
         
         // Alert / Meta
@@ -144,7 +147,7 @@ class MenuController: UICollectionViewController {
             cell.alertImg.image = UIImage(named: "MetaIconStrike")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.strike", value: "GREVE!", comment: "Message displayed when the restaurant is not open")
             cell.alertWrapper.hidden = false
-        case .Closed where meal.openingDate.isWeekend:
+        case .Closed where meal.opening.isWeekend:
             cell.alertImg.image = UIImage(named: "MetaIconWeekend")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.weekend", value: "RU fechado. Vamos aproveitar o final de semana!!!", comment: "Message displayed when the restaurant is not open")
             cell.alertWrapper.hidden = false

@@ -8,62 +8,92 @@
 
 public class Meal {
     
-    private static let dateFormatter = mealDateFormatter()
+    /// Reference to the NSDateFormatter used to create opening and closing dates for the meals.
+    private static let dateFormatter = { () -> NSDateFormatter in
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter
+    }()
     
-    public let name: String
-    public let meta: Meta
+    // MARK: Instance
+    
+    /// Id of the meal.
     public let id: Int?
-    public let openingDate: NSDate
-    public let closingDate: NSDate?
+    /// Name of the meal.
+    public let name: String
+    /// Meta info of the meal.
+    public let meta: Meta
+    /// Opening date of the restaurant for this meal.
+    public let opening: NSDate
+    /// Closing date of the restaurant for this meal.
+    public let closing: NSDate?
+    /// List of dishes for this meal.
     public let dishes: [Dish]?
+    /// List of votables for this meal.
+    public let votables: [Votable]?
     
-    init(dict: AnyObject?, dateString: String) throws {
-        
-        guard let dict = dict as? [String:AnyObject],
-            openingDate = Meal.dateFormatter.dateFromString(dateString + " " + (dict["open"] as? String ?? "00:00:00")),
-            dictName = dict["name"] as? String else {
+    /// Initialize by values.
+    private init(id: Int?, name: String, meta: Meta, opening: NSDate, closing: NSDate?, dishes: [Dish]?, votables: [Votable]?) {
+        self.id = id
+        self.name = name
+        self.meta = meta
+        self.opening = opening
+        self.closing = closing
+        self.dishes = dishes
+        self.votables = votables
+    }
+    
+    /// Initialize by plist.
+    convenience init(dict: AnyObject, dateString: String) throws {
+        // Verify fields
+        guard let
+            opening = Meal.dateFormatter.dateFromString(dateString + " " + (dict["open"] as? String ?? "00:00:00")),
+            name = dict["name"] as? String else {
                 throw Error.InvalidObject
         }
-        
-        // Dishes
-        if let rawDishes = dict["menu"] as? [[String:AnyObject]] {
-            var menuConstructor = [Dish]()
-            for rawDish in rawDishes {
-                menuConstructor.append(try Dish(dict: rawDish))
-            }
-            dishes = menuConstructor
-        } else {
-            dishes = nil
-        }
-        
-        // Opening and closing times
-        self.openingDate = openingDate
+        // Closing time
+        let closing: NSDate?
         if let closingStr = dict["duration"] as? Double {
-            closingDate = openingDate.dateByAddingTimeInterval(closingStr * 60)
+            closing = opening.dateByAddingTimeInterval(closingStr * 60)
         } else {
-            closingDate = nil
+            closing = nil
         }
-        
         // Meta
+        let meta: Meta
         if let rawMeta = dict["meta"] as? String, dictMeta = Meta(rawValue: rawMeta) {
             meta = dictMeta
         } else {
             meta = .Closed
         }
-        
-        name = dictName
-        id = dict["id"] as? Int
+        // Dishes
+        var dishes: [Dish]?
+        if let rawDishes = dict["menu"] as? [AnyObject] {
+            dishes = [Dish]()
+            for rawDish in rawDishes {
+                dishes!.append(try Dish(dict: rawDish))
+            }
+        }
+        // Votables
+        var votables: [Votable]?
+        if let rawVotables = dict["votables"] as? [AnyObject] {
+            votables = [Votable]()
+            for rawVotable in rawVotables {
+                votables!.append(try Votable(dict: rawVotable))
+            }
+        }
+        // Init
+        self.init(id: dict["id"] as? Int, name: name, meta: meta, opening: opening, closing: closing, dishes: dishes, votables: votables)
     }
     
+    /// This enum represents the status of the restaurant for this meal.
     public enum Meta: String {
         case Open = "open"
         case Closed = "closed"
         case Strike = "strike"
     }
-}
-
-private func mealDateFormatter() -> NSDateFormatter {
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    return dateFormatter
+    
+    /// Meal error.
+    enum Error: ErrorType {
+        case InvalidObject
+    }
 }

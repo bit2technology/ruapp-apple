@@ -97,9 +97,11 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         }
         indicator.hidden = false
         
-        institution.registerWithNewStudent(name, studentInstitutionId: studentId) { (student, institution, error) -> Void in
-            
-            guard institution != nil else {
+        Student.register(name: name, numberPlate: studentId, on: institution) { (result) in
+            switch result {
+            case .Success(_):
+                self.performSegueWithIdentifier("Registration To Main", sender: nil)
+            case .Failure(_):
                 for item in controls {
                     item.enabled = true
                 }
@@ -107,10 +109,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
                 let alert = UIAlertController(title: NSLocalizedString("RegisterController.registerStudent.errorTitle", value: "There was an error. Please, try again.", comment: "Error title for when it was not possible to register a new student"), message: nil, preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("RegisterController.registerStudent.errorBtnTitle", value: "OK", comment: "Error button title for when it was not possible to register a new student"), style: .Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
-                return
             }
-            
-            self.performSegueWithIdentifier("Registration To Main", sender: nil)
         }
     }
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
@@ -122,7 +121,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         
         let student = Student.shared
         nameField.text = student?.name
-        studentIdField.text = student?.studentId
+        studentIdField.text = student?.numberPlate
         institution = Institution.shared
         textEdited()
                 
@@ -192,9 +191,12 @@ class RegisterInstitutionListController: UITableViewController {
         super.viewDidLoad()
         navigationItem.title = navigationItem.title?.uppercaseString
         
-        Institution.getList { (list, error) -> Void in
+        Institution.list { (result) -> Void in
             
-            if list == nil {
+            switch result {
+            case .Success(let list):
+                self.list = list
+            case .Failure(_):
                 let errorMsg = UILabel()
                 errorMsg.text = NSLocalizedString("RegisterInstitutionListController.downloadList.error", value: "There was an error. Please, try again.", comment: "Error message for when it was not possible to download the institutions list")
                 errorMsg.numberOfLines = 0
@@ -204,8 +206,6 @@ class RegisterInstitutionListController: UITableViewController {
                 self.tableView.backgroundView = errorMsg
                 self.tableView.separatorStyle = .None
             }
-            
-            self.list = list ?? []
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         }
     }

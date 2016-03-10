@@ -8,31 +8,34 @@
 
 import Alamofire
 
-/// Key used to save and get cached menu data.
-private let SavedMenuArrayKey = "SavedMenuArray"
-
-/// Key used to save and get cached menu kind.
-private let SavedMenuKindKey = "SavedMenuKind"
-
 /// Class to manage menu data.
 public class Menu {
     
+    /// Private keys
+    private static let savedArrayKey = "saved_menu_array"
+    private static let savedKindKey = "saved_menu_kind"
+    private static let restaurantIdKey = "restaurant_id"
+    private static let mealsKey = "meals"
+    private static let dateKey = "date"
+    
     /// Default menu kind set by the user.
-    public static var defaultKind = Kind(rawValue: globalUserDefaults?.objectForKey(SavedMenuKindKey) as? Int ?? Kind.Traditional.rawValue)! {
+    public static var defaultKind = Kind(rawValue: globalUserDefaults.objectForKey(savedKindKey) as? Int ?? Kind.Traditional.rawValue)! {
         didSet {
-            globalUserDefaults?.setInteger(defaultKind.rawValue, forKey: SavedMenuKindKey)
-            globalUserDefaults?.synchronize()
+            globalUserDefaults.setInteger(defaultKind.rawValue, forKey: savedKindKey)
+            globalUserDefaults.synchronize()
         }
     }
     
     /// Shared menu data. It is also cached for offline query.
-    public private(set) static var shared = try? Menu(menuObj: globalUserDefaults?.objectForKey(SavedMenuArrayKey))
+    public private(set) static var shared = try? Menu(dict: globalUserDefaults.objectForKey(savedArrayKey))
     
     /// Reference to current request.
     private static var request: Request?
     
     /// Prevent requesting too often.
     private static var lastSuccessfulRequest = NSDate(timeIntervalSince1970: 0) // Initial time set to past, so we can update on load.
+    
+    // MARK: Instance
     
     /// Info about meals of this menu.
     public private(set) var meals: [[Meal]]
@@ -41,20 +44,18 @@ public class Menu {
     public private(set) var restaurantId: Int
     
     /// Get menu info from data. If successfull, cache it.
-    public class func update(restaurant: Restaurant, completion: (menu: Menu?, error: ErrorType?) -> Void) {
-        print("update started")
+    public class func update(restaurant: Restaurant, completion: (result: Result<Menu>) -> Void) {
         
         // If request for the same restaurant, prevent requesting too often (if there is an active request or the last request was less than 1min ago)
         if restaurant.id == shared?.restaurantId && (request != nil || NSDate().timeIntervalSinceDate(lastSuccessfulRequest) < 60) {
-            completion(menu: nil, error: Error.RequestTooOften)
+            completion(result: Result.Failure(error: Error.RequestTooOften))
             return
         }
         
         // Cancel current request (if any) and start a new one.
         request?.cancel()
-        request = Alamofire.request(.GET, ServiceURL.getMenu, parameters: ["restaurant_id": restaurant.id]).responseJSON { (response) in
+        request = Alamofire.request(.GET, ServiceURL.getMenu, parameters: [Menu.restaurantIdKey: restaurant.id]).responseJSON { (response) in
             request = nil
-            print("update ended success:", response.result.isSuccess)
             
             do {
                 // Verify data
@@ -63,51 +64,64 @@ public class Menu {
                 }
                 
                 // Process menu data. If successful, save it to user defaults.
-                let extendedMenu = ["meals": rawMenu, "restaurant_id": restaurant.id]
-                Menu.shared = try Menu(menuObj: extendedMenu)
-                globalUserDefaults?.setObject(extendedMenu, forKey: SavedMenuArrayKey)
-                globalUserDefaults?.synchronize()
+                let extendedMenu = [Menu.mealsKey: rawMenu, Menu.restaurantIdKey: restaurant.id]
+                let newMenu = try Menu(dict: extendedMenu)
+                Menu.shared = newMenu
+                globalUserDefaults.setObject(extendedMenu, forKey: savedArrayKey)
+                globalUserDefaults.synchronize()
                 
                 // Return menu
                 lastSuccessfulRequest = NSDate()
-                completion(menu: Menu.shared, error: nil)
+                completion(result: .Success(value: newMenu))
             } catch {
                 // Return error
-                completion(menu: nil, error: error)
+                completion(result: .Failure(error: error))
             }
         }
     }
     
-    private init(menuObj: AnyObject?) throws {
-        
-        guard let restaurantId = menuObj?["restaurant_id"] as? Int,
-            rawWeekMenu = menuObj?["meals"] as? [AnyObject] else {
+    /// Initialize by values.
+    private init(meals: [[Meal]], restaurantId: Int) {
+        self.meals = meals
+        self.restaurantId = restaurantId
+    }
+    
+    /// Initialize by plist.
+    private convenience init(dict: AnyObject?) throws {
+        // Verify values
+        guard let restaurantId = dict?[Menu.restaurantIdKey] as? Int,
+            rawWeekMenu = dict?[Menu.mealsKey] as? [AnyObject] else {
                 throw Error.InvalidObject
         }
-        
+        // Construct menu matrix
         var weekMenu = [[Meal]]()
         for rawDayMenu in rawWeekMenu {
-            
-            guard let dateString = rawDayMenu["date"] as? String,
-                rawMeals = rawDayMenu["meals"] as? [AnyObject] where rawMeals.count > 0 else {
+            // Verify meal values
+            guard let
+                dateString = rawDayMenu[Menu.dateKey] as? String,
+                rawMeals = rawDayMenu[Menu.mealsKey] as? [AnyObject] where rawMeals.count > 0 else {
                     throw Error.InvalidObject
             }
-            
+            // Construct inner array
             var dayMenu = [Meal]()
             for rawMeal in rawMeals {
                 dayMenu.append(try Meal(dict: rawMeal, dateString: dateString))
             }
-            
             weekMenu.append(dayMenu)
         }
-        
-        self.meals = weekMenu
-        self.restaurantId = restaurantId
+        self.init(meals: weekMenu, restaurantId: restaurantId)
     }
     
     /// Kind of menu.
     public enum Kind: Int {
         case Traditional = 0
         case Vegetarian = 1
+    }
+    
+    /// Menu error.
+    enum Error: ErrorType {
+        case InvalidObject
+        case NoData
+        case RequestTooOften
     }
 }

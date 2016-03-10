@@ -6,33 +6,45 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
+/// This class represents a dish of a meal
 public class Dish {
     
+    // MARK: Instance
+    
+    /// Meta info of the dish.
     public let meta: Meta
+    /// Type of the dish.
     public let type: String
+    /// Name of the dish.
     public let name: String?
     
-    init(dict: [String:AnyObject]) throws {
-        
+    /// Initialize by values.
+    init(meta: Meta, type: String, name: String?) {
+        self.meta = meta
+        self.type = type
+        self.name = name
+    }
+    
+    /// Initialize by plist
+    convenience init(dict: AnyObject) throws {
+        // Verify values
         guard let rawMeta = dict["meta"] as? String,
             meta = Meta(rawValue: rawMeta),
             type = dict["type"] as? String else {
                 throw Error.InvalidObject
         }
-        
-        self.meta = meta
-        self.type = type
-        
-        if let name = dict["name"] as? String {
-            self.name = name
-        } else {
-            self.name = nil
-        }
+        self.init(meta: meta, type: type, name: dict["name"] as? String)
     }
     
+    /// This enum represents if in the vegetarian menu.
     public enum Meta: String {
-        case Main = "main"
+        case Main = "main" // Not vegetarian
         case Vegetarian = "vegetarian"
-        case Other = "other"
+        case Other = "other" // Both
+    }
+    
+    /// Dish error.
+    enum Error: ErrorType {
+        case InvalidObject
     }
 }

@@ -8,27 +8,58 @@
 
 import Alamofire
 
-private let InstitutionSavedDictionaryKey = "SavedInstitutionDictionary"
-
-public class Institution {
+/// This class represents a institution registered with RUapp.
+public final class Institution {
     
-    public private(set) static var shared = try? Institution(dict: globalUserDefaults?.objectForKey(InstitutionSavedDictionaryKey))
+    /// Shared instance.
+    public private(set) static var shared = try? Institution(dict: globalUserDefaults.objectForKey(savedDataKey))
     
-    public let id: Int
-    public let name: String
-    public let campi: [Campus]?
+    // Private keys
+    private static let savedDataKey = "saved_institution"
     
-    private init(dict: AnyObject?) throws {
-        
-        guard let dict = dict as? [String:AnyObject],
-            dictId = dict["id"] as? Int,
-            dictName = dict["name"] as? String else {
+    /// Get a list of all institutions (short version).
+    public class func list(completion: (result: Result<[Institution]>) -> Void) {
+        Alamofire.request(.GET, ServiceURL.getInstitutionOverviewList).responseJSON { (response) in
+            do {
+                // Verify result
+                guard response.result.isSuccess else {
+                    throw response.result.error ?? Error.NoData
+                }
+                guard let jsonObj = response.result.value as? [AnyObject] else {
+                    throw Error.InvalidObject
+                }
+                // Make array and return
+                var overviewList = [Institution]()
+                for institutionDict in jsonObj {
+                    overviewList.append(try Institution(dict: institutionDict))
+                }
+                completion(result: .Success(value: overviewList))
+            } catch {
+                completion(result: .Failure(error: error))
+            }
+        }
+    }
+    
+    /// Remove saved data from disk.
+    class func clear() {
+        shared = nil
+        globalUserDefaults.removeObjectForKey(savedDataKey)
+        globalUserDefaults.synchronize()
+    }
+    
+    /// Extract values from a dictionary.
+    private class func extract(dict: AnyObject?) throws -> (id: Int, name: String, campi: [Campus]?) {
+        // Verify fields
+        guard let
+            id = dict?["id"] as? Int,
+            name = dict?["name"] as? String else {
                 throw Error.InvalidObject
         }
-        
-        if let dictCampi = dict["campi"] as? [[String:AnyObject]] {
+        // Construct campi array if necessary
+        let campi: [Campus]?
+        if let rawCampi = dict?["campi"] as? [AnyObject] {
             var campiArray = [Campus]()
-            for campus in dictCampi {
+            for campus in rawCampi {
                 campiArray.append(try Campus(dict: campus))
             }
             campi = campiArray
@@ -36,74 +67,44 @@ public class Institution {
         else {
             campi = nil
         }
-        
-        id = dictId
-        name = dictName
+        return (id, name, campi)
     }
     
-    public class func getList(completion: (list: [Institution]?, error: ErrorType?) -> Void) {
-        Alamofire.request(.GET, ServiceURL.getInstitutionOverviewList).responseJSON { (response) in
-            do {
-                guard response.result.isSuccess else {
-                    throw response.result.error ?? Error.NoData
-                }
-                guard let jsonObj = response.result.value as? [AnyObject] else {
-                    throw Error.InvalidObject
-                }
-                
-                var overviewList = [Institution]()
-                for institutionDict in jsonObj {
-                    overviewList.append(try Institution(dict: institutionDict))
-                }
-                
-                completion(list: overviewList, error: nil)
-            } catch {
-                completion(list: nil, error: error)
-            }
-        }
+    // MARK: Instance
+    
+    /// Id of the institution.
+    public let id: Int
+    /// Display name of the institution.
+    public private(set) var name: String
+    /// List of the campi of this institution. If nil, it means that this instance is an overview and needs to call update before being stored.
+    public private(set) var campi: [Campus]?
+    
+    /// Initialization by values.
+    private init(id: Int, name: String, campi: [Campus]?) {
+        self.id = id
+        self.name = name
+        self.campi = campi
     }
     
-    public class func get(id: Int, completion: (institution: Institution?, error: ErrorType?) -> Void) {
-        Alamofire.request(.GET, ServiceURL.getInstitution, parameters: ["id": id]).responseJSON { (response) in
-            do {
-                guard response.result.isSuccess else {
-                    throw response.result.error ?? Error.NoData
-                }
-                
-                let newInstitution = try Institution(dict: response.result.value)
-                completion(institution: newInstitution, error: nil)
-            } catch {
-                completion(institution: nil, error: error)
-            }
-        }
+    /// Initialization by plist.
+    private convenience init(dict: AnyObject?) throws {
+        let extracted = try Institution.extract(dict)
+        self.init(id: extracted.id, name: extracted.name, campi: extracted.campi)
     }
     
-    public func registerWithNewStudent(name: String, studentInstitutionId: String, completion: (student: Student?, institution: Institution?, error: ErrorType?) -> Void) {
-        
-        let req = NSMutableURLRequest(URL: NSURL(string: ServiceURL.registerStudent)!)
-        req.HTTPMethod = "POST"
-        let params = ["institution_id": id, "name": name, "number_plate": studentInstitutionId, "token": UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""] as [String:AnyObject]
-        req.HTTPBody = params.appPrepare()
-        Alamofire.request(req).responseJSON { (response) in
-            do {
-                guard response.result.isSuccess else {
-                    throw response.result.error ?? Error.NoData
-                }
-                
-                guard let jsonObj = response.result.value,
-                    studentId = jsonObj["student_id"] as? Int,
-                    institution = jsonObj["institution"] as? [String:AnyObject] else {
-                        throw Error.InvalidObject
-                }
-                
-                try Student.register(studentId, name: name, studentId: studentInstitutionId)
-                Institution.shared = try Institution(dict: institution)
-                globalUserDefaults?.setObject(institution, forKey: InstitutionSavedDictionaryKey) // It will sync in the next command
-                Restaurant.userDefault = Institution.shared?.campi?.first?.restaurants.first
-                completion(student: Student.shared, institution: Institution.shared, error: nil)
-            } catch {
-                completion(student: nil, institution: nil, error: error)
-            }
-        }
+    /// Update and save this institution locally.
+    func update(dict: AnyObject?) throws {
+        let extracted = try Institution.extract(dict)
+        self.name = extracted.name
+        self.campi = extracted.campi
+        Institution.shared = self
+        globalUserDefaults.setObject(dict, forKey: Institution.savedDataKey)
+        globalUserDefaults.synchronize()
+    }
+    
+    /// Institution errors
+    enum Error: ErrorType {
+        case InvalidObject
+        case NoData
     }
 }

@@ -8,58 +8,98 @@
 
 import CoreLocation
 
-private let DefaultRestaurantIdKey = "DefaultRestaurantId"
-
-private func getUserDefaultRestaurant() -> Restaurant? {
-    
-    guard let defaultRestaurantId = globalUserDefaults?.objectForKey(DefaultRestaurantIdKey) as? Int,
-        campi = Institution.shared?.campi else {
-            return nil
-    }
-    
-    for campus in campi {
-        for rest in campus.restaurants {
-            if rest.id == defaultRestaurantId {
-                return rest
-            }
-        }
-    }
-    
-    return nil
-}
-
+/// This class represents a restaurant of a campus.
 public class Restaurant {
     
-    public static let UserDefaultChangedNotificationName = "UserUserDefaultChangedNotification"
-    
-    public static var userDefault = getUserDefaultRestaurant() {
+    /// Internal reference to user default.
+    private static weak var _userDefault = Restaurant.getUserDefault() {
         didSet {
-            if let newDefaultRestaurant = userDefault {
-                globalUserDefaults?.setInteger(newDefaultRestaurant.id, forKey: DefaultRestaurantIdKey)
-                globalUserDefaults?.synchronize()
-                NSNotificationCenter.defaultCenter().postNotificationName(UserDefaultChangedNotificationName, object: self, userInfo: ["restaurant": newDefaultRestaurant])
+            if let newDefaultRestaurant = _userDefault {
+                // Save to disk
+                globalUserDefaults.setInteger(newDefaultRestaurant.id, forKey: userDefaultIdKey)
+                globalUserDefaults.synchronize()
+                NSNotificationCenter.defaultCenter().postNotificationName(UserDefaultChangedNotification, object: self)
             }
         }
     }
     
+    /// Reference to the user's default restaurant.
+    public static var userDefault: Restaurant? {
+        get {
+            if _userDefault == nil {
+                // If _userDefault is nil, try to get it from disk and return it
+                _userDefault = getUserDefault()
+            }
+            return _userDefault
+        }
+        set {
+            _userDefault = newValue
+        }
+    }
+    
+    /// Notification name for when the default restaurant changes.
+    public static let UserDefaultChangedNotification = "UserDefaultRestaurantChangedNotification"
+    
+    // Private keys
+    private static let userDefaultIdKey = "saved_user_default_restaurant"
+    
+    /// Get saved user default from disk.
+    private class func getUserDefault() -> Restaurant? {
+        // Verify fields
+        guard let campi = Institution.shared?.campi else {
+            return nil
+        }
+        // Find restaurant by id
+        let defaultRestaurantId = globalUserDefaults.objectForKey(userDefaultIdKey) as? Int
+        var firstFound: Restaurant?
+        for campus in campi {
+            for rest in campus.restaurants {
+                if rest.id == defaultRestaurantId {
+                    return rest
+                }
+                if firstFound == nil {
+                    firstFound = rest
+                }
+            }
+        }
+        // If cannot find the restaurant
+        return firstFound
+    }
+    
+    // MARK: Instance
+    
+    /// Id of the restaurant.
     public let id: Int
+    /// Name of the restaurant.
     public let name: String
+    /// Capacity of the restaurant.
     public let capacity: Int?
+    /// Map coordinates of the restaurant.
     public let coordinate: CLLocationCoordinate2D
     
-    public init(dict: AnyObject?) throws {
-        
-        guard let dict = dict as? [String:AnyObject],
-            dictId = dict["id"] as? Int,
-            dictName = dict["name"] as? String,
+    /// Initialization by values.
+    private init(id: Int, name: String, capacity: Int?, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        self.id = id
+        self.name = name
+        self.capacity = capacity
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    /// Initialization by plist.
+    convenience init(dict: AnyObject) throws {
+        // Verify fields
+        guard let
+            id = dict["id"] as? Int,
+            name = dict["name"] as? String,
             latitude = dict["latitude"] as? CLLocationDegrees,
             longitude = dict["longitude"] as? CLLocationDegrees else {
                 throw Error.InvalidObject
         }
-        
-        id = dictId
-        name = dictName
-        capacity = dict["capacity"] as? Int
-        coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.init(id: id, name: name, capacity: dict["capacity"] as? Int, latitude: latitude, longitude: longitude)
+    }
+    
+    /// Campus errors
+    enum Error: ErrorType {
+        case InvalidObject
     }
 }
