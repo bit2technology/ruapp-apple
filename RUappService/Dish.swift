@@ -36,7 +36,7 @@ public class Dish {
         self.init(meta: meta, type: type, name: dict["name"] as? String)
     }
     
-    /// This enum represents if in the vegetarian menu.
+    /// This enum represents if a dish is in the vegetarian menu.
     public enum Meta: String {
         case Main = "main" // Not vegetarian
         case Vegetarian = "vegetarian"
