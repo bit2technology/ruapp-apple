@@ -14,19 +14,43 @@ private class AppVote: Vote {
     var editingComment = false
     var editingReason = false
     var finishedVotePresented = false
-    
-    class func dishes(num: Int) -> [AppVote] {
-        var votes = [AppVote]()
-        for _ in 0..<num {
-            votes.append(AppVote())
-        }
-        return votes
-    }
 }
 
 class VoteController: UITableViewController {
     
-    private let votes = AppVote.dishes(100)
+    private var currentMeal: Meal? {
+        didSet {
+            
+            if currentMeal?.opening != oldValue?.opening {
+                
+                guard let votables = currentMeal?.votables else {
+                    return
+                }
+                
+                print("reloaded")
+                
+                var votes = [AppVote]()
+                for votable in votables {
+                    votes.append(AppVote(item: votable))
+                }
+                self.votes = votes
+                
+                tableView.reloadData()
+            }
+        }
+    }
+    
+    private var votes: [AppVote]?
+    
+    private var allVotes: [AppVote]? {
+        didSet {
+            votes =
+        }
+    }
+    
+    private func filterVotes(votes: [AppVote]?) -> [AppVote]? {
+        
+    }
     
     private func adjustInstets() {
         let topBarHeight = mainController.topBarHeight.constant
@@ -36,7 +60,7 @@ class VoteController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        currentMeal = Menu.shared?.currentMeal
         adjustInstets()
     }
     
@@ -49,7 +73,7 @@ class VoteController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return votes.count
+        return votes?.count ?? 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -57,7 +81,7 @@ class VoteController: UITableViewController {
         
         cell.lightStyle = indexPath.row % 2 == 0
         cell.title.text = "Dish name \(indexPath.row)"
-        cell.vote = votes[indexPath.item]
+        cell.vote = votes![indexPath.item]
     
         return cell
     }

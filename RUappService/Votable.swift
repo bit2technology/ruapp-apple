@@ -8,6 +8,6 @@
 
 public class Votable {
     init(dict: AnyObject) throws {
-        
+        print(dict)
     }
 }

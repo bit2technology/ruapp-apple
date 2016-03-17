@@ -26,6 +26,28 @@ public class Menu {
         }
     }
     
+//    func mealOpening() -> (previous: Meal?, next: Meal?) {
+//        var previousMeal: Meal?
+//        let now = NSDate()
+//        for menuDay in meals {
+//            for meal in menuDay {
+//                if now.timeIntervalSinceDate(meal.opening) < 0 {
+//                    return (previousMeal, meal)
+//                }
+//                previousMeal = meal
+//            }
+//        }
+//        return (previousMeal, nil)
+//    }
+    
+    // FIXME: Make it work properly
+    /// Meal for current time, if any.
+    public var currentMeal: Meal? {
+//        let meals = mealOpening()
+//        return meals.previous?.closing?.timeIntervalSinceNow > 0 ? meals.previous : nil
+        return meals[0][1]
+    }
+    
     /// Shared menu data. It is also cached for offline query.
     public private(set) static var shared = try? Menu(dict: globalUserDefaults.objectForKey(savedArrayKey))
     

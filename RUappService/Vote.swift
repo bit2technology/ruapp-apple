@@ -8,7 +8,7 @@
 
 public class Vote {
     
-//    public var item: Votable
+    public var item: Votable
     public var type: VoteType?
     public var reason: Set<Int>?
     public var comment: String?
@@ -20,8 +20,8 @@ public class Vote {
         return string
     }
     
-    public init() {
-//        self.item = item
+    public init(item: Votable) {
+        self.item = item
     }
     
     public enum VoteType: Int {

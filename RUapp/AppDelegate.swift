@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         print(NSFileManager().containerURLForSecurityApplicationGroupIdentifier("group.com.bit2software.RUapp"))
+        print(Menu.shared?.currentMeal?.name)
         
         // Appearance
         window?.tintColor = UIColor.appLightBlue()
