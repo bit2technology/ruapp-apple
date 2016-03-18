@@ -10,7 +10,6 @@ import UIKit
 import RUappService
 
 private class AppVote: Vote {
-    
     var editingComment = false
     var editingReason = false
     var finishedVotePresented = false
@@ -20,36 +19,51 @@ class VoteController: UITableViewController {
     
     private var currentMeal: Meal? {
         didSet {
-            
             if currentMeal?.opening != oldValue?.opening {
                 
                 guard let votables = currentMeal?.votables else {
                     return
                 }
                 
-                print("reloaded")
-                
                 var votes = [AppVote]()
                 for votable in votables {
                     votes.append(AppVote(item: votable))
                 }
-                self.votes = votes
+                self.allVotes = votes
                 
-                tableView.reloadData()
+                updateVotes()
             }
         }
     }
     
     private var votes: [AppVote]?
     
-    private var allVotes: [AppVote]? {
-        didSet {
-            votes =
+    private var allVotes: [AppVote]?
+    
+    private var presented = false
+    @objc private func updateVotes() {
+        
+        if let allVotes = allVotes {
+            self.votes = filterVotes(allVotes)
+        } else {
+            self.votes = nil
+        }
+        
+        if presented {
+            tableView.reloadData()
         }
     }
     
-    private func filterVotes(votes: [AppVote]?) -> [AppVote]? {
-        
+    private func filterVotes(votes: [AppVote]) -> [AppVote] {
+        let dishesNotToShow = Menu.defaultKind == .Traditional ? Dish.Meta.Vegetarian : .Main
+        print("dishesNotToShow", dishesNotToShow)
+        var filteredVotes = [AppVote]()
+        for vote in votes {
+            if vote.item.meta != dishesNotToShow {
+                filteredVotes.append(vote)
+            }
+        }
+        return filteredVotes
     }
     
     private func adjustInstets() {
@@ -58,10 +72,20 @@ class VoteController: UITableViewController {
         tableView?.scrollIndicatorInsets.top = topBarHeight
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mainController.menuTypeSelector.addTarget(self, action: #selector(VoteController.updateVotes), forControlEvents: .ValueChanged)
+        currentMeal = Menu.shared?.currentMeal
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        currentMeal = Menu.shared?.currentMeal
         adjustInstets()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        presented = true
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
@@ -80,7 +104,6 @@ class VoteController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Vote", forIndexPath: indexPath) as! VoteCell
         
         cell.lightStyle = indexPath.row % 2 == 0
-        cell.title.text = "Dish name \(indexPath.row)"
         cell.vote = votes![indexPath.item]
     
         return cell
@@ -224,6 +247,8 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         defer {
             layoutIfNeeded()
         }
+        
+        title.text = vote.item.name
         
         thankyou.alpha = 0
         
