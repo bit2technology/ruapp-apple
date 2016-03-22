@@ -55,15 +55,6 @@ public final class Student {
         }
     }
     
-    // MARK: Instance
-    
-    /// API identification.
-    public let id: Int
-    /// Display name.
-    public private(set) var name: String
-    /// Identification on the current Institution.
-    public private(set) var numberPlate: String
-    
     /// Initialization by values.
     private init(id: Int, name: String, numberPlate: String) {
         // Initialize proprieties
@@ -83,6 +74,15 @@ public final class Student {
         }
         self.init(id: id, name: name, numberPlate: numberPlate)
     }
+    
+    // MARK: Instance
+    
+    /// API identification.
+    public let id: Int
+    /// Display name.
+    public private(set) var name: String
+    /// Identification on the current Institution.
+    public private(set) var numberPlate: String
     
     /// Student errors.
     enum Error: ErrorType {

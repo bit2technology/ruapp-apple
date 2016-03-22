@@ -57,6 +57,38 @@ public class Menu {
     /// Prevent requesting too often.
     private static var lastSuccessfulRequest = NSDate(timeIntervalSince1970: 0) // Initial time set to past, so we can update on load.
     
+    /// Initialize by values.
+    private init(meals: [[Meal]], restaurantId: Int) {
+        self.meals = meals
+        self.restaurantId = restaurantId
+    }
+    
+    /// Initialize by plist.
+    private convenience init(dict: AnyObject?) throws {
+        // Verify values
+        guard let restaurantId = dict?[Menu.restaurantIdKey] as? Int,
+            rawWeekMenu = dict?[Menu.mealsKey] as? [AnyObject] else {
+                throw Error.InvalidObject
+        }
+        // Construct menu matrix
+        var weekMenu = [[Meal]]()
+        for rawDayMenu in rawWeekMenu {
+            // Verify meal values
+            guard let
+                dateString = rawDayMenu[Menu.dateKey] as? String,
+                rawMeals = rawDayMenu[Menu.mealsKey] as? [AnyObject] where rawMeals.count > 0 else {
+                    throw Error.InvalidObject
+            }
+            // Construct inner array
+            var dayMenu = [Meal]()
+            for rawMeal in rawMeals {
+                dayMenu.append(try Meal(dict: rawMeal, dateString: dateString))
+            }
+            weekMenu.append(dayMenu)
+        }
+        self.init(meals: weekMenu, restaurantId: restaurantId)
+    }
+    
     // MARK: Instance
     
     /// Info about meals of this menu.
@@ -100,38 +132,6 @@ public class Menu {
                 completion(result: .Failure(error: error))
             }
         }
-    }
-    
-    /// Initialize by values.
-    private init(meals: [[Meal]], restaurantId: Int) {
-        self.meals = meals
-        self.restaurantId = restaurantId
-    }
-    
-    /// Initialize by plist.
-    private convenience init(dict: AnyObject?) throws {
-        // Verify values
-        guard let restaurantId = dict?[Menu.restaurantIdKey] as? Int,
-            rawWeekMenu = dict?[Menu.mealsKey] as? [AnyObject] else {
-                throw Error.InvalidObject
-        }
-        // Construct menu matrix
-        var weekMenu = [[Meal]]()
-        for rawDayMenu in rawWeekMenu {
-            // Verify meal values
-            guard let
-                dateString = rawDayMenu[Menu.dateKey] as? String,
-                rawMeals = rawDayMenu[Menu.mealsKey] as? [AnyObject] where rawMeals.count > 0 else {
-                    throw Error.InvalidObject
-            }
-            // Construct inner array
-            var dayMenu = [Meal]()
-            for rawMeal in rawMeals {
-                dayMenu.append(try Meal(dict: rawMeal, dateString: dateString))
-            }
-            weekMenu.append(dayMenu)
-        }
-        self.init(meals: weekMenu, restaurantId: restaurantId)
     }
     
     /// Kind of menu.

@@ -15,23 +15,6 @@ public class Meal {
         return dateFormatter
     }()
     
-    // MARK: Instance
-    
-    /// Id of the meal.
-    public let id: Int?
-    /// Name of the meal.
-    public let name: String
-    /// Meta info of the meal.
-    public let meta: Meta
-    /// Opening date of the restaurant for this meal.
-    public let opening: NSDate
-    /// Closing date of the restaurant for this meal.
-    public let closing: NSDate?
-    /// List of dishes for this meal.
-    public let dishes: [Dish]?
-    /// List of votables for this meal.
-    public let votables: [Votable]?
-    
     /// Initialize by values.
     private init(id: Int?, name: String, meta: Meta, opening: NSDate, closing: NSDate?, dishes: [Dish]?, votables: [Votable]?) {
         self.id = id
@@ -84,6 +67,23 @@ public class Meal {
         // Init
         self.init(id: dict["id"] as? Int, name: name, meta: meta, opening: opening, closing: closing, dishes: dishes, votables: votables)
     }
+    
+    // MARK: Instance
+    
+    /// Id of the meal.
+    public let id: Int?
+    /// Name of the meal.
+    public let name: String
+    /// Meta info of the meal.
+    public let meta: Meta
+    /// Opening date of the restaurant for this meal.
+    public let opening: NSDate
+    /// Closing date of the restaurant for this meal.
+    public let closing: NSDate?
+    /// List of dishes for this meal.
+    public let dishes: [Dish]?
+    /// List of votables for this meal.
+    public let votables: [Votable]?
     
     /// This enum represents the status of the restaurant for this meal.
     public enum Meta: String {

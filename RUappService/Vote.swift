@@ -25,11 +25,10 @@ public class Vote {
     }
     
     public enum VoteType: Int {
-        case DidntEat = 0, Bad, Good, VeryGood
-    }
-    
-    public func send() {
-        
+        case DidntEat = 0
+        case Bad = 1
+        case Good = 2
+        case VeryGood = 3
     }
     
     enum Error: ErrorType {

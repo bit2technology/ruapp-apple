@@ -70,15 +70,6 @@ public final class Institution {
         return (id, name, campi)
     }
     
-    // MARK: Instance
-    
-    /// Id of the institution.
-    public let id: Int
-    /// Display name of the institution.
-    public private(set) var name: String
-    /// List of the campi of this institution. If nil, it means that this instance is an overview and needs to call update before being stored.
-    public private(set) var campi: [Campus]?
-    
     /// Initialization by values.
     private init(id: Int, name: String, campi: [Campus]?) {
         self.id = id
@@ -91,6 +82,15 @@ public final class Institution {
         let extracted = try Institution.extract(dict)
         self.init(id: extracted.id, name: extracted.name, campi: extracted.campi)
     }
+    
+    // MARK: Instance
+    
+    /// Id of the institution.
+    public let id: Int
+    /// Display name of the institution.
+    public private(set) var name: String
+    /// List of the campi of this institution. If nil, it means that this instance is an overview and needs to call update before being stored.
+    public private(set) var campi: [Campus]?
     
     /// Update and save this institution locally.
     func update(dict: AnyObject?) throws {

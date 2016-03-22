@@ -66,17 +66,6 @@ public class Restaurant {
         return firstFound
     }
     
-    // MARK: Instance
-    
-    /// Id of the restaurant.
-    public let id: Int
-    /// Name of the restaurant.
-    public let name: String
-    /// Capacity of the restaurant.
-    public let capacity: Int?
-    /// Map coordinates of the restaurant.
-    public let coordinate: CLLocationCoordinate2D
-    
     /// Initialization by values.
     private init(id: Int, name: String, capacity: Int?, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         self.id = id
@@ -97,6 +86,17 @@ public class Restaurant {
         }
         self.init(id: id, name: name, capacity: dict["capacity"] as? Int, latitude: latitude, longitude: longitude)
     }
+    
+    // MARK: Instance
+    
+    /// Id of the restaurant.
+    public let id: Int
+    /// Name of the restaurant.
+    public let name: String
+    /// Capacity of the restaurant.
+    public let capacity: Int?
+    /// Map coordinates of the restaurant.
+    public let coordinate: CLLocationCoordinate2D
     
     /// Campus errors
     enum Error: ErrorType {

@@ -9,15 +9,6 @@
 // This class represents a campus of an institution.
 public class Campus {
     
-    // MARK: Instance
-    
-    /// Id of the campus.
-    public let id: Int
-    /// Name of the campus.
-    public let name: String
-    /// List of the restaurants of this campus.
-    public let restaurants: [Restaurant]
-    
     /// Initialization by values.
     private init(id: Int, name: String, restaurants: [Restaurant]) {
         self.id = id
@@ -41,6 +32,15 @@ public class Campus {
         }
         self.init(id: id, name: name, restaurants: restaurants)
     }
+    
+    // MARK: Instance
+    
+    /// Id of the campus.
+    public let id: Int
+    /// Name of the campus.
+    public let name: String
+    /// List of the restaurants of this campus.
+    public let restaurants: [Restaurant]
     
     /// Campus errors
     enum Error: ErrorType {

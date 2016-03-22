@@ -8,12 +8,9 @@
 
 public class Votable {
     
-    public let id: Int
-    public let meta: Dish.Meta
-    public let name: String
-    
+    /// Initialize by plist
     init(dict: AnyObject) throws {
-        
+        // Verify values
         guard let
             id = dict["id"] as? Int,
             rawMeta = dict["meta"] as? String,
@@ -26,6 +23,14 @@ public class Votable {
         self.meta = meta
         self.name = name
     }
+    
+    // MARK: Instance
+    
+    public let id: Int
+    public let meta: Dish.Meta
+    public let name: String
+    
+    
     
     /// Votable error.
     enum Error: ErrorType {
