@@ -12,16 +12,26 @@ public class Vote {
     public var type: VoteType?
     public var reason: Set<Int>?
     public var comment: String?
-    private var sending = false
-    private var sent = false
-    
-    private func appPrepare() -> String {
-        let string = "{\"comida_id\":\\(item.id),\"tipo_voto_id\":1,\"comentario\":\"Delicioso\",\"comentario_pre_definido_id\":[14, 12, 9]}"
-        return string
-    }
     
     public init(item: Votable) {
         self.item = item
+    }
+    
+    private func toRawDict() throws -> [String:AnyObject] {
+        // Verify values
+        guard let type = type else {
+            throw Error.InvalidVote
+        }
+        // Build dictionary
+        var dict = ["dish_id": item.id, "vote_type_id": type.rawValue] as [String:AnyObject]
+        if let reason = reason where !reason.isEmpty {
+            dict["pre_defined_comment_ids"] = Array(reason)
+        }
+        if let comment = comment {
+            dict["comment"] = comment
+        }
+        // Return dictionary
+        return dict
     }
     
     public enum VoteType: Int {

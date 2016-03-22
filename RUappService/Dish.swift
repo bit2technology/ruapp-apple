@@ -9,22 +9,18 @@
 /// This class represents a dish of a meal
 public class Dish {
     
-    /// Initialize by values.
-    init(meta: Meta, type: String, name: String?) {
-        self.meta = meta
-        self.type = type
-        self.name = name
-    }
-    
     /// Initialize by plist
-    convenience init(dict: AnyObject) throws {
+    init(dict: AnyObject) throws {
         // Verify values
         guard let rawMeta = dict["meta"] as? String,
             meta = Meta(rawValue: rawMeta),
             type = dict["type"] as? String else {
                 throw Error.InvalidObject
         }
-        self.init(meta: meta, type: type, name: dict["name"] as? String)
+        // Initialize proprieties
+        self.meta = meta
+        self.type = type
+        self.name = dict["name"] as? String
     }
     
     // MARK: Instance

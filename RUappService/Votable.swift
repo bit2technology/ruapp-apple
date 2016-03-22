@@ -18,7 +18,7 @@ public class Votable {
             name = dict["name"] as? String else {
                 throw Error.InvalidObject
         }
-        
+        // Initialize proprieties
         self.id = id
         self.meta = meta
         self.name = name
@@ -26,11 +26,12 @@ public class Votable {
     
     // MARK: Instance
     
+    /// Id of the votable item.
     public let id: Int
+    /// Meta info of the votable item.
     public let meta: Dish.Meta
+    /// Name of the votable item.
     public let name: String
-    
-    
     
     /// Votable error.
     enum Error: ErrorType {

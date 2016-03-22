@@ -9,15 +9,8 @@
 // This class represents a campus of an institution.
 public class Campus {
     
-    /// Initialization by values.
-    private init(id: Int, name: String, restaurants: [Restaurant]) {
-        self.id = id
-        self.name = name
-        self.restaurants = restaurants
-    }
-    
     /// Initialization by plist.
-    convenience init(dict: AnyObject) throws {
+    init(dict: AnyObject) throws {
         // Verify fields
         guard let
             id = dict["id"] as? Int,
@@ -30,7 +23,10 @@ public class Campus {
         for dict in restaurantsDict {
             restaurants.append(try Restaurant(dict: dict))
         }
-        self.init(id: id, name: name, restaurants: restaurants)
+        // Initialize proprieties
+        self.id = id
+        self.name = name
+        self.restaurants = restaurants
     }
     
     // MARK: Instance

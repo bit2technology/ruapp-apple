@@ -39,9 +39,9 @@ public final class Student {
                         throw Error.InvalidObject
                 }
                 // Save student
-                let newStudent = Student(id: id, name: name, numberPlate: numberPlate)
-                shared = newStudent
                 let studentDict = [idKey: id, nameKey: name, numberPlateKey: numberPlate]
+                let newStudent = try Student(dict: studentDict)
+                shared = newStudent
                 globalUserDefaults.setObject(studentDict, forKey: savedDataKey) // It will sync in next command
                 try institution.update(institutionDict)
                 completion(result: .Success(value: newStudent))
@@ -55,16 +55,8 @@ public final class Student {
         }
     }
     
-    /// Initialization by values.
-    private init(id: Int, name: String, numberPlate: String) {
-        // Initialize proprieties
-        self.id = id
-        self.name = name
-        self.numberPlate = numberPlate
-    }
-    
     /// Initialization by plist.
-    private convenience init(dict: AnyObject?) throws {
+    private init(dict: AnyObject?) throws {
         // Verify values
         guard let
             id = dict?[Student.idKey] as? Int,
@@ -72,7 +64,10 @@ public final class Student {
             numberPlate = dict?[Student.numberPlateKey] as? String else {
                 throw Error.InvalidObject
         }
-        self.init(id: id, name: name, numberPlate: numberPlate)
+        // Initialize proprieties
+        self.id = id
+        self.name = name
+        self.numberPlate = numberPlate
     }
     
     // MARK: Instance

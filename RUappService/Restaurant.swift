@@ -66,16 +66,8 @@ public class Restaurant {
         return firstFound
     }
     
-    /// Initialization by values.
-    private init(id: Int, name: String, capacity: Int?, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        self.id = id
-        self.name = name
-        self.capacity = capacity
-        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-    
     /// Initialization by plist.
-    convenience init(dict: AnyObject) throws {
+    init(dict: AnyObject) throws {
         // Verify fields
         guard let
             id = dict["id"] as? Int,
@@ -84,7 +76,11 @@ public class Restaurant {
             longitude = dict["longitude"] as? CLLocationDegrees else {
                 throw Error.InvalidObject
         }
-        self.init(id: id, name: name, capacity: dict["capacity"] as? Int, latitude: latitude, longitude: longitude)
+        // Initialize proprieties
+        self.id = id
+        self.name = name
+        self.capacity = dict["capacity"] as? Int
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
     // MARK: Instance

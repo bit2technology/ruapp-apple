@@ -15,19 +15,8 @@ public class Meal {
         return dateFormatter
     }()
     
-    /// Initialize by values.
-    private init(id: Int?, name: String, meta: Meta, opening: NSDate, closing: NSDate?, dishes: [Dish]?, votables: [Votable]?) {
-        self.id = id
-        self.name = name
-        self.meta = meta
-        self.opening = opening
-        self.closing = closing
-        self.dishes = dishes
-        self.votables = votables
-    }
-    
     /// Initialize by plist.
-    convenience init(dict: AnyObject, dateString: String) throws {
+    init(dict: AnyObject, dateString: String) throws {
         // Verify fields
         guard let
             opening = Meal.dateFormatter.dateFromString(dateString + " " + (dict["open"] as? String ?? "00:00:00")),
@@ -64,8 +53,14 @@ public class Meal {
                 votables!.append(try Votable(dict: rawVotable))
             }
         }
-        // Init
-        self.init(id: dict["id"] as? Int, name: name, meta: meta, opening: opening, closing: closing, dishes: dishes, votables: votables)
+        // Initialize proprieties
+        self.id = dict["id"] as? Int
+        self.name = name
+        self.meta = meta
+        self.opening = opening
+        self.closing = closing
+        self.dishes = dishes
+        self.votables = votables
     }
     
     // MARK: Instance

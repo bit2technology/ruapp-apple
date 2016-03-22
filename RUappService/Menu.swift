@@ -57,14 +57,8 @@ public class Menu {
     /// Prevent requesting too often.
     private static var lastSuccessfulRequest = NSDate(timeIntervalSince1970: 0) // Initial time set to past, so we can update on load.
     
-    /// Initialize by values.
-    private init(meals: [[Meal]], restaurantId: Int) {
-        self.meals = meals
-        self.restaurantId = restaurantId
-    }
-    
     /// Initialize by plist.
-    private convenience init(dict: AnyObject?) throws {
+    private init(dict: AnyObject?) throws {
         // Verify values
         guard let restaurantId = dict?[Menu.restaurantIdKey] as? Int,
             rawWeekMenu = dict?[Menu.mealsKey] as? [AnyObject] else {
@@ -86,7 +80,9 @@ public class Menu {
             }
             weekMenu.append(dayMenu)
         }
-        self.init(meals: weekMenu, restaurantId: restaurantId)
+        // Initialize proprieties
+        self.meals = weekMenu
+        self.restaurantId = restaurantId
     }
     
     // MARK: Instance

@@ -70,17 +70,13 @@ public final class Institution {
         return (id, name, campi)
     }
     
-    /// Initialization by values.
-    private init(id: Int, name: String, campi: [Campus]?) {
-        self.id = id
-        self.name = name
-        self.campi = campi
-    }
-    
     /// Initialization by plist.
-    private convenience init(dict: AnyObject?) throws {
+    private init(dict: AnyObject?) throws {
         let extracted = try Institution.extract(dict)
-        self.init(id: extracted.id, name: extracted.name, campi: extracted.campi)
+        // Initialize proprieties
+        self.id = extracted.id
+        self.name = extracted.name
+        self.campi = extracted.campi
     }
     
     // MARK: Instance
