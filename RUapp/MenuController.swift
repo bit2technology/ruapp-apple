@@ -142,7 +142,7 @@ class MenuController: UICollectionViewController {
         cell.mealLabel.text = meal.name.uppercaseString
         
         // Alert / Meta
-        switch meal.meta {
+        switch meal.meta { // TODO: Translate!!!!
         case .Strike:
             cell.alertImg.image = UIImage(named: "MetaIconStrike")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.strike", value: "GREVE!", comment: "Message displayed when the restaurant is not open")
@@ -181,16 +181,13 @@ class MenuController: UICollectionViewController {
             // Write dishes to cell
             cell.numberOfDishes = filteredDishes.count
             for (idx, dish) in filteredDishes.enumerate() {
-                let dishView = cell.dishes[idx]
-                dishView.titleLabel.text = dish.type != lastType ? dish.type.uppercaseString : nil
-                dishView.nameLabel.text = dish.name
+                cell.dishTitleLabel(idx).text = dish.type != lastType ? dish.type.uppercaseString : nil
+                cell.dishNameLabel(idx).text = dish.name
                 lastType = dish.type
             }
+            cell.dishesWrapper.hidden = false
         } else {
-            for dishView in cell.dishes {
-                dishView.titleLabel.text = nil
-                dishView.nameLabel.text = nil
-            }
+            cell.dishesWrapper.hidden = true
         }
         
         return cell

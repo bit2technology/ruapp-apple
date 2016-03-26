@@ -18,34 +18,43 @@ class MenuCell: UICollectionViewCell {
     @IBOutlet var alertImg: UIImageView!
     @IBOutlet var alertLabel: UILabel!
     @IBOutlet var dishesWrapper: UIView!
-    var dishes: [MenuCellDish] {
-        return dishesWrapper.subviews as! [MenuCellDish]
+    var dishLabels: [UILabel] {
+        return dishesWrapper.subviews as! [UILabel]
     }
-    var numberOfDishes: Int = 0 {
+    func dishTitleLabel(idx: Int) -> UILabel {
+        return dishLabels[idx * 2]
+    }
+    func dishNameLabel(idx: Int) -> UILabel {
+        return dishLabels[idx * 2 + 1]
+    }
+    var numberOfDishes: Int = 1 {
         didSet {
             // Clear dishes text
-            for dishView in dishes {
-                dishView.titleLabel.text = nil
-                dishView.nameLabel.text = nil
+            for dishLabel in dishLabels {
+                dishLabel.text = nil
             }
             // Add more dishes if necessary
-            if dishes.count < numberOfDishes {
-                for i in dishes.count..<numberOfDishes {
-                    let newDishView = MenuCellDish.instantiate()
-                    var viewsDict = ["newDishView": newDishView]
-                    let verticalConstraintFormat: String
-                    if i > 0 {
-                        verticalConstraintFormat = "V:[lastDishView][newDishView]"
-                        viewsDict["lastDishView"] = dishes.last!
+            if oldValue < numberOfDishes {
+                var constraints = [NSLayoutConstraint]()
+                for i in dishLabels.count..<numberOfDishes * 2 {
+                    let lastDishLabel = dishLabels[i - 2]
+                    let newDishLabel = UILabel()
+                    newDishLabel.font = lastDishLabel.font
+                    newDishLabel.textColor = lastDishLabel.textColor
+                    newDishLabel.textAlignment = lastDishLabel.textAlignment
+                    newDishLabel.translatesAutoresizingMaskIntoConstraints = false
+                    dishesWrapper.addSubview(newDishLabel)
+                    let viewsDict = ["lastDishLabel": lastDishLabel, "newDishLabel": newDishLabel]
+                    constraints.append(NSLayoutConstraint(item: newDishLabel, attribute: .Leading, relatedBy: .Equal, toItem: lastDishLabel, attribute: .Leading, multiplier: 1, constant: 0))
+                    constraints.append(NSLayoutConstraint(item: newDishLabel, attribute: .Trailing, relatedBy: .Equal, toItem: lastDishLabel, attribute: .Trailing, multiplier: 1, constant: 0))
+                    if i % 2 == 0 {
+                        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:[lastDishLabel]-(>=0)-[newDishLabel]", options: [], metrics: nil, views: viewsDict)
                     } else {
-                        verticalConstraintFormat = "V:|[newDishView]"
+                        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:[lastDishLabel][newDishLabel]", options: [], metrics: nil, views: viewsDict)
+                        constraints.append(NSLayoutConstraint(item: newDishLabel, attribute: .Top, relatedBy: .Equal, toItem: dishLabels[i - 2], attribute: .Top, multiplier: 1, constant: 0))
                     }
-                    newDishView.backgroundColor = nil
-                    newDishView.translatesAutoresizingMaskIntoConstraints = false
-                    dishesWrapper.addSubview(newDishView)
-                    NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[newDishView]|", options: [], metrics: nil, views: viewsDict))
-                    NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat(verticalConstraintFormat, options: [], metrics: nil, views: viewsDict))
                 }
+                NSLayoutConstraint.activateConstraints(constraints)
             }
         }
     }
@@ -73,15 +82,5 @@ class MenuCellShadow: UIView {
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 1.5
-    }
-}
-
-class MenuCellDish: UIView {
-    
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var nameLabel: UILabel!
-    
-    class func instantiate() -> MenuCellDish {
-        return NSBundle.mainBundle().loadNibNamed("MenuCellDish", owner: nil, options: nil).first as! MenuCellDish
     }
 }

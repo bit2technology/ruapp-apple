@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NiF-Vd-Qqh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -11,6 +11,8 @@
             <string>Dosis-Bold</string>
         </mutableArray>
         <mutableArray key="Dosis-Book.otf">
+            <string>Dosis-Book</string>
+            <string>Dosis-Book</string>
             <string>Dosis-Book</string>
             <string>Dosis-Book</string>
             <string>Dosis-Book</string>
@@ -275,8 +277,30 @@
                                         </label>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uX4-ll-gcU">
                                             <rect key="frame" x="4" y="49" width="275" height="232"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbb-ea-4Ne">
+                                                    <rect key="frame" x="0.0" y="0.0" width="92" height="17"/>
+                                                    <fontDescription key="fontDescription" name="Dosis-Book" family="Dosis" pointSize="13"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rli-LS-uqP">
+                                                    <rect key="frame" x="100" y="0.0" width="175" height="18"/>
+                                                    <fontDescription key="fontDescription" name="Dosis-Book" family="Dosis" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Wbb-ea-4Ne" firstAttribute="top" secondItem="uX4-ll-gcU" secondAttribute="top" id="A2k-ej-IAc"/>
+                                                <constraint firstItem="Wbb-ea-4Ne" firstAttribute="leading" secondItem="uX4-ll-gcU" secondAttribute="leading" id="SGa-4r-CrL"/>
+                                                <constraint firstItem="Wbb-ea-4Ne" firstAttribute="width" secondItem="uX4-ll-gcU" secondAttribute="width" multiplier="1/3" id="SnG-ZF-7d3"/>
+                                                <constraint firstAttribute="trailing" secondItem="rli-LS-uqP" secondAttribute="trailing" id="Wfn-BZ-JIZ"/>
+                                                <constraint firstItem="rli-LS-uqP" firstAttribute="leading" secondItem="Wbb-ea-4Ne" secondAttribute="trailing" constant="8" id="XnU-3M-xx4"/>
+                                                <constraint firstItem="rli-LS-uqP" firstAttribute="top" secondItem="uX4-ll-gcU" secondAttribute="top" id="oy9-jV-in8"/>
+                                            </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rgg-6E-UFI" userLabel="Alert Wrapper">
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rgg-6E-UFI" userLabel="Alert Wrapper">
                                             <rect key="frame" x="4" y="105" width="275" height="121"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MetaIconSmile" translatesAutoresizingMaskIntoConstraints="NO" id="BM7-IZ-dgc">
