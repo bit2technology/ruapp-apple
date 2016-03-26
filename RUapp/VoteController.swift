@@ -56,7 +56,6 @@ class VoteController: UITableViewController {
     
     private func filterVotes(votes: [AppVote]) -> [AppVote] {
         let dishesNotToShow = Menu.defaultKind == .Traditional ? Dish.Meta.Vegetarian : .Main
-        print("dishesNotToShow", dishesNotToShow)
         var filteredVotes = [AppVote]()
         for vote in votes {
             if vote.item.meta != dishesNotToShow {

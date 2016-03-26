@@ -6,6 +6,8 @@
 //  Copyright © 2016 Igor Camilo. All rights reserved.
 //
 
+import Alamofire
+
 public class Vote {
     
     public var item: Votable
@@ -20,7 +22,7 @@ public class Vote {
     private func toRawDict() throws -> [String:AnyObject] {
         // Verify values
         guard let type = type else {
-            throw Error.InvalidVote
+            throw Error.NoType
         }
         // Build dictionary
         var dict = ["dish_id": item.id, "vote_type_id": type.rawValue] as [String:AnyObject]
@@ -42,24 +44,37 @@ public class Vote {
     }
     
     enum Error: ErrorType {
-        case InvalidMeal
-        case InvalidVote
+        case InvalidInfo
+        case NoType
+        case NoData
     }
 }
 
 public extension Array where Element : Vote {
     
-    public func send(for meal: Meal, completion: (result: Result<AnyObject>) -> Void) {
-        
-        guard let mealId = meal.id else {
-            completion(result: .Failure(error: Vote.Error.InvalidMeal))
+    public func send(completion: (result: Result<AnyObject>) -> Void) {
+        do {
+            guard let mealId = Menu.shared?.currentMeal?.id,
+                studentId = Student.shared?.id else {
+                    completion(result: .Failure(error: Vote.Error.InvalidInfo))
+                    return
+            }
+            
+            var votesDict = [AnyObject]()
+            for vote in self {
+                votesDict.append(try vote.toRawDict())
+            }
+            
+            let req = NSMutableURLRequest(URL: NSURL(string: ServiceURL.sendVote)!)
+            req.HTTPMethod = "POST"
+            let params = ["student_id": studentId, "meal_id": mealId, "votes": votesDict]
+            req.HTTPBody = params.appPrepare()
+            Alamofire.request(req).responseJSON { (response) in
+                print("vote completed success:", response.result.isSuccess, response.result.value)
+            }
+        } catch {
+            completion(result: .Failure(error: error))
             return
         }
-        
-        var votesDict = [AnyObject]()
-        for vote in self {
-            
-        }
     }
-    
 }

@@ -364,7 +364,6 @@
 			buildConfigurationList = 4BB03BCC1BB2D4DF006F84CB /* Build configuration list for PBXNativeTarget "RUapp" */;
 			buildPhases = (
 				FC9764FF361ED9B71C330F38 /* 📦 Check Pods Manifest.lock */,
-				4B19D4E11BB65F9900DD22A9 /* Bump Build Number */,
 				4BB03BA01BB2D4DE006F84CB /* Sources */,
 				4BB03BA11BB2D4DE006F84CB /* Frameworks */,
 				4BB03BA21BB2D4DE006F84CB /* Resources */,
@@ -372,6 +371,7 @@
 				4B3375691BB98FFE002696C9 /* Embed App Extensions */,
 				FA4EDA6255248B0ADA88563B /* 📦 Embed Pods Frameworks */,
 				10F56B39EB0D60820D812065 /* 📦 Copy Pods Resources */,
+				4B19D4E11BB65F9900DD22A9 /* Update Build Number */,
 			);
 			buildRules = (
 			);
@@ -577,19 +577,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp/Pods-RUapp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4B19D4E11BB65F9900DD22A9 /* Bump Build Number */ = {
+		4B19D4E11BB65F9900DD22A9 /* Update Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Bump Build Number";
+			name = "Update Build Number";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\n# Project\nagvtool next-version -all\n# Settings.bundle\ninfoPlistPath=${INFOPLIST_FILE}\nversionString=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$infoPlistPath\")\nversionString+=\" (\"\nversionString+=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$infoPlistPath\")\nversionString+=\")\"\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $versionString\" \"${PROJECT_DIR}/${PRODUCT_NAME}/Settings.bundle/Root.plist\"\nfi";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\n# Project\nbuildVersion = \"date +%Y%m%d%H%M%S\"\nagvtool new-version -all \"$buildVersion\"\n# Settings.bundle\ninfoPlistPath=${INFOPLIST_FILE}\nversionString=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$infoPlistPath\")\nversionString+=\" (\"\nversionString+=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"$infoPlistPath\")\nversionString+=\")\"\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:0:DefaultValue $versionString\" \"${PROJECT_DIR}/${PRODUCT_NAME}/Settings.bundle/Root.plist\"\nfi";
 		};
 		7E9B995270EA9A4ECC77A219 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
