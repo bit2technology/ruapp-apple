@@ -12,12 +12,12 @@ import RUappService
 class SidebarController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var closeBtn: UIButton!
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-        closeBtn.hidden = presentingViewController?.traitCollection.horizontalSizeClass == .Regular
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        closeBtn.isHidden = presentingViewController?.traitCollection.horizontalSizeClass == .regular
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }
 
@@ -26,34 +26,34 @@ class SidebarTableController: UITableViewController {
     @IBOutlet weak var studentNameCell: UITableViewCell!
     @IBOutlet weak var insitutionCell: UITableViewCell!
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         studentNameCell.textLabel?.text = Student.shared?.name
         insitutionCell.textLabel?.text = Institution.shared?.name
     }
     
-    private let scale = UIScreen.mainScreen().scale
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    fileprivate let scale = UIScreen.main.scale
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1 / scale
     }
-    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let superview = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 10))
         let separator = UIView(frame: CGRect(x: 15, y: 0, width: 85, height: 10))
         separator.backgroundColor = tableView.separatorColor
-        separator.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        separator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         superview.addSubview(separator)
         return superview
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         switch (indexPath.section, indexPath.row) {
         case (0, _):
-            performSegueWithIdentifier("Sidebar To Registration", sender: nil)
+            performSegue(withIdentifier: "Sidebar To Registration", sender: nil)
         case (1, 2): // Configuration
-            UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
         default:
             break
         }

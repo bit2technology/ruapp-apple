@@ -11,20 +11,20 @@ import RUappService
 
 class MenuController: UICollectionViewController {
     
-    private var menu = Menu.shared
-    private var dateFormatter = NSDateFormatter()
+    fileprivate var menu = Menu.shared
+    fileprivate var dateFormatter = DateFormatter()
     
     override func needsMenuTypeSelector() -> Bool {
         return true
     }
     
-    private func adjustInstets() {
+    fileprivate func adjustInstets() {
         let topBarHeight = mainController.topBarHeight.constant
         collectionView?.contentInset.top = topBarHeight
         collectionView?.scrollIndicatorInsets.top = topBarHeight
     }
     
-    @objc private func updateMenu() {
+    @objc fileprivate func updateMenu() {
         
         guard let defaultRestaurant = Restaurant.userDefault else {
             return
@@ -33,8 +33,8 @@ class MenuController: UICollectionViewController {
         
         if defaultRestaurant.id != menu?.restaurantId || menu == nil {
             menu = nil
-            let activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-            activityView.color = UIColor.lightGrayColor()
+            let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+            activityView.color = UIColor.lightGray
             activityView.startAnimating()
             collectionView?.backgroundView = activityView
             collectionView?.reloadData()
@@ -45,11 +45,11 @@ class MenuController: UICollectionViewController {
             print(result)
             
             switch result {
-            case .Success(let menu):
+            case .success(let menu):
                 let animate = self.menu == nil
                 self.menu = menu
                 if animate {
-                    UIView.transitionWithView(self.view, duration: 0.2, options: [.TransitionCrossDissolve], animations: {
+                    UIView.transition(with: self.view, duration: 0.2, options: [.transitionCrossDissolve], animations: {
                         self.collectionView?.reloadData()
                         self.collectionView?.backgroundView = nil
                         self.adjustItemSize()
@@ -59,24 +59,24 @@ class MenuController: UICollectionViewController {
                     self.collectionView?.backgroundView = nil
                     self.adjustItemSize()
                 }
-            case .Failure(_):
+            case .failure(_):
                 return
                 let _ = "Show error"
             }
         }
     }
     
-    private func adjustItemSize() {
+    fileprivate func adjustItemSize() {
         
         guard let menuLayout = collectionViewLayout as? LayoutMenu else {
             return
         }
         
-        if collectionView?.traitCollection.horizontalSizeClass == .Compact {
+        if collectionView?.traitCollection.horizontalSizeClass == .compact {
             let width = view.bounds.width - 12
             let height = floor(width * 373 / 340)
             let maxHeight = collectionView!.bounds.height - collectionView!.contentInset.top - collectionView!.contentInset.bottom - 30
-            if collectionView?.numberOfSections() > 0 && collectionView?.numberOfItemsInSection(0) > 1 {
+            if let collectionView = collectionView, collectionView.numberOfSections > 0 && collectionView.numberOfItems(inSection: 0) > 1 {
                 menuLayout.itemSize = CGSize(width: width, height: height < maxHeight ? height : maxHeight)
             } else {
                 menuLayout.itemSize = CGSize(width: width, height: maxHeight + 18)
@@ -86,25 +86,25 @@ class MenuController: UICollectionViewController {
         }
     }
     
-    private func adjustBehavior() {
-        let oneColumnVisible = collectionView?.traitCollection.horizontalSizeClass == .Compact
+    fileprivate func adjustBehavior() {
+        let oneColumnVisible = collectionView?.traitCollection.horizontalSizeClass == .compact
         collectionView?.decelerationRate = oneColumnVisible ? UIScrollViewDecelerationRateFast : UIScrollViewDecelerationRateNormal
-        collectionView?.directionalLockEnabled = oneColumnVisible
+        collectionView?.isDirectionalLockEnabled = oneColumnVisible
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainController.menuTypeSelector.addTarget(collectionView, action: #selector(UICollectionView.reloadData), forControlEvents: .ValueChanged)
+        mainController.menuTypeSelector.addTarget(collectionView, action: #selector(UICollectionView.reloadData), for: .valueChanged)
         
         dateFormatter.dateFormat = "EEEE"
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MenuController.updateMenu), name: Restaurant.UserDefaultChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MenuController.updateMenu), name: NSNotification.Name(rawValue: Restaurant.UserDefaultChangedNotification), object: nil)
         
         updateMenu()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         adjustInstets()
@@ -112,51 +112,51 @@ class MenuController: UICollectionViewController {
         adjustBehavior()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         updateMenu()
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         adjustInstets()
         adjustItemSize()
         adjustBehavior()
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return menu?.meals.count ?? 0
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menu!.meals[section].count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Menu", forIndexPath: indexPath) as! MenuCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Menu", for: indexPath) as! MenuCell
         let meal = menu!.meals[indexPath.section][indexPath.item]
         let menuKind = Menu.defaultKind
         
         cell.backgroundImg.image = UIImage(named: "Menu\(indexPath.item)\(menuKind.rawValue)")
-        cell.dayOfWeekLabel.text = dateFormatter.stringFromDate(meal.opening)
-        cell.mealLabel.text = meal.name.uppercaseString
+        cell.dayOfWeekLabel.text = dateFormatter.string(from: meal.opening)
+        cell.mealLabel.text = meal.name.uppercased()
         
         // Alert / Meta
         switch meal.meta { // TODO: Translate!!!!
         case .Strike:
             cell.alertImg.image = UIImage(named: "MetaIconStrike")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.strike", value: "GREVE!", comment: "Message displayed when the restaurant is not open")
-            cell.alertWrapper.hidden = false
+            cell.alertWrapper.isHidden = false
         case .Closed where meal.opening.isWeekend:
             cell.alertImg.image = UIImage(named: "MetaIconWeekend")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.weekend", value: "RU fechado. Vamos aproveitar o final de semana!!!", comment: "Message displayed when the restaurant is not open")
-            cell.alertWrapper.hidden = false
+            cell.alertWrapper.isHidden = false
         case .Closed:
             cell.alertImg.image = UIImage(named: "MetaIconFrown")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.closed", value: "Restaurante fechado", comment: "Message displayed when the restaurant is not open")
-            cell.alertWrapper.hidden = false
+            cell.alertWrapper.isHidden = false
         default:
-            cell.alertWrapper.hidden = true
+            cell.alertWrapper.isHidden = true
         }
         
         // Present dishes
@@ -164,10 +164,10 @@ class MenuController: UICollectionViewController {
             
             // Filter dishes
             let dishesNotToShow: Dish.Meta
-            if menuKind == .Vegetarian {
-                dishesNotToShow = .Main
+            if menuKind == .vegetarian {
+                dishesNotToShow = .main
             } else {
-                dishesNotToShow = .Vegetarian
+                dishesNotToShow = .vegetarian
             }
             var filteredDishes = [Dish]()
             for dish in mealDishes {
@@ -180,14 +180,14 @@ class MenuController: UICollectionViewController {
             var lastType: String?
             // Write dishes to cell
             cell.numberOfDishes = filteredDishes.count
-            for (idx, dish) in filteredDishes.enumerate() {
-                cell.dishTitleLabel(idx).text = dish.type != lastType ? dish.type.uppercaseString : nil
+            for (idx, dish) in filteredDishes.enumerated() {
+                cell.dishTitleLabel(idx).text = dish.type != lastType ? dish.type.uppercased() : nil
                 cell.dishNameLabel(idx).text = dish.name
                 lastType = dish.type
             }
-            cell.dishesWrapper.hidden = false
+            cell.dishesWrapper.isHidden = false
         } else {
-            cell.dishesWrapper.hidden = true
+            cell.dishesWrapper.isHidden = true
         }
         
         return cell
@@ -199,29 +199,29 @@ class LayoutMenu: UICollectionViewLayout {
     var itemSize: CGSize = CGSize(width: 308, height: 308) {
         didSet {
             invalidateLayout()
-            collectionView?.contentOffset = targetContentOffsetForProposedContentOffset(collectionView!.contentOffset, withScrollingVelocity: CGPoint.zero)
+            collectionView?.contentOffset = targetContentOffset(forProposedContentOffset: collectionView!.contentOffset, withScrollingVelocity: CGPoint.zero)
         }
     }
     var space = CGPoint(x: 6, y: 6)
     
-    override func collectionViewContentSize() -> CGSize {
+    override var collectionViewContentSize : CGSize {
         
-        guard let sections = collectionView?.numberOfSections() where sections > 0 else {
+        guard let sections = collectionView?.numberOfSections, sections > 0 else {
             return CGSize.zero
         }
         
-        return CGSize(width: CGFloat(sections) * (itemSize.width + space.x) + space.x, height: CGFloat(collectionView?.numberOfItemsInSection(0) ?? 0) * (itemSize.height + space.y) + space.y)
+        return CGSize(width: CGFloat(sections) * (itemSize.width + space.x) + space.x, height: CGFloat(collectionView?.numberOfItems(inSection: 0) ?? 0) * (itemSize.height + space.y) + space.y)
     }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        let attr = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let attr = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         attr.frame = CGRect(x: CGFloat(indexPath.section) * (itemSize.width + space.x) + space.x, y: CGFloat(indexPath.item) * (itemSize.height + space.y) + space.y, width: itemSize.width, height: itemSize.height)
         return attr
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
-        guard let sections = collectionView?.numberOfSections() where sections > 0 else {
+        guard let sections = collectionView?.numberOfSections, sections > 0 else {
             return nil
         }
         
@@ -235,20 +235,20 @@ class LayoutMenu: UICollectionViewLayout {
         let minH = max(Int(adjRect.minX / itemTotalWidth), 0)
         let maxH = min(Int(ceil(adjRect.maxX / itemTotalWidth)), sections)
         let minV = max(Int(adjRect.minY / itemTotalHeight), 0)
-        let maxV = min(Int(ceil(adjRect.maxY / itemTotalHeight)), collectionView?.numberOfItemsInSection(0) ?? 0)
+        let maxV = min(Int(ceil(adjRect.maxY / itemTotalHeight)), collectionView?.numberOfItems(inSection: 0) ?? 0)
         
         var attr = [UICollectionViewLayoutAttributes]()
         for h in minH..<maxH {
             for v in minV..<maxV {
-                attr.append(layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: v, inSection: h))!)
+                attr.append(layoutAttributesForItem(at: IndexPath(item: v, section: h))!)
             }
         }
         return attr
     }
     
-    override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
-        guard collectionView?.traitCollection.horizontalSizeClass == .Compact,
+        guard collectionView?.traitCollection.horizontalSizeClass == .compact,
             let margin = collectionView?.contentInset,
             var visibleSize = collectionView?.bounds.size,
             let originalOffset = collectionView?.contentOffset else {
@@ -274,7 +274,7 @@ class LayoutMenu: UICollectionViewLayout {
         let minVelocity: CGFloat = 0.2
         
         // Pick item from left or right
-        let diffX = adjOffset.x % itemTotalWidht
+        let diffX = adjOffset.x.truncatingRemainder(dividingBy: itemTotalWidht)
         var changedX = false
         if velocity.x > minVelocity {
             adjOffset.x += itemTotalWidht - diffX
@@ -287,7 +287,7 @@ class LayoutMenu: UICollectionViewLayout {
         }
         
         // Pick item from top or bottom
-        let diffY = adjOffset.y % itemTotalHeight
+        let diffY = adjOffset.y.truncatingRemainder(dividingBy: itemTotalHeight)
         if velocity.y > minVelocity {
             adjOffset.y += itemTotalHeight - diffY
         } else if velocity.y < -minVelocity {
@@ -311,11 +311,11 @@ class LayoutMenu: UICollectionViewLayout {
     }
 }
 
-private extension NSDate {
+private extension Date {
     var isWeekend: Bool {
-        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-        let weekdayRange = calendar?.maximumRangeOfUnit(.Weekday)
-        let components = calendar?.components(.Weekday, fromDate: self)
+        let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        let weekdayRange = (calendar as NSCalendar?)?.maximumRange(of: .weekday)
+        let components = (calendar as NSCalendar?)?.components(.weekday, from: self)
         let weekdayOfDate = components?.weekday
         return weekdayOfDate == weekdayRange?.location || weekdayOfDate == weekdayRange?.length
     }

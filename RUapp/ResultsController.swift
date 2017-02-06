@@ -10,19 +10,19 @@ import UIKit
 
 class ResultsController: UITableViewController {
     
-    private func adjustInstets() {
+    fileprivate func adjustInstets() {
         let topBarHeight = mainController.topBarHeight.constant
         tableView?.contentInset.top = topBarHeight + 10
         tableView?.scrollIndicatorInsets.top = topBarHeight
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         adjustInstets()
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         adjustInstets()
     }
 
@@ -30,11 +30,11 @@ class ResultsController: UITableViewController {
         return true
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier("Result", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: "Result", for: indexPath)
     }
 }

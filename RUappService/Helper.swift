@@ -6,13 +6,13 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-extension NSDictionary {
-    func appPrepare() -> NSData? {
+extension Dictionary {
+    func appPrepare() -> Data? {
         guard let
-            jsonData = try? NSJSONSerialization.dataWithJSONObject(self, options: []),
-            string = String(data: jsonData, encoding: NSUTF8StringEncoding) else {
+            jsonData = try? JSONSerialization.data(withJSONObject: self, options: []),
+            let string = String(data: jsonData, encoding: String.Encoding.utf8) else {
                 return nil
         }
-        return ("requisitionData=" + string).dataUsingEncoding(NSUTF8StringEncoding)
+        return ("requisitionData=" + string).data(using: String.Encoding.utf8)
     }
 }

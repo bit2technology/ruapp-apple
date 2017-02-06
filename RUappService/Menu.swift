@@ -9,19 +9,19 @@
 import Alamofire
 
 /// Class to manage menu data.
-public class Menu {
+open class Menu {
     
     /// Private keys
-    private static let savedArrayKey = "saved_menu_array"
-    private static let savedKindKey = "saved_menu_kind"
-    private static let restaurantIdKey = "restaurant_id"
-    private static let mealsKey = "meals"
-    private static let dateKey = "date"
+    fileprivate static let savedArrayKey = "saved_menu_array"
+    fileprivate static let savedKindKey = "saved_menu_kind"
+    fileprivate static let restaurantIdKey = "restaurant_id"
+    fileprivate static let mealsKey = "meals"
+    fileprivate static let dateKey = "date"
     
     /// Default menu kind set by the user.
-    public static var defaultKind = Kind(rawValue: globalUserDefaults.objectForKey(savedKindKey) as? Int ?? Kind.Traditional.rawValue)! {
+    open static var defaultKind = Kind(rawValue: globalUserDefaults.object(forKey: savedKindKey) as? Int ?? Kind.traditional.rawValue)! {
         didSet {
-            globalUserDefaults.setInteger(defaultKind.rawValue, forKey: savedKindKey)
+            globalUserDefaults.set(defaultKind.rawValue, forKey: savedKindKey)
             globalUserDefaults.synchronize()
         }
     }
@@ -42,27 +42,37 @@ public class Menu {
     
     // FIXME: Make it work properly
     /// Meal for current time, if any.
-    public var currentMeal: Meal? {
+    open var currentMeal: Meal? {
 //        let meals = mealOpening()
 //        return meals.previous?.closing?.timeIntervalSinceNow > 0 ? meals.previous : nil
         return meals[0][1]
     }
     
+    fileprivate static func saved() throws -> [String : Any] {
+        guard let saved = globalUserDefaults.object(forKey: savedArrayKey) else {
+            throw Error.noData
+        }
+        guard let savedDict = saved as? [String : Any] else {
+            throw Error.invalidObject
+        }
+        return savedDict
+    }
+    
     /// Shared menu data. It is also cached for offline query.
-    public private(set) static var shared = try? Menu(dict: globalUserDefaults.objectForKey(savedArrayKey))
+    open fileprivate(set) static var shared = try? Menu(dict: saved())
     
     /// Reference to current request.
-    private static var request: Request?
+    fileprivate static var request: Request?
     
     /// Prevent requesting too often.
-    private static var lastSuccessfulRequest = NSDate(timeIntervalSince1970: 0) // Initial time set to past, so we can update on load.
+    fileprivate static var lastSuccessfulRequest = Date(timeIntervalSince1970: 0) // Initial time set to past, so we can update on load.
     
     /// Initialize by plist.
-    private init(dict: AnyObject?) throws {
+    fileprivate init(dict: [String : Any]) throws {
         // Verify values
-        guard let restaurantId = dict?[Menu.restaurantIdKey] as? Int,
-            rawWeekMenu = dict?[Menu.mealsKey] as? [AnyObject] else {
-                throw Error.InvalidObject
+        guard let restaurantId = dict[Menu.restaurantIdKey] as? Int,
+            let rawWeekMenu = dict[Menu.mealsKey] as? [AnyObject] else {
+                throw Error.invalidObject
         }
         // Construct menu matrix
         var weekMenu = [[Meal]]()
@@ -70,8 +80,8 @@ public class Menu {
             // Verify meal values
             guard let
                 dateString = rawDayMenu[Menu.dateKey] as? String,
-                rawMeals = rawDayMenu[Menu.mealsKey] as? [AnyObject] where rawMeals.count > 0 else {
-                    throw Error.InvalidObject
+                let rawMeals = rawDayMenu[Menu.mealsKey] as? [AnyObject], rawMeals.count > 0 else {
+                    throw Error.invalidObject
             }
             // Construct inner array
             var dayMenu = [Meal]()
@@ -88,58 +98,58 @@ public class Menu {
     // MARK: Instance
     
     /// Info about meals of this menu.
-    public private(set) var meals: [[Meal]]
+    open fileprivate(set) var meals: [[Meal]]
     
     /// Restaurant id for verification.
-    public private(set) var restaurantId: Int
+    open fileprivate(set) var restaurantId: Int
     
     /// Get menu info from data. If successfull, cache it.
-    public class func update(restaurant: Restaurant, completion: (result: Result<Menu>) -> Void) {
+    open class func update(_ restaurant: Restaurant, completion: @escaping (_ result: Result<Menu>) -> Void) {
         
         // If request for the same restaurant, prevent requesting too often (if there is an active request or the last request was less than 1min ago)
-        if restaurant.id == shared?.restaurantId && (request != nil || NSDate().timeIntervalSinceDate(lastSuccessfulRequest) < 60) {
-            completion(result: Result.Failure(error: Error.RequestTooOften))
+        if restaurant.id == shared?.restaurantId && (request != nil || Date().timeIntervalSince(lastSuccessfulRequest) < 60) {
+            completion(Result.failure(error: Error.requestTooOften))
             return
         }
         
         // Cancel current request (if any) and start a new one.
         request?.cancel()
-        request = Alamofire.request(.GET, ServiceURL.getMenu, parameters: [Menu.restaurantIdKey: restaurant.id]).responseJSON { (response) in
+        request = Alamofire.request(ServiceURL.getMenu, parameters: [Menu.restaurantIdKey: restaurant.id]).responseJSON { (response) in
             request = nil
             
             do {
                 // Verify data
-                guard let rawMenu = response.result.value where response.result.isSuccess else {
-                    throw response.result.error ?? Error.NoData
+                guard let rawMenu = response.result.value, response.result.isSuccess else {
+                    throw response.result.error ?? Error.noData
                 }
                 
                 // Process menu data. If successful, save it to user defaults.
                 let extendedMenu = [Menu.mealsKey: rawMenu, Menu.restaurantIdKey: restaurant.id]
                 let newMenu = try Menu(dict: extendedMenu)
                 Menu.shared = newMenu
-                globalUserDefaults.setObject(extendedMenu, forKey: savedArrayKey)
+                globalUserDefaults.set(extendedMenu, forKey: savedArrayKey)
                 globalUserDefaults.synchronize()
                 
                 // Return menu
-                lastSuccessfulRequest = NSDate()
-                completion(result: .Success(value: newMenu))
+                lastSuccessfulRequest = Date()
+                completion(.success(value: newMenu))
             } catch {
                 // Return error
-                completion(result: .Failure(error: error))
+                completion(.failure(error: error))
             }
         }
     }
     
     /// Kind of menu.
     public enum Kind: Int {
-        case Traditional = 0
-        case Vegetarian = 1
+        case traditional = 0
+        case vegetarian = 1
     }
     
     /// Menu error.
-    enum Error: ErrorType {
-        case InvalidObject
-        case NoData
-        case RequestTooOften
+    enum Error: Swift.Error {
+        case invalidObject
+        case noData
+        case requestTooOften
     }
 }

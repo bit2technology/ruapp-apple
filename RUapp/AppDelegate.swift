@@ -14,23 +14,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        print(NSFileManager().containerURLForSecurityApplicationGroupIdentifier("group.com.bit2software.RUapp"))
+        print(FileManager().containerURL(forSecurityApplicationGroupIdentifier: "group.com.bit2software.RUapp"))
         print(Menu.shared?.currentMeal?.name)
         
         // Appearance
         window?.tintColor = UIColor.appLightBlue()
         let navBar = UINavigationBar.appearance()
-        navBar.barStyle = .Black
+        navBar.barStyle = .black
         navBar.barTintColor = UIColor.appDarkBlue()
-        navBar.translucent = false
-        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.appNavTitle()]
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem()], forState: .Normal)
+        navBar.isTranslucent = false
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont.appNavTitle()]
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem()], for: .normal)
         let tabBar = UITabBar.appearance()
-        tabBar.barStyle = .Black
+        tabBar.barStyle = .black
         tabBar.barTintColor = UIColor.appDarkBlue()
-        tabBar.translucent = false      
+        tabBar.isTranslucent = false      
         
         return true
     }
@@ -63,7 +63,7 @@ public extension UIColor {
     }
     
     class func appError() -> UIColor {
-        return UIColor.redColor()
+        return UIColor.red
     }
 }
 
@@ -84,25 +84,25 @@ extension UIFont {
 
 extension UIImage {
     
-    class func circle(diameter: CGFloat, color: UIColor, insets: UIEdgeInsets = UIEdgeInsetsZero) -> UIImage {
+    class func circle(diameter: CGFloat, color: UIColor, insets: UIEdgeInsets = .zero) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: insets.left + diameter + insets.right, height: insets.top + diameter + insets.bottom), false, 0)
         let ctx = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(ctx, color.CGColor)
-        CGContextFillEllipseInRect(ctx, CGRect(x: insets.left, y: insets.top, width: diameter, height: diameter))
+        ctx?.setFillColor(color.cgColor)
+        ctx?.fillEllipse(in: CGRect(x: insets.left, y: insets.top, width: diameter, height: diameter))
         let circleImg = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return circleImg
+        return circleImg!
     }
     
-    class func roundedRect(radius: CGFloat, color: UIColor, insets: UIEdgeInsets = UIEdgeInsetsZero) -> UIImage {
+    class func roundedRect(radius: CGFloat, color: UIColor, insets: UIEdgeInsets = .zero) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: radius * 2 + insets.left + 1 + insets.right, height: radius * 2 + insets.top + 1 + insets.bottom), false, 0)
         let ctx = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(ctx, color.CGColor)
-        CGContextAddPath(ctx, UIBezierPath(roundedRect: CGRect(x: insets.left, y: insets.top, width: radius * 2 + 1, height: radius * 2 + 1), cornerRadius: radius).CGPath)
-        CGContextFillPath(ctx)
+        ctx?.setFillColor(color.cgColor)
+        ctx?.addPath(UIBezierPath(roundedRect: CGRect(x: insets.left, y: insets.top, width: radius * 2 + 1, height: radius * 2 + 1), cornerRadius: radius).cgPath)
+        ctx?.fillPath()
         let rectImg = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return rectImg.resizableImageWithCapInsets(UIEdgeInsets(top: insets.top + radius, left: insets.left + radius, bottom: insets.bottom + radius, right: insets.right + radius))
+        return rectImg!.resizableImage(withCapInsets: UIEdgeInsets(top: insets.top + radius, left: insets.left + radius, bottom: insets.bottom + radius, right: insets.right + radius))
     }
 }
 
@@ -115,7 +115,7 @@ extension UIView {
             if newValue > 0 {
                 layer.cornerRadius = newValue
                 layer.masksToBounds = true
-                layer.rasterizationScale = UIScreen.mainScreen().scale
+                layer.rasterizationScale = UIScreen.main.scale
                 layer.shouldRasterize = true
             } else {
                 layer.cornerRadius = 0

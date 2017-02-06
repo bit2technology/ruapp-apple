@@ -18,17 +18,17 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     @IBOutlet weak var restaurantBtn: UIButton!
     @IBOutlet weak var topBarHeight: NSLayoutConstraint!
     
-    private weak var sidebarCont: SidebarController?
+    fileprivate weak var sidebarCont: SidebarController?
     
-    @IBAction func unwindToMain(segue: UIStoryboardSegue) {
+    @IBAction func unwindToMain(_ segue: UIStoryboardSegue) {
         
     }
     
-    @objc private func menuTypeSelectorValueChanged(sender: MenuTypeSelector) {
-        Menu.defaultKind = Menu.Kind(rawValue: sender.selectedSegmentIndex) ?? .Traditional
+    @objc fileprivate func menuTypeSelectorValueChanged(_ sender: MenuTypeSelector) {
+        Menu.defaultKind = Menu.Kind(rawValue: sender.selectedSegmentIndex) ?? .traditional
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         switch identifier {
         case "Main To Restaurants":
             return Institution.shared?.campi != nil
@@ -37,30 +37,30 @@ class MainController: UIViewController, UITabBarControllerDelegate {
         }
     }
         
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "Tab Bar Controller"?:
-            guard let tabCont = segue.destinationViewController as? UITabBarController,
-                viewConts = tabCont.viewControllers else {
+            guard let tabCont = segue.destination as? UITabBarController,
+                let viewConts = tabCont.viewControllers else {
                 break
             }
             let imgVerInset: CGFloat
             if #available(iOS 9.0, *) {
-                imgVerInset = traitCollection.userInterfaceIdiom == .Pad ? 8 : 5.5
+                imgVerInset = traitCollection.userInterfaceIdiom == .pad ? 8 : 5.5
             } else {
-                imgVerInset = traitCollection.userInterfaceIdiom == .Pad ? 5 : 5.5
+                imgVerInset = traitCollection.userInterfaceIdiom == .pad ? 5 : 5.5
             }
             for viewCont in viewConts {
                 let tabItem = viewCont.tabBarItem
-                tabItem.titlePositionAdjustment.vertical = 9999
-                tabItem.imageInsets = UIEdgeInsets(top: imgVerInset, left: 0, bottom: -imgVerInset, right: 0)
+                tabItem?.titlePositionAdjustment.vertical = 9999
+                tabItem?.imageInsets = UIEdgeInsets(top: imgVerInset, left: 0, bottom: -imgVerInset, right: 0)
             }
             tabCont.delegate = self
-            titleLabel.text = tabCont.viewControllers?.first?.tabBarItem.title?.uppercaseString
+            titleLabel.text = tabCont.viewControllers?.first?.tabBarItem.title?.uppercased()
         case "Main To Sidebar"?:
-            guard let sidebar = segue.destinationViewController as? SidebarController,
-                popover = segue.destinationViewController.popoverPresentationController,
-                forkBtn = sender as? UIButton else {
+            guard let sidebar = segue.destination as? SidebarController,
+                let popover = segue.destination.popoverPresentationController,
+                let forkBtn = sender as? UIButton else {
                 break
             }
             sidebarCont = sidebar
@@ -71,8 +71,8 @@ class MainController: UIViewController, UITabBarControllerDelegate {
         }
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewDidLoad() {
@@ -81,63 +81,63 @@ class MainController: UIViewController, UITabBarControllerDelegate {
         globalMainController = self
         
         titleLabel.font = UIFont.appNavTitle()
-        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.textColor = UIColor.white
         restaurantBtn.titleLabel?.font = UIFont.appBarItem()
         
         menuTypeSelector.selectedSegmentIndex = Menu.defaultKind.rawValue
-        menuTypeSelector.addTarget(self, action: #selector(MainController.menuTypeSelectorValueChanged(_:)), forControlEvents: .ValueChanged)
+        menuTypeSelector.addTarget(self, action: #selector(MainController.menuTypeSelectorValueChanged(_:)), for: .valueChanged)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         var restaurantBtnTitle = Restaurant.userDefault?.name ?? NSLocalizedString("MainController.restaurantBtn.title", value: "restaurant", comment: "Title of button to choose a default restaurant")
         if #available(iOS 9.0, *) {
-            restaurantBtnTitle = restaurantBtnTitle.localizedLowercaseString
+            restaurantBtnTitle = restaurantBtnTitle.localizedLowercase
         } else {
-            restaurantBtnTitle = restaurantBtnTitle.lowercaseString
+            restaurantBtnTitle = restaurantBtnTitle.lowercased()
         }
         
-        restaurantBtn.setTitle(restaurantBtnTitle, forState: .Normal)
+        restaurantBtn.setTitle(restaurantBtnTitle, for: .normal)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if Institution.shared == nil || Student.shared == nil {
-            performSegueWithIdentifier("Main To Registration", sender: nil)
+            performSegue(withIdentifier: "Main To Registration", sender: nil)
         }
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         sidebarCont?.traitCollectionDidChange(previousTraitCollection)
     }
     
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
         if viewController.needsMenuTypeSelector() {
-            menuTypeSelector.hidden = false
-            topBarHeight.constant = traitCollection.horizontalSizeClass == .Regular ? 64 : 108
+            menuTypeSelector.isHidden = false
+            topBarHeight.constant = traitCollection.horizontalSizeClass == .regular ? 64 : 108
         } else {
-            menuTypeSelector.hidden = true
+            menuTypeSelector.isHidden = true
             topBarHeight.constant = 64
         }
         
         return true
     }
     
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if #available(iOS 9.0, *) {
-            titleLabel.text = viewController.tabBarItem.title?.localizedUppercaseString
+            titleLabel.text = viewController.tabBarItem.title?.localizedUppercase
         } else {
-            titleLabel.text = viewController.tabBarItem.title?.uppercaseString
+            titleLabel.text = viewController.tabBarItem.title?.uppercased()
         }
     }
 }
 
 class SelectDefaultRestaurantController: UITableViewController {
     
-    private let campi = Institution.shared?.campi ?? []
-    private var selected = Restaurant.userDefault
-    private let btnClose = UIBarButtonItem(image: UIImage(named: "BtnClose"), style: .Plain, target: nil, action: nil)
+    fileprivate let campi = Institution.shared?.campi ?? []
+    fileprivate var selected = Restaurant.userDefault
+    fileprivate let btnClose = UIBarButtonItem(image: UIImage(named: "BtnClose"), style: .plain, target: nil, action: nil)
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -148,11 +148,11 @@ class SelectDefaultRestaurantController: UITableViewController {
     }
     
     @IBAction func cancelTap() {
-        performSegueWithIdentifier("Restaurants To Main", sender: nil)
+        performSegue(withIdentifier: "Restaurants To Main", sender: nil)
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-        if presentingViewController?.traitCollection.horizontalSizeClass == .Regular {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if presentingViewController?.traitCollection.horizontalSizeClass == .regular {
             navigationItem.leftBarButtonItem = nil
         } else {
             navigationItem.leftBarButtonItem = btnClose
@@ -161,35 +161,35 @@ class SelectDefaultRestaurantController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = navigationItem.title?.uppercaseString
+        navigationItem.title = navigationItem.title?.uppercased()
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return campi.count
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return campi[section].restaurants.count
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return campi[section].name
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Restaurant Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Restaurant Cell", for: indexPath)
         let rest = campi[indexPath.section].restaurants[indexPath.row]
         
         cell.textLabel?.text = rest.name
-        cell.accessoryType = rest.id == selected?.id ? .Checkmark : .None
+        cell.accessoryType = rest.id == selected?.id ? .checkmark : .none
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Restaurant.userDefault = campi[indexPath.section].restaurants[indexPath.row]
-        performSegueWithIdentifier("Restaurants To Main", sender: nil)
+        performSegue(withIdentifier: "Restaurants To Main", sender: nil)
     }
 }
 

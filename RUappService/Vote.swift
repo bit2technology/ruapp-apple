@@ -8,72 +8,72 @@
 
 import Alamofire
 
-public class Vote {
+open class Vote {
     
-    public var item: Votable
-    public var type: VoteType?
-    public var reason: Set<Int>?
-    public var comment: String?
+    open var item: Votable
+    open var type: VoteType?
+    open var reason: Set<Int>?
+    open var comment: String?
     
     public init(item: Votable) {
         self.item = item
     }
     
-    private func toRawDict() throws -> [String:AnyObject] {
+    fileprivate func toRawDict() throws -> [String:AnyObject] {
         // Verify values
         guard let type = type else {
-            throw Error.NoType
+            throw Error.noType
         }
         // Build dictionary
-        var dict = ["dish_id": item.id, "vote_type_id": type.rawValue] as [String:AnyObject]
-        if let reason = reason where !reason.isEmpty {
-            dict["pre_defined_comment_ids"] = Array(reason)
+        var dict = ["dish_id": item.id as AnyObject, "vote_type_id": type.rawValue as AnyObject] as [String:AnyObject]
+        if let reason = reason, !reason.isEmpty {
+            dict["pre_defined_comment_ids"] = Array(reason) as AnyObject?
         }
         if let comment = comment {
-            dict["comment"] = comment
+            dict["comment"] = comment as AnyObject?
         }
         // Return dictionary
         return dict
     }
     
     public enum VoteType: Int {
-        case DidntEat = 0
-        case Bad = 1
-        case Good = 2
-        case VeryGood = 3
+        case didntEat = 0
+        case bad = 1
+        case good = 2
+        case veryGood = 3
     }
     
-    enum Error: ErrorType {
-        case InvalidInfo
-        case NoType
-        case NoData
+    enum Error: Swift.Error {
+        case invalidInfo
+        case noType
+        case noData
     }
 }
 
 public extension Array where Element : Vote {
     
-    public func send(completion: (result: Result<AnyObject>) -> Void) {
+    public func send(_ completion: (_ result: Result<AnyObject>) -> Void) {
         do {
             guard let mealId = Menu.shared?.currentMeal?.id,
-                studentId = Student.shared?.id else {
-                    completion(result: .Failure(error: Vote.Error.InvalidInfo))
+                let studentId = Student.shared?.id else {
+                    completion(.failure(error: Vote.Error.invalidInfo))
                     return
             }
             
             var votesDict = [AnyObject]()
             for vote in self {
-                votesDict.append(try vote.toRawDict())
+                votesDict.append(try vote.toRawDict() as AnyObject)
             }
             
-            let req = NSMutableURLRequest(URL: NSURL(string: ServiceURL.sendVote)!)
-            req.HTTPMethod = "POST"
-            let params = ["student_id": studentId, "meal_id": mealId, "votes": votesDict]
-            req.HTTPBody = params.appPrepare()
+            var req = URLRequest(url: URL(string: ServiceURL.sendVote)!)
+            req.httpMethod = "POST"
+            let params = ["student_id": studentId, "meal_id": mealId, "votes": votesDict] as [String : Any]
+            req.httpBody = params.appPrepare()
             Alamofire.request(req).responseJSON { (response) in
                 print("vote completed success:", response.result.isSuccess, response.result.value)
             }
         } catch {
-            completion(result: .Failure(error: error))
+            completion(.failure(error: error))
             return
         }
     }

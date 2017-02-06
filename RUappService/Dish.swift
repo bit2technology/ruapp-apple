@@ -7,15 +7,15 @@
 //
 
 /// This class represents a dish of a meal
-public class Dish {
+open class Dish {
     
     /// Initialize by plist
     init(dict: AnyObject) throws {
         // Verify values
         guard let rawMeta = dict["meta"] as? String,
-            meta = Meta(rawValue: rawMeta),
-            type = dict["type"] as? String else {
-                throw Error.InvalidObject
+            let meta = Meta(rawValue: rawMeta),
+            let type = dict["type"] as? String else {
+                throw Error.invalidObject
         }
         // Initialize proprieties
         self.meta = meta
@@ -26,21 +26,21 @@ public class Dish {
     // MARK: Instance
     
     /// Meta info of the dish.
-    public let meta: Meta
+    open let meta: Meta
     /// Type of the dish.
-    public let type: String
+    open let type: String
     /// Name of the dish.
-    public let name: String?
+    open let name: String?
     
     /// This enum represents if a dish is in the vegetarian menu.
     public enum Meta: String {
-        case Main = "main" // Not vegetarian
-        case Vegetarian = "vegetarian"
-        case Other = "other" // Both
+        case main = "main" // Not vegetarian
+        case vegetarian = "vegetarian"
+        case other = "other" // Both
     }
     
     /// Dish error.
-    enum Error: ErrorType {
-        case InvalidObject
+    enum Error: Swift.Error {
+        case invalidObject
     }
 }

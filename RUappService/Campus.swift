@@ -7,16 +7,16 @@
 //
 
 // This class represents a campus of an institution.
-public class Campus {
+open class Campus {
     
     /// Initialization by plist.
     init(dict: AnyObject) throws {
         // Verify fields
         guard let
             id = dict["id"] as? Int,
-            name = dict["name"] as? String,
-            restaurantsDict = dict["restaurants"] as? [AnyObject] else {
-                throw Error.InvalidObject
+            let name = dict["name"] as? String,
+            let restaurantsDict = dict["restaurants"] as? [AnyObject] else {
+                throw Error.invalidObject
         }
         
         var restaurants = [Restaurant]()
@@ -32,14 +32,14 @@ public class Campus {
     // MARK: Instance
     
     /// Id of the campus.
-    public let id: Int
+    open let id: Int
     /// Name of the campus.
-    public let name: String
+    open let name: String
     /// List of the restaurants of this campus.
-    public let restaurants: [Restaurant]
+    open let restaurants: [Restaurant]
     
     /// Campus errors
-    enum Error: ErrorType {
-        case InvalidObject
+    enum Error: Swift.Error {
+        case invalidObject
     }
 }

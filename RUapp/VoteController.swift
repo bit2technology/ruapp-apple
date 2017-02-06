@@ -17,7 +17,7 @@ private class AppVote: Vote {
 
 class VoteController: UITableViewController {
     
-    private var currentMeal: Meal? {
+    fileprivate var currentMeal: Meal? {
         didSet {
             if currentMeal?.opening != oldValue?.opening {
                 
@@ -36,12 +36,12 @@ class VoteController: UITableViewController {
         }
     }
     
-    private var votes: [AppVote]?
+    fileprivate var votes: [AppVote]?
     
-    private var allVotes: [AppVote]?
+    fileprivate var allVotes: [AppVote]?
     
-    private var presented = false
-    @objc private func updateVotes() {
+    fileprivate var presented = false
+    @objc fileprivate func updateVotes() {
         
         if let allVotes = allVotes {
             self.votes = filterVotes(allVotes)
@@ -54,8 +54,8 @@ class VoteController: UITableViewController {
         }
     }
     
-    private func filterVotes(votes: [AppVote]) -> [AppVote] {
-        let dishesNotToShow = Menu.defaultKind == .Traditional ? Dish.Meta.Vegetarian : .Main
+    fileprivate func filterVotes(_ votes: [AppVote]) -> [AppVote] {
+        let dishesNotToShow = Menu.defaultKind == .traditional ? Dish.Meta.vegetarian : .main
         var filteredVotes = [AppVote]()
         for vote in votes {
             if vote.item.meta != dishesNotToShow {
@@ -65,7 +65,7 @@ class VoteController: UITableViewController {
         return filteredVotes
     }
     
-    private func adjustInstets() {
+    fileprivate func adjustInstets() {
         let topBarHeight = mainController.topBarHeight.constant
         tableView?.contentInset.top = topBarHeight + 10
         tableView?.scrollIndicatorInsets.top = topBarHeight
@@ -73,21 +73,21 @@ class VoteController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainController.menuTypeSelector.addTarget(self, action: #selector(VoteController.updateVotes), forControlEvents: .ValueChanged)
+        mainController.menuTypeSelector.addTarget(self, action: #selector(VoteController.updateVotes), for: .valueChanged)
         currentMeal = Menu.shared?.currentMeal
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         adjustInstets()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presented = true
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         adjustInstets()
     }
     
@@ -95,12 +95,12 @@ class VoteController: UITableViewController {
         return true
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return votes?.count ?? 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Vote", forIndexPath: indexPath) as! VoteCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Vote", for: indexPath) as! VoteCell
         
         cell.lightStyle = indexPath.row % 2 == 0
         cell.vote = votes![indexPath.item]
@@ -124,13 +124,13 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var thankyou: UILabel!
     @IBOutlet weak var sayMoreBtn: UIButton!
     @IBOutlet weak var undoBtn: UIButton!
-    private var sayMoreUndo: UIView {
+    fileprivate var sayMoreUndo: UIView {
         return sayMoreBtn.superview!.superview!
     }
     
     @IBOutlet weak var sayMoreField: UITextField!
     @IBOutlet weak var sayMoreSend: UIButton!
-    private var sayMoreWrapper: UIView {
+    fileprivate var sayMoreWrapper: UIView {
         return sayMoreField.superview!
     }
     
@@ -140,52 +140,52 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var reasonBad3: UIButton!
     @IBOutlet weak var reasonBad4: UIButton!
     @IBOutlet weak var reasonBad5: UIButton!
-    private var reasonBadWrapper: UIView {
+    fileprivate var reasonBadWrapper: UIView {
         return reasonBad0.superview!
     }
-    private var reasonBadTop: [UIButton] {
+    fileprivate var reasonBadTop: [UIButton] {
         return [reasonBad0, reasonBad1, reasonBad2]
     }
-    private var reasonBadBottom: [UIButton] {
+    fileprivate var reasonBadBottom: [UIButton] {
         return [reasonBad3, reasonBad4, reasonBad5]
     }
     
     @IBOutlet weak var reasonDidntEat0: UIButton!
     @IBOutlet weak var reasonDidntEat1: UIButton!
     @IBOutlet weak var reasonDidntEat2: UIButton!
-    private var reasonDidntEatWrapper: UIView {
+    fileprivate var reasonDidntEatWrapper: UIView {
         return reasonDidntEat0.superview!
     }
-    private var reasonDidntEat: [UIButton] {
+    fileprivate var reasonDidntEat: [UIButton] {
         return [reasonDidntEat0, reasonDidntEat1, reasonDidntEat2]
     }
     
     @IBOutlet weak var reasonSend: UIButton!
     
-    private static let selBtnBgImg = UIImage.circle(60, color: UIColor.appLightBlue())
-    private static let circleBtnBg = UIImage.circle(44, color: UIColor.appLightBlue(), insets: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
-    private static let commentSendBg = UIImage.circle(25, color: UIColor.appOrange(), insets: UIEdgeInsets(top: 9.5, left: 9.5, bottom: 9.5, right: 9.5))
+    fileprivate static let selBtnBgImg = UIImage.circle(diameter: 60, color: UIColor.appLightBlue())
+    fileprivate static let circleBtnBg = UIImage.circle(diameter: 44, color: UIColor.appLightBlue(), insets: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
+    fileprivate static let commentSendBg = UIImage.circle(diameter: 25, color: UIColor.appOrange(), insets: UIEdgeInsets(top: 9.5, left: 9.5, bottom: 9.5, right: 9.5))
     
-    private static let reasonCornerRadius: CGFloat = 4
-    private static let reasonSendBg = UIImage.circle(26, color: UIColor.appOrange(), insets: UIEdgeInsets(top: 30, left: 3, bottom: 30, right: 18))
+    fileprivate static let reasonCornerRadius: CGFloat = 4
+    fileprivate static let reasonSendBg = UIImage.circle(diameter: 26, color: UIColor.appOrange(), insets: UIEdgeInsets(top: 30, left: 3, bottom: 30, right: 18))
     
-    private static let reasonBadTopInsets = UIEdgeInsets(top: 12, left: 4, bottom: 2, right: 0)
-    private static let reasonBadBottomInsets = UIEdgeInsets(top: 2, left: 4, bottom: 12, right: 0)
-    private static let reasonBadTopLightBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonBadTopInsets)
-    private static let reasonBadBottomLightBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonBadBottomInsets)
-    private static let reasonBadTopBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appBlue(), insets: reasonBadTopInsets)
-    private static let reasonBadBottomBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appBlue(), insets: reasonBadBottomInsets)
-    private static let reasonBadTopDarkBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonBadTopInsets)
-    private static let reasonBadBottomDarkBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonBadBottomInsets)
+    fileprivate static let reasonBadTopInsets = UIEdgeInsets(top: 12, left: 4, bottom: 2, right: 0)
+    fileprivate static let reasonBadBottomInsets = UIEdgeInsets(top: 2, left: 4, bottom: 12, right: 0)
+    fileprivate static let reasonBadTopLightBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonBadTopInsets)
+    fileprivate static let reasonBadBottomLightBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonBadBottomInsets)
+    fileprivate static let reasonBadTopBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appBlue(), insets: reasonBadTopInsets)
+    fileprivate static let reasonBadBottomBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appBlue(), insets: reasonBadBottomInsets)
+    fileprivate static let reasonBadTopDarkBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonBadTopInsets)
+    fileprivate static let reasonBadBottomDarkBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonBadBottomInsets)
     
-    private static let reasonDidntEatInsets = UIEdgeInsets(top: 7, left: 4, bottom: 7, right: 0)
-    private static let reasonDidntEatLightBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonDidntEatInsets)
-    private static let reasonDidntEatBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appBlue(), insets: reasonDidntEatInsets)
-    private static let reasonDidntEatDarkBg = UIImage.roundedRect(reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonDidntEatInsets)
+    fileprivate static let reasonDidntEatInsets = UIEdgeInsets(top: 7, left: 4, bottom: 7, right: 0)
+    fileprivate static let reasonDidntEatLightBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonDidntEatInsets)
+    fileprivate static let reasonDidntEatBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appBlue(), insets: reasonDidntEatInsets)
+    fileprivate static let reasonDidntEatDarkBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonDidntEatInsets)
     
-    private var vote: AppVote! {
+    fileprivate var vote: AppVote! {
         didSet {
-            configure(buttonForVoteType(vote.type), complete: true)
+            configure(button(for: vote.type), complete: true)
             selBtnBg.alpha = vote.type == nil ? 0 : 1
         }
     }
@@ -200,48 +200,48 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
                 bgView.backgroundColor = mainColor
             }
             for btn in reasonBadTop {
-                btn.setBackgroundImage(reasonBadTopBgSel, forState: .Selected)
+                btn.setBackgroundImage(reasonBadTopBgSel, for: .selected)
             }
             for btn in reasonBadBottom {
-                btn.setBackgroundImage(reasonBadBottomBgSel, forState: .Selected)
+                btn.setBackgroundImage(reasonBadBottomBgSel, for: .selected)
             }
             for btn in reasonDidntEat {
-                btn.setBackgroundImage(reasonDidntEatBgSel, forState: .Selected)
+                btn.setBackgroundImage(reasonDidntEatBgSel, for: .selected)
             }
         }
     }
     
-    private func voteTypeForButton(btn: UIButton) -> Vote.VoteType? {
-        switch btn {
+    fileprivate func voteType(for button: UIButton) -> Vote.VoteType? {
+        switch button {
         case veryGoodBtn:
-            return .VeryGood
+            return .veryGood
         case goodBtn:
-            return .Good
+            return .good
         case badBtn:
-            return .Bad
+            return .bad
         case didntEatBtn:
-            return .DidntEat
+            return .didntEat
         default:
             return nil
         }
     }
     
-    private func buttonForVoteType(type: Vote.VoteType?) -> UIButton? {
-        switch type {
-        case .VeryGood?:
+    fileprivate func button(for voteType: Vote.VoteType?) -> UIButton? {
+        switch voteType {
+        case .veryGood?:
             return veryGoodBtn
-        case .Good?:
+        case .good?:
             return goodBtn
-        case .Bad?:
+        case .bad?:
             return badBtn
-        case .DidntEat?:
+        case .didntEat?:
             return didntEatBtn
         default:
             return nil
         }
     }
     
-    private func configure(sender: UIButton?, complete: Bool) {
+    fileprivate func configure(_ sender: UIButton?, complete: Bool) {
         
         defer {
             layoutIfNeeded()
@@ -256,13 +256,13 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         var btns = [veryGoodBtn, goodBtn, badBtn, didntEatBtn] as [UIButton]
         for btn in btns {
             btn.alpha = 1
-            btn.userInteractionEnabled = true
+            btn.isUserInteractionEnabled = true
         }
         
-        if let sender = sender, idx = btns.indexOf(sender) {
+        if let sender = sender, let idx = btns.index(of: sender) {
             marginConstant = 0
-            btns.removeAtIndex(idx)
-            sender.userInteractionEnabled = false
+            btns.remove(at: idx)
+            sender.isUserInteractionEnabled = false
             
             for btn in btns {
                 btn.alpha = 0
@@ -277,8 +277,8 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         sayMoreWrapper.alpha = vote.editingComment ? 1 : 0
         sayMoreField.text = vote.comment
         
-        reasonBadWrapper.alpha = vote.type == .Bad && vote.editingReason ? 1 : 0
-        reasonDidntEatWrapper.alpha = vote.type == .DidntEat && vote.editingReason ? 1 : 0
+        reasonBadWrapper.alpha = vote.type == .bad && vote.editingReason ? 1 : 0
+        reasonDidntEatWrapper.alpha = vote.type == .didntEat && vote.editingReason ? 1 : 0
         
         guard complete else {
             return
@@ -293,34 +293,34 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         
         reasonSend.alpha = vote.editingReason ? 1 : 0
         if let voteReason = vote.reason {
-            if vote.type == .Bad {
-                for (idx, btn) in (reasonBadTop + reasonBadBottom).enumerate() {
-                    btn.selected = voteReason.contains(idx)
+            if vote.type == .bad {
+                for (idx, btn) in (reasonBadTop + reasonBadBottom).enumerated() {
+                    btn.isSelected = voteReason.contains(idx)
                 }
-            } else if vote.type == .DidntEat {
-                for (idx, btn) in reasonDidntEat.enumerate() {
-                    btn.selected = voteReason.contains(idx)
+            } else if vote.type == .didntEat {
+                for (idx, btn) in reasonDidntEat.enumerated() {
+                    btn.isSelected = voteReason.contains(idx)
                 }
             }
         }
     }
     
-    @IBAction func voteTap(sender: UIButton) {
+    @IBAction func voteTap(_ sender: UIButton) {
         
         // Set model
-        vote.type = voteTypeForButton(sender)
-        vote.editingComment = vote.type == .Good
-        vote.editingReason = vote.type == .Bad || vote.type == .DidntEat
+        vote.type = voteType(for: sender)
+        vote.editingComment = vote.type == .good
+        vote.editingReason = vote.type == .bad || vote.type == .didntEat
         if vote.editingReason {
             vote.reason = Set<Int>()
             for reasonBtn in reasonBadTop + reasonBadBottom + reasonDidntEat {
-                reasonBtn.selected = false
+                reasonBtn.isSelected = false
             }
         }
-        let showFinishedVote = vote.type == .VeryGood && !vote.finishedVotePresented
+        let showFinishedVote = vote.type == .veryGood && !vote.finishedVotePresented
         
         // Animate vote
-        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseInOut], animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             self.configure(sender, complete: false)
             self.thankyou.alpha = showFinishedVote ? 1 : 0
@@ -331,7 +331,7 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
             // If vote is Very Good, finish voting process
             if showFinishedVote {
                 self.vote.finishedVotePresented = true
-                UIView.animateWithDuration(0.5, delay: 1, options: [.CurveEaseInOut], animations: { () -> Void in
+                UIView.animate(withDuration: 0.5, delay: 1, options: UIViewAnimationOptions(), animations: { () -> Void in
                     self.thankyou.alpha = 0
                     self.sayMoreUndo.alpha = 1
                 }, completion: nil)
@@ -342,7 +342,7 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         }
         
         // Animate selected button background
-        UIView.animateWithDuration(0.2, delay: 0.3, options: [.CurveEaseIn], animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, delay: 0.3, options: [.curveEaseIn], animations: { () -> Void in
             self.selBtnBg.alpha = 1
         }, completion: nil)
     }
@@ -351,9 +351,9 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         
         sayMoreField.resignFirstResponder()
         vote.editingComment = false
-        let showFinishedVote = vote.type == .Good && !vote.finishedVotePresented
+        let showFinishedVote = vote.type == .good && !vote.finishedVotePresented
         
-        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseInOut], animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             self.sayMoreWrapper.alpha = 0
             if showFinishedVote {
@@ -367,7 +367,7 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
             // If vote is Good, finish voting process
             if showFinishedVote {
                 self.vote.finishedVotePresented = true
-                UIView.animateWithDuration(0.5, delay: 1, options: [.CurveEaseInOut], animations: { () -> Void in
+                UIView.animate(withDuration: 0.5, delay: 1, options: UIViewAnimationOptions(), animations: { () -> Void in
                     self.thankyou.alpha = 0
                     self.sayMoreUndo.alpha = 1
                 }, completion: nil)
@@ -375,32 +375,32 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    @IBAction func reasonBadTap(sender: UIButton) {
+    @IBAction func reasonBadTap(_ sender: UIButton) {
         
-        guard let idx = (reasonBadTop + reasonBadBottom).indexOf(sender) else {
+        guard let idx = (reasonBadTop + reasonBadBottom).index(of: sender) else {
             return
         }
         
-        if sender.selected {
-            sender.selected = false
-            vote.reason?.remove(idx)
+        if sender.isSelected {
+            sender.isSelected = false
+            let _ = vote.reason?.remove(idx)
         } else {
-            sender.selected = true
+            sender.isSelected = true
             vote.reason?.insert(idx)
         }
     }
     
-    @IBAction func reasonDidntEatTap(sender: UIButton) {
+    @IBAction func reasonDidntEatTap(_ sender: UIButton) {
         
-        guard let idx = reasonDidntEat.indexOf(sender) else {
+        guard let idx = reasonDidntEat.index(of: sender) else {
             return
         }
         
-        if sender.selected {
-            sender.selected = false
-            vote.reason?.remove(idx)
+        if sender.isSelected {
+            sender.isSelected = false
+            let _ = vote.reason?.remove(idx)
         } else {
-            sender.selected = true
+            sender.isSelected = true
             vote.reason?.insert(idx)
         }
     }
@@ -409,7 +409,7 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         
         vote.editingReason = false
         
-        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseInOut], animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             self.reasonBadWrapper.alpha = 0
             self.reasonDidntEatWrapper.alpha = 0
@@ -419,7 +419,7 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         }) { (finished) -> Void in
             
             self.vote.finishedVotePresented = true
-            UIView.animateWithDuration(0.5, delay: 1, options: [.CurveEaseInOut], animations: { () -> Void in
+            UIView.animate(withDuration: 0.5, delay: 1, options: UIViewAnimationOptions(), animations: { () -> Void in
                 self.thankyou.alpha = 0
                 self.sayMoreUndo.alpha = 1
             }, completion: nil)
@@ -430,7 +430,7 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         
         vote.editingComment = true
         
-        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseInOut], animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
             self.sayMoreUndo.alpha = 0
             self.sayMoreWrapper.alpha = 1
         }) { (finished) -> Void in
@@ -446,7 +446,7 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         vote.editingComment = false
         vote.finishedVotePresented = false
         
-        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseInOut], animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
             self.configure(nil, complete: true)
             self.selBtnBg.alpha = 0
         }, completion: nil)
@@ -455,18 +455,18 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         selBtnBg.image = VoteCell.selBtnBgImg
-        sayMoreBtn.setBackgroundImage(VoteCell.circleBtnBg, forState: .Normal)
-        undoBtn.setBackgroundImage(VoteCell.circleBtnBg, forState: .Normal)
-        sayMoreSend.setBackgroundImage(VoteCell.commentSendBg, forState: .Normal)
-        reasonSend.setBackgroundImage(VoteCell.reasonSendBg, forState: .Normal)
+        sayMoreBtn.setBackgroundImage(VoteCell.circleBtnBg, for: UIControlState())
+        undoBtn.setBackgroundImage(VoteCell.circleBtnBg, for: UIControlState())
+        sayMoreSend.setBackgroundImage(VoteCell.commentSendBg, for: UIControlState())
+        reasonSend.setBackgroundImage(VoteCell.reasonSendBg, for: UIControlState())
         for btn in reasonBadTop {
-            btn.setBackgroundImage(VoteCell.reasonBadTopLightBg, forState: .Normal)
+            btn.setBackgroundImage(VoteCell.reasonBadTopLightBg, for: UIControlState())
         }
         for btn in reasonBadBottom {
-            btn.setBackgroundImage(VoteCell.reasonBadBottomLightBg, forState: .Normal)
+            btn.setBackgroundImage(VoteCell.reasonBadBottomLightBg, for: UIControlState())
         }
         for btn in reasonDidntEat {
-            btn.setBackgroundImage(VoteCell.reasonDidntEatLightBg, forState: .Normal)
+            btn.setBackgroundImage(VoteCell.reasonDidntEatLightBg, for: UIControlState())
         }
     }
     
@@ -475,12 +475,12 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         layer.removeAllAnimations()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         sendCommentTap()
         return true
     }
     
-    @IBAction func textEdited(textField: UITextField) {
+    @IBAction func textEdited(_ textField: UITextField) {
         vote.comment = textField.text
     }
 }

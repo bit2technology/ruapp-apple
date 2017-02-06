@@ -6,17 +6,17 @@
 //  Copyright © 2016 Igor Camilo. All rights reserved.
 //
 
-public class Votable {
+open class Votable {
     
     /// Initialize by plist
     init(dict: AnyObject) throws {
         // Verify values
         guard let
             id = dict["id"] as? Int,
-            rawMeta = dict["meta"] as? String,
-            meta = Dish.Meta(rawValue: rawMeta),
-            name = dict["name"] as? String else {
-                throw Error.InvalidObject
+            let rawMeta = dict["meta"] as? String,
+            let meta = Dish.Meta(rawValue: rawMeta),
+            let name = dict["name"] as? String else {
+                throw Error.invalidObject
         }
         // Initialize proprieties
         self.id = id
@@ -27,14 +27,14 @@ public class Votable {
     // MARK: Instance
     
     /// Id of the votable item.
-    public let id: Int
+    open let id: Int
     /// Meta info of the votable item.
-    public let meta: Dish.Meta
+    open let meta: Dish.Meta
     /// Name of the votable item.
-    public let name: String
+    open let name: String
     
     /// Votable error.
-    enum Error: ErrorType {
-        case InvalidObject
+    enum Error: Swift.Error {
+        case invalidObject
     }
 }

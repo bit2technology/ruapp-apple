@@ -11,31 +11,41 @@ import Alamofire
 /// This class represents a institution registered with RUapp.
 public final class Institution {
     
+    fileprivate static func saved() throws -> [String : Any] {
+        guard let saved = globalUserDefaults.object(forKey: savedDataKey) else {
+            throw Error.noData
+        }
+        guard let savedDict = saved as? [String : Any] else {
+            throw Error.invalidObject
+        }
+        return savedDict
+    }
+    
     /// Shared instance.
-    public private(set) static var shared = try? Institution(dict: globalUserDefaults.objectForKey(savedDataKey))
+    public fileprivate(set) static var shared = try? Institution(dict: saved())
     
     // Private keys
-    private static let savedDataKey = "saved_institution"
+    fileprivate static let savedDataKey = "saved_institution"
     
     /// Get a list of all institutions (short version).
-    public class func list(completion: (result: Result<[Institution]>) -> Void) {
-        Alamofire.request(.GET, ServiceURL.getInstitutionOverviewList).responseJSON { (response) in
+    public class func list(_ completion: @escaping (_ result: Result<[Institution]>) -> Void) {
+        Alamofire.request(ServiceURL.getInstitutionOverviewList).responseJSON { (response) in
             do {
                 // Verify result
                 guard response.result.isSuccess else {
-                    throw response.result.error ?? Error.NoData
+                    throw response.result.error ?? Error.noData
                 }
-                guard let jsonObj = response.result.value as? [AnyObject] else {
-                    throw Error.InvalidObject
+                guard let jsonObj = response.result.value as? [[String : Any]] else {
+                    throw Error.invalidObject
                 }
                 // Make array and return
                 var overviewList = [Institution]()
                 for institutionDict in jsonObj {
                     overviewList.append(try Institution(dict: institutionDict))
                 }
-                completion(result: .Success(value: overviewList))
+                completion(.success(value: overviewList))
             } catch {
-                completion(result: .Failure(error: error))
+                completion(.failure(error: error))
             }
         }
     }
@@ -43,21 +53,21 @@ public final class Institution {
     /// Remove saved data from disk.
     class func clear() {
         shared = nil
-        globalUserDefaults.removeObjectForKey(savedDataKey)
+        globalUserDefaults.removeObject(forKey: savedDataKey)
         globalUserDefaults.synchronize()
     }
     
     /// Extract values from a dictionary.
-    private class func extract(dict: AnyObject?) throws -> (id: Int, name: String, campi: [Campus]?) {
+    fileprivate class func extract(_ dict: [String : Any]) throws -> (id: Int, name: String, campi: [Campus]?) {
         // Verify fields
         guard let
-            id = dict?["id"] as? Int,
-            name = dict?["name"] as? String else {
-                throw Error.InvalidObject
+            id = dict["id"] as? Int,
+            let name = dict["name"] as? String else {
+                throw Error.invalidObject
         }
         // Construct campi array if necessary
         let campi: [Campus]?
-        if let rawCampi = dict?["campi"] as? [AnyObject] {
+        if let rawCampi = dict["campi"] as? [AnyObject] {
             var campiArray = [Campus]()
             for campus in rawCampi {
                 campiArray.append(try Campus(dict: campus))
@@ -71,7 +81,7 @@ public final class Institution {
     }
     
     /// Initialization by plist.
-    private init(dict: AnyObject?) throws {
+    fileprivate init(dict: [String : Any]) throws {
         let extracted = try Institution.extract(dict)
         // Initialize proprieties
         self.id = extracted.id
@@ -84,23 +94,23 @@ public final class Institution {
     /// Id of the institution.
     public let id: Int
     /// Display name of the institution.
-    public private(set) var name: String
+    public fileprivate(set) var name: String
     /// List of the campi of this institution. If nil, it means that this instance is an overview and needs to call update before being stored.
-    public private(set) var campi: [Campus]?
+    public fileprivate(set) var campi: [Campus]?
     
     /// Update and save this institution locally.
-    func update(dict: AnyObject?) throws {
+    func update(_ dict: [String : Any]) throws {
         let extracted = try Institution.extract(dict)
         self.name = extracted.name
         self.campi = extracted.campi
         Institution.shared = self
-        globalUserDefaults.setObject(dict, forKey: Institution.savedDataKey)
+        globalUserDefaults.set(dict, forKey: Institution.savedDataKey)
         globalUserDefaults.synchronize()
     }
     
     /// Institution errors
-    enum Error: ErrorType {
-        case InvalidObject
-        case NoData
+    enum Error: Swift.Error {
+        case invalidObject
+        case noData
     }
 }

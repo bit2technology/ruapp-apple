@@ -6,11 +6,11 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-public class Meal {
+open class Meal {
     
     /// Reference to the NSDateFormatter used to create opening and closing dates for the meals.
-    private static let dateFormatter = { () -> NSDateFormatter in
-        let dateFormatter = NSDateFormatter()
+    fileprivate static let dateFormatter = { () -> DateFormatter in
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return dateFormatter
     }()
@@ -19,20 +19,20 @@ public class Meal {
     init(dict: AnyObject, dateString: String) throws {
         // Verify fields
         guard let
-            opening = Meal.dateFormatter.dateFromString(dateString + " " + (dict["open"] as? String ?? "00:00:00")),
-            name = dict["name"] as? String else {
-                throw Error.InvalidObject
+            opening = Meal.dateFormatter.date(from: dateString + " " + (dict["open"] as? String ?? "00:00:00")),
+            let name = dict["name"] as? String else {
+                throw Error.invalidObject
         }
         // Closing time
-        let closing: NSDate?
+        let closing: Date?
         if let closingStr = dict["duration"] as? Double {
-            closing = opening.dateByAddingTimeInterval(closingStr * 60)
+            closing = opening.addingTimeInterval(closingStr * 60)
         } else {
             closing = nil
         }
         // Meta
         let meta: Meta
-        if let rawMeta = dict["meta"] as? String, dictMeta = Meta(rawValue: rawMeta) {
+        if let rawMeta = dict["meta"] as? String, let dictMeta = Meta(rawValue: rawMeta) {
             meta = dictMeta
         } else {
             meta = .Closed
@@ -66,19 +66,19 @@ public class Meal {
     // MARK: Instance
     
     /// Id of the meal.
-    public let id: Int?
+    open let id: Int?
     /// Name of the meal.
-    public let name: String
+    open let name: String
     /// Meta info of the meal.
-    public let meta: Meta
+    open let meta: Meta
     /// Opening date of the restaurant for this meal.
-    public let opening: NSDate
+    open let opening: Date
     /// Closing date of the restaurant for this meal.
-    public let closing: NSDate?
+    open let closing: Date?
     /// List of dishes for this meal.
-    public let dishes: [Dish]?
+    open let dishes: [Dish]?
     /// List of votables for this meal.
-    public let votables: [Votable]?
+    open let votables: [Votable]?
     
     /// This enum represents the status of the restaurant for this meal.
     public enum Meta: String {
@@ -88,7 +88,7 @@ public class Meal {
     }
     
     /// Meal error.
-    enum Error: ErrorType {
-        case InvalidObject
+    enum Error: Swift.Error {
+        case invalidObject
     }
 }

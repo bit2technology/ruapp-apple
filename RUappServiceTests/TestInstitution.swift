@@ -13,7 +13,7 @@ class TestInstitution: XCTestCase {
     
     func testInstitutionList() {
         
-        let exp = expectationWithDescription("institutionList")
+        let exp = expectation(description: "institutionList")
         
         Institution.getList { (list, error) -> Void in
             
@@ -24,12 +24,12 @@ class TestInstitution: XCTestCase {
             exp.fulfill()
         }
         
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     func testInstitution() {
         
-        let exp = expectationWithDescription("institution")
+        let exp = expectation(description: "institution")
         
         Institution.get(1) { (institution, error) -> Void in
             
@@ -39,12 +39,12 @@ class TestInstitution: XCTestCase {
             exp.fulfill()
         }
         
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     func testRegister() {
         
-        let exp = expectationWithDescription("register")
+        let exp = expectation(description: "register")
         
         Institution.getList { (list, error) -> Void in
             
@@ -61,6 +61,6 @@ class TestInstitution: XCTestCase {
             })
         }
         
-        waitForExpectationsWithTimeout(20, handler: nil)
+        waitForExpectations(timeout: 20, handler: nil)
     }
 }

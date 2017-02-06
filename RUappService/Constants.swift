@@ -6,7 +6,7 @@
 //  Copyright © 2015 Igor Camilo. All rights reserved.
 //
 
-public let globalUserDefaults = NSUserDefaults(suiteName: "group.com.bit2software.RUapp")!
+public let globalUserDefaults = UserDefaults(suiteName: "group.com.bit2software.RUapp")!
 
 class ServiceURL {
     static let registerStudent = "http://www.ruapp.com.br/api/v1/student"
@@ -17,6 +17,6 @@ class ServiceURL {
 }
 
 public enum Result<T> {
-    case Success(value: T)
-    case Failure(error: ErrorType)
+    case success(value: T)
+    case failure(error: Error)
 }

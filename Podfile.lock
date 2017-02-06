@@ -1,10 +1,10 @@
 PODS:
-  - Alamofire (3.3.0)
-  - Crashlytics (3.7.0):
+  - Alamofire (4.3.0)
+  - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.7)
-  - GoogleAnalytics (3.14.0)
-  - iRate (1.11.4)
+  - Fabric (1.6.11)
+  - GoogleAnalytics (3.17.0)
+  - iRate (1.11.7)
 
 DEPENDENCIES:
   - Alamofire
@@ -14,12 +14,12 @@ DEPENDENCIES:
   - iRate
 
 SPEC CHECKSUMS:
-  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
-  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
-  iRate: 599ed07c854e0695f3c605d1b2a64c67d912acb7
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
+  iRate: adae3f183d83c925ac42d7a2e86e89e838963f57
 
 PODFILE CHECKSUM: 3e92f97a09dc98c42d4385ff388266706f77715f
 
-COCOAPODS: 1.0.0.beta.6
+COCOAPODS: 1.2.0
