@@ -137,7 +137,7 @@ class SelectDefaultRestaurantController: UITableViewController {
     
     fileprivate let campi = Institution.shared?.campi ?? []
     fileprivate var selected = Restaurant.userDefault
-    fileprivate let btnClose = UIBarButtonItem(image: UIImage(named: "BtnClose"), style: .plain, target: nil, action: nil)
+    fileprivate let btnClose = UIBarButtonItem(image: #imageLiteral(resourceName: "BtnClose"), style: .plain, target: nil, action: nil)
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

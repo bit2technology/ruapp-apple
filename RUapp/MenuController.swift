@@ -144,15 +144,15 @@ class MenuController: UICollectionViewController {
         // Alert / Meta
         switch meal.meta { // TODO: Translate!!!!
         case .Strike:
-            cell.alertImg.image = UIImage(named: "MetaIconStrike")
+            cell.alertImg.image = #imageLiteral(resourceName: "MetaIconStrike")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.strike", value: "GREVE!", comment: "Message displayed when the restaurant is not open")
             cell.alertWrapper.isHidden = false
         case .Closed where meal.opening.isWeekend:
-            cell.alertImg.image = UIImage(named: "MetaIconWeekend")
+            cell.alertImg.image = #imageLiteral(resourceName: "MetaIconWeekend")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.weekend", value: "RU fechado. Vamos aproveitar o final de semana!!!", comment: "Message displayed when the restaurant is not open")
             cell.alertWrapper.isHidden = false
         case .Closed:
-            cell.alertImg.image = UIImage(named: "MetaIconFrown")
+            cell.alertImg.image = #imageLiteral(resourceName: "MetaIconFrown")
             cell.alertLabel.text = NSLocalizedString("MenuController.cell.alertLabel.closed", value: "Restaurante fechado", comment: "Message displayed when the restaurant is not open")
             cell.alertWrapper.isHidden = false
         default:
