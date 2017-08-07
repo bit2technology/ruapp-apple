@@ -60,23 +60,11 @@ public final class Institution {
     /// Extract values from a dictionary.
     fileprivate class func extract(_ dict: [String : Any]) throws -> (id: Int, name: String, campi: [Campus]?) {
         // Verify fields
-        guard let
-            id = dict["id"] as? Int,
-            let name = dict["name"] as? String else {
-                throw Error.invalidObject
+        guard let rawId = dict["id"] as? String, let id = Int(rawId), let name = dict["name"] as? String  else {
+            throw Error.invalidObject
         }
         // Construct campi array if necessary
-        let campi: [Campus]?
-        if let rawCampi = dict["campi"] as? [AnyObject] {
-            var campiArray = [Campus]()
-            for campus in rawCampi {
-                campiArray.append(try Campus(dict: campus))
-            }
-            campi = campiArray
-        }
-        else {
-            campi = nil
-        }
+        let campi = try (dict["campi"] as? [AnyObject])?.map(Campus.init)
         return (id, name, campi)
     }
     

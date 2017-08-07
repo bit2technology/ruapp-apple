@@ -16,9 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        print(FileManager().containerURL(forSecurityApplicationGroupIdentifier: "group.com.bit2software.RUapp"))
-        print(Menu.shared?.currentMeal?.name)
-        
         // Appearance
         window?.tintColor = UIColor.appLightBlue()
         let navBar = UINavigationBar.appearance()

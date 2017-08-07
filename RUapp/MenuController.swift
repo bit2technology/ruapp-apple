@@ -41,9 +41,6 @@ class MenuController: UICollectionViewController {
         }
         
         Menu.update(defaultRestaurant) { (result) -> Void in
-            
-            print(result)
-            
             switch result {
             case .success(let menu):
                 let animate = self.menu == nil

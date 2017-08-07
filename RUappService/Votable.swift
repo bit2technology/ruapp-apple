@@ -11,12 +11,8 @@ open class Votable {
     /// Initialize by plist
     init(dict: AnyObject) throws {
         // Verify values
-        guard let
-            id = dict["id"] as? Int,
-            let rawMeta = dict["meta"] as? String,
-            let meta = Dish.Meta(rawValue: rawMeta),
-            let name = dict["name"] as? String else {
-                throw Error.invalidObject
+        guard let rawId = dict["id"] as? String, let id = Int(rawId), let rawMeta = dict["meta"] as? String, let meta = Dish.Meta(rawValue: rawMeta), let name = dict["name"] as? String else {
+            throw Error.invalidObject
         }
         // Initialize proprieties
         self.id = id

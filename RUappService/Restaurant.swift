@@ -69,17 +69,13 @@ open class Restaurant {
     /// Initialization by plist.
     init(dict: AnyObject) throws {
         // Verify fields
-        guard let
-            id = dict["id"] as? Int,
-            let name = dict["name"] as? String,
-            let latitude = dict["latitude"] as? CLLocationDegrees,
-            let longitude = dict["longitude"] as? CLLocationDegrees else {
-                throw Error.invalidObject
+        guard let rawId = dict["id"] as? String, let id = Int(rawId), let name = dict["name"] as? String, let rawLatitude = dict["latitude"] as? String, let latitude = CLLocationDegrees(rawLatitude), let rawLongitude = dict["longitude"] as? String, let longitude = CLLocationDegrees(rawLongitude) else {
+            throw Error.invalidObject
         }
         // Initialize proprieties
         self.id = id
         self.name = name
-        self.capacity = dict["capacity"] as? Int
+        self.capacity = Int(dict["capacity"] as? String ?? "")
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     

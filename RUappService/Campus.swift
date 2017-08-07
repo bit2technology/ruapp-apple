@@ -12,21 +12,14 @@ open class Campus {
     /// Initialization by plist.
     init(dict: AnyObject) throws {
         // Verify fields
-        guard let
-            id = dict["id"] as? Int,
-            let name = dict["name"] as? String,
-            let restaurantsDict = dict["restaurants"] as? [AnyObject] else {
-                throw Error.invalidObject
+        guard let rawId = dict["id"] as? String, let id = Int(rawId), let name = dict["name"] as? String, let restaurantsDict = dict["restaurants"] as? [AnyObject] else {
+            throw Error.invalidObject
         }
         
-        var restaurants = [Restaurant]()
-        for dict in restaurantsDict {
-            restaurants.append(try Restaurant(dict: dict))
-        }
         // Initialize proprieties
         self.id = id
         self.name = name
-        self.restaurants = restaurants
+        self.restaurants = try restaurantsDict.map(Restaurant.init)
     }
     
     // MARK: Instance

@@ -37,30 +37,14 @@ open class Meal {
         } else {
             meta = .Closed
         }
-        // Dishes
-        var dishes: [Dish]?
-        if let rawDishes = dict["menu"] as? [AnyObject] {
-            dishes = [Dish]()
-            for rawDish in rawDishes {
-                dishes!.append(try Dish(dict: rawDish))
-            }
-        }
-        // Votables
-        var votables: [Votable]?
-        if let rawVotables = dict["votables"] as? [AnyObject] {
-            votables = [Votable]()
-            for rawVotable in rawVotables {
-                votables!.append(try Votable(dict: rawVotable))
-            }
-        }
         // Initialize proprieties
-        self.id = dict["id"] as? Int
+        self.id = Int(dict["id"] as? String ?? "")
         self.name = name
         self.meta = meta
         self.opening = opening
         self.closing = closing
-        self.dishes = dishes
-        self.votables = votables
+        self.dishes = try (dict["menu"] as? [AnyObject])?.map(Dish.init)
+        self.votables = try (dict["votables"] as? [AnyObject])?.map(Votable.init)
     }
     
     // MARK: Instance
