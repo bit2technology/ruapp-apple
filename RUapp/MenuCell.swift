@@ -30,8 +30,8 @@ class MenuCell: UICollectionViewCell {
     var numberOfDishes: Int = 1 {
         didSet {
             // Clear dishes text
-            for dishLabel in dishLabels {
-                dishLabel.text = nil
+            dishLabels.forEach {
+                $0.text = nil
             }
             // Add more dishes if necessary
             if oldValue < numberOfDishes {
@@ -51,7 +51,7 @@ class MenuCell: UICollectionViewCell {
                         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[lastDishLabel]-(>=0)-[newDishLabel]", options: [], metrics: nil, views: viewsDict)
                     } else {
                         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[lastDishLabel][newDishLabel]", options: [], metrics: nil, views: viewsDict)
-                        constraints.append(NSLayoutConstraint(item: newDishLabel, attribute: .top, relatedBy: .equal, toItem: dishLabels[i - 2], attribute: .top, multiplier: 1, constant: 0))
+                        constraints.append(NSLayoutConstraint(item: newDishLabel, attribute: .top, relatedBy: .equal, toItem: dishLabels[i - 1], attribute: .top, multiplier: 1, constant: 0))
                     }
                 }
                 NSLayoutConstraint.activate(constraints)

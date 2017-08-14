@@ -160,18 +160,8 @@ class MenuController: UICollectionViewController {
         if let mealDishes = meal.dishes {
             
             // Filter dishes
-            let dishesNotToShow: Dish.Meta
-            if menuKind == .vegetarian {
-                dishesNotToShow = .main
-            } else {
-                dishesNotToShow = .vegetarian
-            }
-            var filteredDishes = [Dish]()
-            for dish in mealDishes {
-                if dish.meta != dishesNotToShow {
-                    filteredDishes.append(dish)
-                }
-            }
+            let dishesNotToShow = menuKind == .vegetarian ? Dish.Meta.main : .vegetarian
+            let filteredDishes = mealDishes.filter({ $0.meta != dishesNotToShow })
             
             // Store last type, to avoid writing it multiple times
             var lastType: String?
