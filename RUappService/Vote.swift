@@ -19,18 +19,18 @@ open class Vote {
         self.item = item
     }
     
-    fileprivate func toRawDict() throws -> [String:AnyObject] {
+    fileprivate func toRawDict() throws -> [String : Any] {
         // Verify values
         guard let type = type else {
             throw Error.noType
         }
         // Build dictionary
-        var dict = ["dish_id": item.id as AnyObject, "vote_type_id": type.rawValue as AnyObject] as [String:AnyObject]
+        var dict = ["dish_id": item.id, "vote_type_id": type.rawValue] as [String : Any]
         if let reason = reason, !reason.isEmpty {
-            dict["pre_defined_comment_ids"] = Array(reason) as AnyObject?
+            dict["pre_defined_comment_ids"] = Array(reason)
         }
         if let comment = comment {
-            dict["comment"] = comment as AnyObject?
+            dict["comment"] = comment
         }
         // Return dictionary
         return dict
@@ -52,18 +52,14 @@ open class Vote {
 
 public extension Array where Element : Vote {
     
-    public func send(_ completion: (_ result: Result<AnyObject>) -> Void) {
+    public func send(completion: (Result<AnyObject>) -> Void) {
         do {
-            guard let mealId = Menu.shared?.currentMeal?.id,
-                let studentId = Student.shared?.id else {
-                    completion(.failure(error: Vote.Error.invalidInfo))
-                    return
+            guard let mealId = Menu.shared?.currentMeal?.id, let studentId = Student.shared?.id else {
+                completion(.failure(error: Vote.Error.invalidInfo))
+                return
             }
             
-            var votesDict = [AnyObject]()
-            for vote in self {
-                votesDict.append(try vote.toRawDict() as AnyObject)
-            }
+            let votesDict = try self.map { try $0.toRawDict() }
             
             var req = URLRequest(url: URL(string: ServiceURL.sendVote)!)
             req.httpMethod = "POST"

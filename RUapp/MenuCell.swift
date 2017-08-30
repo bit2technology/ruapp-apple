@@ -52,6 +52,7 @@ class MenuCell: UICollectionViewCell {
                     } else {
                         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[lastDishLabel][newDishLabel]", options: [], metrics: nil, views: viewsDict)
                         constraints.append(NSLayoutConstraint(item: newDishLabel, attribute: .top, relatedBy: .equal, toItem: dishLabels[i - 1], attribute: .top, multiplier: 1, constant: 0))
+                        newDishLabel.numberOfLines = 0
                     }
                 }
                 NSLayoutConstraint.activate(constraints)

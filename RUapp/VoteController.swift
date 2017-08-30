@@ -25,12 +25,7 @@ class VoteController: UITableViewController {
                     return
                 }
                 
-                var votes = [AppVote]()
-                for votable in votables {
-                    votes.append(AppVote(item: votable))
-                }
-                self.allVotes = votes
-                
+                self.allVotes = votables.map(AppVote.init)
                 updateVotes()
             }
         }
@@ -56,13 +51,7 @@ class VoteController: UITableViewController {
     
     fileprivate func filterVotes(_ votes: [AppVote]) -> [AppVote] {
         let dishesNotToShow = Menu.defaultKind == .traditional ? Dish.Meta.vegetarian : .main
-        var filteredVotes = [AppVote]()
-        for vote in votes {
-            if vote.item.meta != dishesNotToShow {
-                filteredVotes.append(vote)
-            }
-        }
-        return filteredVotes
+        return votes.filter { $0.item.meta != dishesNotToShow }
     }
     
     fileprivate func adjustInstets() {
@@ -106,6 +95,13 @@ class VoteController: UITableViewController {
         cell.vote = votes![indexPath.item]
     
         return cell
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        votes?.filter { $0.type != nil }.send { (result) in
+            print(result)
+        }
     }
 }
 
@@ -313,8 +309,8 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         vote.editingReason = vote.type == .bad || vote.type == .didntEat
         if vote.editingReason {
             vote.reason = Set<Int>()
-            for reasonBtn in reasonBadTop + reasonBadBottom + reasonDidntEat {
-                reasonBtn.isSelected = false
+            (reasonBadTop + reasonBadBottom + reasonDidntEat).forEach {
+                $0.isSelected = false
             }
         }
         let showFinishedVote = vote.type == .veryGood && !vote.finishedVotePresented
@@ -459,14 +455,14 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         undoBtn.setBackgroundImage(VoteCell.circleBtnBg, for: UIControlState())
         sayMoreSend.setBackgroundImage(VoteCell.commentSendBg, for: UIControlState())
         reasonSend.setBackgroundImage(VoteCell.reasonSendBg, for: UIControlState())
-        for btn in reasonBadTop {
-            btn.setBackgroundImage(VoteCell.reasonBadTopLightBg, for: UIControlState())
+        reasonBadTop.forEach {
+            $0.setBackgroundImage(VoteCell.reasonBadTopLightBg, for: UIControlState())
         }
-        for btn in reasonBadBottom {
-            btn.setBackgroundImage(VoteCell.reasonBadBottomLightBg, for: UIControlState())
+        reasonBadBottom.forEach {
+            $0.setBackgroundImage(VoteCell.reasonBadBottomLightBg, for: UIControlState())
         }
-        for btn in reasonDidntEat {
-            btn.setBackgroundImage(VoteCell.reasonDidntEatLightBg, for: UIControlState())
+        reasonDidntEat.forEach {
+            $0.setBackgroundImage(VoteCell.reasonDidntEatLightBg, for: UIControlState())
         }
     }
     
