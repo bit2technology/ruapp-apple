@@ -1,0 +1,54 @@
+/* Submit vote alert view title */
+"Are you sure you want to submit this vote?" = "Você tem certeza que deseja enviar este voto?";
+
+/* Submit vote alert view cancel button */
+"Cancel" = "Cancelar";
+
+/* Menu download error message */
+"Couldn't download menu" = "Menu não pôde ser baixado";
+
+/* Menu table view controller default title */
+"Menu" = "Cardápio";
+
+/* Menu availability error message */
+"Menu not available for this week" = "Cardápio não disponível para esta semana";
+
+/* Message to show when there is no information about vote reason */
+"No information" = "Sem informação";
+
+/* Background message for when there was no vote for last meal */
+"No votes yet" = "Nenhum voto ainda";
+
+/* Vote error alert cancel button */
+"OK" = "OK";
+
+/* General error message */
+"Ooops, something went wrong" = "Ops, alguma coisa deu errado";
+
+/* Results download error message */
+"Ooops, we couldn't connect" = "Ops, não foi possível conectar";
+
+/* Vote offline computed message */
+"Ooops, we couldn't connect. Your vote will be sent as soon as possible." = "Ops, não foi possível conectar. Seu voto será enviado o mais cedo possível";
+
+/* Button title to open menu on Safari */
+"Open in Safari" = "Abrir no Safari";
+
+/* Message to show on top of empity views, suggesting how to refresh */
+"Pull down to refresh" = "Puxe para atualizar";
+
+/* Vote availability error message */
+"Sorry, there is no vote open now" = "Desculpe, não há nenhuma votação aberta agora";
+
+/* Submit vote alert view submit button */
+"Submit" = "Enviar";
+
+/* Vote computed message */
+"Thank you! Vote computed" = "Obrigado!\nVoto computado";
+
+/* Submit vote alert view message */
+"The vote can't be changed after you send it" = "O voto não pode ser alterado depois de enviado";
+
+/* Overview section footer */
+"Total of votes: %lu" = "Total de votos: %lu";
+

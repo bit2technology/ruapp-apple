@@ -1,0 +1,57 @@
+/* Class = "IBUITabBarItem"; title = "Tests"; ObjectID = "1ey-tK-DfJ"; */
+"1ey-tK-DfJ.title" = "Testes";
+
+/* Class = "IBUINavigationItem"; title = "Menu"; ObjectID = "808-WJ-te3"; */
+"808-WJ-te3.title" = "Cardápio";
+
+/* Class = "IBUIBarButtonItem"; title = "Submit"; ObjectID = "DfX-Cm-1qT"; */
+"DfX-Cm-1qT.title" = "Enviar";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "GA8-fs-onL"; */
+"GA8-fs-onL.text" = "Título";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "IV7-aV-YDE"; */
+"IV7-aV-YDE.text" = "Nome";
+
+/* Class = "IBUILabel"; text = "100%"; ObjectID = "Nrw-zv-TIL"; */
+"Nrw-zv-TIL.text" = "100%";
+
+/* Class = "IBUITabBarItem"; title = "Menu"; ObjectID = "UiE-VC-YYT"; */
+"UiE-VC-YYT.title" = "Cardápio";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "Uxk-lx-vqe"; */
+"Uxk-lx-vqe.text" = "Etiqueta";
+
+/* Class = "IBUIButton"; normalTitle = "Clean Cache"; ObjectID = "Xlo-AA-W7p"; */
+"Xlo-AA-W7p.normalTitle" = "Limpar Cache";
+
+/* Class = "IBUILabel"; text = "Cell Text"; ObjectID = "ZBu-xO-Yue"; */
+"ZBu-xO-Yue.text" = "Texto da Célula";
+
+/* Class = "IBUINavigationItem"; title = "Tests"; ObjectID = "cVU-vz-kSQ"; */
+"cVU-vz-kSQ.title" = "Testes";
+
+/* Class = "IBUINavigationItem"; title = "Vote"; ObjectID = "eIq-9U-0e0"; */
+"eIq-9U-0e0.title" = "Votar";
+
+/* Class = "IBUITabBarItem"; title = "Vote"; ObjectID = "hmU-CA-Wwf"; */
+"hmU-CA-Wwf.title" = "Votar";
+
+/* Class = "IBUILabel"; text = "Food"; ObjectID = "oeM-8Z-fLl"; */
+"oeM-8Z-fLl.text" = "Comida";
+
+/* Class = "IBUINavigationItem"; title = "Results"; ObjectID = "psC-p3-u5c"; */
+"psC-p3-u5c.title" = "Resultados";
+
+/* Class = "IBUISegmentedControl"; sun-LS-e8W.segmentTitles[0] = "Production Server"; ObjectID = "sun-LS-e8W"; */
+"sun-LS-e8W.segmentTitles[0]" = "Servidor de Produção";
+
+/* Class = "IBUISegmentedControl"; sun-LS-e8W.segmentTitles[1] = "Test Server"; ObjectID = "sun-LS-e8W"; */
+"sun-LS-e8W.segmentTitles[1]" = "Servidor de Testes";
+
+/* Class = "IBUILabel"; text = "100%"; ObjectID = "uze-gU-M5b"; */
+"uze-gU-M5b.text" = "100%";
+
+/* Class = "IBUITabBarItem"; title = "Results"; ObjectID = "vLN-dp-xe6"; */
+"vLN-dp-xe6.title" = "Resultados";
+

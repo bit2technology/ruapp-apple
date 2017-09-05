@@ -1,0 +1,53 @@
+//
+//  RUAServerConnection.h
+//  RUapp
+//
+//  Created by Igor Camilo on 18/06/2014.
+//  Copyright (c) 2014 Bit2 Software. All rights reserved.
+//
+
+#import "RUAAppDelegate.h"
+
+extern NSString *const RUASavedVotesKey;
+
+@import UIKit;
+
+@interface RUAResultInfo : NSObject
+
+// MARK: Properties
+
+@property (assign, nonatomic) RUARestaurant restaurant;
+@property (strong, nonatomic) NSDate *date;
+@property (assign, nonatomic) RUAMeal meal;
+@property (assign, nonatomic) NSUInteger votesTotal;
+@property (strong, nonatomic) NSArray *votesText;
+@property (strong, nonatomic) NSArray *votesProgress;
+@property (strong, nonatomic) NSArray *reasons;
+
+@end
+
+@interface RUAServerConnection : NSObject
+
+// MARK: Methods
+
+/**
+ * Send saved votes to server.
+ */
++ (void)performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
+
+/**
+ * Get week menu for current week.
+ */
++ (void)requestMenuForWeekWithCompletionHandler:(void (^)(NSDictionary *weekMenu, NSString *localizedMessage))handler;
+
+/**
+ * Request vote results.
+ */
++ (void)requestResultsWithCompletionHandler:(void (^)(NSArray *results, NSString *localizedMessage))handler;
+
+/**
+ * Send vote for current meal.
+ */
++ (void)sendVoteWithRestaurant:(RUARestaurant)restaurant rating:(RUARating)vote reason:(NSArray *)reason completionHandler:(void (^)(NSDate *voteDate, NSString *localizedMessage))handler;
+
+@end
