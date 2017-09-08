@@ -1,10 +1,3 @@
-//
-//  Vote.swift
-//  RUapp
-//
-//  Created by Igor Camilo on 16-03-10.
-//  Copyright © 2016 Igor Camilo. All rights reserved.
-//
 
 import Alamofire
 

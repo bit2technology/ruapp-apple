@@ -1,10 +1,3 @@
-//
-//  Dish.swift
-//  RUapp
-//
-//  Created by Igor Camilo on 15-11-30.
-//  Copyright © 2015 Igor Camilo. All rights reserved.
-//
 
 /// This class represents a dish of a meal
 open class Dish {

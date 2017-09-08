@@ -1,10 +1,3 @@
-//
-//  Menu.swift
-//  RUapp
-//
-//  Created by Igor Camilo on 15-11-09.
-//  Copyright © 2015 Igor Camilo. All rights reserved.
-//
 
 import Alamofire
 
