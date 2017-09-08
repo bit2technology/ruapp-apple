@@ -1,10 +1,3 @@
-//
-//  MenuController.swift
-//  RUapp
-//
-//  Created by Igor Camilo on 15-09-28.
-//  Copyright © 2015 Igor Camilo. All rights reserved.
-//
 
 import UIKit
 import RUappService

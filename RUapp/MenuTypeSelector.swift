@@ -1,10 +1,3 @@
-//
-//  MenuTypeSelector.swift
-//  RUapp
-//
-//  Created by Igor Camilo on 15-09-23.
-//  Copyright © 2015 Igor Camilo. All rights reserved.
-//
 
 import UIKit
 
@@ -26,7 +19,7 @@ class MenuTypeSelector: UISegmentedControl {
             self.bgSelected.center.x = (CGFloat(self.selectedSegmentIndex) + 0.5) * segmentWidth
             
             self.bgSelected.backgroundColor = self.colors[self.selectedSegmentIndex]
-            self.setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem(), NSForegroundColorAttributeName: UIColor.appLightBlue], for: .normal)
+            self.setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem, NSForegroundColorAttributeName: UIColor.appLightBlue], for: .normal)
         }) 
     }
     
@@ -39,7 +32,7 @@ class MenuTypeSelector: UISegmentedControl {
     fileprivate func initialization() {
         
         tintColor = .clear
-        setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem(), NSForegroundColorAttributeName: UIColor.appLightBlue], for: .normal)
+        setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem, NSForegroundColorAttributeName: UIColor.appLightBlue], for: .normal)
         setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
         addTarget(self, action: #selector(MenuTypeSelector.valueChanged), for: .valueChanged)
         

@@ -1,37 +1,6 @@
-//
-//  RegisterController.swift
-//  RUapp
-//
-//  Created by Igor Camilo on 15-09-25.
-//  Copyright © 2015 Igor Camilo. All rights reserved.
-//
 
 import UIKit
 import RUappService
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
 
 class RegisterController: UIViewController, UITextFieldDelegate {
     
@@ -59,7 +28,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             institution = institutionsCont?.selected
             textEdited()
             // If student ID empty, go to edit it.
-            if !(studentIdField.text?.characters.count > 0) {
+            if !((studentIdField.text?.characters.count ?? 0) > 0) {
                 studentIdField.becomeFirstResponder()
             }
         default:
@@ -100,7 +69,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func textEdited() {
-        if institution != nil && studentIdField.text?.characters.count > 0 && nameField.text?.characters.count > 0 {
+        if institution != nil && (studentIdField.text?.characters.count ?? 0) > 0 && (nameField.text?.characters.count ?? 0) > 0 {
             doneBtn.isEnabled = true
         } else {
             doneBtn.isEnabled = false

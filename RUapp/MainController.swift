@@ -1,10 +1,3 @@
-//
-//  MainController.swift
-//  RUapp
-//
-//  Created by Igor Camilo on 15-09-23.
-//  Copyright © 2015 Igor Camilo. All rights reserved.
-//
 
 import UIKit
 import RUappService
@@ -80,9 +73,9 @@ class MainController: UIViewController, UITabBarControllerDelegate {
         
         globalMainController = self
         
-        titleLabel.font = UIFont.appNavTitle()
+        titleLabel.font = .appNavTitle
         titleLabel.textColor = UIColor.white
-        restaurantBtn.titleLabel?.font = UIFont.appBarItem()
+        restaurantBtn.titleLabel?.font = .appBarItem
         
         menuTypeSelector.selectedSegmentIndex = Menu.defaultKind.rawValue
         menuTypeSelector.addTarget(self, action: #selector(MainController.menuTypeSelectorValueChanged(_:)), for: .valueChanged)
