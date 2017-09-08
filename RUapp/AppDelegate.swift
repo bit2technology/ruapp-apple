@@ -17,50 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Appearance
-        window?.tintColor = UIColor.appLightBlue()
+        window?.tintColor = .appLightBlue
         let navBar = UINavigationBar.appearance()
         navBar.barStyle = .black
-        navBar.barTintColor = UIColor.appDarkBlue()
+        navBar.barTintColor = .appDarkBlue
         navBar.isTranslucent = false
         navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont.appNavTitle()]
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem()], for: .normal)
         let tabBar = UITabBar.appearance()
         tabBar.barStyle = .black
-        tabBar.barTintColor = UIColor.appDarkBlue()
+        tabBar.barTintColor = .appDarkBlue
         tabBar.isTranslucent = false      
         
         return true
-    }
-}
-
-public extension UIColor {
-    
-    class func appDarkBlue() -> UIColor {
-        return UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
-    }
-    
-    class func appBlue() -> UIColor {
-        return UIColor(red:0.01, green:0.66, blue:0.96, alpha:1.0)
-    }
-    
-    class func appLightBlue() -> UIColor {
-        return UIColor(red:0.31, green:0.76, blue:0.97, alpha:1.0)
-    }
-    
-    class func appOrange() -> UIColor {
-        return UIColor(red:1.00, green:0.55, blue:0.00, alpha:1.0)
-    }
-    
-    class func appMeatRed() -> UIColor {
-        return UIColor(red:0.79, green:0.31, blue:0.37, alpha:1.0)
-    }
-    
-    class func appVegetarianGreen() -> UIColor {
-        return UIColor(red:0.41, green:0.73, blue:0.26, alpha:1.0)
-    }
-    
-    class func appError() -> UIColor {
-        return UIColor.red
     }
 }
 

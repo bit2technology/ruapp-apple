@@ -65,7 +65,7 @@ class MainController: UIViewController, UITabBarControllerDelegate {
             }
             sidebarCont = sidebar
             popover.sourceRect = forkBtn.bounds
-            popover.backgroundColor = UIColor.appDarkBlue()
+            popover.backgroundColor = .appDarkBlue
         default:
             break
         }

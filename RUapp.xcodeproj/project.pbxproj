@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0DB8C1594FDC8B99C764277C /* Pods_RUapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB604BB5C3F9B777DD3EFA9 /* Pods_RUapp.framework */; };
+		4B050C3B1F63146F007866A8 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B050C3A1F63146E007866A8 /* UIColor+Custom.swift */; };
 		4B06D3561C0C61580042C37F /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B06D3551C0C61580042C37F /* Dish.swift */; };
 		4B19D4E31BB6603300DD22A9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B19D4E21BB6603300DD22A9 /* Settings.bundle */; };
 		4B2AF4AD1BB603A700F70F30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */; };
@@ -110,6 +111,7 @@
 		04E7BF07EB42EE781AD2FDB6 /* Pods-RUapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp/Pods-RUapp.debug.xcconfig"; sourceTree = "<group>"; };
 		12000475C83EC6BE73864BE9 /* Pods-RUappService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUappService/Pods-RUappService.debug.xcconfig"; sourceTree = "<group>"; };
 		34EF6BEC150E3DEA3E4E7EC0 /* Pods-RUappService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappService.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUappService/Pods-RUappService.release.xcconfig"; sourceTree = "<group>"; };
+		4B050C3A1F63146E007866A8 /* UIColor+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
 		4B06D3551C0C61580042C37F /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		4B19D4E21BB6603300DD22A9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4B2AF4AC1BB603A700F70F30 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				4B33756B1BB9D7A9002696C9 /* MenuController.swift */,
 				4B4C7FD01BBB43C7001D55E5 /* VoteController.swift */,
 				4B3FC1991BE102490077FFBF /* ResultsController.swift */,
+				4B050C3A1F63146E007866A8 /* UIColor+Custom.swift */,
 				4BB03BAB1BB2D4DE006F84CB /* Main.storyboard */,
 				4BB03BAE1BB2D4DE006F84CB /* Assets.xcassets */,
 				4BA599971BB34ED500A2E0CF /* View */,
@@ -663,6 +666,7 @@
 				4BA599961BB34ED000A2E0CF /* MenuTypeSelector.swift in Sources */,
 				4B4C7FD11BBB43C7001D55E5 /* VoteController.swift in Sources */,
 				4B33756C1BB9D7A9002696C9 /* MenuController.swift in Sources */,
+				4B050C3B1F63146F007866A8 /* UIColor+Custom.swift in Sources */,
 				4BB03BA81BB2D4DE006F84CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

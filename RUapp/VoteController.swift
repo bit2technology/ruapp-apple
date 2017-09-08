@@ -158,26 +158,26 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var reasonSend: UIButton!
     
-    fileprivate static let selBtnBgImg = UIImage.circle(diameter: 60, color: UIColor.appLightBlue())
-    fileprivate static let circleBtnBg = UIImage.circle(diameter: 44, color: UIColor.appLightBlue(), insets: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
-    fileprivate static let commentSendBg = UIImage.circle(diameter: 25, color: UIColor.appOrange(), insets: UIEdgeInsets(top: 9.5, left: 9.5, bottom: 9.5, right: 9.5))
+    fileprivate static let selBtnBgImg = UIImage.circle(diameter: 60, color: .appLightBlue)
+    fileprivate static let circleBtnBg = UIImage.circle(diameter: 44, color: .appLightBlue, insets: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
+    fileprivate static let commentSendBg = UIImage.circle(diameter: 25, color: .appOrange, insets: UIEdgeInsets(top: 9.5, left: 9.5, bottom: 9.5, right: 9.5))
     
     fileprivate static let reasonCornerRadius: CGFloat = 4
-    fileprivate static let reasonSendBg = UIImage.circle(diameter: 26, color: UIColor.appOrange(), insets: UIEdgeInsets(top: 30, left: 3, bottom: 30, right: 18))
+    fileprivate static let reasonSendBg = UIImage.circle(diameter: 26, color: .appOrange, insets: UIEdgeInsets(top: 30, left: 3, bottom: 30, right: 18))
     
     fileprivate static let reasonBadTopInsets = UIEdgeInsets(top: 12, left: 4, bottom: 2, right: 0)
     fileprivate static let reasonBadBottomInsets = UIEdgeInsets(top: 2, left: 4, bottom: 12, right: 0)
-    fileprivate static let reasonBadTopLightBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonBadTopInsets)
-    fileprivate static let reasonBadBottomLightBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonBadBottomInsets)
-    fileprivate static let reasonBadTopBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appBlue(), insets: reasonBadTopInsets)
-    fileprivate static let reasonBadBottomBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appBlue(), insets: reasonBadBottomInsets)
-    fileprivate static let reasonBadTopDarkBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonBadTopInsets)
-    fileprivate static let reasonBadBottomDarkBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonBadBottomInsets)
+    fileprivate static let reasonBadTopLightBg = UIImage.roundedRect(radius: reasonCornerRadius, color: .appLightBlue, insets: reasonBadTopInsets)
+    fileprivate static let reasonBadBottomLightBg = UIImage.roundedRect(radius: reasonCornerRadius, color: .appLightBlue, insets: reasonBadBottomInsets)
+    fileprivate static let reasonBadTopBg = UIImage.roundedRect(radius: reasonCornerRadius, color: .appBlue, insets: reasonBadTopInsets)
+    fileprivate static let reasonBadBottomBg = UIImage.roundedRect(radius: reasonCornerRadius, color: .appBlue, insets: reasonBadBottomInsets)
+    fileprivate static let reasonBadTopDarkBg = UIImage.roundedRect(radius: reasonCornerRadius, color: .appDarkBlue, insets: reasonBadTopInsets)
+    fileprivate static let reasonBadBottomDarkBg = UIImage.roundedRect(radius: reasonCornerRadius, color: .appDarkBlue, insets: reasonBadBottomInsets)
     
     fileprivate static let reasonDidntEatInsets = UIEdgeInsets(top: 7, left: 4, bottom: 7, right: 0)
-    fileprivate static let reasonDidntEatLightBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appLightBlue(), insets: reasonDidntEatInsets)
-    fileprivate static let reasonDidntEatBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appBlue(), insets: reasonDidntEatInsets)
-    fileprivate static let reasonDidntEatDarkBg = UIImage.roundedRect(radius: reasonCornerRadius, color: UIColor.appDarkBlue(), insets: reasonDidntEatInsets)
+    fileprivate static let reasonDidntEatLightBg = UIImage.roundedRect(radius: reasonCornerRadius, color: .appLightBlue, insets: reasonDidntEatInsets)
+    fileprivate static let reasonDidntEatBg = UIImage.roundedRect(radius: reasonCornerRadius, color: .appBlue, insets: reasonDidntEatInsets)
+    fileprivate static let reasonDidntEatDarkBg = UIImage.roundedRect(radius: reasonCornerRadius, color: .appDarkBlue, insets: reasonDidntEatInsets)
     
     fileprivate var vote: AppVote! {
         didSet {
@@ -188,7 +188,7 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
     
     var lightStyle = true {
         didSet {
-            let mainColor = lightStyle ? UIColor.appBlue() : UIColor.appDarkBlue()
+            let mainColor = lightStyle ? UIColor.appBlue : .appDarkBlue
             let reasonBadTopBgSel = lightStyle ? VoteCell.reasonBadTopDarkBg : VoteCell.reasonBadTopBg
             let reasonBadBottomBgSel = lightStyle ? VoteCell.reasonBadBottomDarkBg : VoteCell.reasonBadBottomBg
             let reasonDidntEatBgSel = lightStyle ? VoteCell.reasonDidntEatDarkBg : VoteCell.reasonDidntEatBg
@@ -451,18 +451,18 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         selBtnBg.image = VoteCell.selBtnBgImg
-        sayMoreBtn.setBackgroundImage(VoteCell.circleBtnBg, for: UIControlState())
-        undoBtn.setBackgroundImage(VoteCell.circleBtnBg, for: UIControlState())
-        sayMoreSend.setBackgroundImage(VoteCell.commentSendBg, for: UIControlState())
-        reasonSend.setBackgroundImage(VoteCell.reasonSendBg, for: UIControlState())
+        sayMoreBtn.setBackgroundImage(VoteCell.circleBtnBg, for: .normal)
+        undoBtn.setBackgroundImage(VoteCell.circleBtnBg, for: .normal)
+        sayMoreSend.setBackgroundImage(VoteCell.commentSendBg, for: .normal)
+        reasonSend.setBackgroundImage(VoteCell.reasonSendBg, for: .normal)
         reasonBadTop.forEach {
-            $0.setBackgroundImage(VoteCell.reasonBadTopLightBg, for: UIControlState())
+            $0.setBackgroundImage(VoteCell.reasonBadTopLightBg, for: .normal)
         }
         reasonBadBottom.forEach {
-            $0.setBackgroundImage(VoteCell.reasonBadBottomLightBg, for: UIControlState())
+            $0.setBackgroundImage(VoteCell.reasonBadBottomLightBg, for: .normal)
         }
         reasonDidntEat.forEach {
-            $0.setBackgroundImage(VoteCell.reasonDidntEatLightBg, for: UIControlState())
+            $0.setBackgroundImage(VoteCell.reasonDidntEatLightBg, for: .normal)
         }
     }
     

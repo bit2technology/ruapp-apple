@@ -152,12 +152,12 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         let frameBtn = doneBtn.bounds
         UIGraphicsBeginImageContextWithOptions(frameBtn.size, false, 0)
         let ctx = UIGraphicsGetCurrentContext()
-        ctx?.setFillColor(UIColor.appLightBlue().cgColor)
+        ctx?.setFillColor(UIColor.appLightBlue.cgColor)
         ctx?.fillEllipse(in: frameBtn)
-        doneBtn.setBackgroundImage(UIGraphicsGetImageFromCurrentImageContext(), for: UIControlState())
+        doneBtn.setBackgroundImage(UIGraphicsGetImageFromCurrentImageContext(), for: .normal)
         UIGraphicsEndImageContext()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(RegisterController.keyboardChanged(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RegisterController.keyboardChanged(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
     }
     
     deinit {
@@ -225,7 +225,7 @@ class RegisterInstitutionListController: UITableViewController {
                 errorMsg.text = NSLocalizedString("RegisterInstitutionListController.downloadList.error", value: "There was an error. Please, try again.", comment: "Error message for when it was not possible to download the institutions list")
                 errorMsg.numberOfLines = 0
                 errorMsg.font = UIFont(name: "Dosis-Regular", size: 20)
-                errorMsg.textColor = UIColor.appError()
+                errorMsg.textColor = .appRed
                 errorMsg.textAlignment = .center
                 self.tableView.backgroundView = errorMsg
                 self.tableView.separatorStyle = .none

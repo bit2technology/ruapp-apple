@@ -10,7 +10,7 @@ import UIKit
 
 class MenuTypeSelector: UISegmentedControl {
 
-    var colors = [UIColor.appMeatRed(), UIColor.appVegetarianGreen()]
+    var colors = [UIColor.appDarkRed, .appDarkGreen]
     fileprivate var bgSelected = UIView()
     override var selectedSegmentIndex: Int {
         didSet {
@@ -26,7 +26,7 @@ class MenuTypeSelector: UISegmentedControl {
             self.bgSelected.center.x = (CGFloat(self.selectedSegmentIndex) + 0.5) * segmentWidth
             
             self.bgSelected.backgroundColor = self.colors[self.selectedSegmentIndex]
-            self.setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem(), NSForegroundColorAttributeName: UIColor.appLightBlue()], for: UIControlState())
+            self.setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem(), NSForegroundColorAttributeName: UIColor.appLightBlue], for: .normal)
         }) 
     }
     
@@ -38,8 +38,8 @@ class MenuTypeSelector: UISegmentedControl {
     
     fileprivate func initialization() {
         
-        tintColor = UIColor.clear
-        setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem(), NSForegroundColorAttributeName: UIColor.appLightBlue()], for: UIControlState())
+        tintColor = .clear
+        setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem(), NSForegroundColorAttributeName: UIColor.appLightBlue], for: .normal)
         setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
         addTarget(self, action: #selector(MenuTypeSelector.valueChanged), for: .valueChanged)
         
