@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navBar.barStyle = .black
         navBar.barTintColor = .appDarkBlue
         navBar.isTranslucent = false
-        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont.appNavTitle]
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem], for: .normal)
+        navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.appNavTitle]
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: UIFont.appBarItem], for: .normal)
         let tabBar = UITabBar.appearance()
         tabBar.barStyle = .black
         tabBar.barTintColor = .appDarkBlue

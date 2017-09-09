@@ -186,7 +186,7 @@ class SelectDefaultRestaurantController: UITableViewController {
     }
 }
 
-extension UIViewController {
+@objc extension UIViewController {
     
     var mainController: MainController {
         return globalMainController!

@@ -11,7 +11,7 @@ class MenuTypeSelector: UISegmentedControl {
         }
     }
     
-    func valueChanged() {
+    @objc func valueChanged() {
         
         UIView.animate(withDuration: 0.15, animations: { () -> Void in
             
@@ -19,7 +19,7 @@ class MenuTypeSelector: UISegmentedControl {
             self.bgSelected.center.x = (CGFloat(self.selectedSegmentIndex) + 0.5) * segmentWidth
             
             self.bgSelected.backgroundColor = self.colors[self.selectedSegmentIndex]
-            self.setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem, NSForegroundColorAttributeName: UIColor.appLightBlue], for: .normal)
+            self.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.appBarItem, NSAttributedStringKey.foregroundColor: UIColor.appLightBlue], for: .normal)
         }) 
     }
     
@@ -32,8 +32,8 @@ class MenuTypeSelector: UISegmentedControl {
     fileprivate func initialization() {
         
         tintColor = .clear
-        setTitleTextAttributes([NSFontAttributeName: UIFont.appBarItem, NSForegroundColorAttributeName: UIColor.appLightBlue], for: .normal)
-        setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
+        setTitleTextAttributes([NSAttributedStringKey.font: UIFont.appBarItem, NSAttributedStringKey.foregroundColor: UIColor.appLightBlue], for: .normal)
+        setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
         addTarget(self, action: #selector(MenuTypeSelector.valueChanged), for: .valueChanged)
         
         bgSelected.cornerRadius = 6

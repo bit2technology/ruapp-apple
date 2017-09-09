@@ -50,7 +50,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func keyboardChanged(_ notification: Notification) {
+    @objc func keyboardChanged(_ notification: Notification) {
         
         guard let info = notification.userInfo, let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue else {
             return
