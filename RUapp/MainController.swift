@@ -43,8 +43,8 @@ class MainController: UIViewController, UITabBarControllerDelegate {
             } else {
                 imgVerInset = traitCollection.userInterfaceIdiom == .pad ? 5 : 5.5
             }
-            for viewCont in viewConts {
-                let tabItem = viewCont.tabBarItem
+            viewConts.forEach {
+                let tabItem = $0.tabBarItem
                 tabItem?.titlePositionAdjustment.vertical = 9999
                 tabItem?.imageInsets = UIEdgeInsets(top: imgVerInset, left: 0, bottom: -imgVerInset, right: 0)
             }

@@ -185,17 +185,17 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
             let reasonBadTopBgSel = lightStyle ? VoteCell.reasonBadTopDarkBg : VoteCell.reasonBadTopBg
             let reasonBadBottomBgSel = lightStyle ? VoteCell.reasonBadBottomDarkBg : VoteCell.reasonBadBottomBg
             let reasonDidntEatBgSel = lightStyle ? VoteCell.reasonDidntEatDarkBg : VoteCell.reasonDidntEatBg
-            for bgView in opaqueBgs {
-                bgView.backgroundColor = mainColor
+            opaqueBgs.forEach {
+                $0.backgroundColor = mainColor
             }
-            for btn in reasonBadTop {
-                btn.setBackgroundImage(reasonBadTopBgSel, for: .selected)
+            reasonBadTop.forEach {
+                $0.setBackgroundImage(reasonBadTopBgSel, for: .selected)
             }
-            for btn in reasonBadBottom {
-                btn.setBackgroundImage(reasonBadBottomBgSel, for: .selected)
+            reasonBadBottom.forEach {
+                $0.setBackgroundImage(reasonBadBottomBgSel, for: .selected)
             }
-            for btn in reasonDidntEat {
-                btn.setBackgroundImage(reasonDidntEatBgSel, for: .selected)
+            reasonDidntEat.forEach {
+                $0.setBackgroundImage(reasonDidntEatBgSel, for: .selected)
             }
         }
     }
@@ -243,9 +243,9 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
         // Vote buttons
         var marginConstant: CGFloat = 9999
         var btns = [veryGoodBtn, goodBtn, badBtn, didntEatBtn] as [UIButton]
-        for btn in btns {
-            btn.alpha = 1
-            btn.isUserInteractionEnabled = true
+        btns.forEach {
+            $0.alpha = 1
+            $0.isUserInteractionEnabled = true
         }
         
         if let sender = sender, let idx = btns.index(of: sender) {
@@ -253,13 +253,13 @@ class VoteCell: UITableViewCell, UITextFieldDelegate {
             btns.remove(at: idx)
             sender.isUserInteractionEnabled = false
             
-            for btn in btns {
-                btn.alpha = 0
+            btns.forEach {
+                $0.alpha = 0
             }
         }
         
-        for margin in interactiveMargins {
-            margin.constant = marginConstant
+        interactiveMargins.forEach {
+            $0.constant = marginConstant
         }
         
         // Say more

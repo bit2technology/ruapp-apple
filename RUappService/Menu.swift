@@ -67,24 +67,14 @@ open class Menu {
             let rawWeekMenu = dict[Menu.mealsKey] as? [AnyObject] else {
                 throw Error.invalidObject
         }
-        // Construct menu matrix
-        var weekMenu = [[Meal]]()
-        for rawDayMenu in rawWeekMenu {
-            // Verify meal values
-            guard let
-                dateString = rawDayMenu[Menu.dateKey] as? String,
-                let rawMeals = rawDayMenu[Menu.mealsKey] as? [AnyObject], rawMeals.count > 0 else {
-                    throw Error.invalidObject
-            }
-            // Construct inner array
-            var dayMenu = [Meal]()
-            for rawMeal in rawMeals {
-                dayMenu.append(try Meal(dict: rawMeal, dateString: dateString))
-            }
-            weekMenu.append(dayMenu)
-        }
         // Initialize proprieties
-        self.meals = weekMenu
+        self.meals = try rawWeekMenu.map {
+            // Verify meal values
+            guard let dateString = $0[Menu.dateKey] as? String, let rawMeals = $0[Menu.mealsKey] as? [AnyObject], rawMeals.count > 0 else {
+                throw Error.invalidObject
+            }
+            return try rawMeals.map { try Meal(dict: $0, dateString: dateString) }
+        }
         self.restaurantId = restaurantId
     }
     

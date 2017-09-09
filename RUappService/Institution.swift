@@ -32,11 +32,7 @@ public final class Institution {
                     throw Error.invalidObject
                 }
                 // Make array and return
-                var overviewList = [Institution]()
-                for institutionDict in jsonObj {
-                    overviewList.append(try Institution(dict: institutionDict))
-                }
-                completion(.success(value: overviewList))
+                completion(.success(value: try jsonObj.map(Institution.init)))
             } catch {
                 completion(.failure(error: error))
             }

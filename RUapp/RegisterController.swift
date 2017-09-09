@@ -85,8 +85,8 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         }
         
         let controls = [institutionField, studentIdField, nameField, doneBtn] as [UIControl]
-        for item in controls {
-            item.isEnabled = false
+        controls.forEach {
+            $0.isEnabled = false
         }
         indicator.isHidden = false
         
@@ -95,8 +95,8 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             case .success(_):
                 self.performSegue(withIdentifier: "Registration To Main", sender: nil)
             case .failure(_):
-                for item in controls {
-                    item.isEnabled = true
+                controls.forEach {
+                    $0.isEnabled = true
                 }
                 self.indicator.isHidden = true
                 let alert = UIAlertController(title: NSLocalizedString("RegisterController.registerStudent.errorTitle", value: "There was an error. Please, try again.", comment: "Error title for when it was not possible to register a new student"), message: nil, preferredStyle: .alert)
