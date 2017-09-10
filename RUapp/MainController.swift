@@ -9,7 +9,15 @@ class MainController: UIViewController, UITabBarControllerDelegate {
     @IBOutlet weak var menuTypeSelector: MenuTypeSelector!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var restaurantBtn: UIButton!
-    @IBOutlet weak var topBarHeight: NSLayoutConstraint!
+    @IBOutlet private weak var topBarHeightConstraint: NSLayoutConstraint!
+    
+    var topBarHeight: CGFloat {
+        if #available(iOS 11, *) {
+            return topBarHeightConstraint.constant - 20
+        } else {
+            return topBarHeightConstraint.constant
+        }
+    }
     
     fileprivate weak var sidebarCont: SidebarController?
     
@@ -108,10 +116,10 @@ class MainController: UIViewController, UITabBarControllerDelegate {
         
         if viewController.needsMenuTypeSelector() {
             menuTypeSelector.isHidden = false
-            topBarHeight.constant = traitCollection.horizontalSizeClass == .regular ? 64 : 108
+            topBarHeightConstraint.constant = traitCollection.horizontalSizeClass == .regular ? 64 : 108
         } else {
             menuTypeSelector.isHidden = true
-            topBarHeight.constant = 64
+            topBarHeightConstraint.constant = 64
         }
         
         return true

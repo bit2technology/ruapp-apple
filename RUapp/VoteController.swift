@@ -48,7 +48,7 @@ class VoteController: UITableViewController {
     }
     
     fileprivate func adjustInstets() {
-        let topBarHeight = mainController.topBarHeight.constant
+        let topBarHeight = mainController.topBarHeight
         tableView?.contentInset.top = topBarHeight + 10
         tableView?.scrollIndicatorInsets.top = topBarHeight
     }

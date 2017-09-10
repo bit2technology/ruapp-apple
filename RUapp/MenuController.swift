@@ -12,7 +12,7 @@ class MenuController: UICollectionViewController {
     }
     
     fileprivate func adjustInstets() {
-        let topBarHeight = mainController.topBarHeight.constant
+        let topBarHeight = mainController.topBarHeight
         collectionView?.contentInset.top = topBarHeight
         collectionView?.scrollIndicatorInsets.top = topBarHeight
     }
@@ -237,15 +237,21 @@ class LayoutMenu: UICollectionViewLayout {
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
         guard collectionView?.traitCollection.horizontalSizeClass == .compact,
-            let margin = collectionView?.contentInset,
+            var margin = collectionView?.contentInset,
             var visibleSize = collectionView?.bounds.size,
             let originalOffset = collectionView?.contentOffset else {
                 return proposedContentOffset
         }
         
+        // Adjust to iOS 11 status bar
+        if #available(iOS 11, *) {
+            margin.top += 20
+        }
+        
         // Get visible size
         visibleSize.width -= margin.left + margin.right
         visibleSize.height -= margin.top + margin.bottom
+        
         // Get item size + space
         let itemTotalWidht = itemSize.width + space.x
         let itemTotalHeight = itemSize.height + space.y
