@@ -7,11 +7,17 @@
 //
 
 import XCTest
-import RUappShared
+@testable import RUappShared
 
 class JSONTests: XCTestCase {
     
+    private func decodedMockData<T: Decodable>(name: String) throws -> T {
+        let url = Bundle(for: JSONTests.self).url(forResource: name, withExtension: "json")!
+        return try JSONDecoder().decode(T.self, from: Data(contentsOf: url))
+    }
+    
     func testMenu() {
-        XCTAssert(Test.test == "Test")
+        let menu: [JSONMenu] = try! decodedMockData(name: "Menu")
+        XCTAssert(menu.count == 7, "Menu count doesn't match")
     }
 }

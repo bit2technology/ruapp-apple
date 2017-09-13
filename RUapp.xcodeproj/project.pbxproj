@@ -15,6 +15,8 @@
 		4B0606051F69B778000ACE59 /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4B0606061F69B778000ACE59 /* RUappShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B06060C1F69B7E7000ACE59 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B06060B1F69B7E7000ACE59 /* Test.swift */; };
+		4B0CFB371F69BE800069C42B /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB361F69BE750069C42B /* Menu.json */; };
+		4B0CFB3A1F69C1200069C42B /* JSONMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB391F69C1200069C42B /* JSONMenu.swift */; };
 		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,8 @@
 		4B0606001F69B778000ACE59 /* RUappShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUappShared.h; sourceTree = "<group>"; };
 		4B0606011F69B778000ACE59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B06060B1F69B7E7000ACE59 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		4B0CFB361F69BE750069C42B /* Menu.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Menu.json; sourceTree = "<group>"; };
+		4B0CFB391F69C1200069C42B /* JSONMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMenu.swift; sourceTree = "<group>"; };
 		4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,14 +134,24 @@
 			children = (
 				4B0606001F69B778000ACE59 /* RUappShared.h */,
 				4B06060B1F69B7E7000ACE59 /* Test.swift */,
+				4B0CFB391F69C1200069C42B /* JSONMenu.swift */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
 			);
 			path = RUappShared;
 			sourceTree = "<group>";
 		};
+		4B0CFB381F69BE8F0069C42B /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CFB361F69BE750069C42B /* Menu.json */,
+			);
+			path = MockData;
+			sourceTree = "<group>";
+		};
 		4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */ = {
 			isa = PBXGroup;
 			children = (
+				4B0CFB381F69BE8F0069C42B /* MockData */,
 				4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */,
 				4BDBB1CD1F69BAC3007900EC /* Info.plist */,
 			);
@@ -280,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0CFB371F69BE800069C42B /* Menu.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0CFB3A1F69C1200069C42B /* JSONMenu.swift in Sources */,
 				4B06060C1F69B7E7000ACE59 /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
