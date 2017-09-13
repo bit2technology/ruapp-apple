@@ -6,7 +6,7 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-struct JSONInstitution: Codable {
+struct JSONInstitution: Decodable {
     var id: String
     var name: String
     var townName: String
@@ -23,7 +23,7 @@ struct JSONInstitution: Codable {
         case campi
     }
     
-    struct Campus: Codable {
+    struct Campus: Decodable {
         var id: String
         var name: String
         var townName: String
@@ -40,7 +40,7 @@ struct JSONInstitution: Codable {
             case restaurants
         }
         
-        struct Restaurant: Codable {
+        struct Restaurant: Decodable {
             var id: String
             var name: String
             var latitude: String

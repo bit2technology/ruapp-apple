@@ -19,6 +19,8 @@
 		4B0CFB3A1F69C1200069C42B /* JSONMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB391F69C1200069C42B /* JSONMenu.swift */; };
 		4B0CFB3C1F69C8B70069C42B /* JSONInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */; };
 		4B0CFB3E1F69CB8C0069C42B /* Institution.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3D1F69CB890069C42B /* Institution.json */; };
+		4B0CFB401F69CD050069C42B /* StudentRegistered.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3F1F69CCF60069C42B /* StudentRegistered.json */; };
+		4B0CFB421F69CD130069C42B /* JSONStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB411F69CD130069C42B /* JSONStudent.swift */; };
 		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +71,8 @@
 		4B0CFB391F69C1200069C42B /* JSONMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMenu.swift; sourceTree = "<group>"; };
 		4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONInstitution.swift; sourceTree = "<group>"; };
 		4B0CFB3D1F69CB890069C42B /* Institution.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Institution.json; sourceTree = "<group>"; };
+		4B0CFB3F1F69CCF60069C42B /* StudentRegistered.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StudentRegistered.json; sourceTree = "<group>"; };
+		4B0CFB411F69CD130069C42B /* JSONStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStudent.swift; sourceTree = "<group>"; };
 		4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				4B06060B1F69B7E7000ACE59 /* Test.swift */,
 				4B0CFB391F69C1200069C42B /* JSONMenu.swift */,
 				4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */,
+				4B0CFB411F69CD130069C42B /* JSONStudent.swift */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
 			);
 			path = RUappShared;
@@ -150,6 +155,7 @@
 			children = (
 				4B0CFB3D1F69CB890069C42B /* Institution.json */,
 				4B0CFB361F69BE750069C42B /* Menu.json */,
+				4B0CFB3F1F69CCF60069C42B /* StudentRegistered.json */,
 			);
 			path = MockData;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			files = (
 				4B0CFB3E1F69CB8C0069C42B /* Institution.json in Resources */,
 				4B0CFB371F69BE800069C42B /* Menu.json in Resources */,
+				4B0CFB401F69CD050069C42B /* StudentRegistered.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B0CFB3A1F69C1200069C42B /* JSONMenu.swift in Sources */,
+				4B0CFB421F69CD130069C42B /* JSONStudent.swift in Sources */,
 				4B06060C1F69B7E7000ACE59 /* Test.swift in Sources */,
 				4B0CFB3C1F69C8B70069C42B /* JSONInstitution.swift in Sources */,
 			);

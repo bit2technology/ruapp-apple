@@ -6,11 +6,11 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-struct JSONMenu: Codable {
+struct JSONMenu: Decodable {
     var date: String
     var meals: [Meal]
     
-    struct Meal: Codable {
+    struct Meal: Decodable {
         var name: String
         var id: String?
         var meta: String
@@ -19,13 +19,13 @@ struct JSONMenu: Codable {
         var menu: [Dish]?
         var votables: [Votable]?
         
-        struct Dish: Codable {
+        struct Dish: Decodable {
             var type: String
             var meta: String
             var name: String?
         }
         
-        struct Votable: Codable {
+        struct Votable: Decodable {
             var name: String
             var meta: String
             var id: String
