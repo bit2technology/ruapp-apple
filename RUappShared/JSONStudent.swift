@@ -6,19 +6,21 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-struct JSONStudent: Encodable {
+struct JSONStudent: Codable {
+    var id: Int?
     var name: String
     var numberPlate: String
     var institutionId: Int
     
     enum CodingKeys: String, CodingKey {
+        case id
         case name
         case numberPlate = "number_plate"
         case institutionId = "institution_id"
     }
 }
 
-struct JSONStudentRegistered: Decodable {
+struct JSONRegisteredStudent: Decodable {
     var studentId: Int
     var institution: JSONInstitution
     
