@@ -15,7 +15,7 @@
 		4B0606051F69B778000ACE59 /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4B0606061F69B778000ACE59 /* RUappShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B06060C1F69B7E7000ACE59 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B06060B1F69B7E7000ACE59 /* Test.swift */; };
-		4BDBB1CC1F69BAC3007900EC /* RUappSharedTests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* RUappSharedTests_iOS.swift */; };
+		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,8 +61,8 @@
 		4B0606001F69B778000ACE59 /* RUappShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUappShared.h; sourceTree = "<group>"; };
 		4B0606011F69B778000ACE59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B06060B1F69B7E7000ACE59 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
-		4BDBB1C91F69BAC3007900EC /* RUappSharedTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BDBB1CB1F69BAC3007900EC /* RUappSharedTests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappSharedTests_iOS.swift; sourceTree = "<group>"; };
+		4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,7 +98,7 @@
 			children = (
 				4B0605E81F69B715000ACE59 /* RUapp-iOS */,
 				4B0605FF1F69B778000ACE59 /* RUappShared */,
-				4BDBB1CA1F69BAC3007900EC /* RUappSharedTests-iOS */,
+				4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */,
 				4B0605E71F69B715000ACE59 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,7 +108,7 @@
 			children = (
 				4B0605E61F69B715000ACE59 /* RUapp-iOS.app */,
 				4B0605FE1F69B778000ACE59 /* RUappShared.framework */,
-				4BDBB1C91F69BAC3007900EC /* RUappSharedTests-iOS.xctest */,
+				4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,13 +135,13 @@
 			path = RUappShared;
 			sourceTree = "<group>";
 		};
-		4BDBB1CA1F69BAC3007900EC /* RUappSharedTests-iOS */ = {
+		4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */ = {
 			isa = PBXGroup;
 			children = (
-				4BDBB1CB1F69BAC3007900EC /* RUappSharedTests_iOS.swift */,
+				4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */,
 				4BDBB1CD1F69BAC3007900EC /* Info.plist */,
 			);
-			path = "RUappSharedTests-iOS";
+			path = RUappSharedTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +210,7 @@
 			);
 			name = "RUappSharedTests-iOS";
 			productName = "RUappSharedTests-iOS";
-			productReference = 4BDBB1C91F69BAC3007900EC /* RUappSharedTests-iOS.xctest */;
+			productReference = 4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -306,7 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BDBB1CC1F69BAC3007900EC /* RUappSharedTests_iOS.swift in Sources */,
+				4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,7 +415,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUapp-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -474,7 +474,7 @@
 				INFOPLIST_FILE = "RUapp-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUapp-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bit2software.RUapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -545,7 +545,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappShared-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared;
 				PRODUCT_NAME = RUappShared;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -612,7 +612,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappShared-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared;
 				PRODUCT_NAME = RUappShared;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -675,12 +675,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappSharedTests-iOS/Info.plist";
+				INFOPLIST_FILE = RUappSharedTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappSharedTests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared.tests;
+				PRODUCT_NAME = RUappSharedTests;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -733,11 +733,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappSharedTests-iOS/Info.plist";
+				INFOPLIST_FILE = RUappSharedTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappSharedTests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared.tests;
+				PRODUCT_NAME = RUappSharedTests;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
