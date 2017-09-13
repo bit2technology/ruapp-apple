@@ -26,6 +26,11 @@ class JSONTests: XCTestCase {
         XCTAssert(menu.count == 7, "Count doesn't match")
     }
     
+    func testResult() {
+        let result: JSONResult = try! decodedMockData(name: "Result")
+        XCTAssert(result.mealName == "Almoço", "Meal name doesn't match")
+    }
+    
     func testRegisterStudent() {
         let registeredStudent: JSONRegisteredStudent = try! decodedMockData(name: "RegisterStudent")
         XCTAssert(registeredStudent.studentId == 1289, "Student ID doesn't match")
