@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.bit2software.RUapp</string>
+		<string>group.technology.bit2.ruapp</string>
 	</array>
 </dict>
 </plist>

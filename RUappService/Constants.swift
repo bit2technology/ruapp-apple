@@ -1,5 +1,5 @@
 
-public let globalUserDefaults = UserDefaults(suiteName: "group.com.bit2software.RUapp")!
+public let globalUserDefaults = UserDefaults(suiteName: "group.technology.bit2.ruapp")!
 
 class ServiceURL {
     static let registerStudent = "https://www.ruapp.com.br/api/v1/register_student"
