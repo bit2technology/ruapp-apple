@@ -26,6 +26,7 @@
 		4B0CFB4B1F69E8540069C42B /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4A1F69E8540069C42B /* RootController.swift */; };
 		4B0CFB4D1F69E9360069C42B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4C1F69E9360069C42B /* Student.swift */; };
 		4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4E1F69EA620069C42B /* Helpers.swift */; };
+		4B0CFB521F69F2E60069C42B /* URLRequest+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */; };
 		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		4B0CFB4C1F69E9360069C42B /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		4B0CFB4E1F69EA620069C42B /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RUapp-iOS.entitlements"; sourceTree = "<group>"; };
+		4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Custom.swift"; sourceTree = "<group>"; };
 		4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				4B0CFB461F69DD860069C42B /* JSONResult.swift */,
 				4B0CFB411F69CD130069C42B /* JSONStudent.swift */,
 				4B0CFB481F69E4060069C42B /* JSONVote.swift */,
+				4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
 			);
 			path = RUappShared;
@@ -355,6 +358,7 @@
 				4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */,
 				4B0CFB421F69CD130069C42B /* JSONStudent.swift in Sources */,
 				4B0CFB471F69DD860069C42B /* JSONResult.swift in Sources */,
+				4B0CFB521F69F2E60069C42B /* URLRequest+Custom.swift in Sources */,
 				4B0CFB3C1F69C8B70069C42B /* JSONInstitution.swift in Sources */,
 				4B0CFB4D1F69E9360069C42B /* Student.swift in Sources */,
 				4B0CFB491F69E4060069C42B /* JSONVote.swift in Sources */,
