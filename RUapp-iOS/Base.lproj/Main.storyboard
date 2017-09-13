@@ -47,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="-147" y="-341"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Root Controller-->
         <scene sceneID="gVq-4u-XrU">
             <objects>
-                <tabBarController id="2qX-7X-NNZ" sceneMemberID="viewController">
+                <tabBarController id="2qX-7X-NNZ" customClass="RootController" customModule="RUapp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ocb-7s-ser">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
