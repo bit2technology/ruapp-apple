@@ -27,6 +27,9 @@
 		4B0CFB4D1F69E9360069C42B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4C1F69E9360069C42B /* Student.swift */; };
 		4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4E1F69EA620069C42B /* Helpers.swift */; };
 		4B0CFB521F69F2E60069C42B /* URLRequest+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */; };
+		4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */; };
+		4B0CFB971F6B2A8F0069C42B /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */; };
+		4B0CFB991F6B36860069C42B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
 		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 /* End PBXBuildFile section */
@@ -86,6 +89,9 @@
 		4B0CFB4E1F69EA620069C42B /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RUapp-iOS.entitlements"; sourceTree = "<group>"; };
 		4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Custom.swift"; sourceTree = "<group>"; };
+		4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentController.swift; sourceTree = "<group>"; };
+		4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRouter.swift; sourceTree = "<group>"; };
+		4B0CFB981F6B36860069C42B /* Institution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
 		4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,6 +149,7 @@
 			children = (
 				4B0605E91F69B715000ACE59 /* AppDelegate.swift */,
 				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
+				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
 				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
 				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
 				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
@@ -157,6 +164,7 @@
 			children = (
 				4B0606001F69B778000ACE59 /* RUappShared.h */,
 				4B0CFB4E1F69EA620069C42B /* Helpers.swift */,
+				4B0CFB981F6B36860069C42B /* Institution.swift */,
 				4B0CFB4C1F69E9360069C42B /* Student.swift */,
 				4B0CFB391F69C1200069C42B /* JSONMenu.swift */,
 				4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */,
@@ -164,6 +172,7 @@
 				4B0CFB411F69CD130069C42B /* JSONStudent.swift */,
 				4B0CFB481F69E4060069C42B /* JSONVote.swift */,
 				4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */,
+				4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
 			);
 			path = RUappShared;
@@ -347,6 +356,7 @@
 			files = (
 				4B0605EA1F69B715000ACE59 /* AppDelegate.swift in Sources */,
 				4B0CFB4B1F69E8540069C42B /* RootController.swift in Sources */,
+				4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +370,8 @@
 				4B0CFB471F69DD860069C42B /* JSONResult.swift in Sources */,
 				4B0CFB521F69F2E60069C42B /* URLRequest+Custom.swift in Sources */,
 				4B0CFB3C1F69C8B70069C42B /* JSONInstitution.swift in Sources */,
+				4B0CFB991F6B36860069C42B /* Institution.swift in Sources */,
+				4B0CFB971F6B2A8F0069C42B /* URLRouter.swift in Sources */,
 				4B0CFB4D1F69E9360069C42B /* Student.swift in Sources */,
 				4B0CFB491F69E4060069C42B /* JSONVote.swift in Sources */,
 			);

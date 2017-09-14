@@ -13,6 +13,12 @@ class RootController: UITabBarController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(Student.shared)
+        
+        guard Student.shared != nil, Institution.shared != nil else {
+            try? Student.unregister()
+            try? Institution.unregister()
+            performSegue(withIdentifier: "EditStudent", sender: nil)
+            return
+        }
     }
 }

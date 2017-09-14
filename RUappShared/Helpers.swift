@@ -8,6 +8,8 @@
 
 public typealias CompletionHandler<T> = (() throws -> T) -> Void
 
+let defaultInstitutionId = 1
+
 func sharedDirectoryURL() -> URL {
     return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.technology.bit2.ruapp")!
 }

@@ -11,12 +11,7 @@ public final class Student {
     private var json: JSONStudent
     
     private convenience init() throws {
-        
-        guard FileManager.default.fileExists(atPath: Student.studentDataURL.path) else {
-            throw StudentError.fileDoesNotExist
-        }
-        
-        self.init(json: try JSONDecoder().decode(JSONStudent.self, from: Data(contentsOf: Student.studentDataURL)))
+        self.init(json: try JSONDecoder().decode(JSONStudent.self, from: Data(contentsOf: Student.persistenceURL)))
     }
     
     private init(json: JSONStudent) {
@@ -27,11 +22,38 @@ public final class Student {
     
     public private(set) static var shared = try? Student()
     
-    private static var studentDataURL: URL {
+    public static func register(name: String, numberPlate: String, completion: @escaping CompletionHandler<(Student, Institution)>) {
+        var student = JSONStudent(id: nil, name: name, numberPlate: numberPlate, institutionId: defaultInstitutionId)
+        URLRouter.register(student: student).request.response { (result) in
+            do {
+                let registeredStudent = try JSONDecoder().decode(JSONRegisteredStudent.self, from: result())
+                student.id = registeredStudent.studentId
+                try Student.localRegister(json: student)
+                try Institution.localRegister(json: registeredStudent.institution)
+                completion {
+                    return (Student.shared!, Institution.shared!)
+                }
+            } catch {
+                try? Student.unregister()
+                try? Institution.unregister()
+                completion {
+                    throw error
+                }
+            }
+        }
+    }
+    
+    public static func unregister() throws {
+        shared = nil
+        try FileManager.default.removeItem(at: persistenceURL)
+    }
+    
+    static func localRegister(json: JSONStudent) throws {
+        try JSONEncoder().encode(json).write(to: persistenceURL)
+        shared = Student(json: json)
+    }
+    
+    private static var persistenceURL: URL {
         return sharedDirectoryURL().appendingPathComponent("student.json")
     }
-}
-
-public enum StudentError: Error {
-    case fileDoesNotExist
 }
