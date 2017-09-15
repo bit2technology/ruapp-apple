@@ -38,7 +38,6 @@ private extension Encodable {
     func requisitionData() -> Data {
         let data = try! JSONEncoder().encode(self)
         let string = String(data: data, encoding: .utf8)!
-        print(string)
         return ("requisitionData=" + string).data(using: .utf8)!
     }
 }

@@ -21,4 +21,6 @@ class RootController: UITabBarController {
             return
         }
     }
+    
+    @IBAction private func unwindToRoot(segue: UIStoryboardSegue) { }
 }
