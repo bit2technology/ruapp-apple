@@ -8,7 +8,47 @@
 
 public final class Student {
     
+    public var name: String {
+        get {
+            return json.name
+        }
+        set {
+            json.name = newValue
+        }
+    }
+    
+    public var numberPlate: String {
+        get {
+            return json.numberPlate
+        }
+        set {
+            json.numberPlate = newValue
+        }
+    }
+    
     private var json: JSONStudent
+    
+    public func save(completion: @escaping CompletionHandler<Void>) throws {
+        guard json.id != nil else {
+            throw StudentError.idMissing
+        }
+        let student = json
+        URLRouter.edit(student: student).request.response { (result) in
+            do {
+                guard String(data: try result(), encoding: .utf8) == "success" else {
+                    throw StudentError.saveUnsuccessful
+                }
+                try Student.localRegister(json: student)
+                completion {
+                    return
+                }
+            } catch {
+                completion {
+                    throw error
+                }
+            }
+        }
+    }
     
     private convenience init() throws {
         self.init(json: try JSONDecoder().decode(JSONStudent.self, from: Data(contentsOf: Student.persistenceURL)))
@@ -56,4 +96,9 @@ public final class Student {
     private static var persistenceURL: URL {
         return sharedDirectoryURL().appendingPathComponent("student.json")
     }
+}
+
+public enum StudentError: Error {
+    case idMissing
+    case saveUnsuccessful
 }

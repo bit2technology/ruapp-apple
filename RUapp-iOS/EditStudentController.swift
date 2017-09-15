@@ -17,7 +17,10 @@ class EditStudentController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if Student.shared == nil {
+        if let student = Student.shared {
+            nameField.text = student.name
+            numberPlateField.text = student.numberPlate
+        } else {
             navigationItem.leftBarButtonItems = nil
             navigationItem.rightBarButtonItem?.isEnabled = false
             navigationItem.title = NSLocalizedString("EditStudentController.viewDidLoad.navigationItemTitle", value: "Sign Up", comment: "Title for sign up")
@@ -47,9 +50,10 @@ class EditStudentController: UITableViewController {
             nameField.becomeFirstResponder()
             return
         }
+        let numberPlate = numberPlateField.text ?? ""
         view.endEditing(true)
         performSegue(withIdentifier: "LoadingScreen", sender: nil)
-        Student.register(name: name, numberPlate: numberPlateField.text ?? "") { [weak self] (result) in
+        let process = { [weak self] (result: () throws -> Any) in
             do {
                 _ = try result()
                 DispatchQueue.main.async {
@@ -63,6 +67,17 @@ class EditStudentController: UITableViewController {
                     self?.loadingController?.dismiss(animated: true)
                 })
                 self?.loadingController?.present(alert, animated: true)
+            }
+        }
+        if let student = Student.shared {
+            student.name = name
+            student.numberPlate = numberPlate
+            try! student.save() { (result) in
+                process(result)
+            }
+        } else {
+            Student.register(name: name, numberPlate: numberPlate) { (result) in
+                process(result)
             }
         }
     }

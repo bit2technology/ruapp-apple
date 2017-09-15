@@ -8,14 +8,30 @@
 
 public final class Institution {
     
-    private var json: JSONInstitution
+    public let cafeterias: [(campusName: String, units: [Cafeteria])]
+    public var defaultCafeteria: Cafeteria? {
+        didSet {
+            try? JSONEncoder().encode(JSONDefaultRestaurant(id: defaultCafeteria?.id)).write(to: Institution.defaultCafeteriaPersistenceURL)
+        }
+    }
     
     private convenience init() throws {
         self.init(json: try JSONDecoder().decode(JSONInstitution.self, from: Data(contentsOf: Institution.persistenceURL)))
     }
     
     private init(json: JSONInstitution) {
-        self.json = json
+        let defaultRestaurant = try? JSONDecoder().decode(JSONDefaultRestaurant.self, from: Data(contentsOf: Institution.defaultCafeteriaPersistenceURL))
+        var defaultCafeteria: Cafeteria?
+        cafeterias = json.campi.map {
+            ($0.name, $0.restaurants.map {
+                let cafeteria = Cafeteria(json: $0)
+                if cafeteria.id == defaultRestaurant?.id {
+                    defaultCafeteria = cafeteria
+                }
+                return cafeteria
+            })
+        }
+        self.defaultCafeteria = defaultCafeteria
     }
     
     // MARK: Static
@@ -28,11 +44,23 @@ public final class Institution {
     }
     
     static func localRegister(json: JSONInstitution) throws {
-        try JSONEncoder().encode(json).write(to: persistenceURL)
+        let encoder = JSONEncoder()
+        if let restaurantId = json.campi.first?.restaurants.first?.id {
+            try encoder.encode(JSONDefaultRestaurant(id: restaurantId)).write(to: defaultCafeteriaPersistenceURL)
+        }
+        try encoder.encode(json).write(to: persistenceURL)
         shared = Institution(json: json)
     }
     
     private static var persistenceURL: URL {
         return sharedDirectoryURL().appendingPathComponent("institution.json")
     }
+    
+    private static var defaultCafeteriaPersistenceURL: URL {
+        return sharedDirectoryURL().appendingPathComponent("default_restaurant.json")
+    }
+}
+
+private struct JSONDefaultRestaurant: Codable {
+    var id: String?
 }

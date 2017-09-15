@@ -32,6 +32,7 @@
 		4B0CFB991F6B36860069C42B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
 		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
+		4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafeteria.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				4B0606001F69B778000ACE59 /* RUappShared.h */,
+				4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */,
 				4B0CFB4E1F69EA620069C42B /* Helpers.swift */,
 				4B0CFB981F6B36860069C42B /* Institution.swift */,
 				4B0CFB4C1F69E9360069C42B /* Student.swift */,
@@ -366,6 +369,7 @@
 			files = (
 				4B0CFB3A1F69C1200069C42B /* JSONMenu.swift in Sources */,
 				4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */,
+				4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */,
 				4B0CFB421F69CD130069C42B /* JSONStudent.swift in Sources */,
 				4B0CFB471F69DD860069C42B /* JSONResult.swift in Sources */,
 				4B0CFB521F69F2E60069C42B /* URLRequest+Custom.swift in Sources */,
