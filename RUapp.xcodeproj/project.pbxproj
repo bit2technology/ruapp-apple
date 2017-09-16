@@ -199,13 +199,13 @@
 				4B0BC4791F6D891200A13F61 /* UIFont+Custom.swift */,
 				4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */,
 				4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */,
-				4B0BC47B1F6D8E7200A13F61 /* Dosis-Font */,
+				4B0BC47B1F6D8E7200A13F61 /* Fonts */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
 			);
 			path = RUappShared;
 			sourceTree = "<group>";
 		};
-		4B0BC47B1F6D8E7200A13F61 /* Dosis-Font */ = {
+		4B0BC47B1F6D8E7200A13F61 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
 				4B0BC47C1F6D8E7200A13F61 /* Dosis-Light.otf */,
@@ -216,7 +216,7 @@
 				4B0BC4811F6D8E7200A13F61 /* Dosis-Bold.otf */,
 				4B0BC4821F6D8E7200A13F61 /* Dosis-Book.otf */,
 			);
-			path = "Dosis-Font";
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		4B0CFB381F69BE8F0069C42B /* MockData */ = {
