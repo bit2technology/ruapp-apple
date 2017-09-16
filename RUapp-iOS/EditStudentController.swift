@@ -39,6 +39,7 @@ class EditStudentController: UIViewController {
             let missingValuesAlertBtn = NSLocalizedString("EditStudentController.doneButtonPressed.missingValuesAlertBtn", value: "OK", comment: "Button to dismiss the alert to missing values")
             let alert = UIAlertController(title: missingValuesAlertTitle, message: missingValuesAlertMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: missingValuesAlertBtn, style: .default))
+            alert.view.tintColor = .appDarkBlue
             present(alert, animated: true)
             return
         }
@@ -56,6 +57,7 @@ class EditStudentController: UIViewController {
                 let registerErrorAlertBtn = NSLocalizedString("EditStudentController.doneButtonPressed.registerErrorAlertBtn", value: "OK", comment: "Button to dismiss the alert to register error")
                 let alert = UIAlertController(title: registerErrorAlertTitle, message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: registerErrorAlertBtn, style: .default))
+                alert.view.tintColor = .appDarkBlue
                 self?.present(alert, animated: true)
             }
         }
@@ -87,6 +89,8 @@ extension EditStudentController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([.font: UIFont.appBarItemDone], for: .normal)
+        tableController.tableView.backgroundColor = .appDarkBlue
         if let student = Student.shared {
             nameField.text = student.name
             numberPlateField.text = student.numberPlate
@@ -122,6 +126,13 @@ class EditStudentTableController: UITableViewController {
     
     @IBAction private func nameFieldEdited() {
         container.navigationItem.rightBarButtonItem?.isEnabled = (nameField.text?.count ?? 0) > 0
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let view = view as? UITableViewHeaderFooterView {
+            view.textLabel?.font = .appTableSectionHeader
+            view.textLabel?.textColor = .white
+        }
     }
 }
 

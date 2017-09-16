@@ -14,6 +14,16 @@
 		4B0606021F69B778000ACE59 /* RUappShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B0606001F69B778000ACE59 /* RUappShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B0606051F69B778000ACE59 /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4B0606061F69B778000ACE59 /* RUappShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4B0BC4761F6D7F2100A13F61 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4751F6D7F2100A13F61 /* MenuController.swift */; };
+		4B0BC4781F6D7F6F00A13F61 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4771F6D7F6F00A13F61 /* UIColor+Custom.swift */; };
+		4B0BC47A1F6D891200A13F61 /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4791F6D891200A13F61 /* UIFont+Custom.swift */; };
+		4B0BC4831F6D8E7F00A13F61 /* Dosis-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47C1F6D8E7200A13F61 /* Dosis-Light.otf */; };
+		4B0BC4841F6D8E7F00A13F61 /* Dosis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47D1F6D8E7200A13F61 /* Dosis-Medium.otf */; };
+		4B0BC4851F6D8E7F00A13F61 /* Dosis-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47E1F6D8E7200A13F61 /* Dosis-ExtraLight.otf */; };
+		4B0BC4861F6D8E7F00A13F61 /* Dosis-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47F1F6D8E7200A13F61 /* Dosis-ExtraBold.otf */; };
+		4B0BC4871F6D8E7F00A13F61 /* Dosis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC4801F6D8E7200A13F61 /* Dosis-SemiBold.otf */; };
+		4B0BC4881F6D8E7F00A13F61 /* Dosis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC4811F6D8E7200A13F61 /* Dosis-Bold.otf */; };
+		4B0BC4891F6D8E7F00A13F61 /* Dosis-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC4821F6D8E7200A13F61 /* Dosis-Book.otf */; };
 		4B0CFB371F69BE800069C42B /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB361F69BE750069C42B /* Menu.json */; };
 		4B0CFB3A1F69C1200069C42B /* JSONMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB391F69C1200069C42B /* JSONMenu.swift */; };
 		4B0CFB3C1F69C8B70069C42B /* JSONInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */; };
@@ -76,6 +86,16 @@
 		4B0605FE1F69B778000ACE59 /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0606001F69B778000ACE59 /* RUappShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUappShared.h; sourceTree = "<group>"; };
 		4B0606011F69B778000ACE59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B0BC4751F6D7F2100A13F61 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		4B0BC4771F6D7F6F00A13F61 /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
+		4B0BC4791F6D891200A13F61 /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
+		4B0BC47C1F6D8E7200A13F61 /* Dosis-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Light.otf"; sourceTree = "<group>"; };
+		4B0BC47D1F6D8E7200A13F61 /* Dosis-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Medium.otf"; sourceTree = "<group>"; };
+		4B0BC47E1F6D8E7200A13F61 /* Dosis-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-ExtraLight.otf"; sourceTree = "<group>"; };
+		4B0BC47F1F6D8E7200A13F61 /* Dosis-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-ExtraBold.otf"; sourceTree = "<group>"; };
+		4B0BC4801F6D8E7200A13F61 /* Dosis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-SemiBold.otf"; sourceTree = "<group>"; };
+		4B0BC4811F6D8E7200A13F61 /* Dosis-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Bold.otf"; sourceTree = "<group>"; };
+		4B0BC4821F6D8E7200A13F61 /* Dosis-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Book.otf"; sourceTree = "<group>"; };
 		4B0CFB361F69BE750069C42B /* Menu.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Menu.json; sourceTree = "<group>"; };
 		4B0CFB391F69C1200069C42B /* JSONMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMenu.swift; sourceTree = "<group>"; };
 		4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONInstitution.swift; sourceTree = "<group>"; };
@@ -152,6 +172,7 @@
 				4B0605E91F69B715000ACE59 /* AppDelegate.swift */,
 				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
+				4B0BC4751F6D7F2100A13F61 /* MenuController.swift */,
 				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
 				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
 				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
@@ -174,11 +195,28 @@
 				4B0CFB461F69DD860069C42B /* JSONResult.swift */,
 				4B0CFB411F69CD130069C42B /* JSONStudent.swift */,
 				4B0CFB481F69E4060069C42B /* JSONVote.swift */,
+				4B0BC4771F6D7F6F00A13F61 /* UIColor+Custom.swift */,
+				4B0BC4791F6D891200A13F61 /* UIFont+Custom.swift */,
 				4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */,
 				4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */,
+				4B0BC47B1F6D8E7200A13F61 /* Dosis-Font */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
 			);
 			path = RUappShared;
+			sourceTree = "<group>";
+		};
+		4B0BC47B1F6D8E7200A13F61 /* Dosis-Font */ = {
+			isa = PBXGroup;
+			children = (
+				4B0BC47C1F6D8E7200A13F61 /* Dosis-Light.otf */,
+				4B0BC47D1F6D8E7200A13F61 /* Dosis-Medium.otf */,
+				4B0BC47E1F6D8E7200A13F61 /* Dosis-ExtraLight.otf */,
+				4B0BC47F1F6D8E7200A13F61 /* Dosis-ExtraBold.otf */,
+				4B0BC4801F6D8E7200A13F61 /* Dosis-SemiBold.otf */,
+				4B0BC4811F6D8E7200A13F61 /* Dosis-Bold.otf */,
+				4B0BC4821F6D8E7200A13F61 /* Dosis-Book.otf */,
+			);
+			path = "Dosis-Font";
 			sourceTree = "<group>";
 		};
 		4B0CFB381F69BE8F0069C42B /* MockData */ = {
@@ -336,6 +374,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0BC4831F6D8E7F00A13F61 /* Dosis-Light.otf in Resources */,
+				4B0BC4851F6D8E7F00A13F61 /* Dosis-ExtraLight.otf in Resources */,
+				4B0BC4861F6D8E7F00A13F61 /* Dosis-ExtraBold.otf in Resources */,
+				4B0BC4891F6D8E7F00A13F61 /* Dosis-Book.otf in Resources */,
+				4B0BC4871F6D8E7F00A13F61 /* Dosis-SemiBold.otf in Resources */,
+				4B0BC4841F6D8E7F00A13F61 /* Dosis-Medium.otf in Resources */,
+				4B0BC4881F6D8E7F00A13F61 /* Dosis-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0BC4761F6D7F2100A13F61 /* MenuController.swift in Sources */,
 				4B0605EA1F69B715000ACE59 /* AppDelegate.swift in Sources */,
 				4B0CFB4B1F69E8540069C42B /* RootController.swift in Sources */,
 				4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */,
@@ -367,7 +413,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0BC47A1F6D891200A13F61 /* UIFont+Custom.swift in Sources */,
 				4B0CFB3A1F69C1200069C42B /* JSONMenu.swift in Sources */,
+				4B0BC4781F6D7F6F00A13F61 /* UIColor+Custom.swift in Sources */,
 				4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */,
 				4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */,
 				4B0CFB421F69CD130069C42B /* JSONStudent.swift in Sources */,

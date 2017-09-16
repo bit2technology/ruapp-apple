@@ -58,7 +58,9 @@
                             <outlet property="delegate" destination="7Sv-yv-E26" id="fgm-oO-yrZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Menu" id="lp3-Rn-N4l"/>
+                    <navigationItem key="navigationItem" title="Menu" id="lp3-Rn-N4l">
+                        <barButtonItem key="rightBarButtonItem" title="Campus" id="3y0-au-mV8"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TH2-Ze-fBq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -159,7 +161,7 @@
                                                     <rect key="frame" x="8" y="8" width="359" height="28"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -185,7 +187,7 @@
                                                     <rect key="frame" x="8" y="8" width="359" height="28"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
