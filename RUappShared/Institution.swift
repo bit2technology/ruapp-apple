@@ -38,6 +38,21 @@ public final class Institution {
     
     public private(set) static var shared = try? Institution()
     
+    public static func getList(completion: @escaping CompletionHandler<[Overview]>) {
+        URLRouter.listInstitutions.request.response { (result) in
+            do {
+                let list = try JSONDecoder().decode([JSONInstitution.Overview].self, from: result()).map(Overview.init)
+                completion {
+                    return list
+                }
+            } catch {
+                completion {
+                    throw error
+                }
+            }
+        }
+    }
+    
     public static func unregister() throws {
         shared = nil
         try FileManager.default.removeItem(at: persistenceURL)
@@ -58,6 +73,17 @@ public final class Institution {
     
     private static var defaultCafeteriaPersistenceURL: URL {
         return sharedDirectoryURL().appendingPathComponent("default_restaurant.json")
+    }
+    
+    public class Overview {
+        
+        let id: String
+        let name: String
+        
+        init(json: JSONInstitution.Overview) {
+            id = json.id
+            name = json.name
+        }
     }
 }
 

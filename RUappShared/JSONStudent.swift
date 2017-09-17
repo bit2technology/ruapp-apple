@@ -10,7 +10,7 @@ struct JSONStudent: Codable {
     var id: Int?
     var name: String
     var numberPlate: String
-    var institutionId: Int
+    var institutionId: String
     
     enum CodingKeys: String, CodingKey {
         case id

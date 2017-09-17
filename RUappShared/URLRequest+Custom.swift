@@ -9,6 +9,9 @@
 public extension URLRequest {
     func response(completion: @escaping CompletionHandler<Data>) {
         URLSession.shared.dataTask(with: self) { (data, response, error) in
+            #if DEBUG
+                print("Response url:\(response?.url?.absoluteString ?? "") data:\(data?.string ?? "") error:\(error?.localizedDescription ?? "")")
+            #endif
             if let error = error {
                 completion {
                     throw error

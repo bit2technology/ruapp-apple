@@ -62,8 +62,8 @@ public final class Student {
     
     public private(set) static var shared = try? Student()
     
-    public static func register(name: String, numberPlate: String, completion: @escaping CompletionHandler<(Student, Institution)>) {
-        var student = JSONStudent(id: nil, name: name, numberPlate: numberPlate, institutionId: defaultInstitutionId)
+    public static func register(name: String, numberPlate: String, on institution: Institution.Overview, completion: @escaping CompletionHandler<(Student, Institution)>) {
+        var student = JSONStudent(id: nil, name: name, numberPlate: numberPlate, institutionId: institution.id)
         URLRouter.register(student: student).request.response { (result) in
             do {
                 let registeredStudent = try JSONDecoder().decode(JSONRegisteredStudent.self, from: result())

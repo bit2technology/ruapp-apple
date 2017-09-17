@@ -48,4 +48,9 @@ struct JSONInstitution: Codable {
             var capacity: String
         }
     }
+    
+    struct Overview {
+        var id: String
+        var name: String
+    }
 }
