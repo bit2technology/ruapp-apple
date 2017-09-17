@@ -8,6 +8,7 @@
 
 enum URLRouter {
     case listInstitutions
+    case institution(id: String)
     case register(student: JSONStudent)
     case edit(student: JSONStudent)
     
@@ -19,6 +20,8 @@ enum URLRouter {
         switch self {
         case .listInstitutions:
             urlBuilder += "institutions"
+        case .institution(let id):
+            urlBuilder += "institution?id=\(id)"
         case .register(let student):
             urlBuilder += "register_student"
             httpMethod = .post

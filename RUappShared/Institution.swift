@@ -6,11 +6,15 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-public final class Institution {
+public final class Institution: InstitutionProtocol {
+    
+    public let id: String
+    public let name: String
     
     public let cafeterias: [(campusName: String, units: [Cafeteria])]
     public var defaultCafeteria: Cafeteria? {
         didSet {
+            NotificationCenter.default.post(name: .defaultCafeteriaChanged, object: defaultCafeteria)
             try? JSONEncoder().encode(JSONDefaultRestaurant(id: defaultCafeteria?.id)).write(to: Institution.defaultCafeteriaPersistenceURL)
         }
     }
@@ -20,6 +24,8 @@ public final class Institution {
     }
     
     private init(json: JSONInstitution) {
+        id = json.id
+        name = json.name
         let defaultRestaurant = try? JSONDecoder().decode(JSONDefaultRestaurant.self, from: Data(contentsOf: Institution.defaultCafeteriaPersistenceURL))
         var defaultCafeteria: Cafeteria?
         cafeterias = json.campi.map {
@@ -37,6 +43,22 @@ public final class Institution {
     // MARK: Static
     
     public private(set) static var shared = try? Institution()
+    
+    public static func get(id: String, completion: @escaping CompletionHandler<Institution>) {
+        URLRouter.institution(id: id).request.response { (result) in
+            do {
+                let json = try JSONDecoder().decode(JSONInstitution.self, from: result())
+                let institution = Institution(json: json)
+                completion {
+                    return institution
+                }
+            } catch {
+                completion {
+                    throw error
+                }
+            }
+        }
+    }
     
     public static func getList(completion: @escaping CompletionHandler<[Overview]>) {
         URLRouter.listInstitutions.request.response { (result) in
@@ -65,6 +87,7 @@ public final class Institution {
         }
         try encoder.encode(json).write(to: persistenceURL)
         shared = Institution(json: json)
+        NotificationCenter.default.post(name: .defaultCafeteriaChanged, object: shared?.defaultCafeteria)
     }
     
     private static var persistenceURL: URL {
@@ -94,4 +117,10 @@ public protocol InstitutionProtocol {
 
 private struct JSONDefaultRestaurant: Codable {
     var id: String?
+}
+
+public extension Notification.Name {
+    static var defaultCafeteriaChanged: Notification.Name {
+        return Notification.Name(rawValue: "Institution.defaultCafeteriaChanged")
+    }
 }

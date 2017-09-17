@@ -26,6 +26,15 @@ public final class Student {
         }
     }
     
+    public var institutionId: String {
+        get {
+            return json.institutionId
+        }
+        set {
+            json.institutionId = newValue
+        }
+    }
+    
     private var json: JSONStudent
     
     public func save(completion: @escaping CompletionHandler<Void>) throws {
@@ -33,18 +42,49 @@ public final class Student {
             throw StudentError.idMissing
         }
         let student = json
-        URLRouter.edit(student: student).request.response { (result) in
-            do {
-                guard String(data: try result(), encoding: .utf8) == "success" else {
-                    throw StudentError.saveUnsuccessful
+        // Check if institution changed. If so, download new institution data and then update student on server
+        if Institution.shared?.id != json.institutionId {
+            URLRouter.institution(id: json.institutionId).request.response { (result) in
+                do {
+                    let institution = try JSONDecoder().decode(JSONInstitution.self, from: result())
+                    URLRouter.edit(student: student).request.response { (result) in
+                        do {
+                            guard String(data: try result(), encoding: .utf8) == "success" else {
+                                throw StudentError.saveUnsuccessful
+                            }
+                            try Student.localRegister(json: student)
+                            try Institution.localRegister(json: institution)
+                            completion {
+                                return
+                            }
+                        } catch {
+                            // Student error
+                            completion {
+                                throw error
+                            }
+                        }
+                    }
+                } catch {
+                    // Institution error
+                    completion {
+                        throw error
+                    }
                 }
-                try Student.localRegister(json: student)
-                completion {
-                    return
-                }
-            } catch {
-                completion {
-                    throw error
+            }
+        } else {
+            URLRouter.edit(student: student).request.response { (result) in
+                do {
+                    guard String(data: try result(), encoding: .utf8) == "success" else {
+                        throw StudentError.saveUnsuccessful
+                    }
+                    try Student.localRegister(json: student)
+                    completion {
+                        return
+                    }
+                } catch {
+                    completion {
+                        throw error
+                    }
                 }
             }
         }
