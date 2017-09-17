@@ -75,16 +75,21 @@ public final class Institution {
         return sharedDirectoryURL().appendingPathComponent("default_restaurant.json")
     }
     
-    public class Overview {
+    public class Overview: InstitutionProtocol {
         
-        let id: String
-        let name: String
+        public let id: String
+        public let name: String
         
         init(json: JSONInstitution.Overview) {
             id = json.id
             name = json.name
         }
     }
+}
+
+public protocol InstitutionProtocol {
+    var id: String { get }
+    var name: String { get }
 }
 
 private struct JSONDefaultRestaurant: Codable {

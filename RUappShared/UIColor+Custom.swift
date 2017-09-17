@@ -6,7 +6,11 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-public typealias Color = UIColor
+#if os(macOS)
+    public typealias Color = NSColor
+#else
+    public typealias Color = UIColor
+#endif
 
 public extension Color {
     

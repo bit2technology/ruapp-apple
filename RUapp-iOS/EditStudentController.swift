@@ -11,21 +11,13 @@ import RUappShared
 
 class EditStudentController: UIViewController {
     
+    @IBOutlet private weak var loadingView: UIActivityIndicatorView!
     private weak var tableController: EditStudentTableController! {
         didSet {
+            oldValue?.container = nil
             tableController.container = self
         }
     }
-    
-    private var nameField: UITextField {
-        return tableController.nameField
-    }
-    
-    private var numberPlateField: UITextField {
-        return tableController.numberPlateField
-    }
-    
-    @IBOutlet private weak var loadingView: UIActivityIndicatorView!
     
     @IBAction func cancelButtonPressed() {
         view.endEditing(true)
@@ -33,7 +25,7 @@ class EditStudentController: UIViewController {
     }
     
     @IBAction func doneButtonPressed() {
-        guard let name = nameField.text, name.count > 0, let numberPlate = numberPlateField.text, numberPlate.count > 0, let institution = tableController.institution else {
+        guard let name = tableController.nameField.text?.relevant, let numberPlate = tableController.numberPlateField.text?.relevant, let institution = tableController.institution else {
             let missingValuesAlertTitle = NSLocalizedString("EditStudentController.doneButtonPressed.missingValuesAlertTitle", value: "Missing Values", comment: "Alert title to missing values")
             let missingValuesAlertMessage = NSLocalizedString("EditStudentController.doneButtonPressed.missingValuesAlertMessage", value: "Both name and number plate are required", comment: "Alert message to missing values")
             let missingValuesAlertBtn = NSLocalizedString("EditStudentController.doneButtonPressed.missingValuesAlertBtn", value: "OK", comment: "Button to dismiss the alert to missing values")
@@ -85,6 +77,7 @@ class EditStudentController: UIViewController {
     @IBAction private func unwindToEditStudent(segue: UIStoryboardSegue) { }
 }
 
+// UIViewController methods
 extension EditStudentController {
     
     override func viewDidLoad() {
@@ -92,8 +85,8 @@ extension EditStudentController {
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([.font: UIFont.appBarItemDone], for: .normal)
         tableController.tableView.backgroundColor = .appDarkBlue
         if let student = Student.shared {
-            nameField.text = student.name
-            numberPlateField.text = student.numberPlate
+            tableController.nameField.text = student.name
+            tableController.numberPlateField.text = student.numberPlate
         } else {
             navigationItem.leftBarButtonItems = nil
             navigationItem.rightBarButtonItem?.isEnabled = false
@@ -113,8 +106,15 @@ extension EditStudentController {
 
 class EditStudentTableController: UITableViewController {
     
-    private(set) var institution: Institution.Overview?
+    var institution: Institution.Overview? {
+        didSet {
+            institutionCell.textLabel?.text = institution?.name
+            institutionCell.textLabel?.textColor = .black
+        }
+    }
+    
     @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var institutionCell: UITableViewCell!
     @IBOutlet weak var numberPlateField: UITextField!
     weak var container: EditStudentController!
     
@@ -123,6 +123,10 @@ class EditStudentTableController: UITableViewController {
         let numberPlateFieldNotEmpty = (numberPlateField.text?.count ?? 0) > 0
         container.navigationItem.rightBarButtonItem?.isEnabled = nameFieldNotEmpty && (institution != nil) && numberPlateFieldNotEmpty
     }
+}
+
+// UITableViewController methods
+extension EditStudentTableController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let view = view as? UITableViewHeaderFooterView {
@@ -143,6 +147,10 @@ class EditStudentTableController: UITableViewController {
             break
         }
     }
+}
+
+// UIViewController methods
+extension EditStudentTableController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -155,13 +163,16 @@ class EditStudentTableController: UITableViewController {
         switch segue.identifier {
         case "SelectInstitution"?:
             view.endEditing(true)
+            (segue.destination as! InstitutionSelectorController).editStudentTableController = self
         default:
             break
         }
     }
 }
 
+// UITextFieldDelegate methods
 extension EditStudentTableController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case nameField:
@@ -172,47 +183,5 @@ extension EditStudentTableController: UITextFieldDelegate {
             break
         }
         return false
-    }
-}
-
-class InstitutionSelectorController: UITableViewController {
-    
-    private var list: [Institution.Overview]?
-    private var downloading = false
-    private var error: Error?
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
-    }
-    
-    private func getList() {
-        guard downloading == false else {
-            return
-        }
-        downloading = true
-        error = nil
-        updateView()
-        Institution.getList { [weak self] (result) in
-            self?.downloading = false
-            do {
-                self?.list = try result()
-            } catch {
-                self?.error = error
-            }
-            self?.updateView()
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if downloading {
-            return 1
-        }
-        return list?.count ?? 0
-    }
-    
-    private func updateView() {
-        
     }
 }

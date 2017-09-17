@@ -271,6 +271,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="institutionCell" destination="tHu-Ic-bc3" id="q0j-4B-0Vr"/>
                         <outlet property="nameField" destination="bzv-A0-r3P" id="9GR-uv-h7w"/>
                         <outlet property="numberPlateField" destination="LS8-mD-AUr" id="ayn-Vp-eqr"/>
                         <segue destination="fUA-xP-c9g" kind="show" identifier="SelectInstitution" id="boO-Tj-pjD"/>
@@ -280,10 +281,10 @@
             </objects>
             <point key="canvasLocation" x="1600" y="1000"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Institutions-->
         <scene sceneID="vvn-TU-qna">
             <objects>
-                <tableViewController id="fUA-xP-c9g" sceneMemberID="viewController">
+                <tableViewController id="fUA-xP-c9g" customClass="InstitutionSelectorController" customModule="RUapp_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Lzg-ap-vGW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -312,6 +313,13 @@
                             <outlet property="delegate" destination="fUA-xP-c9g" id="B4T-H1-CTu"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Institutions" id="DD9-mG-gVG"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="NEA-Z7-0PZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshRequested" destination="fUA-xP-c9g" eventType="valueChanged" id="hTW-Ib-u9f"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dmp-D4-xQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

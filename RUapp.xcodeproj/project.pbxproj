@@ -40,6 +40,8 @@
 		4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */; };
 		4B0CFB971F6B2A8F0069C42B /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */; };
 		4B0CFB991F6B36860069C42B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
+		4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */; };
+		4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */; };
 		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */; };
@@ -113,6 +115,8 @@
 		4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentController.swift; sourceTree = "<group>"; };
 		4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRouter.swift; sourceTree = "<group>"; };
 		4B0CFB981F6B36860069C42B /* Institution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
+		4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionSelectorController.swift; sourceTree = "<group>"; };
+		4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Custom.swift"; sourceTree = "<group>"; };
 		4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -172,7 +176,9 @@
 				4B0605E91F69B715000ACE59 /* AppDelegate.swift */,
 				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
+				4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */,
 				4B0BC4751F6D7F2100A13F61 /* MenuController.swift */,
+				4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */,
 				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
 				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
 				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
@@ -404,6 +410,8 @@
 			files = (
 				4B0BC4761F6D7F2100A13F61 /* MenuController.swift in Sources */,
 				4B0605EA1F69B715000ACE59 /* AppDelegate.swift in Sources */,
+				4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */,
+				4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */,
 				4B0CFB4B1F69E8540069C42B /* RootController.swift in Sources */,
 				4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */,
 			);

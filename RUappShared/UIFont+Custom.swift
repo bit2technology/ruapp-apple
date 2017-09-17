@@ -6,7 +6,11 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-public typealias Font = UIFont
+#if os(macOS)
+    public typealias Font = NSFont
+#else
+    public typealias Font = UIFont
+#endif
 
 public extension Font {
     
