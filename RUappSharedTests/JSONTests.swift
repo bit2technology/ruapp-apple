@@ -11,11 +11,6 @@ import XCTest
 
 class JSONTests: XCTestCase {
     
-    private func decodedMockData<T: Decodable>(name: String) throws -> T {
-        let url = Bundle(for: JSONTests.self).url(forResource: name, withExtension: "json")!
-        return try JSONDecoder().decode(T.self, from: Data(contentsOf: url))
-    }
-    
     func testInstitution() {
         let institution: JSONInstitution = try! decodedMockData(name: "Institution")
         XCTAssert(institution.id == "1", "ID doesn't match")

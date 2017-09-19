@@ -6,11 +6,22 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-public final class Cafeteria {
+import CoreData
+
+extension Cafeteria {
+    static var entityName: String {
+        return "Cafeteria"
+    }
+}
+
+/// Initializers
+extension Cafeteria {
     
-    let id: String
-    
-    init(json: JSONInstitution.Campus.Restaurant) {
-        id = json.id
+    func update(from json: JSONInstitution.Campus.Restaurant) {
+        id = Int64(json.id)!
+        name = json.name
+        latitude = Double(json.latitude)!
+        longitude = Double(json.longitude)!
+        capacity = Int64(json.capacity)!
     }
 }

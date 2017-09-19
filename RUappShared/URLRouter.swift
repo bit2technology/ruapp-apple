@@ -10,7 +10,7 @@ enum URLRouter {
     case listInstitutions
     case institution(id: String)
     case register(student: JSONStudent)
-    case edit(student: JSONStudent)
+    case edit(studentId: Int, values: JSONStudent)
     
     var request: URLRequest {
         var urlBuilder = "https://www.ruapp.com.br/api/v1/"
@@ -26,10 +26,10 @@ enum URLRouter {
             urlBuilder += "register_student"
             httpMethod = .post
             httpBody = student.requisitionData()
-        case .edit(let student):
-            urlBuilder += "register_student/\(student.id!)"
+        case .edit(let studentId, let values):
+            urlBuilder += "register_student/\(studentId)"
             httpMethod = .put
-            httpBody = "\(JSONStudent.CodingKeys.name.rawValue)=\(student.name.percentEncoding)&\(JSONStudent.CodingKeys.numberPlate.rawValue)=\(student.numberPlate.percentEncoding)&\(JSONStudent.CodingKeys.institutionId.rawValue)=\(student.institutionId)".data!
+            httpBody = "\(JSONStudent.CodingKeys.name.rawValue)=\(values.name.percentEncoding)&\(JSONStudent.CodingKeys.numberPlate.rawValue)=\(values.numberPlate.percentEncoding)&\(JSONStudent.CodingKeys.institutionId.rawValue)=\(values.institutionId)".data!
         }
         
         #if DEBUG

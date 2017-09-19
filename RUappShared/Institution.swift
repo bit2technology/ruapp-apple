@@ -6,64 +6,39 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-public final class Institution: InstitutionProtocol {
-    
-    public let id: String
-    public let name: String
-    
-    public let cafeterias: [(campusName: String, units: [Cafeteria])]
-    public var defaultCafeteria: Cafeteria? {
-        didSet {
-            NotificationCenter.default.post(name: .defaultCafeteriaChanged, object: defaultCafeteria)
-            try? JSONEncoder().encode(JSONDefaultRestaurant(id: defaultCafeteria?.id)).write(to: Institution.defaultCafeteriaPersistenceURL)
-        }
+import CoreData
+
+extension Institution {
+    static var entityName: String {
+        return "Institution"
     }
+}
+
+/// Initializers
+extension Institution {
     
-    private convenience init() throws {
-        self.init(json: try JSONDecoder().decode(JSONInstitution.self, from: Data(contentsOf: Institution.persistenceURL)))
-    }
-    
-    private init(json: JSONInstitution) {
-        id = json.id
+    func update(from json: JSONInstitution) {
+        id = Int64(json.id)!
         name = json.name
-        let defaultRestaurant = try? JSONDecoder().decode(JSONDefaultRestaurant.self, from: Data(contentsOf: Institution.defaultCafeteriaPersistenceURL))
-        var defaultCafeteria: Cafeteria?
-        cafeterias = json.campi.map {
-            ($0.name, $0.restaurants.map {
-                let cafeteria = Cafeteria(json: $0)
-                if cafeteria.id == defaultRestaurant?.id {
-                    defaultCafeteria = cafeteria
-                }
-                return cafeteria
-            })
-        }
-        self.defaultCafeteria = defaultCafeteria
+        townName = json.townName
+        stateName = json.stateName
+        stateInitials = json.stateInitials
+        campi = NSSet(array: json.campi.map {
+            let campus = NSEntityDescription.insertNewObject(forEntityName: Campus.entityName, into: managedObjectContext!) as! Campus
+            campus.update(from: $0)
+            campus.institution = self
+            return campus
+        })
     }
-    
-    // MARK: Static
-    
-    public private(set) static var shared = try? Institution()
-    
-    public static func get(id: String, completion: @escaping CompletionHandler<Institution>) {
-        URLRouter.institution(id: id).request.response { (result) in
-            do {
-                let json = try JSONDecoder().decode(JSONInstitution.self, from: result())
-                let institution = Institution(json: json)
-                completion {
-                    return institution
-                }
-            } catch {
-                completion {
-                    throw error
-                }
-            }
-        }
-    }
+}
+
+/// Get from network
+extension Institution {
     
     public static func getList(completion: @escaping CompletionHandler<[Overview]>) {
         URLRouter.listInstitutions.request.response { (result) in
             do {
-                let list = try JSONDecoder().decode([JSONInstitution.Overview].self, from: result()).map(Overview.init)
+                let list = try JSONDecoder().decode([Overview].self, from: result())
                 completion {
                     return list
                 }
@@ -74,53 +49,12 @@ public final class Institution: InstitutionProtocol {
             }
         }
     }
-    
-    public static func unregister() throws {
-        shared = nil
-        try FileManager.default.removeItem(at: persistenceURL)
-    }
-    
-    static func localRegister(json: JSONInstitution) throws {
-        let encoder = JSONEncoder()
-        if let restaurantId = json.campi.first?.restaurants.first?.id {
-            try encoder.encode(JSONDefaultRestaurant(id: restaurantId)).write(to: defaultCafeteriaPersistenceURL)
-        }
-        try encoder.encode(json).write(to: persistenceURL)
-        shared = Institution(json: json)
-        NotificationCenter.default.post(name: .defaultCafeteriaChanged, object: shared?.defaultCafeteria)
-    }
-    
-    private static var persistenceURL: URL {
-        return sharedDirectoryURL().appendingPathComponent("institution.json")
-    }
-    
-    private static var defaultCafeteriaPersistenceURL: URL {
-        return sharedDirectoryURL().appendingPathComponent("default_restaurant.json")
-    }
-    
-    public class Overview: InstitutionProtocol {
-        
-        public let id: String
-        public let name: String
-        
-        init(json: JSONInstitution.Overview) {
-            id = json.id
-            name = json.name
-        }
-    }
 }
 
-public protocol InstitutionProtocol {
-    var id: String { get }
-    var name: String { get }
-}
-
-private struct JSONDefaultRestaurant: Codable {
-    var id: String?
-}
-
-public extension Notification.Name {
-    static var defaultCafeteriaChanged: Notification.Name {
-        return Notification.Name(rawValue: "Institution.defaultCafeteriaChanged")
+/// Subtype
+extension Institution {
+    public struct Overview: Decodable {
+        public var id: String
+        public var name: String
     }
 }

@@ -7,13 +7,11 @@
 //
 
 struct JSONStudent: Codable {
-    var id: Int?
     var name: String
     var numberPlate: String
     var institutionId: String
     
     enum CodingKeys: String, CodingKey {
-        case id
         case name
         case numberPlate = "number_plate"
         case institutionId = "institution_id"

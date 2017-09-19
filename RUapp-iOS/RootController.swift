@@ -14,9 +14,7 @@ class RootController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        guard Student.shared != nil, Institution.shared != nil else {
-            try? Student.unregister()
-            try? Institution.unregister()
+        guard Student.shared != nil else {
             performSegue(withIdentifier: "EditStudent", sender: nil)
             return
         }

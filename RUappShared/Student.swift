@@ -6,116 +6,29 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-public final class Student {
-    
-    public var name: String {
-        get {
-            return json.name
-        }
-        set {
-            json.name = newValue
-        }
+import CoreData
+
+extension Student {
+    static var entityName: String {
+        return "Student"
     }
+}
+
+/// Send to cloud
+extension Student {
     
-    public var numberPlate: String {
-        get {
-            return json.numberPlate
-        }
-        set {
-            json.numberPlate = newValue
-        }
-    }
-    
-    public var institutionId: String {
-        get {
-            return json.institutionId
-        }
-        set {
-            json.institutionId = newValue
-        }
-    }
-    
-    private var json: JSONStudent
-    
-    public func save(completion: @escaping CompletionHandler<Void>) throws {
-        guard json.id != nil else {
-            throw StudentError.idMissing
-        }
-        let student = json
-        // Check if institution changed. If so, download new institution data and then update student on server
-        if Institution.shared?.id != json.institutionId {
-            URLRouter.institution(id: json.institutionId).request.response { (result) in
-                do {
-                    let institution = try JSONDecoder().decode(JSONInstitution.self, from: result())
-                    URLRouter.edit(student: student).request.response { (result) in
-                        do {
-                            guard String(data: try result(), encoding: .utf8) == "success" else {
-                                throw StudentError.saveUnsuccessful
-                            }
-                            try Student.localRegister(json: student)
-                            try Institution.localRegister(json: institution)
-                            completion {
-                                return
-                            }
-                        } catch {
-                            // Student error
-                            completion {
-                                throw error
-                            }
-                        }
-                    }
-                } catch {
-                    // Institution error
-                    completion {
-                        throw error
-                    }
-                }
-            }
-        } else {
-            URLRouter.edit(student: student).request.response { (result) in
-                do {
-                    guard String(data: try result(), encoding: .utf8) == "success" else {
-                        throw StudentError.saveUnsuccessful
-                    }
-                    try Student.localRegister(json: student)
-                    completion {
-                        return
-                    }
-                } catch {
-                    completion {
-                        throw error
-                    }
-                }
-            }
-        }
-    }
-    
-    private convenience init() throws {
-        self.init(json: try JSONDecoder().decode(JSONStudent.self, from: Data(contentsOf: Student.persistenceURL)))
-    }
-    
-    private init(json: JSONStudent) {
-        self.json = json
-    }
-    
-    // MARK: Static
-    
-    public private(set) static var shared = try? Student()
-    
-    public static func register(name: String, numberPlate: String, on institution: Institution.Overview, completion: @escaping CompletionHandler<(Student, Institution)>) {
-        var student = JSONStudent(id: nil, name: name, numberPlate: numberPlate, institutionId: institution.id)
-        URLRouter.register(student: student).request.response { (result) in
+    public static func register(name: String, numberPlate: String, on institution: Institution.Overview, completion: @escaping CompletionHandler<(Student)>) {
+        let json = JSONStudent(name: name, numberPlate: numberPlate, institutionId: String(institution.id))
+        URLRouter.register(student: json).request.response { (result) in
+            let context = PersistentContainer.shared.viewContext
             do {
-                let registeredStudent = try JSONDecoder().decode(JSONRegisteredStudent.self, from: result())
-                student.id = registeredStudent.studentId
-                try Student.localRegister(json: student)
-                try Institution.localRegister(json: registeredStudent.institution)
+                let container = try JSONDecoder().decode(JSONRegisteredStudent.self, from: result())
+                let student = try Student.persistenceAdd(json: json, container: container, context: context)
                 completion {
-                    return (Student.shared!, Institution.shared!)
+                    return student
                 }
             } catch {
-                try? Student.unregister()
-                try? Institution.unregister()
+                context.rollback()
                 completion {
                     throw error
                 }
@@ -123,22 +36,81 @@ public final class Student {
         }
     }
     
-    public static func unregister() throws {
-        shared = nil
-        try FileManager.default.removeItem(at: persistenceURL)
-    }
+    // FIXME: Implement edit registered student
+    /*public func save(completion: @escaping CompletionHandler<Void>) throws {
+        let json = JSONStudent(name: name!, numberPlate: numberPlate!, institutionId: String(institution!.id))
+        // Check if institution changed. If so, download new institution data and then update student on server
+        if changedValues()["institution"] != nil {
+            URLRouter.institution(id: json.institutionId).request.response { (result) in
+                do {
+                    let institutionJSON = try JSONDecoder().decode(JSONInstitution.self, from: result())
+                    URLRouter.edit(studentId: Int(self.id), values: json).request.response { (result) in
+                        do {
+                            guard String(data: try result(), encoding: .utf8) == "success" else {
+                                throw StudentError.saveUnsuccessful
+                            }
+                            self.institution!.update(from: institutionJSON)
+                            try self.managedObjectContext!.save()
+                            completion {
+                                return
+                            }
+                        } catch {
+                            self.managedObjectContext!.rollback()
+                            // Student error
+                            completion {
+                                throw error
+                            }
+                        }
+                    }
+                } catch {
+                    self.managedObjectContext!.rollback()
+                    // Institution error
+                    completion {
+                        throw error
+                    }
+                }
+            }
+        } else {
+            URLRouter.edit(studentId: Int(self.id), values: json).request.response { (result) in
+                do {
+                    guard String(data: try result(), encoding: .utf8) == "success" else {
+                        throw StudentError.saveUnsuccessful
+                    }
+                    try self.managedObjectContext!.save()
+                    completion {
+                        return
+                    }
+                } catch {
+                    self.managedObjectContext!.rollback()
+                    completion {
+                        throw error
+                    }
+                }
+            }
+        }
+    }*/
     
-    static func localRegister(json: JSONStudent) throws {
-        try JSONEncoder().encode(json).write(to: persistenceURL)
-        shared = Student(json: json)
+    static func persistenceAdd(json: JSONStudent, container: JSONRegisteredStudent, context: NSManagedObjectContext) throws -> Student {
+        let student = NSEntityDescription.insertNewObject(forEntityName: Student.entityName, into: context) as! Student
+        student.id = Int64(container.studentId)
+        student.name = json.name
+        student.numberPlate = json.numberPlate
+        student.institution = (NSEntityDescription.insertNewObject(forEntityName: Institution.entityName, into: context) as! Institution)
+        student.institution?.update(from: container.institution)
+        student.defaultCafeteria = (student.institution?.campi?.anyObject() as? Campus)?.cafeterias?.anyObject() as? Cafeteria
+        try context.save()
+        return student
     }
-    
-    private static var persistenceURL: URL {
-        return sharedDirectoryURL().appendingPathComponent("student.json")
+}
+
+extension Student {
+    public static var shared: Student? {
+        let request: NSFetchRequest<Student> = fetchRequest()
+        request.fetchLimit = 1
+        return try! PersistentContainer.shared.viewContext.fetch(request).first
     }
 }
 
 public enum StudentError: Error {
-    case idMissing
     case saveUnsuccessful
 }

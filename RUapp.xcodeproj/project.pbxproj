@@ -40,12 +40,17 @@
 		4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */; };
 		4B0CFB971F6B2A8F0069C42B /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */; };
 		4B0CFB991F6B36860069C42B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
+		4BA7C2701F6F31F200DF9F75 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */; };
+		4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */; };
+		4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA7B721F6F3D2E008B34F4 /* Campus.swift */; };
 		4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */; };
 		4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */; };
 		4BC2F5B11F6EE53800F55964 /* RUappController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5B01F6EE53800F55964 /* RUappController.swift */; };
 		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */; };
+		4BF2412F1F7087B900656BCD /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF2412E1F7087B900656BCD /* CoreDataTests.swift */; };
+		4BF241321F708F6700656BCD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF241301F708F6700656BCD /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +121,9 @@
 		4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentController.swift; sourceTree = "<group>"; };
 		4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRouter.swift; sourceTree = "<group>"; };
 		4B0CFB981F6B36860069C42B /* Institution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
+		4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
+		4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4BAA7B721F6F3D2E008B34F4 /* Campus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionSelectorController.swift; sourceTree = "<group>"; };
 		4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Custom.swift"; sourceTree = "<group>"; };
 		4BC2F5B01F6EE53800F55964 /* RUappController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappController.swift; sourceTree = "<group>"; };
@@ -123,6 +131,8 @@
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafeteria.swift; sourceTree = "<group>"; };
+		4BF2412E1F7087B900656BCD /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		4BF241301F708F6700656BCD /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,20 +206,19 @@
 			children = (
 				4B0606001F69B778000ACE59 /* RUappShared.h */,
 				4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */,
+				4BAA7B721F6F3D2E008B34F4 /* Campus.swift */,
 				4B0CFB4E1F69EA620069C42B /* Helpers.swift */,
 				4B0CFB981F6B36860069C42B /* Institution.swift */,
+				4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */,
 				4B0CFB4C1F69E9360069C42B /* Student.swift */,
-				4B0CFB391F69C1200069C42B /* JSONMenu.swift */,
-				4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */,
-				4B0CFB461F69DD860069C42B /* JSONResult.swift */,
-				4B0CFB411F69CD130069C42B /* JSONStudent.swift */,
-				4B0CFB481F69E4060069C42B /* JSONVote.swift */,
 				4B0BC4771F6D7F6F00A13F61 /* UIColor+Custom.swift */,
 				4B0BC4791F6D891200A13F61 /* UIFont+Custom.swift */,
 				4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */,
 				4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */,
-				4B0BC47B1F6D8E7200A13F61 /* Fonts */,
+				4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
+				4BA7C26E1F6F31AC00DF9F75 /* JSON */,
+				4B0BC47B1F6D8E7200A13F61 /* Fonts */,
 			);
 			path = RUappShared;
 			sourceTree = "<group>";
@@ -239,10 +248,24 @@
 			path = MockData;
 			sourceTree = "<group>";
 		};
+		4BA7C26E1F6F31AC00DF9F75 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CFB391F69C1200069C42B /* JSONMenu.swift */,
+				4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */,
+				4B0CFB461F69DD860069C42B /* JSONResult.swift */,
+				4B0CFB411F69CD130069C42B /* JSONStudent.swift */,
+				4B0CFB481F69E4060069C42B /* JSONVote.swift */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
 		4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */ = {
 			isa = PBXGroup;
 			children = (
 				4B0CFB381F69BE8F0069C42B /* MockData */,
+				4BF2412E1F7087B900656BCD /* CoreDataTests.swift */,
+				4BF241301F708F6700656BCD /* Helpers.swift */,
 				4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */,
 				4BDBB1CD1F69BAC3007900EC /* Info.plist */,
 			);
@@ -425,10 +448,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */,
 				4B0BC47A1F6D891200A13F61 /* UIFont+Custom.swift in Sources */,
 				4B0CFB3A1F69C1200069C42B /* JSONMenu.swift in Sources */,
+				4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */,
 				4B0BC4781F6D7F6F00A13F61 /* UIColor+Custom.swift in Sources */,
 				4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */,
+				4BA7C2701F6F31F200DF9F75 /* PersistentContainer.swift in Sources */,
 				4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */,
 				4B0CFB421F69CD130069C42B /* JSONStudent.swift in Sources */,
 				4B0CFB471F69DD860069C42B /* JSONResult.swift in Sources */,
@@ -445,6 +471,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BF2412F1F7087B900656BCD /* CoreDataTests.swift in Sources */,
+				4BF241321F708F6700656BCD /* Helpers.swift in Sources */,
 				4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -927,6 +955,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */,
+			);
+			currentVersion = 4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4B0605DC1F69B5D0000ACE59 /* Project object */;
 }

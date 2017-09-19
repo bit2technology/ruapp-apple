@@ -56,9 +56,10 @@ class EditStudentController: UIViewController {
         if let student = Student.shared {
             student.name = name
             student.numberPlate = numberPlate
-            try! student.save() { (result) in
-                process(result)
-            }
+            // FIXME: Implement edit registered student
+//            try! student.save() { (result) in
+//                process(result)
+//            }
         } else {
             Student.register(name: name, numberPlate: numberPlate, on: institution) { (result) in
                 process(result)
