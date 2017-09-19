@@ -195,8 +195,8 @@
 				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
 				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
 				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
-				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */,
+				4B0605F51F69B715000ACE59 /* Info.plist */,
 			);
 			path = "RUapp-iOS";
 			sourceTree = "<group>";
