@@ -1,5 +1,5 @@
 //
-//  UIFont+Custom.swift
+//  Font.swift
 //  RUappShared-iOS
 //
 //  Created by Igor Camilo on 16/09/17.
@@ -14,23 +14,31 @@
 
 public extension Font {
     
-    static var appBarItem: UIFont {
+    static var appBarItem: Font {
         return Font(name: "Dosis-SemiBold", size: 18)!
     }
     
-    static var appBarItemDone: UIFont {
+    static var appBarItemDone: Font {
         return Font(name: "Dosis-Bold", size: 18)!
     }
     
-    static var appLargeNavTitle: UIFont {
+    static var appBody: Font {
+        return Font(name: "Dosis-Book", size: 16)!
+    }
+    
+    static var appLargeNavTitle: Font {
         return Font(name: "Dosis-Bold", size: 34)!
     }
     
-    static var appNavTitle: UIFont {
+    static var appNavTitle: Font {
         return Font(name: "Dosis-SemiBold", size: 20)!
     }
     
-    static var appTableSectionHeader: UIFont {
+    static var appTabBarItemTitle: Font {
+        return Font(name: "Dosis-SemiBold", size: 12)!
+    }
+    
+    static var appTableSectionHeader: Font {
         return Font(name: "Dosis-Book", size: 16)!
     }
     

@@ -18,11 +18,11 @@ extension Student {
 extension Student {
     
     public static func register(name: String, numberPlate: String, on institution: Institution.Overview, completion: @escaping CompletionHandler<(Student)>) {
-        let json = JSONStudent(name: name, numberPlate: numberPlate, institutionId: String(institution.id))
+        let json = JSON.Student(name: name, numberPlate: numberPlate, institutionId: String(institution.id))
         URLRouter.register(student: json).request.response { (result) in
             let context = PersistentContainer.shared.viewContext
             do {
-                let container = try JSONDecoder().decode(JSONRegisteredStudent.self, from: result())
+                let container = try JSONDecoder().decode(JSON.RegisteredStudent.self, from: result())
                 let student = try Student.persistenceAdd(json: json, container: container, context: context)
                 completion {
                     return student
@@ -90,7 +90,7 @@ extension Student {
         }
     }*/
     
-    static func persistenceAdd(json: JSONStudent, container: JSONRegisteredStudent, context: NSManagedObjectContext) throws -> Student {
+    static func persistenceAdd(json: JSON.Student, container: JSON.RegisteredStudent, context: NSManagedObjectContext) throws -> Student {
         let student = NSEntityDescription.insertNewObject(forEntityName: Student.entityName, into: context) as! Student
         student.id = Int64(container.studentId)
         student.name = json.name

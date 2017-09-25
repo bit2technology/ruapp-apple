@@ -17,7 +17,7 @@ extension Cafeteria {
 /// Initializers
 extension Cafeteria {
     
-    func update(from json: JSONInstitution.Campus.Restaurant) {
+    func update(from json: JSON.Institution.Campus.Restaurant) {
         id = Int64(json.id)!
         name = json.name
         latitude = Double(json.latitude)!

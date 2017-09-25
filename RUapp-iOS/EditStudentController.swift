@@ -83,7 +83,7 @@ extension EditStudentController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes([.font: UIFont.appBarItemDone], for: .normal)
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([.font: UIFont.appBarItemDone], for: [.normal, .disabled])
         tableController.tableView.backgroundColor = .appDarkBlue
         if let student = Student.shared {
             tableController.nameField.text = student.name
@@ -109,13 +109,12 @@ class EditStudentTableController: UITableViewController {
     
     var institution: Institution.Overview? {
         didSet {
-            institutionCell.textLabel?.text = institution?.name
-            institutionCell.textLabel?.textColor = .black
+            institutionField.text = institution?.name
         }
     }
     
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var institutionCell: UITableViewCell!
+    @IBOutlet weak var institutionField: UITextField!
     @IBOutlet weak var numberPlateField: UITextField!
     weak var container: EditStudentController!
     
@@ -124,6 +123,8 @@ class EditStudentTableController: UITableViewController {
         let numberPlateFieldNotEmpty = (numberPlateField.text?.count ?? 0) > 0
         container.navigationItem.rightBarButtonItem?.isEnabled = nameFieldNotEmpty && (institution != nil) && numberPlateFieldNotEmpty
     }
+    
+    @IBAction private func unwindToEditStudentTable(segue: UIStoryboardSegue) { }
 }
 
 // UITableViewController methods
@@ -152,6 +153,11 @@ extension EditStudentTableController {
 
 // UIViewController methods
 extension EditStudentTableController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        [nameField, institutionField, numberPlateField].forEach { $0?.font = .appBody }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

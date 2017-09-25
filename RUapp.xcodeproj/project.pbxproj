@@ -15,8 +15,8 @@
 		4B0606051F69B778000ACE59 /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4B0606061F69B778000ACE59 /* RUappShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B0BC4761F6D7F2100A13F61 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4751F6D7F2100A13F61 /* MenuController.swift */; };
-		4B0BC4781F6D7F6F00A13F61 /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4771F6D7F6F00A13F61 /* UIColor+Custom.swift */; };
-		4B0BC47A1F6D891200A13F61 /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4791F6D891200A13F61 /* UIFont+Custom.swift */; };
+		4B0BC4781F6D7F6F00A13F61 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4771F6D7F6F00A13F61 /* Color.swift */; };
+		4B0BC47A1F6D891200A13F61 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4791F6D891200A13F61 /* Font.swift */; };
 		4B0BC4831F6D8E7F00A13F61 /* Dosis-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47C1F6D8E7200A13F61 /* Dosis-Light.otf */; };
 		4B0BC4841F6D8E7F00A13F61 /* Dosis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47D1F6D8E7200A13F61 /* Dosis-Medium.otf */; };
 		4B0BC4851F6D8E7F00A13F61 /* Dosis-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47E1F6D8E7200A13F61 /* Dosis-ExtraLight.otf */; };
@@ -25,14 +25,9 @@
 		4B0BC4881F6D8E7F00A13F61 /* Dosis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC4811F6D8E7200A13F61 /* Dosis-Bold.otf */; };
 		4B0BC4891F6D8E7F00A13F61 /* Dosis-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC4821F6D8E7200A13F61 /* Dosis-Book.otf */; };
 		4B0CFB371F69BE800069C42B /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB361F69BE750069C42B /* Menu.json */; };
-		4B0CFB3A1F69C1200069C42B /* JSONMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB391F69C1200069C42B /* JSONMenu.swift */; };
-		4B0CFB3C1F69C8B70069C42B /* JSONInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */; };
 		4B0CFB3E1F69CB8C0069C42B /* Institution.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3D1F69CB890069C42B /* Institution.json */; };
 		4B0CFB401F69CD050069C42B /* RegisterStudent.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3F1F69CCF60069C42B /* RegisterStudent.json */; };
-		4B0CFB421F69CD130069C42B /* JSONStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB411F69CD130069C42B /* JSONStudent.swift */; };
 		4B0CFB451F69DB340069C42B /* Result.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB441F69DB2A0069C42B /* Result.json */; };
-		4B0CFB471F69DD860069C42B /* JSONResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB461F69DD860069C42B /* JSONResult.swift */; };
-		4B0CFB491F69E4060069C42B /* JSONVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB481F69E4060069C42B /* JSONVote.swift */; };
 		4B0CFB4B1F69E8540069C42B /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4A1F69E8540069C42B /* RootController.swift */; };
 		4B0CFB4D1F69E9360069C42B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4C1F69E9360069C42B /* Student.swift */; };
 		4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4E1F69EA620069C42B /* Helpers.swift */; };
@@ -40,6 +35,7 @@
 		4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */; };
 		4B0CFB971F6B2A8F0069C42B /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */; };
 		4B0CFB991F6B36860069C42B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
+		4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D91071F76AEAC00F3B5AC /* JSON.swift */; };
 		4BA7C2701F6F31F200DF9F75 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */; };
 		4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */; };
 		4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA7B721F6F3D2E008B34F4 /* Campus.swift */; };
@@ -95,8 +91,8 @@
 		4B0606001F69B778000ACE59 /* RUappShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUappShared.h; sourceTree = "<group>"; };
 		4B0606011F69B778000ACE59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B0BC4751F6D7F2100A13F61 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
-		4B0BC4771F6D7F6F00A13F61 /* UIColor+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
-		4B0BC4791F6D891200A13F61 /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
+		4B0BC4771F6D7F6F00A13F61 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4B0BC4791F6D891200A13F61 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		4B0BC47C1F6D8E7200A13F61 /* Dosis-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Light.otf"; sourceTree = "<group>"; };
 		4B0BC47D1F6D8E7200A13F61 /* Dosis-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Medium.otf"; sourceTree = "<group>"; };
 		4B0BC47E1F6D8E7200A13F61 /* Dosis-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-ExtraLight.otf"; sourceTree = "<group>"; };
@@ -105,14 +101,9 @@
 		4B0BC4811F6D8E7200A13F61 /* Dosis-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Bold.otf"; sourceTree = "<group>"; };
 		4B0BC4821F6D8E7200A13F61 /* Dosis-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Book.otf"; sourceTree = "<group>"; };
 		4B0CFB361F69BE750069C42B /* Menu.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Menu.json; sourceTree = "<group>"; };
-		4B0CFB391F69C1200069C42B /* JSONMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMenu.swift; sourceTree = "<group>"; };
-		4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONInstitution.swift; sourceTree = "<group>"; };
 		4B0CFB3D1F69CB890069C42B /* Institution.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Institution.json; sourceTree = "<group>"; };
 		4B0CFB3F1F69CCF60069C42B /* RegisterStudent.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RegisterStudent.json; sourceTree = "<group>"; };
-		4B0CFB411F69CD130069C42B /* JSONStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStudent.swift; sourceTree = "<group>"; };
 		4B0CFB441F69DB2A0069C42B /* Result.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Result.json; sourceTree = "<group>"; };
-		4B0CFB461F69DD860069C42B /* JSONResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResult.swift; sourceTree = "<group>"; };
-		4B0CFB481F69E4060069C42B /* JSONVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONVote.swift; sourceTree = "<group>"; };
 		4B0CFB4A1F69E8540069C42B /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		4B0CFB4C1F69E9360069C42B /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		4B0CFB4E1F69EA620069C42B /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -121,13 +112,14 @@
 		4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentController.swift; sourceTree = "<group>"; };
 		4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRouter.swift; sourceTree = "<group>"; };
 		4B0CFB981F6B36860069C42B /* Institution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
+		4B5D91071F76AEAC00F3B5AC /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4BAA7B721F6F3D2E008B34F4 /* Campus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionSelectorController.swift; sourceTree = "<group>"; };
 		4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Custom.swift"; sourceTree = "<group>"; };
 		4BC2F5B01F6EE53800F55964 /* RUappController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappController.swift; sourceTree = "<group>"; };
-		4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RUappSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BDBB1C91F69BAC3007900EC /* RUappSharedTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafeteria.swift; sourceTree = "<group>"; };
@@ -177,7 +169,7 @@
 			children = (
 				4B0605E61F69B715000ACE59 /* RUapp-iOS.app */,
 				4B0605FE1F69B778000ACE59 /* RUappShared.framework */,
-				4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */,
+				4BDBB1C91F69BAC3007900EC /* RUappSharedTests-iOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,17 +199,17 @@
 				4B0606001F69B778000ACE59 /* RUappShared.h */,
 				4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */,
 				4BAA7B721F6F3D2E008B34F4 /* Campus.swift */,
+				4B0BC4771F6D7F6F00A13F61 /* Color.swift */,
+				4B0BC4791F6D891200A13F61 /* Font.swift */,
 				4B0CFB4E1F69EA620069C42B /* Helpers.swift */,
 				4B0CFB981F6B36860069C42B /* Institution.swift */,
+				4B5D91071F76AEAC00F3B5AC /* JSON.swift */,
 				4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */,
 				4B0CFB4C1F69E9360069C42B /* Student.swift */,
-				4B0BC4771F6D7F6F00A13F61 /* UIColor+Custom.swift */,
-				4B0BC4791F6D891200A13F61 /* UIFont+Custom.swift */,
 				4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */,
 				4B0CFB961F6B2A8E0069C42B /* URLRouter.swift */,
 				4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
-				4BA7C26E1F6F31AC00DF9F75 /* JSON */,
 				4B0BC47B1F6D8E7200A13F61 /* Fonts */,
 			);
 			path = RUappShared;
@@ -246,18 +238,6 @@
 				4B0CFB441F69DB2A0069C42B /* Result.json */,
 			);
 			path = MockData;
-			sourceTree = "<group>";
-		};
-		4BA7C26E1F6F31AC00DF9F75 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				4B0CFB391F69C1200069C42B /* JSONMenu.swift */,
-				4B0CFB3B1F69C8B70069C42B /* JSONInstitution.swift */,
-				4B0CFB461F69DD860069C42B /* JSONResult.swift */,
-				4B0CFB411F69CD130069C42B /* JSONStudent.swift */,
-				4B0CFB481F69E4060069C42B /* JSONVote.swift */,
-			);
-			path = JSON;
 			sourceTree = "<group>";
 		};
 		4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */ = {
@@ -338,7 +318,7 @@
 			);
 			name = "RUappSharedTests-iOS";
 			productName = "RUappSharedTests-iOS";
-			productReference = 4BDBB1C91F69BAC3007900EC /* RUappSharedTests.xctest */;
+			productReference = 4BDBB1C91F69BAC3007900EC /* RUappSharedTests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -449,21 +429,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */,
-				4B0BC47A1F6D891200A13F61 /* UIFont+Custom.swift in Sources */,
-				4B0CFB3A1F69C1200069C42B /* JSONMenu.swift in Sources */,
+				4B0BC47A1F6D891200A13F61 /* Font.swift in Sources */,
 				4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */,
-				4B0BC4781F6D7F6F00A13F61 /* UIColor+Custom.swift in Sources */,
+				4B0BC4781F6D7F6F00A13F61 /* Color.swift in Sources */,
 				4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */,
 				4BA7C2701F6F31F200DF9F75 /* PersistentContainer.swift in Sources */,
 				4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */,
-				4B0CFB421F69CD130069C42B /* JSONStudent.swift in Sources */,
-				4B0CFB471F69DD860069C42B /* JSONResult.swift in Sources */,
 				4B0CFB521F69F2E60069C42B /* URLRequest+Custom.swift in Sources */,
-				4B0CFB3C1F69C8B70069C42B /* JSONInstitution.swift in Sources */,
 				4B0CFB991F6B36860069C42B /* Institution.swift in Sources */,
 				4B0CFB971F6B2A8F0069C42B /* URLRouter.swift in Sources */,
+				4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */,
 				4B0CFB4D1F69E9360069C42B /* Student.swift in Sources */,
-				4B0CFB491F69E4060069C42B /* JSONVote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,7 +825,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared.tests;
-				PRODUCT_NAME = RUappSharedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -906,7 +882,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared.tests;
-				PRODUCT_NAME = RUappSharedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;

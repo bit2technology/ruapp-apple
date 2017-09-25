@@ -374,23 +374,39 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Institution" id="zUF-wQ-JiC">
+                            <tableViewSection headerTitle="Institution" id="AMJ-E0-VYu">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="XCI-Ot-Qq4" style="IBUITableViewCellStyleDefault" id="tHu-Ic-bc3">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="x2e-8i-Yzd">
                                         <rect key="frame" x="0.0" y="275.33333333333337" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tHu-Ic-bc3" id="kVH-yZ-QXH">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.666666666666664"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x2e-8i-Yzd" id="Dtz-QQ-rxg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Select" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XCI-Ot-Qq4">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WaX-1r-oLx" userLabel="Height Helper">
+                                                    <rect key="frame" x="0.0" y="-0.66666666666666785" width="375" height="43.666666666666671"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="44" id="xu9-g8-dnr"/>
+                                                    </constraints>
+                                                </view>
+                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvb-fi-myN">
+                                                    <rect key="frame" x="16" y="8" width="351" height="28"/>
+                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bvb-fi-myN" secondAttribute="bottom" id="1Mf-FA-Zij"/>
+                                                <constraint firstAttribute="trailing" secondItem="WaX-1r-oLx" secondAttribute="trailing" id="4gt-NB-NMO"/>
+                                                <constraint firstItem="bvb-fi-myN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Dtz-QQ-rxg" secondAttribute="leadingMargin" id="5Z5-cY-cCN"/>
+                                                <constraint firstAttribute="bottom" secondItem="WaX-1r-oLx" secondAttribute="bottom" id="ITn-4f-btH"/>
+                                                <constraint firstItem="WaX-1r-oLx" firstAttribute="leading" secondItem="Dtz-QQ-rxg" secondAttribute="leading" id="Qli-gC-gpa"/>
+                                                <constraint firstItem="WaX-1r-oLx" firstAttribute="top" secondItem="Dtz-QQ-rxg" secondAttribute="top" id="Rs2-dm-Fc2"/>
+                                                <constraint firstItem="bvb-fi-myN" firstAttribute="top" secondItem="Dtz-QQ-rxg" secondAttribute="topMargin" id="fo7-Xg-7bn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="bvb-fi-myN" secondAttribute="trailing" id="kCD-wE-7BW"/>
+                                                <constraint firstItem="bvb-fi-myN" firstAttribute="leading" secondItem="Dtz-QQ-rxg" secondAttribute="leading" priority="999" constant="16" id="v2s-7R-chM"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -444,7 +460,7 @@
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="institutionCell" destination="tHu-Ic-bc3" id="q0j-4B-0Vr"/>
+                        <outlet property="institutionField" destination="bvb-fi-myN" id="wNR-Dy-R4Q"/>
                         <outlet property="nameField" destination="bzv-A0-r3P" id="9GR-uv-h7w"/>
                         <outlet property="numberPlateField" destination="LS8-mD-AUr" id="ayn-Vp-eqr"/>
                         <segue destination="fUA-xP-c9g" kind="show" identifier="SelectInstitution" id="boO-Tj-pjD"/>
@@ -479,6 +495,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="eoM-4p-oOU" kind="unwind" identifier="InstitutionSelected" unwindAction="unwindToEditStudentTableWithSegue:" id="yPk-y0-BgU"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -496,6 +515,7 @@
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dmp-D4-xQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="eoM-4p-oOU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2396" y="2051"/>
         </scene>

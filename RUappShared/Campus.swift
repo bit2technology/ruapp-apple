@@ -17,7 +17,7 @@ extension Campus {
 /// Initializers
 extension Campus {
     
-    func update(from json: JSONInstitution.Campus) {
+    func update(from json: JSON.Institution.Campus) {
         id = Int64(json.id)!
         name = json.name
         townName = json.townName

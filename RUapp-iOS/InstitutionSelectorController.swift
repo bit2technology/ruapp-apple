@@ -57,14 +57,9 @@ extension InstitutionSelectorController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InstitutionCell", for: indexPath)
         let institution = list![indexPath.row]
         cell.textLabel?.text = institution.name
+        cell.textLabel?.font = .appBody
         cell.accessoryType = editStudentTableController.institution?.id == institution.id ? .checkmark : .none
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        editStudentTableController.institution = list![indexPath.row]
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -79,5 +74,14 @@ extension InstitutionSelectorController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         refreshRequested()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "InstitutionSelected"?:
+            editStudentTableController.institution = list![tableView.indexPathForSelectedRow!.row]
+        default:
+            break
+        }
     }
 }

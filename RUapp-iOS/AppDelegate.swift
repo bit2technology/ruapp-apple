@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func applyAppaerance() {
         UIFont.appRegisterFonts()
-        window?.tintColor = .appOrange
+        window?.tintColor = .appLightBlue
         let navBar = UINavigationBar.appearance()
         navBar.barStyle = .black
         navBar.barTintColor = .appDarkBlue
@@ -33,17 +33,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBar = UITabBar.appearance()
         tabBar.barStyle = .black
         tabBar.barTintColor = .appDarkBlue
+        tabBar.tintColor = .white
         if #available(iOS 10.0, *) {
             tabBar.unselectedItemTintColor = .appLightBlue
+            UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont.appTabBarItemTitle], for: .normal)
         } else {
             (window?.rootViewController as! UITabBarController).tabBar.items?.forEach { (item) in
                 item.image = item.image?.with(color: .appLightBlue).withRenderingMode(.alwaysOriginal)
                 item.setTitleTextAttributes([.foregroundColor: UIColor.appLightBlue], for: .normal)
-                item.setTitleTextAttributes([.foregroundColor: UIColor.appOrange], for: .selected)
+                item.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
             }
         }
         tabBar.isTranslucent = false
-        UIAlertView.appearance().tintColor = .red
     }
 }
 
