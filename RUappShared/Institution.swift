@@ -6,6 +6,7 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import PromiseKit
 import CoreData
 
 extension Institution {
@@ -34,19 +35,9 @@ extension Institution {
 
 /// Get from network
 extension Institution {
-    
-    public static func getList(completion: @escaping CompletionHandler<[Overview]>) {
-        URLRouter.listInstitutions.request.response { (result) in
-            do {
-                let list = try JSONDecoder().decode([Overview].self, from: result())
-                completion {
-                    return list
-                }
-            } catch {
-                completion {
-                    throw error
-                }
-            }
+    public static func downloadList() -> Promise<[Overview]> {
+        return request(URLRoute.listInstitutions).responseData().then {
+            return try JSONDecoder().decode([Overview].self, from: $0)
         }
     }
 }

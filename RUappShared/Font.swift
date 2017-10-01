@@ -1,6 +1,6 @@
 //
 //  Font.swift
-//  RUappShared-iOS
+//  RUappShared
 //
 //  Created by Igor Camilo on 16/09/17.
 //  Copyright © 2017 Bit2 Technology. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  JSON.swift
-//  RUappShared-iOS
+//  RUappShared
 //
 //  Created by Igor Camilo on 23/09/17.
 //  Copyright © 2017 Bit2 Technology. All rights reserved.

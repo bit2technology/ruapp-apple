@@ -37,22 +37,7 @@ class EditStudentController: UIViewController {
         }
         view.endEditing(true)
         setLoadingLayout(true)
-        let process = { [weak self] (result: () throws -> Any) in
-            do {
-                _ = try result()
-                self?.performSegue(withIdentifier: "UnwindToRoot", sender: nil)
-            } catch {
-                DispatchQueue.main.async {
-                    self?.setLoadingLayout(false)
-                }
-                let registerErrorAlertTitle = NSLocalizedString("EditStudentController.doneButtonPressed.registerErrorAlertTitle", value: "Error", comment: "Alert title to register error")
-                let registerErrorAlertBtn = NSLocalizedString("EditStudentController.doneButtonPressed.registerErrorAlertBtn", value: "OK", comment: "Button to dismiss the alert to register error")
-                let alert = UIAlertController(title: registerErrorAlertTitle, message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: registerErrorAlertBtn, style: .default))
-                alert.view.tintColor = .appDarkBlue
-                self?.present(alert, animated: true)
-            }
-        }
+        
         if let student = Student.shared {
             student.name = name
             student.numberPlate = numberPlate
@@ -61,8 +46,16 @@ class EditStudentController: UIViewController {
 //                process(result)
 //            }
         } else {
-            Student.register(name: name, numberPlate: numberPlate, on: institution) { (result) in
-                process(result)
+            Student.register(name: name, numberPlate: numberPlate, on: institution).then { [weak self] (result) in
+                self?.performSegue(withIdentifier: "UnwindToRoot", sender: nil)
+            }.catch(on: .main) { [weak self] (error) in
+                self?.setLoadingLayout(false)
+                let registerErrorAlertTitle = NSLocalizedString("EditStudentController.doneButtonPressed.registerErrorAlertTitle", value: "Error", comment: "Alert title to register error")
+                let registerErrorAlertBtn = NSLocalizedString("EditStudentController.doneButtonPressed.registerErrorAlertBtn", value: "OK", comment: "Button to dismiss the alert to register error")
+                let alert = UIAlertController(title: registerErrorAlertTitle, message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: registerErrorAlertBtn, style: .default))
+                alert.view.tintColor = .appDarkBlue
+                self?.present(alert, animated: true)
             }
         }
     }

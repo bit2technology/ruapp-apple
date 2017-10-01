@@ -8,6 +8,7 @@
 
 import UIKit
 import RUappShared
+import PromiseKit
 
 class InstitutionSelectorController: UITableViewController {
     
@@ -17,17 +18,14 @@ class InstitutionSelectorController: UITableViewController {
     
     @IBAction func refreshRequested() {
         error = nil
-        Institution.getList { [weak self] (result) in
-            do {
-                self?.list = try result()
-                self?.error = nil
-            } catch {
-                self?.error = error
-            }
-            DispatchQueue.main.async {
-                self?.refreshControl!.endRefreshing()
-                self?.updateView()
-            }
+        Institution.downloadList().then { [weak self] (list) -> Void in
+            self?.list = list
+            self?.error = nil
+        }.catch { [weak self] (error) in
+            self?.error = error
+        }.always(on: .main) { [weak self] in
+            self?.refreshControl!.endRefreshing()
+            self?.updateView()
         }
     }
     
