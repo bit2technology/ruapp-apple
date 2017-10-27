@@ -227,6 +227,9 @@
 			isa = PBXGroup;
 			children = (
 				4B0606001F69B778000ACE59 /* RUappShared.h */,
+				4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */,
+				4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */,
+				4B0606011F69B778000ACE59 /* Info.plist */,
 				4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */,
 				4BAA7B721F6F3D2E008B34F4 /* Campus.swift */,
 				4B0BC4771F6D7F6F00A13F61 /* Color.swift */,
@@ -234,12 +237,9 @@
 				4B0CFB4E1F69EA620069C42B /* Helpers.swift */,
 				4B0CFB981F6B36860069C42B /* Institution.swift */,
 				4B5D91071F76AEAC00F3B5AC /* JSON.swift */,
-				4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */,
 				4B0CFB4C1F69E9360069C42B /* Student.swift */,
 				4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */,
 				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
-				4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */,
-				4B0606011F69B778000ACE59 /* Info.plist */,
 				4B0BC47B1F6D8E7200A13F61 /* Fonts */,
 			);
 			path = RUappShared;
