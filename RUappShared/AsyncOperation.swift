@@ -6,9 +6,13 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-open class AsyncOperation: Operation {
+open class AsyncOperation<Result>: Operation {
     
-    private var state = State.initialized
+    var result: Result? {
+        didSet {
+            finishExecution()
+        }
+    }
     
     override open var isExecuting: Bool {
         return state == .executing
@@ -22,7 +26,12 @@ open class AsyncOperation: Operation {
         return true
     }
     
-    public func startExecution() {
+    private var state = State.initialized
+    
+    override open func start() {
+        guard !isCancelled else {
+            return
+        }
         assert(state == .initialized, "Operation must not be finished to execute")
         let affectedKeyPaths = ["isExecuting"]
         affectedKeyPaths.forEach {
@@ -32,9 +41,10 @@ open class AsyncOperation: Operation {
         affectedKeyPaths.forEach {
             didChangeValue(forKey: $0)
         }
+        main()
     }
     
-    public func finishExecution() {
+    private func finishExecution() {
         assert(state == .executing || isCancelled, "Operation must be executing or cancelled to finish")
         let affectedKeyPaths = ["isExecuting", "isFinished"]
         affectedKeyPaths.forEach {
