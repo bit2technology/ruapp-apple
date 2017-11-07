@@ -36,6 +36,8 @@
 		4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */; };
 		4B0CFB971F6B2A8F0069C42B /* URLRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */; };
 		4B0CFB991F6B36860069C42B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
+		4B1BF9A91FAA07BD0034F55D /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF9A81FAA07BD0034F55D /* AsyncOperation.swift */; };
+		4B1BF9AB1FAA094C0034F55D /* URLSessionDataTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF9AA1FAA094C0034F55D /* URLSessionDataTaskOperation.swift */; };
 		4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D91071F76AEAC00F3B5AC /* JSON.swift */; };
 		4BA7C2701F6F31F200DF9F75 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */; };
 		4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */; };
@@ -119,6 +121,8 @@
 		4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentController.swift; sourceTree = "<group>"; };
 		4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRoute.swift; sourceTree = "<group>"; };
 		4B0CFB981F6B36860069C42B /* Institution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
+		4B1BF9A81FAA07BD0034F55D /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		4B1BF9AA1FAA094C0034F55D /* URLSessionDataTaskOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskOperation.swift; sourceTree = "<group>"; };
 		4B5D91071F76AEAC00F3B5AC /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				4B0606001F69B778000ACE59 /* RUappShared.h */,
+				4B1BF9A81FAA07BD0034F55D /* AsyncOperation.swift */,
+				4B1BF9AA1FAA094C0034F55D /* URLSessionDataTaskOperation.swift */,
 				4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */,
 				4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
@@ -619,12 +625,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */,
+				4B1BF9A91FAA07BD0034F55D /* AsyncOperation.swift in Sources */,
 				4B0BC47A1F6D891200A13F61 /* Font.swift in Sources */,
 				4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */,
 				4B0BC4781F6D7F6F00A13F61 /* Color.swift in Sources */,
 				4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */,
 				4BA7C2701F6F31F200DF9F75 /* PersistentContainer.swift in Sources */,
 				4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */,
+				4B1BF9AB1FAA094C0034F55D /* URLSessionDataTaskOperation.swift in Sources */,
 				4B0CFB521F69F2E60069C42B /* URLRequest+Custom.swift in Sources */,
 				4B0CFB991F6B36860069C42B /* Institution.swift in Sources */,
 				4B0CFB971F6B2A8F0069C42B /* URLRoute.swift in Sources */,
