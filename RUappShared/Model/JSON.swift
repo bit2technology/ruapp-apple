@@ -38,10 +38,10 @@ enum JSON {
     struct Institution: Decodable {
         var id: String
         var name: String
-        var townName: String
-        var stateName: String
-        var stateInitials: String
-        var campi: [Campus]
+        var townName: String?
+        var stateName: String?
+        var stateInitials: String?
+        var campi: [Campus]?
         
         enum CodingKeys: String, CodingKey {
             case id

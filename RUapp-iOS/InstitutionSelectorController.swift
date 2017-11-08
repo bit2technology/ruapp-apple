@@ -6,41 +6,16 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-import UIKit
 import RUappShared
-import PromiseKit
 
 class InstitutionSelectorController: UITableViewController {
     
     var editStudentTableController: EditStudentTableController!
-    private var list: [Institution.Overview]?
-    private var error: Error?
+    private var list: [Institution]?
+    private weak var refreshOperation: RefreshOperation?
     
     @IBAction func refreshRequested() {
-        error = nil
-        Institution.downloadList().then { [weak self] (list) -> Void in
-            self?.list = list
-            self?.error = nil
-        }.catch { [weak self] (error) in
-            self?.error = error
-        }.always(on: .main) { [weak self] in
-            self?.refreshControl!.endRefreshing()
-            self?.updateView()
-        }
-    }
-    
-    private func updateView() {
-        if let error = error, list == nil {
-            let label = UILabel(frame: .zero)
-            label.text = error.localizedDescription
-            label.textColor = .appRed
-            tableView.backgroundView = label
-            tableView.separatorStyle = .none
-        } else {
-            tableView.backgroundView = nil
-            tableView.separatorStyle = .singleLine
-        }
-        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        refreshOperation = RefreshOperation(controller: self)
     }
 }
 
@@ -66,7 +41,7 @@ extension InstitutionSelectorController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshControl?.beginRefreshing()
+        refreshControl!.beginRefreshing()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,6 +55,36 @@ extension InstitutionSelectorController {
             editStudentTableController.institution = list![tableView.indexPathForSelectedRow!.row]
         default:
             break
+        }
+    }
+}
+
+extension InstitutionSelectorController {
+    
+    private class RefreshOperation: Operation {
+        
+        private weak var controller: InstitutionSelectorController?
+        private let updateInstitutionsListOperation = UpdateInstitutionListOperation()
+        
+        init(controller: InstitutionSelectorController) {
+            self.controller = controller
+            super.init()
+            addDependency(updateInstitutionsListOperation)
+            OperationQueue.main.addOperation(self)
+        }
+        
+        override func main() {
+            guard let institutionSelectorController = controller else {
+                return
+            }
+            do {
+                institutionSelectorController.list = try updateInstitutionsListOperation.parse()
+                institutionSelectorController.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            } catch {
+                // TODO: Handle error
+                fatalError(error.localizedDescription)
+            }
+            institutionSelectorController.refreshControl!.endRefreshing()
         }
     }
 }

@@ -9,8 +9,8 @@
 import Alamofire
 
 enum URLRoute {
-    case listInstitutions
-    case institution(id: String)
+    case getInstitutionsList
+    case getInstitution(id: Int64)
     case register(student: JSON.Student)
     case edit(studentId: Int, values: JSON.Student)
 }
@@ -22,9 +22,9 @@ extension URLRoute: URLRequestConvertible {
         var httpBody: Data?
         
         switch self {
-        case .listInstitutions:
+        case .getInstitutionsList:
             urlBuilder += "institutions"
-        case .institution(let id):
+        case .getInstitution(let id):
             urlBuilder += "institution?id=\(id)"
         case .register(let student):
             urlBuilder += "register_student"

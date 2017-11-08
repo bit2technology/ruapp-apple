@@ -6,9 +6,15 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-open class AsyncOperation<Result>: Operation {
+private let privateQueue: OperationQueue = {
+    let queue = OperationQueue()
+    queue.name = "AsyncOperationQueue"
+    return queue
+}()
+
+open class AsyncOperation<Value>: Operation {
     
-    var result: Result? {
+    var result: (value: Value?, error: Error?) {
         didSet {
             finishExecution()
         }
@@ -26,7 +32,21 @@ open class AsyncOperation<Result>: Operation {
         return true
     }
     
+    open var queue: OperationQueue {
+        return privateQueue
+    }
+    
+    open var dependenciesToAdd: [Operation] {
+        return []
+    }
+    
     private var state = State.initialized
+    
+    public override init() {
+        super.init()
+        dependenciesToAdd.forEach(addDependency)
+        queue.addOperation(self)
+    }
     
     override open func start() {
         guard !isCancelled else {
@@ -42,6 +62,17 @@ open class AsyncOperation<Result>: Operation {
             didChangeValue(forKey: $0)
         }
         main()
+    }
+    
+    open func value() throws -> Value {
+        assert(isFinished, "Operation must be finished to get value")
+        if let error = result.error {
+            throw error
+        }
+        guard let value = result.value else {
+            throw AsyncOperationError.noValue
+        }
+        return value
     }
     
     private func finishExecution() {
@@ -61,4 +92,8 @@ open class AsyncOperation<Result>: Operation {
         case executing
         case finished
     }
+}
+
+public enum AsyncOperationError: Error {
+    case noValue
 }

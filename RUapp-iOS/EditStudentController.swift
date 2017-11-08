@@ -38,26 +38,26 @@ class EditStudentController: UIViewController {
         view.endEditing(true)
         setLoadingLayout(true)
         
-        if let student = Student.shared {
-            student.name = name
-            student.numberPlate = numberPlate
+//        if let student = Student.shared {
+//            student.name = name
+//            student.numberPlate = numberPlate
             // FIXME: Implement edit registered student
 //            try! student.save() { (result) in
 //                process(result)
 //            }
-        } else {
-            Student.register(name: name, numberPlate: numberPlate, on: institution).then { [weak self] (result) in
-                self?.performSegue(withIdentifier: "UnwindToRoot", sender: nil)
-            }.catch(on: .main) { [weak self] (error) in
-                self?.setLoadingLayout(false)
-                let registerErrorAlertTitle = NSLocalizedString("EditStudentController.doneButtonPressed.registerErrorAlertTitle", value: "Error", comment: "Alert title to register error")
-                let registerErrorAlertBtn = NSLocalizedString("EditStudentController.doneButtonPressed.registerErrorAlertBtn", value: "OK", comment: "Button to dismiss the alert to register error")
-                let alert = UIAlertController(title: registerErrorAlertTitle, message: error.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: registerErrorAlertBtn, style: .default))
-                alert.view.tintColor = .appDarkBlue
-                self?.present(alert, animated: true)
-            }
-        }
+//        } else {
+//            Student.register(name: name, numberPlate: numberPlate, on: institution).then { [weak self] (result) in
+//                self?.performSegue(withIdentifier: "UnwindToRoot", sender: nil)
+//            }.catch(on: .main) { [weak self] (error) in
+//                self?.setLoadingLayout(false)
+//                let registerErrorAlertTitle = NSLocalizedString("EditStudentController.doneButtonPressed.registerErrorAlertTitle", value: "Error", comment: "Alert title to register error")
+//                let registerErrorAlertBtn = NSLocalizedString("EditStudentController.doneButtonPressed.registerErrorAlertBtn", value: "OK", comment: "Button to dismiss the alert to register error")
+//                let alert = UIAlertController(title: registerErrorAlertTitle, message: error.localizedDescription, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: registerErrorAlertBtn, style: .default))
+//                alert.view.tintColor = .appDarkBlue
+//                self?.present(alert, animated: true)
+//            }
+//        }
     }
     
     private func setLoadingLayout(_ loading: Bool) {
@@ -78,14 +78,14 @@ extension EditStudentController {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([.font: UIFont.appBarItemDone], for: [.normal, .disabled])
         tableController.tableView.backgroundColor = .appDarkBlue
-        if let student = Student.shared {
-            tableController.nameField.text = student.name
-            tableController.numberPlateField.text = student.numberPlate
-        } else {
+//        if let student = Student.shared {
+//            tableController.nameField.text = student.name
+//            tableController.numberPlateField.text = student.numberPlate
+//        } else {
             navigationItem.leftBarButtonItems = nil
             navigationItem.rightBarButtonItem?.isEnabled = false
             navigationItem.title = NSLocalizedString("EditStudentController.viewDidLoad.navigationItemTitle", value: "Sign Up", comment: "Title for sign up")
-        }
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -100,7 +100,7 @@ extension EditStudentController {
 
 class EditStudentTableController: UITableViewController {
     
-    var institution: Institution.Overview? {
+    var institution: Institution? {
         didSet {
             institutionField.text = institution?.name
         }

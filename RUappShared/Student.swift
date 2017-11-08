@@ -15,7 +15,7 @@ extension Student {
     public func save() -> Promise<Void> {
         let json = JSON.Student(name: name!, numberPlate: numberPlate!, institutionId: String(institution!.id))
         if isInserted {
-            
+            fatalError("PromiseKit")
         } else {
             return request(URLRoute.register(student: json)).responseData().then {
                 let context = PersistentContainer.shared.viewContext
@@ -36,7 +36,7 @@ extension Student {
         let json = JSONStudent(name: name!, numberPlate: numberPlate!, institutionId: String(institution!.id))
         // Check if institution changed. If so, download new institution data and then update student on server
         if changedValues()["institution"] != nil {
-            URLRoute.institution(id: json.institutionId).request.response { (result) in
+            URLRoute.getInstitution(id: json.institutionId).request.response { (result) in
                 do {
                     let institutionJSON = try JSONDecoder().decode(JSONInstitution.self, from: result())
                     URLRoute.edit(studentId: Int(self.id), values: json).request.response { (result) in
@@ -86,12 +86,11 @@ extension Student {
     }*/
     
     static func persistenceAdd(json: JSON.Student, container: JSON.RegisteredStudent, context: NSManagedObjectContext) throws -> Student {
-        let student = NSEntityDescription.insertNewObject(forEntityName: Student.entityName, into: context) as! Student
-        let aaa = Student(entity: entity(), insertInto: nil)
+        let student = NSEntityDescription.insertNewObject(forEntityName: "Student", into: context) as! Student
         student.id = Int64(container.studentId)
         student.name = json.name
         student.numberPlate = json.numberPlate
-        student.institution = (NSEntityDescription.insertNewObject(forEntityName: Institution.entityName, into: context) as! Institution)
+        student.institution = Institution.new(with: context)
         student.institution?.update(from: container.institution)
 //        student.defaultCafeteria = (student.institution?.campi?.anyObject() as? Campus)?.cafeterias?.anyObject() as? Cafeteria
         try context.save()

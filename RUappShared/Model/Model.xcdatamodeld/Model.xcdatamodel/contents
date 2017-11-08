@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13532" systemVersion="" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13771" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Cafeteria" representedClassName="Cafeteria" syncable="YES" codeGenerationType="class">
         <attribute name="capacity" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
@@ -20,11 +20,11 @@
     <entity name="Institution" representedClassName="Institution" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="stateInitials" attributeType="String" syncable="YES"/>
-        <attribute name="stateName" attributeType="String" syncable="YES"/>
-        <attribute name="townName" attributeType="String" syncable="YES"/>
+        <attribute name="stateInitials" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="townName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="campi" toMany="YES" deletionRule="Cascade" destinationEntity="Campus" inverseName="institution" inverseEntity="Campus" syncable="YES"/>
-        <relationship name="student" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="institution" inverseEntity="Student" syncable="YES"/>
+        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="institution" inverseEntity="Student" syncable="YES"/>
     </entity>
     <entity name="Student" representedClassName="Student" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
