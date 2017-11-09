@@ -6,8 +6,6 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-public typealias CompletionHandler<T> = (() throws -> T) -> Void
-
 extension String {
     var percentEncoding: String {
         return addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!

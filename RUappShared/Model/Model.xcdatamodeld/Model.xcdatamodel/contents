@@ -6,7 +6,12 @@
         <attribute name="latitude" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longitude" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="campus" maxCount="1" deletionRule="Nullify" destinationEntity="Campus" inverseName="cafeterias" inverseEntity="Campus" syncable="YES"/>
+        <relationship name="campus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Campus" inverseName="cafeterias" inverseEntity="Campus" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Campus" representedClassName="Campus" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
@@ -15,7 +20,12 @@
         <attribute name="stateName" attributeType="String" syncable="YES"/>
         <attribute name="townName" attributeType="String" syncable="YES"/>
         <relationship name="cafeterias" toMany="YES" deletionRule="Cascade" destinationEntity="Cafeteria" inverseName="campus" inverseEntity="Cafeteria" syncable="YES"/>
-        <relationship name="institution" maxCount="1" deletionRule="Nullify" destinationEntity="Institution" inverseName="campi" inverseEntity="Institution" syncable="YES"/>
+        <relationship name="institution" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Institution" inverseName="campi" inverseEntity="Institution" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Institution" representedClassName="Institution" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
@@ -23,14 +33,24 @@
         <attribute name="stateInitials" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stateName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="townName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="campi" toMany="YES" deletionRule="Cascade" destinationEntity="Campus" inverseName="institution" inverseEntity="Campus" syncable="YES"/>
+        <relationship name="campi" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Campus" inverseName="institution" inverseEntity="Campus" syncable="YES"/>
         <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="institution" inverseEntity="Student" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Student" representedClassName="Student" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="numberPlate" attributeType="String" syncable="YES"/>
-        <relationship name="institution" maxCount="1" deletionRule="Cascade" destinationEntity="Institution" inverseName="student" inverseEntity="Institution" syncable="YES"/>
+        <relationship name="institution" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Institution" inverseName="student" inverseEntity="Institution" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Cafeteria" positionX="-27" positionY="90" width="128" height="135"/>

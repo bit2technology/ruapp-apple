@@ -137,7 +137,7 @@ enum JSON {
     }
     
     struct RegisteredStudent: Decodable {
-        var studentId: Int
+        var studentId: Int64
         var institution: Institution
         
         enum CodingKeys: String, CodingKey {

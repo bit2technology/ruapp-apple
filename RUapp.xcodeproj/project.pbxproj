@@ -32,7 +32,6 @@
 		4B0CFB4B1F69E8540069C42B /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4A1F69E8540069C42B /* RootController.swift */; };
 		4B0CFB4D1F69E9360069C42B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4C1F69E9360069C42B /* Student.swift */; };
 		4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4E1F69EA620069C42B /* Helpers.swift */; };
-		4B0CFB521F69F2E60069C42B /* URLRequest+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */; };
 		4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */; };
 		4B0CFB971F6B2A8F0069C42B /* URLRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */; };
 		4B0CFB991F6B36860069C42B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
@@ -45,6 +44,9 @@
 		4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */; };
 		4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */; };
 		4BC2F5B11F6EE53800F55964 /* RUappController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5B01F6EE53800F55964 /* RUappController.swift */; };
+		4BC396FE1FB34C5100E2A930 /* SaveStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */; };
+		4BC397001FB34E2800E2A930 /* RegisterStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC396FF1FB34E2800E2A930 /* RegisterStudentOperation.swift */; };
+		4BC397021FB34FA400E2A930 /* EditStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC397011FB34FA400E2A930 /* EditStudentOperation.swift */; };
 		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */; };
@@ -121,7 +123,6 @@
 		4B0CFB4C1F69E9360069C42B /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		4B0CFB4E1F69EA620069C42B /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RUapp-iOS.entitlements"; sourceTree = "<group>"; };
-		4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Custom.swift"; sourceTree = "<group>"; };
 		4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentController.swift; sourceTree = "<group>"; };
 		4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRoute.swift; sourceTree = "<group>"; };
 		4B0CFB981F6B36860069C42B /* Institution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
@@ -134,6 +135,9 @@
 		4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionSelectorController.swift; sourceTree = "<group>"; };
 		4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Custom.swift"; sourceTree = "<group>"; };
 		4BC2F5B01F6EE53800F55964 /* RUappController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappController.swift; sourceTree = "<group>"; };
+		4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveStudentOperation.swift; sourceTree = "<group>"; };
+		4BC396FF1FB34E2800E2A930 /* RegisterStudentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStudentOperation.swift; sourceTree = "<group>"; };
+		4BC397011FB34FA400E2A930 /* EditStudentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentOperation.swift; sourceTree = "<group>"; };
 		4BDBB1C91F69BAC3007900EC /* RUappSharedTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -219,11 +223,11 @@
 		4B0605E81F69B715000ACE59 /* RUapp-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
 				4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */,
 				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0605E91F69B715000ACE59 /* AppDelegate.swift */,
 				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
-				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
 				4B0BC4751F6D7F2100A13F61 /* MenuController.swift */,
 				4BC2F5B01F6EE53800F55964 /* RUappController.swift */,
 				4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */,
@@ -243,14 +247,9 @@
 				4BFBE09F1FB27F760072287A /* Model */,
 				4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
-				4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */,
-				4BAA7B721F6F3D2E008B34F4 /* Campus.swift */,
 				4B0BC4771F6D7F6F00A13F61 /* Color.swift */,
 				4B0BC4791F6D891200A13F61 /* Font.swift */,
 				4B0CFB4E1F69EA620069C42B /* Helpers.swift */,
-				4B0CFB4C1F69E9360069C42B /* Student.swift */,
-				4B0CFB511F69F2E60069C42B /* URLRequest+Custom.swift */,
-				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
 				4B0BC47B1F6D8E7200A13F61 /* Fonts */,
 			);
 			path = RUappShared;
@@ -309,6 +308,8 @@
 				4B1BF9AA1FAA094C0034F55D /* URLSessionDataTaskOperation.swift */,
 				4BFBE0921FB233C30072287A /* GetInstitutionListOperation.swift */,
 				4BFBE0941FB25A580072287A /* GetInstitutionOperation.swift */,
+				4BC396FF1FB34E2800E2A930 /* RegisterStudentOperation.swift */,
+				4BC397011FB34FA400E2A930 /* EditStudentOperation.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -318,6 +319,7 @@
 			children = (
 				4BFBE09B1FB266D70072287A /* CoreDataOperation.swift */,
 				4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */,
+				4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -327,7 +329,11 @@
 			children = (
 				4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */,
 				4B5D91071F76AEAC00F3B5AC /* JSON.swift */,
+				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
 				4B0CFB981F6B36860069C42B /* Institution.swift */,
+				4BAA7B721F6F3D2E008B34F4 /* Campus.swift */,
+				4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */,
+				4B0CFB4C1F69E9360069C42B /* Student.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -668,20 +674,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BC396FE1FB34C5100E2A930 /* SaveStudentOperation.swift in Sources */,
 				4BFBE0931FB233C30072287A /* GetInstitutionListOperation.swift in Sources */,
 				4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */,
 				4B1BF9A91FAA07BD0034F55D /* AsyncOperation.swift in Sources */,
 				4BFBE0951FB25A580072287A /* GetInstitutionOperation.swift in Sources */,
 				4B0BC47A1F6D891200A13F61 /* Font.swift in Sources */,
 				4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */,
+				4BC397001FB34E2800E2A930 /* RegisterStudentOperation.swift in Sources */,
 				4B0BC4781F6D7F6F00A13F61 /* Color.swift in Sources */,
 				4B0CFB4F1F69EA620069C42B /* Helpers.swift in Sources */,
 				4BA7C2701F6F31F200DF9F75 /* PersistentContainer.swift in Sources */,
 				4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */,
 				4B1BF9AB1FAA094C0034F55D /* URLSessionDataTaskOperation.swift in Sources */,
 				4BFBE09E1FB27E710072287A /* UpdateInstitutionListOperation.swift in Sources */,
-				4B0CFB521F69F2E60069C42B /* URLRequest+Custom.swift in Sources */,
 				4BFBE09C1FB266D70072287A /* CoreDataOperation.swift in Sources */,
+				4BC397021FB34FA400E2A930 /* EditStudentOperation.swift in Sources */,
 				4B0CFB991F6B36860069C42B /* Institution.swift in Sources */,
 				4B0CFB971F6B2A8F0069C42B /* URLRoute.swift in Sources */,
 				4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */,

@@ -9,7 +9,7 @@
 class GetInstitutionListOperation: URLSessionDataTaskOperation {
     
     init() {
-        super.init(request: URLRoute.getInstitutionsList.urlRequest!)
+        super.init(request: URLRoute.getInstitutionsList.urlRequest)
     }
     
     func parse() throws -> [JSON.Institution] {

@@ -6,17 +6,15 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-import Alamofire
-
 enum URLRoute {
     case getInstitutionsList
     case getInstitution(id: Int64)
     case register(student: JSON.Student)
-    case edit(studentId: Int, values: JSON.Student)
+    case edit(studentId: Int64, values: JSON.Student)
 }
 
-extension URLRoute: URLRequestConvertible {
-    func asURLRequest() throws -> URLRequest {
+extension URLRoute {
+    var urlRequest: URLRequest {
         var urlBuilder = "https://www.ruapp.com.br/api/v1/"
         var httpMethod = HTTPMethod.get
         var httpBody: Data?
@@ -29,7 +27,7 @@ extension URLRoute: URLRequestConvertible {
         case .register(let student):
             urlBuilder += "register_student"
             httpMethod = .post
-            httpBody = student.requisitionData()
+            httpBody = try! student.requisitionData()
         case .edit(let studentId, let values):
             urlBuilder += "register_student/\(studentId)"
             httpMethod = .put
@@ -43,10 +41,15 @@ extension URLRoute: URLRequestConvertible {
     }
 }
 
+private enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+}
+
 private extension Encodable {
-    func requisitionData() -> Data {
-        let data = try! JSONEncoder().encode(self)
-        let string = data.string!
-        return ("requisitionData=" + string).data!
+    func requisitionData() throws -> Data {
+        let data = try JSONEncoder().encode(self)
+        return "requisitionData=".data(using: .utf8)! + data
     }
 }

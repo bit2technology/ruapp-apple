@@ -14,10 +14,10 @@ class RootController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        guard Student.shared != nil else {
+//        guard Student.current != nil else {
             performSegue(withIdentifier: "EditStudent", sender: nil)
-            return
-        }
+//            return
+//        }
     }
     
     @IBAction private func unwindToRoot(segue: UIStoryboardSegue) { }

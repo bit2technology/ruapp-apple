@@ -18,17 +18,9 @@ public class UpdateInstitutionListOperation: CoreDataOperation {
     
     public override func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID]? {
         let list: [Institution] = try getInstitutionListOperation.parse().map {
-            let fetchRequest: NSFetchRequest<Institution> = Institution.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "id = %lld", Int64($0.id)!)
-            fetchRequest.fetchLimit = 1
-            if let institution = (try context.fetch(fetchRequest)).first {
-                return institution.update(from: $0)
-            } else {
-                return Institution.new(with: context).update(from: $0)
-            }
+            try Institution.createOrUpdate(json: $0, context: context)
         }
         try context.save()
-        try context.parent!.save()
         return list.map { $0.objectID }
     }
     

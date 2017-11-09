@@ -8,8 +8,8 @@
 
 class GetInstitutionOperation: URLSessionDataTaskOperation {
     
-    init(id: Int) {
-        super.init(request: URLRoute.getInstitution(id: id).urlRequest!)
+    init(id: Int64) {
+        super.init(request: URLRoute.getInstitution(id: id).urlRequest)
     }
     
     func parse() throws -> JSON.Institution {

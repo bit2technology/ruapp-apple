@@ -10,7 +10,6 @@ import RUappShared
 
 class InstitutionSelectorController: UITableViewController {
     
-    var editStudentTableController: EditStudentTableController!
     private var list: [Institution]?
     private weak var refreshOperation: RefreshOperation?
     
@@ -31,7 +30,7 @@ extension InstitutionSelectorController {
         let institution = list![indexPath.row]
         cell.textLabel?.text = institution.name
         cell.textLabel?.font = .appBody
-        cell.accessoryType = editStudentTableController.institution?.id == institution.id ? .checkmark : .none
+        cell.accessoryType = Student.current.institution == institution ? .checkmark : .none
         return cell
     }
 }
@@ -52,7 +51,7 @@ extension InstitutionSelectorController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "InstitutionSelected"?:
-            editStudentTableController.institution = list![tableView.indexPathForSelectedRow!.row]
+            Student.current.institution = list![tableView.indexPathForSelectedRow!.row]
         default:
             break
         }
