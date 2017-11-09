@@ -6,8 +6,6 @@ target 'RUapp-iOS' do
 end
 
 target 'RUappShared-iOS' do
-    pod 'Alamofire'
-    pod 'PromiseKit/Alamofire'
 end
 
 target 'RUappSharedTests-iOS' do

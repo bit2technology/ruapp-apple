@@ -14,7 +14,7 @@ class EditStudentController: UITableViewController {
     @IBOutlet weak var institutionField: UITextField!
     @IBOutlet weak var numberPlateField: UITextField!
     
-    private weak var saveStudentOperation: SaveStudentOperation?
+    private weak var finishSaveStudentOperation: FinishSaveStudentOperation?
     
     @IBAction private func fieldEdited(sender: UITextField) {
         let student = Student.current
@@ -41,7 +41,7 @@ class EditStudentController: UITableViewController {
         view.endEditing(true)
         setLoadingLayout(true)
         
-        saveStudentOperation = Student.current.saveOperation()
+        finishSaveStudentOperation = FinishSaveStudentOperation()
     }
     
     private func setLoadingLayout(_ loading: Bool) {
@@ -106,7 +106,6 @@ extension EditStudentController {
 
 // UITextFieldDelegate methods
 extension EditStudentController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case nameField:
@@ -117,5 +116,27 @@ extension EditStudentController: UITextFieldDelegate {
             break
         }
         return false
+    }
+}
+
+extension EditStudentController {
+    private class FinishSaveStudentOperation: Operation {
+        
+        private let saveStudentOperation = Student.current.saveOperation()
+        
+        override init() {
+            super.init()
+            addDependency(saveStudentOperation)
+            OperationQueue.main.addOperation(self)
+        }
+        
+        override func main() {
+            do {
+                try saveStudentOperation.persist()
+                print("done")
+            } catch {
+                print(error)
+            }
+        }
     }
 }

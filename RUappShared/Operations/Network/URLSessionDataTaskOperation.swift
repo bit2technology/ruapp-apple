@@ -8,6 +8,13 @@
 
 open class URLSessionDataTaskOperation: AsyncOperation<Data> {
     
+    public static var count = 0 {
+        didSet {
+            countObserver?(count)
+        }
+    }
+    public static var countObserver: ((_ count: Int) -> Void)?
+    
     private let request: URLRequest
     private var task: URLSessionDataTask?
     
@@ -17,8 +24,10 @@ open class URLSessionDataTaskOperation: AsyncOperation<Data> {
     }
     
     override open func main() {
+        URLSessionDataTaskOperation.count += 1
         task = URLSession.shared.dataTask(with: request) {
             self.result = ($0, $2)
+            URLSessionDataTaskOperation.count -= 1
         }
         task!.resume()
     }
