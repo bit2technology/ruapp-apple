@@ -6,6 +6,7 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+/// API endpoints.
 enum URLRoute {
     case getInstitutionsList
     case getInstitution(id: Int64)
@@ -17,6 +18,7 @@ extension URLRoute {
     var urlRequest: URLRequest {
         var urlBuilder = "https://www.ruapp.com.br/api/v1/"
         var httpMethod = HTTPMethod.get
+        var httpHeader: [String: String] = [:]
         var httpBody: Data?
         
         switch self {
@@ -31,11 +33,15 @@ extension URLRoute {
         case .edit(let studentId, let values):
             urlBuilder += "register_student/\(studentId)"
             httpMethod = .put
-            httpBody = "\(JSON.Student.CodingKeys.name.rawValue)=\(values.name.percentEncoding)&\(JSON.Student.CodingKeys.numberPlate.rawValue)=\(values.numberPlate.percentEncoding)&\(JSON.Student.CodingKeys.institutionId.rawValue)=\(values.institutionId)".data!
+            httpHeader = ["Content-Type": "application/x-www-form-urlencoded"]
+            httpBody = "\(JSON.Student.CodingKeys.name.rawValue)=\(values.name.percentEncoding)&\(JSON.Student.CodingKeys.numberPlate.rawValue)=\(values.numberPlate.percentEncoding)&\(JSON.Student.CodingKeys.institutionId.rawValue)=\(values.institutionId)".data(using: .utf8)!
         }
         
         var req = URLRequest(url: URL(string: urlBuilder)!)
         req.httpMethod = httpMethod.rawValue
+        httpHeader.forEach { (key, value) in
+            req.setValue(value, forHTTPHeaderField: key)
+        }
         req.httpBody = httpBody
         return req
     }
@@ -49,7 +55,12 @@ private enum HTTPMethod: String {
 
 private extension Encodable {
     func requisitionData() throws -> Data {
-        let data = try JSONEncoder().encode(self)
-        return "requisitionData=".data(using: .utf8)! + data
+        return try "requisitionData=".data(using: .utf8)! + JSONEncoder().encode(self)
+    }
+}
+
+private extension String {
+    var percentEncoding: String {
+        return addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
     }
 }

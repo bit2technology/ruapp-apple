@@ -30,18 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navBar.barStyle = .black
         navBar.barTintColor = .appDarkBlue
         navBar.isTranslucent = false
-        navBar.titleTextAttributes = [.font: UIFont.appNavTitle]
+//        navBar.titleTextAttributes = [.font: UIFont.appNavTitle]
         if #available(iOS 11.0, *) {
-            navBar.largeTitleTextAttributes = [.font: UIFont.appLargeNavTitle]
+//            navBar.largeTitleTextAttributes = [.font: UIFont.appLargeNavTitle]
         }
-        UIBarButtonItem.appearance().setTitleTextAttributes([.font: UIFont.appBarItem], for: .normal)
+//        UIBarButtonItem.appearance().setTitleTextAttributes([.font: UIFont.appBarItem], for: .normal)
         let tabBar = UITabBar.appearance()
         tabBar.barStyle = .black
         tabBar.barTintColor = .appDarkBlue
         tabBar.tintColor = .white
         if #available(iOS 10.0, *) {
             tabBar.unselectedItemTintColor = .appLightBlue
-            UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont.appTabBarItemTitle], for: .normal)
+//            UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont.appTabBarItemTitle], for: .normal)
         } else {
             (window?.rootViewController as! UITabBarController).tabBar.items?.forEach { (item) in
                 item.image = item.image?.with(color: .appLightBlue).withRenderingMode(.alwaysOriginal)

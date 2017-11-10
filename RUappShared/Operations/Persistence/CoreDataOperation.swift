@@ -8,12 +8,12 @@
 
 import CoreData
 
-open class CoreDataOperation: AsyncOperation<[NSManagedObjectID]> {
+public class CoreDataOperation: AsyncOperation<[NSManagedObjectID]> {
     
-    open override func main() {
-        PersistentContainer.shared.performBackgroundTask { (backgroundContext) in
+    public override func main() {
+        PersistentContainer.shared.performBackgroundTask {
             do {
-                let value = try self.backgroundTask(context: backgroundContext)
+                let value = try self.backgroundTask(context: $0)
                 self.result = (value, nil)
             } catch {
                 self.result = (nil, error)
@@ -21,7 +21,12 @@ open class CoreDataOperation: AsyncOperation<[NSManagedObjectID]> {
         }
     }
     
-    open func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID]? {
+    /// Method to be implemented by subclasses. Runs in background.
+    ///
+    /// - Parameter context: A background context
+    /// - Returns: A list of modified object IDs
+    /// - Throws: Any error
+    func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID]? {
         return nil
     }
 }

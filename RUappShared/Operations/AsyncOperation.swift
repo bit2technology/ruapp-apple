@@ -6,53 +6,54 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-private let privateQueue: OperationQueue = {
-    let queue = OperationQueue()
-    queue.name = "AsyncOperationQueue"
-    return queue
-}()
-
-open class AsyncOperation<Value>: Operation {
+/// Base class for asynchronous operations.
+public class AsyncOperation<Value>: Operation {
     
+    /// Stores the result and an possible error. Retrieve value from `value()` method.
     var result: (value: Value?, error: Error?) {
         didSet {
             finishExecution()
         }
     }
     
-    override open var isExecuting: Bool {
+    public override var isExecuting: Bool {
         return state == .executing
     }
     
-    override open var isFinished: Bool {
+    public override var isFinished: Bool {
         return state == .finished
     }
     
-    override open var isAsynchronous: Bool {
+    public override var isAsynchronous: Bool {
         return true
     }
     
-    open var queue: OperationQueue {
-        return privateQueue
+    /// Default queue.
+    var queue: OperationQueue {
+        return .async
     }
     
-    open var dependenciesToAdd: [Operation] {
+    /// Dependencies to be added on `init()`.
+    var dependenciesToAdd: [Operation] {
         return []
     }
     
+    /// Track the state of this opereation.
     private var state = State.initialized
     
+    /// Initialize the operation, add dependencies from `dependenciesToAdd` and add to `queue`.
     public override init() {
         super.init()
         dependenciesToAdd.forEach(addDependency)
         queue.addOperation(self)
     }
     
-    override open func start() {
+    public override func start() {
         guard !isCancelled else {
             return
         }
         assert(state == .initialized, "Operation must not be finished to execute")
+        // Update state and send KVO notifications
         let affectedKeyPaths = ["isExecuting"]
         affectedKeyPaths.forEach {
             willChangeValue(forKey: $0)
@@ -61,10 +62,20 @@ open class AsyncOperation<Value>: Operation {
         affectedKeyPaths.forEach {
             didChangeValue(forKey: $0)
         }
+        // Call main() to perform custom subclass code
         main()
     }
     
-    open func value() throws -> Value {
+    public override func cancel() {
+        super.cancel()
+        result = (nil, AsyncOperationError.cancelled)
+    }
+    
+    /// Retrieves value from `result`.
+    ///
+    /// - Returns: Value
+    /// - Throws: `AsyncOperationError` and others
+    func value() throws -> Value {
         assert(isFinished, "Operation must be finished to get value")
         if let error = result.error {
             throw error
@@ -75,8 +86,9 @@ open class AsyncOperation<Value>: Operation {
         return value
     }
     
+    /// Called when `result` is set. This sends the appropriate KVO notifications.
     private func finishExecution() {
-        assert(state == .executing || isCancelled, "Operation must be executing or cancelled to finish")
+        // Update state and send KVO notifications
         let affectedKeyPaths = ["isExecuting", "isFinished"]
         affectedKeyPaths.forEach {
             willChangeValue(forKey: $0)
@@ -95,5 +107,14 @@ open class AsyncOperation<Value>: Operation {
 }
 
 public enum AsyncOperationError: Error {
+    case cancelled
     case noValue
+}
+
+private extension OperationQueue {
+    static let async: OperationQueue = {
+        let queue = OperationQueue()
+        queue.name = "AsyncOperationQueue"
+        return queue
+    }()
 }

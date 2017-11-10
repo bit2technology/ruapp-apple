@@ -9,14 +9,14 @@
 import CoreData
 
 /// Core Data container
-class PersistentContainer {
+public class PersistentContainer {
     
     let managedObjectModel: NSManagedObjectModel
     let persistentStoreCoordinator: NSPersistentStoreCoordinator
-    let viewContext: NSManagedObjectContext
+    public let viewContext: NSManagedObjectContext
     
     /// Shared instance
-    static let shared = try! PersistentContainer()
+    public static let shared = try! PersistentContainer()
     
     func newBackgroundContext() -> NSManagedObjectContext {
         let backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)

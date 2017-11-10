@@ -402,17 +402,27 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Edit Profile" id="Rcg-lV-yxj">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5kJ-Qb-XqA"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="vK6-R0-z50"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5kJ-Qb-XqA">
+                            <connections>
+                                <action selector="cancelButtonPressed" destination="b63-8g-fPs" id="9PM-RY-YXg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="vK6-R0-z50">
+                            <connections>
+                                <action selector="doneButtonPressed" destination="b63-8g-fPs" id="EZe-SJ-eAC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="institutionField" destination="bvb-fi-myN" id="wNR-Dy-R4Q"/>
                         <outlet property="nameField" destination="bzv-A0-r3P" id="9GR-uv-h7w"/>
                         <outlet property="numberPlateField" destination="LS8-mD-AUr" id="ayn-Vp-eqr"/>
                         <segue destination="fUA-xP-c9g" kind="show" identifier="SelectInstitution" id="boO-Tj-pjD"/>
+                        <segue destination="hTs-hv-bum" kind="unwind" identifier="UnwindToRoot" unwindAction="unwindToRootWithSegue:" id="7e8-dq-heZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fV-T7-P4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="hTs-hv-bum" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="798" y="2052"/>
         </scene>

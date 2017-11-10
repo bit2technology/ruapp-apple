@@ -6,27 +6,37 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-open class URLSessionDataTaskOperation: AsyncOperation<Data> {
+public class URLSessionDataTaskOperation: AsyncOperation<Data> {
     
+    /// Count how many `URLSessionDataTaskOperation`s are executing.
     public static var count = 0 {
         didSet {
             countObserver?(count)
         }
     }
+    
+    /// Execute closure every time `count` changes.
     public static var countObserver: ((_ count: Int) -> Void)?
     
     private let request: URLRequest
     private var task: URLSessionDataTask?
     
-    public init(request: URLRequest) {
+    init(request: URLRequest) {
         self.request = request
         super.init()
     }
     
-    override open func main() {
+    public override func cancel() {
+        super.cancel()
+        task?.cancel()
+    }
+    
+    public override func main() {
         URLSessionDataTaskOperation.count += 1
         task = URLSession.shared.dataTask(with: request) {
-            self.result = ($0, $2)
+            if !self.isCancelled {
+                self.result = ($0, $2)
+            }
             URLSessionDataTaskOperation.count -= 1
         }
         task!.resume()

@@ -6,6 +6,7 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+/// Raw API request and response data.
 enum JSON {
     
     struct Menu: Decodable {
@@ -127,7 +128,7 @@ enum JSON {
     struct Student: Encodable {
         var name: String
         var numberPlate: String
-        var institutionId: String
+        var institutionId: Int64
         
         enum CodingKeys: String, CodingKey {
             case name

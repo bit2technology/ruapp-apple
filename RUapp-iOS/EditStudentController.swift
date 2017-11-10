@@ -14,7 +14,16 @@ class EditStudentController: UITableViewController {
     @IBOutlet weak var institutionField: UITextField!
     @IBOutlet weak var numberPlateField: UITextField!
     
-    private weak var finishSaveStudentOperation: FinishSaveStudentOperation?
+    private let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        spinner.alpha = 0
+        spinner.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.startAnimating()
+        return spinner
+    }()
+    
+    private weak var finiOp: FinishSaveStudentOperation?
     
     @IBAction private func fieldEdited(sender: UITextField) {
         let student = Student.current
@@ -37,19 +46,35 @@ class EditStudentController: UITableViewController {
     }
     
     @IBAction func doneButtonPressed() {
-        
         view.endEditing(true)
+        guard Student.current.hasChanges else {
+            performSegue(withIdentifier: "UnwindToRoot", sender: nil)
+            return
+        }
         setLoadingLayout(true)
-        
-        finishSaveStudentOperation = FinishSaveStudentOperation()
+        finiOp = FinishSaveStudentOperation(controller: self)
     }
     
     private func setLoadingLayout(_ loading: Bool) {
-//        navigationItem.leftBarButtonItem?.isEnabled = !loading
-//        navigationItem.rightBarButtonItem?.isEnabled = !loading
-//        UIView.animate(withDuration: 0.2) { [weak self] in
-//            self?.loadingView.alpha = loading ? 1 : 0
-//        }
+        let navView = navigationController!.view!
+        if loading {
+            spinner.frame = navView.bounds
+            navView.addSubview(spinner)
+            navView.leftAnchor.constraint(equalTo: spinner.leftAnchor).isActive = true
+            navView.topAnchor.constraint(equalTo: spinner.topAnchor).isActive = true
+            navView.rightAnchor.constraint(equalTo: spinner.rightAnchor).isActive = true
+            navView.bottomAnchor.constraint(equalTo: spinner.bottomAnchor).isActive = true
+            UIView.animate(withDuration: 0.15, animations: {
+                self.spinner.alpha = 1
+            })
+        } else {
+            UIView.animate(withDuration: 0.15, animations: {
+                self.spinner.alpha = 0
+            }, completion: { _ in
+                self.spinner.removeConstraints(self.spinner.constraints)
+                self.spinner.removeFromSuperview()
+            })
+        }
     }
     
     @IBAction private func unwindToEditStudent(segue: UIStoryboardSegue) { }
@@ -60,7 +85,6 @@ extension EditStudentController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let view = view as? UITableViewHeaderFooterView {
-            view.textLabel?.font = .appTableSectionHeader
             view.textLabel?.textColor = .white
         }
     }
@@ -85,12 +109,9 @@ extension EditStudentController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes([.font: UIFont.appBarItemDone], for: [.normal, .disabled])
         tableView.backgroundColor = .appDarkBlue
-        [nameField, institutionField, numberPlateField].forEach { $0?.font = .appBody }
         
         if !Student.current.isSaved {
-            navigationItem.leftBarButtonItems = nil
             navigationItem.title = NSLocalizedString("EditStudentController.viewDidLoad.navigationItemTitle", value: "Sign Up", comment: "Title for sign up")
         }
     }
@@ -120,21 +141,29 @@ extension EditStudentController: UITextFieldDelegate {
 }
 
 extension EditStudentController {
+    
     private class FinishSaveStudentOperation: Operation {
         
+        private weak var controller: EditStudentController?
         private let saveStudentOperation = Student.current.saveOperation()
         
-        override init() {
+        init(controller: EditStudentController) {
             super.init()
+            self.controller = controller
             addDependency(saveStudentOperation)
             OperationQueue.main.addOperation(self)
         }
         
         override func main() {
+            guard let controller = controller else {
+                return
+            }
             do {
-                try saveStudentOperation.persist()
-                print("done")
+                try saveStudentOperation.checkPersistence()
+                controller.performSegue(withIdentifier: "UnwindToRoot", sender: nil)
             } catch {
+                controller.setLoadingLayout(false)
+                // TODO: Handle error
                 print(error)
             }
         }

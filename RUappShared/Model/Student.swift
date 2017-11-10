@@ -31,7 +31,12 @@ extension Student {
     }
     
     public func saveOperation() -> SaveStudentOperation {
-        let json = JSON.Student(name: name!, numberPlate: numberPlate!, institutionId: String(institution!.id))
+        let json: JSON.Student?
+        if let name = name, let numberPlate = numberPlate, let institution = institution {
+            json = JSON.Student(name: name, numberPlate: numberPlate, institutionId: institution.id)
+        } else {
+            json = nil
+        }
         return SaveStudentOperation(values: json)
     }
 }

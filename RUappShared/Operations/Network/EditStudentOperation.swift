@@ -13,6 +13,6 @@ class EditStudentOperation: URLSessionDataTaskOperation {
     }
     
     func parse() throws -> Bool {
-        return try JSONDecoder().decode(String.self, from: value()) == "success"
+        return try String(data: value(), encoding: .utf8) == "success"
     }
 }
