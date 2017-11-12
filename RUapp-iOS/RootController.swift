@@ -6,19 +6,36 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-import UIKit
 import RUappShared
 
 class RootController: UITabBarController {
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        guard Student.current != nil else {
-            performSegue(withIdentifier: "EditStudent", sender: nil)
-//            return
-//        }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        delegate = self
     }
     
     @IBAction private func unwindToRoot(segue: UIStoryboardSegue) { }
+}
+
+extension RootController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard !viewController.needsLogin || Student.current.isSaved else {
+            performSegue(withIdentifier: "EditStudent", sender: nil)
+            return false
+        }
+        return true
+    }
+}
+
+extension UIViewController {
+    @objc var needsLogin: Bool {
+        return false
+    }
+}
+
+extension UINavigationController {
+    override var needsLogin: Bool {
+        return viewControllers.first?.needsLogin ?? false
+    }
 }

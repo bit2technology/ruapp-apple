@@ -12,6 +12,7 @@ enum URLRoute {
     case getInstitution(id: Int64)
     case register(student: JSON.Student)
     case edit(studentId: Int64, values: JSON.Student)
+    case menu(restaurantId: Int64)
 }
 
 extension URLRoute {
@@ -35,6 +36,8 @@ extension URLRoute {
             httpMethod = .put
             httpHeader = ["Content-Type": "application/x-www-form-urlencoded"]
             httpBody = "\(JSON.Student.CodingKeys.name.rawValue)=\(values.name.percentEncoding)&\(JSON.Student.CodingKeys.numberPlate.rawValue)=\(values.numberPlate.percentEncoding)&\(JSON.Student.CodingKeys.institutionId.rawValue)=\(values.institutionId)".data(using: .utf8)!
+        case .menu(let restaurantId):
+            urlBuilder += "menu?restaurant_id=\(restaurantId)"
         }
         
         var req = URLRequest(url: URL(string: urlBuilder)!)
