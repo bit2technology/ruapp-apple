@@ -15,7 +15,7 @@ class InstitutionSelectorController: UITableViewController {
     private let reqCont: NSFetchedResultsController<Institution> = {
         let req: NSFetchRequest<Institution> = Institution.fetchRequest()
         req.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        return NSFetchedResultsController(fetchRequest: req, managedObjectContext: PersistentContainer.shared.viewContext, sectionNameKeyPath: nil, cacheName: "ListInstitutions")
+        return NSFetchedResultsController(fetchRequest: req, managedObjectContext: Student.managedObjectContext, sectionNameKeyPath: nil, cacheName: "ListInstitutions")
     }()
     
     @IBAction func refreshRequested() {
@@ -108,7 +108,7 @@ extension InstitutionSelectorController {
             }
             controller.refreshControl!.endRefreshing()
             do {
-                _ = try instListOp.parse()
+                try instListOp.checkError()
             } catch {
                 // TODO: Handle error
                 print(error)

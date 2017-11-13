@@ -22,13 +22,18 @@ extension Student {
         return NSEntityDescription.insertNewObject(forEntityName: "Student", into: context) as! Student
     }
     
-    public static var current: Student {
+    public private(set) static var current: Student = {
         let request: NSFetchRequest<Student> = fetchRequest()
         request.fetchLimit = 1
-        let context = PersistentContainer.shared.viewContext
-        let result = try? context.fetch(request)
-        return result?.first ?? Student.new(with: context)
-    }
+        let result = try? managedObjectContext.fetch(request)
+        return result?.first ?? Student.new(with: managedObjectContext)
+    }()
+    
+    public static let managedObjectContext: NSManagedObjectContext = {
+        let ctx = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        ctx.parent = PersistentContainer.shared.viewContext
+        return ctx
+    }()
     
     public func saveOperation() -> SaveStudentOperation {
         let json: JSON.Student?

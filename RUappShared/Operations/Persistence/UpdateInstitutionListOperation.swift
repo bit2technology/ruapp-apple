@@ -8,9 +8,9 @@
 
 import CoreData
 
-/// Downloads `Institution` List and adds to `PersistentContainer.viewContext`.
+/// Downloads `Institution` List and adds to `Student.managedObjectContext`.
 ///
-/// - Attention: `PersistentContainer.viewContext` not saved in this operation.
+/// - Attention: `Student.managedObjectContext` not saved in this operation.
 public class UpdateInstitutionListOperation: CoreDataOperation {
     
     private let instListOp = GetInstitutionListOperation()
@@ -19,20 +19,26 @@ public class UpdateInstitutionListOperation: CoreDataOperation {
         return [instListOp]
     }
     
+    public override var managedObjectContext: NSManagedObjectContext? {
+        let ctx = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        ctx.parent = Student.managedObjectContext
+        return ctx
+    }
+    
     override func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID]? {
         let list: [Institution] = try instListOp.parse().map {
             try Institution.createOrUpdate(json: $0, context: context)
         }
+        
+        guard !isCancelled else {
+            return nil
+        }
+        
         try context.save()
         return list.map { $0.objectID }
     }
     
-    /// Get `Institution` list on `PersistentContainer.viewContext`.
-    ///
-    /// - Returns: `Institution` list
-    /// - Throws: Any error
-    public func parse() throws -> [Institution] {
-        let context = PersistentContainer.shared.viewContext
-        return try value().map { context.object(with: $0) as! Institution }
+    public func checkError() throws {
+        _ = try value()
     }
 }

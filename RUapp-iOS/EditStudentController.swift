@@ -159,7 +159,7 @@ extension EditStudentController {
                 return
             }
             do {
-                try saveStudentOperation.checkPersistence()
+                try saveStudentOperation.checkError()
                 controller.performSegue(withIdentifier: "UnwindToRoot", sender: nil)
             } catch {
                 controller.setLoadingLayout(false)

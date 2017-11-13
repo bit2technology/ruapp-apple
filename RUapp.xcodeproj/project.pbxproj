@@ -39,6 +39,8 @@
 		4B1BF8891FB8E12B00956CF8 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8881FB8E12B00956CF8 /* Meal.swift */; };
 		4B1BF9A91FAA07BD0034F55D /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF9A81FAA07BD0034F55D /* AsyncOperation.swift */; };
 		4B1BF9AB1FAA094C0034F55D /* URLSessionDataTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF9AA1FAA094C0034F55D /* URLSessionDataTaskOperation.swift */; };
+		4B2BB5C31FB9D84300020120 /* MealHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2BB5C21FB9D84300020120 /* MealHeader.xib */; };
+		4B2BB5C51FB9DAC800020120 /* MealFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2BB5C41FB9DAC800020120 /* MealFooter.xib */; };
 		4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D91071F76AEAC00F3B5AC /* JSON.swift */; };
 		4BA7C2701F6F31F200DF9F75 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */; };
 		4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */; };
@@ -132,6 +134,8 @@
 		4B1BF8881FB8E12B00956CF8 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		4B1BF9A81FAA07BD0034F55D /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		4B1BF9AA1FAA094C0034F55D /* URLSessionDataTaskOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskOperation.swift; sourceTree = "<group>"; };
+		4B2BB5C21FB9D84300020120 /* MealHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealHeader.xib; sourceTree = "<group>"; };
+		4B2BB5C41FB9DAC800020120 /* MealFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealFooter.xib; sourceTree = "<group>"; };
 		4B5D91071F76AEAC00F3B5AC /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -238,6 +242,8 @@
 				4BC2F5B01F6EE53800F55964 /* RUappController.swift */,
 				4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */,
 				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
+				4B2BB5C21FB9D84300020120 /* MealHeader.xib */,
+				4B2BB5C41FB9DAC800020120 /* MealFooter.xib */,
 				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
 				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
 				4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */,
@@ -490,7 +496,9 @@
 			files = (
 				4B0605F41F69B715000ACE59 /* LaunchScreen.storyboard in Resources */,
 				4B0605F11F69B715000ACE59 /* Assets.xcassets in Resources */,
+				4B2BB5C31FB9D84300020120 /* MealHeader.xib in Resources */,
 				4B0605EF1F69B715000ACE59 /* Main.storyboard in Resources */,
+				4B2BB5C51FB9DAC800020120 /* MealFooter.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

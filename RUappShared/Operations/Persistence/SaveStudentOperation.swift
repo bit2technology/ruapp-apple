@@ -56,6 +56,10 @@ public class SaveStudentOperation: CoreDataOperation {
         }
     }
     
+    public override var managedObjectContext: NSManagedObjectContext? {
+        return Student.managedObjectContext
+    }
+    
     override func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID]? {
         let student = context.object(with: Student.current.objectID) as! Student
         switch kind {
@@ -71,6 +75,11 @@ public class SaveStudentOperation: CoreDataOperation {
         case .register(let registerOp):
             student.id = try registerOp.parse().studentId
         }
+        
+        guard !isCancelled else {
+            return nil
+        }
+        
         // Persist and return
         try context.save()
         try context.parent!.save()
@@ -80,7 +89,7 @@ public class SaveStudentOperation: CoreDataOperation {
     /// Check save operation. If successful, this method returns nothing. Otherwise, throws an error.
     ///
     /// - Throws: `SaveStudentOperationError` and others
-    public func checkPersistence() throws {
+    public func checkError() throws {
         _ = try value()
     }
     

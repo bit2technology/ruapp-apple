@@ -20,10 +20,18 @@ public class UpdateMenuOperation: CoreDataOperation {
         let meals = try getMenuOp.parse().map { (menu) -> [Meal] in
             var dayMeals = [Meal]()
             for (idx, meal) in menu.meals.enumerated() {
+                guard meal.meta != "-" else {
+                    continue
+                }
                 try dayMeals.append(Meal.createOrUpdate(json: meal, date: menu.date, index: Int64(idx), context: context))
             }
             return dayMeals
         }
+        
+        guard !isCancelled else {
+            return nil
+        }
+        
         try context.save()
         try context.parent!.save()
         return meals.flatMap { $0.map { $0.objectID } }

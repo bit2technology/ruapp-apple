@@ -10,10 +10,15 @@ import CoreData
 
 public class CoreDataOperation: AsyncOperation<[NSManagedObjectID]> {
     
+    public var managedObjectContext: NSManagedObjectContext? {
+        return nil
+    }
+    
     public override func main() {
-        PersistentContainer.shared.performBackgroundTask {
+        let context = managedObjectContext ?? PersistentContainer.shared.newBackgroundContext()
+        context.perform {
             do {
-                let value = try self.backgroundTask(context: $0)
+                let value = try self.backgroundTask(context: context)
                 self.result = (value, nil)
             } catch {
                 self.result = (nil, error)

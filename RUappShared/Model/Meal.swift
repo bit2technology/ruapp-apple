@@ -31,7 +31,7 @@ extension Meal {
     
     static func createOrUpdate(json: JSON.Menu.Meal, date: String, index: Int64, context: NSManagedObjectContext) throws -> Meal {
         let fetchRequest: NSFetchRequest<Meal> = self.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "internalId = %lld", date.dateInternalId * 100 + index)
+        fetchRequest.predicate = NSPredicate(format: "internalId = %lld", date.dateInternalId(index: index))
         fetchRequest.fetchLimit = 1
         if let meal = (try context.fetch(fetchRequest)).first {
             return meal.update(from: json, date: date, index: index)
@@ -41,12 +41,12 @@ extension Meal {
     }
     
     @discardableResult func update(from json: JSON.Menu.Meal, date: String, index: Int64) -> Self {
-        internalId = date.dateInternalId * 100 + index
+        internalId = date.dateInternalId(index: index)
         name = json.name
         meta = json.meta
-        if let open = json.open ?? json.name.guessedOpen {
+        if let open = json.open {
             self.open = Meal.formatter.date(from: date + " " + open)
-            if let duration = json.duration ?? json.name.guessedDuration {
+            if let duration = json.duration {
                 close = self.open?.addingTimeInterval(TimeInterval(duration * 60))
             } else {
                 close = nil
@@ -59,32 +59,7 @@ extension Meal {
 }
 
 private extension String {
-    
-    var dateInternalId: Int64 {
-        return Int64(filter { $0 != "-" })!
-    }
-    
-    var guessedOpen: String? {
-        switch self {
-        case "Desjejum":
-            return "06:30:00"
-        case "Almoço":
-            return "11:00:00"
-        case "Jantar":
-            return "17:00:00"
-        default:
-            return nil
-        }
-    }
-    
-    var guessedDuration: Int? {
-        switch self {
-        case "Desjejum":
-            return 90
-        case "Almoço", "Jantar":
-            return 150
-        default:
-            return nil
-        }
+    func dateInternalId(index: Int64) -> Int64 {
+        return Int64(filter { $0 != "-" })! * 100 + index
     }
 }
