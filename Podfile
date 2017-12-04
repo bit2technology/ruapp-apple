@@ -6,6 +6,7 @@ target 'RUapp-iOS' do
 end
 
 target 'RUappShared-iOS' do
+    pod 'Bit2Common'
 end
 
 target 'RUappSharedTests-iOS' do

@@ -137,16 +137,16 @@ class DishCell: UITableViewCell {
 
 class OtherOperation: Operation {
     
-//    let op = UpdateMenuOperation(restaurantId: 1)
+    let op = UpdateMenuOperation(restaurantId: 1)
     
     override init() {
         super.init()
-//        addDependency(op)
+        addDependency(op)
         OperationQueue.main.addOperation(self)
     }
     
     override func main() {
-//        try! print(op.parse())
+        try! print(op.parse())
         print(Meal.next)
     }
 }

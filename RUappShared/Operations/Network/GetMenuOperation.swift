@@ -6,6 +6,8 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import Bit2Common
+
 class GetMenuOperation: URLSessionDataTaskOperation {
     
     init(restaurantId: Int64) {

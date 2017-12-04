@@ -6,17 +6,18 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import Bit2Common
 import CoreData
 
 public class UpdateMenuOperation: CoreDataOperation {
     
     private let getMenuOp: GetMenuOperation
     
-    override var dependenciesToAdd: [Operation] {
+    override public var dependenciesToAdd: [Operation] {
         return [getMenuOp]
     }
     
-    override func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID]? {
+    override public func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID] {
         let meals = try getMenuOp.parse().map { (menu) -> [Meal] in
             var dayMeals = [Meal]()
             for (idx, meal) in menu.meals.enumerated() {
@@ -29,7 +30,7 @@ public class UpdateMenuOperation: CoreDataOperation {
         }
         
         guard !isCancelled else {
-            return nil
+            return []
         }
         
         try context.save()
@@ -37,13 +38,13 @@ public class UpdateMenuOperation: CoreDataOperation {
         return meals.flatMap { $0.map { $0.objectID } }
     }
     
-    init(restaurantId: Int64) {
+    public init(restaurantId: Int64) {
         getMenuOp = GetMenuOperation(restaurantId: restaurantId)
         super.init()
     }
     
     public func parse() throws -> [Meal] {
-        let context = PersistentContainer.shared.viewContext
+        let context = CoreDataContainer.shared.viewContext
         return try value().map { context.object(with: $0) as! Meal }
     }
 }

@@ -37,12 +37,10 @@
 		4B1BF8851FB6446C00956CF8 /* GetMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8841FB6446C00956CF8 /* GetMenuOperation.swift */; };
 		4B1BF8871FB8DF9300956CF8 /* UpdateMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */; };
 		4B1BF8891FB8E12B00956CF8 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8881FB8E12B00956CF8 /* Meal.swift */; };
-		4B1BF9A91FAA07BD0034F55D /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF9A81FAA07BD0034F55D /* AsyncOperation.swift */; };
-		4B1BF9AB1FAA094C0034F55D /* URLSessionDataTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF9AA1FAA094C0034F55D /* URLSessionDataTaskOperation.swift */; };
 		4B2BB5C31FB9D84300020120 /* MealHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2BB5C21FB9D84300020120 /* MealHeader.xib */; };
 		4B2BB5C51FB9DAC800020120 /* MealFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2BB5C41FB9DAC800020120 /* MealFooter.xib */; };
 		4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D91071F76AEAC00F3B5AC /* JSON.swift */; };
-		4BA7C2701F6F31F200DF9F75 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */; };
+		4B98C14B1FCF193E008F7CA3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B98C14A1FCF193E008F7CA3 /* Configuration.swift */; };
 		4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */; };
 		4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA7B721F6F3D2E008B34F4 /* Campus.swift */; };
 		4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */; };
@@ -58,7 +56,6 @@
 		4BF241321F708F6700656BCD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF241301F708F6700656BCD /* Helpers.swift */; };
 		4BFBE0931FB233C30072287A /* GetInstitutionListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE0921FB233C30072287A /* GetInstitutionListOperation.swift */; };
 		4BFBE0951FB25A580072287A /* GetInstitutionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE0941FB25A580072287A /* GetInstitutionOperation.swift */; };
-		4BFBE09C1FB266D70072287A /* CoreDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE09B1FB266D70072287A /* CoreDataOperation.swift */; };
 		4BFBE09E1FB27E710072287A /* UpdateInstitutionListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */; };
 		5C98B77B61C0B611DE3050B5 /* Pods_RUapp_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED592839FAE75B205E83006 /* Pods_RUapp_iOS.framework */; };
 		EA364015CE31BDC4DF781587 /* Pods_RUappSharedTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC1CDFF065DEC2ECE6BABB1 /* Pods_RUappSharedTests_iOS.framework */; };
@@ -132,12 +129,10 @@
 		4B1BF8841FB6446C00956CF8 /* GetMenuOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMenuOperation.swift; sourceTree = "<group>"; };
 		4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMenuOperation.swift; sourceTree = "<group>"; };
 		4B1BF8881FB8E12B00956CF8 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
-		4B1BF9A81FAA07BD0034F55D /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
-		4B1BF9AA1FAA094C0034F55D /* URLSessionDataTaskOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskOperation.swift; sourceTree = "<group>"; };
 		4B2BB5C21FB9D84300020120 /* MealHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealHeader.xib; sourceTree = "<group>"; };
 		4B2BB5C41FB9DAC800020120 /* MealFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealFooter.xib; sourceTree = "<group>"; };
 		4B5D91071F76AEAC00F3B5AC /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
+		4B98C14A1FCF193E008F7CA3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4BAA7B721F6F3D2E008B34F4 /* Campus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionSelectorController.swift; sourceTree = "<group>"; };
@@ -155,7 +150,6 @@
 		4BF241301F708F6700656BCD /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4BFBE0921FB233C30072287A /* GetInstitutionListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitutionListOperation.swift; sourceTree = "<group>"; };
 		4BFBE0941FB25A580072287A /* GetInstitutionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitutionOperation.swift; sourceTree = "<group>"; };
-		4BFBE09B1FB266D70072287A /* CoreDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataOperation.swift; sourceTree = "<group>"; };
 		4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInstitutionListOperation.swift; sourceTree = "<group>"; };
 		6F0E4C459591D803C549883F /* Pods-RUappShared-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappShared-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUappShared-iOS/Pods-RUappShared-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		A4822FE028DD910FF19CCA01 /* Pods-RUapp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,11 +251,11 @@
 				4B0606001F69B778000ACE59 /* RUappShared.h */,
 				4BFBE0961FB25E1F0072287A /* Operations */,
 				4BFBE09F1FB27F760072287A /* Model */,
-				4BA7C26F1F6F31F200DF9F75 /* PersistentContainer.swift */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
 				4B0BC4771F6D7F6F00A13F61 /* Color.swift */,
 				4B0BC4791F6D891200A13F61 /* Font.swift */,
 				4B0BC47B1F6D8E7200A13F61 /* Fonts */,
+				4B98C14A1FCF193E008F7CA3 /* Configuration.swift */,
 			);
 			path = RUappShared;
 			sourceTree = "<group>";
@@ -306,7 +300,6 @@
 		4BFBE0961FB25E1F0072287A /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				4B1BF9A81FAA07BD0034F55D /* AsyncOperation.swift */,
 				4BFBE0991FB2668B0072287A /* Network */,
 				4BFBE09A1FB2669E0072287A /* Persistence */,
 			);
@@ -316,7 +309,6 @@
 		4BFBE0991FB2668B0072287A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				4B1BF9AA1FAA094C0034F55D /* URLSessionDataTaskOperation.swift */,
 				4BFBE0921FB233C30072287A /* GetInstitutionListOperation.swift */,
 				4BFBE0941FB25A580072287A /* GetInstitutionOperation.swift */,
 				4BC396FF1FB34E2800E2A930 /* RegisterStudentOperation.swift */,
@@ -329,7 +321,6 @@
 		4BFBE09A1FB2669E0072287A /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				4BFBE09B1FB266D70072287A /* CoreDataOperation.swift */,
 				4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */,
 				4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */,
 				4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */,
@@ -555,13 +546,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Bit2Common/Bit2Common.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bit2Common.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -590,13 +579,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Bit2Common/Bit2Common.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bit2Common.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -693,20 +680,17 @@
 				4BC396FE1FB34C5100E2A930 /* SaveStudentOperation.swift in Sources */,
 				4BFBE0931FB233C30072287A /* GetInstitutionListOperation.swift in Sources */,
 				4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */,
-				4B1BF9A91FAA07BD0034F55D /* AsyncOperation.swift in Sources */,
 				4B1BF8891FB8E12B00956CF8 /* Meal.swift in Sources */,
 				4BFBE0951FB25A580072287A /* GetInstitutionOperation.swift in Sources */,
 				4B0BC47A1F6D891200A13F61 /* Font.swift in Sources */,
 				4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */,
 				4BC397001FB34E2800E2A930 /* RegisterStudentOperation.swift in Sources */,
 				4B0BC4781F6D7F6F00A13F61 /* Color.swift in Sources */,
-				4BA7C2701F6F31F200DF9F75 /* PersistentContainer.swift in Sources */,
+				4B98C14B1FCF193E008F7CA3 /* Configuration.swift in Sources */,
 				4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */,
 				4B1BF8851FB6446C00956CF8 /* GetMenuOperation.swift in Sources */,
 				4B1BF8871FB8DF9300956CF8 /* UpdateMenuOperation.swift in Sources */,
-				4B1BF9AB1FAA094C0034F55D /* URLSessionDataTaskOperation.swift in Sources */,
 				4BFBE09E1FB27E710072287A /* UpdateInstitutionListOperation.swift in Sources */,
-				4BFBE09C1FB266D70072287A /* CoreDataOperation.swift in Sources */,
 				4BC397021FB34FA400E2A930 /* EditStudentOperation.swift in Sources */,
 				4B0CFB991F6B36860069C42B /* Institution.swift in Sources */,
 				4B0CFB971F6B2A8F0069C42B /* URLRoute.swift in Sources */,

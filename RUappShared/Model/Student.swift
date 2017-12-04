@@ -6,6 +6,7 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import Bit2Common
 import CoreData
 
 extension Student {
@@ -31,7 +32,7 @@ extension Student {
     
     public static let managedObjectContext: NSManagedObjectContext = {
         let ctx = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        ctx.parent = PersistentContainer.shared.viewContext
+        ctx.parent = CoreDataContainer.shared.viewContext
         return ctx
     }()
     

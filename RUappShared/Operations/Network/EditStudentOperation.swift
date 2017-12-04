@@ -6,6 +6,8 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import Bit2Common
+
 class EditStudentOperation: URLSessionDataTaskOperation {
     
     init(studentId: Int64, values: JSON.Student) {

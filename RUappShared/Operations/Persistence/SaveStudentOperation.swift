@@ -6,6 +6,7 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import Bit2Common
 import CoreData
 
 /// Register or edit `Student` in API and saves it on disk.
@@ -21,7 +22,7 @@ public class SaveStudentOperation: CoreDataOperation {
         guard let values = values, student.isValid else {
             kind = .none
             super.init()
-            result = (nil, SaveStudentOperationError.invalidStudent)
+            finish(error: SaveStudentOperationError.invalidStudent)
             return
         }
         
@@ -41,7 +42,7 @@ public class SaveStudentOperation: CoreDataOperation {
         super.init()
     }
     
-    override var dependenciesToAdd: [Operation] {
+    override public var dependenciesToAdd: [Operation] {
         switch kind {
         case .edit(let editOp, let instOp):
             if let instOp = instOp {
@@ -60,11 +61,11 @@ public class SaveStudentOperation: CoreDataOperation {
         return Student.managedObjectContext
     }
     
-    override func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID]? {
+    override public func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID] {
         let student = context.object(with: Student.current.objectID) as! Student
         switch kind {
         case .none:
-            return nil
+            return []
         case .edit(let editOp, let instOp):
             guard try editOp.parse() else {
                 throw SaveStudentOperationError.editUnsuccessful
@@ -77,7 +78,7 @@ public class SaveStudentOperation: CoreDataOperation {
         }
         
         guard !isCancelled else {
-            return nil
+            return []
         }
         
         // Persist and return

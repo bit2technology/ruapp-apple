@@ -1,42 +1,33 @@
 //
-//  AsyncOperation.swift
-//  RUappShared
+//  AdvancedOperation.swift
+//  Bit2Common
 //
-//  Created by Igor Camilo on 01/11/17.
+//  Created by Igor Camilo on 27/11/17.
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-/// Base class for asynchronous operations.
-public class AsyncOperation<Value>: Operation {
+/// Base class for operations, with support for asynchronous activity.
+open class AdvancedOperation<Value>: Operation {
     
-    /// Stores the result and an possible error. Retrieve value from `value()` method.
-    var result: (value: Value?, error: Error?) {
-        didSet {
-            finishExecution()
-        }
-    }
-    
-    public override var isExecuting: Bool {
+    open override var isExecuting: Bool {
         return state == .executing
     }
     
-    public override var isFinished: Bool {
+    open override var isFinished: Bool {
         return state == .finished
     }
     
-    public override var isAsynchronous: Bool {
-        return true
-    }
-    
     /// Default queue.
-    var queue: OperationQueue {
+    open var queue: OperationQueue {
         return .async
     }
     
     /// Dependencies to be added on `init()`.
-    var dependenciesToAdd: [Operation] {
+    open var dependenciesToAdd: [Operation] {
         return []
     }
+    
+    private var result: (value: Value?, error: Error?)
     
     /// Track the state of this opereation.
     private var state = State.initialized
@@ -48,7 +39,7 @@ public class AsyncOperation<Value>: Operation {
         queue.addOperation(self)
     }
     
-    public override func start() {
+    open override func start() {
         guard !isCancelled else {
             return
         }
@@ -66,28 +57,36 @@ public class AsyncOperation<Value>: Operation {
         main()
     }
     
-    public override func cancel() {
+    open override func cancel() {
         super.cancel()
-        result = (nil, AsyncOperationError.cancelled)
+        finish(error: AdvancedOperationError.cancelled)
+    }
+    
+    open func finish(value: Value) {
+        finish(value: value, error: nil)
+    }
+    
+    open func finish(error: Error) {
+        finish(value: nil, error: error)
     }
     
     /// Retrieves value from `result`.
     ///
     /// - Returns: Value
     /// - Throws: `AsyncOperationError` and others
-    func value() throws -> Value {
+    open func value() throws -> Value {
         assert(isFinished, "Operation must be finished to get value")
         if let error = result.error {
             throw error
         }
         guard let value = result.value else {
-            throw AsyncOperationError.noValue
+            throw AdvancedOperationError.noValue
         }
         return value
     }
     
-    /// Called when `result` is set. This sends the appropriate KVO notifications.
-    private func finishExecution() {
+    private func finish(value: Value?, error: Error?) {
+        result = (value, error)
         // Update state and send KVO notifications
         let affectedKeyPaths = ["isExecuting", "isFinished"]
         affectedKeyPaths.forEach {
@@ -106,7 +105,7 @@ public class AsyncOperation<Value>: Operation {
     }
 }
 
-public enum AsyncOperationError: Error {
+public enum AdvancedOperationError: Error {
     case cancelled
     case noValue
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import Bit2Common
 import CoreData
 
 /// Downloads `Institution` List and adds to `Student.managedObjectContext`.
@@ -15,7 +16,7 @@ public class UpdateInstitutionListOperation: CoreDataOperation {
     
     private let instListOp = GetInstitutionListOperation()
     
-    override var dependenciesToAdd: [Operation] {
+    override public var dependenciesToAdd: [Operation] {
         return [instListOp]
     }
     
@@ -25,13 +26,13 @@ public class UpdateInstitutionListOperation: CoreDataOperation {
         return ctx
     }
     
-    override func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID]? {
+    override public func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID] {
         let list: [Institution] = try instListOp.parse().map {
             try Institution.createOrUpdate(json: $0, context: context)
         }
         
         guard !isCancelled else {
-            return nil
+            return []
         }
         
         try context.save()

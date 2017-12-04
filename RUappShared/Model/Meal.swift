@@ -6,6 +6,7 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import Bit2Common
 import CoreData
 
 extension Meal {
@@ -15,7 +16,7 @@ extension Meal {
         fetchRequest.predicate = NSPredicate(format: "close > %@", Date() as NSDate)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "close", ascending: true)]
         fetchRequest.fetchLimit = 1
-        return (try? PersistentContainer.shared.viewContext.fetch(fetchRequest))?.first
+        return (try? CoreDataContainer.shared.viewContext.fetch(fetchRequest))?.first
     }
     
     private static let formatter: DateFormatter = {

@@ -1,12 +1,12 @@
 //
 //  URLSessionDataTaskOperation.swift
-//  RUappShared
+//  Bit2Common
 //
-//  Created by Igor Camilo on 01/11/17.
+//  Created by Igor Camilo on 29/11/17.
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-public class URLSessionDataTaskOperation: AsyncOperation<Data> {
+open class URLSessionDataTaskOperation: AdvancedOperation<Data> {
     
     /// Count how many `URLSessionDataTaskOperation`s are executing.
     public static var count = 0 {
@@ -16,29 +16,43 @@ public class URLSessionDataTaskOperation: AsyncOperation<Data> {
     }
     
     /// Execute closure every time `count` changes.
-    public static var countObserver: ((_ count: Int) -> Void)?
+    public static var countObserver: ((_ count: Int) -> Void)? {
+        didSet {
+            countObserver?(count)
+        }
+    }
     
     private let request: URLRequest
     private var task: URLSessionDataTask?
     
-    init(request: URLRequest) {
+    public init(request: URLRequest) {
         self.request = request
         super.init()
     }
     
-    public override func cancel() {
+    open override func cancel() {
         super.cancel()
         task?.cancel()
     }
     
-    public override func main() {
+    open override func main() {
         URLSessionDataTaskOperation.count += 1
         task = URLSession.shared.dataTask(with: request) {
             if !self.isCancelled {
-                self.result = ($0, $2)
+                if let error = $2 {
+                    self.finish(error: error)
+                } else if let data = $0 {
+                    self.finish(value: data)
+                } else {
+                    self.finish(error: URLSessionDataTaskOperationError.noData)
+                }
             }
             URLSessionDataTaskOperation.count -= 1
         }
         task!.resume()
     }
+}
+
+public enum URLSessionDataTaskOperationError: Error {
+    case noData
 }

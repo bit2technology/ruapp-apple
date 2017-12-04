@@ -1,3 +1,23 @@
-PODFILE CHECKSUM: 7211636d659c13a798150dbae52b33527fb7d425
+PODS:
+  - Bit2Common (0.1.0):
+    - Bit2Common/AdvancedOperation (= 0.1.0)
+    - Bit2Common/CoreDataContainer (= 0.1.0)
+    - Bit2Common/CoreDataOperation (= 0.1.0)
+    - Bit2Common/URLSessionDataTaskOperation (= 0.1.0)
+  - Bit2Common/AdvancedOperation (0.1.0)
+  - Bit2Common/CoreDataContainer (0.1.0)
+  - Bit2Common/CoreDataOperation (0.1.0):
+    - Bit2Common/AdvancedOperation
+    - Bit2Common/CoreDataContainer
+  - Bit2Common/URLSessionDataTaskOperation (0.1.0):
+    - Bit2Common/AdvancedOperation
+
+DEPENDENCIES:
+  - Bit2Common
+
+SPEC CHECKSUMS:
+  Bit2Common: 4f578d9cb61bf2a2a61f85b4fe36779a597bf657
+
+PODFILE CHECKSUM: 7af6e1f6e18f1a75dd295e6b5389529d8afb7797
 
 COCOAPODS: 1.4.0.beta.2
