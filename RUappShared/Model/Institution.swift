@@ -6,36 +6,39 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import Bit2Common
 import CoreData
 
-extension Institution {
+extension JSON.Institution: AdvancedManagedObjectRawTypeProtocol {
+    public typealias IDType = Int64
+    public var advancedID: Int64 {
+        return Int64(id)!
+    }
+}
+
+extension Institution: AdvancedManagedObjectProtocol {
     
-    static func new(with context: NSManagedObjectContext) -> Institution {
-        return NSEntityDescription.insertNewObject(forEntityName: "Institution", into: context) as! Institution
+    public typealias IDType = Int64
+    public typealias RawType = JSON.Institution
+    
+    public static var entityName: String {
+        return "Institution"
     }
     
-    static func createOrUpdate(json: JSON.Institution, context: NSManagedObjectContext) throws -> Institution {
-        let fetchRequest: NSFetchRequest<Institution> = self.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id = %lld", Int64(json.id)!)
-        fetchRequest.fetchLimit = 1
-        if let institution = (try context.fetch(fetchRequest)).first {
-            return try institution.update(from: json)
-        } else {
-            return try self.new(with: context).update(from: json)
-        }
+    public static func uniquePredicate(withID id: Int64) -> NSPredicate {
+        return NSPredicate(format: "id = %lld", id)
     }
     
-    @discardableResult func update(from json: JSON.Institution) throws -> Self {
-        id = Int64(json.id)!
-        name = json.name
-        townName = json.townName
-        stateName = json.stateName
-        stateInitials = json.stateInitials
-        if let campi = try json.campi?.map { try Campus.createOrUpdate(json: $0, context: managedObjectContext!) } {
+    public func update(with raw: JSON.Institution) throws {
+        id = raw.advancedID
+        name = raw.name
+        townName = raw.townName
+        stateName = raw.stateName
+        stateInitials = raw.stateInitials
+        if let campi = try raw.campi?.map { try Campus.createOrUpdate(with: $0, context: managedObjectContext!) } {
             self.campi = NSSet(array: campi)
         } else {
             self.campi = nil
         }
-        return self
     }
 }

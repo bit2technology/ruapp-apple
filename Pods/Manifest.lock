@@ -1,22 +1,22 @@
 PODS:
-  - Bit2Common (0.1.0):
-    - Bit2Common/AdvancedOperation (= 0.1.0)
-    - Bit2Common/CoreDataContainer (= 0.1.0)
-    - Bit2Common/CoreDataOperation (= 0.1.0)
-    - Bit2Common/URLSessionDataTaskOperation (= 0.1.0)
-  - Bit2Common/AdvancedOperation (0.1.0)
-  - Bit2Common/CoreDataContainer (0.1.0)
-  - Bit2Common/CoreDataOperation (0.1.0):
-    - Bit2Common/AdvancedOperation
-    - Bit2Common/CoreDataContainer
-  - Bit2Common/URLSessionDataTaskOperation (0.1.0):
-    - Bit2Common/AdvancedOperation
+  - Bit2Common (0.2.0):
+    - Bit2Common/AdvancedOperation (= 0.2.0)
+    - Bit2Common/CoreData (= 0.2.0)
+    - Bit2Common/CoreDataOperation (= 0.2.0)
+    - Bit2Common/URLSessionDataTaskOperation (= 0.2.0)
+  - Bit2Common/AdvancedOperation (0.2.0)
+  - Bit2Common/CoreData (0.2.0)
+  - Bit2Common/CoreDataOperation (0.2.0):
+    - Bit2Common/AdvancedOperation (~> 0.2.0)
+    - Bit2Common/CoreData (~> 0.2.0)
+  - Bit2Common/URLSessionDataTaskOperation (0.2.0):
+    - Bit2Common/AdvancedOperation (~> 0.2.0)
 
 DEPENDENCIES:
   - Bit2Common
 
 SPEC CHECKSUMS:
-  Bit2Common: 4f578d9cb61bf2a2a61f85b4fe36779a597bf657
+  Bit2Common: af0131437d0bee7b94abe379e78d4a88f549dde8
 
 PODFILE CHECKSUM: 7af6e1f6e18f1a75dd295e6b5389529d8afb7797
 

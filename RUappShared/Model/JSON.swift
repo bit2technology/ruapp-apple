@@ -7,13 +7,13 @@
 //
 
 /// Raw API request and response data.
-enum JSON {
+public enum JSON {
     
-    struct Menu: Decodable {
+    public struct Menu: Decodable {
         var date: String
         var meals: [Meal]
         
-        struct Meal: Decodable {
+        public struct Meal: Decodable {
             var name: String
             var id: String?
             var meta: String
@@ -36,7 +36,7 @@ enum JSON {
         }
     }
     
-    struct Institution: Decodable {
+    public struct Institution: Decodable {
         var id: String
         var name: String
         var townName: String?
@@ -53,7 +53,7 @@ enum JSON {
             case campi
         }
         
-        struct Campus: Decodable {
+        public struct Campus: Decodable {
             var id: String
             var name: String
             var townName: String
@@ -70,7 +70,7 @@ enum JSON {
                 case restaurants
             }
             
-            struct Restaurant: Decodable {
+            public struct Restaurant: Decodable {
                 var id: String
                 var name: String
                 var latitude: String

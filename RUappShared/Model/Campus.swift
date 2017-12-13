@@ -6,32 +6,36 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import Bit2Common
 import CoreData
 
-extension Campus {
+extension JSON.Institution.Campus: AdvancedManagedObjectRawTypeProtocol {
+    public typealias IDType = Int64
+    public var advancedID: Int64 {
+        return Int64(id)!
+    }
+}
+
+extension Campus: AdvancedManagedObjectProtocol {
     
-    static func new(with context: NSManagedObjectContext) -> Campus {
-        return NSEntityDescription.insertNewObject(forEntityName: "Campus", into: context) as! Campus
+    public typealias IDType = Int64
+    public typealias RawType = JSON.Institution.Campus
+    
+    public static var entityName: String {
+        return "Campus"
     }
     
-    static func createOrUpdate(json: JSON.Institution.Campus, context: NSManagedObjectContext) throws -> Campus {
-        let fetchRequest: NSFetchRequest<Campus> = self.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id = %lld", Int64(json.id)!)
-        fetchRequest.fetchLimit = 1
-        if let campus = (try context.fetch(fetchRequest)).first {
-            return try campus.update(from: json)
-        } else {
-            return try self.new(with: context).update(from: json)
-        }
+    public static func uniquePredicate(withID id: Int64) -> NSPredicate {
+        return NSPredicate(format: "id = %lld", id)
     }
     
-    @discardableResult func update(from json: JSON.Institution.Campus) throws -> Self {
-        id = Int64(json.id)!
-        name = json.name
-        townName = json.townName
-        stateName = json.stateName
-        stateInitials = json.stateInitials
-        cafeterias = NSSet(array: try json.restaurants.map { try Cafeteria.createOrUpdate(json: $0, context: managedObjectContext!) })
-        return self
+    public func update(with raw: JSON.Institution.Campus) throws {
+        id = Int64(raw.id)!
+        name = raw.name
+        townName = raw.townName
+        stateName = raw.stateName
+        stateInitials = raw.stateInitials
+        cafeterias = NSSet(array: try raw.restaurants.map { try Cafeteria.createOrUpdate(with: $0, context: managedObjectContext!) })
+
     }
 }

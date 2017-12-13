@@ -71,7 +71,7 @@ public class SaveStudentOperation: CoreDataOperation {
                 throw SaveStudentOperationError.editUnsuccessful
             }
             if let institution = try instOp?.parse() {
-                try student.institution?.update(from: institution)
+                try student.institution?.update(with: institution)
             }
         case .register(let registerOp):
             student.id = try registerOp.parse().studentId

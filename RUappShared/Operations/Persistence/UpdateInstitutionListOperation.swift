@@ -28,7 +28,7 @@ public class UpdateInstitutionListOperation: CoreDataOperation {
     
     override public func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID] {
         let list: [Institution] = try instListOp.parse().map {
-            try Institution.createOrUpdate(json: $0, context: context)
+            try Institution.createOrUpdate(with: $0, context: context)
         }
         
         guard !isCancelled else {

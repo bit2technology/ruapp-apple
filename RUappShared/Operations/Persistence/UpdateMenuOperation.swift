@@ -18,16 +18,13 @@ public class UpdateMenuOperation: CoreDataOperation {
     }
     
     override public func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID] {
-        let meals = try getMenuOp.parse().map { (menu) -> [Meal] in
-            var dayMeals = [Meal]()
-            for (idx, meal) in menu.meals.enumerated() {
-                guard meal.meta != "-" else {
-                    continue
-                }
-                try dayMeals.append(Meal.createOrUpdate(json: meal, date: menu.date, index: Int64(idx), context: context))
-            }
-            return dayMeals
+        
+        // Get JSON and transform in [[Meal.ParsedRaw]], already filtering empty Meals.
+        let parsedMeals = try getMenuOp.parse().map { (menu) -> [Meal.ParsedRaw] in
+            return menu.meals.flatMap { Meal.ParsedRaw(from: $0, date: menu.date) }
         }
+        // Get [[Meal.ParsedRaw]] and transform in [Meal], alread adding them to the context.
+        let mealIDs = try parsedMeals.flatMap { try $0.map { try Meal.createOrUpdate(with: $0, context: context).objectID } }
         
         guard !isCancelled else {
             return []
@@ -35,7 +32,7 @@ public class UpdateMenuOperation: CoreDataOperation {
         
         try context.save()
         try context.parent!.save()
-        return meals.flatMap { $0.map { $0.objectID } }
+        return mealIDs
     }
     
     public init(restaurantId: Int64) {

@@ -30,11 +30,7 @@ extension Student {
         return result?.first ?? Student.new(with: managedObjectContext)
     }()
     
-    public static let managedObjectContext: NSManagedObjectContext = {
-        let ctx = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        ctx.parent = CoreDataContainer.shared.viewContext
-        return ctx
-    }()
+    public static let managedObjectContext = CoreDataContainer.shared.newBackgroundContext()
     
     public func saveOperation() -> SaveStudentOperation {
         let json: JSON.Student?

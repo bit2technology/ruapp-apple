@@ -6,31 +6,34 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import Bit2Common
 import CoreData
 
-extension Cafeteria {
+extension JSON.Institution.Campus.Restaurant: AdvancedManagedObjectRawTypeProtocol {
+    public typealias IDType = Int64
+    public var advancedID: Int64 {
+        return Int64(id)!
+    }
+}
+
+extension Cafeteria: AdvancedManagedObjectProtocol {
     
-    static func new(with context: NSManagedObjectContext) -> Cafeteria {
-        return NSEntityDescription.insertNewObject(forEntityName: "Cafeteria", into: context) as! Cafeteria
+    public typealias IDType = Int64
+    public typealias RawType = JSON.Institution.Campus.Restaurant
+    
+    public static var entityName: String {
+        return "Cafeteria"
     }
     
-    static func createOrUpdate(json: JSON.Institution.Campus.Restaurant, context: NSManagedObjectContext) throws -> Cafeteria {
-        let fetchRequest: NSFetchRequest<Cafeteria> = self.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id = %lld", Int64(json.id)!)
-        fetchRequest.fetchLimit = 1
-        if let cafeteria = (try context.fetch(fetchRequest)).first {
-            return cafeteria.update(from: json)
-        } else {
-            return self.new(with: context).update(from: json)
-        }
+    public static func uniquePredicate(withID id: Int64) -> NSPredicate {
+        return NSPredicate(format: "id = %lld", id)
     }
     
-    @discardableResult func update(from json: JSON.Institution.Campus.Restaurant) -> Self {
-        id = Int64(json.id)!
-        name = json.name
-        latitude = Double(json.latitude)!
-        longitude = Double(json.longitude)!
-        capacity = Int64(json.capacity)!
-        return self
+    public func update(with raw: JSON.Institution.Campus.Restaurant) throws {
+        id = raw.advancedID
+        name = raw.name
+        latitude = Double(raw.latitude)!
+        longitude = Double(raw.longitude)!
+        capacity = Int64(raw.capacity)!
     }
 }
