@@ -19,11 +19,11 @@ extension Meal: AdvancedManagedObjectProtocol {
     }
     
     public static func uniquePredicate(withID id: Int64) -> NSPredicate {
-        return NSPredicate(format: "internald = %lld", id)
+        return NSPredicate(format: "id = %lld", id)
     }
     
     public func update(with raw: ParsedRaw) throws {
-        internalId = raw.advancedID
+        id = raw.advancedID
         name = raw.name
         meta = raw.meta
         open = raw.open

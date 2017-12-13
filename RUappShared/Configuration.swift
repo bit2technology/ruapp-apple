@@ -9,7 +9,7 @@
 import Bit2Common
 
 public func configure(app: UIApplication?) {
-    CoreDataContainer.configuration = (Bundle(for: Student.self), "group.technology.bit2.ruapp")
+    CoreDataContainer.options = CoreDataContainer.Options(automaticMigration: true, bundle: Bundle(for: Student.self), groupID: "group.technology.bit2.ruapp")
     URLSessionDataTaskOperation.countObserver = { [weak app] (count) in
         DispatchQueue.main.async {
             app?.isNetworkActivityIndicatorVisible = count > 0
