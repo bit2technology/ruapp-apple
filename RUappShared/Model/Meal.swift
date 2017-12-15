@@ -28,6 +28,11 @@ extension Meal: AdvancedManagedObjectProtocol {
         meta = raw.meta
         open = raw.open
         close = raw.close
+        if dishes!.count > raw.dishes.count {
+            let dishesToDelete = (dishes as! Set<Dish>).filter { $0.order < raw.dishes.count }
+            dishesToDelete.forEach { managedObjectContext!.delete($0) }
+        }
+        dishes = NSSet(array: try raw.dishes.map { try Dish.createOrUpdate(with: $0, context: managedObjectContext!) })
     }
     
     public struct ParsedRaw: AdvancedManagedObjectRawTypeProtocol {
@@ -37,18 +42,21 @@ extension Meal: AdvancedManagedObjectProtocol {
         var meta: String
         var open: Date
         var close: Date
+        var dishes: [Dish.ParsedRaw]
         
-        init?(from meal: JSON.Menu.Meal, date: String) {
+        init?(from json: JSON.Menu.Meal, date: String) {
             
-            guard let mealId = meal.id, let mealOpen = meal.open, let mealDuration = meal.duration else {
+            guard let mealId = json.id, let mealOpen = json.open, let mealDuration = json.duration, let dishes = json.menu else {
                 return nil
             }
             
-            advancedID = Int64(mealId)!
-            name = meal.name
-            meta = meal.meta
+            let advID = Int64(mealId)!
+            advancedID = advID
+            name = json.name
+            meta = json.meta
             open = Meal.formatter.date(from: date + " " + mealOpen)!
             close = open.addingTimeInterval(TimeInterval(mealDuration))
+            self.dishes = dishes.enumerated().map { Dish.ParsedRaw(from: $0.element, order: Int64($0.offset), mealId: advID) }
         }
     }
 }

@@ -42,6 +42,7 @@
 		4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D91071F76AEAC00F3B5AC /* JSON.swift */; };
 		4B98C14B1FCF193E008F7CA3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B98C14A1FCF193E008F7CA3 /* Configuration.swift */; };
 		4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */; };
+		4BAA16E51FE1FA990012323A /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA16E41FE1FA990012323A /* Dish.swift */; };
 		4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA7B721F6F3D2E008B34F4 /* Campus.swift */; };
 		4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */; };
 		4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */; };
@@ -135,6 +136,8 @@
 		4B98C14A1FCF193E008F7CA3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4BAA16E31FE1B61C0012323A /* Un.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Un.xcdatamodel; sourceTree = "<group>"; };
+		4BAA16E41FE1FA990012323A /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		4BAA16E61FE1FB000012323A /* Deux.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Deux.xcdatamodel; sourceTree = "<group>"; };
 		4BAA7B721F6F3D2E008B34F4 /* Campus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionSelectorController.swift; sourceTree = "<group>"; };
 		4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Custom.swift"; sourceTree = "<group>"; };
@@ -228,11 +231,11 @@
 		4B0605E81F69B715000ACE59 /* RUapp-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4B0BC4751F6D7F2100A13F61 /* MenuController.swift */,
+				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
 				4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */,
-				4B0BC4751F6D7F2100A13F61 /* MenuController.swift */,
-				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0605E91F69B715000ACE59 /* AppDelegate.swift */,
 				4BC2F5B01F6EE53800F55964 /* RUappController.swift */,
 				4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */,
@@ -335,11 +338,12 @@
 				4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */,
 				4B5D91071F76AEAC00F3B5AC /* JSON.swift */,
 				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
-				4B0CFB981F6B36860069C42B /* Institution.swift */,
-				4BAA7B721F6F3D2E008B34F4 /* Campus.swift */,
 				4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */,
-				4B0CFB4C1F69E9360069C42B /* Student.swift */,
+				4BAA7B721F6F3D2E008B34F4 /* Campus.swift */,
+				4BAA16E41FE1FA990012323A /* Dish.swift */,
+				4B0CFB981F6B36860069C42B /* Institution.swift */,
 				4B1BF8881FB8E12B00956CF8 /* Meal.swift */,
+				4B0CFB4C1F69E9360069C42B /* Student.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -679,6 +683,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC396FE1FB34C5100E2A930 /* SaveStudentOperation.swift in Sources */,
+				4BAA16E51FE1FA990012323A /* Dish.swift in Sources */,
 				4BFBE0931FB233C30072287A /* GetInstitutionListOperation.swift in Sources */,
 				4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */,
 				4B1BF8891FB8E12B00956CF8 /* Meal.swift in Sources */,
@@ -996,10 +1001,11 @@
 		4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				4BAA16E61FE1FB000012323A /* Deux.xcdatamodel */,
 				4BAA16E31FE1B61C0012323A /* Un.xcdatamodel */,
 				4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */,
 			);
-			currentVersion = 4BAA16E31FE1B61C0012323A /* Un.xcdatamodel */;
+			currentVersion = 4BAA16E61FE1FB000012323A /* Deux.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

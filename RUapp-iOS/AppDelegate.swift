@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navBar = UINavigationBar.appearance()
         navBar.barStyle = .black
         navBar.barTintColor = .appDarkBlue
-        navBar.isTranslucent = false
+//        navBar.isTranslucent = false
 //        navBar.titleTextAttributes = [.font: UIFont.appNavTitle]
         if #available(iOS 11.0, *) {
 //            navBar.largeTitleTextAttributes = [.font: UIFont.appLargeNavTitle]
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 item.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
             }
         }
-        tabBar.isTranslucent = false
+//        tabBar.isTranslucent = false
     }
 }
 
