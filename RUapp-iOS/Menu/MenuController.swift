@@ -65,8 +65,39 @@ class MenuController: UITableViewController {
         didSet {
             fetchedResultsController.delegate = self
             try! fetchedResultsController.performFetch()
+            
+            // Fill sectionMetadata
+            let gregorianCalendar = Calendar(identifier: .gregorian)
+            sectionMetadata = fetchedResultsController.sections?.map {
+                
+                var metadata: (title: String?, backgroundColor: UIColor) = (nil, .darkGray)
+                
+                guard let meal = ($0.objects?.first as? Dish)?.meal else {
+                    return metadata
+                }
+                
+                metadata.title = meal.name?.localizedUppercase
+                
+                guard let openDate = meal.open else {
+                    return metadata
+                }
+                
+                switch gregorianCalendar.component(.hour, from: openDate) {
+                case 5..<10:
+                    metadata.backgroundColor = #colorLiteral(red: 0.9254901961, green: 0.5450980392, blue: 0.4156862745, alpha: 1)
+                case 10..<15:
+                    metadata.backgroundColor = #colorLiteral(red: 0.7882352941, green: 0.3058823529, blue: 0.3725490196, alpha: 1)
+                case 0..<5, 15..<24:
+                    metadata.backgroundColor = #colorLiteral(red: 0.4588235294, green: 0.2156862745, blue: 0.3803921569, alpha: 1)
+                default:
+                    break
+                }
+                return metadata
+            }
         }
     }
+    
+    private var sectionMetadata: [(title: String?, backgroundColor: UIColor)]?
     
     private func fetchedResultsControllerForCurrentTimeBounds() -> NSFetchedResultsController<Dish> {
         let req = Dish.request()
@@ -88,20 +119,36 @@ extension MenuController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MealHeader") as! MealHeader
-        header.nameLabel.text = (fetchedResultsController.sections?[section].objects?.first as? Dish)?.meal?.name?.localizedUppercase
+        let metadata = sectionMetadata?[section]
+        header.nameLabel.text = metadata?.title
+        header.tintColor = metadata?.backgroundColor
         header.applyLayout()
         return header
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 100
+        return 40
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MealFooter")
+        footer?.tintColor = sectionMetadata?[section].backgroundColor
+        return footer
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return 16
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DishCell", for: indexPath) as! DishCell
         let dish = fetchedResultsController.object(at: indexPath)
+        let metadata = sectionMetadata?[indexPath.section]
+        cell.bgView.backgroundColor = metadata?.backgroundColor
         cell.typeLabel.text = dish.type
+        cell.typeLabel.backgroundColor = metadata?.backgroundColor
         cell.nameLabel.text = dish.name ?? "Lorem ipsum dolor sit amet"
+        cell.nameLabel.backgroundColor = metadata?.backgroundColor
         cell.applyLayout()
         return cell
     }
@@ -109,9 +156,9 @@ extension MenuController {
     override func viewDidLoad() {
         super.viewDidLoad()
         timeBounds.today()
+        tableView.backgroundColor = .white
         tableView.register(UINib(nibName: "MealHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "MealHeader")
-        tableView.tableHeaderView!.tintColor = .appDarkBlue
-        navigationItem.rightBarButtonItem!.title = "Campus"
+        tableView.register(UINib(nibName: "MealFooter", bundle: nil), forHeaderFooterViewReuseIdentifier: "MealFooter")
     }
 }
 
@@ -147,35 +194,6 @@ extension MenuController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
-    }
-}
-
-class DishCell: UITableViewCell {
-    @IBOutlet fileprivate weak var typeLabel: UILabel!
-    @IBOutlet fileprivate weak var nameLabel: UILabel!
-    @IBOutlet fileprivate var accessibilityConstraints: [NSLayoutConstraint]!
-    
-    fileprivate func applyLayout() {
-        
-        typeLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        
-        if UIApplication.shared.preferredContentSizeCategory.isAccessibility {
-            
-        } else {
-            
-        }
-        
-        layoutIfNeeded()
-    }
-}
-
-class MealHeader: UITableViewHeaderFooterView {
-    @IBOutlet fileprivate weak var nameLabel: UILabel!
-    
-    fileprivate func applyLayout() {
-        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        layoutIfNeeded()
     }
 }
 
@@ -217,25 +235,6 @@ private struct TimeBounds {
         
         start = newStart
         finish = newFinish
-    }
-}
-
-private extension UIContentSizeCategory {
-    var isAccessibility: Bool {
-        if #available(iOS 11.0, *) {
-            return isAccessibilityCategory
-        } else {
-            switch self {
-            case .accessibilityMedium,
-                 .accessibilityLarge,
-                 .accessibilityExtraLarge,
-                 .accessibilityExtraExtraLarge,
-                 .accessibilityExtraExtraExtraLarge:
-                return true
-            default:
-                return false
-            }
-        }
     }
 }
 

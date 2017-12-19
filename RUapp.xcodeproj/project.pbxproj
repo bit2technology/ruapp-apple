@@ -40,6 +40,8 @@
 		4B2BB5C31FB9D84300020120 /* MealHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2BB5C21FB9D84300020120 /* MealHeader.xib */; };
 		4B2BB5C51FB9DAC800020120 /* MealFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2BB5C41FB9DAC800020120 /* MealFooter.xib */; };
 		4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D91071F76AEAC00F3B5AC /* JSON.swift */; };
+		4B656A281FE98243009A4160 /* DishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656A271FE98243009A4160 /* DishCell.swift */; };
+		4B656A2A1FE982A2009A4160 /* MealHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656A291FE982A2009A4160 /* MealHeader.swift */; };
 		4B98C14B1FCF193E008F7CA3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B98C14A1FCF193E008F7CA3 /* Configuration.swift */; };
 		4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */; };
 		4BAA16E51FE1FA990012323A /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA16E41FE1FA990012323A /* Dish.swift */; };
@@ -133,6 +135,8 @@
 		4B2BB5C21FB9D84300020120 /* MealHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealHeader.xib; sourceTree = "<group>"; };
 		4B2BB5C41FB9DAC800020120 /* MealFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealFooter.xib; sourceTree = "<group>"; };
 		4B5D91071F76AEAC00F3B5AC /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		4B656A271FE98243009A4160 /* DishCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCell.swift; sourceTree = "<group>"; };
+		4B656A291FE982A2009A4160 /* MealHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealHeader.swift; sourceTree = "<group>"; };
 		4B98C14A1FCF193E008F7CA3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4BAA16E31FE1B61C0012323A /* Un.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Un.xcdatamodel; sourceTree = "<group>"; };
@@ -241,7 +245,6 @@
 				4B0605E91F69B715000ACE59 /* AppDelegate.swift */,
 				4BC2F5B01F6EE53800F55964 /* RUappController.swift */,
 				4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */,
-				4B2BB5C41FB9DAC800020120 /* MealFooter.xib */,
 				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
 				4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */,
 			);
@@ -292,7 +295,10 @@
 			isa = PBXGroup;
 			children = (
 				4B0BC4751F6D7F2100A13F61 /* MenuController.swift */,
+				4B656A271FE98243009A4160 /* DishCell.swift */,
+				4B656A291FE982A2009A4160 /* MealHeader.swift */,
 				4B2BB5C21FB9D84300020120 /* MealHeader.xib */,
+				4B2BB5C41FB9DAC800020120 /* MealFooter.xib */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -676,7 +682,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B656A2A1FE982A2009A4160 /* MealHeader.swift in Sources */,
 				4B0BC4761F6D7F2100A13F61 /* MenuController.swift in Sources */,
+				4B656A281FE98243009A4160 /* DishCell.swift in Sources */,
 				4B0605EA1F69B715000ACE59 /* AppDelegate.swift in Sources */,
 				4BC2F5B11F6EE53800F55964 /* RUappController.swift in Sources */,
 				4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */,

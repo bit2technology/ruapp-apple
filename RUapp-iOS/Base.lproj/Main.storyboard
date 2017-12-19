@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,59 +55,27 @@
         <scene sceneID="hIn-ao-MYh">
             <objects>
                 <tableViewController id="6fA-wn-t7w" customClass="MenuController" customModule="RUapp_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" id="xcy-X9-NV0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" id="xcy-X9-NV0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="BaL-QV-cBW">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <gestureRecognizers/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="BTc-27-Pm6">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="8"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiD-HM-hg1">
-                                    <rect key="frame" x="8" y="0.0" width="44" height="44"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="44" id="Trl-10-eMr"/>
-                                    </constraints>
-                                    <state key="normal" image="MenuArrowLeft"/>
-                                    <connections>
-                                        <action selector="leftArrowTap" destination="6fA-wn-t7w" eventType="touchUpInside" id="MER-uL-89h"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xB2-rB-HLH">
-                                    <rect key="frame" x="174.66666666666666" y="0.0" width="65" height="44"/>
-                                    <state key="normal" title="Pick Date"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUq-JV-Nts">
-                                    <rect key="frame" x="362" y="0.0" width="44" height="44"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="44" id="Guu-8M-4rF"/>
-                                    </constraints>
-                                    <state key="normal" image="MenuArrowRight"/>
-                                    <connections>
-                                        <action selector="rightArrowTap" destination="6fA-wn-t7w" eventType="touchUpInside" id="mdf-iV-hAh"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="xiD-HM-hg1" secondAttribute="bottom" id="1OB-yG-RVU"/>
-                                <constraint firstItem="xiD-HM-hg1" firstAttribute="top" secondItem="BaL-QV-cBW" secondAttribute="top" id="ENe-ao-FkC"/>
-                                <constraint firstItem="qUq-JV-Nts" firstAttribute="top" secondItem="BaL-QV-cBW" secondAttribute="top" id="NPE-b2-FmV"/>
-                                <constraint firstItem="xiD-HM-hg1" firstAttribute="leading" secondItem="BaL-QV-cBW" secondAttribute="leadingMargin" id="Nr0-Ju-JOx"/>
-                                <constraint firstItem="xB2-rB-HLH" firstAttribute="top" secondItem="BaL-QV-cBW" secondAttribute="top" id="UAS-Cz-I5c"/>
-                                <constraint firstAttribute="bottom" secondItem="qUq-JV-Nts" secondAttribute="bottom" id="hky-lm-dQP"/>
-                                <constraint firstItem="xB2-rB-HLH" firstAttribute="centerX" secondItem="BaL-QV-cBW" secondAttribute="centerX" id="hos-gc-vYv"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="qUq-JV-Nts" secondAttribute="trailing" id="mbz-XJ-Z08"/>
-                                <constraint firstAttribute="bottom" secondItem="xB2-rB-HLH" secondAttribute="bottom" id="nTQ-qK-APS"/>
-                            </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DishCell" id="kwv-yc-zcM" customClass="DishCell" customModule="RUapp_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="99.333333333333343" width="414" height="44"/>
+                            <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DishCell" id="kwv-yc-zcM" customClass="DishCell" customModule="RUapp_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="63.333333333333336" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" layoutMarginsFollowReadableWidth="YES" tableViewCell="kwv-yc-zcM" id="vZH-iU-o8d">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFe-fn-thB">
+                                            <rect key="frame" x="12" y="0.0" width="390" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
                                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Type" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebw-DK-Vu6">
                                             <rect key="frame" x="19.999999999999996" y="10.999999999999998" width="37.666666666666657" height="20.333333333333329"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
@@ -124,33 +93,64 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="wTF-mI-M4p" firstAttribute="bottom" secondItem="vZH-iU-o8d" secondAttribute="bottomMargin" id="1TU-rZ-Oyn"/>
+                                        <constraint firstItem="WFe-fn-thB" firstAttribute="leading" secondItem="ebw-DK-Vu6" secondAttribute="leading" constant="-8" id="4jZ-h6-5Ux"/>
+                                        <constraint firstItem="WFe-fn-thB" firstAttribute="trailing" secondItem="wTF-mI-M4p" secondAttribute="trailing" constant="8" id="8Hv-jL-cCr"/>
                                         <constraint firstItem="wTF-mI-M4p" firstAttribute="trailing" secondItem="vZH-iU-o8d" secondAttribute="trailingMargin" id="Bro-vH-hho"/>
-                                        <constraint firstItem="ebw-DK-Vu6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vZH-iU-o8d" secondAttribute="topMargin" id="IaU-mO-KyT"/>
+                                        <constraint firstItem="ebw-DK-Vu6" firstAttribute="top" secondItem="vZH-iU-o8d" secondAttribute="topMargin" id="IaU-mO-KyT"/>
                                         <constraint firstItem="ebw-DK-Vu6" firstAttribute="width" relation="lessThanOrEqual" secondItem="wTF-mI-M4p" secondAttribute="width" multiplier="2" id="K0E-E0-52o"/>
+                                        <constraint firstAttribute="bottom" secondItem="WFe-fn-thB" secondAttribute="bottom" id="Knf-D2-s53"/>
+                                        <constraint firstItem="wTF-mI-M4p" firstAttribute="firstBaseline" secondItem="ebw-DK-Vu6" secondAttribute="baseline" priority="1" constant="24" symbolType="layoutAnchor" id="LRt-6Y-GsL" userLabel="Two Lines - Vertical Space"/>
                                         <constraint firstItem="ebw-DK-Vu6" firstAttribute="leading" secondItem="vZH-iU-o8d" secondAttribute="leadingMargin" id="YQy-Fe-59F"/>
-                                        <constraint firstItem="wTF-mI-M4p" firstAttribute="top" secondItem="vZH-iU-o8d" secondAttribute="topMargin" id="fGB-vl-Mvg" userLabel="One Line - Top Margin"/>
-                                        <constraint firstItem="ebw-DK-Vu6" firstAttribute="firstBaseline" secondItem="wTF-mI-M4p" secondAttribute="firstBaseline" id="gFK-nk-9d6"/>
+                                        <constraint firstItem="ebw-DK-Vu6" firstAttribute="firstBaseline" secondItem="wTF-mI-M4p" secondAttribute="firstBaseline" priority="999" id="gFK-nk-9d6" userLabel="One Line - Vertical Space"/>
+                                        <constraint firstItem="WFe-fn-thB" firstAttribute="top" secondItem="vZH-iU-o8d" secondAttribute="top" id="j5o-YM-ZzW"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="ebw-DK-Vu6" secondAttribute="bottom" id="mHt-hx-PKK"/>
-                                        <constraint firstItem="wTF-mI-M4p" firstAttribute="leading" secondItem="ebw-DK-Vu6" secondAttribute="trailing" constant="8" id="v7E-KD-yGh" userLabel="One Line - Horizontal Space"/>
+                                        <constraint firstItem="wTF-mI-M4p" firstAttribute="leading" secondItem="ebw-DK-Vu6" secondAttribute="trailing" priority="999" constant="8" id="v7E-KD-yGh" userLabel="One Line - Horizontal Space"/>
+                                        <constraint firstItem="wTF-mI-M4p" firstAttribute="leading" secondItem="vZH-iU-o8d" secondAttribute="leadingMargin" priority="1" id="xcV-7I-8ZX" userLabel="Two Lines - Leading Margin"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <connections>
+                                    <outlet property="bgView" destination="WFe-fn-thB" id="aEK-8r-nF7"/>
                                     <outlet property="nameLabel" destination="wTF-mI-M4p" id="kNz-cx-HHw"/>
                                     <outlet property="typeLabel" destination="ebw-DK-Vu6" id="gdo-E7-Feo"/>
+                                    <outletCollection property="oneLineConstraints" destination="v7E-KD-yGh" collectionClass="NSMutableArray" id="F9V-VJ-Sil"/>
+                                    <outletCollection property="twoLinesConstraints" destination="LRt-6Y-GsL" collectionClass="NSMutableArray" id="zRa-0I-vn9"/>
+                                    <outletCollection property="twoLinesConstraints" destination="xcV-7I-8ZX" collectionClass="NSMutableArray" id="GWB-kD-EN4"/>
+                                    <outletCollection property="oneLineConstraints" destination="gFK-nk-9d6" collectionClass="NSMutableArray" id="lw0-6i-TqQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="6fA-wn-t7w" id="1gG-3S-bQj"/>
                             <outlet property="delegate" destination="6fA-wn-t7w" id="d9f-EE-AuW"/>
+                            <outletCollection property="gestureRecognizers" destination="IuS-GH-fF4" appends="YES" id="oUk-DM-x63"/>
+                            <outletCollection property="gestureRecognizers" destination="qir-n6-gEA" appends="YES" id="fSi-NH-n8N"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Menu" id="RHI-cm-aUG">
-                        <barButtonItem key="rightBarButtonItem" title="Cafeteria" id="fj8-BT-d2z"/>
+                        <barButtonItem key="leftBarButtonItem" image="MenuArrowLeft" id="5Gh-DC-Yn0">
+                            <connections>
+                                <action selector="leftArrowTap" destination="6fA-wn-t7w" id="cNX-NF-WrT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="MenuArrowRight" id="fj8-BT-d2z">
+                            <connections>
+                                <action selector="rightArrowTap" destination="6fA-wn-t7w" id="zsf-ce-jrb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ERc-SN-VCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="IuS-GH-fF4">
+                    <connections>
+                        <action selector="leftArrowTap" destination="6fA-wn-t7w" id="Yyk-CV-p00"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="qir-n6-gEA">
+                    <connections>
+                        <action selector="rightArrowTap" destination="6fA-wn-t7w" id="IGs-80-Ycd"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2394.202898550725" y="-1138.0434782608697"/>
         </scene>
