@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="iN0-l3-epB" customClass="MealHeader" customModule="RUapp_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="352" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1I-IG-QqO">
+                    <rect key="frame" x="16" y="0.0" width="320" height="55"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailingMargin" secondItem="E1I-IG-QqO" secondAttribute="trailing" priority="999" id="4i4-Ec-kah"/>
+                <constraint firstAttribute="bottomMargin" secondItem="E1I-IG-QqO" secondAttribute="bottom" priority="999" id="h5X-fg-ZGC"/>
+                <constraint firstItem="E1I-IG-QqO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="iqf-rv-fep"/>
+                <constraint firstItem="E1I-IG-QqO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="mN4-Xi-PdB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="nameLabel" destination="E1I-IG-QqO" id="E74-Pr-L3b"/>
+            </connections>
+            <point key="canvasLocation" x="28" y="223.5"/>
+        </view>
+    </objects>
+</document>

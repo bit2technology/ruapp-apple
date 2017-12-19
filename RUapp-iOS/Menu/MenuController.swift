@@ -68,7 +68,7 @@ class MenuController: UITableViewController {
         }
     }
     
-    func fetchedResultsControllerForCurrentTimeBounds() -> NSFetchedResultsController<Dish> {
+    private func fetchedResultsControllerForCurrentTimeBounds() -> NSFetchedResultsController<Dish> {
         let req = Dish.request()
         req.predicate = NSPredicate(format: "meal.open < %@ AND meal.close >= %@", timeBounds.finish as NSDate, timeBounds.start as NSDate)
         req.sortDescriptors = [NSSortDescriptor(key: "meal.open", ascending: true), NSSortDescriptor(key: "order", ascending: true)]
@@ -86,22 +86,32 @@ extension MenuController {
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return (fetchedResultsController.sections?[section].objects?.first as? Dish)?.meal?.name
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MealHeader") as! MealHeader
+        header.nameLabel.text = (fetchedResultsController.sections?[section].objects?.first as? Dish)?.meal?.name?.localizedUppercase
+        header.applyLayout()
+        return header
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 100
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DishCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DishCell", for: indexPath) as! DishCell
         let dish = fetchedResultsController.object(at: indexPath)
-        cell.textLabel?.text = dish.type
-        cell.detailTextLabel?.text = dish.name ?? "Lorem ipsum dolor sit amet"
+        cell.typeLabel.text = dish.type
+        cell.nameLabel.text = dish.name ?? "Lorem ipsum dolor sit amet"
+        cell.applyLayout()
         return cell
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         timeBounds.today()
+        tableView.register(UINib(nibName: "MealHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "MealHeader")
+        tableView.tableHeaderView!.tintColor = .appDarkBlue
+        navigationItem.rightBarButtonItem!.title = "Campus"
     }
 }
 
@@ -137,6 +147,35 @@ extension MenuController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+}
+
+class DishCell: UITableViewCell {
+    @IBOutlet fileprivate weak var typeLabel: UILabel!
+    @IBOutlet fileprivate weak var nameLabel: UILabel!
+    @IBOutlet fileprivate var accessibilityConstraints: [NSLayoutConstraint]!
+    
+    fileprivate func applyLayout() {
+        
+        typeLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        
+        if UIApplication.shared.preferredContentSizeCategory.isAccessibility {
+            
+        } else {
+            
+        }
+        
+        layoutIfNeeded()
+    }
+}
+
+class MealHeader: UITableViewHeaderFooterView {
+    @IBOutlet fileprivate weak var nameLabel: UILabel!
+    
+    fileprivate func applyLayout() {
+        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        layoutIfNeeded()
     }
 }
 
@@ -178,6 +217,25 @@ private struct TimeBounds {
         
         start = newStart
         finish = newFinish
+    }
+}
+
+private extension UIContentSizeCategory {
+    var isAccessibility: Bool {
+        if #available(iOS 11.0, *) {
+            return isAccessibilityCategory
+        } else {
+            switch self {
+            case .accessibilityMedium,
+                 .accessibilityLarge,
+                 .accessibilityExtraLarge,
+                 .accessibilityExtraExtraLarge,
+                 .accessibilityExtraExtraExtraLarge:
+                return true
+            default:
+                return false
+            }
+        }
     }
 }
 

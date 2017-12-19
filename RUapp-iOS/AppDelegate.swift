@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func applyAppaerance() {
         UIFont.appRegisterFonts()
-        window?.tintColor = .appLightBlue
+        window?.tintColor = .appLighterBlue
         let navBar = UINavigationBar.appearance()
         navBar.barStyle = .black
         navBar.barTintColor = .appDarkBlue
@@ -40,12 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBar.barTintColor = .appDarkBlue
         tabBar.tintColor = .white
         if #available(iOS 10.0, *) {
-            tabBar.unselectedItemTintColor = .appLightBlue
+            tabBar.unselectedItemTintColor = .appLighterBlue
 //            UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont.appTabBarItemTitle], for: .normal)
         } else {
             (window?.rootViewController as! UITabBarController).tabBar.items?.forEach { (item) in
-                item.image = item.image?.with(color: .appLightBlue).withRenderingMode(.alwaysOriginal)
-                item.setTitleTextAttributes([.foregroundColor: UIColor.appLightBlue], for: .normal)
+                item.image = item.image?.with(color: .appLighterBlue).withRenderingMode(.alwaysOriginal)
+                item.setTitleTextAttributes([.foregroundColor: UIColor.appLighterBlue], for: .normal)
                 item.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
             }
         }

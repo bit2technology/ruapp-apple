@@ -231,7 +231,9 @@
 		4B0605E81F69B715000ACE59 /* RUapp-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				4B0BC4751F6D7F2100A13F61 /* MenuController.swift */,
+				4B656A261FE94059009A4160 /* Menu */,
+				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
+				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
 				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
@@ -239,11 +241,8 @@
 				4B0605E91F69B715000ACE59 /* AppDelegate.swift */,
 				4BC2F5B01F6EE53800F55964 /* RUappController.swift */,
 				4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */,
-				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
-				4B2BB5C21FB9D84300020120 /* MealHeader.xib */,
 				4B2BB5C41FB9DAC800020120 /* MealFooter.xib */,
 				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
-				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
 				4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */,
 			);
 			path = "RUapp-iOS";
@@ -287,6 +286,15 @@
 				4B0CFB441F69DB2A0069C42B /* Result.json */,
 			);
 			path = MockData;
+			sourceTree = "<group>";
+		};
+		4B656A261FE94059009A4160 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				4B0BC4751F6D7F2100A13F61 /* MenuController.swift */,
+				4B2BB5C21FB9D84300020120 /* MealHeader.xib */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */ = {

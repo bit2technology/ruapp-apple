@@ -26,6 +26,10 @@ public extension Color {
         return #colorLiteral(red: 0.3098039216, green: 0.7647058824, blue: 0.968627451, alpha: 1)
     }
     
+    static var appLighterBlue: Color {
+        return #colorLiteral(red: 0.5414242281, green: 0.836397882, blue: 0.968627451, alpha: 1)
+    }
+    
     static var appYellow: Color {
         return #colorLiteral(red: 0.9843137255, green: 0.737254902, blue: 0.1411764706, alpha: 1)
     }
