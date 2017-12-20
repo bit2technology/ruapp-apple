@@ -6,10 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -65,58 +62,47 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </view>
                         <prototypes>
-                            <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DishCell" id="kwv-yc-zcM" customClass="DishCell" customModule="RUapp_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="63.333333333333336" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MealCell" rowHeight="276" id="d4Z-qW-TfR" customClass="MealCell" customModule="RUapp_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="63.333333333333336" width="414" height="276"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" layoutMarginsFollowReadableWidth="YES" tableViewCell="kwv-yc-zcM" id="vZH-iU-o8d">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" layoutMarginsFollowReadableWidth="YES" tableViewCell="d4Z-qW-TfR" id="OGr-P9-dJw">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="276"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFe-fn-thB">
-                                            <rect key="frame" x="12" y="0.0" width="390" height="44"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MenuRoundCorners" translatesAutoresizingMaskIntoConstraints="NO" id="Nt3-gH-uZe">
+                                            <rect key="frame" x="12" y="0.0" width="390" height="268"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Type" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebw-DK-Vu6">
-                                            <rect key="frame" x="19.999999999999996" y="10.999999999999998" width="37.666666666666657" height="20.333333333333329"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        </imageView>
+                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgE-bd-gYP">
+                                            <rect key="frame" x="20" y="10.666666666666664" width="374" height="21"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label userInteractionEnabled="NO" contentMode="left" text="Name" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTF-mI-M4p">
-                                            <rect key="frame" x="65.666666666666657" y="11" width="328.33333333333337" height="22"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-EH-PAq">
+                                            <rect key="frame" x="20" y="39.666666666666671" width="374" height="217.33333333333331"/>
+                                        </stackView>
                                     </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="wTF-mI-M4p" firstAttribute="bottom" secondItem="vZH-iU-o8d" secondAttribute="bottomMargin" id="1TU-rZ-Oyn"/>
-                                        <constraint firstItem="WFe-fn-thB" firstAttribute="leading" secondItem="ebw-DK-Vu6" secondAttribute="leading" constant="-8" id="4jZ-h6-5Ux"/>
-                                        <constraint firstItem="WFe-fn-thB" firstAttribute="trailing" secondItem="wTF-mI-M4p" secondAttribute="trailing" constant="8" id="8Hv-jL-cCr"/>
-                                        <constraint firstItem="wTF-mI-M4p" firstAttribute="trailing" secondItem="vZH-iU-o8d" secondAttribute="trailingMargin" id="Bro-vH-hho"/>
-                                        <constraint firstItem="ebw-DK-Vu6" firstAttribute="top" secondItem="vZH-iU-o8d" secondAttribute="topMargin" id="IaU-mO-KyT"/>
-                                        <constraint firstItem="ebw-DK-Vu6" firstAttribute="width" relation="lessThanOrEqual" secondItem="wTF-mI-M4p" secondAttribute="width" multiplier="2" id="K0E-E0-52o"/>
-                                        <constraint firstAttribute="bottom" secondItem="WFe-fn-thB" secondAttribute="bottom" id="Knf-D2-s53"/>
-                                        <constraint firstItem="wTF-mI-M4p" firstAttribute="firstBaseline" secondItem="ebw-DK-Vu6" secondAttribute="baseline" priority="1" constant="24" symbolType="layoutAnchor" id="LRt-6Y-GsL" userLabel="Two Lines - Vertical Space"/>
-                                        <constraint firstItem="ebw-DK-Vu6" firstAttribute="leading" secondItem="vZH-iU-o8d" secondAttribute="leadingMargin" id="YQy-Fe-59F"/>
-                                        <constraint firstItem="ebw-DK-Vu6" firstAttribute="firstBaseline" secondItem="wTF-mI-M4p" secondAttribute="firstBaseline" priority="999" id="gFK-nk-9d6" userLabel="One Line - Vertical Space"/>
-                                        <constraint firstItem="WFe-fn-thB" firstAttribute="top" secondItem="vZH-iU-o8d" secondAttribute="top" id="j5o-YM-ZzW"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="ebw-DK-Vu6" secondAttribute="bottom" id="mHt-hx-PKK"/>
-                                        <constraint firstItem="wTF-mI-M4p" firstAttribute="leading" secondItem="ebw-DK-Vu6" secondAttribute="trailing" priority="999" constant="8" id="v7E-KD-yGh" userLabel="One Line - Horizontal Space"/>
-                                        <constraint firstItem="wTF-mI-M4p" firstAttribute="leading" secondItem="vZH-iU-o8d" secondAttribute="leadingMargin" priority="1" id="xcV-7I-8ZX" userLabel="Two Lines - Leading Margin"/>
+                                        <constraint firstAttribute="bottom" secondItem="Nt3-gH-uZe" secondAttribute="bottom" constant="8" id="5SB-xa-tzZ"/>
+                                        <constraint firstItem="dUK-EH-PAq" firstAttribute="top" secondItem="fgE-bd-gYP" secondAttribute="bottom" constant="8" id="CjC-7X-ki3"/>
+                                        <constraint firstItem="dUK-EH-PAq" firstAttribute="trailing" secondItem="OGr-P9-dJw" secondAttribute="trailingMargin" id="Ir8-GJ-uuq"/>
+                                        <constraint firstItem="Nt3-gH-uZe" firstAttribute="trailing" secondItem="fgE-bd-gYP" secondAttribute="trailing" constant="8" id="KdD-GS-ZZp"/>
+                                        <constraint firstItem="Nt3-gH-uZe" firstAttribute="top" secondItem="OGr-P9-dJw" secondAttribute="top" id="VpG-2c-Ecj"/>
+                                        <constraint firstItem="dUK-EH-PAq" firstAttribute="leading" secondItem="OGr-P9-dJw" secondAttribute="leadingMargin" id="fl6-7e-LEo"/>
+                                        <constraint firstItem="Nt3-gH-uZe" firstAttribute="leading" secondItem="fgE-bd-gYP" secondAttribute="leading" constant="-8" id="lKU-6b-6hJ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fgE-bd-gYP" secondAttribute="trailing" id="ojT-Tl-318"/>
+                                        <constraint firstItem="fgE-bd-gYP" firstAttribute="leading" secondItem="OGr-P9-dJw" secondAttribute="leadingMargin" id="pqN-Eq-GSv"/>
+                                        <constraint firstItem="fgE-bd-gYP" firstAttribute="top" secondItem="OGr-P9-dJw" secondAttribute="topMargin" id="rkx-Iz-rHO"/>
+                                        <constraint firstItem="dUK-EH-PAq" firstAttribute="bottom" secondItem="OGr-P9-dJw" secondAttribute="bottomMargin" priority="999" constant="-8" id="s4c-iA-6Ub"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <outlet property="bgView" destination="WFe-fn-thB" id="aEK-8r-nF7"/>
-                                    <outlet property="nameLabel" destination="wTF-mI-M4p" id="kNz-cx-HHw"/>
-                                    <outlet property="typeLabel" destination="ebw-DK-Vu6" id="gdo-E7-Feo"/>
-                                    <outletCollection property="oneLineConstraints" destination="v7E-KD-yGh" collectionClass="NSMutableArray" id="F9V-VJ-Sil"/>
-                                    <outletCollection property="twoLinesConstraints" destination="LRt-6Y-GsL" collectionClass="NSMutableArray" id="zRa-0I-vn9"/>
-                                    <outletCollection property="twoLinesConstraints" destination="xcV-7I-8ZX" collectionClass="NSMutableArray" id="GWB-kD-EN4"/>
-                                    <outletCollection property="oneLineConstraints" destination="gFK-nk-9d6" collectionClass="NSMutableArray" id="lw0-6i-TqQ"/>
+                                    <outlet property="name" destination="fgE-bd-gYP" id="PM5-wz-8xA"/>
+                                    <outlet property="stack" destination="dUK-EH-PAq" id="UIP-Zw-64M"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -583,6 +569,7 @@
     <resources>
         <image name="MenuArrowLeft" width="24" height="24"/>
         <image name="MenuArrowRight" width="24" height="24"/>
+        <image name="MenuRoundCorners" width="18" height="18"/>
         <image name="SignupLogo" width="220" height="70"/>
         <image name="TabMenu" width="25" height="25"/>
         <image name="TabMore" width="30" height="20"/>

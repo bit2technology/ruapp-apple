@@ -37,11 +37,8 @@
 		4B1BF8851FB6446C00956CF8 /* GetMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8841FB6446C00956CF8 /* GetMenuOperation.swift */; };
 		4B1BF8871FB8DF9300956CF8 /* UpdateMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */; };
 		4B1BF8891FB8E12B00956CF8 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8881FB8E12B00956CF8 /* Meal.swift */; };
-		4B2BB5C31FB9D84300020120 /* MealHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2BB5C21FB9D84300020120 /* MealHeader.xib */; };
-		4B2BB5C51FB9DAC800020120 /* MealFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2BB5C41FB9DAC800020120 /* MealFooter.xib */; };
 		4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D91071F76AEAC00F3B5AC /* JSON.swift */; };
-		4B656A281FE98243009A4160 /* DishCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656A271FE98243009A4160 /* DishCell.swift */; };
-		4B656A2A1FE982A2009A4160 /* MealHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656A291FE982A2009A4160 /* MealHeader.swift */; };
+		4B656A281FE98243009A4160 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656A271FE98243009A4160 /* MealCell.swift */; };
 		4B98C14B1FCF193E008F7CA3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B98C14A1FCF193E008F7CA3 /* Configuration.swift */; };
 		4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */; };
 		4BAA16E51FE1FA990012323A /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA16E41FE1FA990012323A /* Dish.swift */; };
@@ -132,11 +129,8 @@
 		4B1BF8841FB6446C00956CF8 /* GetMenuOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMenuOperation.swift; sourceTree = "<group>"; };
 		4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMenuOperation.swift; sourceTree = "<group>"; };
 		4B1BF8881FB8E12B00956CF8 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
-		4B2BB5C21FB9D84300020120 /* MealHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealHeader.xib; sourceTree = "<group>"; };
-		4B2BB5C41FB9DAC800020120 /* MealFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealFooter.xib; sourceTree = "<group>"; };
 		4B5D91071F76AEAC00F3B5AC /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		4B656A271FE98243009A4160 /* DishCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCell.swift; sourceTree = "<group>"; };
-		4B656A291FE982A2009A4160 /* MealHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealHeader.swift; sourceTree = "<group>"; };
+		4B656A271FE98243009A4160 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		4B98C14A1FCF193E008F7CA3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4BAA16E31FE1B61C0012323A /* Un.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Un.xcdatamodel; sourceTree = "<group>"; };
@@ -295,10 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				4B0BC4751F6D7F2100A13F61 /* MenuController.swift */,
-				4B656A271FE98243009A4160 /* DishCell.swift */,
-				4B656A291FE982A2009A4160 /* MealHeader.swift */,
-				4B2BB5C21FB9D84300020120 /* MealHeader.xib */,
-				4B2BB5C41FB9DAC800020120 /* MealFooter.xib */,
+				4B656A271FE98243009A4160 /* MealCell.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -506,9 +497,7 @@
 			files = (
 				4B0605F41F69B715000ACE59 /* LaunchScreen.storyboard in Resources */,
 				4B0605F11F69B715000ACE59 /* Assets.xcassets in Resources */,
-				4B2BB5C31FB9D84300020120 /* MealHeader.xib in Resources */,
 				4B0605EF1F69B715000ACE59 /* Main.storyboard in Resources */,
-				4B2BB5C51FB9DAC800020120 /* MealFooter.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,9 +671,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B656A2A1FE982A2009A4160 /* MealHeader.swift in Sources */,
 				4B0BC4761F6D7F2100A13F61 /* MenuController.swift in Sources */,
-				4B656A281FE98243009A4160 /* DishCell.swift in Sources */,
+				4B656A281FE98243009A4160 /* MealCell.swift in Sources */,
 				4B0605EA1F69B715000ACE59 /* AppDelegate.swift in Sources */,
 				4BC2F5B11F6EE53800F55964 /* RUappController.swift in Sources */,
 				4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */,

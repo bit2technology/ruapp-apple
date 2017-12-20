@@ -29,6 +29,8 @@ class MenuController: UITableViewController {
 
         assert(days != 0, "'days' can't be equal to zero")
         
+        let bef = Date()
+        
         tableView.beginUpdates()
         if let oldSectionsCount = fetchedResultsController.sections?.count, oldSectionsCount > 0 {
             tableView.deleteSections(IndexSet(integersIn: 0..<oldSectionsCount), with: days > 0 ? .left : .right)
@@ -38,6 +40,8 @@ class MenuController: UITableViewController {
             tableView.insertSections(IndexSet(integersIn: 0..<newSectionsCount), with: days > 0 ? .right : .left)
         }
         tableView.endUpdates()
+        
+        print(Date().timeIntervalSince(bef))
     }
     
     @IBAction private func leftArrowTap() {
@@ -61,22 +65,17 @@ class MenuController: UITableViewController {
         }
     }
     
-    private var fetchedResultsController: NSFetchedResultsController<Dish>! {
+    private var fetchedResultsController: NSFetchedResultsController<Meal>! {
         didSet {
             fetchedResultsController.delegate = self
             try! fetchedResultsController.performFetch()
             
-            // Fill sectionMetadata
             let gregorianCalendar = Calendar(identifier: .gregorian)
-            sectionMetadata = fetchedResultsController.sections?.map {
+            let numberOfRows = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
+            tableMetadata = (0..<numberOfRows).map {
                 
-                var metadata: (title: String?, backgroundColor: UIColor) = (nil, .darkGray)
-                
-                guard let meal = ($0.objects?.first as? Dish)?.meal else {
-                    return metadata
-                }
-                
-                metadata.title = meal.name?.localizedUppercase
+                let meal = fetchedResultsController.object(at: IndexPath(row: $0, section: 0))
+                var metadata = (meal.name?.localizedUppercase, UIColor.darkGray)
                 
                 guard let openDate = meal.open else {
                     return metadata
@@ -84,11 +83,11 @@ class MenuController: UITableViewController {
                 
                 switch gregorianCalendar.component(.hour, from: openDate) {
                 case 5..<10:
-                    metadata.backgroundColor = #colorLiteral(red: 0.9254901961, green: 0.5450980392, blue: 0.4156862745, alpha: 1)
+                    metadata.1 = #colorLiteral(red: 0.9254901961, green: 0.5450980392, blue: 0.4156862745, alpha: 1)
                 case 10..<15:
-                    metadata.backgroundColor = #colorLiteral(red: 0.7882352941, green: 0.3058823529, blue: 0.3725490196, alpha: 1)
+                    metadata.1 = #colorLiteral(red: 0.7882352941, green: 0.3058823529, blue: 0.3725490196, alpha: 1)
                 case 0..<5, 15..<24:
-                    metadata.backgroundColor = #colorLiteral(red: 0.4588235294, green: 0.2156862745, blue: 0.3803921569, alpha: 1)
+                    metadata.1 = #colorLiteral(red: 0.4588235294, green: 0.2156862745, blue: 0.3803921569, alpha: 1)
                 default:
                     break
                 }
@@ -97,58 +96,38 @@ class MenuController: UITableViewController {
         }
     }
     
-    private var sectionMetadata: [(title: String?, backgroundColor: UIColor)]?
+    private var tableMetadata: [(title: String?, backgroundColor: UIColor)]?
     
-    private func fetchedResultsControllerForCurrentTimeBounds() -> NSFetchedResultsController<Dish> {
-        let req = Dish.request()
-        req.predicate = NSPredicate(format: "meal.open < %@ AND meal.close >= %@", timeBounds.finish as NSDate, timeBounds.start as NSDate)
-        req.sortDescriptors = [NSSortDescriptor(key: "meal.open", ascending: true), NSSortDescriptor(key: "order", ascending: true)]
-        return NSFetchedResultsController(fetchRequest: req, managedObjectContext: CoreDataContainer.shared.viewContext, sectionNameKeyPath: "meal.open", cacheName: nil)
+    private func fetchedResultsControllerForCurrentTimeBounds() -> NSFetchedResultsController<Meal> {
+        let req = Meal.request()
+        req.predicate = NSPredicate(format: "open < %@ AND close >= %@", timeBounds.finish as NSDate, timeBounds.start as NSDate)
+        req.sortDescriptors = [NSSortDescriptor(key: "open", ascending: true)]
+        return NSFetchedResultsController(fetchRequest: req, managedObjectContext: CoreDataContainer.shared.viewContext, sectionNameKeyPath: nil, cacheName: nil)
     }
 }
 
 extension MenuController {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController.sections?.count ?? 0
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MealHeader") as! MealHeader
-        let metadata = sectionMetadata?[section]
-        header.nameLabel.text = metadata?.title
-        header.tintColor = metadata?.backgroundColor
-        header.applyLayout()
-        return header
-    }
-    
-    override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 40
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MealFooter")
-        footer?.tintColor = sectionMetadata?[section].backgroundColor
-        return footer
-    }
-    
-    override func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
-        return 16
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DishCell", for: indexPath) as! DishCell
-        let dish = fetchedResultsController.object(at: indexPath)
-        let metadata = sectionMetadata?[indexPath.section]
-        cell.bgView.backgroundColor = metadata?.backgroundColor
-        cell.typeLabel.text = dish.type
-        cell.typeLabel.backgroundColor = metadata?.backgroundColor
-        cell.nameLabel.text = dish.name ?? "Lorem ipsum dolor sit amet"
-        cell.nameLabel.backgroundColor = metadata?.backgroundColor
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MealCell", for: indexPath) as! MealCell
+        let meal = fetchedResultsController.object(at: indexPath)
+        let metadata = tableMetadata?[indexPath.row]
+        cell.name.text = metadata?.title
+        cell.name.backgroundColor = metadata?.backgroundColor
+        cell.numberOfDishes = meal.dishes?.count ?? 0
+        meal.dishes?.enumerated().forEach {
+            let dish = $0.element as! Dish
+            let row = cell.dishRow(at: $0.offset)
+            row.type.text = dish.type
+            row.type.backgroundColor = metadata?.backgroundColor
+            row.name.text = dish.name ?? "Lorem ipsum dolor sit amet"
+            row.name.backgroundColor = metadata?.backgroundColor
+        }
+        cell.tintColor = metadata?.backgroundColor
         cell.applyLayout()
         return cell
     }
@@ -156,9 +135,7 @@ extension MenuController {
     override func viewDidLoad() {
         super.viewDidLoad()
         timeBounds.today()
-        tableView.backgroundColor = .white
-        tableView.register(UINib(nibName: "MealHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "MealHeader")
-        tableView.register(UINib(nibName: "MealFooter", bundle: nil), forHeaderFooterViewReuseIdentifier: "MealFooter")
+//        tableView.backgroundColor = .white
     }
 }
 
