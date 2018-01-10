@@ -12,7 +12,6 @@
 		4B0605EF1F69B715000ACE59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0605ED1F69B715000ACE59 /* Main.storyboard */; };
 		4B0605F11F69B715000ACE59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B0605F01F69B715000ACE59 /* Assets.xcassets */; };
 		4B0605F41F69B715000ACE59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */; };
-		4B0606021F69B778000ACE59 /* RUappShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B0606001F69B778000ACE59 /* RUappShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B0606051F69B778000ACE59 /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4B0606061F69B778000ACE59 /* RUappShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B0BC4761F6D7F2100A13F61 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4751F6D7F2100A13F61 /* MenuController.swift */; };
@@ -34,28 +33,23 @@
 		4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */; };
 		4B0CFB971F6B2A8F0069C42B /* URLRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */; };
 		4B0CFB991F6B36860069C42B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
-		4B1BF8851FB6446C00956CF8 /* GetMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8841FB6446C00956CF8 /* GetMenuOperation.swift */; };
+		4B15AC0E20059949007828E4 /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC0D20059949007828E4 /* RUappShared.swift */; };
+		4B15AC0F20059E42007828E4 /* SaveStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */; };
 		4B1BF8871FB8DF9300956CF8 /* UpdateMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */; };
 		4B1BF8891FB8E12B00956CF8 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8881FB8E12B00956CF8 /* Meal.swift */; };
 		4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D91071F76AEAC00F3B5AC /* JSON.swift */; };
 		4B656A281FE98243009A4160 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656A271FE98243009A4160 /* MealCell.swift */; };
-		4B98C14B1FCF193E008F7CA3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B98C14A1FCF193E008F7CA3 /* Configuration.swift */; };
-		4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */; };
+		4B938C1B1FEAC42E00339A20 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */; };
 		4BAA16E51FE1FA990012323A /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA16E41FE1FA990012323A /* Dish.swift */; };
 		4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA7B721F6F3D2E008B34F4 /* Campus.swift */; };
 		4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */; };
 		4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */; };
 		4BC2F5B11F6EE53800F55964 /* RUappController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5B01F6EE53800F55964 /* RUappController.swift */; };
-		4BC396FE1FB34C5100E2A930 /* SaveStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */; };
-		4BC397001FB34E2800E2A930 /* RegisterStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC396FF1FB34E2800E2A930 /* RegisterStudentOperation.swift */; };
-		4BC397021FB34FA400E2A930 /* EditStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC397011FB34FA400E2A930 /* EditStudentOperation.swift */; };
 		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */; };
 		4BF2412F1F7087B900656BCD /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF2412E1F7087B900656BCD /* CoreDataTests.swift */; };
 		4BF241321F708F6700656BCD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF241301F708F6700656BCD /* Helpers.swift */; };
-		4BFBE0931FB233C30072287A /* GetInstitutionListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE0921FB233C30072287A /* GetInstitutionListOperation.swift */; };
-		4BFBE0951FB25A580072287A /* GetInstitutionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE0941FB25A580072287A /* GetInstitutionOperation.swift */; };
 		4BFBE09E1FB27E710072287A /* UpdateInstitutionListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */; };
 		5C98B77B61C0B611DE3050B5 /* Pods_RUapp_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED592839FAE75B205E83006 /* Pods_RUapp_iOS.framework */; };
 		EA364015CE31BDC4DF781587 /* Pods_RUappSharedTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC1CDFF065DEC2ECE6BABB1 /* Pods_RUappSharedTests_iOS.framework */; };
@@ -104,7 +98,6 @@
 		4B0605F31F69B715000ACE59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B0605F51F69B715000ACE59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B0605FE1F69B778000ACE59 /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B0606001F69B778000ACE59 /* RUappShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUappShared.h; sourceTree = "<group>"; };
 		4B0606011F69B778000ACE59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B0BC4751F6D7F2100A13F61 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		4B0BC4771F6D7F6F00A13F61 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -126,23 +119,18 @@
 		4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentController.swift; sourceTree = "<group>"; };
 		4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRoute.swift; sourceTree = "<group>"; };
 		4B0CFB981F6B36860069C42B /* Institution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
-		4B1BF8841FB6446C00956CF8 /* GetMenuOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMenuOperation.swift; sourceTree = "<group>"; };
+		4B15AC0D20059949007828E4 /* RUappShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappShared.swift; sourceTree = "<group>"; };
 		4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMenuOperation.swift; sourceTree = "<group>"; };
 		4B1BF8881FB8E12B00956CF8 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		4B5D91071F76AEAC00F3B5AC /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		4B656A271FE98243009A4160 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
-		4B98C14A1FCF193E008F7CA3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		4BAA16E31FE1B61C0012323A /* Un.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Un.xcdatamodel; sourceTree = "<group>"; };
+		4B938C1A1FEAC42E00339A20 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4BAA16E41FE1FA990012323A /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
-		4BAA16E61FE1FB000012323A /* Deux.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Deux.xcdatamodel; sourceTree = "<group>"; };
 		4BAA7B721F6F3D2E008B34F4 /* Campus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionSelectorController.swift; sourceTree = "<group>"; };
 		4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Custom.swift"; sourceTree = "<group>"; };
 		4BC2F5B01F6EE53800F55964 /* RUappController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappController.swift; sourceTree = "<group>"; };
 		4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveStudentOperation.swift; sourceTree = "<group>"; };
-		4BC396FF1FB34E2800E2A930 /* RegisterStudentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStudentOperation.swift; sourceTree = "<group>"; };
-		4BC397011FB34FA400E2A930 /* EditStudentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentOperation.swift; sourceTree = "<group>"; };
 		4BCFF74D1FB4FAB100F275B3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4BDBB1C91F69BAC3007900EC /* RUappSharedTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
@@ -150,8 +138,6 @@
 		4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafeteria.swift; sourceTree = "<group>"; };
 		4BF2412E1F7087B900656BCD /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		4BF241301F708F6700656BCD /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		4BFBE0921FB233C30072287A /* GetInstitutionListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitutionListOperation.swift; sourceTree = "<group>"; };
-		4BFBE0941FB25A580072287A /* GetInstitutionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitutionOperation.swift; sourceTree = "<group>"; };
 		4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInstitutionListOperation.swift; sourceTree = "<group>"; };
 		6F0E4C459591D803C549883F /* Pods-RUappShared-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappShared-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUappShared-iOS/Pods-RUappShared-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		A4822FE028DD910FF19CCA01 /* Pods-RUapp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -229,9 +215,9 @@
 		4B0605E81F69B715000ACE59 /* RUapp-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				4B656A261FE94059009A4160 /* Menu */,
 				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
 				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
+				4B656A261FE94059009A4160 /* Menu */,
 				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
@@ -248,14 +234,19 @@
 		4B0605FF1F69B778000ACE59 /* RUappShared */ = {
 			isa = PBXGroup;
 			children = (
-				4B0606001F69B778000ACE59 /* RUappShared.h */,
-				4BFBE0961FB25E1F0072287A /* Operations */,
-				4BFBE09F1FB27F760072287A /* Model */,
+				4B15AC0D20059949007828E4 /* RUappShared.swift */,
+				4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */,
+				4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */,
+				4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */,
+				4B5D91071F76AEAC00F3B5AC /* JSON.swift */,
+				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
+				4B1BF8881FB8E12B00956CF8 /* Meal.swift */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
+				4BFBE09F1FB27F760072287A /* Model */,
+				4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */,
 				4B0BC4771F6D7F6F00A13F61 /* Color.swift */,
 				4B0BC4791F6D891200A13F61 /* Font.swift */,
 				4B0BC47B1F6D8E7200A13F61 /* Fonts */,
-				4B98C14A1FCF193E008F7CA3 /* Configuration.swift */,
 			);
 			path = RUappShared;
 			sourceTree = "<group>";
@@ -306,48 +297,13 @@
 			path = RUappSharedTests;
 			sourceTree = "<group>";
 		};
-		4BFBE0961FB25E1F0072287A /* Operations */ = {
-			isa = PBXGroup;
-			children = (
-				4BFBE0991FB2668B0072287A /* Network */,
-				4BFBE09A1FB2669E0072287A /* Persistence */,
-			);
-			path = Operations;
-			sourceTree = "<group>";
-		};
-		4BFBE0991FB2668B0072287A /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				4BFBE0921FB233C30072287A /* GetInstitutionListOperation.swift */,
-				4BFBE0941FB25A580072287A /* GetInstitutionOperation.swift */,
-				4BC396FF1FB34E2800E2A930 /* RegisterStudentOperation.swift */,
-				4BC397011FB34FA400E2A930 /* EditStudentOperation.swift */,
-				4B1BF8841FB6446C00956CF8 /* GetMenuOperation.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		4BFBE09A1FB2669E0072287A /* Persistence */ = {
-			isa = PBXGroup;
-			children = (
-				4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */,
-				4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */,
-				4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */,
-			);
-			path = Persistence;
-			sourceTree = "<group>";
-		};
 		4BFBE09F1FB27F760072287A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */,
-				4B5D91071F76AEAC00F3B5AC /* JSON.swift */,
-				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
 				4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */,
 				4BAA7B721F6F3D2E008B34F4 /* Campus.swift */,
 				4BAA16E41FE1FA990012323A /* Dish.swift */,
 				4B0CFB981F6B36860069C42B /* Institution.swift */,
-				4B1BF8881FB8E12B00956CF8 /* Meal.swift */,
 				4B0CFB4C1F69E9360069C42B /* Student.swift */,
 			);
 			path = Model;
@@ -370,7 +326,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B0606021F69B778000ACE59 /* RUappShared.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,22 +641,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BC396FE1FB34C5100E2A930 /* SaveStudentOperation.swift in Sources */,
 				4BAA16E51FE1FA990012323A /* Dish.swift in Sources */,
-				4BFBE0931FB233C30072287A /* GetInstitutionListOperation.swift in Sources */,
 				4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */,
 				4B1BF8891FB8E12B00956CF8 /* Meal.swift in Sources */,
-				4BFBE0951FB25A580072287A /* GetInstitutionOperation.swift in Sources */,
+				4B15AC0F20059E42007828E4 /* SaveStudentOperation.swift in Sources */,
 				4B0BC47A1F6D891200A13F61 /* Font.swift in Sources */,
-				4BA7C2731F6F32C000DF9F75 /* Model.xcdatamodeld in Sources */,
-				4BC397001FB34E2800E2A930 /* RegisterStudentOperation.swift in Sources */,
+				4B938C1B1FEAC42E00339A20 /* Model.xcdatamodeld in Sources */,
 				4B0BC4781F6D7F6F00A13F61 /* Color.swift in Sources */,
-				4B98C14B1FCF193E008F7CA3 /* Configuration.swift in Sources */,
 				4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */,
-				4B1BF8851FB6446C00956CF8 /* GetMenuOperation.swift in Sources */,
+				4B15AC0E20059949007828E4 /* RUappShared.swift in Sources */,
 				4B1BF8871FB8DF9300956CF8 /* UpdateMenuOperation.swift in Sources */,
 				4BFBE09E1FB27E710072287A /* UpdateInstitutionListOperation.swift in Sources */,
-				4BC397021FB34FA400E2A930 /* EditStudentOperation.swift in Sources */,
 				4B0CFB991F6B36860069C42B /* Institution.swift in Sources */,
 				4B0CFB971F6B2A8F0069C42B /* URLRoute.swift in Sources */,
 				4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */,
@@ -1002,14 +952,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		4BA7C2711F6F32C000DF9F75 /* Model.xcdatamodeld */ = {
+		4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				4BAA16E61FE1FB000012323A /* Deux.xcdatamodel */,
-				4BAA16E31FE1B61C0012323A /* Un.xcdatamodel */,
-				4BA7C2721F6F32C000DF9F75 /* Model.xcdatamodel */,
+				4B938C1A1FEAC42E00339A20 /* Model.xcdatamodel */,
 			);
-			currentVersion = 4BAA16E61FE1FB000012323A /* Deux.xcdatamodel */;
+			currentVersion = 4B938C1A1FEAC42E00339A20 /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

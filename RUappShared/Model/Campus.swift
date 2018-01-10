@@ -12,7 +12,7 @@ import CoreData
 extension JSON.Institution.Campus: AdvancedManagedObjectRawTypeProtocol {
     public typealias IDType = Int64
     public var advancedID: Int64 {
-        return Int64(id)!
+        return id
     }
 }
 
@@ -30,7 +30,7 @@ extension Campus: AdvancedManagedObjectProtocol {
     }
     
     public func update(with raw: JSON.Institution.Campus) throws {
-        id = Int64(raw.id)!
+        id = raw.id
         name = raw.name
         townName = raw.townName
         stateName = raw.stateName

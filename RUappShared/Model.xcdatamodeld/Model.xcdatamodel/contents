@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13771" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C205" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Cafeteria" representedClassName="Cafeteria" syncable="YES" codeGenerationType="class">
         <attribute name="capacity" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
@@ -29,17 +29,17 @@
     </entity>
     <entity name="Dish" representedClassName="Dish" syncable="YES" codeGenerationType="class">
         <attribute name="meta" attributeType="String" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
         <relationship name="meal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="dishes" inverseEntity="Meal" syncable="YES"/>
     </entity>
     <entity name="Institution" representedClassName="Institution" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="stateInitials" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="stateName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="townName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="campi" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Campus" inverseName="institution" inverseEntity="Campus" syncable="YES"/>
+        <attribute name="stateInitials" attributeType="String" syncable="YES"/>
+        <attribute name="stateName" attributeType="String" syncable="YES"/>
+        <attribute name="townName" attributeType="String" syncable="YES"/>
+        <relationship name="campi" toMany="YES" deletionRule="Cascade" destinationEntity="Campus" inverseName="institution" inverseEntity="Campus" syncable="YES"/>
         <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="institution" inverseEntity="Student" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -49,12 +49,17 @@
     </entity>
     <entity name="Meal" representedClassName="Meal" syncable="YES" codeGenerationType="class">
         <attribute name="close" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="internalId" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="meta" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="open" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="dishes" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Dish" inverseName="meal" inverseEntity="Dish" syncable="YES"/>
         <relationship name="votables" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Votable" inverseName="meal" inverseEntity="Votable" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Student" representedClassName="Student" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>

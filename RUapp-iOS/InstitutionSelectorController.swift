@@ -6,6 +6,7 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import UIKit
 import RUappShared
 import CoreData
 
@@ -108,7 +109,7 @@ extension InstitutionSelectorController {
             }
             controller.refreshControl!.endRefreshing()
             do {
-                try instListOp.checkError()
+                _ = try instListOp.value()
             } catch {
                 // TODO: Handle error
                 print(error)

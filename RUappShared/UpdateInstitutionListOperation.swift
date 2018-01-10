@@ -9,15 +9,14 @@
 import Bit2Common
 import CoreData
 
-/// Downloads `Institution` List and adds to `Student.managedObjectContext`.
-///
-/// - Attention: `Student.managedObjectContext` not saved in this operation.
 public class UpdateInstitutionListOperation: CoreDataOperation {
     
-    private let instListOp = GetInstitutionListOperation()
+    private let getOp = URLSessionDataTaskOperation(request: URLRoute.getInstitutions.urlRequest)
     
-    override public var dependenciesToAdd: [Operation] {
-        return [instListOp]
+    public override init() {
+        super.init()
+        addDependency(getOp)
+        OperationQueue.async.addOperation(getOp)
     }
     
     public override var managedObjectContext: NSManagedObjectContext? {
@@ -27,7 +26,8 @@ public class UpdateInstitutionListOperation: CoreDataOperation {
     }
     
     override public func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID] {
-        let list: [Institution] = try instListOp.parse().map {
+        
+        let list = try JSONDecoder().decode([JSON.Institution].self, from: getOp.value()).map {
             try Institution.createOrUpdate(with: $0, context: context)
         }
         
@@ -37,9 +37,5 @@ public class UpdateInstitutionListOperation: CoreDataOperation {
         
         try context.save()
         return list.map { $0.objectID }
-    }
-    
-    public func checkError() throws {
-        _ = try value()
     }
 }

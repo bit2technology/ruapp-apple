@@ -12,7 +12,7 @@ import CoreData
 extension JSON.Institution: AdvancedManagedObjectRawTypeProtocol {
     public typealias IDType = Int64
     public var advancedID: Int64 {
-        return Int64(id)!
+        return id
     }
 }
 
@@ -35,10 +35,6 @@ extension Institution: AdvancedManagedObjectProtocol {
         townName = raw.townName
         stateName = raw.stateName
         stateInitials = raw.stateInitials
-        if let campi = try raw.campi?.map { try Campus.createOrUpdate(with: $0, context: managedObjectContext!) } {
-            self.campi = NSSet(array: campi)
-        } else {
-            self.campi = nil
-        }
+        campi = try NSSet(array: raw.campi.map { try Campus.createOrUpdate(with: $0, context: managedObjectContext!) })
     }
 }

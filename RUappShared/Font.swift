@@ -9,6 +9,7 @@
 #if os(macOS)
     public typealias Font = NSFont
 #else
+    import UIKit
     public typealias Font = UIFont
 #endif
 

@@ -5,7 +5,7 @@
 //  Created by Igor Camilo on 08/11/17.
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
-
+/*
 import Bit2Common
 import CoreData
 
@@ -105,3 +105,4 @@ public enum SaveStudentOperationError: Error {
     case invalidStudent
     case editUnsuccessful
 }
+*/

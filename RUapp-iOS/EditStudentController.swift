@@ -6,6 +6,7 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import UIKit
 import RUappShared
 
 class EditStudentController: UITableViewController {
@@ -52,7 +53,7 @@ class EditStudentController: UITableViewController {
             return
         }
         setLoadingLayout(true)
-        finiOp = FinishSaveStudentOperation(controller: self)
+        finiOp = FinishSaveStudentOperation()
     }
     
     private func setLoadingLayout(_ loading: Bool) {
@@ -144,7 +145,7 @@ extension EditStudentController {
     
     private class FinishSaveStudentOperation: Operation {
         
-        private weak var controller: EditStudentController?
+        /*private weak var controller: EditStudentController?
         private let saveStudentOperation = Student.current.saveOperation()
         
         init(controller: EditStudentController) {
@@ -166,6 +167,6 @@ extension EditStudentController {
                 // TODO: Handle error
                 print(error)
             }
-        }
+        }*/
     }
 }

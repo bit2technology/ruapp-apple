@@ -10,21 +10,21 @@
 		0E4C0BCCADBD98B0B5A73C3455DC586C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3792A683529B65B8837AD54D85BA6912 /* Foundation.framework */; };
 		13FF6A1A5EDA66252EE7D6FBCFC417FA /* Pods-RUappShared-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A4A7D32E44E232210C0920F9CB493FD /* Pods-RUappShared-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28568C1E9B916C76D2D670FE9735B152 /* Pods-RUappSharedTests-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C49C51E83EA3F3C4F48D8E7798BB876 /* Pods-RUappSharedTests-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2FCB1D4667634B79C9A3E856D8DF7DBC /* AdvancedOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAEEAF3FD62F4AB7DD588F940576671 /* AdvancedOperation.swift */; };
-		3F3A784BB4FFC5FDFAB51A2983C6C024 /* AdvancedManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A25BDAF2E2A14F6E0423393B81F88 /* AdvancedManagedObject.swift */; };
-		42BD7341AFE393AC363C226E88511BEA /* Bit2Common-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C4DAE43EB01E58825EF0E978AFC5D302 /* Bit2Common-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FCB1D4667634B79C9A3E856D8DF7DBC /* AdvancedOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4CD980F8B7DB2E4C58AD1C2042E2DD /* AdvancedOperation.swift */; };
+		3F3A784BB4FFC5FDFAB51A2983C6C024 /* AdvancedManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4657DE38D89647C2DF80DA48A798CB74 /* AdvancedManagedObject.swift */; };
+		42BD7341AFE393AC363C226E88511BEA /* Bit2Common-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 926D5BCC398CA3FE82CC2C8DE59F9DA4 /* Bit2Common-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F785A2E80D981E5C370BA20BB393552 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3792A683529B65B8837AD54D85BA6912 /* Foundation.framework */; };
-		5E92FA2E933D83E8C90C780E2CD4F8EB /* URLSessionDataTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CCE92A3D361D9C13548E06657BC23B /* URLSessionDataTaskOperation.swift */; };
+		5E92FA2E933D83E8C90C780E2CD4F8EB /* URLSessionDataTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEB94F13C60B8978A405E59BFF315D5 /* URLSessionDataTaskOperation.swift */; };
 		5F512652E144621AAE2E3FEDD4B717FA /* Pods-RUapp-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E78D14334AF3870FE288FA95661AF9B3 /* Pods-RUapp-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		94494BEC07A2D587868236A36782B0E9 /* Bit2Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 8069D064632C69206C8F03384115F9E9 /* Bit2Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96ED617967ACC3E0748703EC7CCD459D /* Bit2Common-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 68349BBAE4934C4E01846C72DEF32B2E /* Bit2Common-dummy.m */; };
+		94494BEC07A2D587868236A36782B0E9 /* Bit2Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 14AD72C5C5E01BF2C4309ED549FC87FB /* Bit2Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96ED617967ACC3E0748703EC7CCD459D /* Bit2Common-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A53714C9AF566D0C29426B4A257DEF28 /* Bit2Common-dummy.m */; };
 		96F3BDA300E817682EEF221A6588BEC3 /* Pods-RUappSharedTests-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 033AA529476BCAA1832ED15AE44DDDE3 /* Pods-RUappSharedTests-iOS-dummy.m */; };
 		A631136BE6A3E46D6CD456FE82C0015E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3792A683529B65B8837AD54D85BA6912 /* Foundation.framework */; };
 		A88804A398895676D5148A9A6DF65EBE /* Pods-RUapp-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 894505A042DB07133B05E37214895099 /* Pods-RUapp-iOS-dummy.m */; };
 		B9E1ED9205B6941477C85F73AF3BEE8C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A7BE07A93D389088D0712B8DA370ED /* CoreData.framework */; };
 		BB3122664F84D205F3568D2CC928F359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3792A683529B65B8837AD54D85BA6912 /* Foundation.framework */; };
-		C626253883FDF590FD32F25F6490C070 /* CoreDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12674BBB4CAD799707D420AF51658B8D /* CoreDataOperation.swift */; };
-		DF88BCC74F86390C5E8CD747DD73BC23 /* CoreDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B067CCB843D0835B2BCD716FF787DC7 /* CoreDataContainer.swift */; };
+		C626253883FDF590FD32F25F6490C070 /* CoreDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25352844A5C77B79A09D9BCE04AD6985 /* CoreDataOperation.swift */; };
+		DF88BCC74F86390C5E8CD747DD73BC23 /* CoreDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAD1C44FD1A7541C23D876DAEC154A /* CoreDataContainer.swift */; };
 		E9EF8BA7834855F49ED285D304993C53 /* Pods-RUappShared-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8728A7BA65A17DEDA1AEA3539037AF37 /* Pods-RUappShared-iOS-dummy.m */; };
 /* End PBXBuildFile section */
 
@@ -54,53 +54,56 @@
 
 /* Begin PBXFileReference section */
 		033AA529476BCAA1832ED15AE44DDDE3 /* Pods-RUappSharedTests-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RUappSharedTests-iOS-dummy.m"; sourceTree = "<group>"; };
-		12674BBB4CAD799707D420AF51658B8D /* CoreDataOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreDataOperation.swift; path = Sources/CoreDataOperation/CoreDataOperation.swift; sourceTree = "<group>"; };
+		14AD72C5C5E01BF2C4309ED549FC87FB /* Bit2Common.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Bit2Common.h; path = Sources/Bit2Common.h; sourceTree = "<group>"; };
 		14ECB51C2B62A5C9377285E1102DCC34 /* Pods-RUapp-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RUapp-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		18EAD1C44FD1A7541C23D876DAEC154A /* CoreDataContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreDataContainer.swift; path = Sources/CoreData/CoreDataContainer.swift; sourceTree = "<group>"; };
 		1FA074DFCDC0EEB9EF7D5E225ED211BC /* Pods-RUappSharedTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappSharedTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		25352844A5C77B79A09D9BCE04AD6985 /* CoreDataOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreDataOperation.swift; path = Sources/CoreDataOperation/CoreDataOperation.swift; sourceTree = "<group>"; };
 		2A4A7D32E44E232210C0920F9CB493FD /* Pods-RUappShared-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RUappShared-iOS-umbrella.h"; sourceTree = "<group>"; };
 		2FD91D97AA57C3BC8B4193FD100B91D0 /* Pods-RUappShared-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUappShared-iOS-resources.sh"; sourceTree = "<group>"; };
-		30CCE92A3D361D9C13548E06657BC23B /* URLSessionDataTaskOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLSessionDataTaskOperation.swift; path = Sources/URLSessionDataTaskOperation/URLSessionDataTaskOperation.swift; sourceTree = "<group>"; };
 		30E8D25366D26462FE062D7C0D5E33AC /* Pods-RUappSharedTests-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUappSharedTests-iOS-resources.sh"; sourceTree = "<group>"; };
 		35F78F4C6861C979384C36822B81D50E /* Pods-RUapp-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUapp-iOS-resources.sh"; sourceTree = "<group>"; };
 		3792A683529B65B8837AD54D85BA6912 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3AD363A1A4282B3CB12337771319DE3C /* Bit2Common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Bit2Common.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3B8689ADA194CFFBC9B2428F1F411612 /* Pods-RUapp-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RUapp-iOS.modulemap"; sourceTree = "<group>"; };
 		3C49C51E83EA3F3C4F48D8E7798BB876 /* Pods-RUappSharedTests-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RUappSharedTests-iOS-umbrella.h"; sourceTree = "<group>"; };
-		471A6F405F7BC9357914572468DF986F /* Bit2Common.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Bit2Common.modulemap; sourceTree = "<group>"; };
+		4657DE38D89647C2DF80DA48A798CB74 /* AdvancedManagedObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdvancedManagedObject.swift; path = Sources/CoreData/AdvancedManagedObject.swift; sourceTree = "<group>"; };
 		48C0777E49430D007CA7215296995846 /* Pods-RUappShared-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappShared-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		4B067CCB843D0835B2BCD716FF787DC7 /* CoreDataContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreDataContainer.swift; path = Sources/CoreData/CoreDataContainer.swift; sourceTree = "<group>"; };
 		57CB6633A1456B40AC9675A2C57015E8 /* Pods_RUappSharedTests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RUappSharedTests_iOS.framework; path = "Pods-RUappSharedTests-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B58A73FCD7FC7A9EA8E70F6B757C87D /* Pods-RUapp-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUapp-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		5C508BC84F1231AB10517EF20E3C9161 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		62723FBCE5D4A92E2FC6B63B4DF1CC74 /* Pods-RUappSharedTests-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RUappSharedTests-iOS.modulemap"; sourceTree = "<group>"; };
 		627FD07906230F73E64A9B15A3A98BE1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		674EAD534D0F7D50FD70FDB029A6D12B /* Pods-RUappShared-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RUappShared-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		68349BBAE4934C4E01846C72DEF32B2E /* Bit2Common-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Bit2Common-dummy.m"; sourceTree = "<group>"; };
 		6CB47432F6F7BB6204C53F866BE36035 /* Bit2Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Bit2Common.framework; path = Bit2Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AAA6D1F1F3334EC3859D5428389754 /* Pods-RUapp-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RUapp-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7D61B1A3105DCA3DC5DF382E0A526BC4 /* Pods-RUappShared-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappShared-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		8069D064632C69206C8F03384115F9E9 /* Bit2Common.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Bit2Common.h; path = Sources/Bit2Common.h; sourceTree = "<group>"; };
 		80FF41D9C1E32486FC6BED50031947B3 /* Pods-RUappSharedTests-iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUappSharedTests-iOS-frameworks.sh"; sourceTree = "<group>"; };
 		8728A7BA65A17DEDA1AEA3539037AF37 /* Pods-RUappShared-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RUappShared-iOS-dummy.m"; sourceTree = "<group>"; };
+		878A898102F5B099A0D844EE280D1674 /* Bit2Common-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bit2Common-prefix.pch"; sourceTree = "<group>"; };
 		894505A042DB07133B05E37214895099 /* Pods-RUapp-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RUapp-iOS-dummy.m"; sourceTree = "<group>"; };
-		89693CE38679DA6E168B6D5AF159000E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		910D46E365260BCBCBB4C4079C4504EF /* Bit2Common.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Bit2Common.modulemap; sourceTree = "<group>"; };
+		912AB2B60859BE4E15ACA52F6CD25371 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91D3A0C3FAD176720DDC3181019B30B2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		926D5BCC398CA3FE82CC2C8DE59F9DA4 /* Bit2Common-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bit2Common-umbrella.h"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9B98D9411B695847D7BDB1DC0F8CDCF2 /* Bit2Common.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Bit2Common.xcconfig; sourceTree = "<group>"; };
 		9E35E1B9C7F35F32A95083EF8C661212 /* Pods-RUapp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUapp-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		A53714C9AF566D0C29426B4A257DEF28 /* Bit2Common-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Bit2Common-dummy.m"; sourceTree = "<group>"; };
 		ACAA618C7F07FE6BD8F003C000DC0062 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADA910466A0AC4A990CF1D72DBC1D993 /* Pods-RUappShared-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RUappShared-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		AE36C6009FDF47BF929C618EA5BF7CC8 /* Bit2Common-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bit2Common-prefix.pch"; sourceTree = "<group>"; };
 		B392FEAF83D3010BE87644C56AF97CA6 /* Pods-RUappSharedTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappSharedTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		B53A25BDAF2E2A14F6E0423393B81F88 /* AdvancedManagedObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdvancedManagedObject.swift; path = Sources/CoreData/AdvancedManagedObject.swift; sourceTree = "<group>"; };
 		B707964D495D9D9BB4C74EBE12BBDEDB /* Pods-RUappShared-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RUappShared-iOS.modulemap"; sourceTree = "<group>"; };
-		C4DAE43EB01E58825EF0E978AFC5D302 /* Bit2Common-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bit2Common-umbrella.h"; sourceTree = "<group>"; };
 		D06ED91B9FB34A349614FA029A4E2207 /* Pods-RUappSharedTests-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RUappSharedTests-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		D20A18FA684E20DC465563E0238F25C8 /* Bit2Common.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Bit2Common.xcconfig; sourceTree = "<group>"; };
 		D2B02AD9EB7AEEB06D0585CFE50AEB7A /* Pods-RUappSharedTests-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RUappSharedTests-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		DA97B3CE36738B7628E5A3771909611F /* Pods_RUapp_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RUapp_iOS.framework; path = "Pods-RUapp-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADE2DE963851AB592AFF636E7AD85FA /* Pods_RUappShared_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RUappShared_iOS.framework; path = "Pods-RUappShared-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEEB94F13C60B8978A405E59BFF315D5 /* URLSessionDataTaskOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLSessionDataTaskOperation.swift; path = Sources/URLSessionDataTaskOperation/URLSessionDataTaskOperation.swift; sourceTree = "<group>"; };
 		E78D14334AF3870FE288FA95661AF9B3 /* Pods-RUapp-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RUapp-iOS-umbrella.h"; sourceTree = "<group>"; };
+		EB4CD980F8B7DB2E4C58AD1C2042E2DD /* AdvancedOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdvancedOperation.swift; path = Sources/AdvancedOperation/AdvancedOperation.swift; sourceTree = "<group>"; };
 		EBF77BE2819067C81DFD9F5899D63EA1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3A0775CE77DC6EA4CEC90F4339648DD /* Pods-RUapp-iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUapp-iOS-frameworks.sh"; sourceTree = "<group>"; };
 		F7A7BE07A93D389088D0712B8DA370ED /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
-		FDAEEAF3FD62F4AB7DD588F940576671 /* AdvancedOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdvancedOperation.swift; path = Sources/AdvancedOperation/AdvancedOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,20 +143,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		18D6D6CC8B55B557233F01DBCFF02BA6 /* AdvancedOperation */ = {
+		282D65E104B79D7A0BBEFE1823A3EEED /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FDAEEAF3FD62F4AB7DD588F940576671 /* AdvancedOperation.swift */,
+				910D46E365260BCBCBB4C4079C4504EF /* Bit2Common.modulemap */,
+				D20A18FA684E20DC465563E0238F25C8 /* Bit2Common.xcconfig */,
+				A53714C9AF566D0C29426B4A257DEF28 /* Bit2Common-dummy.m */,
+				878A898102F5B099A0D844EE280D1674 /* Bit2Common-prefix.pch */,
+				926D5BCC398CA3FE82CC2C8DE59F9DA4 /* Bit2Common-umbrella.h */,
+				912AB2B60859BE4E15ACA52F6CD25371 /* Info.plist */,
 			);
-			name = AdvancedOperation;
-			sourceTree = "<group>";
-		};
-		2B157E460FD7DF14EB6EDB6E692C09BE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D7CC74E2249C0D8BE6CBABEB4689392B /* Bit2Common */,
-			);
-			name = Pods;
+			name = "Support Files";
+			path = "../ruapp-apple/Pods/Target Support Files/Bit2Common";
 			sourceTree = "<group>";
 		};
 		3841C6ABE35387D557E44938138E2FB4 /* Pods-RUappSharedTests-iOS */ = {
@@ -174,12 +175,38 @@
 			path = "Target Support Files/Pods-RUappSharedTests-iOS";
 			sourceTree = "<group>";
 		};
+		3C1C43C35B34E79867A1C4AE1864DC7F /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D92805AD5EE1772D3439DE46AF672507 /* Bit2Common */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
 		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				A81C0CB292E45FAFBFC1DA48D35250D0 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B90800D815036BB8021DE9A06BF48F2 /* URLSessionDataTaskOperation */ = {
+			isa = PBXGroup;
+			children = (
+				DEEB94F13C60B8978A405E59BFF315D5 /* URLSessionDataTaskOperation.swift */,
+			);
+			name = URLSessionDataTaskOperation;
+			sourceTree = "<group>";
+		};
+		67576FC2F20BF8864F5641A7B41D01EB /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				3AD363A1A4282B3CB12337771319DE3C /* Bit2Common.podspec */,
+				5C508BC84F1231AB10517EF20E3C9161 /* LICENSE */,
+				91D3A0C3FAD176720DDC3181019B30B2 /* README.md */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		7D24840E07F33989C270F5EF00C4EF29 /* Pods-RUappShared-iOS */ = {
@@ -203,11 +230,20 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				3C1C43C35B34E79867A1C4AE1864DC7F /* Development Pods */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				2B157E460FD7DF14EB6EDB6E692C09BE /* Pods */,
 				A2BF3B37FBABB269A6DE51FF8641AA0C /* Products */,
 				EE30C510F0CB521313A806DD9A0E0AAE /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		85E48CB531A85EB522635C99B103DE3A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				4657DE38D89647C2DF80DA48A798CB74 /* AdvancedManagedObject.swift */,
+				18EAD1C44FD1A7541C23D876DAEC154A /* CoreDataContainer.swift */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		97A55FEA1306874A1AA042A25C253290 /* Pods-RUapp-iOS */ = {
@@ -239,14 +275,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A60E25FC786077B12D817658DD4E4593 /* URLSessionDataTaskOperation */ = {
-			isa = PBXGroup;
-			children = (
-				30CCE92A3D361D9C13548E06657BC23B /* URLSessionDataTaskOperation.swift */,
-			);
-			name = URLSessionDataTaskOperation;
-			sourceTree = "<group>";
-		};
 		A81C0CB292E45FAFBFC1DA48D35250D0 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,40 +284,27 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		AAF1AA18BFB7B000417796479B3C4D7B /* CoreDataOperation */ = {
+		D92805AD5EE1772D3439DE46AF672507 /* Bit2Common */ = {
 			isa = PBXGroup;
 			children = (
-				12674BBB4CAD799707D420AF51658B8D /* CoreDataOperation.swift */,
-			);
-			name = CoreDataOperation;
-			sourceTree = "<group>";
-		};
-		D7CC74E2249C0D8BE6CBABEB4689392B /* Bit2Common */ = {
-			isa = PBXGroup;
-			children = (
-				8069D064632C69206C8F03384115F9E9 /* Bit2Common.h */,
-				18D6D6CC8B55B557233F01DBCFF02BA6 /* AdvancedOperation */,
-				F92F98B0F76D05253D6906C19D1126F2 /* CoreData */,
-				AAF1AA18BFB7B000417796479B3C4D7B /* CoreDataOperation */,
-				D7F761BB2204AEC3E0ADE61EED9B760C /* Support Files */,
-				A60E25FC786077B12D817658DD4E4593 /* URLSessionDataTaskOperation */,
+				14AD72C5C5E01BF2C4309ED549FC87FB /* Bit2Common.h */,
+				F30AB1356A3D4685EF30DBD6260D374E /* AdvancedOperation */,
+				85E48CB531A85EB522635C99B103DE3A /* CoreData */,
+				DDC702CBA8E48F975EF2588D4298BBC6 /* CoreDataOperation */,
+				67576FC2F20BF8864F5641A7B41D01EB /* Pod */,
+				282D65E104B79D7A0BBEFE1823A3EEED /* Support Files */,
+				4B90800D815036BB8021DE9A06BF48F2 /* URLSessionDataTaskOperation */,
 			);
 			name = Bit2Common;
-			path = Bit2Common;
+			path = "../../bit2common-apple";
 			sourceTree = "<group>";
 		};
-		D7F761BB2204AEC3E0ADE61EED9B760C /* Support Files */ = {
+		DDC702CBA8E48F975EF2588D4298BBC6 /* CoreDataOperation */ = {
 			isa = PBXGroup;
 			children = (
-				471A6F405F7BC9357914572468DF986F /* Bit2Common.modulemap */,
-				9B98D9411B695847D7BDB1DC0F8CDCF2 /* Bit2Common.xcconfig */,
-				68349BBAE4934C4E01846C72DEF32B2E /* Bit2Common-dummy.m */,
-				AE36C6009FDF47BF929C618EA5BF7CC8 /* Bit2Common-prefix.pch */,
-				C4DAE43EB01E58825EF0E978AFC5D302 /* Bit2Common-umbrella.h */,
-				89693CE38679DA6E168B6D5AF159000E /* Info.plist */,
+				25352844A5C77B79A09D9BCE04AD6985 /* CoreDataOperation.swift */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/Bit2Common";
+			name = CoreDataOperation;
 			sourceTree = "<group>";
 		};
 		EE30C510F0CB521313A806DD9A0E0AAE /* Targets Support Files */ = {
@@ -302,13 +317,12 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		F92F98B0F76D05253D6906C19D1126F2 /* CoreData */ = {
+		F30AB1356A3D4685EF30DBD6260D374E /* AdvancedOperation */ = {
 			isa = PBXGroup;
 			children = (
-				B53A25BDAF2E2A14F6E0423393B81F88 /* AdvancedManagedObject.swift */,
-				4B067CCB843D0835B2BCD716FF787DC7 /* CoreDataContainer.swift */,
+				EB4CD980F8B7DB2E4C58AD1C2042E2DD /* AdvancedOperation.swift */,
 			);
-			name = CoreData;
+			name = AdvancedOperation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,7 +528,7 @@
 /* Begin XCBuildConfiguration section */
 		060F605EF5ECDE5FC770CABFF870001E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B98D9411B695847D7BDB1DC0F8CDCF2 /* Bit2Common.xcconfig */;
+			baseConfigurationReference = D20A18FA684E20DC465563E0238F25C8 /* Bit2Common.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -670,7 +684,7 @@
 		};
 		8C0A85103E04D55903A51B73F145A16D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B98D9411B695847D7BDB1DC0F8CDCF2 /* Bit2Common.xcconfig */;
+			baseConfigurationReference = D20A18FA684E20DC465563E0238F25C8 /* Bit2Common.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";

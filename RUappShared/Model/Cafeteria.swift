@@ -12,7 +12,7 @@ import CoreData
 extension JSON.Institution.Campus.Restaurant: AdvancedManagedObjectRawTypeProtocol {
     public typealias IDType = Int64
     public var advancedID: Int64 {
-        return Int64(id)!
+        return id
     }
 }
 
@@ -32,8 +32,8 @@ extension Cafeteria: AdvancedManagedObjectProtocol {
     public func update(with raw: JSON.Institution.Campus.Restaurant) throws {
         id = raw.advancedID
         name = raw.name
-        latitude = Double(raw.latitude)!
-        longitude = Double(raw.longitude)!
-        capacity = Int64(raw.capacity)!
+        latitude = raw.latitude
+        longitude = raw.longitude
+        capacity = raw.capacity
     }
 }

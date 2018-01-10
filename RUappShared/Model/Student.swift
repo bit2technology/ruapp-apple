@@ -32,7 +32,7 @@ extension Student {
     
     public static let managedObjectContext = CoreDataContainer.shared.newBackgroundContext()
     
-    public func saveOperation() -> SaveStudentOperation {
+    /*public func saveOperation() -> SaveStudentOperation {
         let json: JSON.Student?
         if let name = name, let numberPlate = numberPlate, let institution = institution {
             json = JSON.Student(name: name, numberPlate: numberPlate, institutionId: institution.id)
@@ -40,5 +40,5 @@ extension Student {
             json = nil
         }
         return SaveStudentOperation(values: json)
-    }
+    }*/
 }
