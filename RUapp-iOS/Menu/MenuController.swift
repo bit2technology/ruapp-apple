@@ -112,13 +112,23 @@ extension MenuController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MealCell", for: indexPath) as! MealCell
         let meal = fetchedResultsController.object(at: indexPath)
         let metadata = tableMetadata[indexPath.row]
+        
+        guard let dishes = meal.dishes, dishes.count > 0 else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MealMetaCell", for: indexPath) as! MealMetaCell
+            cell.name.text = metadata.title
+            cell.name.backgroundColor = metadata.backgroundColor
+            cell.tintColor = metadata.backgroundColor
+            cell.applyLayout()
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MealCell", for: indexPath) as! MealCell
         cell.name.text = metadata.title
         cell.name.backgroundColor = metadata.backgroundColor
-        cell.numberOfDishes = meal.dishes?.count ?? 0
-        meal.dishes?.enumerated().forEach {
+        cell.numberOfDishes = dishes.count
+        dishes.enumerated().forEach {
             let dish = $0.element as! Dish
             let row = cell.dishRow(at: $0.offset)
             row.type.text = dish.type

@@ -13,12 +13,15 @@ class MealCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet private weak var stack: UIStackView!
     
-    private static var innerStackQueue: [UIStackView] = []
+    private static var reusableViewQueue: [(UIView, UIStackView)] = []
     
-    private func dequeueInnerStack() -> UIStackView {
-        if MealCell.innerStackQueue.count > 0 {
-            return MealCell.innerStackQueue.removeLast()
+    private func dequeueInnerStack() -> (UIView, UIStackView) {
+        if MealCell.reusableViewQueue.count > 0 {
+            return MealCell.reusableViewQueue.removeLast()
         }
+        let separator = UIView()
+        separator.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        separator.addConstraint(NSLayoutConstraint(item: separator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1 / UIScreen.main.scale))
         let labels = [UILayoutPriority.defaultHigh, .defaultLow].map { (priority) -> UIView in
             let label = UILabel()
             label.backgroundColor = .black
@@ -30,28 +33,34 @@ class MealCell: UITableViewCell {
         labels.first!.setContentHuggingPriority(.required, for: .horizontal)
         let stack = UIStackView(arrangedSubviews: labels)
         stack.distribution = .fill
-        return stack
+        return (separator, stack)
     }
     
     private func innerStack(at index: Int) -> UIStackView {
-        return stack.arrangedSubviews[index] as! UIStackView
+        return stack.arrangedSubviews[index * 2 + 1] as! UIStackView
     }
     
     var numberOfDishes: Int {
         get {
-            return stack.arrangedSubviews.count
+            return stack.arrangedSubviews.count / 2
         }
         set {
             let oldValue = numberOfDishes
             if newValue > oldValue {
                 for _ in oldValue..<newValue {
-                    stack.addArrangedSubview(dequeueInnerStack())
+                    let dequeued = dequeueInnerStack()
+                    stack.addArrangedSubview(dequeued.0)
+                    stack.addArrangedSubview(dequeued.1)
                 }
             } else if newValue < oldValue {
-                stack.arrangedSubviews[newValue..<oldValue].forEach {
-                    stack.removeArrangedSubview($0)
-                    MealCell.innerStackQueue.append($0 as! UIStackView)
-                    $0.removeFromSuperview()
+                (newValue..<oldValue).reversed().forEach {
+                    let separator = stack.arrangedSubviews[$0 * 2]
+                    let innerStack = stack.arrangedSubviews[$0 * 2 + 1] as! UIStackView
+                    stack.removeArrangedSubview(separator)
+                    stack.removeArrangedSubview(innerStack)
+                    MealCell.reusableViewQueue.append((separator, innerStack))
+                    separator.removeFromSuperview()
+                    innerStack.removeFromSuperview()
                 }
             }
         }
@@ -71,8 +80,9 @@ class MealCell: UITableViewCell {
         let nameTextAlignment = isAccessibility ? NSTextAlignment.left : .right
         let font = UIFont.preferredFont(forTextStyle: .body)
         
-        stack.arrangedSubviews.forEach {
-            let innerStack = $0 as! UIStackView
+        name.font = font
+        (0..<numberOfDishes).forEach {
+            let innerStack = self.innerStack(at: $0)
             innerStack.axis = axis
             innerStack.alignment = alignment
             innerStack.spacing = spacing

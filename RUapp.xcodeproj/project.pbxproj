@@ -35,6 +35,7 @@
 		4B0CFB991F6B36860069C42B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
 		4B15AC0E20059949007828E4 /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC0D20059949007828E4 /* RUappShared.swift */; };
 		4B15AC0F20059E42007828E4 /* SaveStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */; };
+		4B15AC112007B2B7007828E4 /* MealMetaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC102007B2B7007828E4 /* MealMetaCell.swift */; };
 		4B1BF8871FB8DF9300956CF8 /* UpdateMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */; };
 		4B1BF8891FB8E12B00956CF8 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8881FB8E12B00956CF8 /* Meal.swift */; };
 		4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D91071F76AEAC00F3B5AC /* JSON.swift */; };
@@ -120,6 +121,7 @@
 		4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRoute.swift; sourceTree = "<group>"; };
 		4B0CFB981F6B36860069C42B /* Institution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
 		4B15AC0D20059949007828E4 /* RUappShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappShared.swift; sourceTree = "<group>"; };
+		4B15AC102007B2B7007828E4 /* MealMetaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealMetaCell.swift; sourceTree = "<group>"; };
 		4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMenuOperation.swift; sourceTree = "<group>"; };
 		4B1BF8881FB8E12B00956CF8 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		4B5D91071F76AEAC00F3B5AC /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
@@ -218,6 +220,8 @@
 				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
 				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
 				4B656A261FE94059009A4160 /* Menu */,
+				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
+				4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */,
 				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
@@ -225,8 +229,6 @@
 				4B0605E91F69B715000ACE59 /* AppDelegate.swift */,
 				4BC2F5B01F6EE53800F55964 /* RUappController.swift */,
 				4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */,
-				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
-				4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */,
 			);
 			path = "RUapp-iOS";
 			sourceTree = "<group>";
@@ -281,6 +283,7 @@
 			children = (
 				4B0BC4751F6D7F2100A13F61 /* MenuController.swift */,
 				4B656A271FE98243009A4160 /* MealCell.swift */,
+				4B15AC102007B2B7007828E4 /* MealMetaCell.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				4B0605EA1F69B715000ACE59 /* AppDelegate.swift in Sources */,
 				4BC2F5B11F6EE53800F55964 /* RUappController.swift in Sources */,
 				4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */,
+				4B15AC112007B2B7007828E4 /* MealMetaCell.swift in Sources */,
 				4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */,
 				4B0CFB4B1F69E8540069C42B /* RootController.swift in Sources */,
 				4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */,

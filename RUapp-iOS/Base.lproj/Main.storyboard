@@ -74,7 +74,7 @@
                                             <rect key="frame" x="8" y="0.0" width="359" height="212"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
-                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgE-bd-gYP">
+                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgE-bd-gYP">
                                             <rect key="frame" x="16" y="10.666666666666664" width="343" height="21"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -104,6 +104,70 @@
                                 <connections>
                                     <outlet property="name" destination="fgE-bd-gYP" id="PM5-wz-8xA"/>
                                     <outlet property="stack" destination="dUK-EH-PAq" id="UIP-Zw-64M"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MealMetaCell" rowHeight="171" id="xsq-O5-myO" customClass="MealMetaCell" customModule="RUapp_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="256" width="375" height="171"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" layoutMarginsFollowReadableWidth="YES" tableViewCell="xsq-O5-myO" id="cyb-Pg-95f">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="171"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MenuRoundCorners" translatesAutoresizingMaskIntoConstraints="NO" id="Ljb-It-YAh">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="163"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </imageView>
+                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jb9-oH-HFw">
+                                            <rect key="frame" x="16" y="10.666666666666666" width="343" height="18.333333333333336"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVv-Fs-r76">
+                                            <rect key="frame" x="8" y="37" width="359" height="115"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oh no! Restaurant is closed!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBW-Rz-iuq">
+                                                    <rect key="frame" x="8" y="8" width="343" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MenuMealMeta" translatesAutoresizingMaskIntoConstraints="NO" id="8vr-xX-VyF">
+                                                    <rect key="frame" x="134" y="37" width="90" height="70"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="1" constant="115" placeholder="YES" id="28N-se-gin"/>
+                                                <constraint firstItem="8vr-xX-VyF" firstAttribute="centerX" secondItem="dVv-Fs-r76" secondAttribute="centerX" id="7xk-ac-56M"/>
+                                                <constraint firstAttribute="trailing" secondItem="QBW-Rz-iuq" secondAttribute="trailing" constant="8" id="Dhc-HH-RoS"/>
+                                                <constraint firstItem="QBW-Rz-iuq" firstAttribute="leading" secondItem="dVv-Fs-r76" secondAttribute="leading" constant="8" id="f2C-A2-hfX"/>
+                                                <constraint firstItem="8vr-xX-VyF" firstAttribute="top" secondItem="QBW-Rz-iuq" secondAttribute="bottom" constant="8" id="rOq-vO-grE"/>
+                                                <constraint firstItem="QBW-Rz-iuq" firstAttribute="top" secondItem="dVv-Fs-r76" secondAttribute="top" constant="8" id="uxW-rI-3SK"/>
+                                                <constraint firstAttribute="bottom" secondItem="8vr-xX-VyF" secondAttribute="bottom" constant="8" id="yTZ-XU-Nmy"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dVv-Fs-r76" secondAttribute="trailing" constant="-8" id="3Ck-LL-JHh"/>
+                                        <constraint firstItem="Ljb-It-YAh" firstAttribute="trailing" secondItem="Jb9-oH-HFw" secondAttribute="trailing" constant="8" id="7nn-Ku-1PM"/>
+                                        <constraint firstItem="dVv-Fs-r76" firstAttribute="leading" secondItem="cyb-Pg-95f" secondAttribute="leadingMargin" constant="-8" id="8qD-mI-edp"/>
+                                        <constraint firstItem="Ljb-It-YAh" firstAttribute="leading" secondItem="Jb9-oH-HFw" secondAttribute="leading" constant="-8" id="DR8-g1-j3y"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ljb-It-YAh" secondAttribute="bottom" constant="8" id="HB0-VX-fjJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dVv-Fs-r76" secondAttribute="bottom" priority="999" constant="8" id="Po3-Sw-qUY"/>
+                                        <constraint firstItem="Jb9-oH-HFw" firstAttribute="leading" secondItem="cyb-Pg-95f" secondAttribute="leadingMargin" id="ect-NU-tLS"/>
+                                        <constraint firstItem="Ljb-It-YAh" firstAttribute="top" secondItem="cyb-Pg-95f" secondAttribute="top" id="f5v-3n-w1Z"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Jb9-oH-HFw" secondAttribute="trailing" id="fSJ-Hm-eeE"/>
+                                        <constraint firstItem="Jb9-oH-HFw" firstAttribute="top" secondItem="cyb-Pg-95f" secondAttribute="topMargin" id="rjw-Xc-JM0"/>
+                                        <constraint firstItem="dVv-Fs-r76" firstAttribute="top" secondItem="Jb9-oH-HFw" secondAttribute="bottom" constant="8" id="yVe-QG-sCI"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="message" destination="QBW-Rz-iuq" id="MIP-sO-LFK"/>
+                                    <outlet property="name" destination="Jb9-oH-HFw" id="aHB-lu-x2O"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -577,6 +641,7 @@
     <resources>
         <image name="MenuArrowLeft" width="24" height="24"/>
         <image name="MenuArrowRight" width="24" height="24"/>
+        <image name="MenuMealMeta" width="90" height="70"/>
         <image name="MenuRoundCorners" width="18" height="18"/>
         <image name="SignupLogo" width="220" height="70"/>
         <image name="TabMenu" width="25" height="25"/>
