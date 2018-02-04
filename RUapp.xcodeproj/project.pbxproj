@@ -7,26 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B9C1C032023849F0003EA7A /* RUappShared_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B9C1C012023849F0003EA7A /* RUappShared_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4B9C1C102023BBCB0003EA7A /* RUappShared_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B9C1C0E2023BBCB0003EA7A /* RUappShared_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4B9C1C1D2023BC290003EA7A /* RUappShared_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B9C1C1B2023BC290003EA7A /* RUappShared_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4B9C1C2A2023BC8E0003EA7A /* RUappShared_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B9C1C282023BC8E0003EA7A /* RUappShared_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4B9C1C2F2023BDB60003EA7A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C1C2E2023BDB60003EA7A /* Test.swift */; };
+		4B9C1C302023BDB60003EA7A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C1C2E2023BDB60003EA7A /* Test.swift */; };
+		4B9C1C312023BDB60003EA7A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C1C2E2023BDB60003EA7A /* Test.swift */; };
+		4B9C1C322023BDB60003EA7A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9C1C2E2023BDB60003EA7A /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4B9C1BF8202383D30003EA7A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		4B9C1BFE2023849E0003EA7A /* RUappShared_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B9C1C012023849F0003EA7A /* RUappShared_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUappShared_iOS.h; sourceTree = "<group>"; };
-		4B9C1C022023849F0003EA7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B9C1C0C2023BBCB0003EA7A /* RUappShared_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B9C1C0E2023BBCB0003EA7A /* RUappShared_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUappShared_watchOS.h; sourceTree = "<group>"; };
-		4B9C1C0F2023BBCB0003EA7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B9C1C192023BC290003EA7A /* RUappShared_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B9C1C1B2023BC290003EA7A /* RUappShared_tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUappShared_tvOS.h; sourceTree = "<group>"; };
-		4B9C1C1C2023BC290003EA7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B9C1C262023BC8E0003EA7A /* RUappShared_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B9C1C282023BC8E0003EA7A /* RUappShared_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUappShared_macOS.h; sourceTree = "<group>"; };
+		4B9C1BFE2023849E0003EA7A /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B9C1C0C2023BBCB0003EA7A /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B9C1C192023BC290003EA7A /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B9C1C262023BC8E0003EA7A /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9C1C292023BC8E0003EA7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B9C1C2E2023BDB60003EA7A /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				4B9C1BF8202383D30003EA7A /* README.md */,
-				4B9C1C002023849F0003EA7A /* RUappShared-iOS */,
-				4B9C1C0D2023BBCB0003EA7A /* RUappShared-watchOS */,
-				4B9C1C1A2023BC290003EA7A /* RUappShared-tvOS */,
-				4B9C1C272023BC8E0003EA7A /* RUappShared-macOS */,
+				4B9C1C272023BC8E0003EA7A /* RUappShared */,
 				4B9C1BFF2023849E0003EA7A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,48 +67,21 @@
 		4B9C1BFF2023849E0003EA7A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4B9C1BFE2023849E0003EA7A /* RUappShared_iOS.framework */,
-				4B9C1C0C2023BBCB0003EA7A /* RUappShared_watchOS.framework */,
-				4B9C1C192023BC290003EA7A /* RUappShared_tvOS.framework */,
-				4B9C1C262023BC8E0003EA7A /* RUappShared_macOS.framework */,
+				4B9C1BFE2023849E0003EA7A /* RUappShared.framework */,
+				4B9C1C0C2023BBCB0003EA7A /* RUappShared.framework */,
+				4B9C1C192023BC290003EA7A /* RUappShared.framework */,
+				4B9C1C262023BC8E0003EA7A /* RUappShared.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4B9C1C002023849F0003EA7A /* RUappShared-iOS */ = {
+		4B9C1C272023BC8E0003EA7A /* RUappShared */ = {
 			isa = PBXGroup;
 			children = (
-				4B9C1C012023849F0003EA7A /* RUappShared_iOS.h */,
-				4B9C1C022023849F0003EA7A /* Info.plist */,
-			);
-			path = "RUappShared-iOS";
-			sourceTree = "<group>";
-		};
-		4B9C1C0D2023BBCB0003EA7A /* RUappShared-watchOS */ = {
-			isa = PBXGroup;
-			children = (
-				4B9C1C0E2023BBCB0003EA7A /* RUappShared_watchOS.h */,
-				4B9C1C0F2023BBCB0003EA7A /* Info.plist */,
-			);
-			path = "RUappShared-watchOS";
-			sourceTree = "<group>";
-		};
-		4B9C1C1A2023BC290003EA7A /* RUappShared-tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				4B9C1C1B2023BC290003EA7A /* RUappShared_tvOS.h */,
-				4B9C1C1C2023BC290003EA7A /* Info.plist */,
-			);
-			path = "RUappShared-tvOS";
-			sourceTree = "<group>";
-		};
-		4B9C1C272023BC8E0003EA7A /* RUappShared-macOS */ = {
-			isa = PBXGroup;
-			children = (
-				4B9C1C282023BC8E0003EA7A /* RUappShared_macOS.h */,
+				4B9C1C2E2023BDB60003EA7A /* Test.swift */,
 				4B9C1C292023BC8E0003EA7A /* Info.plist */,
 			);
-			path = "RUappShared-macOS";
+			path = RUappShared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +91,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B9C1C032023849F0003EA7A /* RUappShared_iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +98,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B9C1C102023BBCB0003EA7A /* RUappShared_watchOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +105,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B9C1C1D2023BC290003EA7A /* RUappShared_tvOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +112,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B9C1C2A2023BC8E0003EA7A /* RUappShared_macOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +133,7 @@
 			);
 			name = "RUappShared-iOS";
 			productName = "RUappShared-iOS";
-			productReference = 4B9C1BFE2023849E0003EA7A /* RUappShared_iOS.framework */;
+			productReference = 4B9C1BFE2023849E0003EA7A /* RUappShared.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4B9C1C0B2023BBCB0003EA7A /* RUappShared-watchOS */ = {
@@ -191,7 +151,7 @@
 			);
 			name = "RUappShared-watchOS";
 			productName = "RUappShared-watchOS";
-			productReference = 4B9C1C0C2023BBCB0003EA7A /* RUappShared_watchOS.framework */;
+			productReference = 4B9C1C0C2023BBCB0003EA7A /* RUappShared.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4B9C1C182023BC290003EA7A /* RUappShared-tvOS */ = {
@@ -209,7 +169,7 @@
 			);
 			name = "RUappShared-tvOS";
 			productName = "RUappShared-tvOS";
-			productReference = 4B9C1C192023BC290003EA7A /* RUappShared_tvOS.framework */;
+			productReference = 4B9C1C192023BC290003EA7A /* RUappShared.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4B9C1C252023BC8E0003EA7A /* RUappShared-macOS */ = {
@@ -227,7 +187,7 @@
 			);
 			name = "RUappShared-macOS";
 			productName = "RUappShared-macOS";
-			productReference = 4B9C1C262023BC8E0003EA7A /* RUappShared_macOS.framework */;
+			productReference = 4B9C1C262023BC8E0003EA7A /* RUappShared.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -241,18 +201,22 @@
 				TargetAttributes = {
 					4B9C1BFD2023849E0003EA7A = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 					4B9C1C0B2023BBCB0003EA7A = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 					4B9C1C182023BC290003EA7A = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 					4B9C1C252023BC8E0003EA7A = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -313,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B9C1C2F2023BDB60003EA7A /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B9C1C302023BDB60003EA7A /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B9C1C312023BDB60003EA7A /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B9C1C322023BDB60003EA7A /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,12 +311,20 @@
 		4B9C1BF6202382750003EA7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
 		4B9C1BF7202382750003EA7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -356,6 +332,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -410,14 +387,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappShared-iOS/Info.plist";
+				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappShared-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared;
+				PRODUCT_NAME = RUappShared;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -433,6 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -481,13 +458,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappShared-iOS/Info.plist";
+				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappShared-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared;
+				PRODUCT_NAME = RUappShared;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -558,13 +534,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappShared-watchOS/Info.plist";
+				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappShared-watchOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared;
+				PRODUCT_NAME = RUappShared;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -573,7 +549,6 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Debug;
 		};
@@ -630,12 +605,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappShared-watchOS/Info.plist";
+				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappShared-watchOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared;
+				PRODUCT_NAME = RUappShared;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -644,7 +619,6 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Release;
 		};
@@ -652,6 +626,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -706,20 +681,19 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappShared-tvOS/Info.plist";
+				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappShared-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared;
+				PRODUCT_NAME = RUappShared;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -729,6 +703,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -777,18 +752,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappShared-tvOS/Info.plist";
+				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappShared-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared;
+				PRODUCT_NAME = RUappShared;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.3;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -799,6 +773,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -855,14 +830,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappShared-macOS/Info.plist";
+				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappShared-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.macos.shared;
+				PRODUCT_NAME = RUappShared;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -877,6 +851,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -927,13 +902,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappShared-macOS/Info.plist";
+				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappShared-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.macos.shared;
+				PRODUCT_NAME = RUappShared;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
