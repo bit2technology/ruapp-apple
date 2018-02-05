@@ -49,6 +49,7 @@
 		4B340B472027AB5F00D0F015 /* RUappSharedTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B340B562027B10700D0F015 /* RUappSharedTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B340B612027CE4200D0F015 /* RUappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappTests.swift; sourceTree = "<group>"; };
+		4B809FA62027D84C00DA24C3 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		4B9C1BF8202383D30003EA7A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4B9C1BFE2023849E0003EA7A /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9C1C0C2023BBCB0003EA7A /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				4B9C1BF8202383D30003EA7A /* README.md */,
+				4B809FA62027D84C00DA24C3 /* .travis.yml */,
 				4B9C1C272023BC8E0003EA7A /* RUappShared */,
 				4B340B392027A9C800D0F015 /* RUappSharedTests */,
 				4B9C1BFF2023849E0003EA7A /* Products */,
