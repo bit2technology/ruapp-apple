@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B3373C4202A74B700C9EED7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3373C2202A74B700C9EED7 /* Model.xcdatamodeld */; };
+		4B3373C5202A74B700C9EED7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3373C2202A74B700C9EED7 /* Model.xcdatamodeld */; };
+		4B3373C6202A74B700C9EED7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3373C2202A74B700C9EED7 /* Model.xcdatamodeld */; };
+		4B3373C7202A74B700C9EED7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3373C2202A74B700C9EED7 /* Model.xcdatamodeld */; };
 		4B340B3D2027A9C800D0F015 /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9C1BFE2023849E0003EA7A /* RUappShared.framework */; };
 		4B340B4C2027AB6000D0F015 /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9C1C192023BC290003EA7A /* RUappShared.framework */; };
 		4B340B5B2027B10800D0F015 /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9C1C262023BC8E0003EA7A /* RUappShared.framework */; };
@@ -44,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B3373C3202A74B700C9EED7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4B340B382027A9C800D0F015 /* RUappSharedTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B340B3C2027A9C800D0F015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B340B472027AB5F00D0F015 /* RUappSharedTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				4B9C1C2E2023BDB60003EA7A /* Test.swift */,
+				4B3373C2202A74B700C9EED7 /* Model.xcdatamodeld */,
 				4B9C1C292023BC8E0003EA7A /* Info.plist */,
 			);
 			path = RUappShared;
@@ -470,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B9C1C2F2023BDB60003EA7A /* Test.swift in Sources */,
+				4B3373C4202A74B700C9EED7 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B9C1C302023BDB60003EA7A /* Test.swift in Sources */,
+				4B3373C5202A74B700C9EED7 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B9C1C312023BDB60003EA7A /* Test.swift in Sources */,
+				4B3373C6202A74B700C9EED7 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B9C1C322023BDB60003EA7A /* Test.swift in Sources */,
+				4B3373C7202A74B700C9EED7 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1581,6 +1591,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4B3373C2202A74B700C9EED7 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4B3373C3202A74B700C9EED7 /* Model.xcdatamodel */,
+			);
+			currentVersion = 4B3373C3202A74B700C9EED7 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4B9C1BF2202382750003EA7A /* Project object */;
 }
