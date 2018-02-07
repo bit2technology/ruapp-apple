@@ -7,6 +7,5 @@ env:
 - XCODE_SCHEME=RUappShared-tvOS XCODE_EXTRA_PARAMS="-destination 'platform=tvOS Simulator,name=Apple TV,OS=9.0'"
 - XCODE_SCHEME=RUappShared-macOS XCODE_EXTRA_PARAMS="CODE_SIGN_IDENTITY='' CODE_SIGN_ENTITLEMENTS='' CODE_SIGNING_REQUIRED=NO"
 
-before_install: sudo gem install xcov
 script: eval "xcodebuild clean build test -project RUapp.xcodeproj -scheme $XCODE_SCHEME $XCODE_EXTRA_PARAMS"
-after_success: xcov -p RUapp.xcodeproj -s $XCODE_SCHEME -o xcov_output --coveralls_service_name travis-ci --coveralls_service_job_id $TRAVIS_JOB_ID
+after_success: bash <(curl -s https://codecov.io/bash) -X xcodeplist
