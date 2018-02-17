@@ -138,6 +138,7 @@
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafeteria.swift; sourceTree = "<group>"; };
+		4BE69E022038926A008C0BFE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		4BF2412E1F7087B900656BCD /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		4BF241301F708F6700656BCD /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInstitutionListOperation.swift; sourceTree = "<group>"; };
@@ -195,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				4BCFF74D1FB4FAB100F275B3 /* README.md */,
+				4BE69E022038926A008C0BFE /* .travis.yml */,
 				4B0605E81F69B715000ACE59 /* RUapp-iOS */,
 				4B0605FF1F69B778000ACE59 /* RUappShared */,
 				4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */,
@@ -236,14 +238,14 @@
 		4B0605FF1F69B778000ACE59 /* RUappShared */ = {
 			isa = PBXGroup;
 			children = (
+				4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */,
+				4B0606011F69B778000ACE59 /* Info.plist */,
 				4B15AC0D20059949007828E4 /* RUappShared.swift */,
 				4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */,
 				4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */,
-				4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */,
 				4B5D91071F76AEAC00F3B5AC /* JSON.swift */,
 				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
 				4B1BF8881FB8E12B00956CF8 /* Meal.swift */,
-				4B0606011F69B778000ACE59 /* Info.plist */,
 				4BFBE09F1FB27F760072287A /* Model */,
 				4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */,
 				4B0BC4771F6D7F6F00A13F61 /* Color.swift */,

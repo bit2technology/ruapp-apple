@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		0E4C0BCCADBD98B0B5A73C3455DC586C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3792A683529B65B8837AD54D85BA6912 /* Foundation.framework */; };
-		13FF6A1A5EDA66252EE7D6FBCFC417FA /* Pods-RUappShared-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A4A7D32E44E232210C0920F9CB493FD /* Pods-RUappShared-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		28568C1E9B916C76D2D670FE9735B152 /* Pods-RUappSharedTests-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C49C51E83EA3F3C4F48D8E7798BB876 /* Pods-RUappSharedTests-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		13FF6A1A5EDA66252EE7D6FBCFC417FA /* Pods-RUappShared-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 895DF7B73CD710EAAE97FA87B32A6D4C /* Pods-RUappShared-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		28568C1E9B916C76D2D670FE9735B152 /* Pods-RUappSharedTests-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2316C8A987F83BD7D4ADCF562D16E491 /* Pods-RUappSharedTests-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2FCB1D4667634B79C9A3E856D8DF7DBC /* AdvancedOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4CD980F8B7DB2E4C58AD1C2042E2DD /* AdvancedOperation.swift */; };
 		3F3A784BB4FFC5FDFAB51A2983C6C024 /* AdvancedManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4657DE38D89647C2DF80DA48A798CB74 /* AdvancedManagedObject.swift */; };
-		42BD7341AFE393AC363C226E88511BEA /* Bit2Common-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 926D5BCC398CA3FE82CC2C8DE59F9DA4 /* Bit2Common-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42BD7341AFE393AC363C226E88511BEA /* Bit2Common-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 054CEF67604785EE161929A81C4879CD /* Bit2Common-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F785A2E80D981E5C370BA20BB393552 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3792A683529B65B8837AD54D85BA6912 /* Foundation.framework */; };
 		5E92FA2E933D83E8C90C780E2CD4F8EB /* URLSessionDataTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEB94F13C60B8978A405E59BFF315D5 /* URLSessionDataTaskOperation.swift */; };
-		5F512652E144621AAE2E3FEDD4B717FA /* Pods-RUapp-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E78D14334AF3870FE288FA95661AF9B3 /* Pods-RUapp-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5F512652E144621AAE2E3FEDD4B717FA /* Pods-RUapp-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E74DBF3529842894E19BE4D36CD0E093 /* Pods-RUapp-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94494BEC07A2D587868236A36782B0E9 /* Bit2Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 14AD72C5C5E01BF2C4309ED549FC87FB /* Bit2Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96ED617967ACC3E0748703EC7CCD459D /* Bit2Common-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A53714C9AF566D0C29426B4A257DEF28 /* Bit2Common-dummy.m */; };
-		96F3BDA300E817682EEF221A6588BEC3 /* Pods-RUappSharedTests-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 033AA529476BCAA1832ED15AE44DDDE3 /* Pods-RUappSharedTests-iOS-dummy.m */; };
+		96ED617967ACC3E0748703EC7CCD459D /* Bit2Common-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B9ACC241D21933E516C14D4992B99A /* Bit2Common-dummy.m */; };
+		96F3BDA300E817682EEF221A6588BEC3 /* Pods-RUappSharedTests-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CF42D142086EC3D41960A9703203BD /* Pods-RUappSharedTests-iOS-dummy.m */; };
 		A631136BE6A3E46D6CD456FE82C0015E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3792A683529B65B8837AD54D85BA6912 /* Foundation.framework */; };
-		A88804A398895676D5148A9A6DF65EBE /* Pods-RUapp-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 894505A042DB07133B05E37214895099 /* Pods-RUapp-iOS-dummy.m */; };
+		A88804A398895676D5148A9A6DF65EBE /* Pods-RUapp-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFD6CF50574080968C4D99C4911C0A0 /* Pods-RUapp-iOS-dummy.m */; };
 		B9E1ED9205B6941477C85F73AF3BEE8C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A7BE07A93D389088D0712B8DA370ED /* CoreData.framework */; };
 		BB3122664F84D205F3568D2CC928F359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3792A683529B65B8837AD54D85BA6912 /* Foundation.framework */; };
 		C626253883FDF590FD32F25F6490C070 /* CoreDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25352844A5C77B79A09D9BCE04AD6985 /* CoreDataOperation.swift */; };
 		DF88BCC74F86390C5E8CD747DD73BC23 /* CoreDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EAD1C44FD1A7541C23D876DAEC154A /* CoreDataContainer.swift */; };
-		E9EF8BA7834855F49ED285D304993C53 /* Pods-RUappShared-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8728A7BA65A17DEDA1AEA3539037AF37 /* Pods-RUappShared-iOS-dummy.m */; };
+		E9EF8BA7834855F49ED285D304993C53 /* Pods-RUappShared-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A661986F2C6792BE6B35D772E716CB6 /* Pods-RUappShared-iOS-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,57 +53,57 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		033AA529476BCAA1832ED15AE44DDDE3 /* Pods-RUappSharedTests-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RUappSharedTests-iOS-dummy.m"; sourceTree = "<group>"; };
+		036EFD8315F0C1AF3BC0024D2FA401BF /* Pods-RUapp-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RUapp-iOS.modulemap"; sourceTree = "<group>"; };
+		054CEF67604785EE161929A81C4879CD /* Bit2Common-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bit2Common-umbrella.h"; sourceTree = "<group>"; };
+		148AFE8A070661C39F3E72F45CBE511E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14AD72C5C5E01BF2C4309ED549FC87FB /* Bit2Common.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Bit2Common.h; path = Sources/Bit2Common.h; sourceTree = "<group>"; };
-		14ECB51C2B62A5C9377285E1102DCC34 /* Pods-RUapp-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RUapp-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		18EAD1C44FD1A7541C23D876DAEC154A /* CoreDataContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreDataContainer.swift; path = Sources/CoreData/CoreDataContainer.swift; sourceTree = "<group>"; };
-		1FA074DFCDC0EEB9EF7D5E225ED211BC /* Pods-RUappSharedTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappSharedTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		1D7B415A2FC6C78533A3CBD428953CED /* Pods-RUappShared-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RUappShared-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2246A7E8838445AAD154D173C3FB522F /* Bit2Common-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bit2Common-prefix.pch"; sourceTree = "<group>"; };
+		2316C8A987F83BD7D4ADCF562D16E491 /* Pods-RUappSharedTests-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RUappSharedTests-iOS-umbrella.h"; sourceTree = "<group>"; };
 		25352844A5C77B79A09D9BCE04AD6985 /* CoreDataOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreDataOperation.swift; path = Sources/CoreDataOperation/CoreDataOperation.swift; sourceTree = "<group>"; };
-		2A4A7D32E44E232210C0920F9CB493FD /* Pods-RUappShared-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RUappShared-iOS-umbrella.h"; sourceTree = "<group>"; };
-		2FD91D97AA57C3BC8B4193FD100B91D0 /* Pods-RUappShared-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUappShared-iOS-resources.sh"; sourceTree = "<group>"; };
-		30E8D25366D26462FE062D7C0D5E33AC /* Pods-RUappSharedTests-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUappSharedTests-iOS-resources.sh"; sourceTree = "<group>"; };
-		35F78F4C6861C979384C36822B81D50E /* Pods-RUapp-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUapp-iOS-resources.sh"; sourceTree = "<group>"; };
+		28AB721365C9DF4F82C10252D7889394 /* Pods-RUappSharedTests-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RUappSharedTests-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		339FB3D53C63E1CB05F694778FDB650F /* Pods-RUappSharedTests-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RUappSharedTests-iOS.modulemap"; sourceTree = "<group>"; };
 		3792A683529B65B8837AD54D85BA6912 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		3AD363A1A4282B3CB12337771319DE3C /* Bit2Common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Bit2Common.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		3B8689ADA194CFFBC9B2428F1F411612 /* Pods-RUapp-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RUapp-iOS.modulemap"; sourceTree = "<group>"; };
-		3C49C51E83EA3F3C4F48D8E7798BB876 /* Pods-RUappSharedTests-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RUappSharedTests-iOS-umbrella.h"; sourceTree = "<group>"; };
+		3B0287FD19CB31CF42FA4720BDD853A4 /* Pods-RUapp-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RUapp-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		3FA60F621F0FC1AABD570C29D9036628 /* Pods-RUapp-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUapp-iOS-resources.sh"; sourceTree = "<group>"; };
+		41827F578DEB8613C0610324D9C0473B /* Pods-RUappSharedTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappSharedTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		42AA68E570C4300E36F958D4F953BDD2 /* Pods-RUappShared-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappShared-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		4657DE38D89647C2DF80DA48A798CB74 /* AdvancedManagedObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdvancedManagedObject.swift; path = Sources/CoreData/AdvancedManagedObject.swift; sourceTree = "<group>"; };
-		48C0777E49430D007CA7215296995846 /* Pods-RUappShared-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappShared-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		4A661986F2C6792BE6B35D772E716CB6 /* Pods-RUappShared-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RUappShared-iOS-dummy.m"; sourceTree = "<group>"; };
 		57CB6633A1456B40AC9675A2C57015E8 /* Pods_RUappSharedTests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RUappSharedTests_iOS.framework; path = "Pods-RUappSharedTests-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B58A73FCD7FC7A9EA8E70F6B757C87D /* Pods-RUapp-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUapp-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		5B5D5B2BBC735F61E9693B21B99409D6 /* Pods-RUapp-iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUapp-iOS-frameworks.sh"; sourceTree = "<group>"; };
 		5C508BC84F1231AB10517EF20E3C9161 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		62723FBCE5D4A92E2FC6B63B4DF1CC74 /* Pods-RUappSharedTests-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RUappSharedTests-iOS.modulemap"; sourceTree = "<group>"; };
-		627FD07906230F73E64A9B15A3A98BE1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		674EAD534D0F7D50FD70FDB029A6D12B /* Pods-RUappShared-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RUappShared-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5E0BD3FAC73A9FBB11509AF8B7B63EC9 /* Pods-RUappSharedTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappSharedTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		61F7B07FFC7DBD8549009EA14840E1B5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64232487C0810264B1661E1B028950E8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		699743DA7A7560542240F25211A9333F /* Pods-RUappShared-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RUappShared-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		6CB47432F6F7BB6204C53F866BE36035 /* Bit2Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Bit2Common.framework; path = Bit2Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		75AAA6D1F1F3334EC3859D5428389754 /* Pods-RUapp-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RUapp-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7D61B1A3105DCA3DC5DF382E0A526BC4 /* Pods-RUappShared-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappShared-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		80FF41D9C1E32486FC6BED50031947B3 /* Pods-RUappSharedTests-iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUappSharedTests-iOS-frameworks.sh"; sourceTree = "<group>"; };
-		8728A7BA65A17DEDA1AEA3539037AF37 /* Pods-RUappShared-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RUappShared-iOS-dummy.m"; sourceTree = "<group>"; };
-		878A898102F5B099A0D844EE280D1674 /* Bit2Common-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bit2Common-prefix.pch"; sourceTree = "<group>"; };
-		894505A042DB07133B05E37214895099 /* Pods-RUapp-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RUapp-iOS-dummy.m"; sourceTree = "<group>"; };
-		910D46E365260BCBCBB4C4079C4504EF /* Bit2Common.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Bit2Common.modulemap; sourceTree = "<group>"; };
-		912AB2B60859BE4E15ACA52F6CD25371 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70B385AC039246D98B13EE3E1A9F6FCC /* Bit2Common.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Bit2Common.xcconfig; sourceTree = "<group>"; };
+		74B11C56FC1054EC970A48581510A956 /* Pods-RUappSharedTests-iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUappSharedTests-iOS-frameworks.sh"; sourceTree = "<group>"; };
+		76063674D03BA9ED8CDA7956ED8A0B8D /* Bit2Common.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Bit2Common.modulemap; sourceTree = "<group>"; };
+		7A7378D4F9EB7D5D006039AFF7DBF00C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		895DF7B73CD710EAAE97FA87B32A6D4C /* Pods-RUappShared-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RUappShared-iOS-umbrella.h"; sourceTree = "<group>"; };
 		91D3A0C3FAD176720DDC3181019B30B2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		926D5BCC398CA3FE82CC2C8DE59F9DA4 /* Bit2Common-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bit2Common-umbrella.h"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9E35E1B9C7F35F32A95083EF8C661212 /* Pods-RUapp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUapp-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		A53714C9AF566D0C29426B4A257DEF28 /* Bit2Common-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Bit2Common-dummy.m"; sourceTree = "<group>"; };
-		ACAA618C7F07FE6BD8F003C000DC0062 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADA910466A0AC4A990CF1D72DBC1D993 /* Pods-RUappShared-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RUappShared-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		B392FEAF83D3010BE87644C56AF97CA6 /* Pods-RUappSharedTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappSharedTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		B707964D495D9D9BB4C74EBE12BBDEDB /* Pods-RUappShared-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RUappShared-iOS.modulemap"; sourceTree = "<group>"; };
-		D06ED91B9FB34A349614FA029A4E2207 /* Pods-RUappSharedTests-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RUappSharedTests-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		D20A18FA684E20DC465563E0238F25C8 /* Bit2Common.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Bit2Common.xcconfig; sourceTree = "<group>"; };
-		D2B02AD9EB7AEEB06D0585CFE50AEB7A /* Pods-RUappSharedTests-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RUappSharedTests-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A35B2C543BD29AF01C5A94FF9A8630FE /* Pods-RUappShared-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RUappShared-iOS.modulemap"; sourceTree = "<group>"; };
+		A4B9ACC241D21933E516C14D4992B99A /* Bit2Common-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Bit2Common-dummy.m"; sourceTree = "<group>"; };
+		A6CF42D142086EC3D41960A9703203BD /* Pods-RUappSharedTests-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RUappSharedTests-iOS-dummy.m"; sourceTree = "<group>"; };
+		ACBEEACDAAD90DAC5EE74ACA9866DE19 /* Pods-RUapp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUapp-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		AD7C91EC7258FD353D93E26792D82ECA /* Pods-RUappShared-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUappShared-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		B182677B1373AF5F2CEDB9BDE287AE19 /* Pods-RUappSharedTests-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RUappSharedTests-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		BFA3BAD1474584EB005CD884598B3114 /* Pods-RUapp-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RUapp-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D977FE21C789734642C8A6AC8A7EFB71 /* Pods-RUapp-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RUapp-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		DA97B3CE36738B7628E5A3771909611F /* Pods_RUapp_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RUapp_iOS.framework; path = "Pods-RUapp-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADE2DE963851AB592AFF636E7AD85FA /* Pods_RUappShared_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RUappShared_iOS.framework; path = "Pods-RUappShared-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAFD6CF50574080968C4D99C4911C0A0 /* Pods-RUapp-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RUapp-iOS-dummy.m"; sourceTree = "<group>"; };
 		DEEB94F13C60B8978A405E59BFF315D5 /* URLSessionDataTaskOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLSessionDataTaskOperation.swift; path = Sources/URLSessionDataTaskOperation/URLSessionDataTaskOperation.swift; sourceTree = "<group>"; };
-		E78D14334AF3870FE288FA95661AF9B3 /* Pods-RUapp-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RUapp-iOS-umbrella.h"; sourceTree = "<group>"; };
+		E74DBF3529842894E19BE4D36CD0E093 /* Pods-RUapp-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RUapp-iOS-umbrella.h"; sourceTree = "<group>"; };
 		EB4CD980F8B7DB2E4C58AD1C2042E2DD /* AdvancedOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdvancedOperation.swift; path = Sources/AdvancedOperation/AdvancedOperation.swift; sourceTree = "<group>"; };
-		EBF77BE2819067C81DFD9F5899D63EA1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3A0775CE77DC6EA4CEC90F4339648DD /* Pods-RUapp-iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUapp-iOS-frameworks.sh"; sourceTree = "<group>"; };
+		EBF0793A3CACE29605F86781DE8C105A /* Pods-RUappSharedTests-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUappSharedTests-iOS-resources.sh"; sourceTree = "<group>"; };
 		F7A7BE07A93D389088D0712B8DA370ED /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		FC25BD848FA77E79DF8DBC8147DF602A /* Pods-RUappShared-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RUappShared-iOS-resources.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,36 +143,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		282D65E104B79D7A0BBEFE1823A3EEED /* Support Files */ = {
+		230B42AB75309BD76A87DDA06B2E077F /* Pods-RUapp-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				910D46E365260BCBCBB4C4079C4504EF /* Bit2Common.modulemap */,
-				D20A18FA684E20DC465563E0238F25C8 /* Bit2Common.xcconfig */,
-				A53714C9AF566D0C29426B4A257DEF28 /* Bit2Common-dummy.m */,
-				878A898102F5B099A0D844EE280D1674 /* Bit2Common-prefix.pch */,
-				926D5BCC398CA3FE82CC2C8DE59F9DA4 /* Bit2Common-umbrella.h */,
-				912AB2B60859BE4E15ACA52F6CD25371 /* Info.plist */,
+				64232487C0810264B1661E1B028950E8 /* Info.plist */,
+				036EFD8315F0C1AF3BC0024D2FA401BF /* Pods-RUapp-iOS.modulemap */,
+				BFA3BAD1474584EB005CD884598B3114 /* Pods-RUapp-iOS-acknowledgements.markdown */,
+				3B0287FD19CB31CF42FA4720BDD853A4 /* Pods-RUapp-iOS-acknowledgements.plist */,
+				DAFD6CF50574080968C4D99C4911C0A0 /* Pods-RUapp-iOS-dummy.m */,
+				5B5D5B2BBC735F61E9693B21B99409D6 /* Pods-RUapp-iOS-frameworks.sh */,
+				3FA60F621F0FC1AABD570C29D9036628 /* Pods-RUapp-iOS-resources.sh */,
+				E74DBF3529842894E19BE4D36CD0E093 /* Pods-RUapp-iOS-umbrella.h */,
+				D977FE21C789734642C8A6AC8A7EFB71 /* Pods-RUapp-iOS.debug.xcconfig */,
+				ACBEEACDAAD90DAC5EE74ACA9866DE19 /* Pods-RUapp-iOS.release.xcconfig */,
 			);
-			name = "Support Files";
-			path = "../ruapp-apple/Pods/Target Support Files/Bit2Common";
+			name = "Pods-RUapp-iOS";
+			path = "Target Support Files/Pods-RUapp-iOS";
 			sourceTree = "<group>";
 		};
-		3841C6ABE35387D557E44938138E2FB4 /* Pods-RUappSharedTests-iOS */ = {
+		382773B519C12089E5A1759E9F04FE18 /* Pods-RUappShared-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				EBF77BE2819067C81DFD9F5899D63EA1 /* Info.plist */,
-				62723FBCE5D4A92E2FC6B63B4DF1CC74 /* Pods-RUappSharedTests-iOS.modulemap */,
-				D2B02AD9EB7AEEB06D0585CFE50AEB7A /* Pods-RUappSharedTests-iOS-acknowledgements.markdown */,
-				D06ED91B9FB34A349614FA029A4E2207 /* Pods-RUappSharedTests-iOS-acknowledgements.plist */,
-				033AA529476BCAA1832ED15AE44DDDE3 /* Pods-RUappSharedTests-iOS-dummy.m */,
-				80FF41D9C1E32486FC6BED50031947B3 /* Pods-RUappSharedTests-iOS-frameworks.sh */,
-				30E8D25366D26462FE062D7C0D5E33AC /* Pods-RUappSharedTests-iOS-resources.sh */,
-				3C49C51E83EA3F3C4F48D8E7798BB876 /* Pods-RUappSharedTests-iOS-umbrella.h */,
-				1FA074DFCDC0EEB9EF7D5E225ED211BC /* Pods-RUappSharedTests-iOS.debug.xcconfig */,
-				B392FEAF83D3010BE87644C56AF97CA6 /* Pods-RUappSharedTests-iOS.release.xcconfig */,
+				148AFE8A070661C39F3E72F45CBE511E /* Info.plist */,
+				A35B2C543BD29AF01C5A94FF9A8630FE /* Pods-RUappShared-iOS.modulemap */,
+				1D7B415A2FC6C78533A3CBD428953CED /* Pods-RUappShared-iOS-acknowledgements.markdown */,
+				699743DA7A7560542240F25211A9333F /* Pods-RUappShared-iOS-acknowledgements.plist */,
+				4A661986F2C6792BE6B35D772E716CB6 /* Pods-RUappShared-iOS-dummy.m */,
+				FC25BD848FA77E79DF8DBC8147DF602A /* Pods-RUappShared-iOS-resources.sh */,
+				895DF7B73CD710EAAE97FA87B32A6D4C /* Pods-RUappShared-iOS-umbrella.h */,
+				42AA68E570C4300E36F958D4F953BDD2 /* Pods-RUappShared-iOS.debug.xcconfig */,
+				AD7C91EC7258FD353D93E26792D82ECA /* Pods-RUappShared-iOS.release.xcconfig */,
 			);
-			name = "Pods-RUappSharedTests-iOS";
-			path = "Target Support Files/Pods-RUappSharedTests-iOS";
+			name = "Pods-RUappShared-iOS";
+			path = "Target Support Files/Pods-RUappShared-iOS";
 			sourceTree = "<group>";
 		};
 		3C1C43C35B34E79867A1C4AE1864DC7F /* Development Pods */ = {
@@ -209,23 +212,6 @@
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		7D24840E07F33989C270F5EF00C4EF29 /* Pods-RUappShared-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				627FD07906230F73E64A9B15A3A98BE1 /* Info.plist */,
-				B707964D495D9D9BB4C74EBE12BBDEDB /* Pods-RUappShared-iOS.modulemap */,
-				674EAD534D0F7D50FD70FDB029A6D12B /* Pods-RUappShared-iOS-acknowledgements.markdown */,
-				ADA910466A0AC4A990CF1D72DBC1D993 /* Pods-RUappShared-iOS-acknowledgements.plist */,
-				8728A7BA65A17DEDA1AEA3539037AF37 /* Pods-RUappShared-iOS-dummy.m */,
-				2FD91D97AA57C3BC8B4193FD100B91D0 /* Pods-RUappShared-iOS-resources.sh */,
-				2A4A7D32E44E232210C0920F9CB493FD /* Pods-RUappShared-iOS-umbrella.h */,
-				7D61B1A3105DCA3DC5DF382E0A526BC4 /* Pods-RUappShared-iOS.debug.xcconfig */,
-				48C0777E49430D007CA7215296995846 /* Pods-RUappShared-iOS.release.xcconfig */,
-			);
-			name = "Pods-RUappShared-iOS";
-			path = "Target Support Files/Pods-RUappShared-iOS";
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -246,22 +232,22 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		97A55FEA1306874A1AA042A25C253290 /* Pods-RUapp-iOS */ = {
+		8B76FDF645CB6A399B6FBDFA12CD1C1D /* Pods-RUappSharedTests-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				ACAA618C7F07FE6BD8F003C000DC0062 /* Info.plist */,
-				3B8689ADA194CFFBC9B2428F1F411612 /* Pods-RUapp-iOS.modulemap */,
-				75AAA6D1F1F3334EC3859D5428389754 /* Pods-RUapp-iOS-acknowledgements.markdown */,
-				14ECB51C2B62A5C9377285E1102DCC34 /* Pods-RUapp-iOS-acknowledgements.plist */,
-				894505A042DB07133B05E37214895099 /* Pods-RUapp-iOS-dummy.m */,
-				F3A0775CE77DC6EA4CEC90F4339648DD /* Pods-RUapp-iOS-frameworks.sh */,
-				35F78F4C6861C979384C36822B81D50E /* Pods-RUapp-iOS-resources.sh */,
-				E78D14334AF3870FE288FA95661AF9B3 /* Pods-RUapp-iOS-umbrella.h */,
-				5B58A73FCD7FC7A9EA8E70F6B757C87D /* Pods-RUapp-iOS.debug.xcconfig */,
-				9E35E1B9C7F35F32A95083EF8C661212 /* Pods-RUapp-iOS.release.xcconfig */,
+				7A7378D4F9EB7D5D006039AFF7DBF00C /* Info.plist */,
+				339FB3D53C63E1CB05F694778FDB650F /* Pods-RUappSharedTests-iOS.modulemap */,
+				28AB721365C9DF4F82C10252D7889394 /* Pods-RUappSharedTests-iOS-acknowledgements.markdown */,
+				B182677B1373AF5F2CEDB9BDE287AE19 /* Pods-RUappSharedTests-iOS-acknowledgements.plist */,
+				A6CF42D142086EC3D41960A9703203BD /* Pods-RUappSharedTests-iOS-dummy.m */,
+				74B11C56FC1054EC970A48581510A956 /* Pods-RUappSharedTests-iOS-frameworks.sh */,
+				EBF0793A3CACE29605F86781DE8C105A /* Pods-RUappSharedTests-iOS-resources.sh */,
+				2316C8A987F83BD7D4ADCF562D16E491 /* Pods-RUappSharedTests-iOS-umbrella.h */,
+				5E0BD3FAC73A9FBB11509AF8B7B63EC9 /* Pods-RUappSharedTests-iOS.debug.xcconfig */,
+				41827F578DEB8613C0610324D9C0473B /* Pods-RUappSharedTests-iOS.release.xcconfig */,
 			);
-			name = "Pods-RUapp-iOS";
-			path = "Target Support Files/Pods-RUapp-iOS";
+			name = "Pods-RUappSharedTests-iOS";
+			path = "Target Support Files/Pods-RUappSharedTests-iOS";
 			sourceTree = "<group>";
 		};
 		A2BF3B37FBABB269A6DE51FF8641AA0C /* Products */ = {
@@ -292,7 +278,7 @@
 				85E48CB531A85EB522635C99B103DE3A /* CoreData */,
 				DDC702CBA8E48F975EF2588D4298BBC6 /* CoreDataOperation */,
 				67576FC2F20BF8864F5641A7B41D01EB /* Pod */,
-				282D65E104B79D7A0BBEFE1823A3EEED /* Support Files */,
+				F802C706B481A3C9878E262743EBB7C2 /* Support Files */,
 				4B90800D815036BB8021DE9A06BF48F2 /* URLSessionDataTaskOperation */,
 			);
 			name = Bit2Common;
@@ -310,9 +296,9 @@
 		EE30C510F0CB521313A806DD9A0E0AAE /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				97A55FEA1306874A1AA042A25C253290 /* Pods-RUapp-iOS */,
-				7D24840E07F33989C270F5EF00C4EF29 /* Pods-RUappShared-iOS */,
-				3841C6ABE35387D557E44938138E2FB4 /* Pods-RUappSharedTests-iOS */,
+				230B42AB75309BD76A87DDA06B2E077F /* Pods-RUapp-iOS */,
+				382773B519C12089E5A1759E9F04FE18 /* Pods-RUappShared-iOS */,
+				8B76FDF645CB6A399B6FBDFA12CD1C1D /* Pods-RUappSharedTests-iOS */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
@@ -323,6 +309,20 @@
 				EB4CD980F8B7DB2E4C58AD1C2042E2DD /* AdvancedOperation.swift */,
 			);
 			name = AdvancedOperation;
+			sourceTree = "<group>";
+		};
+		F802C706B481A3C9878E262743EBB7C2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				76063674D03BA9ED8CDA7956ED8A0B8D /* Bit2Common.modulemap */,
+				70B385AC039246D98B13EE3E1A9F6FCC /* Bit2Common.xcconfig */,
+				A4B9ACC241D21933E516C14D4992B99A /* Bit2Common-dummy.m */,
+				2246A7E8838445AAD154D173C3FB522F /* Bit2Common-prefix.pch */,
+				054CEF67604785EE161929A81C4879CD /* Bit2Common-umbrella.h */,
+				61F7B07FFC7DBD8549009EA14840E1B5 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../ruapp-apple/Pods/Target Support Files/Bit2Common";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,8 +441,8 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0700;
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -528,7 +528,7 @@
 /* Begin XCBuildConfiguration section */
 		060F605EF5ECDE5FC770CABFF870001E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D20A18FA684E20DC465563E0238F25C8 /* Bit2Common.xcconfig */;
+			baseConfigurationReference = 70B385AC039246D98B13EE3E1A9F6FCC /* Bit2Common.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -559,75 +559,7 @@
 			};
 			name = Release;
 		};
-		49964BEF68D19ECF845306338CF3BE87 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E35E1B9C7F35F32A95083EF8C661212 /* Pods-RUapp-iOS.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-RUapp-iOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_RUapp_iOS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		5D79F86C4BDAC1988289946B057FA40B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B58A73FCD7FC7A9EA8E70F6B757C87D /* Pods-RUapp-iOS.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-RUapp-iOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_RUapp_iOS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		6F9224530522DD3C735EC96CF142642E /* Release */ = {
+		26F954BA177A9A46FFFD4E23ED11D67A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -637,10 +569,12 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -648,6 +582,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -682,9 +617,77 @@
 			};
 			name = Release;
 		};
+		49964BEF68D19ECF845306338CF3BE87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACBEEACDAAD90DAC5EE74ACA9866DE19 /* Pods-RUapp-iOS.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-RUapp-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RUapp_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5D79F86C4BDAC1988289946B057FA40B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D977FE21C789734642C8A6AC8A7EFB71 /* Pods-RUapp-iOS.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-RUapp-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RUapp_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		8C0A85103E04D55903A51B73F145A16D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D20A18FA684E20DC465563E0238F25C8 /* Bit2Common.xcconfig */;
+			baseConfigurationReference = 70B385AC039246D98B13EE3E1A9F6FCC /* Bit2Common.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -716,7 +719,7 @@
 		};
 		92BC19427F0609549E2246A4DB3E2DB4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48C0777E49430D007CA7215296995846 /* Pods-RUappShared-iOS.release.xcconfig */;
+			baseConfigurationReference = AD7C91EC7258FD353D93E26792D82ECA /* Pods-RUappShared-iOS.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -751,7 +754,7 @@
 		};
 		AC01E0BA8EBEF312C2C7D0CA6ADBA101 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D61B1A3105DCA3DC5DF382E0A526BC4 /* Pods-RUappShared-iOS.debug.xcconfig */;
+			baseConfigurationReference = 42AA68E570C4300E36F958D4F953BDD2 /* Pods-RUappShared-iOS.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -786,7 +789,7 @@
 		};
 		AC0811A629CC4B2F803147A84AFF0A30 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FA074DFCDC0EEB9EF7D5E225ED211BC /* Pods-RUappSharedTests-iOS.debug.xcconfig */;
+			baseConfigurationReference = 5E0BD3FAC73A9FBB11509AF8B7B63EC9 /* Pods-RUappSharedTests-iOS.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -818,7 +821,41 @@
 			};
 			name = Debug;
 		};
-		B57951D085A1B98A97F8A1062A5E5C5B /* Debug */ = {
+		C4564BDDB5876282779CEEC6AC679C43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41827F578DEB8613C0610324D9C0473B /* Pods-RUappSharedTests-iOS.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-RUappSharedTests-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RUappSharedTests_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E2BF6D6731C31DE69900B7B24E6F0445 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -828,10 +865,12 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -839,6 +878,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -878,40 +918,6 @@
 			};
 			name = Debug;
 		};
-		C4564BDDB5876282779CEEC6AC679C43 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B392FEAF83D3010BE87644C56AF97CA6 /* Pods-RUappSharedTests-iOS.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-RUappSharedTests-iOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_RUappSharedTests_iOS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -927,8 +933,8 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B57951D085A1B98A97F8A1062A5E5C5B /* Debug */,
-				6F9224530522DD3C735EC96CF142642E /* Release */,
+				E2BF6D6731C31DE69900B7B24E6F0445 /* Debug */,
+				26F954BA177A9A46FFFD4E23ED11D67A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
