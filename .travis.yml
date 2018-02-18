@@ -5,5 +5,5 @@ osx_image: xcode9.2
 env:
 - XCODE_SCHEME=RUappShared-iOS XCODE_EXTRA_PARAMS="-destination 'platform=iOS Simulator,name=iPhone 4s,OS=9.0'"
 
-script: eval "xcodebuild clean build test -workspace RUapp.xcworkspace -scheme $XCODE_SCHEME $XCODE_EXTRA_PARAMS"
+script: eval "xcodebuild clean build test -project RUapp.xcodeproj -scheme $XCODE_SCHEME $XCODE_EXTRA_PARAMS"
 after_success: bash <(curl -s https://codecov.io/bash) -n $XCODE_SCHEME -X xcodeplist
