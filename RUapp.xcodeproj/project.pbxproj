@@ -14,10 +14,6 @@
 		4B0606051F69B778000ACE59 /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4B0606061F69B778000ACE59 /* RUappShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B0BC4761F6D7F2100A13F61 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4751F6D7F2100A13F61 /* MenuController.swift */; };
-		4B0CFB371F69BE800069C42B /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB361F69BE750069C42B /* Menu.json */; };
-		4B0CFB3E1F69CB8C0069C42B /* Institution.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3D1F69CB890069C42B /* Institution.json */; };
-		4B0CFB401F69CD050069C42B /* RegisterStudent.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3F1F69CCF60069C42B /* RegisterStudent.json */; };
-		4B0CFB451F69DB340069C42B /* Result.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB441F69DB2A0069C42B /* Result.json */; };
 		4B0CFB4B1F69E8540069C42B /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4A1F69E8540069C42B /* RootController.swift */; };
 		4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */; };
 		4B15AC112007B2B7007828E4 /* MealMetaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC102007B2B7007828E4 /* MealMetaCell.swift */; };
@@ -30,6 +26,7 @@
 		4BA481882039DFB3001B0E3D /* Votable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA481872039DFB3001B0E3D /* Votable.swift */; };
 		4BA481892039E139001B0E3D /* URLRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */; };
 		4BA4818A2039F21B001B0E3D /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC0D20059949007828E4 /* RUappShared.swift */; };
+		4BA4818B2039FA9B001B0E3D /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4C1F69E9360069C42B /* Student.swift */; };
 		4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */; };
 		4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */; };
 		4BC2F5B11F6EE53800F55964 /* RUappController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5B01F6EE53800F55964 /* RUappController.swift */; };
@@ -90,10 +87,6 @@
 		4B0BC4801F6D8E7200A13F61 /* Dosis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-SemiBold.otf"; sourceTree = "<group>"; };
 		4B0BC4811F6D8E7200A13F61 /* Dosis-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Bold.otf"; sourceTree = "<group>"; };
 		4B0BC4821F6D8E7200A13F61 /* Dosis-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Book.otf"; sourceTree = "<group>"; };
-		4B0CFB361F69BE750069C42B /* Menu.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Menu.json; sourceTree = "<group>"; };
-		4B0CFB3D1F69CB890069C42B /* Institution.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Institution.json; sourceTree = "<group>"; };
-		4B0CFB3F1F69CCF60069C42B /* RegisterStudent.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RegisterStudent.json; sourceTree = "<group>"; };
-		4B0CFB441F69DB2A0069C42B /* Result.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Result.json; sourceTree = "<group>"; };
 		4B0CFB4A1F69E8540069C42B /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		4B0CFB4C1F69E9360069C42B /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RUapp-iOS.entitlements"; sourceTree = "<group>"; };
@@ -203,13 +196,13 @@
 				4B1BF8881FB8E12B00956CF8 /* Meal.swift */,
 				4BAA16E41FE1FA990012323A /* Dish.swift */,
 				4BA481872039DFB3001B0E3D /* Votable.swift */,
-				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
-				4B15AC0D20059949007828E4 /* RUappShared.swift */,
+				4B0CFB4C1F69E9360069C42B /* Student.swift */,
 				4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
+				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
+				4B15AC0D20059949007828E4 /* RUappShared.swift */,
 				4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */,
 				4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */,
-				4BFBE09F1FB27F760072287A /* Model */,
 				4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */,
 				4B0BC4771F6D7F6F00A13F61 /* Color.swift */,
 				4B0BC4791F6D891200A13F61 /* Font.swift */,
@@ -232,17 +225,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		4B0CFB381F69BE8F0069C42B /* MockData */ = {
-			isa = PBXGroup;
-			children = (
-				4B0CFB3D1F69CB890069C42B /* Institution.json */,
-				4B0CFB361F69BE750069C42B /* Menu.json */,
-				4B0CFB3F1F69CCF60069C42B /* RegisterStudent.json */,
-				4B0CFB441F69DB2A0069C42B /* Result.json */,
-			);
-			path = MockData;
-			sourceTree = "<group>";
-		};
 		4B656A261FE94059009A4160 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,19 +238,10 @@
 		4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */ = {
 			isa = PBXGroup;
 			children = (
-				4B0CFB381F69BE8F0069C42B /* MockData */,
 				4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */,
 				4BDBB1CD1F69BAC3007900EC /* Info.plist */,
 			);
 			path = RUappSharedTests;
-			sourceTree = "<group>";
-		};
-		4BFBE09F1FB27F760072287A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4B0CFB4C1F69E9360069C42B /* Student.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,10 +384,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B0CFB3E1F69CB8C0069C42B /* Institution.json in Resources */,
-				4B0CFB371F69BE800069C42B /* Menu.json in Resources */,
-				4B0CFB451F69DB340069C42B /* Result.json in Resources */,
-				4B0CFB401F69CD050069C42B /* RegisterStudent.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +417,7 @@
 				4BA481892039E139001B0E3D /* URLRoute.swift in Sources */,
 				4BA481852039D7B3001B0E3D /* Meal.swift in Sources */,
 				4BE69E072039ADAB008C0BFE /* Institution.swift in Sources */,
+				4BA4818B2039FA9B001B0E3D /* Student.swift in Sources */,
 				4BE69E062039AADB008C0BFE /* JSONDecoder+Persistent.swift in Sources */,
 				4BA481862039DEF9001B0E3D /* Dish.swift in Sources */,
 				4BA481842039D319001B0E3D /* Cafeteria.swift in Sources */,

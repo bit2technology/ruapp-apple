@@ -19,7 +19,5 @@ extension JSONDecoder {
 
 extension CodingUserInfoKey {
     
-    static var managedObjectContext: CodingUserInfoKey {
-        return CodingUserInfoKey(rawValue: "ManagedObjectContext")!
-    }
+    static let managedObjectContext = CodingUserInfoKey(rawValue: "ManagedObjectContext")!
 }

@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Cafeteria" representedClassName="Cafeteria" syncable="YES" codeGenerationType="category">
         <attribute name="capacity" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="latitude" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longitude" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -14,7 +14,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Campus" representedClassName="Campus" syncable="YES" codeGenerationType="category">
-        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="stateInitials" attributeType="String" syncable="YES"/>
         <attribute name="stateName" attributeType="String" syncable="YES"/>
@@ -40,7 +40,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Institution" representedClassName="Institution" syncable="YES" codeGenerationType="category">
-        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="stateInitials" attributeType="String" syncable="YES"/>
         <attribute name="stateName" attributeType="String" syncable="YES"/>
@@ -55,7 +55,7 @@
     </entity>
     <entity name="Meal" representedClassName="Meal" syncable="YES" codeGenerationType="category">
         <attribute name="close" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="meta" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="open" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -68,7 +68,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Student" representedClassName="Student" syncable="YES" codeGenerationType="class">
-        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="numberPlate" attributeType="String" syncable="YES"/>
         <relationship name="institution" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Institution" inverseName="student" inverseEntity="Institution" syncable="YES"/>
@@ -79,7 +79,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Votable" representedClassName="Votable" syncable="YES" codeGenerationType="category">
-        <attribute name="id" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="meta" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="meal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="votables" inverseEntity="Meal" syncable="YES"/>
