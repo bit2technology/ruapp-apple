@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2CE701CA8BF4961627A76F14 /* Pods_RUappShared_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38ECA9B357B40BFE66D26362 /* Pods_RUappShared_iOS.framework */; };
 		4B0605EA1F69B715000ACE59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0605E91F69B715000ACE59 /* AppDelegate.swift */; };
 		4B0605EF1F69B715000ACE59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0605ED1F69B715000ACE59 /* Main.storyboard */; };
 		4B0605F11F69B715000ACE59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B0605F01F69B715000ACE59 /* Assets.xcassets */; };
@@ -15,45 +14,30 @@
 		4B0606051F69B778000ACE59 /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4B0606061F69B778000ACE59 /* RUappShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B0BC4761F6D7F2100A13F61 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4751F6D7F2100A13F61 /* MenuController.swift */; };
-		4B0BC4781F6D7F6F00A13F61 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4771F6D7F6F00A13F61 /* Color.swift */; };
-		4B0BC47A1F6D891200A13F61 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4791F6D891200A13F61 /* Font.swift */; };
-		4B0BC4831F6D8E7F00A13F61 /* Dosis-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47C1F6D8E7200A13F61 /* Dosis-Light.otf */; };
-		4B0BC4841F6D8E7F00A13F61 /* Dosis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47D1F6D8E7200A13F61 /* Dosis-Medium.otf */; };
-		4B0BC4851F6D8E7F00A13F61 /* Dosis-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47E1F6D8E7200A13F61 /* Dosis-ExtraLight.otf */; };
-		4B0BC4861F6D8E7F00A13F61 /* Dosis-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC47F1F6D8E7200A13F61 /* Dosis-ExtraBold.otf */; };
-		4B0BC4871F6D8E7F00A13F61 /* Dosis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC4801F6D8E7200A13F61 /* Dosis-SemiBold.otf */; };
-		4B0BC4881F6D8E7F00A13F61 /* Dosis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC4811F6D8E7200A13F61 /* Dosis-Bold.otf */; };
-		4B0BC4891F6D8E7F00A13F61 /* Dosis-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BC4821F6D8E7200A13F61 /* Dosis-Book.otf */; };
 		4B0CFB371F69BE800069C42B /* Menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB361F69BE750069C42B /* Menu.json */; };
 		4B0CFB3E1F69CB8C0069C42B /* Institution.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3D1F69CB890069C42B /* Institution.json */; };
 		4B0CFB401F69CD050069C42B /* RegisterStudent.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB3F1F69CCF60069C42B /* RegisterStudent.json */; };
 		4B0CFB451F69DB340069C42B /* Result.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B0CFB441F69DB2A0069C42B /* Result.json */; };
 		4B0CFB4B1F69E8540069C42B /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4A1F69E8540069C42B /* RootController.swift */; };
-		4B0CFB4D1F69E9360069C42B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4C1F69E9360069C42B /* Student.swift */; };
 		4B0CFB951F6B13BC0069C42B /* EditStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */; };
-		4B0CFB971F6B2A8F0069C42B /* URLRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */; };
-		4B0CFB991F6B36860069C42B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
-		4B15AC0E20059949007828E4 /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC0D20059949007828E4 /* RUappShared.swift */; };
-		4B15AC0F20059E42007828E4 /* SaveStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */; };
 		4B15AC112007B2B7007828E4 /* MealMetaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC102007B2B7007828E4 /* MealMetaCell.swift */; };
-		4B1BF8871FB8DF9300956CF8 /* UpdateMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */; };
-		4B1BF8891FB8E12B00956CF8 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8881FB8E12B00956CF8 /* Meal.swift */; };
-		4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D91071F76AEAC00F3B5AC /* JSON.swift */; };
 		4B656A281FE98243009A4160 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656A271FE98243009A4160 /* MealCell.swift */; };
 		4B938C1B1FEAC42E00339A20 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */; };
-		4BAA16E51FE1FA990012323A /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA16E41FE1FA990012323A /* Dish.swift */; };
-		4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA7B721F6F3D2E008B34F4 /* Campus.swift */; };
+		4BA481832039CDE7001B0E3D /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA7B721F6F3D2E008B34F4 /* Campus.swift */; };
+		4BA481842039D319001B0E3D /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */; };
+		4BA481852039D7B3001B0E3D /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8881FB8E12B00956CF8 /* Meal.swift */; };
+		4BA481862039DEF9001B0E3D /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA16E41FE1FA990012323A /* Dish.swift */; };
+		4BA481882039DFB3001B0E3D /* Votable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA481872039DFB3001B0E3D /* Votable.swift */; };
+		4BA481892039E139001B0E3D /* URLRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */; };
+		4BA4818A2039F21B001B0E3D /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC0D20059949007828E4 /* RUappShared.swift */; };
 		4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */; };
 		4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */; };
 		4BC2F5B11F6EE53800F55964 /* RUappController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5B01F6EE53800F55964 /* RUappController.swift */; };
 		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
-		4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */; };
-		4BF2412F1F7087B900656BCD /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF2412E1F7087B900656BCD /* CoreDataTests.swift */; };
-		4BF241321F708F6700656BCD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF241301F708F6700656BCD /* Helpers.swift */; };
-		4BFBE09E1FB27E710072287A /* UpdateInstitutionListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */; };
-		5C98B77B61C0B611DE3050B5 /* Pods_RUapp_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED592839FAE75B205E83006 /* Pods_RUapp_iOS.framework */; };
-		EA364015CE31BDC4DF781587 /* Pods_RUappSharedTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC1CDFF065DEC2ECE6BABB1 /* Pods_RUappSharedTests_iOS.framework */; };
+		4BE69E042038970D008C0BFE /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE69E032038970D008C0BFE /* PersistentContainer.swift */; };
+		4BE69E062039AADB008C0BFE /* JSONDecoder+Persistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE69E052039AADB008C0BFE /* JSONDecoder+Persistent.swift */; };
+		4BE69E072039ADAB008C0BFE /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB981F6B36860069C42B /* Institution.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,10 +72,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1371EF462BB48C95ED3713D0 /* Pods-RUappSharedTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappSharedTests-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		2AC1CDFF065DEC2ECE6BABB1 /* Pods_RUappSharedTests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUappSharedTests_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		38ECA9B357B40BFE66D26362 /* Pods_RUappShared_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUappShared_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		426D753F2F96146900EEBF61 /* Pods-RUappSharedTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappSharedTests-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4B0605E61F69B715000ACE59 /* RUapp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RUapp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0605E91F69B715000ACE59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B0605EE1F69B715000ACE59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,9 +104,9 @@
 		4B15AC102007B2B7007828E4 /* MealMetaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealMetaCell.swift; sourceTree = "<group>"; };
 		4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMenuOperation.swift; sourceTree = "<group>"; };
 		4B1BF8881FB8E12B00956CF8 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
-		4B5D91071F76AEAC00F3B5AC /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		4B656A271FE98243009A4160 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		4B938C1A1FEAC42E00339A20 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4BA481872039DFB3001B0E3D /* Votable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Votable.swift; sourceTree = "<group>"; };
 		4BAA16E41FE1FA990012323A /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		4BAA7B721F6F3D2E008B34F4 /* Campus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionSelectorController.swift; sourceTree = "<group>"; };
@@ -138,14 +118,10 @@
 		4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BDBB1CD1F69BAC3007900EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cafeteria.swift; sourceTree = "<group>"; };
-		4BF2412E1F7087B900656BCD /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
-		4BF241301F708F6700656BCD /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		4BE69E022038926A008C0BFE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		4BE69E032038970D008C0BFE /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
+		4BE69E052039AADB008C0BFE /* JSONDecoder+Persistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Persistent.swift"; sourceTree = "<group>"; };
 		4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInstitutionListOperation.swift; sourceTree = "<group>"; };
-		6F0E4C459591D803C549883F /* Pods-RUappShared-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappShared-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUappShared-iOS/Pods-RUappShared-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		A4822FE028DD910FF19CCA01 /* Pods-RUapp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		CDE09779283A729797B14C3B /* Pods-RUapp-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUapp-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		FE4EB0F72BDFD9C67B3AB0AF /* Pods-RUappShared-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappShared-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUappShared-iOS/Pods-RUappShared-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		FED592839FAE75B205E83006 /* Pods_RUapp_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUapp_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +130,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B0606051F69B778000ACE59 /* RUappShared.framework in Frameworks */,
-				5C98B77B61C0B611DE3050B5 /* Pods_RUapp_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +137,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CE701CA8BF4961627A76F14 /* Pods_RUappShared_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,36 +145,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */,
-				EA364015CE31BDC4DF781587 /* Pods_RUappSharedTests_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4756E1D1893D6E4CD0775969 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CDE09779283A729797B14C3B /* Pods-RUapp-iOS.debug.xcconfig */,
-				A4822FE028DD910FF19CCA01 /* Pods-RUapp-iOS.release.xcconfig */,
-				FE4EB0F72BDFD9C67B3AB0AF /* Pods-RUappShared-iOS.debug.xcconfig */,
-				6F0E4C459591D803C549883F /* Pods-RUappShared-iOS.release.xcconfig */,
-				1371EF462BB48C95ED3713D0 /* Pods-RUappSharedTests-iOS.debug.xcconfig */,
-				426D753F2F96146900EEBF61 /* Pods-RUappSharedTests-iOS.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		4B0605DB1F69B5D0000ACE59 = {
 			isa = PBXGroup;
 			children = (
 				4BCFF74D1FB4FAB100F275B3 /* README.md */,
+				4BE69E022038926A008C0BFE /* .travis.yml */,
 				4B0605E81F69B715000ACE59 /* RUapp-iOS */,
 				4B0605FF1F69B778000ACE59 /* RUappShared */,
 				4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */,
 				4B0605E71F69B715000ACE59 /* Products */,
-				4756E1D1893D6E4CD0775969 /* Pods */,
-				AC13EEE052612A5DA33A3AC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -217,12 +176,12 @@
 		4B0605E81F69B715000ACE59 /* RUapp-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
 				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
 				4B656A261FE94059009A4160 /* Menu */,
 				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
 				4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */,
-				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
 				4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */,
@@ -236,14 +195,20 @@
 		4B0605FF1F69B778000ACE59 /* RUappShared */ = {
 			isa = PBXGroup;
 			children = (
+				4BE69E032038970D008C0BFE /* PersistentContainer.swift */,
+				4BE69E052039AADB008C0BFE /* JSONDecoder+Persistent.swift */,
+				4B0CFB981F6B36860069C42B /* Institution.swift */,
+				4BAA7B721F6F3D2E008B34F4 /* Campus.swift */,
+				4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */,
+				4B1BF8881FB8E12B00956CF8 /* Meal.swift */,
+				4BAA16E41FE1FA990012323A /* Dish.swift */,
+				4BA481872039DFB3001B0E3D /* Votable.swift */,
+				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
 				4B15AC0D20059949007828E4 /* RUappShared.swift */,
+				4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */,
+				4B0606011F69B778000ACE59 /* Info.plist */,
 				4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */,
 				4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */,
-				4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */,
-				4B5D91071F76AEAC00F3B5AC /* JSON.swift */,
-				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
-				4B1BF8881FB8E12B00956CF8 /* Meal.swift */,
-				4B0606011F69B778000ACE59 /* Info.plist */,
 				4BFBE09F1FB27F760072287A /* Model */,
 				4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */,
 				4B0BC4771F6D7F6F00A13F61 /* Color.swift */,
@@ -292,8 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				4B0CFB381F69BE8F0069C42B /* MockData */,
-				4BF2412E1F7087B900656BCD /* CoreDataTests.swift */,
-				4BF241301F708F6700656BCD /* Helpers.swift */,
 				4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */,
 				4BDBB1CD1F69BAC3007900EC /* Info.plist */,
 			);
@@ -303,23 +266,9 @@
 		4BFBE09F1FB27F760072287A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */,
-				4BAA7B721F6F3D2E008B34F4 /* Campus.swift */,
-				4BAA16E41FE1FA990012323A /* Dish.swift */,
-				4B0CFB981F6B36860069C42B /* Institution.swift */,
 				4B0CFB4C1F69E9360069C42B /* Student.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		AC13EEE052612A5DA33A3AC0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FED592839FAE75B205E83006 /* Pods_RUapp_iOS.framework */,
-				38ECA9B357B40BFE66D26362 /* Pods_RUappShared_iOS.framework */,
-				2AC1CDFF065DEC2ECE6BABB1 /* Pods_RUappSharedTests_iOS.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,13 +288,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B0605F81F69B715000ACE59 /* Build configuration list for PBXNativeTarget "RUapp-iOS" */;
 			buildPhases = (
-				4E7E5D7819D418346603C58A /* [CP] Check Pods Manifest.lock */,
 				4B0605E21F69B715000ACE59 /* Sources */,
 				4B0605E31F69B715000ACE59 /* Frameworks */,
 				4B0605E41F69B715000ACE59 /* Resources */,
 				4B06060A1F69B778000ACE59 /* Embed Frameworks */,
-				8C768EF763F7F6C81FF2A69B /* [CP] Embed Pods Frameworks */,
-				7DE78D4F0C14A787F3D73242 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -361,12 +307,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B0606071F69B778000ACE59 /* Build configuration list for PBXNativeTarget "RUappShared-iOS" */;
 			buildPhases = (
-				A2C14369B45A47F7E3207203 /* [CP] Check Pods Manifest.lock */,
 				4B0605F91F69B778000ACE59 /* Sources */,
 				4B0605FA1F69B778000ACE59 /* Frameworks */,
 				4B0605FB1F69B778000ACE59 /* Headers */,
 				4B0605FC1F69B778000ACE59 /* Resources */,
-				F5B3ECA42A1D536C63DC1354 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -381,12 +325,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BDBB1D11F69BAC3007900EC /* Build configuration list for PBXNativeTarget "RUappSharedTests-iOS" */;
 			buildPhases = (
-				DCBBA5FC9F3BA188AA3A1F43 /* [CP] Check Pods Manifest.lock */,
 				4BDBB1C51F69BAC3007900EC /* Sources */,
 				4BDBB1C61F69BAC3007900EC /* Frameworks */,
 				4BDBB1C71F69BAC3007900EC /* Resources */,
-				5FA380C778FBEFD74F7E5463 /* [CP] Embed Pods Frameworks */,
-				D045815241445A61FC28F8A2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -463,13 +404,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B0BC4831F6D8E7F00A13F61 /* Dosis-Light.otf in Resources */,
-				4B0BC4851F6D8E7F00A13F61 /* Dosis-ExtraLight.otf in Resources */,
-				4B0BC4861F6D8E7F00A13F61 /* Dosis-ExtraBold.otf in Resources */,
-				4B0BC4891F6D8E7F00A13F61 /* Dosis-Book.otf in Resources */,
-				4B0BC4871F6D8E7F00A13F61 /* Dosis-SemiBold.otf in Resources */,
-				4B0BC4841F6D8E7F00A13F61 /* Dosis-Medium.otf in Resources */,
-				4B0BC4881F6D8E7F00A13F61 /* Dosis-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,144 +419,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4E7E5D7819D418346603C58A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RUapp-iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5FA380C778FBEFD74F7E5463 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bit2Common/Bit2Common.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bit2Common.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7DE78D4F0C14A787F3D73242 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8C768EF763F7F6C81FF2A69B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bit2Common/Bit2Common.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bit2Common.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUapp-iOS/Pods-RUapp-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A2C14369B45A47F7E3207203 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RUappShared-iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D045815241445A61FC28F8A2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DCBBA5FC9F3BA188AA3A1F43 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RUappSharedTests-iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F5B3ECA42A1D536C63DC1354 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUappShared-iOS/Pods-RUappShared-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4B0605E21F69B715000ACE59 /* Sources */ = {
@@ -645,21 +441,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BAA16E51FE1FA990012323A /* Dish.swift in Sources */,
-				4BAA7B731F6F3D2E008B34F4 /* Campus.swift in Sources */,
-				4B1BF8891FB8E12B00956CF8 /* Meal.swift in Sources */,
-				4B15AC0F20059E42007828E4 /* SaveStudentOperation.swift in Sources */,
-				4B0BC47A1F6D891200A13F61 /* Font.swift in Sources */,
+				4BA4818A2039F21B001B0E3D /* RUappShared.swift in Sources */,
 				4B938C1B1FEAC42E00339A20 /* Model.xcdatamodeld in Sources */,
-				4B0BC4781F6D7F6F00A13F61 /* Color.swift in Sources */,
-				4BE5A3B61F6C876F00C1B260 /* Cafeteria.swift in Sources */,
-				4B15AC0E20059949007828E4 /* RUappShared.swift in Sources */,
-				4B1BF8871FB8DF9300956CF8 /* UpdateMenuOperation.swift in Sources */,
-				4BFBE09E1FB27E710072287A /* UpdateInstitutionListOperation.swift in Sources */,
-				4B0CFB991F6B36860069C42B /* Institution.swift in Sources */,
-				4B0CFB971F6B2A8F0069C42B /* URLRoute.swift in Sources */,
-				4B5D91081F76AEAC00F3B5AC /* JSON.swift in Sources */,
-				4B0CFB4D1F69E9360069C42B /* Student.swift in Sources */,
+				4BA481882039DFB3001B0E3D /* Votable.swift in Sources */,
+				4BE69E042038970D008C0BFE /* PersistentContainer.swift in Sources */,
+				4BA481892039E139001B0E3D /* URLRoute.swift in Sources */,
+				4BA481852039D7B3001B0E3D /* Meal.swift in Sources */,
+				4BE69E072039ADAB008C0BFE /* Institution.swift in Sources */,
+				4BE69E062039AADB008C0BFE /* JSONDecoder+Persistent.swift in Sources */,
+				4BA481862039DEF9001B0E3D /* Dish.swift in Sources */,
+				4BA481842039D319001B0E3D /* Cafeteria.swift in Sources */,
+				4BA481832039CDE7001B0E3D /* Campus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,8 +459,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BF2412F1F7087B900656BCD /* CoreDataTests.swift in Sources */,
-				4BF241321F708F6700656BCD /* Helpers.swift in Sources */,
 				4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -818,7 +608,6 @@
 		};
 		4B0605F61F69B715000ACE59 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDE09779283A729797B14C3B /* Pods-RUapp-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "RUapp-iOS/RUapp-iOS.entitlements";
@@ -834,7 +623,6 @@
 		};
 		4B0605F71F69B715000ACE59 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4822FE028DD910FF19CCA01 /* Pods-RUapp-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "RUapp-iOS/RUapp-iOS.entitlements";
@@ -850,7 +638,6 @@
 		};
 		4B0606081F69B778000ACE59 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE4EB0F72BDFD9C67B3AB0AF /* Pods-RUappShared-iOS.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
@@ -870,7 +657,6 @@
 		};
 		4B0606091F69B778000ACE59 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F0E4C459591D803C549883F /* Pods-RUappShared-iOS.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
@@ -890,7 +676,6 @@
 		};
 		4BDBB1D21F69BAC3007900EC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1371EF462BB48C95ED3713D0 /* Pods-RUappSharedTests-iOS.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = RUappSharedTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -903,7 +688,6 @@
 		};
 		4BDBB1D31F69BAC3007900EC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 426D753F2F96146900EEBF61 /* Pods-RUappSharedTests-iOS.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = RUappSharedTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

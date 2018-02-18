@@ -1,6 +1,0 @@
-framework module Pods_RUapp_iOS {
-  umbrella header "Pods-RUapp-iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
