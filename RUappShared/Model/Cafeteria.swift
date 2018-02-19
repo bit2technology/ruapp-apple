@@ -11,6 +11,14 @@ import CoreData
 @objc(Cafeteria)
 public class Cafeteria: NSManagedObject, Decodable {
     
+    func nextMealRequest(for date: Date = Date()) -> NSFetchRequest<Meal> {
+        let req: NSFetchRequest<Meal> = Meal.fetchRequest()
+        req.predicate = NSPredicate(format: "cafeteria = %@ AND close > %@", self, date as NSDate)
+        req.sortDescriptors = [NSSortDescriptor(key: "close", ascending: true)]
+        req.fetchLimit = 1
+        return req
+    }
+    
     public required convenience init(from decoder: Decoder) throws {
         let context = decoder.userInfo[.managedObjectContext] as! NSManagedObjectContext
         self.init(entity: NSEntityDescription.entity(forEntityName: "Cafeteria", in: context)!, insertInto: context)

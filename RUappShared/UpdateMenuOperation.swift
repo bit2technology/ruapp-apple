@@ -6,34 +6,59 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-import Bit2Common
 import CoreData
 
-public class UpdateMenuOperation: CoreDataOperation {
+public class UpdateMenuOperation: AsyncOperation {
     
-    private let getOp: URLSessionDataTaskOperation
+    private let cafeteria: Cafeteria
+    private let dataOp: DataOperationProtocol
     
-    public init(restaurantId: Int64) {
-        getOp = URLSessionDataTaskOperation(request: URLRoute.menu(restaurantId: restaurantId).urlRequest)
-        super.init()
-        addDependency(getOp)
-        OperationQueue.async.addOperation(getOp)
+    public convenience init(cafeteria: Cafeteria) {
+        self.init(cafeteria: cafeteria, dataOp: URLSessionDataTaskOperation(request: URLRoute.menu(cafeteriaId: cafeteria.id).urlRequest))
     }
     
-    override public func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID] {
+    init<T>(cafeteria: Cafeteria, dataOp: T) where T: DataOperationProtocol {
+        self.cafeteria = cafeteria
+        self.dataOp = dataOp
+        super.init()
+        addDependency(dataOp)
+        OperationQueue.async.addOperation(dataOp)
+    }
+    
+    public override func main() {
         
-        let decoder = JSONDecoder()
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        decoder.dateDecodingStrategy = .formatted(formatter)
-        let mealIDs = try decoder.decode([JSON.Meal].self, from: getOp.value()).map { try Meal.createOrUpdate(with: $0, context: context).objectID }
-        
-        guard !isCancelled else {
-            return []
+        guard let context = cafeteria.managedObjectContext else {
+            finish(error: UpdateMenuOperationError.noManagedObjectContext)
+            return
         }
         
-        try context.save()
-        return mealIDs
+        context.perform {
+            do {
+                let decoder = JSONDecoder.persistent(context: context)
+                if #available(iOSApplicationExtension 10.0, *) {
+                    decoder.dateDecodingStrategy = .iso8601
+                } else {
+                    let formatter = DateFormatter()
+                    formatter.locale = Locale(identifier: "en_US_POSIX")
+                    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+                    decoder.dateDecodingStrategy = .formatted(formatter)
+                }
+                let meals = try decoder.decode([Meal].self, from: self.dataOp.data())
+                self.cafeteria.addToMenu(NSSet(array: meals))
+                
+                guard !self.isCancelled else {
+                    return
+                }
+                
+                try context.save()
+                self.finish()
+            } catch {
+                self.finish(error: error)
+            }
+        }
     }
+}
+
+public enum UpdateMenuOperationError: Error {
+    case noManagedObjectContext
 }

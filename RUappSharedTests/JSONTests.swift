@@ -12,22 +12,17 @@ import CoreData
 
 class JSONTests: XCTestCase {
     
-    var stack: (NSManagedObjectModel, NSPersistentStoreCoordinator, NSManagedObjectContext)!
+    var stack = PersistentContainerStub()
     
     override func setUp() {
-        let model = NSManagedObjectModel(contentsOf: Bundle(for: Student.self).url(forResource: "Model", withExtension: "momd")!)!
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        try! coordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
-        let viewContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        viewContext.persistentStoreCoordinator = coordinator
-        stack = (model, coordinator, viewContext)
+        stack = PersistentContainerStub()
     }
     
     func testMenu() {
         
         let exp = expectation(description: "JSON")
-        URLSession.shared.dataTask(with: URLRoute.menu(restaurantId: 1).urlRequest) { (data, response, error) in
-            let ctx = self.stack.2
+        URLSession.shared.dataTask(with: URLRoute.menu(cafeteriaId: 1).urlRequest) { (data, response, error) in
+            let ctx = self.stack.viewContext
             ctx.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             let decoder = JSONDecoder.persistent(context: ctx)
             let formatter = DateFormatter()
@@ -46,7 +41,7 @@ class JSONTests: XCTestCase {
         
         let exp = expectation(description: "JSON")
         URLSession.shared.dataTask(with: URLRoute.getInstitutions.urlRequest) { (data, response, error) in
-            let ctx = self.stack.2
+            let ctx = self.stack.viewContext
             ctx.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             let decoder = JSONDecoder.persistent(context: ctx)
             let institutions = try! decoder.decode([Institution].self, from: data!)

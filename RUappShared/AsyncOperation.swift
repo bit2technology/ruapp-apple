@@ -8,13 +8,13 @@
 
 import Foundation
 
-class AsyncOperation: Operation {
+public class AsyncOperation: Operation {
     
-    override var isExecuting: Bool {
+    override public var isExecuting: Bool {
         return state == .executing
     }
     
-    override var isFinished: Bool {
+    override public var isFinished: Bool {
         return state == .finished || isCancelled
     }
     
@@ -29,7 +29,7 @@ class AsyncOperation: Operation {
         }
     }
     
-    override func start() {
+    override public func start() {
         guard !isCancelled else {
             return
         }
@@ -41,15 +41,6 @@ class AsyncOperation: Operation {
     func finish(error: Error? = nil) {
         self.error = error
         state = .finished
-    }
-    
-    func allErrors() -> [Error] {
-        let dependenciesErrors = dependencies.flatMap { $0 as? AsyncOperation }.reduce([]) { $0 + $1.allErrors() }
-        if let error = error {
-            return [error] + dependenciesErrors
-        } else {
-            return dependenciesErrors
-        }
     }
     
     private enum State {

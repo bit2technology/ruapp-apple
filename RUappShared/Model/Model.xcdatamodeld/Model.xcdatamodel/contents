@@ -7,6 +7,7 @@
         <attribute name="longitude" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="campus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Campus" inverseName="cafeterias" inverseEntity="Campus" syncable="YES"/>
+        <relationship name="menu" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meal" inverseName="cafeteria" inverseEntity="Meal" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -59,6 +60,7 @@
         <attribute name="meta" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="open" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="cafeteria" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cafeteria" inverseName="menu" inverseEntity="Cafeteria" syncable="YES"/>
         <relationship name="dishes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Dish" inverseName="meal" inverseEntity="Dish" syncable="YES"/>
         <relationship name="votables" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Votable" inverseName="meal" inverseEntity="Votable" syncable="YES"/>
         <uniquenessConstraints>
@@ -90,11 +92,11 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Cafeteria" positionX="-27" positionY="90" width="128" height="135"/>
+        <element name="Cafeteria" positionX="-27" positionY="90" width="128" height="150"/>
         <element name="Campus" positionX="-45" positionY="72" width="128" height="150"/>
         <element name="Dish" positionX="-36" positionY="99" width="128" height="105"/>
         <element name="Institution" positionX="-54" positionY="18" width="128" height="150"/>
-        <element name="Meal" positionX="-45" positionY="90" width="128" height="150"/>
+        <element name="Meal" positionX="-45" positionY="90" width="128" height="165"/>
         <element name="Student" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="Votable" positionX="-27" positionY="108" width="128" height="105"/>
     </elements>

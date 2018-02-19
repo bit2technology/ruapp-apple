@@ -1,6 +1,6 @@
 //
 //  AsyncOperationTests.swift
-//  RUappSharedTests-iOS
+//  RUappSharedTests
 //
 //  Created by Igor Camilo on 08/02/18.
 //  Copyright © 2018 Bit2 Technology. All rights reserved.
@@ -21,7 +21,7 @@ class AsyncOperationTests: XCTestCase {
             }
         }
         
-        class TestStubOperation: Operation {
+        class TestExpectationOperation: Operation {
             let exp: XCTestExpectation
             init(exp: XCTestExpectation) {
                 self.exp = exp
@@ -33,15 +33,12 @@ class AsyncOperationTests: XCTestCase {
         }
         
         let exp = expectation(description: "Expect operation to finish")
-        let stub = StubOperation()
-        stub.name = "StubOperation"
-        let test = TestStubOperation(exp: exp)
-        test.name = "TestStubOperation"
-        test.addDependency(stub)
-        let stubQ = OperationQueue()
-        stubQ.name = "StubOperationQueue"
-        stubQ.addOperation(stub)
-        OperationQueue.main.addOperation(test)
-        wait(for: [exp], timeout: 2)
+        let stubOp = StubOperation()
+        stubOp.name = "StubOperation"
+        let testExpOp = TestExpectationOperation(exp: exp)
+        testExpOp.addDependency(stubOp)
+        OperationQueue.async.addOperation(stubOp)
+        OperationQueue.main.addOperation(testExpOp)
+        waitForExpectations(timeout: 2, handler: nil)
     }
 }

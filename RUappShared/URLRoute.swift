@@ -14,7 +14,7 @@ enum URLRoute {
     case getStudent(id: Int64)
     case postStudent(Student)
     case patchStudent(Student)
-    case menu(restaurantId: Int64)
+    case menu(cafeteriaId: Int64)
 }
 
 extension URLRoute {
@@ -41,8 +41,8 @@ extension URLRoute {
             httpMethod = .patch
             httpHeader = ["Content-Type": "application/json"]
             httpBody = try! JSONEncoder().encode(student)
-        case .menu(let restaurantId):
-            urlBuilder += "menu?restaurant_id=\(restaurantId)"
+        case .menu(let cafeteriaId):
+            urlBuilder += "menu?restaurant_id=\(cafeteriaId)"
         }
         
         var req = URLRequest(url: URL(string: urlBuilder)!)
