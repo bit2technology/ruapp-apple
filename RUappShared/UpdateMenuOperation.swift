@@ -10,14 +10,15 @@ import CoreData
 
 public class UpdateMenuOperation: AsyncOperation {
     
-    private let cafeteria: Cafeteria
-    private let dataOp: DataOperationProtocol
+    public let cafeteria: Cafeteria
+    
+    let dataOp: URLSessionDataTaskOperation
     
     public convenience init(cafeteria: Cafeteria) {
         self.init(cafeteria: cafeteria, dataOp: URLSessionDataTaskOperation(request: URLRoute.menu(cafeteriaId: cafeteria.id).urlRequest))
     }
     
-    init<T>(cafeteria: Cafeteria, dataOp: T) where T: DataOperationProtocol {
+    init(cafeteria: Cafeteria, dataOp: URLSessionDataTaskOperation) {
         self.cafeteria = cafeteria
         self.dataOp = dataOp
         super.init()
@@ -32,6 +33,7 @@ public class UpdateMenuOperation: AsyncOperation {
             return
         }
         
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         context.perform {
             do {
                 let decoder = JSONDecoder.persistent(context: context)

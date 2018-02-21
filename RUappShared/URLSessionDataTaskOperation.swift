@@ -8,11 +8,6 @@
 
 import Foundation
 
-protocol DataOperationProtocol where Self: Operation {
-    
-    func data() throws -> Data
-}
-
 class URLSessionDataTaskOperation: AsyncOperation {
     
     var request: URLRequest? {
@@ -27,6 +22,14 @@ class URLSessionDataTaskOperation: AsyncOperation {
     init(request: URLRequest?) {
         self.request = request
         super.init()
+    }
+    
+    convenience init(url: URL?) {
+        if let url = url {
+            self.init(request: URLRequest(url: url))
+        } else {
+            self.init(request: nil)
+        }
     }
     
     override func cancel() {
@@ -53,17 +56,12 @@ class URLSessionDataTaskOperation: AsyncOperation {
         }
         task!.resume()
     }
-}
-
-extension URLSessionDataTaskOperation: DataOperationProtocol {
     
     func data() throws -> Data {
-        if let error = error {
-            throw error
-        } else if let data = downloadedData {
+        if let data = downloadedData {
             return data
         } else {
-            throw URLSessionDataTaskOperationError.noData
+            throw error ?? URLSessionDataTaskOperationError.noData
         }
     }
 }

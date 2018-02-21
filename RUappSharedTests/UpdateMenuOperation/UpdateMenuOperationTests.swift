@@ -28,13 +28,14 @@ class UpdateMenuOperationTests: XCTestCase {
                 self.expectation = expectation
             }
             override func main() {
+                XCTAssertNil(updateMenuOp.error)
+                XCTAssertEqual(updateMenuOp.cafeteria.menu?.count, 16)
                 expectation.fulfill()
             }
         }
         
-        let dataOp = DataOperationStub(url: Bundle(for: UpdateMenuOperationTests.self).url(forResource: "WorkingMenuDataStub", withExtension: "json")!)
-        let cafeteria = NSEntityDescription.insertNewObject(forEntityName: "Cafeteria", into: stack.viewContext) as! Cafeteria
-        cafeteria.id = 1
+        let dataOp = URLSessionDataTaskOperation(url: Bundle(for: UpdateMenuOperationTests.self).url(forResource: "WorkingMenuDataStub", withExtension: "json"))
+        let cafeteria = EntityStub.cafeteria(context: stack.viewContext)
         let updateMenuOp = UpdateMenuOperation(cafeteria: cafeteria, dataOp: dataOp)
         let testExpOp = TestExpectationOperation(updateMenuOp: updateMenuOp, expectation: expectation(description: "Expect operation to successfully update menu"))
         testExpOp.addDependency(updateMenuOp)
