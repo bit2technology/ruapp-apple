@@ -46,6 +46,8 @@ class URLSessionDataTaskOperation: AsyncOperation {
             if !self.isCancelled {
                 if let error = $2 {
                     self.finish(error: error)
+                } else if let code = ($1 as? HTTPURLResponse)?.statusCode, (400..<600).contains(code) {
+                    self.finish(error: URLSessionDataTaskOperationError.statusCode(code))
                 } else if let data = $0 {
                     self.downloadedData = data
                     self.finish()
@@ -68,5 +70,6 @@ class URLSessionDataTaskOperation: AsyncOperation {
 
 public enum URLSessionDataTaskOperationError: Error {
     case noRequest
+    case statusCode(Int)
     case noData
 }

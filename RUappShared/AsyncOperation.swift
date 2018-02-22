@@ -52,6 +52,8 @@ public class AsyncOperation: Operation {
             switch (self, state) {
             case (.initialized, .executing):
                 return ["isExecuting"]
+            case (.initialized, .finished):
+                return ["isFinished"]
             case (.executing, .finished):
                 return ["isExecuting", "isFinished"]
             default:

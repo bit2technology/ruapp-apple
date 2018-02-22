@@ -19,6 +19,8 @@
 		4B15AC112007B2B7007828E4 /* MealMetaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC102007B2B7007828E4 /* MealMetaCell.swift */; };
 		4B656A281FE98243009A4160 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656A271FE98243009A4160 /* MealCell.swift */; };
 		4B77D7D5203CF69500CA7354 /* EntityStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B77D7D4203CF69500CA7354 /* EntityStub.swift */; };
+		4B77D7D6203CFC4800CA7354 /* UpdateInstitutionListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */; };
+		4B77D7D7203E139C00CA7354 /* SaveStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */; };
 		4B938C1B1FEAC42E00339A20 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */; };
 		4BA481832039CDE7001B0E3D /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA7B721F6F3D2E008B34F4 /* Campus.swift */; };
 		4BA481842039D319001B0E3D /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */; };
@@ -207,13 +209,13 @@
 				4BE69E052039AADB008C0BFE /* JSONDecoder+Persistent.swift */,
 				4BA4818C203A14F5001B0E3D /* AsyncOperation.swift */,
 				4BA48192203A1D94001B0E3D /* URLSessionDataTaskOperation.swift */,
+				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
+				4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */,
 				4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */,
+				4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */,
 				4BA48190203A1635001B0E3D /* Model */,
 				4B0606011F69B778000ACE59 /* Info.plist */,
-				4B0CFB961F6B2A8E0069C42B /* URLRoute.swift */,
 				4B15AC0D20059949007828E4 /* RUappShared.swift */,
-				4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */,
-				4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */,
 				4B0BC4771F6D7F6F00A13F61 /* Color.swift */,
 				4B0BC4791F6D891200A13F61 /* Font.swift */,
 				4B0BC47B1F6D8E7200A13F61 /* Fonts */,
@@ -474,8 +476,10 @@
 				4BA48191203A17EB001B0E3D /* UpdateMenuOperation.swift in Sources */,
 				4BA481892039E139001B0E3D /* URLRoute.swift in Sources */,
 				4BA481852039D7B3001B0E3D /* Meal.swift in Sources */,
+				4B77D7D6203CFC4800CA7354 /* UpdateInstitutionListOperation.swift in Sources */,
 				4BE69E072039ADAB008C0BFE /* Institution.swift in Sources */,
 				4BA4818B2039FA9B001B0E3D /* Student.swift in Sources */,
+				4B77D7D7203E139C00CA7354 /* SaveStudentOperation.swift in Sources */,
 				4BE69E062039AADB008C0BFE /* JSONDecoder+Persistent.swift in Sources */,
 				4BA481862039DEF9001B0E3D /* Dish.swift in Sources */,
 				4BA481842039D319001B0E3D /* Cafeteria.swift in Sources */,

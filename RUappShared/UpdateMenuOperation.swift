@@ -46,7 +46,7 @@ public class UpdateMenuOperation: AsyncOperation {
                     decoder.dateDecodingStrategy = .formatted(formatter)
                 }
                 let meals = try decoder.decode([Meal].self, from: self.dataOp.data())
-                self.cafeteria.addToMenu(NSSet(array: meals))
+                self.cafeteria.menu = NSSet(array: meals)
                 
                 guard !self.isCancelled else {
                     return

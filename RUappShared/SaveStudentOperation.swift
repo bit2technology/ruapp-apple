@@ -5,104 +5,72 @@
 //  Created by Igor Camilo on 08/11/17.
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
-/*
-import Bit2Common
+
 import CoreData
 
-/// Register or edit `Student` in API and saves it on disk.
-public class SaveStudentOperation: CoreDataOperation {
+public class SaveStudentOperation: AsyncOperation {
     
-    /// Register or edit.
-    private let kind: Kind
+    public let student: Student
     
-    init(values: JSON.Student?) {
-        let student = Student.current
+    let studentOp: URLSessionDataTaskOperation?
+    
+    public convenience init(student: Student) {
+        do {
+            let studentOp: URLSessionDataTaskOperation?
+            let data = try JSONEncoder().encode(student)
+            // Check if student is already in the database
+            if student.objectID.isTemporaryID {
+                // Save
+                try student.validateForInsert()
+                studentOp = URLSessionDataTaskOperation(request: URLRoute.postStudent(data).urlRequest)
+            } else {
+                // Update
+                try student.validateForUpdate()
+                studentOp = URLSessionDataTaskOperation(request: URLRoute.patchStudent(id: student.id, data).urlRequest)
+            }
+            self.init(student: student, studentOp: studentOp)
+        } catch {
+            self.init(student: student, studentOp: nil)
+            finish(error: error)
+        }
+    }
+    
+    init(student: Student, studentOp: URLSessionDataTaskOperation?) {
+        self.student = student
+        self.studentOp = studentOp
+        super.init()
+        if let studentOp = studentOp {
+            addDependency(studentOp)
+            OperationQueue.async.addOperation(studentOp)
+        }
+    }
+    
+    public override func main() {
         
-        // Finish operation if there is no JSON or if student is invalid
-        guard let values = values, student.isValid else {
-            kind = .none
-            super.init()
-            finish(error: SaveStudentOperationError.invalidStudent)
+        guard let context = student.managedObjectContext else {
+            finish(error: SaveStudentOperationError.noManagedObjectContext)
             return
         }
         
-        // Initialization
-        if student.isSaved {
-            // If institution changed, download new data
-            let instOp: GetInstitutionOperation?
-            if student.changedValues()["institution"] != nil {
-                instOp = GetInstitutionOperation(id: student.id)
-            } else {
-                instOp = nil
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        context.perform {
+            do {
+                // Check if studentOp finished successfully, but discard data
+                _ = try self.studentOp?.data()
+                
+                guard !self.isCancelled else {
+                    return
+                }
+                
+                try context.save()
+                self.finish()
+            } catch {
+                self.finish(error: error)
             }
-            kind = .edit(EditStudentOperation(studentId: student.id, values: values), instOp)
-        } else {
-            kind = .register(RegisterStudentOperation(student: values))
         }
-        super.init()
-    }
-    
-    override public var dependenciesToAdd: [Operation] {
-        switch kind {
-        case .edit(let editOp, let instOp):
-            if let instOp = instOp {
-                return [editOp, instOp]
-            } else {
-                return [editOp]
-            }
-        case .register(let registerOp):
-            return [registerOp]
-        case .none:
-            return []
-        }
-    }
-    
-    public override var managedObjectContext: NSManagedObjectContext? {
-        return Student.managedObjectContext
-    }
-    
-    override public func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID] {
-        let student = context.object(with: Student.current.objectID) as! Student
-        switch kind {
-        case .none:
-            return []
-        case .edit(let editOp, let instOp):
-            guard try editOp.parse() else {
-                throw SaveStudentOperationError.editUnsuccessful
-            }
-            if let institution = try instOp?.parse() {
-                try student.institution?.update(with: institution)
-            }
-        case .register(let registerOp):
-            student.id = try registerOp.parse().studentId
-        }
-        
-        guard !isCancelled else {
-            return []
-        }
-        
-        // Persist and return
-        try context.save()
-        try context.parent!.save()
-        return [student.objectID]
-    }
-    
-    /// Check save operation. If successful, this method returns nothing. Otherwise, throws an error.
-    ///
-    /// - Throws: `SaveStudentOperationError` and others
-    public func checkError() throws {
-        _ = try value()
-    }
-    
-    private enum Kind {
-        case edit(EditStudentOperation, GetInstitutionOperation?)
-        case register(RegisterStudentOperation)
-        case none
     }
 }
 
 public enum SaveStudentOperationError: Error {
-    case invalidStudent
-    case editUnsuccessful
+    case noManagedObjectContext
 }
-*/
