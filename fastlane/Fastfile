@@ -1,7 +1,7 @@
 
 lane :default do |options|
     # Check if it's in master branch after a pull request
-    if options[:TRAVIS_BRANCH] == "master" && options[:TRAVIS_PULL_REQUEST] == "false"
+    if ENV["TRAVIS_BRANCH"] == "master" && ENV["TRAVIS_PULL_REQUEST"] == "false"
         deploy
     else
         test
