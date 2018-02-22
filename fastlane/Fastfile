@@ -10,7 +10,7 @@ end
 lane :test do |options|
     danger
     run_tests
-    codecov_reporter
+    codecov
 end
 
 lane :deploy do |options|

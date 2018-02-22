@@ -116,6 +116,7 @@
 		4B950D96203F2A8800CAC834 /* Fastfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Fastfile; path = fastlane/Fastfile; sourceTree = "<group>"; };
 		4B950D97203F469200CAC834 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4B950D98203F54D200CAC834 /* Dangerfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Dangerfile; sourceTree = "<group>"; };
+		4B950D99203F615200CAC834 /* codecov.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = codecov.rb; path = fastlane/actions/codecov.rb; sourceTree = "<group>"; };
 		4BA481872039DFB3001B0E3D /* Votable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Votable.swift; sourceTree = "<group>"; };
 		4BA4818C203A14F5001B0E3D /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		4BA4818E203A15E9001B0E3D /* AsyncOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperationTests.swift; sourceTree = "<group>"; };
@@ -260,6 +261,7 @@
 				4B950D96203F2A8800CAC834 /* Fastfile */,
 				4B950D95203F2A8700CAC834 /* Appfile */,
 				4B950D98203F54D200CAC834 /* Dangerfile */,
+				4B950D99203F615200CAC834 /* codecov.rb */,
 				4B950D94203F25EB00CAC834 /* .gitignore */,
 				4BE69E022038926A008C0BFE /* .travis.yml */,
 				4B950D97203F469200CAC834 /* .swiftlint.yml */,
