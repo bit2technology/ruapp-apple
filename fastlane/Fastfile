@@ -8,9 +8,9 @@ lane :default do |options|
 end
 
 lane :test do |options|
-    swiftlint(ignore_exit_status: true)
+    danger
     run_tests
-    sh("bash", "<(curl -s https://codecov.io/bash)")
+    sh("curl", "-s", "https://codecov.io/bash", "|", "bash")
 end
 
 lane :deploy do |options|
