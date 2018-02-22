@@ -10,11 +10,11 @@ import UIKit
 import RUappShared
 
 class EditStudentController: UITableViewController {
-    
+
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var institutionField: UITextField!
     @IBOutlet weak var numberPlateField: UITextField!
-    
+
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         spinner.alpha = 0
@@ -23,9 +23,9 @@ class EditStudentController: UITableViewController {
         spinner.startAnimating()
         return spinner
     }()
-    
+
     private weak var finiOp: FinishSaveStudentOperation?
-    
+
     @IBAction private func fieldEdited(sender: UITextField) {
         let student = Student.current
         let value = sender.text
@@ -39,13 +39,13 @@ class EditStudentController: UITableViewController {
         }
         navigationItem.rightBarButtonItem!.isEnabled = student.isValid
     }
-    
+
     @IBAction func cancelButtonPressed() {
         view.endEditing(true)
         Student.current.managedObjectContext!.rollback()
         performSegue(withIdentifier: "UnwindToRoot", sender: nil)
     }
-    
+
     @IBAction func doneButtonPressed() {
         view.endEditing(true)
         guard Student.current.hasChanges else {
@@ -55,7 +55,7 @@ class EditStudentController: UITableViewController {
         setLoadingLayout(true)
         finiOp = FinishSaveStudentOperation()
     }
-    
+
     private func setLoadingLayout(_ loading: Bool) {
         let navView = navigationController!.view!
         if loading {
@@ -77,19 +77,19 @@ class EditStudentController: UITableViewController {
             })
         }
     }
-    
+
     @IBAction private func unwindToEditStudent(segue: UIStoryboardSegue) { }
 }
 
 // UIViewController methods
 extension EditStudentController {
-    
+
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let view = view as? UITableViewHeaderFooterView {
             view.textLabel?.textColor = .white
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
@@ -106,17 +106,17 @@ extension EditStudentController {
 
 // UIViewController methods
 extension EditStudentController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.backgroundColor = .appDarkBlue
-        
+
         if !Student.current.isSaved {
             navigationItem.title = NSLocalizedString("EditStudentController.viewDidLoad.navigationItemTitle", value: "Sign Up", comment: "Title for sign up")
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let student = Student.current
@@ -142,19 +142,19 @@ extension EditStudentController: UITextFieldDelegate {
 }
 
 extension EditStudentController {
-    
+
     private class FinishSaveStudentOperation: Operation {
-        
+
         /*private weak var controller: EditStudentController?
         private let saveStudentOperation = Student.current.saveOperation()
-        
+
         init(controller: EditStudentController) {
             super.init()
             self.controller = controller
             addDependency(saveStudentOperation)
             OperationQueue.main.addOperation(self)
         }
-        
+
         override func main() {
             guard let controller = controller else {
                 return

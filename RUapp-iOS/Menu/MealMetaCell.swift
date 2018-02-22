@@ -9,17 +9,17 @@
 import UIKit
 
 class MealMetaCell: UITableViewCell {
-    
+
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var message: UILabel!
-    
+
     func applyLayout() {
-        
+
         let font = UIFont.preferredFont(forTextStyle: .body)
-        
+
         name.font = font
         message.font = font
-        
+
         layoutIfNeeded()
     }
 }

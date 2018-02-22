@@ -10,7 +10,7 @@ import CoreData
 
 @objc(Cafeteria)
 public class Cafeteria: NSManagedObject, Decodable {
-    
+
     func nextMealRequest(for date: Date = Date()) -> NSFetchRequest<Meal> {
         let req: NSFetchRequest<Meal> = Meal.fetchRequest()
         req.predicate = NSPredicate(format: "cafeteria = %@ AND close > %@", self, date as NSDate)
@@ -18,7 +18,7 @@ public class Cafeteria: NSManagedObject, Decodable {
         req.fetchLimit = 1
         return req
     }
-    
+
     public required convenience init(from decoder: Decoder) throws {
         let context = decoder.userInfo[.managedObjectContext] as! NSManagedObjectContext
         self.init(entity: NSEntityDescription.entity(forEntityName: "Cafeteria", in: context)!, insertInto: context)
@@ -29,7 +29,7 @@ public class Cafeteria: NSManagedObject, Decodable {
         longitude = try container.decode(Double.self, forKey: .longitude)
         capacity = try container.decode(Int64.self, forKey: .capacity)
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case name

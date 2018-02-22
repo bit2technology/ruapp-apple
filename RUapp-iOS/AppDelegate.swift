@@ -13,7 +13,7 @@ import RUappShared
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         RUappShared.configure()
         return true
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         applyAppaerance()
         return true
     }
-    
+
     private func applyAppaerance() {
         UIFont.appRegisterFonts()
         window?.tintColor = .appLighterBlue

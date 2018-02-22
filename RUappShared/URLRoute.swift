@@ -23,7 +23,7 @@ extension URLRoute {
         var httpMethod = HTTPMethod.get
         var httpHeader: [String: String] = [:]
         var httpBody: Data?
-        
+
         switch self {
         case .getInstitutions:
             urlBuilder += "institutions"
@@ -44,7 +44,7 @@ extension URLRoute {
         case .menu(let cafeteriaId):
             urlBuilder += "menu?restaurant_id=\(cafeteriaId)"
         }
-        
+
         var req = URLRequest(url: URL(string: urlBuilder)!)
         req.httpMethod = httpMethod.rawValue
         httpHeader.forEach { (key, value) in

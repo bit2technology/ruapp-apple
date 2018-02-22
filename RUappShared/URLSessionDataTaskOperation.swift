@@ -9,21 +9,21 @@
 import Foundation
 
 class URLSessionDataTaskOperation: AsyncOperation {
-    
+
     var request: URLRequest? {
         didSet {
             assert(task == nil, "Task can't be running or finished when changing the request!")
         }
     }
-    
+
     private var task: URLSessionDataTask?
     private var downloadedData: Data?
-    
+
     init(request: URLRequest?) {
         self.request = request
         super.init()
     }
-    
+
     convenience init(url: URL?) {
         if let url = url {
             self.init(request: URLRequest(url: url))
@@ -31,12 +31,12 @@ class URLSessionDataTaskOperation: AsyncOperation {
             self.init(request: nil)
         }
     }
-    
+
     override func cancel() {
         super.cancel()
         task?.cancel()
     }
-    
+
     override func main() {
         guard let request = request else {
             finish(error: URLSessionDataTaskOperationError.noRequest)
@@ -58,7 +58,7 @@ class URLSessionDataTaskOperation: AsyncOperation {
         }
         task!.resume()
     }
-    
+
     func data() throws -> Data {
         if let data = downloadedData {
             return data

@@ -9,7 +9,7 @@
 import CoreData
 
 extension JSONDecoder {
-    
+
     static func persistent(context: NSManagedObjectContext) -> JSONDecoder {
         let decoder = JSONDecoder()
         decoder.userInfo[.managedObjectContext] = context
@@ -18,6 +18,6 @@ extension JSONDecoder {
 }
 
 extension CodingUserInfoKey {
-    
+
     static let managedObjectContext = CodingUserInfoKey(rawValue: "ManagedObjectContext")!
 }

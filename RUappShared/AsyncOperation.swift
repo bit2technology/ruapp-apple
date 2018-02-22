@@ -9,17 +9,17 @@
 import Foundation
 
 public class AsyncOperation: Operation {
-    
+
     override public var isExecuting: Bool {
         return state == .executing
     }
-    
+
     override public var isFinished: Bool {
         return state == .finished || isCancelled
     }
-    
+
     private(set) var error: Error?
-    
+
     private var state = State.initialized {
         willSet {
             state.affectedKeyPaths(whenChangedTo: newValue).forEach { willChangeValue(forKey: $0) }
@@ -28,7 +28,7 @@ public class AsyncOperation: Operation {
             oldValue.affectedKeyPaths(whenChangedTo: state).forEach { didChangeValue(forKey: $0) }
         }
     }
-    
+
     override public func start() {
         guard !isCancelled else {
             return
@@ -37,17 +37,17 @@ public class AsyncOperation: Operation {
         state = .executing
         main()
     }
-    
+
     func finish(error: Error? = nil) {
         self.error = error
         state = .finished
     }
-    
+
     private enum State {
         case initialized
         case executing
         case finished
-        
+
         func affectedKeyPaths(whenChangedTo state: State) -> [String] {
             switch (self, state) {
             case (.initialized, .executing):

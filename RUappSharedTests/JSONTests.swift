@@ -11,15 +11,15 @@ import XCTest
 import CoreData
 
 class JSONTests: XCTestCase {
-    
+
     var stack = PersistentContainerStub()
-    
+
     override func setUp() {
         stack = PersistentContainerStub()
     }
-    
+
     func testMenu() {
-        
+
         let exp = expectation(description: "JSON")
         URLSession.shared.dataTask(with: URLRoute.menu(cafeteriaId: 1).urlRequest) { (data, response, error) in
             let ctx = self.stack.viewContext
@@ -29,24 +29,32 @@ class JSONTests: XCTestCase {
             formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
             decoder.dateDecodingStrategy = .formatted(formatter)
-            let dishes = try! decoder.decode([Meal].self, from: data!)
-            print("Updated \(dishes.count) dishes")
-            try! ctx.save()
+            do {
+                let dishes = try decoder.decode([Meal].self, from: data!)
+                print("Updated \(dishes.count) dishes")
+                try ctx.save()
+            } catch {
+                fatalError(error.localizedDescription)
+            }
             exp.fulfill()
         }.resume()
         waitForExpectations(timeout: 5, handler: nil)
     }
-    
+
     func testInstitutions() {
-        
+
         let exp = expectation(description: "JSON")
         URLSession.shared.dataTask(with: URLRoute.getInstitutions.urlRequest) { (data, response, error) in
             let ctx = self.stack.viewContext
             ctx.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             let decoder = JSONDecoder.persistent(context: ctx)
-            let institutions = try! decoder.decode([Institution].self, from: data!)
-            print("Updated \(institutions.count) institutions")
-            try! ctx.save()
+            do {
+                let institutions = try decoder.decode([Institution].self, from: data!)
+                print("Updated \(institutions.count) institutions")
+                try ctx.save()
+            } catch {
+                fatalError(error.localizedDescription)
+            }
             exp.fulfill()
         }.resume()
         waitForExpectations(timeout: 5, handler: nil)
