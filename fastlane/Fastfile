@@ -1,17 +1,18 @@
 
 lane :default do |options|
-    # Check if it's in master branch after a pull request
+    test
+    # Deploy if it's in master branch after a pull request
     if ENV["TRAVIS_BRANCH"] == "master" && ENV["TRAVIS_PULL_REQUEST"] == "false"
         deploy
-    else
-        test
     end
 end
 
-lane :deploy do |options|
-    UI.message "Deploy!!!"
+lane :test do |options|
+    swiftlint
+    run_tests
+    sh("bash", "<(curl -s https://codecov.io/bash)")
 end
 
-lane :test do |options|
-    UI.message "Test!!!"
+lane :deploy do |options|
+    increment_build_number(build_number: Time.now.getutc.strftime("%Y%m%d%H%M%S%L"))
 end
