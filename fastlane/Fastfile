@@ -10,7 +10,7 @@ end
 lane :test do |options|
     danger
     run_tests
-    sh("curl", "-s", "https://codecov.io/bash", "|", "bash")
+    sh("eval", "bash <(curl -s https://codecov.io/bash)")
 end
 
 lane :deploy do |options|
