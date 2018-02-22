@@ -10,7 +10,7 @@ import CoreData
 
 @objc(Meal)
 public class Meal: NSManagedObject, Decodable {
-    
+
     public required convenience init(from decoder: Decoder) throws {
         let context = decoder.userInfo[.managedObjectContext] as! NSManagedObjectContext
         self.init(entity: NSEntityDescription.entity(forEntityName: "Meal", in: context)!, insertInto: context)
@@ -23,7 +23,7 @@ public class Meal: NSManagedObject, Decodable {
         dishes = try container.decodeIfPresent([Dish].self, forKey: .dishes)?.orderedSet()
         votables = try container.decodeIfPresent([Votable].self, forKey: .votables)?.orderedSet()
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case name

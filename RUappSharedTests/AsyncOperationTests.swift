@@ -10,9 +10,9 @@ import XCTest
 @testable import RUappShared
 
 class AsyncOperationTests: XCTestCase {
-    
+
     func testThatItFinishes() {
-        
+
         class StubOperation: AsyncOperation {
             override func main() {
                 DispatchQueue(label: "StubQueue").asyncAfter(deadline: DispatchTime.now() + 1) {
@@ -20,7 +20,7 @@ class AsyncOperationTests: XCTestCase {
                 }
             }
         }
-        
+
         class TestExpectationOperation: Operation {
             let exp: XCTestExpectation
             init(exp: XCTestExpectation) {
@@ -31,7 +31,7 @@ class AsyncOperationTests: XCTestCase {
                 exp.fulfill()
             }
         }
-        
+
         let exp = expectation(description: "Expect operation to finish")
         let stubOp = StubOperation()
         stubOp.name = "StubOperation"

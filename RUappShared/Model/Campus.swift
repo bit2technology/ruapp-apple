@@ -10,7 +10,7 @@ import CoreData
 
 @objc(Campus)
 public class Campus: NSManagedObject, Decodable {
-    
+
     public required convenience init(from decoder: Decoder) throws {
         let context = decoder.userInfo[.managedObjectContext] as! NSManagedObjectContext
         self.init(entity: NSEntityDescription.entity(forEntityName: "Campus", in: context)!, insertInto: context)
@@ -22,7 +22,7 @@ public class Campus: NSManagedObject, Decodable {
         stateInitials = try container.decode(String.self, forKey: .stateInitials)
         cafeterias = try NSSet(array: container.decode([Cafeteria].self, forKey: .cafeterias))
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case name

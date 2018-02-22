@@ -11,15 +11,15 @@ import CoreData
 @testable import RUappShared
 
 class UpdateMenuOperationTests: XCTestCase {
-    
+
     var stack = PersistentContainerStub()
-    
+
     override func setUp() {
         stack = PersistentContainerStub()
     }
-    
+
     func testThatItWorks() {
-        
+
         class TestExpectationOperation: Operation {
             let updateMenuOp: UpdateMenuOperation
             let expectation: XCTestExpectation
@@ -33,7 +33,7 @@ class UpdateMenuOperationTests: XCTestCase {
                 expectation.fulfill()
             }
         }
-        
+
         let dataOp = URLSessionDataTaskOperation(url: Bundle(for: UpdateMenuOperationTests.self).url(forResource: "WorkingMenuDataStub", withExtension: "json"))
         let cafeteria = EntityStub.cafeteria(context: stack.viewContext)
         let updateMenuOp = UpdateMenuOperation(cafeteria: cafeteria, dataOp: dataOp)

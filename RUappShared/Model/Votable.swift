@@ -10,7 +10,7 @@ import CoreData
 
 @objc(Votable)
 public class Votable: NSManagedObject, Decodable {
-    
+
     public required convenience init(from decoder: Decoder) throws {
         let context = decoder.userInfo[.managedObjectContext] as! NSManagedObjectContext
         self.init(entity: NSEntityDescription.entity(forEntityName: "Votable", in: context)!, insertInto: context)
@@ -19,7 +19,7 @@ public class Votable: NSManagedObject, Decodable {
         name = try container.decode(String.self, forKey: .name)
         meta = try container.decode(String.self, forKey: .meta)
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case name

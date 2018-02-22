@@ -9,12 +9,12 @@
 import UIKit
 
 class MealCell: UITableViewCell {
-    
+
     @IBOutlet weak var name: UILabel!
     @IBOutlet private weak var stack: UIStackView!
-    
+
     private static var reusableViewQueue: [(UIView, UIStackView)] = []
-    
+
     private func dequeueInnerStack() -> (UIView, UIStackView) {
         if MealCell.reusableViewQueue.count > 0 {
             return MealCell.reusableViewQueue.removeLast()
@@ -35,11 +35,11 @@ class MealCell: UITableViewCell {
         stack.distribution = .fill
         return (separator, stack)
     }
-    
+
     private func innerStack(at index: Int) -> UIStackView {
         return stack.arrangedSubviews[index * 2 + 1] as! UIStackView
     }
-    
+
     var numberOfDishes: Int {
         get {
             return stack.arrangedSubviews.count / 2
@@ -65,21 +65,21 @@ class MealCell: UITableViewCell {
             }
         }
     }
-    
+
     func dishRow(at index: Int) -> (type: UILabel, name: UILabel) {
         let innerStackViews = innerStack(at: index).arrangedSubviews
         return (innerStackViews.first as! UILabel, innerStackViews.last as! UILabel)
     }
-    
+
     func applyLayout() {
-        
+
         let isAccessibility = UIApplication.shared.preferredContentSizeCategory.isAccessibility
         let axis = isAccessibility ? UILayoutConstraintAxis.vertical : .horizontal
         let alignment = isAccessibility ? UIStackViewAlignment.fill : .firstBaseline
         let spacing = isAccessibility ? 0 : stack.spacing
         let nameTextAlignment = isAccessibility ? NSTextAlignment.left : .right
         let font = UIFont.preferredFont(forTextStyle: .body)
-        
+
         name.font = font
         (0..<numberOfDishes).forEach {
             let innerStack = self.innerStack(at: $0)
@@ -92,7 +92,7 @@ class MealCell: UITableViewCell {
             }
             (innerStack.arrangedSubviews.last as! UILabel).textAlignment = nameTextAlignment
         }
-        
+
         layoutIfNeeded()
     }
 }

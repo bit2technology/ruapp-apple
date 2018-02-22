@@ -17,7 +17,7 @@ public extension OperationQueue {
 }
 
 public extension Array {
-    
+
     func orderedSet() -> NSOrderedSet {
         return NSOrderedSet(array: self)
     }

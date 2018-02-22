@@ -9,15 +9,15 @@
 import CoreData
 
 public class UpdateMenuOperation: AsyncOperation {
-    
+
     public let cafeteria: Cafeteria
-    
+
     let dataOp: URLSessionDataTaskOperation
-    
+
     public convenience init(cafeteria: Cafeteria) {
         self.init(cafeteria: cafeteria, dataOp: URLSessionDataTaskOperation(request: URLRoute.menu(cafeteriaId: cafeteria.id).urlRequest))
     }
-    
+
     init(cafeteria: Cafeteria, dataOp: URLSessionDataTaskOperation) {
         self.cafeteria = cafeteria
         self.dataOp = dataOp
@@ -25,14 +25,14 @@ public class UpdateMenuOperation: AsyncOperation {
         addDependency(dataOp)
         OperationQueue.async.addOperation(dataOp)
     }
-    
+
     public override func main() {
-        
+
         guard let context = cafeteria.managedObjectContext else {
             finish(error: UpdateMenuOperationError.noManagedObjectContext)
             return
         }
-        
+
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         context.perform {
             do {
@@ -47,11 +47,11 @@ public class UpdateMenuOperation: AsyncOperation {
                 }
                 let meals = try decoder.decode([Meal].self, from: self.dataOp.data())
                 self.cafeteria.menu = NSSet(array: meals)
-                
+
                 guard !self.isCancelled else {
                     return
                 }
-                
+
                 try context.save()
                 self.finish()
             } catch {

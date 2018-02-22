@@ -9,12 +9,12 @@
 import CoreData
 
 public class PersistentContainer {
-    
+
     public let model: NSManagedObjectModel
     public let coordinator: NSPersistentStoreCoordinator
     public let viewContext: NSManagedObjectContext
     public let url: URL
-    
+
     public required init(model: NSManagedObjectModel, at url: URL) {
         self.model = model
         self.url = url
@@ -22,7 +22,7 @@ public class PersistentContainer {
         viewContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         viewContext.persistentStoreCoordinator = coordinator
     }
-    
+
     public func loadPersistentStores(completionHandler block: @escaping (Error?) -> ()) {
         DispatchQueue.global().async {
             do {
@@ -33,13 +33,13 @@ public class PersistentContainer {
             }
         }
     }
-    
+
     public func newBackgroundContext() -> NSManagedObjectContext {
         let backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         backgroundContext.parent = viewContext
         return backgroundContext
     }
-    
+
     public func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> ()) {
         let backgroundContext = newBackgroundContext()
         backgroundContext.perform {

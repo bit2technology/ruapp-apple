@@ -10,11 +10,11 @@ import UIKit
 
 class RUappController: UITableViewController {
 
-    
+
 }
 
 extension RUappController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = .appGray

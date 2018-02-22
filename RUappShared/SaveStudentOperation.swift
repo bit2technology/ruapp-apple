@@ -9,11 +9,11 @@
 import CoreData
 
 public class SaveStudentOperation: AsyncOperation {
-    
+
     public let student: Student
-    
+
     let studentOp: URLSessionDataTaskOperation?
-    
+
     public convenience init(student: Student) {
         do {
             let studentOp: URLSessionDataTaskOperation?
@@ -34,7 +34,7 @@ public class SaveStudentOperation: AsyncOperation {
             finish(error: error)
         }
     }
-    
+
     init(student: Student, studentOp: URLSessionDataTaskOperation?) {
         self.student = student
         self.studentOp = studentOp
@@ -44,24 +44,24 @@ public class SaveStudentOperation: AsyncOperation {
             OperationQueue.async.addOperation(studentOp)
         }
     }
-    
+
     public override func main() {
-        
+
         guard let context = student.managedObjectContext else {
             finish(error: SaveStudentOperationError.noManagedObjectContext)
             return
         }
-        
+
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         context.perform {
             do {
                 // Check if studentOp finished successfully, but discard data
                 _ = try self.studentOp?.data()
-                
+
                 guard !self.isCancelled else {
                     return
                 }
-                
+
                 try context.save()
                 self.finish()
             } catch {

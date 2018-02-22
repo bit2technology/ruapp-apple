@@ -10,7 +10,7 @@ import CoreData
 @testable import RUappShared
 
 class EntityStub {
-    
+
     static func institution(context: NSManagedObjectContext) -> Institution {
         let institution = NSEntityDescription.insertNewObject(forEntityName: "Institution", into: context) as! Institution
         institution.id = 1
@@ -20,7 +20,7 @@ class EntityStub {
         institution.townName = "Stub"
         return institution
     }
-    
+
     static func campus(context: NSManagedObjectContext) -> Campus {
         let campus = NSEntityDescription.insertNewObject(forEntityName: "Campus", into: context) as! Campus
         campus.id = 1
@@ -31,7 +31,7 @@ class EntityStub {
         campus.institution = institution(context: context)
         return campus
     }
-    
+
     static func cafeteria(context: NSManagedObjectContext) -> Cafeteria {
         let cafeteria = NSEntityDescription.insertNewObject(forEntityName: "Cafeteria", into: context) as! Cafeteria
         cafeteria.id = 1
