@@ -6,36 +6,42 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
-import Bit2Common
 import CoreData
 
-public class UpdateInstitutionListOperation: CoreDataOperation {
+public class UpdateInstitutionListOperation: AsyncOperation {
     
-    private let getOp = URLSessionDataTaskOperation(request: URLRoute.getInstitutions.urlRequest)
+    public let context: NSManagedObjectContext
     
-    public override init() {
+    let dataOp: URLSessionDataTaskOperation
+    
+    public convenience init(context: NSManagedObjectContext) {
+        self.init(context: context, dataOp: URLSessionDataTaskOperation(request: URLRoute.getInstitutions.urlRequest))
+    }
+    
+    init(context: NSManagedObjectContext, dataOp: URLSessionDataTaskOperation) {
+        self.context = context
+        self.dataOp = dataOp
         super.init()
-        addDependency(getOp)
-        OperationQueue.async.addOperation(getOp)
+        addDependency(dataOp)
+        OperationQueue.async.addOperation(dataOp)
     }
     
-    public override var managedObjectContext: NSManagedObjectContext? {
-        let ctx = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        ctx.parent = Student.managedObjectContext
-        return ctx
-    }
-    
-    override public func backgroundTask(context: NSManagedObjectContext) throws -> [NSManagedObjectID] {
-        
-        let list = try JSONDecoder().decode([JSON.Institution].self, from: getOp.value()).map {
-            try Institution.createOrUpdate(with: $0, context: context)
+    public override func main() {
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        context.perform {
+            do {
+                let decoder = JSONDecoder.persistent(context: self.context)
+                _ = try decoder.decode([Institution].self, from: self.dataOp.data())
+                
+                guard !self.isCancelled else {
+                    return
+                }
+                
+                try self.context.save()
+                self.finish()
+            } catch {
+                self.finish(error: error)
+            }
         }
-        
-        guard !isCancelled else {
-            return []
-        }
-        
-        try context.save()
-        return list.map { $0.objectID }
     }
 }

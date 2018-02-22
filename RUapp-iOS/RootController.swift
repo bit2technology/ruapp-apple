@@ -10,5 +10,11 @@ import UIKit
 import RUappShared
 
 class RootController: UITabBarController {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
     @IBAction private func unwindToRoot(segue: UIStoryboardSegue) { }
 }
