@@ -11,8 +11,8 @@ import CoreData
 @objc(Institution)
 public class Institution: NSManagedObject, Decodable {
 
-    public init(context: NSManagedObjectContext) {
-        super.init(entity: NSEntityDescription.entity(forEntityName: "Institution", in: context)!, insertInto: context)
+    public convenience init(context: NSManagedObjectContext) {
+        self.init(entity: NSEntityDescription.entity(forEntityName: "Institution", in: context)!, insertInto: context)
     }
 
     public required convenience init(from decoder: Decoder) throws {

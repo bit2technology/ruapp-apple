@@ -11,8 +11,8 @@ import CoreData
 @objc(Meal)
 public class Meal: NSManagedObject, Decodable {
 
-    public init(context: NSManagedObjectContext) {
-        super.init(entity: NSEntityDescription.entity(forEntityName: "Meal", in: context)!, insertInto: context)
+    public convenience init(context: NSManagedObjectContext) {
+        self.init(entity: NSEntityDescription.entity(forEntityName: "Meal", in: context)!, insertInto: context)
     }
 
     public required convenience init(from decoder: Decoder) throws {

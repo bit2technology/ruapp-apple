@@ -19,8 +19,8 @@ public class Cafeteria: NSManagedObject, Decodable {
         return req
     }
 
-    public init(context: NSManagedObjectContext) {
-        super.init(entity: NSEntityDescription.entity(forEntityName: "Cafeteria", in: context)!, insertInto: context)
+    public convenience init(context: NSManagedObjectContext) {
+        self.init(entity: NSEntityDescription.entity(forEntityName: "Cafeteria", in: context)!, insertInto: context)
     }
 
     public required convenience init(from decoder: Decoder) throws {

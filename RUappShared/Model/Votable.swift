@@ -11,8 +11,8 @@ import CoreData
 @objc(Votable)
 public class Votable: NSManagedObject, Decodable {
 
-    public init(context: NSManagedObjectContext) {
-        super.init(entity: NSEntityDescription.entity(forEntityName: "Votable", in: context)!, insertInto: context)
+    public convenience init(context: NSManagedObjectContext) {
+        self.init(entity: NSEntityDescription.entity(forEntityName: "Votable", in: context)!, insertInto: context)
     }
 
     public required convenience init(from decoder: Decoder) throws {

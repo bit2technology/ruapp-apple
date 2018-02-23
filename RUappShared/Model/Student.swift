@@ -10,8 +10,8 @@ import CoreData
 
 public class Student: NSManagedObject {
 
-    public init(context: NSManagedObjectContext) {
-        super.init(entity: NSEntityDescription.entity(forEntityName: "Student", in: context)!, insertInto: context)
+    public convenience init(context: NSManagedObjectContext) {
+        self.init(entity: NSEntityDescription.entity(forEntityName: "Student", in: context)!, insertInto: context)
     }
 
     public override func validateForInsert() throws {
