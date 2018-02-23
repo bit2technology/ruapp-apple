@@ -10,58 +10,58 @@ import CoreData
 
 public class UpdateMenuOperation: AsyncOperation {
 
-    public let cafeteria: Cafeteria
+  public let cafeteria: Cafeteria
 
-    let dataOp: URLSessionDataTaskOperation
+  let dataOp: URLSessionDataTaskOperation
 
-    public convenience init(cafeteria: Cafeteria) {
-        let dataOp = URLSessionDataTaskOperation(request: URLRoute.menu(cafeteriaId: cafeteria.id).urlRequest)
-        self.init(cafeteria: cafeteria, dataOp: dataOp)
+  public convenience init(cafeteria: Cafeteria) {
+    let dataOp = URLSessionDataTaskOperation(request: URLRoute.menu(cafeteriaId: cafeteria.id).urlRequest)
+    self.init(cafeteria: cafeteria, dataOp: dataOp)
+  }
+
+  init(cafeteria: Cafeteria, dataOp: URLSessionDataTaskOperation) {
+    self.cafeteria = cafeteria
+    self.dataOp = dataOp
+    super.init()
+    addDependency(dataOp)
+    OperationQueue.async.addOperation(dataOp)
+  }
+
+  public override func main() {
+
+    guard let context = cafeteria.managedObjectContext else {
+      finish(error: UpdateMenuOperationError.noManagedObjectContext)
+      return
     }
 
-    init(cafeteria: Cafeteria, dataOp: URLSessionDataTaskOperation) {
-        self.cafeteria = cafeteria
-        self.dataOp = dataOp
-        super.init()
-        addDependency(dataOp)
-        OperationQueue.async.addOperation(dataOp)
-    }
+    context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    context.perform {
+      do {
+        let decoder = JSONDecoder.persistent(context: context)
+        if #available(iOSApplicationExtension 10.0, *) {
+          decoder.dateDecodingStrategy = .iso8601
+        } else {
+          let formatter = DateFormatter()
+          formatter.locale = Locale(identifier: "en_US_POSIX")
+          formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+          decoder.dateDecodingStrategy = .formatted(formatter)
+        }
+        let meals = try decoder.decode([Meal].self, from: self.dataOp.data())
+        self.cafeteria.menu = NSSet(array: meals)
 
-    public override func main() {
-
-        guard let context = cafeteria.managedObjectContext else {
-            finish(error: UpdateMenuOperationError.noManagedObjectContext)
-            return
+        guard !self.isCancelled else {
+          return
         }
 
-        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        context.perform {
-            do {
-                let decoder = JSONDecoder.persistent(context: context)
-                if #available(iOSApplicationExtension 10.0, *) {
-                    decoder.dateDecodingStrategy = .iso8601
-                } else {
-                    let formatter = DateFormatter()
-                    formatter.locale = Locale(identifier: "en_US_POSIX")
-                    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-                    decoder.dateDecodingStrategy = .formatted(formatter)
-                }
-                let meals = try decoder.decode([Meal].self, from: self.dataOp.data())
-                self.cafeteria.menu = NSSet(array: meals)
-
-                guard !self.isCancelled else {
-                    return
-                }
-
-                try context.save()
-                self.finish()
-            } catch {
-                self.finish(error: error)
-            }
-        }
+        try context.save()
+        self.finish()
+      } catch {
+        self.finish(error: error)
+      }
     }
+  }
 }
 
 public enum UpdateMenuOperationError: Error {
-    case noManagedObjectContext
+  case noManagedObjectContext
 }

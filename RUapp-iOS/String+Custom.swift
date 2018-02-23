@@ -7,7 +7,7 @@
 //
 
 extension String {
-    var relevant: String? {
-        return count > 0 ? self : nil
-    }
+  var relevant: String? {
+    return count > 0 ? self : nil
+  }
 }

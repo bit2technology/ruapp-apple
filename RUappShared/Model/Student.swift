@@ -10,43 +10,58 @@ import CoreData
 
 public class Student: NSManagedObject {
 
-    public convenience init(context: NSManagedObjectContext) {
-        self.init(entity: NSEntityDescription.entity(forEntityName: "Student", in: context)!, insertInto: context)
+  public class func `default`(from userDefaults: UserDefaults = .shared, in context: NSManagedObjectContext = PersistentContainer.shared.viewContext) -> Student? {
+    guard let studentID = userDefaults.value(forKey: "DefaultStudentID") as? Int64 else {
+      return nil
     }
+    let request: NSFetchRequest<Student> = fetchRequest()
+    request.fetchLimit = 1
+    request.predicate = NSPredicate(format: "id = %lld", studentID)
+    let result = try? context.fetch(request)
+    return result?.first
+  }
 
-    public override func validateForInsert() throws {
-        try super.validateForInsert()
-        try validateConsistency()
-    }
+  public func setDefault(at userDefaults: UserDefaults = .shared) {
+    userDefaults.set(id, forKey: "DefaultStudentID")
+  }
 
-    public override func validateForUpdate() throws {
-        try super.validateForUpdate()
-        try validateConsistency()
-    }
+  public convenience init(context: NSManagedObjectContext) {
+    self.init(entity: NSEntityDescription.entity(forEntityName: "Student", in: context)!, insertInto: context)
+  }
 
-    private func validateConsistency() throws {
-        guard institution != nil else {
-            throw StudentError.noInstitution
-        }
+  public override func validateForInsert() throws {
+    try super.validateForInsert()
+    try validateConsistency()
+  }
+
+  public override func validateForUpdate() throws {
+    try super.validateForUpdate()
+    try validateConsistency()
+  }
+
+  private func validateConsistency() throws {
+    guard institution != nil else {
+      throw StudentError.noInstitution
     }
+  }
 }
 
 extension Student: Encodable {
 
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(numberPlate, forKey: .numberPlate)
-        try container.encode(institution?.id, forKey: .institutionId)
-    }
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(name, forKey: .name)
+    try container.encode(numberPlate, forKey: .numberPlate)
+    try container.encode(institution?.id, forKey: .institutionId)
+  }
 
-    enum CodingKeys: String, CodingKey {
-        case name
-        case numberPlate = "number_plate"
-        case institutionId = "institution_id"
-    }
+  enum CodingKeys: String, CodingKey {
+    case name
+    case numberPlate = "number_plate"
+    case institutionId = "institution_id"
+  }
 }
 
 public enum StudentError: Error {
-    case noInstitution
+  case noInstitution
 }
