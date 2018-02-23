@@ -8,7 +8,11 @@
 
 import CoreData
 
-extension Student {
+public class Student: NSManagedObject {
+
+    public init(context: NSManagedObjectContext) {
+        super.init(entity: NSEntityDescription.entity(forEntityName: "Student", in: context)!, insertInto: context)
+    }
 
     public override func validateForInsert() throws {
         try super.validateForInsert()

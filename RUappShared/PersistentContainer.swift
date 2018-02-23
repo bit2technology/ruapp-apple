@@ -23,7 +23,7 @@ public class PersistentContainer {
         viewContext.persistentStoreCoordinator = coordinator
     }
 
-    public func loadPersistentStores(completionHandler block: @escaping (Error?) -> ()) {
+    public func loadPersistentStores(completionHandler block: @escaping (Error?) -> Void) {
         DispatchQueue.global().async {
             do {
                 try self.coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.url)
@@ -40,7 +40,7 @@ public class PersistentContainer {
         return backgroundContext
     }
 
-    public func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> ()) {
+    public func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         let backgroundContext = newBackgroundContext()
         backgroundContext.perform {
             block(backgroundContext)

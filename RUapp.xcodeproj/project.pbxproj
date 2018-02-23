@@ -22,6 +22,7 @@
 		4B77D7D6203CFC4800CA7354 /* UpdateInstitutionListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */; };
 		4B77D7D7203E139C00CA7354 /* SaveStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */; };
 		4B938C1B1FEAC42E00339A20 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */; };
+		4B950D9B203F848F00CAC834 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4771F6D7F6F00A13F61 /* Color.swift */; };
 		4BA481832039CDE7001B0E3D /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA7B721F6F3D2E008B34F4 /* Campus.swift */; };
 		4BA481842039D319001B0E3D /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */; };
 		4BA481852039D7B3001B0E3D /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8881FB8E12B00956CF8 /* Meal.swift */; };
@@ -192,13 +193,13 @@
 		4B0605E81F69B715000ACE59 /* RUapp-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
 				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
 				4B656A261FE94059009A4160 /* Menu */,
 				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
 				4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */,
-				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
 				4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */,
 				4B0605E91F69B715000ACE59 /* AppDelegate.swift */,
@@ -506,6 +507,7 @@
 				4BA481862039DEF9001B0E3D /* Dish.swift in Sources */,
 				4BA481842039D319001B0E3D /* Cafeteria.swift in Sources */,
 				4BA481832039CDE7001B0E3D /* Campus.swift in Sources */,
+				4B950D9B203F848F00CAC834 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

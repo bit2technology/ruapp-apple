@@ -15,7 +15,8 @@ public class UpdateMenuOperation: AsyncOperation {
     let dataOp: URLSessionDataTaskOperation
 
     public convenience init(cafeteria: Cafeteria) {
-        self.init(cafeteria: cafeteria, dataOp: URLSessionDataTaskOperation(request: URLRoute.menu(cafeteriaId: cafeteria.id).urlRequest))
+        let dataOp = URLSessionDataTaskOperation(request: URLRoute.menu(cafeteriaId: cafeteria.id).urlRequest)
+        self.init(cafeteria: cafeteria, dataOp: dataOp)
     }
 
     init(cafeteria: Cafeteria, dataOp: URLSessionDataTaskOperation) {

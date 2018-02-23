@@ -27,33 +27,33 @@ class EditStudentController: UITableViewController {
     private weak var finiOp: FinishSaveStudentOperation?
 
     @IBAction private func fieldEdited(sender: UITextField) {
-        let student = Student.current
-        let value = sender.text
-        switch sender {
-        case nameField:
-            student.name = value
-        case numberPlateField:
-            student.numberPlate = value
-        default:
-            fatalError("Unknown text field")
-        }
-        navigationItem.rightBarButtonItem!.isEnabled = student.isValid
+//        let student = Student.current
+//        let value = sender.text
+//        switch sender {
+//        case nameField:
+//            student.name = value
+//        case numberPlateField:
+//            student.numberPlate = value
+//        default:
+//            fatalError("Unknown text field")
+//        }
+//        navigationItem.rightBarButtonItem!.isEnabled = student.isValid
     }
 
     @IBAction func cancelButtonPressed() {
-        view.endEditing(true)
-        Student.current.managedObjectContext!.rollback()
-        performSegue(withIdentifier: "UnwindToRoot", sender: nil)
+//        view.endEditing(true)
+//        Student.current.managedObjectContext!.rollback()
+//        performSegue(withIdentifier: "UnwindToRoot", sender: nil)
     }
 
     @IBAction func doneButtonPressed() {
-        view.endEditing(true)
-        guard Student.current.hasChanges else {
-            performSegue(withIdentifier: "UnwindToRoot", sender: nil)
-            return
-        }
-        setLoadingLayout(true)
-        finiOp = FinishSaveStudentOperation()
+//        view.endEditing(true)
+//        guard Student.current.hasChanges else {
+//            performSegue(withIdentifier: "UnwindToRoot", sender: nil)
+//            return
+//        }
+//        setLoadingLayout(true)
+//        finiOp = FinishSaveStudentOperation()
     }
 
     private func setLoadingLayout(_ loading: Bool) {
@@ -112,17 +112,17 @@ extension EditStudentController {
 
         tableView.backgroundColor = .appDarkBlue
 
-        if !Student.current.isSaved {
-            navigationItem.title = NSLocalizedString("EditStudentController.viewDidLoad.navigationItemTitle", value: "Sign Up", comment: "Title for sign up")
-        }
+//        if !Student.current.isSaved {
+//            navigationItem.title = NSLocalizedString("EditStudentController.viewDidLoad.navigationItemTitle", value: "Sign Up", comment: "Title for sign up")
+//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let student = Student.current
-        nameField.text = student.name
-        institutionField.text = student.institution?.name
-        numberPlateField.text = student.numberPlate
+//        let student = Student.current
+//        nameField.text = student.name
+//        institutionField.text = student.institution?.name
+//        numberPlateField.text = student.numberPlate
     }
 }
 

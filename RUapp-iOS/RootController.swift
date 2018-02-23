@@ -13,7 +13,10 @@ class RootController: UITabBarController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        guard Cafeteria.default() != nil else {
+            performSegue(withIdentifier: "EditStudent", sender: self)
+            return
+        }
     }
 
     @IBAction private func unwindToRoot(segue: UIStoryboardSegue) { }

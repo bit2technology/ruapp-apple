@@ -11,9 +11,13 @@ import CoreData
 @objc(Dish)
 public class Dish: NSManagedObject, Decodable {
 
+    public init(context: NSManagedObjectContext) {
+        super.init(entity: NSEntityDescription.entity(forEntityName: "Dish", in: context)!, insertInto: context)
+    }
+
     public required convenience init(from decoder: Decoder) throws {
         let context = decoder.userInfo[.managedObjectContext] as! NSManagedObjectContext
-        self.init(entity: NSEntityDescription.entity(forEntityName: "Dish", in: context)!, insertInto: context)
+        self.init(context: context)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(String.self, forKey: .type)
         meta = try container.decode(String.self, forKey: .meta)

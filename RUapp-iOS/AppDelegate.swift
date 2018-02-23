@@ -8,6 +8,7 @@
 
 import UIKit
 import RUappShared
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        RUappShared.configure()
         return true
     }
 
@@ -25,24 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func applyAppaerance() {
-        UIFont.appRegisterFonts()
         window?.tintColor = .appLighterBlue
         let navBar = UINavigationBar.appearance()
         navBar.barStyle = .black
         navBar.barTintColor = .appDarkBlue
-//        navBar.isTranslucent = false
-//        navBar.titleTextAttributes = [.font: UIFont.appNavTitle]
-        if #available(iOS 11.0, *) {
-//            navBar.largeTitleTextAttributes = [.font: UIFont.appLargeNavTitle]
-        }
-//        UIBarButtonItem.appearance().setTitleTextAttributes([.font: UIFont.appBarItem], for: .normal)
         let tabBar = UITabBar.appearance()
         tabBar.barStyle = .black
         tabBar.barTintColor = .appDarkBlue
         tabBar.tintColor = .white
         if #available(iOS 10.0, *) {
             tabBar.unselectedItemTintColor = .appLighterBlue
-//            UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont.appTabBarItemTitle], for: .normal)
         } else {
             (window?.rootViewController as! UITabBarController).tabBar.items?.forEach { (item) in
                 item.image = item.image?.with(color: .appLighterBlue).withRenderingMode(.alwaysOriginal)
@@ -50,11 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 item.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
             }
         }
-//        tabBar.isTranslucent = false
     }
 }
 
 extension UIImage {
+
     func with(color: UIColor) -> UIImage {
         guard let cgImage = self.cgImage else {
             return self
@@ -71,5 +63,42 @@ extension UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return newImage
+    }
+}
+
+extension PersistentContainer {
+
+    static let shared: PersistentContainer = {
+        let modelURL = Bundle(for: PersistentContainer.self).url(forResource: "Model", withExtension: "momd")!
+        let model = NSManagedObjectModel(contentsOf: modelURL)!
+        let dbURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.ruapp.bit2.technology")!
+        return PersistentContainer(model: model, at: dbURL)
+    }()
+}
+
+extension UserDefaults {
+
+    static let shared = UserDefaults(suiteName: "group.ruapp.bit2.technology")!
+}
+
+//extension Student {
+//
+//    static let current: Student = {
+//        let request: NSFetchRequest<Student> = fetchRequest()
+//        request.fetchLimit = 1
+//        let managedObjectContext = PersistentContainer.shared.viewContext
+//        let result = try? managedObjectContext.fetch(request)
+//        return result?.first ?? Student(context: managedObjectContext)
+//    }()
+//}
+
+extension Cafeteria {
+
+    class func `default`(in context: NSManagedObjectContext = PersistentContainer.shared.viewContext) -> Cafeteria? {
+        return self.default(from: UserDefaults.shared, in: context)
+    }
+
+    func setDefault() {
+        setDefault(at: UserDefaults.shared)
     }
 }

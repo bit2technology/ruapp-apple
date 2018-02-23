@@ -16,7 +16,7 @@ class InstitutionSelectorController: UITableViewController {
     private let reqCont: NSFetchedResultsController<Institution> = {
         let req: NSFetchRequest<Institution> = Institution.fetchRequest()
         req.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        return NSFetchedResultsController(fetchRequest: req, managedObjectContext: Student.managedObjectContext, sectionNameKeyPath: nil, cacheName: "ListInstitutions")
+        return NSFetchedResultsController(fetchRequest: req, managedObjectContext: PersistentContainer.shared.viewContext, sectionNameKeyPath: nil, cacheName: "ListInstitutions")
     }()
 
     @IBAction func refreshRequested() {
@@ -35,7 +35,7 @@ extension InstitutionSelectorController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InstitutionCell", for: indexPath)
         let institution = reqCont.object(at: indexPath)
         cell.textLabel?.text = institution.name
-        cell.accessoryType = Student.current.institution == institution ? .checkmark : .none
+//        cell.accessoryType = Student.current.institution == institution ? .checkmark : .none
         return cell
     }
 }
@@ -61,8 +61,8 @@ extension InstitutionSelectorController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "InstitutionSelected"?:
-            Student.current.institution = reqCont.object(at: tableView.indexPathForSelectedRow!)
+//        case "InstitutionSelected"?:
+//            Student.current.institution = reqCont.object(at: tableView.indexPathForSelectedRow!)
         default:
             break
         }
@@ -98,7 +98,7 @@ extension InstitutionSelectorController {
     private class FinishUpdateInstitutionListOperation: Operation {
 
         private weak var controller: InstitutionSelectorController?
-        private let instListOp = UpdateInstitutionListOperation()
+        private let instListOp = UpdateInstitutionListOperation(context: PersistentContainer.shared.viewContext)
 
         init(controller: InstitutionSelectorController) {
             self.controller = controller
@@ -112,12 +112,6 @@ extension InstitutionSelectorController {
                 return
             }
             controller.refreshControl!.endRefreshing()
-            do {
-                _ = try instListOp.value()
-            } catch {
-                // TODO: Handle error
-                print(error)
-            }
         }
     }
 }

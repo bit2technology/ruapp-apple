@@ -6,9 +6,9 @@
 //  Copyright © 2017 Bit2 Technology. All rights reserved.
 //
 
+import UIKit
 import RUappShared
 import CoreData
-import Bit2Common
 
 class MenuController: UITableViewController {
 
@@ -94,10 +94,10 @@ class MenuController: UITableViewController {
     }
 
     private func fetchedResultsControllerForCurrentTimeBounds() -> NSFetchedResultsController<Meal> {
-        let req = Meal.request()
+        let req: NSFetchRequest<Meal> = Meal.fetchRequest()
         req.predicate = NSPredicate(format: "open < %@ AND close >= %@", timeBounds.finish as NSDate, timeBounds.start as NSDate)
         req.sortDescriptors = [NSSortDescriptor(key: "open", ascending: true)]
-        return NSFetchedResultsController(fetchRequest: req, managedObjectContext: CoreDataContainer.shared.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: req, managedObjectContext: PersistentContainer.shared.viewContext, sectionNameKeyPath: nil, cacheName: nil)
     }
 
     private func updateLayout(for traitCollection: UITraitCollection) {
@@ -238,13 +238,13 @@ private struct TimeBounds {
 
 private class FinishUpdateMenuOperation: Foundation.Operation {
 
-    let op = UpdateMenuOperation(restaurantId: 1)
+//    let op = UpdateMenuOperation(cafeteria: 1)
     weak var menuController: MenuController?
 
     override init() {
         super.init()
-        addDependency(op)
-        OperationQueue.async.addOperation(op)
+//        addDependency(op)
+//        OperationQueue.async.addOperation(op)
     }
 
     override func main() {
@@ -254,11 +254,11 @@ private class FinishUpdateMenuOperation: Foundation.Operation {
         }
         menuController.refreshControl?.endRefreshing()
 
-        do {
-            let newMeals = try op.value()
-            print("updated \(newMeals.count) meals")
-        } catch {
-            print("update menu failed:", error)
-        }
+//        do {
+//            let newMeals = try op.value()
+//            print("updated \(newMeals.count) meals")
+//        } catch {
+//            print("update menu failed:", error)
+//        }
     }
 }
