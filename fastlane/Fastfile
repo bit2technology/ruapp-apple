@@ -1,18 +1,36 @@
 
-lane :default do |options|
-    test
-    # Deploy if it's in master branch after a pull request
-    if ENV["TRAVIS_BRANCH"] == "master" && ENV["TRAVIS_PULL_REQUEST"] == "false"
-        deploy
+lane :ci do |options|
+  is_pull_request = ENV["TRAVIS_PULL_REQUEST"] != "false"
+  # If pull request to master
+  if is_pull_request && ENV["TRAVIS_BRANCH"] == "master"
+    build_number_commit_message = "Update Build Number"
+    # If last commit did't update build number
+    if last_git_commit[:message] != build_number_commit_message
+      UI.error "Last commit didn't update build number. Doing it now."
+      update_build_number_and_push
+      raise "New commit pushed. Build interrupted."
     end
+  end
+  danger
+  run_tests
+  codecov
+  # If push to master
+  if !is_pull_request && ENV["TRAVIS_BRANCH"] == "master"
+    # TODO: Build and send to TestFlight
+  end
 end
 
-lane :test do |options|
-    danger
-    run_tests
-    codecov
-end
-
-lane :deploy do |options|
-    increment_build_number(build_number: Time.now.getutc.strftime("%Y%m%d%H%M%S%L"))
+lane :update_build_number_and_push do |options|
+  utc_time = Time.now.getutc
+  # Set custom commit date
+  commit_date = utc_time.iso8601
+  ENV["GIT_AUTHOR_DATE"] = commit_date
+  ENV["GIT_COMMITTER_DATE"] = commit_date
+  # Set build number
+  build_number = utc_time.strftime("%Y%m%d%H%M%S%L")
+  increment_build_number(build_number: build_number)
+  # Commit, tag, push and cancel build (it will trigger anoter one)
+  commit_version_bump(message: build_number_commit_message)
+  add_git_tag(grouping: "builds/ios")
+  push_to_git_remote
 end
