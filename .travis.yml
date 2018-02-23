@@ -1,5 +1,8 @@
 
 language: objective-c
 osx_image: xcode9.2
+cache:
+- bundler
+- cocoapods
 
-script: bundle exec fastlane default
+script: bundle exec fastlane ci
