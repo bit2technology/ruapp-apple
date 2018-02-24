@@ -30,7 +30,7 @@ lane :update_build_number_and_push do |options|
   build_number = utc_time.strftime("%Y%m%d%H%M%S%L")
   increment_build_number(build_number: build_number)
   # Commit, tag, push and cancel build (it will trigger anoter one)
-  commit_version_bump(message: options[:commit_message])
+  commit_version_bump(message: options[:commit_message], xcodeproj: "../RUapp.xcodeproj")
   add_git_tag(grouping: "builds/ios")
   push_to_git_remote
 end
