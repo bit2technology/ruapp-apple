@@ -1,14 +1,15 @@
 
+build_number_commit_message = "Update Build Number"
+
 lane :ci do |options|
   is_pull_request = ENV["TRAVIS_PULL_REQUEST"] != "false"
   # If pull request to master
   if is_pull_request && ENV["TRAVIS_BRANCH"] == "master"
-    build_number_commit_message = "Update Build Number"
     # If last commit did't update build number
     if last_git_commit[:message] != build_number_commit_message
-      UI.error "Last commit didn't update build number. Doing it now."
-      update_build_number_and_push(commit_message: build_number_commit_message)
-      raise "New commit pushed. Build interrupted."
+      # FIXME: Add auth to CI server
+      # TODO: Automatically update build number
+      raise "A build number update commit must be the last commit before merging to master. Run \"fastlane update_build_number_and_push\" on your local machine."
     end
   end
   danger
@@ -20,17 +21,19 @@ lane :ci do |options|
   end
 end
 
-lane :update_build_number_and_push do |options|
+lane :update_build_number_and_commit do |options|
   utc_time = Time.now.getutc
   # Set custom commit date
   commit_date = utc_time.iso8601
   ENV["GIT_AUTHOR_DATE"] = commit_date
   ENV["GIT_COMMITTER_DATE"] = commit_date
   # Set build number
-  build_number = utc_time.strftime("%Y.%m.%d.%H.%M")
+  patch = utc_time.to_i
+  minor = patch / 256
+  major = minor / 256
+  build_number = "#{major}.#{minor % 256}.#{patch % 256}"
   increment_build_number(build_number: build_number)
   # Commit, tag, push and cancel build (it will trigger anoter one)
-  commit_version_bump(message: options[:commit_message], xcodeproj: "RUapp.xcodeproj")
+  commit_version_bump(message: build_number_commit_message, xcodeproj: "RUapp.xcodeproj")
   add_git_tag(grouping: "builds/ios")
-  push_to_git_remote
 end
