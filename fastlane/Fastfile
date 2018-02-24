@@ -2,28 +2,25 @@
 build_number_commit_message = "Update Build Number"
 
 lane :ci do |options|
-  is_pull_request = ENV["TRAVIS_PULL_REQUEST"] != "false"
-  # If pull request to master
-  if is_pull_request && ENV["TRAVIS_BRANCH"] == "master"
-    # If last commit did't update build number
-    if last_git_commit[:message] != build_number_commit_message
-      # FIXME: Add auth to CI server
-      # TODO: Automatically update build number
-      raise "A build number update commit must be the last commit before merging to master. Run \"fastlane update_build_number_and_push\" on your local machine."
-    end
-  end
   danger
-  run_tests(output_style: "raw",
-            output_types: "",
-            slack_url: "https://hooks.slack.com/services/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")
+  run_tests(output_style: "raw", output_types: "")
   codecov
-  # If push to master
-  if !is_pull_request && ENV["TRAVIS_BRANCH"] == "master"
-    # TODO: Build and send to TestFlight
+  if ENV["TRAVIS_BRANCH"] == "master"
+    if ENV["TRAVIS_PULL_REQUEST"] == "false"
+      # Push to master
+      if last_git_commit[:message] != build_number_commit_message
+        # FIXME: Add auth to CI server
+        # TODO: Automatically update build number
+        raise "A build number update commit must be the last commit before merging to master. Run \"fastlane update_build_number_and_push\" on your local machine."
+      end
+    else
+      # Pull request to master
+      # TODO: Build and send to TestFlight
+    end
   end
 end
 
-lane :update_build_number_and_push do |options|
+lane :buildnum do |options|
   utc_time = Time.now.getutc
   # Set custom commit date
   commit_date = utc_time.iso8601
