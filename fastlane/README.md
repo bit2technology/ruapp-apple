@@ -20,9 +20,9 @@ or alternatively using `brew cask install fastlane`
 fastlane ci
 ```
 
-### update_build_number_and_push
+### update_build_number_and_commit
 ```
-fastlane update_build_number_and_push
+fastlane update_build_number_and_commit
 ```
 
 
