@@ -27,7 +27,7 @@ lane :update_build_number_and_push do |options|
   ENV["GIT_AUTHOR_DATE"] = commit_date
   ENV["GIT_COMMITTER_DATE"] = commit_date
   # Set build number
-  build_number = utc_time.strftime("%Y%m%d%H%M%S%L")
+  build_number = utc_time.strftime("%Y.%m.%d.%H.%M")
   increment_build_number(build_number: build_number)
   # Commit, tag, push and cancel build (it will trigger anoter one)
   commit_version_bump(message: options[:commit_message], xcodeproj: "RUapp.xcodeproj")
