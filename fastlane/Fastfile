@@ -35,5 +35,5 @@ lane :update_build_number_and_commit do |options|
   increment_build_number(build_number: build_number)
   # Commit, tag, push and cancel build (it will trigger anoter one)
   commit_version_bump(message: build_number_commit_message, xcodeproj: "RUapp.xcodeproj")
-  add_git_tag(name: "builds/#{build_number}")
+  add_git_tag(tag: "builds/#{build_number}")
 end
