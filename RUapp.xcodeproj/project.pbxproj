@@ -22,6 +22,7 @@
 		4B77D7D6203CFC4800CA7354 /* UpdateInstitutionListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBE09D1FB27E710072287A /* UpdateInstitutionListOperation.swift */; };
 		4B77D7D7203E139C00CA7354 /* SaveStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC396FD1FB34C5100E2A930 /* SaveStudentOperation.swift */; };
 		4B938C1B1FEAC42E00339A20 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B938C191FEAC42E00339A20 /* Model.xcdatamodeld */; };
+		4B950D9B203F848F00CAC834 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BC4771F6D7F6F00A13F61 /* Color.swift */; };
 		4BA481832039CDE7001B0E3D /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA7B721F6F3D2E008B34F4 /* Campus.swift */; };
 		4BA481842039D319001B0E3D /* Cafeteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE5A3B51F6C876F00C1B260 /* Cafeteria.swift */; };
 		4BA481852039D7B3001B0E3D /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8881FB8E12B00956CF8 /* Meal.swift */; };
@@ -31,7 +32,6 @@
 		4BA4818A2039F21B001B0E3D /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC0D20059949007828E4 /* RUappShared.swift */; };
 		4BA4818B2039FA9B001B0E3D /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4C1F69E9360069C42B /* Student.swift */; };
 		4BA4818D203A14F5001B0E3D /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4818C203A14F5001B0E3D /* AsyncOperation.swift */; };
-		4BA4818F203A15E9001B0E3D /* AsyncOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4818E203A15E9001B0E3D /* AsyncOperationTests.swift */; };
 		4BA48191203A17EB001B0E3D /* UpdateMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */; };
 		4BA48193203A1D94001B0E3D /* URLSessionDataTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA48192203A1D94001B0E3D /* URLSessionDataTaskOperation.swift */; };
 		4BA48196203A3DBD001B0E3D /* WorkingMenuDataStub.json in Resources */ = {isa = PBXBuildFile; fileRef = 4BA48195203A3DBD001B0E3D /* WorkingMenuDataStub.json */; };
@@ -40,7 +40,6 @@
 		4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */; };
 		4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */; };
 		4BC2F5B11F6EE53800F55964 /* RUappController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5B01F6EE53800F55964 /* RUappController.swift */; };
-		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4BE69E042038970D008C0BFE /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE69E032038970D008C0BFE /* PersistentContainer.swift */; };
 		4BE69E062039AADB008C0BFE /* JSONDecoder+Persistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE69E052039AADB008C0BFE /* JSONDecoder+Persistent.swift */; };
@@ -112,7 +111,6 @@
 		4B938C1A1FEAC42E00339A20 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4B950D92203F23C600CAC834 /* Gemfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Gemfile; sourceTree = "<group>"; };
 		4B950D94203F25EB00CAC834 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		4B950D95203F2A8700CAC834 /* Appfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Appfile; path = fastlane/Appfile; sourceTree = "<group>"; };
 		4B950D96203F2A8800CAC834 /* Fastfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Fastfile; path = fastlane/Fastfile; sourceTree = "<group>"; };
 		4B950D97203F469200CAC834 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4B950D98203F54D200CAC834 /* Dangerfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Dangerfile; sourceTree = "<group>"; };
@@ -177,7 +175,9 @@
 				4B950D93203F258C00CAC834 /* Support */,
 				4B0605E71F69B715000ACE59 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		4B0605E71F69B715000ACE59 /* Products */ = {
 			isa = PBXGroup;
@@ -192,13 +192,13 @@
 		4B0605E81F69B715000ACE59 /* RUapp-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0605F51F69B715000ACE59 /* Info.plist */,
 				4B0605ED1F69B715000ACE59 /* Main.storyboard */,
 				4B0605F21F69B715000ACE59 /* LaunchScreen.storyboard */,
 				4B656A261FE94059009A4160 /* Menu */,
 				4B0605F01F69B715000ACE59 /* Assets.xcassets */,
 				4B0CFB501F69EAF80069C42B /* RUapp-iOS.entitlements */,
-				4B0CFB4A1F69E8540069C42B /* RootController.swift */,
 				4B0CFB941F6B13BC0069C42B /* EditStudentController.swift */,
 				4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */,
 				4B0605E91F69B715000ACE59 /* AppDelegate.swift */,
@@ -259,7 +259,6 @@
 				4BCFF74D1FB4FAB100F275B3 /* README.md */,
 				4B950D92203F23C600CAC834 /* Gemfile */,
 				4B950D96203F2A8800CAC834 /* Fastfile */,
-				4B950D95203F2A8700CAC834 /* Appfile */,
 				4B950D98203F54D200CAC834 /* Dangerfile */,
 				4B950D99203F615200CAC834 /* codecov.rb */,
 				4B950D94203F25EB00CAC834 /* .gitignore */,
@@ -293,13 +292,6 @@
 			path = Doubles;
 			sourceTree = "<group>";
 		};
-		4BA4819D203A48F3001B0E3D /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		4BA481A0203A4CA9001B0E3D /* UpdateMenuOperation */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,11 +304,10 @@
 		4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */ = {
 			isa = PBXGroup;
 			children = (
-				4BA4818E203A15E9001B0E3D /* AsyncOperationTests.swift */,
 				4BA481A0203A4CA9001B0E3D /* UpdateMenuOperation */,
 				4BA48194203A3D70001B0E3D /* Doubles */,
-				4BA4819D203A48F3001B0E3D /* Helpers */,
 				4BDBB1CD1F69BAC3007900EC /* Info.plist */,
+				4BA4818E203A15E9001B0E3D /* AsyncOperationTests.swift */,
 				4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */,
 			);
 			path = RUappSharedTests;
@@ -506,6 +497,7 @@
 				4BA481862039DEF9001B0E3D /* Dish.swift in Sources */,
 				4BA481842039D319001B0E3D /* Cafeteria.swift in Sources */,
 				4BA481832039CDE7001B0E3D /* Campus.swift in Sources */,
+				4B950D9B203F848F00CAC834 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,11 +505,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BA4818F203A15E9001B0E3D /* AsyncOperationTests.swift in Sources */,
 				4B77D7D5203CF69500CA7354 /* EntityStub.swift in Sources */,
 				4BA48198203A4510001B0E3D /* PersistentContainerStub.swift in Sources */,
 				4BA4819C203A489F001B0E3D /* UpdateMenuOperationTests.swift in Sources */,
-				4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +574,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 23185.231.195;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 2CPJD7ENY9;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -640,7 +630,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 23185.231.195;
 				DEVELOPMENT_TEAM = 2CPJD7ENY9;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -700,7 +690,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 23185.231.195;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -719,7 +709,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 23185.231.195;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

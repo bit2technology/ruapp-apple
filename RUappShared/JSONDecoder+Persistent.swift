@@ -10,14 +10,14 @@ import CoreData
 
 extension JSONDecoder {
 
-    static func persistent(context: NSManagedObjectContext) -> JSONDecoder {
-        let decoder = JSONDecoder()
-        decoder.userInfo[.managedObjectContext] = context
-        return decoder
-    }
+  static func persistent(context: NSManagedObjectContext) -> JSONDecoder {
+    let decoder = JSONDecoder()
+    decoder.userInfo[.managedObjectContext] = context
+    return decoder
+  }
 }
 
 extension CodingUserInfoKey {
 
-    static let managedObjectContext = CodingUserInfoKey(rawValue: "ManagedObjectContext")!
+  static let managedObjectContext = CodingUserInfoKey(rawValue: "ManagedObjectContext")!
 }

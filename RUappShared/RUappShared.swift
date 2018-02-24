@@ -9,16 +9,19 @@
 import Foundation
 
 public extension OperationQueue {
-    static let async: OperationQueue = {
-        let queue = OperationQueue()
-        queue.name = "AsyncOperationQueue"
-        return queue
-    }()
+  static let async: OperationQueue = {
+    let queue = OperationQueue()
+    queue.name = "AsyncOperationQueue"
+    return queue
+  }()
 }
 
 public extension Array {
+  func orderedSet() -> NSOrderedSet {
+    return NSOrderedSet(array: self)
+  }
+}
 
-    func orderedSet() -> NSOrderedSet {
-        return NSOrderedSet(array: self)
-    }
+public extension UserDefaults {
+  public static let shared = UserDefaults(suiteName: "group.ruapp.bit2.technology")!
 }
