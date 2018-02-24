@@ -32,7 +32,6 @@
 		4BA4818A2039F21B001B0E3D /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15AC0D20059949007828E4 /* RUappShared.swift */; };
 		4BA4818B2039FA9B001B0E3D /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CFB4C1F69E9360069C42B /* Student.swift */; };
 		4BA4818D203A14F5001B0E3D /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4818C203A14F5001B0E3D /* AsyncOperation.swift */; };
-		4BA4818F203A15E9001B0E3D /* AsyncOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4818E203A15E9001B0E3D /* AsyncOperationTests.swift */; };
 		4BA48191203A17EB001B0E3D /* UpdateMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1BF8861FB8DF9300956CF8 /* UpdateMenuOperation.swift */; };
 		4BA48193203A1D94001B0E3D /* URLSessionDataTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA48192203A1D94001B0E3D /* URLSessionDataTaskOperation.swift */; };
 		4BA48196203A3DBD001B0E3D /* WorkingMenuDataStub.json in Resources */ = {isa = PBXBuildFile; fileRef = 4BA48195203A3DBD001B0E3D /* WorkingMenuDataStub.json */; };
@@ -41,7 +40,6 @@
 		4BC2F5AD1F6EB8A700F55964 /* InstitutionSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AC1F6EB8A700F55964 /* InstitutionSelectorController.swift */; };
 		4BC2F5AF1F6EBC8300F55964 /* String+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5AE1F6EBC8300F55964 /* String+Custom.swift */; };
 		4BC2F5B11F6EE53800F55964 /* RUappController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC2F5B01F6EE53800F55964 /* RUappController.swift */; };
-		4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */; };
 		4BDBB1CE1F69BAC3007900EC /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0605FE1F69B778000ACE59 /* RUappShared.framework */; };
 		4BE69E042038970D008C0BFE /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE69E032038970D008C0BFE /* PersistentContainer.swift */; };
 		4BE69E062039AADB008C0BFE /* JSONDecoder+Persistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE69E052039AADB008C0BFE /* JSONDecoder+Persistent.swift */; };
@@ -306,10 +304,10 @@
 		4BDBB1CA1F69BAC3007900EC /* RUappSharedTests */ = {
 			isa = PBXGroup;
 			children = (
-				4BA4818E203A15E9001B0E3D /* AsyncOperationTests.swift */,
 				4BA481A0203A4CA9001B0E3D /* UpdateMenuOperation */,
 				4BA48194203A3D70001B0E3D /* Doubles */,
 				4BDBB1CD1F69BAC3007900EC /* Info.plist */,
+				4BA4818E203A15E9001B0E3D /* AsyncOperationTests.swift */,
 				4BDBB1CB1F69BAC3007900EC /* JSONTests.swift */,
 			);
 			path = RUappSharedTests;
@@ -507,11 +505,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BA4818F203A15E9001B0E3D /* AsyncOperationTests.swift in Sources */,
 				4B77D7D5203CF69500CA7354 /* EntityStub.swift in Sources */,
 				4BA48198203A4510001B0E3D /* PersistentContainerStub.swift in Sources */,
 				4BA4819C203A489F001B0E3D /* UpdateMenuOperationTests.swift in Sources */,
-				4BDBB1CC1F69BAC3007900EC /* JSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +574,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 23185.221.23;
+				CURRENT_PROJECT_VERSION = 23185.231.195;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 2CPJD7ENY9;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -634,7 +630,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 23185.221.23;
+				CURRENT_PROJECT_VERSION = 23185.231.195;
 				DEVELOPMENT_TEAM = 2CPJD7ENY9;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -694,7 +690,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 23185.221.23;
+				DYLIB_CURRENT_VERSION = 23185.231.195;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -713,7 +709,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 23185.221.23;
+				DYLIB_CURRENT_VERSION = 23185.231.195;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RUappShared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
