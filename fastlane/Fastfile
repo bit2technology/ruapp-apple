@@ -7,7 +7,7 @@ lane :ci do |options|
     # If last commit did't update build number
     if last_git_commit[:message] != build_number_commit_message
       UI.error "Last commit didn't update build number. Doing it now."
-      update_build_number_and_push
+      update_build_number_and_push(commit_message: build_number_commit_message)
       raise "New commit pushed. Build interrupted."
     end
   end
@@ -30,7 +30,7 @@ lane :update_build_number_and_push do |options|
   build_number = utc_time.strftime("%Y%m%d%H%M%S%L")
   increment_build_number(build_number: build_number)
   # Commit, tag, push and cancel build (it will trigger anoter one)
-  commit_version_bump(message: build_number_commit_message)
+  commit_version_bump(message: options[:commit_message])
   add_git_tag(grouping: "builds/ios")
   push_to_git_remote
 end
