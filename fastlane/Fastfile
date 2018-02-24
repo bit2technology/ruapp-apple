@@ -13,7 +13,7 @@ lane :ci do |options|
     end
   end
   danger
-  run_tests
+  run_tests(slack_url: "https://hooks.slack.com/services/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", slack_channel:"#fastlane")
   codecov
   # If push to master
   if !is_pull_request && ENV["TRAVIS_BRANCH"] == "master"
@@ -21,7 +21,7 @@ lane :ci do |options|
   end
 end
 
-lane :update_build_number_and_commit do |options|
+lane :update_build_number_and_push do |options|
   utc_time = Time.now.getutc
   # Set custom commit date
   commit_date = utc_time.iso8601
@@ -36,4 +36,5 @@ lane :update_build_number_and_commit do |options|
   # Commit, tag, push and cancel build (it will trigger anoter one)
   commit_version_bump(message: build_number_commit_message, xcodeproj: "RUapp.xcodeproj")
   add_git_tag(tag: "builds/#{build_number}")
+  push_to_git_remote
 end
