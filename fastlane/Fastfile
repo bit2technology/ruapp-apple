@@ -15,8 +15,7 @@ lane :ci do |options|
   danger
   run_tests(output_style: "raw",
             output_types: "",
-            slack_url: "https://hooks.slack.com/services/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",
-            slack_channel:"#fastlane")
+            slack_url: "https://hooks.slack.com/services/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")
   codecov
   # If push to master
   if !is_pull_request && ENV["TRAVIS_BRANCH"] == "master"
