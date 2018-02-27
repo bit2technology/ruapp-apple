@@ -8,12 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		4BFCD7D02045E29300B4A71B /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7CF2045E29300B4A71B /* RUappShared.swift */; };
+		4BFCD7DA2045E55B00B4A71B /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFCD7C62045E26000B4A71B /* RUappShared.framework */; };
+		4BFCD7E12045E5AE00B4A71B /* RUappSharedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7E02045E5AE00B4A71B /* RUappSharedTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4BFCD7DB2045E55B00B4A71B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BFCD7BB2045DEA200B4A71B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4BFCD7C52045E26000B4A71B;
+			remoteInfo = "RUappShared-iOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4BFCD7C62045E26000B4A71B /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BFCD7CA2045E26000B4A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BFCD7CF2045E29300B4A71B /* RUappShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappShared.swift; sourceTree = "<group>"; };
+		4BFCD7D52045E55B00B4A71B /* RUappSharedTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BFCD7D92045E55B00B4A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BFCD7E02045E5AE00B4A71B /* RUappSharedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappSharedTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +39,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BFCD7D22045E55B00B4A71B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BFCD7DA2045E55B00B4A71B /* RUappShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -31,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				4BFCD7C82045E26000B4A71B /* RUappShared */,
+				4BFCD7D62045E55B00B4A71B /* RUappSharedTests */,
 				4BFCD7C72045E26000B4A71B /* Products */,
 			);
 			indentWidth = 2;
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				4BFCD7C62045E26000B4A71B /* RUappShared.framework */,
+				4BFCD7D52045E55B00B4A71B /* RUappSharedTests-iOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -52,6 +77,15 @@
 				4BFCD7CA2045E26000B4A71B /* Info.plist */,
 			);
 			path = RUappShared;
+			sourceTree = "<group>";
+		};
+		4BFCD7D62045E55B00B4A71B /* RUappSharedTests */ = {
+			isa = PBXGroup;
+			children = (
+				4BFCD7E02045E5AE00B4A71B /* RUappSharedTests.swift */,
+				4BFCD7D92045E55B00B4A71B /* Info.plist */,
+			);
+			path = RUappSharedTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,16 +119,40 @@
 			productReference = 4BFCD7C62045E26000B4A71B /* RUappShared.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		4BFCD7D42045E55B00B4A71B /* RUappSharedTests-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BFCD7DD2045E55B00B4A71B /* Build configuration list for PBXNativeTarget "RUappSharedTests-iOS" */;
+			buildPhases = (
+				4BFCD7D12045E55B00B4A71B /* Sources */,
+				4BFCD7D22045E55B00B4A71B /* Frameworks */,
+				4BFCD7D32045E55B00B4A71B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BFCD7DC2045E55B00B4A71B /* PBXTargetDependency */,
+			);
+			name = "RUappSharedTests-iOS";
+			productName = "RUappSharedTests-iOS";
+			productReference = 4BFCD7D52045E55B00B4A71B /* RUappSharedTests-iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4BFCD7BB2045DEA200B4A71B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Bit2 Technology";
 				TargetAttributes = {
 					4BFCD7C52045E26000B4A71B = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+					};
+					4BFCD7D42045E55B00B4A71B = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
@@ -114,12 +172,20 @@
 			projectRoot = "";
 			targets = (
 				4BFCD7C52045E26000B4A71B /* RUappShared-iOS */,
+				4BFCD7D42045E55B00B4A71B /* RUappSharedTests-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4BFCD7C42045E26000B4A71B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BFCD7D32045E55B00B4A71B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -137,7 +203,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BFCD7D12045E55B00B4A71B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BFCD7E12045E5AE00B4A71B /* RUappSharedTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4BFCD7DC2045E55B00B4A71B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4BFCD7C52045E26000B4A71B /* RUappShared-iOS */;
+			targetProxy = 4BFCD7DB2045E55B00B4A71B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4BFCD7BF2045DEA200B4A71B /* Debug */ = {
@@ -295,6 +377,127 @@
 			};
 			name = Release;
 		};
+		4BFCD7DE2045E55B00B4A71B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 2CPJD7ENY9;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = RUappSharedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4BFCD7DF2045E55B00B4A71B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2CPJD7ENY9;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = RUappSharedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.shared.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -312,6 +515,15 @@
 			buildConfigurations = (
 				4BFCD7CD2045E26000B4A71B /* Debug */,
 				4BFCD7CE2045E26000B4A71B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BFCD7DD2045E55B00B4A71B /* Build configuration list for PBXNativeTarget "RUappSharedTests-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BFCD7DE2045E55B00B4A71B /* Debug */,
+				4BFCD7DF2045E55B00B4A71B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
