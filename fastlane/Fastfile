@@ -1,0 +1,16 @@
+
+lane :ci do |options|
+  danger
+  run_tests(output_style: 'raw')
+  codecov
+end
+
+lane :buildnum do |options|
+  utc_time = Time.now.getutc
+  # Set build number
+  patch = utc_time.to_i
+  minor = patch / 256
+  major = minor / 256
+  build_number = "#{major}.#{minor % 256}.#{patch % 256}"
+  increment_build_number(build_number: build_number)
+end

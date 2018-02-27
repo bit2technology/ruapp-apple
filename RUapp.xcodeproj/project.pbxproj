@@ -10,6 +10,8 @@
 		4BFCD7D02045E29300B4A71B /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7CF2045E29300B4A71B /* RUappShared.swift */; };
 		4BFCD7DA2045E55B00B4A71B /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFCD7C62045E26000B4A71B /* RUappShared.framework */; };
 		4BFCD7E12045E5AE00B4A71B /* RUappSharedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7E02045E5AE00B4A71B /* RUappSharedTests.swift */; };
+		9A631471C61B7EF496E029D2 /* Pods_RUappSharedTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FC75821F4004850B8B0475 /* Pods_RUappSharedTests_iOS.framework */; };
+		CBA0DD716A8BB2AEDEE767F1 /* Pods_RUappShared_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C2F8B394115E785AB4978C /* Pods_RUappShared_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +25,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FE059FE689A09145AA2E492 /* Pods-RUappSharedTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappSharedTests-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		2D57AE355106103933F48CA9 /* Pods-RUappShared-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappShared-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUappShared-iOS/Pods-RUappShared-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		4BFCD7C62045E26000B4A71B /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BFCD7CA2045E26000B4A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BFCD7CF2045E29300B4A71B /* RUappShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappShared.swift; sourceTree = "<group>"; };
 		4BFCD7D52045E55B00B4A71B /* RUappSharedTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BFCD7D92045E55B00B4A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BFCD7E02045E5AE00B4A71B /* RUappSharedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappSharedTests.swift; sourceTree = "<group>"; };
+		4BFCD7E22045E82000B4A71B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4BFCD7E42045EAE800B4A71B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		4BFCD7E52045EAE900B4A71B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		4BFCD7E62045EAE900B4A71B /* Dangerfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Dangerfile; sourceTree = "<group>"; };
+		4BFCD7E72045EAE900B4A71B /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		4BFCD7E82045EB0200B4A71B /* Gemfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Gemfile; sourceTree = "<group>"; };
+		4BFCD7E92045EB1800B4A71B /* Fastfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Fastfile; path = fastlane/Fastfile; sourceTree = "<group>"; };
+		97C2F8B394115E785AB4978C /* Pods_RUappShared_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUappShared_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CD276F544FBE64440C0C036 /* Pods-RUappSharedTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappSharedTests-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D1FC75821F4004850B8B0475 /* Pods_RUappSharedTests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUappSharedTests_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D99EB6CED8871F6A51303E91 /* Pods-RUappShared-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappShared-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUappShared-iOS/Pods-RUappShared-iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBA0DD716A8BB2AEDEE767F1 /* Pods_RUappShared_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BFCD7DA2045E55B00B4A71B /* RUappShared.framework in Frameworks */,
+				9A631471C61B7EF496E029D2 /* Pods_RUappSharedTests_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,7 +72,10 @@
 			children = (
 				4BFCD7C82045E26000B4A71B /* RUappShared */,
 				4BFCD7D62045E55B00B4A71B /* RUappSharedTests */,
+				4BFCD7E32045E8A800B4A71B /* Support */,
 				4BFCD7C72045E26000B4A71B /* Products */,
+				B061044B603601D94BBCA97A /* Pods */,
+				841E69FB8CE30884BE2168CF /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -88,6 +108,40 @@
 			path = RUappSharedTests;
 			sourceTree = "<group>";
 		};
+		4BFCD7E32045E8A800B4A71B /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				4BFCD7E42045EAE800B4A71B /* .gitignore */,
+				4BFCD7E52045EAE900B4A71B /* .swiftlint.yml */,
+				4BFCD7E72045EAE900B4A71B /* .travis.yml */,
+				4BFCD7E62045EAE900B4A71B /* Dangerfile */,
+				4BFCD7E92045EB1800B4A71B /* Fastfile */,
+				4BFCD7E82045EB0200B4A71B /* Gemfile */,
+				4BFCD7E22045E82000B4A71B /* README.md */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		841E69FB8CE30884BE2168CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97C2F8B394115E785AB4978C /* Pods_RUappShared_iOS.framework */,
+				D1FC75821F4004850B8B0475 /* Pods_RUappSharedTests_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B061044B603601D94BBCA97A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2D57AE355106103933F48CA9 /* Pods-RUappShared-iOS.debug.xcconfig */,
+				D99EB6CED8871F6A51303E91 /* Pods-RUappShared-iOS.release.xcconfig */,
+				9CD276F544FBE64440C0C036 /* Pods-RUappSharedTests-iOS.debug.xcconfig */,
+				0FE059FE689A09145AA2E492 /* Pods-RUappSharedTests-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -105,10 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BFCD7CC2045E26000B4A71B /* Build configuration list for PBXNativeTarget "RUappShared-iOS" */;
 			buildPhases = (
+				7F89D44BEAB65663423FE17B /* [CP] Check Pods Manifest.lock */,
 				4BFCD7C12045E26000B4A71B /* Sources */,
 				4BFCD7C22045E26000B4A71B /* Frameworks */,
 				4BFCD7C32045E26000B4A71B /* Headers */,
 				4BFCD7C42045E26000B4A71B /* Resources */,
+				9E2F811841798AB877164294 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,9 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BFCD7DD2045E55B00B4A71B /* Build configuration list for PBXNativeTarget "RUappSharedTests-iOS" */;
 			buildPhases = (
+				2C104314922D2E3A0FBBE7FD /* [CP] Check Pods Manifest.lock */,
 				4BFCD7D12045E55B00B4A71B /* Sources */,
 				4BFCD7D22045E55B00B4A71B /* Frameworks */,
 				4BFCD7D32045E55B00B4A71B /* Resources */,
+				BA7E445BFA3BD039D62BDCB5 /* [CP] Embed Pods Frameworks */,
+				BE42B79A81D1E195223C0716 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -194,6 +253,93 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2C104314922D2E3A0FBBE7FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RUappSharedTests-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F89D44BEAB65663423FE17B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RUappShared-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E2F811841798AB877164294 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUappShared-iOS/Pods-RUappShared-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA7E445BFA3BD039D62BDCB5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE42B79A81D1E195223C0716 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4BFCD7C12045E26000B4A71B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -238,6 +384,7 @@
 		};
 		4BFCD7CD2045E26000B4A71B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D57AE355106103933F48CA9 /* Pods-RUappShared-iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -269,12 +416,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 23189.181.124;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CPJD7ENY9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 23189.181.124;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -312,6 +459,7 @@
 		};
 		4BFCD7CE2045E26000B4A71B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D99EB6CED8871F6A51303E91 /* Pods-RUappShared-iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -343,12 +491,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 23189.181.124;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2CPJD7ENY9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 23189.181.124;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -379,6 +527,7 @@
 		};
 		4BFCD7DE2045E55B00B4A71B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CD276F544FBE64440C0C036 /* Pods-RUappSharedTests-iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -443,6 +592,7 @@
 		};
 		4BFCD7DF2045E55B00B4A71B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FE059FE689A09145AA2E492 /* Pods-RUappSharedTests-iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
