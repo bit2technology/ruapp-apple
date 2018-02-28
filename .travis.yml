@@ -4,7 +4,11 @@ rvm: 2.5.0
 cache:
   - bundler
   - cocoapods
-before_install: bundle exec pod repo update
+install:
+  - gem update bundler
+  - bundle install
+  - bundle exec pod repo update
+  - bundle exec pod install
 script: bundle exec fastlane ci
 after_success: bash <(curl -s https://codecov.io/bash)
 notifications:
