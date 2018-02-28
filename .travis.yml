@@ -4,8 +4,8 @@ rvm: 2.5.0
 cache:
   - bundler
   - cocoapods
+before_install: gem update bundler
 install:
-  - gem update bundler
   - bundle install
   - bundle exec pod repo update
   - bundle exec pod install
