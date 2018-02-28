@@ -23,5 +23,5 @@ public extension Array {
 }
 
 public extension UserDefaults {
-  public static let shared = UserDefaults(suiteName: "group.ruapp.bit2.technology")!
+  public static let shared = UserDefaults(suiteName: "group.technology.bit2.ruapp")!
 }

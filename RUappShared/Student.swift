@@ -8,7 +8,8 @@
 
 import CoreData
 
-public class Student: NSManagedObject {
+@objc(Student)
+public class Student: NSManagedObject, Codable {
 
   public class func `default`(from userDefaults: UserDefaults = .shared, in context: NSManagedObjectContext = PersistentContainer.shared.viewContext) -> Student? {
     guard let studentID = userDefaults.value(forKey: "DefaultStudentID") as? Int64 else {
@@ -44,9 +45,23 @@ public class Student: NSManagedObject {
       throw StudentError.noInstitution
     }
   }
-}
 
-extension Student: Encodable {
+  // Codable
+
+  public required convenience init(from decoder: Decoder) throws {
+    let context = decoder.userInfo[.managedObjectContext] as! NSManagedObjectContext
+    self.init(context: context)
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    id = try container.decode(Int64.self, forKey: .identifier)
+    name = try container.decode(String.self, forKey: .name)
+    numberPlate = try container.decode(String.self, forKey: .numberPlate)
+    let institutionId = try container.decode(Int64.self, forKey: .institutionId)
+    let request: NSFetchRequest<Institution> = Institution.fetchRequest()
+    request.fetchLimit = 1
+    request.predicate = NSPredicate(format: "id = %lld", institutionId)
+    let result = try? context.fetch(request)
+    institution = result?.first
+  }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -56,6 +71,7 @@ extension Student: Encodable {
   }
 
   enum CodingKeys: String, CodingKey {
+    case identifier = "id"
     case name
     case numberPlate = "number_plate"
     case institutionId = "institution_id"

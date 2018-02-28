@@ -7,24 +7,17 @@
 //
 
 import CoreData
+import PromiseKit
 
 public class PersistentContainer {
-
-  public static let shared: PersistentContainer = {
-    let modelURL = Bundle(for: PersistentContainer.self).url(forResource: "Model", withExtension: "momd")!
-    let model = NSManagedObjectModel(contentsOf: modelURL)!
-    let dbURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.ruapp.bit2.technology")!
-    return PersistentContainer(model: model, at: dbURL)
-  }()
 
   public let model: NSManagedObjectModel
   public let coordinator: NSPersistentStoreCoordinator
   public let viewContext: NSManagedObjectContext
-  public let url: URL
+  public var storeDescriptions: [(type: String, url: URL)] = []
 
-  public required init(model: NSManagedObjectModel, at url: URL) {
+  public init(model: NSManagedObjectModel) {
     self.model = model
-    self.url = url
     coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
     viewContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     viewContext.persistentStoreCoordinator = coordinator
@@ -32,11 +25,13 @@ public class PersistentContainer {
 
   public func loadPersistentStores(completionHandler block: @escaping (Error?) -> Void) {
     DispatchQueue.global().async {
-      do {
-        try self.coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.url)
-        block(nil)
-      } catch {
-        block(error)
+      self.storeDescriptions.forEach {
+        do {
+          try self.coordinator.addPersistentStore(ofType: $0.type, configurationName: nil, at: $0.url)
+          block(nil)
+        } catch {
+          block(error)
+        }
       }
     }
   }
@@ -51,6 +46,33 @@ public class PersistentContainer {
     let backgroundContext = newBackgroundContext()
     backgroundContext.perform {
       block(backgroundContext)
+    }
+  }
+}
+
+public extension PersistentContainer {
+
+  public static let shared: PersistentContainer = {
+    let modelURL = Bundle(for: PersistentContainer.self).url(forResource: "Model", withExtension: "momd")!
+    let model = NSManagedObjectModel(contentsOf: modelURL)!
+    let dbURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.technology.bit2.ruapp")!
+    let container = PersistentContainer(model: model)
+    container.storeDescriptions = [(NSSQLiteStoreType, dbURL)]
+    return container
+  }()
+
+  public func loadPersistentStore() -> Promise<Void> {
+
+    guard coordinator.persistentStores.isEmpty else {
+      return Promise<Void>()
+    }
+
+    assert(storeDescriptions.count == 1, "Can't use Promise with a multi-store coordinator.")
+
+    return Promise<Void> { (resolver) in
+      self.loadPersistentStores { (error) in
+        resolver.resolve(error)
+      }
     }
   }
 }
