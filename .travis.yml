@@ -1,9 +1,11 @@
 language: objective-c
 osx_image: xcode9.2
 cache:
-- bundler
-- cocoapods
+  - bundler
+  - cocoapods
+before_install: bundle exec pod repo update
 script: bundle exec fastlane ci
+after_success: bash <(curl -s https://codecov.io/bash)
 notifications:
   email: false
   slack:
