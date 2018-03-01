@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BB4467A2048B249005DCCBF /* EntityStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB446792048B249005DCCBF /* EntityStub.swift */; };
+		4BB4467C2048B28B005DCCBF /* MenuStub.json in Resources */ = {isa = PBXBuildFile; fileRef = 4BB4467B2048B28B005DCCBF /* MenuStub.json */; };
+		4BB4467F2048B2CE005DCCBF /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4467E2048B2CE005DCCBF /* JSONTests.swift */; };
 		4BFCD7D02045E29300B4A71B /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7CF2045E29300B4A71B /* RUappShared.swift */; };
 		4BFCD7DA2045E55B00B4A71B /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFCD7C62045E26000B4A71B /* RUappShared.framework */; };
 		4BFCD7E12045E5AE00B4A71B /* RUappSharedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7E02045E5AE00B4A71B /* RUappSharedTests.swift */; };
@@ -39,6 +42,9 @@
 /* Begin PBXFileReference section */
 		0FE059FE689A09145AA2E492 /* Pods-RUappSharedTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappSharedTests-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-RUappSharedTests-iOS/Pods-RUappSharedTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2D57AE355106103933F48CA9 /* Pods-RUappShared-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RUappShared-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RUappShared-iOS/Pods-RUappShared-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		4BB446792048B249005DCCBF /* EntityStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityStub.swift; sourceTree = "<group>"; };
+		4BB4467B2048B28B005DCCBF /* MenuStub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MenuStub.json; sourceTree = "<group>"; };
+		4BB4467E2048B2CE005DCCBF /* JSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		4BFCD7C62045E26000B4A71B /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BFCD7CA2045E26000B4A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BFCD7CF2045E29300B4A71B /* RUappShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappShared.swift; sourceTree = "<group>"; };
@@ -91,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BB4467D2048B291005DCCBF /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				4BB446792048B249005DCCBF /* EntityStub.swift */,
+				4BB4467B2048B28B005DCCBF /* MenuStub.json */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
 		4BFCD7BA2045DEA200B4A71B = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +153,8 @@
 		4BFCD7D62045E55B00B4A71B /* RUappSharedTests */ = {
 			isa = PBXGroup;
 			children = (
+				4BB4467E2048B2CE005DCCBF /* JSONTests.swift */,
+				4BB4467D2048B291005DCCBF /* Stubs */,
 				4BFCD7D92045E55B00B4A71B /* Info.plist */,
 				4BFCD7E02045E5AE00B4A71B /* RUappSharedTests.swift */,
 			);
@@ -284,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BB4467C2048B28B005DCCBF /* MenuStub.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +419,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BB4467A2048B249005DCCBF /* EntityStub.swift in Sources */,
+				4BB4467F2048B2CE005DCCBF /* JSONTests.swift in Sources */,
 				4BFCD7E12045E5AE00B4A71B /* RUappSharedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
