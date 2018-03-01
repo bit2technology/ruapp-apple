@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import PromiseKit
 
 @objc(Student)
 public class Student: NSManagedObject, Codable {
@@ -75,6 +76,37 @@ public class Student: NSManagedObject, Codable {
     case name
     case numberPlate = "number_plate"
     case institutionId = "institution_id"
+  }
+}
+
+extension Student {
+
+  public func save() -> Promise<Student> {
+    do {
+      let data = try JSONEncoder().encode(self)
+      if objectID.isTemporaryID {
+        return save(request: URLRoute.postStudent(data))
+      } else {
+        return save(request: URLRoute.patchStudent(id: id, data))
+      }
+    } catch {
+      return Promise<Student>(error: error)
+    }
+  }
+
+  func save(request: URLRequestConvertible) -> Promise<Student> {
+    return URLSession.shared.dataTask(.promise, with: request)
+      .then { (response) in
+        self.managedObjectContext!.mergingObjects().performPromise {
+          try response.response.validateHTTPStatusCode()
+          let decoder = JSONDecoder.persistent(context: self.managedObjectContext!)
+          let newStudent = try decoder.decode(Student.self, from: response.data)
+          self.id = newStudent.id
+          self.managedObjectContext!.delete(newStudent) // Delete duplicate
+          try self.managedObjectContext!.save()
+          return self
+        }
+    }
   }
 }
 

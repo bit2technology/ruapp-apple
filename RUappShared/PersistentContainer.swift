@@ -14,7 +14,7 @@ public class PersistentContainer {
   public let model: NSManagedObjectModel
   public let coordinator: NSPersistentStoreCoordinator
   public let viewContext: NSManagedObjectContext
-  public var storeDescriptions: [(type: String, url: URL)] = []
+  public var storeDescriptions: [(type: String, url: URL?)] = []
 
   public init(model: NSManagedObjectModel) {
     self.model = model
@@ -52,7 +52,7 @@ public class PersistentContainer {
 
 public extension PersistentContainer {
 
-  public static let shared: PersistentContainer = {
+  public internal(set) static var shared: PersistentContainer = {
     let modelURL = Bundle(for: PersistentContainer.self).url(forResource: "Model", withExtension: "momd")!
     let model = NSManagedObjectModel(contentsOf: modelURL)!
     let dbURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.technology.bit2.ruapp")!
