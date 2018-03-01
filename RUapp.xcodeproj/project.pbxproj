@@ -12,7 +12,6 @@
 		4BB4467F2048B2CE005DCCBF /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4467E2048B2CE005DCCBF /* JSONTests.swift */; };
 		4BFCD7D02045E29300B4A71B /* RUappShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7CF2045E29300B4A71B /* RUappShared.swift */; };
 		4BFCD7DA2045E55B00B4A71B /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFCD7C62045E26000B4A71B /* RUappShared.framework */; };
-		4BFCD7E12045E5AE00B4A71B /* RUappSharedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7E02045E5AE00B4A71B /* RUappSharedTests.swift */; };
 		4BFCD7EC2045F15900B4A71B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7EA2045F15900B4A71B /* Model.xcdatamodeld */; };
 		4BFCD7F02045F2C200B4A71B /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7ED2045F2C100B4A71B /* Campus.swift */; };
 		4BFCD7F12045F2C200B4A71B /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7EE2045F2C100B4A71B /* Institution.swift */; };
@@ -50,7 +49,6 @@
 		4BFCD7CF2045E29300B4A71B /* RUappShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappShared.swift; sourceTree = "<group>"; };
 		4BFCD7D52045E55B00B4A71B /* RUappSharedTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BFCD7D92045E55B00B4A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4BFCD7E02045E5AE00B4A71B /* RUappSharedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappSharedTests.swift; sourceTree = "<group>"; };
 		4BFCD7E22045E82000B4A71B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4BFCD7E42045EAE800B4A71B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		4BFCD7E52045EAE900B4A71B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				4BB4467E2048B2CE005DCCBF /* JSONTests.swift */,
 				4BB4467D2048B291005DCCBF /* Stubs */,
 				4BFCD7D92045E55B00B4A71B /* Info.plist */,
-				4BFCD7E02045E5AE00B4A71B /* RUappSharedTests.swift */,
 			);
 			path = RUappSharedTests;
 			sourceTree = "<group>";
@@ -421,7 +418,6 @@
 			files = (
 				4BB4467A2048B249005DCCBF /* EntityStub.swift in Sources */,
 				4BB4467F2048B2CE005DCCBF /* JSONTests.swift in Sources */,
-				4BFCD7E12045E5AE00B4A71B /* RUappSharedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
