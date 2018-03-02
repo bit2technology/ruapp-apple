@@ -55,7 +55,7 @@ public extension PersistentContainer {
   public internal(set) static var shared: PersistentContainer = {
     let modelURL = Bundle(for: PersistentContainer.self).url(forResource: "Model", withExtension: "momd")!
     let model = NSManagedObjectModel(contentsOf: modelURL)!
-    let dbURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.technology.bit2.ruapp")!
+    let dbURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.technology.bit2.ruapp")!.appendingPathComponent("data.sqlite")
     let container = PersistentContainer(model: model)
     container.storeDescriptions = [(NSSQLiteStoreType, dbURL)]
     return container
