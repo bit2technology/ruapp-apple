@@ -7,7 +7,6 @@
 //
 
 import CoreData
-import PromiseKit
 
 @objc(Institution)
 public class Institution: NSManagedObject, Decodable {
@@ -35,26 +34,5 @@ public class Institution: NSManagedObject, Decodable {
     case stateName = "state_name"
     case stateInitials = "state_initials"
     case campi
-  }
-}
-
-extension Institution {
-
-  public static func updateList(context: NSManagedObjectContext) -> Promise<[Institution]> {
-    return updateList(context: context, request: URLRoute.getInstitutions)
-  }
-
-  static func updateList(context: NSManagedObjectContext, request: URLRequestConvertible) -> Promise<[Institution]> {
-    return URLSession.shared.dataTask(.promise, with: request)
-      .then { (response) in
-        context.mergingObjects().performPromise {
-          try response.response.validateHTTPStatusCode()
-          let decoder = JSONDecoder.persistent(context: context)
-          let list = try decoder.decode([Institution].self, from: response.data)
-          try context.save()
-          return list
-
-        }
-    }
   }
 }

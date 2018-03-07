@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import RUappShared
-import PromiseKit
 import CoreData
 
 class JSONTests: XCTestCase {
@@ -19,22 +18,44 @@ class JSONTests: XCTestCase {
     let modelURL = Bundle(for: PersistentContainer.self).url(forResource: "Model", withExtension: "momd")!
     let model = NSManagedObjectModel(contentsOf: modelURL)!
     container = PersistentContainer(model: model)
-    container.storeDescriptions = [(NSInMemoryStoreType, nil)]
+    do {
+      try container.coordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+    } catch {
+      fatalError("Error loading persistent stores: \(error.localizedDescription)")
+    }
   }
 
   func testMenu() {
+
+    // Run
     let exp = expectation(description: "Menu JSON test")
     let context = container.newBackgroundContext()
-    let url = Bundle(for: JSONTests.self).url(forResource: "MenuStub", withExtension: "json")!
+    let url = Bundle(for: JSONTests.self).url(forResource: "MenuStub", withExtension: "json")
     let cafeteria = EntityStub.cafeteria(context: context)
-    container.loadPersistentStore()
-      .then { cafeteria.updateMenu(request: url) }
-      .done {
-        XCTAssertEqual($0.count, 16)
-        XCTAssertEqual($0.count, cafeteria.menu?.count)
-        exp.fulfill()
-      }
-      .catch { assertionFailure("Menu JSON test error: \($0.localizedDescription)") }
+    cafeteria.managedObjectContext?.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    let updateMenuOp = UpdateMenuOperation(cafeteria: cafeteria, dataOp: URLSessionDataTaskOperation(url: url))
+    _ = ExpectationOperation(dep: updateMenuOp, exp: exp)
     waitForExpectations(timeout: 5)
+
+    // Test
+    let updateMenuResult = try! updateMenuOp.result()
+    XCTAssertEqual(updateMenuResult.count, 16)
+    XCTAssertEqual(updateMenuResult.count, cafeteria.menu?.count)
+  }
+}
+
+class ExpectationOperation<T>: Operation {
+  let dep: AsyncOperation<T>
+  let exp: XCTestExpectation
+  init(dep: AsyncOperation<T>, exp: XCTestExpectation) {
+    self.dep = dep
+    self.exp = exp
+    super.init()
+    addDependency(dep)
+    OperationQueue.main.addOperation(self)
+  }
+  override func main() {
+    print(dep.isFinished)
+    exp.fulfill()
   }
 }

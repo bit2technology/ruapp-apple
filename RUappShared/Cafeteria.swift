@@ -7,7 +7,6 @@
 //
 
 import CoreData
-import PromiseKit
 
 @objc(Cafeteria)
 public class Cafeteria: NSManagedObject, Decodable {
@@ -56,34 +55,5 @@ public class Cafeteria: NSManagedObject, Decodable {
     case latitude
     case longitude
     case capacity
-  }
-}
-
-extension Cafeteria {
-
-  public func updateMenu() -> Promise<[Meal]> {
-    return updateMenu(request: URLRoute.menu(cafeteriaId: self.id))
-  }
-
-  func updateMenu(request: URLRequestConvertible) -> Promise<[Meal]> {
-    return URLSession.shared.dataTask(.promise, with: request)
-      .then { (response) in
-        self.managedObjectContext!.mergingObjects().performPromise {
-          try response.response.validateHTTPStatusCode()
-          let decoder = JSONDecoder.persistent(context: self.managedObjectContext!)
-          if #available(iOSApplicationExtension 10.0, *) {
-            decoder.dateDecodingStrategy = .iso8601
-          } else {
-            let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: "en_US_POSIX")
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-            decoder.dateDecodingStrategy = .formatted(formatter)
-          }
-          let menu = try decoder.decode([Meal].self, from: response.data)
-          self.menu = NSSet(array: menu)
-          try self.managedObjectContext!.save()
-          return menu
-        }
-    }
   }
 }

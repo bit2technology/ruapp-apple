@@ -7,7 +7,6 @@
 //
 
 import CoreData
-import PromiseKit
 
 public class PersistentContainer {
 
@@ -51,7 +50,6 @@ public class PersistentContainer {
 }
 
 public extension PersistentContainer {
-
   public internal(set) static var shared: PersistentContainer = {
     let modelURL = Bundle(for: PersistentContainer.self).url(forResource: "Model", withExtension: "momd")!
     let model = NSManagedObjectModel(contentsOf: modelURL)!
@@ -60,19 +58,4 @@ public extension PersistentContainer {
     container.storeDescriptions = [(NSSQLiteStoreType, dbURL)]
     return container
   }()
-
-  public func loadPersistentStore() -> Promise<Void> {
-
-    guard coordinator.persistentStores.isEmpty else {
-      return Promise<Void>()
-    }
-
-    assert(storeDescriptions.count == 1, "Can't use Promise with a multi-store coordinator.")
-
-    return Promise<Void> { (resolver) in
-      self.loadPersistentStores { (error) in
-        resolver.resolve(error)
-      }
-    }
-  }
 }

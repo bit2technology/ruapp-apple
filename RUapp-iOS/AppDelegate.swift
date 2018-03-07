@@ -17,19 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     applyAppaerance()
-    PersistentContainer.shared.loadPersistentStore()
-      .done(on: .main) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        self.window?.rootViewController = mainStoryboard.instantiateInitialViewController()
-        self.applyLegacyAppearance()
+    PersistentContainer.shared.loadPersistentStores { (error) in
+      if let error = error {
+        fatalError("Core Data stack error: \(error.localizedDescription)")
       }
-      .catch { fatalError("Core Data stack error: \($0.localizedDescription)") }
+      let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+      self.window?.rootViewController = mainStoryboard.instantiateInitialViewController()
+      self.applyLegacyAppearance()
+    }
 
     return true
   }
 
   private func applyAppaerance() {
-    window?.tintColor = .appLighterBlue
+    window!.tintColor = .appLighterBlue
     let navBar = UINavigationBar.appearance()
     navBar.barStyle = .black
     navBar.barTintColor = .appDarkBlue
@@ -44,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   private func applyLegacyAppearance() {
     guard #available(iOS 10.0, *) else {
-      (window?.rootViewController as! UITabBarController).tabBar.items?.forEach { (item) in
+      (window!.rootViewController as! UITabBarController).tabBar.items!.forEach { (item) in
         item.image = item.image?.with(color: .appLighterBlue).withRenderingMode(.alwaysOriginal)
         item.setTitleTextAttributes([.foregroundColor: UIColor.appLighterBlue], for: .normal)
         item.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
