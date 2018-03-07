@@ -21,9 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       if let error = error {
         fatalError("Core Data stack error: \(error.localizedDescription)")
       }
-      let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-      self.window?.rootViewController = mainStoryboard.instantiateInitialViewController()
-      self.applyLegacyAppearance()
+      DispatchQueue.main.async {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        self.window?.rootViewController = mainStoryboard.instantiateInitialViewController()
+        self.applyLegacyAppearance()
+      }
     }
 
     return true

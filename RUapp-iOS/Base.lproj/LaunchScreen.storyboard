@@ -19,6 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.0" green="0.54635077710000002" blue="0.7886484265" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="LfK-jk-bMx" kind="relationship" relationship="viewControllers" id="mJM-0X-9uD"/>
@@ -46,7 +47,7 @@
             </objects>
             <point key="canvasLocation" x="960" y="0.0"/>
         </scene>
-        <!--View Controller-->
+        <!--Today-->
         <scene sceneID="Vcp-Qi-y4z">
             <objects>
                 <viewController id="sbC-nh-SZE" sceneMemberID="viewController">
@@ -56,7 +57,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="s4H-0c-8zO"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1IL-n4-x2C"/>
+                    <navigationItem key="navigationItem" title="Today" id="1IL-n4-x2C"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qse-zT-bum" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
