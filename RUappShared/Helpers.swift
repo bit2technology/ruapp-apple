@@ -9,12 +9,18 @@
 import Foundation
 import CoreData
 
-public extension Array {
+extension Array {
   func orderedSet() -> NSOrderedSet {
     return NSOrderedSet(array: self)
   }
 }
 
-public extension UserDefaults {
+extension UserDefaults {
   public static let shared = UserDefaults(suiteName: "group.technology.bit2.ruapp")!
+}
+
+extension NSManagedObjectContext {
+  public static var view: NSManagedObjectContext {
+    return PersistentContainer.shared.viewContext
+  }
 }

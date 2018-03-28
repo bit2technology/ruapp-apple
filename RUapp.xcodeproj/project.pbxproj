@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1E728E3D2AC39706BE968950 /* Pods_RUapp_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DBC631929C206A5BF7AEC9 /* Pods_RUapp_iOS.framework */; };
+		4B8D52F6206C1906000295CA /* Meal+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D52F5206C1906000295CA /* Meal+Services.swift */; };
 		4B938DC4205048EF00320935 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B938DC3205048EF00320935 /* AsyncOperation.swift */; };
 		4B938DC6205052C300320935 /* CoreDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B938DC5205052C300320935 /* CoreDataOperation.swift */; };
 		4B938DCA20505AB900320935 /* URLSessionDataTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B938DC920505AB900320935 /* URLSessionDataTaskOperation.swift */; };
 		4B938DCC20505DCB00320935 /* UpdateMenuOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B938DCB20505DCA00320935 /* UpdateMenuOperation.swift */; };
 		4B938DCE2050626100320935 /* SaveStudentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B938DCD2050626100320935 /* SaveStudentOperation.swift */; };
 		4B938DD02050654C00320935 /* UpdateInstitutionListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B938DCF2050654B00320935 /* UpdateInstitutionListOperation.swift */; };
+		4B938DD3205086E700320935 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B938DD1205086E700320935 /* MenuViewController.swift */; };
+		4B938DD4205086E700320935 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B938DD2205086E700320935 /* MealCell.swift */; };
 		4BB4467A2048B249005DCCBF /* EntityStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB446792048B249005DCCBF /* EntityStub.swift */; };
 		4BB4467C2048B28B005DCCBF /* MenuStub.json in Resources */ = {isa = PBXBuildFile; fileRef = 4BB4467B2048B28B005DCCBF /* MenuStub.json */; };
 		4BB4467F2048B2CE005DCCBF /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4467E2048B2CE005DCCBF /* JSONTests.swift */; };
@@ -24,6 +27,10 @@
 		4BB446962048CF6E005DCCBF /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFCD7C62045E26000B4A71B /* RUappShared.framework */; };
 		4BB446972048CF6E005DCCBF /* RUappShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFCD7C62045E26000B4A71B /* RUappShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4BB4469D2048DBAA005DCCBF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB4469C2048DBAA005DCCBF /* Helpers.swift */; };
+		4BC562AF205BEB100046EEB5 /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC562AD205BEAF90046EEB5 /* DateRange.swift */; };
+		4BC562B22061DAC00046EEB5 /* Cafeteria+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC562B12061DAC00046EEB5 /* Cafeteria+Services.swift */; };
+		4BC562B42061DCF40046EEB5 /* Student+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC562B32061DCF40046EEB5 /* Student+Services.swift */; };
+		4BC562B6206B0FB30046EEB5 /* NamedManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC562B5206B0FB30046EEB5 /* NamedManagedObject.swift */; };
 		4BFCD7D02045E29300B4A71B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7CF2045E29300B4A71B /* Helpers.swift */; };
 		4BFCD7DA2045E55B00B4A71B /* RUappShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFCD7C62045E26000B4A71B /* RUappShared.framework */; };
 		4BFCD7EC2045F15900B4A71B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BFCD7EA2045F15900B4A71B /* Model.xcdatamodeld */; };
@@ -73,12 +80,15 @@
 
 /* Begin PBXFileReference section */
 		46DBC631929C206A5BF7AEC9 /* Pods_RUapp_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RUapp_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B8D52F5206C1906000295CA /* Meal+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+Services.swift"; sourceTree = "<group>"; };
 		4B938DC3205048EF00320935 /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		4B938DC5205052C300320935 /* CoreDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataOperation.swift; sourceTree = "<group>"; };
 		4B938DC920505AB900320935 /* URLSessionDataTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskOperation.swift; sourceTree = "<group>"; };
 		4B938DCB20505DCA00320935 /* UpdateMenuOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateMenuOperation.swift; sourceTree = "<group>"; };
 		4B938DCD2050626100320935 /* SaveStudentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveStudentOperation.swift; sourceTree = "<group>"; };
 		4B938DCF2050654B00320935 /* UpdateInstitutionListOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInstitutionListOperation.swift; sourceTree = "<group>"; };
+		4B938DD1205086E700320935 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		4B938DD2205086E700320935 /* MealCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		4BB446792048B249005DCCBF /* EntityStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityStub.swift; sourceTree = "<group>"; };
 		4BB4467B2048B28B005DCCBF /* MenuStub.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MenuStub.json; sourceTree = "<group>"; };
 		4BB4467E2048B2CE005DCCBF /* JSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
@@ -90,6 +100,10 @@
 		4BB446922048CDC9005DCCBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BB4469B2048D1EF005DCCBF /* RUapp-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RUapp-iOS.entitlements"; sourceTree = "<group>"; };
 		4BB4469C2048DBAA005DCCBF /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		4BC562AD205BEAF90046EEB5 /* DateRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRange.swift; sourceTree = "<group>"; };
+		4BC562B12061DAC00046EEB5 /* Cafeteria+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cafeteria+Services.swift"; sourceTree = "<group>"; };
+		4BC562B32061DCF40046EEB5 /* Student+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Student+Services.swift"; sourceTree = "<group>"; };
+		4BC562B5206B0FB30046EEB5 /* NamedManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedManagedObject.swift; sourceTree = "<group>"; };
 		4BFCD7C62045E26000B4A71B /* RUappShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BFCD7CA2045E26000B4A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BFCD7CF2045E29300B4A71B /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -160,15 +174,31 @@
 		4BB446852048CDC9005DCCBF /* RUapp-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				4BB446862048CDC9005DCCBF /* AppDelegate.swift */,
 				4BB4468A2048CDC9005DCCBF /* Main.storyboard */,
 				4BB4468D2048CDC9005DCCBF /* Assets.xcassets */,
 				4BB4468F2048CDC9005DCCBF /* LaunchScreen.storyboard */,
 				4BB4469B2048D1EF005DCCBF /* RUapp-iOS.entitlements */,
 				4BB446922048CDC9005DCCBF /* Info.plist */,
+				4BB446862048CDC9005DCCBF /* AppDelegate.swift */,
+				4B938DD1205086E700320935 /* MenuViewController.swift */,
+				4B938DD2205086E700320935 /* MealCell.swift */,
 				4BB4469C2048DBAA005DCCBF /* Helpers.swift */,
 			);
 			path = "RUapp-iOS";
+			sourceTree = "<group>";
+		};
+		4BC562B02061DA8E0046EEB5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4BFCD7EF2045F2C200B4A71B /* Cafeteria.swift */,
+				4BFCD7ED2045F2C100B4A71B /* Campus.swift */,
+				4BFCD7F52045F2EE00B4A71B /* Dish.swift */,
+				4BFCD7EE2045F2C100B4A71B /* Institution.swift */,
+				4BFCD7F32045F2ED00B4A71B /* Meal.swift */,
+				4BFCD7F92045F31C00B4A71B /* Student.swift */,
+				4BFCD7F42045F2ED00B4A71B /* Votable.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		4BFCD7BA2045DEA200B4A71B = {
@@ -200,18 +230,17 @@
 			isa = PBXGroup;
 			children = (
 				4BFCD7EA2045F15900B4A71B /* Model.xcdatamodeld */,
+				4BFCD7CA2045E26000B4A71B /* Info.plist */,
+				4BC562B5206B0FB30046EEB5 /* NamedManagedObject.swift */,
 				4BFCD7FF2045F4C700B4A71B /* Color.swift */,
 				4BFCD7FB2045F41E00B4A71B /* JSONDecoder+Persistent.swift */,
 				4BFCD7FC2045F41E00B4A71B /* PersistentContainer.swift */,
 				4BFCD8002045F4C700B4A71B /* URLRoute.swift */,
-				4BFCD7EF2045F2C200B4A71B /* Cafeteria.swift */,
-				4BFCD7ED2045F2C100B4A71B /* Campus.swift */,
-				4BFCD7F52045F2EE00B4A71B /* Dish.swift */,
-				4BFCD7EE2045F2C100B4A71B /* Institution.swift */,
-				4BFCD7F32045F2ED00B4A71B /* Meal.swift */,
-				4BFCD7F92045F31C00B4A71B /* Student.swift */,
-				4BFCD7F42045F2ED00B4A71B /* Votable.swift */,
-				4BFCD7CA2045E26000B4A71B /* Info.plist */,
+				4BC562AD205BEAF90046EEB5 /* DateRange.swift */,
+				4BC562B12061DAC00046EEB5 /* Cafeteria+Services.swift */,
+				4B8D52F5206C1906000295CA /* Meal+Services.swift */,
+				4BC562B32061DCF40046EEB5 /* Student+Services.swift */,
+				4BC562B02061DA8E0046EEB5 /* Models */,
 				4B938DC3205048EF00320935 /* AsyncOperation.swift */,
 				4B938DC920505AB900320935 /* URLSessionDataTaskOperation.swift */,
 				4B938DC5205052C300320935 /* CoreDataOperation.swift */,
@@ -475,7 +504,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B938DD4205086E700320935 /* MealCell.swift in Sources */,
 				4BB446872048CDC9005DCCBF /* AppDelegate.swift in Sources */,
+				4B938DD3205086E700320935 /* MenuViewController.swift in Sources */,
 				4BB4469D2048DBAA005DCCBF /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,8 +522,12 @@
 				4B938DCA20505AB900320935 /* URLSessionDataTaskOperation.swift in Sources */,
 				4BFCD8022045F4C700B4A71B /* URLRoute.swift in Sources */,
 				4BFCD7FE2045F41E00B4A71B /* PersistentContainer.swift in Sources */,
+				4BC562B42061DCF40046EEB5 /* Student+Services.swift in Sources */,
 				4BFCD7EC2045F15900B4A71B /* Model.xcdatamodeld in Sources */,
 				4B938DC4205048EF00320935 /* AsyncOperation.swift in Sources */,
+				4BC562B22061DAC00046EEB5 /* Cafeteria+Services.swift in Sources */,
+				4BC562B6206B0FB30046EEB5 /* NamedManagedObject.swift in Sources */,
+				4BC562AF205BEB100046EEB5 /* DateRange.swift in Sources */,
 				4B938DC6205052C300320935 /* CoreDataOperation.swift in Sources */,
 				4B938DCC20505DCB00320935 /* UpdateMenuOperation.swift in Sources */,
 				4BFCD8012045F4C700B4A71B /* Color.swift in Sources */,
@@ -500,6 +535,7 @@
 				4BFCD7F12045F2C200B4A71B /* Institution.swift in Sources */,
 				4BFCD7F82045F2EE00B4A71B /* Dish.swift in Sources */,
 				4B938DD02050654C00320935 /* UpdateInstitutionListOperation.swift in Sources */,
+				4B8D52F6206C1906000295CA /* Meal+Services.swift in Sources */,
 				4BFCD7FD2045F41E00B4A71B /* JSONDecoder+Persistent.swift in Sources */,
 				4BFCD7F62045F2EE00B4A71B /* Meal.swift in Sources */,
 				4BFCD7F02045F2C200B4A71B /* Campus.swift in Sources */,

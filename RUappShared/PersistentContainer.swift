@@ -26,7 +26,9 @@ public class PersistentContainer {
     DispatchQueue.global().async {
       self.storeDescriptions.forEach {
         do {
-          try self.coordinator.addPersistentStore(ofType: $0.type, configurationName: nil, at: $0.url)
+          try self.coordinator.addPersistentStore(ofType: $0.type,
+                                                  configurationName: nil,
+                                                  at: $0.url)
           block(nil)
         } catch {
           block(error)
@@ -51,9 +53,12 @@ public class PersistentContainer {
 
 public extension PersistentContainer {
   public internal(set) static var shared: PersistentContainer = {
-    let modelURL = Bundle(for: PersistentContainer.self).url(forResource: "Model", withExtension: "momd")!
+    let modelURL = Bundle(for: PersistentContainer.self)
+      .url(forResource: "Model", withExtension: "momd")!
     let model = NSManagedObjectModel(contentsOf: modelURL)!
-    let dbURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.technology.bit2.ruapp")!.appendingPathComponent("data.sqlite")
+    let dbURL = FileManager.default
+      .containerURL(forSecurityApplicationGroupIdentifier: "group.technology.bit2.ruapp")!
+      .appendingPathComponent("data.sqlite")
     let container = PersistentContainer(model: model)
     container.storeDescriptions = [(NSSQLiteStoreType, dbURL)]
     return container

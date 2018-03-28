@@ -9,13 +9,17 @@
 import CoreData
 
 @objc(Votable)
-public class Votable: NSManagedObject, Decodable {
+public final class Votable: NSManagedObject { }
 
-  public convenience init(context: NSManagedObjectContext) {
-    self.init(entity: NSEntityDescription.entity(forEntityName: "Votable", in: context)!, insertInto: context)
+extension Votable: NamedManagedObject {
+  public static var entityName: String {
+    return "Votable"
   }
+}
 
-  public required convenience init(from decoder: Decoder) throws {
+extension Votable: Decodable {
+
+  public convenience init(from decoder: Decoder) throws {
     let context = decoder.userInfo[.managedObjectContext] as! NSManagedObjectContext
     self.init(context: context)
     let container = try decoder.container(keyedBy: CodingKeys.self)
