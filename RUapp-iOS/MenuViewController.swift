@@ -42,7 +42,13 @@ class MenuViewController: UITableViewController {
   }
 
   private func updateMenu() {
-    // TODO: Init update menu operation
+
+    guard let cafeteria = Cafeteria.default() else {
+      return
+    }
+
+    let finishUpdateMenuOp = FinishUpdateMenuOperation(cafeteria: cafeteria)
+    finishUpdateMenuOp.menuController = self
   }
 }
 
@@ -53,9 +59,6 @@ extension MenuViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     updateLayout(for: traitCollection)
-    updateMenu()
-    // Try to find the DateRange for today. If unsuccessful,
-    // Send error to Crashlytics and use the default values.
     do {
       dateRange = try .today()
     } catch {
@@ -67,6 +70,11 @@ extension MenuViewController {
       Crashlytics.sharedInstance().recordError(error)
       // TODO: Present error UI
     }
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    updateMenu()
   }
 
   override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -252,6 +260,7 @@ private class FinishUpdateMenuOperation: Operation {
   weak var menuController: MenuViewController?
 
   init(cafeteria: Cafeteria) {
+    print("init")
     op = UpdateMenuOperation(cafeteria: cafeteria)
     super.init()
     addDependency(op)
@@ -259,7 +268,7 @@ private class FinishUpdateMenuOperation: Operation {
   }
 
   override func main() {
-
+    print("main")
     guard let menuController = menuController else {
       return
     }
