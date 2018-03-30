@@ -12,9 +12,13 @@ public protocol NamedManagedObject where Self: NSManagedObject {
   static var entityName: String { get }
 }
 
-public extension NamedManagedObject {
+extension NamedManagedObject {
+
   public init(context: NSManagedObjectContext) {
-    let entity = NSEntityDescription.entity(forEntityName: Self.entityName, in: context)!
-    self.init(entity: entity, insertInto: context)
+    self.init(entity: Self.entity(in: context), insertInto: context)
+  }
+
+  public static func entity(in context: NSManagedObjectContext) -> NSEntityDescription {
+    return NSEntityDescription.entity(forEntityName: self.entityName, in: context)!
   }
 }
