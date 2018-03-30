@@ -1,20 +1,16 @@
 PODS:
-  - PromiseKit (6.2.0):
-    - PromiseKit/CorePromise (= 6.2.0)
-    - PromiseKit/Foundation (= 6.2.0)
-    - PromiseKit/UIKit (= 6.2.0)
-  - PromiseKit/CorePromise (6.2.0)
-  - PromiseKit/Foundation (6.2.0):
-    - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.2.0):
-    - PromiseKit/CorePromise
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
+  - Fabric (1.7.6)
 
 DEPENDENCIES:
-  - PromiseKit
+  - Crashlytics
+  - Fabric
 
 SPEC CHECKSUMS:
-  PromiseKit: ea9a155e1fd98a926ccfaf633c0fbd69851f0e7b
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
 
-PODFILE CHECKSUM: 8a2354fae4a1a4102c4f8e9274914c120e6342e9
+PODFILE CHECKSUM: ca6e285145d03b5ed481493eefef153ada005874
 
 COCOAPODS: 1.4.0

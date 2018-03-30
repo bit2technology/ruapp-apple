@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PromiseKit
 
 enum URLRoute {
   case getInstitutions
@@ -16,10 +15,8 @@ enum URLRoute {
   case postStudent(Data)
   case patchStudent(id: Int64, Data)
   case menu(cafeteriaId: Int64)
-}
 
-extension URLRoute: URLRequestConvertible {
-  var pmkRequest: URLRequest {
+  var urlRequest: URLRequest {
     var urlBuilder = "https://www.ruapp.com.br/api/v2/"
     var httpMethod = HTTPMethod.get
     var httpHeader: [String: String] = [:]

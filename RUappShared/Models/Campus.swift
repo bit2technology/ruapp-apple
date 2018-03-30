@@ -9,13 +9,17 @@
 import CoreData
 
 @objc(Campus)
-public class Campus: NSManagedObject, Decodable {
+public final class Campus: NSManagedObject { }
 
-  public convenience init(context: NSManagedObjectContext) {
-    self.init(entity: NSEntityDescription.entity(forEntityName: "Campus", in: context)!, insertInto: context)
+extension Campus: NamedManagedObject {
+  public static var entityName: String {
+    return "Campus"
   }
+}
 
-  public required convenience init(from decoder: Decoder) throws {
+extension Campus: Decodable {
+
+  public convenience init(from decoder: Decoder) throws {
     let context = decoder.userInfo[.managedObjectContext] as! NSManagedObjectContext
     self.init(context: context)
     let container = try decoder.container(keyedBy: CodingKeys.self)

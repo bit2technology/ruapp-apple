@@ -1,14 +1,10 @@
 
 platform :ios, '9.0'
 
-target 'RUappShared-iOS' do
+target 'RUapp-iOS' do
   use_frameworks!
 
-  pod 'PromiseKit'
-
-end
-
-target 'RUappSharedTests-iOS' do
-  use_frameworks!
+  pod 'Crashlytics'
+  pod 'Fabric'
 
 end
