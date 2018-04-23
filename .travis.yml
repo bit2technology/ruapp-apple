@@ -1,0 +1,4 @@
+language: objective-c
+osx_image: xcode9.3
+script: xcodebuild test -scheme "RUappShared-iOS" -destination "platform=iOS Simulator,name=iPhone X"
+after_success: bash <(curl -s https://codecov.io/bash)

@@ -29,6 +29,8 @@
 		4B249F37208E8E4900C871E1 /* RUappSharedTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RUappSharedTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B249F3B208E8E4900C871E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B249F42208E8F0500C871E1 /* RUappSharedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUappSharedTests.swift; sourceTree = "<group>"; };
+		4B249F45208E904D00C871E1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4B249F46208E90A500C871E1 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				4B249F2A208E8CF500C871E1 /* RUappShared */,
 				4B249F38208E8E4900C871E1 /* RUappSharedTests */,
+				4B249F44208E902000C871E1 /* Support */,
 				4B249F29208E8CF500C871E1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,6 +87,15 @@
 				4B249F3B208E8E4900C871E1 /* Info.plist */,
 			);
 			path = RUappSharedTests;
+			sourceTree = "<group>";
+		};
+		4B249F44208E902000C871E1 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				4B249F46208E90A500C871E1 /* .travis.yml */,
+				4B249F45208E904D00C871E1 /* README.md */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
