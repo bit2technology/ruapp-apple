@@ -6,6 +6,6 @@
 //  Copyright © 2018 Bit2 Technology. All rights reserved.
 //
 
-class RUappShared {
-    static let test = "Hello, RUapp!"
+public class RUappShared {
+    public static let test = "Hello, RUapp!"
 }
