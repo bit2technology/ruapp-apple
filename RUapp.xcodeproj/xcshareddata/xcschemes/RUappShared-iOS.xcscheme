@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4BFCD7C52045E26000B4A71B"
+               BlueprintIdentifier = "4B249F27208E8CF500C871E1"
                BuildableName = "RUappShared.framework"
                BlueprintName = "RUappShared-iOS"
                ReferencedContainer = "container:RUapp.xcodeproj">
@@ -26,8 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      enableThreadSanitizer = "YES"
-      enableUBSanitizer = "YES"
       codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
@@ -35,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4BFCD7D42045E55B00B4A71B"
+               BlueprintIdentifier = "4B249F36208E8E4900C871E1"
                BuildableName = "RUappSharedTests-iOS.xctest"
                BlueprintName = "RUappSharedTests-iOS"
                ReferencedContainer = "container:RUapp.xcodeproj">
@@ -45,7 +43,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4BFCD7C52045E26000B4A71B"
+            BlueprintIdentifier = "4B249F27208E8CF500C871E1"
             BuildableName = "RUappShared.framework"
             BlueprintName = "RUappShared-iOS"
             ReferencedContainer = "container:RUapp.xcodeproj">
@@ -58,8 +56,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      enableThreadSanitizer = "YES"
-      enableUBSanitizer = "YES"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -69,7 +65,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4BFCD7C52045E26000B4A71B"
+            BlueprintIdentifier = "4B249F27208E8CF500C871E1"
             BuildableName = "RUappShared.framework"
             BlueprintName = "RUappShared-iOS"
             ReferencedContainer = "container:RUapp.xcodeproj">
@@ -87,7 +83,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4BFCD7C52045E26000B4A71B"
+            BlueprintIdentifier = "4B249F27208E8CF500C871E1"
             BuildableName = "RUappShared.framework"
             BlueprintName = "RUappShared-iOS"
             ReferencedContainer = "container:RUapp.xcodeproj">
