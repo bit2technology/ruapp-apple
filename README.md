@@ -1,5 +1,5 @@
 
-[![Travis CI](https://travis-ci.org/bit2technology/ruapp-apple.svg)](https://travis-ci.org/bit2technology/ruapp-apple) [![Codecov](https://codecov.io/gh/bit2technology/ruapp-apple/graph/badge.svg)](https://codecov.io/gh/bit2technology/ruapp-apple)
+[![Travis CI](https://travis-ci.com/bit2technology/ruapp-apple.svg)](https://travis-ci.com/bit2technology/ruapp-apple) [![Codecov](https://codecov.io/gh/bit2technology/ruapp-apple/graph/badge.svg)](https://codecov.io/gh/bit2technology/ruapp-apple)
 
 # RUapp for iOS
 
