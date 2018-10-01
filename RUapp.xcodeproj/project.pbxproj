@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B3C93722162941400780961 /* RUappCore_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B3C93702162941400780961 /* RUappCore_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4B3C93752162941400780961 /* RUappCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3C936E2162941300780961 /* RUappCore_iOS.framework */; };
-		4B3C93762162941400780961 /* RUappCore_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3C936E2162941300780961 /* RUappCore_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4B3C93752162941400780961 /* RUappCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3C936E2162941300780961 /* RUappCore.framework */; };
+		4B3C93762162941400780961 /* RUappCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3C936E2162941300780961 /* RUappCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4B3C937C216294D400780961 /* Hello.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3C937B216294D400780961 /* Hello.swift */; };
 		4B9F6021216291E00007451D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F6020216291E00007451D /* AppDelegate.swift */; };
-		4B9F6023216291E00007451D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F6022216291E00007451D /* ViewController.swift */; };
 		4B9F6026216291E10007451D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F6024216291E10007451D /* Main.storyboard */; };
 		4B9F6028216291E20007451D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F6027216291E20007451D /* Assets.xcassets */; };
 		4B9F602B216291E20007451D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F6029216291E20007451D /* LaunchScreen.storyboard */; };
@@ -34,7 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4B3C93762162941400780961 /* RUappCore_iOS.framework in Embed Frameworks */,
+				4B3C93762162941400780961 /* RUappCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,12 +41,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4B3C936E2162941300780961 /* RUappCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B3C93702162941400780961 /* RUappCore_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUappCore_iOS.h; sourceTree = "<group>"; };
+		4B3C936E2162941300780961 /* RUappCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3C93712162941400780961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B3C937B216294D400780961 /* Hello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hello.swift; sourceTree = "<group>"; };
 		4B9F601D216291E00007451D /* RUapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9F6020216291E00007451D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4B9F6022216291E00007451D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4B9F6025216291E10007451D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B9F6027216291E20007451D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B9F602A216291E20007451D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,27 +68,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B3C93752162941400780961 /* RUappCore_iOS.framework in Frameworks */,
+				4B3C93752162941400780961 /* RUappCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4B3C936F2162941400780961 /* RUappCore-iOS */ = {
+		4B3C936F2162941400780961 /* RUappCore */ = {
 			isa = PBXGroup;
 			children = (
-				4B3C93702162941400780961 /* RUappCore_iOS.h */,
+				4B3C937B216294D400780961 /* Hello.swift */,
 				4B3C93712162941400780961 /* Info.plist */,
 			);
-			path = "RUappCore-iOS";
+			path = RUappCore;
 			sourceTree = "<group>";
 		};
 		4B9F60122162901B0007451D = {
 			isa = PBXGroup;
 			children = (
 				4B9F601F216291E00007451D /* RUapp-iOS */,
-				4B3C936F2162941400780961 /* RUappCore-iOS */,
+				4B3C936F2162941400780961 /* RUappCore */,
 				4B9F601E216291E00007451D /* Products */,
 				4B9F6030216293430007451D /* Support */,
 			);
@@ -100,7 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				4B9F601D216291E00007451D /* RUapp.app */,
-				4B3C936E2162941300780961 /* RUappCore_iOS.framework */,
+				4B3C936E2162941300780961 /* RUappCore.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				4B9F6020216291E00007451D /* AppDelegate.swift */,
-				4B9F6022216291E00007451D /* ViewController.swift */,
 				4B9F6024216291E10007451D /* Main.storyboard */,
 				4B9F6027216291E20007451D /* Assets.xcassets */,
 				4B9F6029216291E20007451D /* LaunchScreen.storyboard */,
@@ -136,7 +133,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B3C93722162941400780961 /* RUappCore_iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +154,7 @@
 			);
 			name = "RUappCore-iOS";
 			productName = "RUappCore-iOS";
-			productReference = 4B3C936E2162941300780961 /* RUappCore_iOS.framework */;
+			productReference = 4B3C936E2162941300780961 /* RUappCore.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4B9F601C216291E00007451D /* RUapp-iOS */ = {
@@ -192,6 +188,7 @@
 				TargetAttributes = {
 					4B3C936D2162941300780961 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					4B9F601C216291E00007451D = {
 						CreatedOnToolsVersion = 10.0;
@@ -242,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B3C937C216294D400780961 /* Hello.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +247,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B9F6023216291E00007451D /* ViewController.swift in Sources */,
 				4B9F6021216291E00007451D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +285,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -342,9 +340,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappCore-iOS/Info.plist";
+				INFOPLIST_FILE = RUappCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -353,8 +350,8 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappCore-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.core;
+				PRODUCT_NAME = RUappCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -370,6 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -418,9 +416,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "RUappCore-iOS/Info.plist";
+				INFOPLIST_FILE = RUappCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,8 +425,8 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.bit2.RUappCore-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.bit2.ruapp.core;
+				PRODUCT_NAME = RUappCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -459,6 +456,7 @@
 		4B9F602D216291E20007451D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -531,6 +529,7 @@
 		4B9F602E216291E20007451D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
