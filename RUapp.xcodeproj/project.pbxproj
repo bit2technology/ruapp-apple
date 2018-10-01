@@ -22,6 +22,10 @@
 		4B9F6027216291E20007451D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B9F602A216291E20007451D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B9F602C216291E20007451D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B9F60312162937A0007451D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4B9F60322162937A0007451D /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		4B9F60332162937A0007451D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		4B9F60342162937A0007451D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,7 @@
 			children = (
 				4B9F601F216291E00007451D /* RUapp-iOS */,
 				4B9F601E216291E00007451D /* Products */,
+				4B9F6030216293430007451D /* Support */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +67,17 @@
 				4B9F602C216291E20007451D /* Info.plist */,
 			);
 			path = "RUapp-iOS";
+			sourceTree = "<group>";
+		};
+		4B9F6030216293430007451D /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				4B9F60332162937A0007451D /* .gitignore */,
+				4B9F60322162937A0007451D /* .travis.yml */,
+				4B9F60342162937A0007451D /* LICENSE */,
+				4B9F60312162937A0007451D /* README.md */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
