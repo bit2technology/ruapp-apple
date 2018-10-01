@@ -9,11 +9,17 @@
 /* Begin PBXBuildFile section */
 		4B3C93752162941400780961 /* RUappCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3C936E2162941300780961 /* RUappCore.framework */; };
 		4B3C93762162941400780961 /* RUappCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3C936E2162941300780961 /* RUappCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4B3C937C216294D400780961 /* Hello.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3C937B216294D400780961 /* Hello.swift */; };
+		4B8623CF21629D1F00B6E8B8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623CE21629D1F00B6E8B8 /* MenuViewController.swift */; };
+		4B8623D22162A1A700B6E8B8 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623D02162A1A700B6E8B8 /* Model.xcdatamodeld */; };
+		4B8623D42162B2BC00B6E8B8 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623D32162B2BC00B6E8B8 /* Meal.swift */; };
+		4B8623D62162B4C400B6E8B8 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623D52162B4C400B6E8B8 /* Dish.swift */; };
+		4B8623D82162B56400B6E8B8 /* Votable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623D72162B56400B6E8B8 /* Votable.swift */; };
+		4B8623DA2162B66F00B6E8B8 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623D92162B66F00B6E8B8 /* JSONDecoder.swift */; };
 		4B9F6021216291E00007451D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9F6020216291E00007451D /* AppDelegate.swift */; };
 		4B9F6026216291E10007451D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F6024216291E10007451D /* Main.storyboard */; };
 		4B9F6028216291E20007451D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F6027216291E20007451D /* Assets.xcassets */; };
 		4B9F602B216291E20007451D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F6029216291E20007451D /* LaunchScreen.storyboard */; };
+		4BF8B2CE2162BAB200FF5294 /* MenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A7BEB2162B86600D4510B /* MenuService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +49,13 @@
 /* Begin PBXFileReference section */
 		4B3C936E2162941300780961 /* RUappCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3C93712162941400780961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B3C937B216294D400780961 /* Hello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hello.swift; sourceTree = "<group>"; };
+		4B6A7BEB2162B86600D4510B /* MenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuService.swift; sourceTree = "<group>"; };
+		4B8623CE21629D1F00B6E8B8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		4B8623D12162A1A700B6E8B8 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4B8623D32162B2BC00B6E8B8 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		4B8623D52162B4C400B6E8B8 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		4B8623D72162B56400B6E8B8 /* Votable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Votable.swift; sourceTree = "<group>"; };
+		4B8623D92162B66F00B6E8B8 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
 		4B9F601D216291E00007451D /* RUapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B9F6020216291E00007451D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B9F6025216291E10007451D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,7 +90,12 @@
 		4B3C936F2162941400780961 /* RUappCore */ = {
 			isa = PBXGroup;
 			children = (
-				4B3C937B216294D400780961 /* Hello.swift */,
+				4B6A7BEB2162B86600D4510B /* MenuService.swift */,
+				4B8623D32162B2BC00B6E8B8 /* Meal.swift */,
+				4B8623D52162B4C400B6E8B8 /* Dish.swift */,
+				4B8623D72162B56400B6E8B8 /* Votable.swift */,
+				4B8623D92162B66F00B6E8B8 /* JSONDecoder.swift */,
+				4B8623D02162A1A700B6E8B8 /* Model.xcdatamodeld */,
 				4B3C93712162941400780961 /* Info.plist */,
 			);
 			path = RUappCore;
@@ -107,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				4B9F6020216291E00007451D /* AppDelegate.swift */,
+				4B8623CE21629D1F00B6E8B8 /* MenuViewController.swift */,
 				4B9F6024216291E10007451D /* Main.storyboard */,
 				4B9F6027216291E20007451D /* Assets.xcassets */,
 				4B9F6029216291E20007451D /* LaunchScreen.storyboard */,
@@ -239,7 +257,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B3C937C216294D400780961 /* Hello.swift in Sources */,
+				4B8623D62162B4C400B6E8B8 /* Dish.swift in Sources */,
+				4B8623D82162B56400B6E8B8 /* Votable.swift in Sources */,
+				4BF8B2CE2162BAB200FF5294 /* MenuService.swift in Sources */,
+				4B8623D42162B2BC00B6E8B8 /* Meal.swift in Sources */,
+				4B8623DA2162B66F00B6E8B8 /* JSONDecoder.swift in Sources */,
+				4B8623D22162A1A700B6E8B8 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B9F6021216291E00007451D /* AppDelegate.swift in Sources */,
+				4B8623CF21629D1F00B6E8B8 /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +648,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4B8623D02162A1A700B6E8B8 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4B8623D12162A1A700B6E8B8 /* Model.xcdatamodel */,
+			);
+			currentVersion = 4B8623D12162A1A700B6E8B8 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4B9F60132162901B0007451D /* Project object */;
 }
