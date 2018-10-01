@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4B3C93752162941400780961 /* RUappCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3C936E2162941300780961 /* RUappCore.framework */; };
 		4B3C93762162941400780961 /* RUappCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3C936E2162941300780961 /* RUappCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4B8623CF21629D1F00B6E8B8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623CE21629D1F00B6E8B8 /* MenuViewController.swift */; };
+		4B8623CF21629D1F00B6E8B8 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623CE21629D1F00B6E8B8 /* MenuTableViewController.swift */; };
 		4B8623D22162A1A700B6E8B8 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623D02162A1A700B6E8B8 /* Model.xcdatamodeld */; };
 		4B8623D42162B2BC00B6E8B8 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623D32162B2BC00B6E8B8 /* Meal.swift */; };
 		4B8623D62162B4C400B6E8B8 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8623D52162B4C400B6E8B8 /* Dish.swift */; };
@@ -20,6 +20,7 @@
 		4B9F6028216291E20007451D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F6027216291E20007451D /* Assets.xcassets */; };
 		4B9F602B216291E20007451D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B9F6029216291E20007451D /* LaunchScreen.storyboard */; };
 		4BF8B2CE2162BAB200FF5294 /* MenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A7BEB2162B86600D4510B /* MenuService.swift */; };
+		4BF8B2D02162E16F00FF5294 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF8B2CF2162E16F00FF5294 /* PersistentContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +51,7 @@
 		4B3C936E2162941300780961 /* RUappCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUappCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3C93712162941400780961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B6A7BEB2162B86600D4510B /* MenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuService.swift; sourceTree = "<group>"; };
-		4B8623CE21629D1F00B6E8B8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		4B8623CE21629D1F00B6E8B8 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		4B8623D12162A1A700B6E8B8 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4B8623D32162B2BC00B6E8B8 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		4B8623D52162B4C400B6E8B8 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
@@ -66,6 +67,8 @@
 		4B9F60322162937A0007451D /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		4B9F60332162937A0007451D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		4B9F60342162937A0007451D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		4BF8B2CF2162E16F00FF5294 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
+		4BF8B2D12162E43C00FF5294 /* RUapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RUapp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,7 @@
 				4B8623D52162B4C400B6E8B8 /* Dish.swift */,
 				4B8623D72162B56400B6E8B8 /* Votable.swift */,
 				4B8623D92162B66F00B6E8B8 /* JSONDecoder.swift */,
+				4BF8B2CF2162E16F00FF5294 /* PersistentContainer.swift */,
 				4B8623D02162A1A700B6E8B8 /* Model.xcdatamodeld */,
 				4B3C93712162941400780961 /* Info.plist */,
 			);
@@ -124,10 +128,11 @@
 			isa = PBXGroup;
 			children = (
 				4B9F6020216291E00007451D /* AppDelegate.swift */,
-				4B8623CE21629D1F00B6E8B8 /* MenuViewController.swift */,
+				4B8623CE21629D1F00B6E8B8 /* MenuTableViewController.swift */,
 				4B9F6024216291E10007451D /* Main.storyboard */,
 				4B9F6027216291E20007451D /* Assets.xcassets */,
 				4B9F6029216291E20007451D /* LaunchScreen.storyboard */,
+				4BF8B2D12162E43C00FF5294 /* RUapp.entitlements */,
 				4B9F602C216291E20007451D /* Info.plist */,
 			);
 			path = "RUapp-iOS";
@@ -210,6 +215,11 @@
 					};
 					4B9F601C216291E00007451D = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -261,6 +271,7 @@
 				4B8623D82162B56400B6E8B8 /* Votable.swift in Sources */,
 				4BF8B2CE2162BAB200FF5294 /* MenuService.swift in Sources */,
 				4B8623D42162B2BC00B6E8B8 /* Meal.swift in Sources */,
+				4BF8B2D02162E16F00FF5294 /* PersistentContainer.swift in Sources */,
 				4B8623DA2162B66F00B6E8B8 /* JSONDecoder.swift in Sources */,
 				4B8623D22162A1A700B6E8B8 /* Model.xcdatamodeld in Sources */,
 			);
@@ -271,7 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B9F6021216291E00007451D /* AppDelegate.swift in Sources */,
-				4B8623CF21629D1F00B6E8B8 /* MenuViewController.swift in Sources */,
+				4B8623CF21629D1F00B6E8B8 /* MenuTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +522,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "RUapp-iOS/RUapp.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
@@ -584,6 +596,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "RUapp-iOS/RUapp.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;

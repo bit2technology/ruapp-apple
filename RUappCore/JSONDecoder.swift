@@ -1,9 +1,9 @@
 import CoreData
 
 class JSONDecoder: Foundation.JSONDecoder {
-    init(managedObjectContext: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext) {
         super.init()
-        userInfo[.managedObjectContext] = managedObjectContext
+        userInfo[.managedObjectContext] = context
     }
 }
 
