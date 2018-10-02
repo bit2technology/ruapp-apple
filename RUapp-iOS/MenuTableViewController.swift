@@ -42,8 +42,13 @@ class MenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dish = fetchedResultsController.object(at: IndexPath(row: indexPath.section, section: 0)).dishes![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "DishCell", for: indexPath)
+        let bodyFont = UIFont.preferredFont(forTextStyle: .body)
         cell.textLabel?.text = dish.type
+        cell.textLabel?.textColor = .darkText
+        cell.textLabel?.font = bodyFont
         cell.detailTextLabel?.text = dish.name
+        cell.detailTextLabel?.textColor = .darkGray
+        cell.detailTextLabel?.font = bodyFont
         return cell
     }
 }

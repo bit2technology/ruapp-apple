@@ -10,7 +10,9 @@ extension NSPersistentContainer {
         storeDescription.type = NSSQLiteStoreType
         container.persistentStoreDescriptions = [storeDescription]
         container.loadPersistentStores { (storeDescriptor, error) in
-            print("load store", storeDescriptor, error)
+            if let error = error {
+                fatalError(error.localizedDescription)
+            }
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
         return container
