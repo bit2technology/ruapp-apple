@@ -7,7 +7,7 @@ public final class Dish: NSManagedObject, Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(String.self, forKey: .type)
         meta = try container.decode(String.self, forKey: .meta)
-        name = try container.decode(String.self, forKey: .name)
+        name = try? container.decode(String.self, forKey: .name)
     }
     
     private enum CodingKeys: String, CodingKey {
