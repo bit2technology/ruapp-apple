@@ -10,8 +10,8 @@ public final class Meal: NSManagedObject, Decodable {
         meta = try container.decode(String.self, forKey: .meta)
         open = try container.decode(Date.self, forKey: .open)
         close = try container.decode(Date.self, forKey: .close)
-        dishes = NSOrderedSet(array: try container.decode([Dish].self, forKey: .dishes))
-        votables = NSOrderedSet(array: try container.decode([Votable].self, forKey: .votables))
+        dishes = try container.decode([Dish].self, forKey: .dishes)
+        votables = try container.decode([Votable].self, forKey: .votables)
     }
     
     private enum CodingKeys: String, CodingKey {

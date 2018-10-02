@@ -8,7 +8,7 @@ class MenuTableViewController: UITableViewController {
     
     func fetchedResultControllerForToday() -> NSFetchedResultsController<Meal> {
         let request: NSFetchRequest<Meal> = Meal.fetchRequest()
-        request.relationshipKeyPathsForPrefetching = ["dishes"]
+        request.propertiesToFetch = ["name", "dishes"]
         request.sortDescriptors = [NSSortDescriptor(key: "open", ascending: true)]
         let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: NSPersistentContainer.shared.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         controller.delegate = self
@@ -36,11 +36,11 @@ class MenuTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return fetchedResultsController.object(at: IndexPath(row: section, section: 0)).name! + " " + fetchedResultsController.object(at: IndexPath(row: section, section: 0)).open!.description
+        return fetchedResultsController.object(at: IndexPath(row: section, section: 0)).name
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dish = fetchedResultsController.object(at: IndexPath(row: indexPath.section, section: 0)).dishes![indexPath.row] as! Dish
+        let dish = fetchedResultsController.object(at: IndexPath(row: indexPath.section, section: 0)).dishes![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "DishCell", for: indexPath)
         cell.textLabel?.text = dish.type
         cell.detailTextLabel?.text = dish.name

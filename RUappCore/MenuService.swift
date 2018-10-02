@@ -15,15 +15,6 @@ public final class MenuService {
             context.perform {
                 do {
                     _ = try JSONDecoder(context: context).decode([Meal].self, from: data!)
-                    // Delete old dishes.
-                    let dishesFetchRequest: NSFetchRequest<Dish> = Dish.fetchRequest()
-                    dishesFetchRequest.predicate = NSPredicate(format: "meal == nil")
-                    try context.fetch(dishesFetchRequest).forEach(context.delete)
-                    // Delete old votables.
-                    let votablesFetchRequest: NSFetchRequest<Votable> = Votable.fetchRequest()
-                    votablesFetchRequest.predicate = NSPredicate(format: "meal == nil")
-                    try context.fetch(votablesFetchRequest).forEach(context.delete)
-                    // Finish task.
                     try context.save()
                     completionHandler(nil)
                 } catch {
