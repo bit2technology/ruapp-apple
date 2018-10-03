@@ -2,7 +2,7 @@ import RUappCore
 import CoreData
 
 extension PersistentContainer {
-    static let test: PersistentContainer = {
+    static func forTesting() -> PersistentContainer {
         let modelURL = Bundle(for: PersistentContainer.self).url(forResource: "Model", withExtension: "momd")!
         let container = PersistentContainer(name: "Model", managedObjectModel: NSManagedObjectModel(contentsOf: modelURL)!)
         let storeDescription = NSPersistentStoreDescription()
@@ -15,5 +15,5 @@ extension PersistentContainer {
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
         return container
-    }()
+    }
 }
