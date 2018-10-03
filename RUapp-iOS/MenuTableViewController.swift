@@ -10,7 +10,7 @@ class MenuTableViewController: UITableViewController {
         let request: NSFetchRequest<Meal> = Meal.fetchRequest()
         request.propertiesToFetch = ["name", "dishes"]
         request.sortDescriptors = [NSSortDescriptor(key: "open", ascending: true)]
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: NSPersistentContainer.shared.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistentContainer.shared.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         controller.delegate = self
         return controller
     }
@@ -22,7 +22,7 @@ class MenuTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        MenuService.updateMenu(restaurantId: 1, context: NSPersistentContainer.shared.newBackgroundContextForUpdate()) { (error) in
+        MenuService.updateMenu(restaurantId: 1, context: PersistentContainer.shared.newBackgroundContextForUpdate()) { (error) in
             print("menu updated", error)
         }
     }
