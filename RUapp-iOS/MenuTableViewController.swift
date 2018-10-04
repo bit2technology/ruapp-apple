@@ -4,16 +4,11 @@ import RUappCore
 
 class MenuTableViewController: UITableViewController {
     
-    lazy var fetchedResultsController = fetchedResultControllerForToday()
+    @IBOutlet weak var pageControl: UIPageControl!
     
-    func fetchedResultControllerForToday() -> NSFetchedResultsController<Meal> {
-        let request: NSFetchRequest<Meal> = Meal.fetchRequest()
-        request.propertiesToFetch = ["name", "dishes"]
-        request.sortDescriptors = [NSSortDescriptor(key: "open", ascending: true)]
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: PersistentContainer.shared.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        controller.delegate = self
-        return controller
-    }
+    lazy var fetchedResultsController = paginatorController.fetchedResultsController
+    
+    let paginatorController = MenuPaginatorController(context: PersistentContainer.shared.viewContext)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +17,35 @@ class MenuTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        MenuService.updateMenu(restaurantId: 1, context: PersistentContainer.shared.newBackgroundContextForUpdate()) { (error) in
-            print("menu updated", error)
+        let context = PersistentContainer.shared.newBackgroundContextForUpdate()
+        MenuService.updateMenu(restaurantId: 1, context: context) { [weak self] (error) in
+            guard let strongSelf = self else { return }
+            if strongSelf.paginatorController.update() {
+                DispatchQueue.main.async {
+                    strongSelf.updateFetchedResultsController()
+                }
+            }
         }
+    }
+    
+    var tableViewAnimation = UITableView.RowAnimation.automatic
+    
+    func updateFetchedResultsController() {
+        let oldSectionsCount = fetchedResultsController.fetchedObjects?.count ?? 0
+        fetchedResultsController = paginatorController.fetchedResultsController
+        try! fetchedResultsController.performFetch()
+        let sectionsCount = fetchedResultsController.fetchedObjects?.count ?? 0
+        let reloadSections = min(sectionsCount, oldSectionsCount)
+        let insertDeleteSections = max(sectionsCount, oldSectionsCount)
+        tableView.beginUpdates()
+        tableView.reloadSections(IndexSet(integersIn: 0..<reloadSections), with: tableViewAnimation)
+        if sectionsCount > oldSectionsCount {
+            tableView.insertSections(IndexSet(integersIn: reloadSections..<insertDeleteSections), with: tableViewAnimation)
+        } else {
+            tableView.deleteSections(IndexSet(integersIn: reloadSections..<insertDeleteSections), with: tableViewAnimation)
+        }
+        tableView.endUpdates()
+        navigationItem.title = paginatorController.pageLimits[paginatorController.selectedPage].description
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

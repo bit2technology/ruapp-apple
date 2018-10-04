@@ -15,10 +15,14 @@ public final class MenuService {
                 completionHandler(error)
                 return
             }
-            // Persist new data.
+            // Persist new data and delete old ones.
             context.perform {
                 do {
-                    _ = try JSONDecoder(context: context).decode([Meal].self, from: data!)
+                    let menu = try JSONDecoder(context: context).decode([Meal].self, from: data!)
+                    let oldReq: NSFetchRequest<Meal> = Meal.fetchRequest()
+                    let earliestOpenDate = menu.map({ $0.open! }).min()! as NSDate
+                    oldReq.predicate = NSPredicate(format: "open < %@", earliestOpenDate)
+                    try context.fetch(oldReq).forEach(context.delete)
                     try context.save()
                     completionHandler(nil)
                 } catch {
