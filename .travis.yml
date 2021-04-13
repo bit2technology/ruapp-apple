@@ -1,4 +1,0 @@
-language: swift
-osx_image: xcode10
-script: xcodebuild test -scheme "RUappCore-iOS" -destination "platform=iOS Simulator,name=iPhone X"
-after_success: bash <(curl -s https://codecov.io/bash)
